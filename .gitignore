@@ -42,3 +42,4 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 *.log
+/src/main/resources/keyEnv.properties
