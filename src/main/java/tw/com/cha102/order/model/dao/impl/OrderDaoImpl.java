@@ -1,34 +1,54 @@
 package tw.com.cha102.order.model.dao.impl;
 
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import tw.com.cha102.order.model.dao.OrderDao;
 import tw.com.cha102.order.model.entity.OrderVO;
 
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
-public class OrderDaoImpl implements OrderDao{
+@Repository
+public class OrderDaoImpl implements OrderDao {
+
+    @PersistenceContext
+    private Session session;
 
     @Override
     public int insert(OrderVO orderVO) {
-        return 0;
+        session.persist(orderVO);
+        return 1;
     }
 
     @Override
-    public int deleteById(Integer id) {
-        return 0;
+    public int deleteById(Integer orderId) {
+        OrderVO order = session.load(OrderVO.class, orderId);
+        session.remove(order);
+        return 1;
     }
 
     @Override
-    public int update(OrderVO orderVO) {
-        return 0;
+    public int updateToOrderStatus(OrderVO orderVO) {
+        Query query = session.createQuery("UPDATE orderVO SET orderStatus=:orderStatus where orderId=:orderId")
+                .setParameter("orderStatus", orderVO.getOrderStatus()).setParameter("orderId", orderVO.getOrderId());
+        int i = query.executeUpdate();
+        return i;
     }
 
     @Override
-    public OrderVO selectById(Integer id) {
-        return null;
+    public OrderVO selectById(Integer orderId) {
+        return session.get(OrderVO.class,orderId);
     }
 
     @Override
     public List<OrderVO> selectAll() {
-        return null;
+        final String hql = "FROM OrderVO ORDER BY id";
+        return session
+                .createQuery(hql, OrderVO.class)
+                .getResultList();
     }
+
+
 }

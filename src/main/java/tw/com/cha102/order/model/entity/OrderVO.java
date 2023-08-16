@@ -1,12 +1,15 @@
 package tw.com.cha102.order.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.sql.Timestamp;
+
 @Entity
+@Table(name="order",catalog ="cha102g4_test")
 public class OrderVO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +33,9 @@ public class OrderVO {
     private String phoneNumber;
     @Column(name = "TELPHONE_NUMBER")
     private String telphoneNumber;
-    @Column(name = "SHIPPinG_ADDRESS")
+    @Column(name = "SHIPPING_ADDRESS")
     private String shippingAddress;
-    @Column(name = "ORDER_STATUS" ,insertable = false)
+    @Column(name = "ORDER_STATUS", insertable = false)
     private Integer orderStatus;
     private String note;
 
