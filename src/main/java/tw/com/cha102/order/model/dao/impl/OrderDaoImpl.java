@@ -2,7 +2,6 @@ package tw.com.cha102.order.model.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import tw.com.cha102.order.model.dao.OrderDao;
 import tw.com.cha102.order.model.entity.OrderVO;

@@ -1,6 +1,6 @@
 package tw.com.cha102.order.model.dao;
 
-import org.springframework.stereotype.Repository;
+
 import tw.com.cha102.order.model.entity.OrderVO;
 
 import java.util.List;
