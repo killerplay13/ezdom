@@ -1,5 +1,7 @@
 package tw.com.cha102.groupcreate.service;
 
-public class GroupCreateService {
+import tw.com.cha102.groupcreate.model.GroupCreateVO;
 
+public interface GroupCreateService {
+ GroupCreateVO create(GroupCreateVO groupCreateVO);
 }
