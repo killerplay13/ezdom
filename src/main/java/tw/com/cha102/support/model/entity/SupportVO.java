@@ -1,4 +1,4 @@
-package tw.com.cha102.support.model;
+package tw.com.cha102.support.model.entity;
 
 import java.io.Serializable;
 

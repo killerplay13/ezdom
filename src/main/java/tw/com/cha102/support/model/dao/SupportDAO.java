@@ -1,4 +1,6 @@
-package tw.com.cha102.support.model;
+package tw.com.cha102.support.model.dao;
+
+import tw.com.cha102.support.model.entity.SupportVO;
 
 import java.util.List;
 

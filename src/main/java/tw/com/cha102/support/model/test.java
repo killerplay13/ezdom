@@ -1,6 +1,7 @@
 package tw.com.cha102.support.model;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
+import tw.com.cha102.support.model.dao.impl.SupportDAOImpl;
+import tw.com.cha102.support.model.entity.SupportVO;
 
 public class test {
     public static void main(String[] args) {

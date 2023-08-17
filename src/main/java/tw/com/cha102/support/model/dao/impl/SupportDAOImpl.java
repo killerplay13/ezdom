@@ -1,8 +1,9 @@
-package tw.com.cha102.support.model;
+package tw.com.cha102.support.model.dao.impl;
 
-import org.apache.catalina.User;
+import tw.com.cha102.support.model.entity.SupportVO;
+import tw.com.cha102.support.model.Util;
+import tw.com.cha102.support.model.dao.SupportDAO;
 
-import java.security.SecureRandom;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
