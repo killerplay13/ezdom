@@ -43,3 +43,4 @@ buildNumber.properties
 .mvn/timing.properties
 *.log
 /src/main/resources/keyEnv.properties
+spring.log.2023-08-15.0.gz
