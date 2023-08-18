@@ -16,10 +16,10 @@ public class GroupCreateDAOImpl implements GroupCreateDAO{
     session.persist(groupCreateVO);
     }
 
-//    @Override
-//    public void update(GroupCreateVO groupCreateVO) {
-//
-//    }
+    @Override
+    public void update(GroupCreateVO groupCreateVO) {
+
+    }
 //
 //    @Override
 //    public List<GroupCreateVO> getAll() {

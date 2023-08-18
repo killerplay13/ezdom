@@ -61,6 +61,11 @@ private GroupCreateDAO dao;
             groupCreateVO.setSuccessful(false);
             return groupCreateVO;
         }
+        if(groupCreateVO.getGroupDeposit()==null){
+            groupCreateVO.setMessage("揪團押金未輸入");
+            groupCreateVO.setSuccessful(false);
+            return groupCreateVO;
+        }
 
         //測試用
         groupCreateVO.setCreateMemberId(1);

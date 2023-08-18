@@ -1,5 +1,6 @@
 package tw.com.cha102.groupcreate.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +29,8 @@ public class GroupCreateVO extends Core {
     @Column(name = "GROUP_LOCATION")
     private String groupLocation;
     @Column(name = "GROUP_CREATE",insertable = false)
-    private Date groupCreate;
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
+    private Timestamp groupCreate;
     @Column(name = "GROUP_TITLE")
     private String groupTitle;
     @Column(name = "GROUP_NOTICE")
@@ -41,6 +43,8 @@ public class GroupCreateVO extends Core {
     private byte[] groupPhoto;
     @Column(name = "GROUP_STATUS")
     private Integer groupStatus;
+    @Column(name = "GROUP_DEPOSIT")
+    private Integer groupDeposit;
     @Column(name = "START_DATE")
     private Date startDate;
     @Column(name = "END_DATE")
