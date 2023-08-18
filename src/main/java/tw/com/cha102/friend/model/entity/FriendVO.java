@@ -1,6 +1,6 @@
 package tw.com.cha102.friend.model.entity;
 
-import org.springframework.data.annotation.Id;
+
 
 import javax.persistence.*;
 
