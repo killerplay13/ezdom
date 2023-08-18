@@ -33,8 +33,8 @@ public class ProductVO {
     @Column(name = "PRODUCT_IMAGE")
     private byte[] productImage;
 
-    @Column(name = "PRODUCT_STATUS")
-    private Integer productStatus;
+    @Column(name = "PRODUCT_STATUS",insertable = false)
+    private byte productStatus;
 
     @Column(name = "SCORE_COUNTER",insertable = false)
     private Integer scoreCounter;
@@ -49,14 +49,13 @@ public class ProductVO {
     @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private Timestamp lastUpdatedDate;
 
-    public ProductVO(Integer categoryId, String productName, String productDescription, Integer productOriginPrice, Integer productDiscountPrice, byte[] productImage, Integer productStatus, Timestamp lastUpdatedDate) {
+    public ProductVO(Integer categoryId, String productName, String productDescription, Integer productOriginPrice, Integer productDiscountPrice, byte[] productImage, Timestamp lastUpdatedDate) {
         this.categoryId = categoryId;
         this.productName = productName;
         this.productDescription = productDescription;
         this.productOriginPrice = productOriginPrice;
         this.productDiscountPrice = productDiscountPrice;
         this.productImage = productImage;
-        this.productStatus = productStatus;
         this.lastUpdatedDate = lastUpdatedDate;
     }
 
@@ -116,11 +115,11 @@ public class ProductVO {
         this.productImage = productImage;
     }
 
-    public Integer getProductStatus() {
+    public byte getProductStatus() {
         return productStatus;
     }
 
-    public void setProductStatus(Integer productStatus) {
+    public void setProductStatus(byte productStatus) {
         this.productStatus = productStatus;
     }
 
