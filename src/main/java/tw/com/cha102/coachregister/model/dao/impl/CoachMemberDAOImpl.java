@@ -1,8 +1,12 @@
 package tw.com.cha102.coachregister.model.dao.impl;
 
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
+import tw.com.cha102.coach.model.entity.CoachMessageVO;
 import tw.com.cha102.coachregister.model.dao.CoachMemberDAO;
+import tw.com.cha102.coachregister.model.entity.CoachMemberVO;
+import tw.com.cha102.order.model.entity.OrderVO;
 
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -12,27 +16,44 @@ public class CoachMemberDAOImpl implements CoachMemberDAO {
     private Session session;
 
     @Override
-    public void add(CoachMemberDAO coachMemberDAO) {
-
+    public int add(CoachMemberVO coachMemberVO) {
+        session.persist(coachMemberVO);
+        return 1;
     }
 
     @Override
-    public void update(CoachMemberDAO coachMemberDAO) {
-
+    public int update(CoachMemberVO coachMemberVO) {
+        Query query = session
+                .createQuery("UPDATE CoachMemberVO SET " +
+                        "introduction=:introduction, " +
+                        "picture=:picture, " +
+                        "status=:status " +
+                        "WHERE memberId=:memberId")
+                .setParameter("introduction", coachMemberVO.getIntroduction())
+                .setParameter("picture", coachMemberVO.getPicture())
+                .setParameter("status", coachMemberVO.getStatus())
+                .setParameter("memberId", coachMemberVO.getMemberId());
+        int i = query.executeUpdate();
+        return i;
     }
 
     @Override
-    public void delete(CoachMemberDAO coachMemberDAO) {
-
+    public int delete(Integer id) {
+        CoachMemberVO coachMember = session.load(CoachMemberVO.class, id);
+        session.remove(coachMember);
+        return 1;
     }
 
     @Override
-    public CoachMemberDAO findById(Integer id) {
-        return null;
+    public CoachMemberVO findById(Integer id) {
+        return session.get(CoachMemberVO.class, id);
     }
 
     @Override
-    public List<CoachMemberDAO> findAll() {
-        return null;
+    public List<CoachMemberVO> findAll() {
+        final String hql = "FROM CoachMemberVO ORDER BY memberId";
+        return session
+                .createQuery(hql, CoachMemberVO.class)
+                .getResultList();
     }
 }
