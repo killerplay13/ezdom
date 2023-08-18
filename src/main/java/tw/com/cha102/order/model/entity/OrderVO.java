@@ -36,7 +36,7 @@ public class OrderVO {
     @Column(name = "SHIPPING_ADDRESS")
     private String shippingAddress;
     @Column(name = "ORDER_STATUS", insertable = false)
-    private Integer orderStatus;
+    private byte orderStatus;
     private String note;
 
     public Integer getOrderId() {
@@ -127,11 +127,11 @@ public class OrderVO {
         this.shippingAddress = shippingAddress;
     }
 
-    public Integer getOrderStatus() {
+    public byte getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(Integer orderStatus) {
+    public void setOrderStatus(byte orderStatus) {
         this.orderStatus = orderStatus;
     }
 

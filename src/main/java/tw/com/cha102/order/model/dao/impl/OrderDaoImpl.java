@@ -43,7 +43,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<OrderVO> selectAll() {
-        final String hql = "FROM OrderVO ORDER BY id";
+        final String hql = "FROM OrderVO ORDER BY orderId";
         return session
                 .createQuery(hql, OrderVO.class)
                 .getResultList();
