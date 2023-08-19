@@ -1,11 +1,13 @@
 package tw.com.cha102.coachregister.model.dao;
 
+import tw.com.cha102.coachregister.model.entity.CoachMemberVO;
+
 import java.util.List;
 
 public interface CoachMemberDAO {
-    void add(CoachMemberDAO coachMemberDAO);
-    void update(CoachMemberDAO coachMemberDAO);
-    void delete (CoachMemberDAO coachMemberDAO);
-    CoachMemberDAO findById(Integer id);
-    List<CoachMemberDAO> findAll();
+    int add(CoachMemberVO coachMemberVO);
+    int update(CoachMemberVO coachMemberVO);
+    int delete (Integer id);
+    CoachMemberVO findById(Integer id);
+    List<CoachMemberVO> findAll();
 }
