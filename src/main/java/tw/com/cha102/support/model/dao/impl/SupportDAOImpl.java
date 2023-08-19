@@ -24,7 +24,7 @@ public class SupportDAOImpl implements SupportDAO {
     }
 
     @Override
-    public void add(SupportVO supportVO) {
+    public int add(SupportVO supportVO) {
 
         try (Connection conn = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(INSERT);)
@@ -36,11 +36,11 @@ public class SupportDAOImpl implements SupportDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
+        return 1;
     }
 
     @Override
-    public void update(SupportVO supportVO) {
+    public int update(SupportVO supportVO) {
 
         try (Connection conn = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(UPDATE);)
@@ -51,10 +51,11 @@ public class SupportDAOImpl implements SupportDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return 1;
     }
 
     @Override
-    public void deleteById(Integer id) {
+    public int deleteById(Integer id) {
 
         try (Connection conn = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(DELETE);)
@@ -64,6 +65,7 @@ public class SupportDAOImpl implements SupportDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return 1;
     }
 
     @Override
