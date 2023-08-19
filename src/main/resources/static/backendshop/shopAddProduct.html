@@ -479,8 +479,8 @@
                                             <div class="upload-container" style="min-height: 100%;" >
                                                 <label class="upload-label" for="imageUpload">選擇圖片：</label>
                                                 <input type="file" id="imageUpload" accept="image/*">
-                                                <div>
-                                                    <img id="imagePreview" src="#" alt="預覽圖片">
+                                                <div id="imagePreviewContainer">
+
                                                 </div>
                                             </div>
                                         </div>
@@ -536,7 +536,8 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+    </div>
             <!-- Bootstrap core JavaScript-->
             <script src="vendor/jquery/jquery.min.js"></script>
             <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -572,21 +573,34 @@
 
             <!-- 圖片新增js -->
             <script>
-                const imageUpload = document.getElementById('imageUpload');
-                const imagePreview = document.getElementById('imagePreview');
-        
-                imageUpload.addEventListener('change', function(event) {
-                    const selectedImage = event.target.files[0];
-                    if (selectedImage) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            imagePreview.src = e.target.result;
-                        };
-                        reader.readAsDataURL(selectedImage);
-                    } else {
-                        imagePreview.src = '#';
-                    }
-                });
+                <!-- 圖片新增js -->
+         const imageUpload = document.getElementById('imageUpload');
+         const imagePreview = document.getElementById('imagePreviewContainer');
+         const imageUploadError = document.getElementById('imageUploadError');
+
+             imageUpload.addEventListener('change', function(event) {
+                 const selectedImage = event.target.files[0];
+                 if (selectedImage) {
+                     const reader = new FileReader();
+                     reader.onload = function(e) {
+
+                         const newImage = document.createElement('img');
+                         newImage.id = 'imagePreview';
+                         newImage.src = e.target.result;
+                         newImage.alt = '預覽圖片';
+                         newImage.style.maxWidth = '100%';
+                         newImage.style.height = 'auto';
+
+                         imagePreviewContainer.innerHTML = '';
+                         imagePreviewContainer.appendChild(newImage);
+                         imageUploadError.textContent = '';
+                     };
+                     reader.readAsDataURL(selectedImage);
+                 } else {
+                     imagePreviewContainer.innerHTML = '';
+                     imageUploadError.textContent = '';
+                 }
+             });
             </script>
 </body>
 
