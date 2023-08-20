@@ -12,13 +12,14 @@ public class GroupCreateDAOImpl implements GroupCreateDAO{
     @PersistenceContext
     private Session session;
     @Override
-    public void insert(GroupCreateVO groupCreateVO) {
+    public int insert(GroupCreateVO groupCreateVO) {
     session.persist(groupCreateVO);
+    return 1;
     }
 
     @Override
-    public void update(GroupCreateVO groupCreateVO) {
-
+    public int update(GroupCreateVO groupCreateVO) {
+    return 1;
     }
 //
 //    @Override

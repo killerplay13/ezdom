@@ -67,11 +67,8 @@ private GroupCreateDAO dao;
             return groupCreateVO;
         }
 
-        //測試用
-        groupCreateVO.setCreateMemberId(1);
-
             groupCreateVO.setGroupStatus(0);
-
+            final int groupCreateResult = dao.insert(groupCreateVO);
             groupCreateVO.setMessage("揪團申請已送出，我們將盡速審核");
             groupCreateVO.setSuccessful(true);
             return groupCreateVO;

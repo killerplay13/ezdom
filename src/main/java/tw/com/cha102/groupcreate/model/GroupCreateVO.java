@@ -17,11 +17,14 @@ import java.sql.Timestamp;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "GROUP")
 public class GroupCreateVO extends Core {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "GROUP_ID")
     private Integer groupId;
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
     @Column(name = "CREATE_MEMBER_ID")
     private Integer createMemberId;
     @Column(name = "GROUP_DATE")
@@ -41,7 +44,7 @@ public class GroupCreateVO extends Core {
     private String groupName;
     @Column(name = "GROUP_PHOTO")
     private byte[] groupPhoto;
-    @Column(name = "GROUP_STATUS")
+    @Column(name = "GROUP_STATUS",insertable = false)
     private Integer groupStatus;
     @Column(name = "GROUP_DEPOSIT")
     private Integer groupDeposit;
