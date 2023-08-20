@@ -422,61 +422,64 @@
                                             <h4 class="card-title">商品內容</h4>
                                         </div>
                                         <div class="card-body">
-                                            <form>
+
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <div class="mb-3">
                                                             <label for="productname">商品名稱</label>
                                                             <input id="productname" name="productname" type="text"
-                                                                class="form-control">
+                                                                   class="form-control">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="price">原始價錢</label>
-                                                            <input id="price" name="price" type="text"
-                                                                class="form-control">
+                                                            <label for="originPrice">原始價錢</label>
+                                                            <input id="originPrice" name="price" type="text"
+                                                                   class="form-control">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="manufacturername">優惠價錢</label>
-                                                            <input id="manufacturername" name="manufacturername"
-                                                                type="text" class="form-control">
+                                                            <label for="discountPrice">優惠價錢</label>
+                                                            <input id="discountPrice" name="manufacturername"
+                                                                   type="text" class="form-control">
                                                         </div>
-                                                        
+
                                                     </div>
 
                                                     <div class="col-sm-6">
                                                         <div class="mb-3">
                                                             <label class="control-label">商品類型</label>
-                                                            <select style="width: 50%" class="form-control select2">
-                                                                <option >Select</option>
-                                                                <option value="FA">Fashion</option>
-                                                                <option value="EL">Electronic</option>
-                                                                <option value="健身">健身環</option>
+                                                            <select id="sportCategory" style="width: 50%"
+                                                                    class="form-control select2">
+                                                                <option>Select</option>
+                                                                <option value="1">球類</option>
+                                                                <option value="2">運動服</option>
+                                                                <option value="3">運動褲</option>
                                                             </select>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="productdesc">商品描述</label>
                                                             <textarea class="form-control" id="productdesc"
-                                                                rows="6"></textarea>
+                                                                      rows="6"></textarea>
                                                         </div>
 
                                                     </div>
                                                 </div>
 
                                                 <div class="d-flex flex-wrap gap-2 justify-content-end">
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">確定新增</button>
-                                                    <button type="button" class="btn btn-secondary waves-effect waves-light">取消</button>
+                                                    <button id="createBtn" type="submit"
+                                                            class="btn btn-primary waves-effect waves-light">確定新增</button>
+                                                    <button id="cancelBtn" type="button"
+                                                            class="btn btn-secondary waves-effect waves-light">取消</button>
                                                 </div>
-                                            </form>
+
 
                                         </div>
                                     </div>
 
                                     <div class="card" style="height: 450px;">
-                                        <div class="card-header" >
+                                        <div class="card-header">
                                             <h4 class="card-title mb-0">商品圖片</h4>
                                         </div>
-                                        <div class="card-body" >
-                                            <div class="upload-container" style="min-height: 100%;" >
+                                        <div class="card-body">
+                                            <div class="upload-container" style="min-height: 100%;">
                                                 <label class="upload-label" for="imageUpload">選擇圖片：</label>
                                                 <input type="file" id="imageUpload" accept="image/*">
                                                 <div id="imagePreviewContainer">
@@ -485,8 +488,7 @@
                                             </div>
                                         </div>
 
-                                    </div> <!-- end card-->
-
+                                    </div>
                                 </div>
                             </div>
                             <!-- end row -->
@@ -571,36 +573,73 @@
             <script src="assets/js/app.js"></script>
 
 
-            <!-- 圖片新增js -->
+
             <script>
-                <!-- 圖片新增js -->
+         <!-- 圖片新增js -->
          const imageUpload = document.getElementById('imageUpload');
          const imagePreview = document.getElementById('imagePreviewContainer');
          const imageUploadError = document.getElementById('imageUploadError');
 
-             imageUpload.addEventListener('change', function(event) {
-                 const selectedImage = event.target.files[0];
-                 if (selectedImage) {
-                     const reader = new FileReader();
-                     reader.onload = function(e) {
+         imageUpload.addEventListener('change', function (event) {
+             const selectedImage = event.target.files[0];
+             if (selectedImage) {
+                 const reader = new FileReader();
+                 reader.onload = function (e) {
 
-                         const newImage = document.createElement('img');
-                         newImage.id = 'imagePreview';
-                         newImage.src = e.target.result;
-                         newImage.alt = '預覽圖片';
-                         newImage.style.maxWidth = '100%';
-                         newImage.style.height = 'auto';
+                     const newImage = document.createElement('img');
+                     newImage.id = 'imagePreview';
+                     newImage.src = e.target.result;
+                     newImage.alt = '預覽圖片';
+                     newImage.style.maxWidth = '100%';
+                     newImage.style.height = 'auto';
 
-                         imagePreviewContainer.innerHTML = '';
-                         imagePreviewContainer.appendChild(newImage);
-                         imageUploadError.textContent = '';
-                     };
-                     reader.readAsDataURL(selectedImage);
-                 } else {
                      imagePreviewContainer.innerHTML = '';
+                     imagePreviewContainer.appendChild(newImage);
                      imageUploadError.textContent = '';
-                 }
-             });
+                 };
+                 reader.readAsDataURL(selectedImage);
+             } else {
+                 imagePreviewContainer.innerHTML = '';
+                 imageUploadError.textContent = '';
+             }
+         });
+
+         let productname = document.getElementById("productname");
+         let originPrice = document.getElementById("originPrice");
+         let discountPrice = document.getElementById("discountPrice");
+         let sportCategory = document.getElementById("sportCategory");
+         let productdesc = document.getElementById("productdesc");
+         let createBtn = document.getElementById("createBtn");
+         let cancelBtn = document.getElementById("cancelBtn");
+
+         createBtn.addEventListener("click", function () {
+             const fileReader = new FileReader();
+             fileReader.addEventListener("load", function (e) {
+                 const imageBase64 = btoa(e.target.result);
+                 fetch('http://localhost:8080/ezdom/backend/create', {
+                     method: 'POST',
+                     headers: { 'Content-Type': 'application/json' },
+                     body: JSON.stringify({
+                         categoryId: sportCategory.value,
+                         productName: productname.value,
+                         productDescription: productdesc.value,
+                         productOriginPrice: originPrice.value,
+                         productDiscountPrice: discountPrice.value,
+                         productImage: imageBase64
+                     }),
+                 }).then(resp=>resp.json())
+                     .then(body => {
+                         const { successful, message } = body;
+                         if (successful) {
+                             alert(message);
+                             productname.value="";
+                         } else {
+                             alert(message);
+                         }
+                     })
+             })
+             fileReader.readAsBinaryString(imageUpload.files[0]);
+         })
             </script>
 </body>
 
