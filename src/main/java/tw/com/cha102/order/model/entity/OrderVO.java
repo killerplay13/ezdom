@@ -1,6 +1,7 @@
 package tw.com.cha102.order.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import tw.com.cha102.core.vo.Core;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -10,7 +11,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name="order",catalog ="cha102g4_test")
-public class OrderVO {
+public class OrderVO extends Core {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_ID")
@@ -38,6 +39,9 @@ public class OrderVO {
     @Column(name = "ORDER_STATUS", insertable = false)
     private byte orderStatus;
     private String note;
+
+
+    public OrderVO(){};
 
     public Integer getOrderId() {
         return orderId;

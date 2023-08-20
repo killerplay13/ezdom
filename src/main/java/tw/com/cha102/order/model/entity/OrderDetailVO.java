@@ -1,10 +1,12 @@
 package tw.com.cha102.order.model.entity;
 
+import tw.com.cha102.core.vo.Core;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "order_detail",catalog ="cha102g4_test")
-public class OrderDetailVO {
+public class OrderDetailVO extends Core {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +26,8 @@ public class OrderDetailVO {
 
     @Column(name = "TOTAL_AMOUNT")
     private Integer totalAmount;
+
+    public OrderDetailVO(){};
 
     public Integer getOrderDetailId() {
         return orderDetailId;

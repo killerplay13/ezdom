@@ -16,4 +16,6 @@ public interface ProductDao {
     public ProductVO selectById(Integer productId);
 
     public List<ProductVO> selectAll();
+
+    public List<ProductVO> selectByStatus(int productStatus);
 }

@@ -8,6 +8,7 @@ import tw.com.cha102.product.model.entity.ProductVO;
 
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.nio.channels.SeekableByteChannel;
 import java.util.List;
 @Repository
 public class ProductDaoImpl implements ProductDao {
@@ -32,14 +33,14 @@ public class ProductDaoImpl implements ProductDao {
     public int update(ProductVO productVO) {
         final StringBuilder hql = new StringBuilder()
                 .append("UPDATE ProductVO SET ");
-        hql.append("categoryId=:categoryId")
-                .append("productName=:productName")
-                .append("productDescription=:productDescription")
-                .append("productOriginPrice=:productOriginPrice")
-                .append("productDiscountPrice=:productDiscountPrice")
-                .append("productImage=:productImage")
-                .append("creationDate=NOW()")
-                .append("WHERE productId=:productId");
+        hql.append("categoryId=:categoryId ")
+                .append("productName=:productName ")
+                .append("productDescription=:productDescription ")
+                .append("productOriginPrice=:productOriginPrice ")
+                .append("productDiscountPrice=:productDiscountPrice ")
+                .append("productImage=:productImage ")
+                .append("lastUpdatedDate=NOW() ")
+                .append("WHERE productId=:productId ");
         Query query = session.createQuery(hql.toString());
         return  query.setParameter("categoryId",productVO.getCategoryId())
                     .setParameter("productName",productVO.getProductName())
@@ -64,4 +65,13 @@ public class ProductDaoImpl implements ProductDao {
                 .createQuery(hql, ProductVO.class)
                 .getResultList();
     }
+
+    @Override
+    public List<ProductVO> selectByStatus(int productStatus) {
+        final String hql = "FROM ProductVO WHERE productStatus = :productStatus ORDER BY productId";
+        return session.createQuery(hql, ProductVO.class)
+                .setParameter("productStatus", (byte) productStatus)
+                .getResultList();
+    }
+
 }
