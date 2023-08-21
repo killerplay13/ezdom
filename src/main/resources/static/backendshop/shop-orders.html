@@ -21,14 +21,14 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <!--下面三筆新增 -->
-    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css"/>
     <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
     <!-- App Css-->
-    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css"/>
 
     <!-- datatable -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.jqueryui.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.jqueryui.min.css"/>
 
 </head>
 
@@ -295,34 +295,40 @@
                             </h6>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                                    <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                         alt="...">
                                     <div class="status-indicator bg-success"></div>
                                 </div>
                                 <div class="font-weight-bold">
                                     <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                        problem I've been having.</div>
+                                        problem I've been having.
+                                    </div>
                                     <div class="small text-gray-500">Emily Fowler · 58m</div>
                                 </div>
                             </a>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                                    <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                         alt="...">
                                     <div class="status-indicator"></div>
                                 </div>
                                 <div>
                                     <div class="text-truncate">I have the photos that you ordered last month, how
-                                        would you like them sent to you?</div>
+                                        would you like them sent to you?
+                                    </div>
                                     <div class="small text-gray-500">Jae Chun · 1d</div>
                                 </div>
                             </a>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                                    <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                         alt="...">
                                     <div class="status-indicator bg-warning"></div>
                                 </div>
                                 <div>
                                     <div class="text-truncate">Last month's report looks great, I am very happy with
-                                        the progress so far, keep up the good work!</div>
+                                        the progress so far, keep up the good work!
+                                    </div>
                                     <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                                 </div>
                             </a>
@@ -334,7 +340,8 @@
                                 </div>
                                 <div>
                                     <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...</div>
+                                        told me that people say this to all dogs, even if they aren't good...
+                                    </div>
                                     <div class="small text-gray-500">Chicken the Dog · 2w</div>
                                 </div>
                             </a>
@@ -349,7 +356,8 @@
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">員工姓名</span>
-                            <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                            <img class="img-profile rounded-circle"
+                                 src="img/undraw_profile.svg">
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -373,7 +381,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">商品管理</h4>
+                                    <h4 class="mb-sm-0 font-size-18">商城訂單</h4>
                                 </div>
                             </div>
                         </div>
@@ -388,10 +396,11 @@
 
                                                 <div class="col-sm-4">
                                                     <label for="orderStatus"
-                                                           class="form-label"><strong>商品狀態</strong></label>
+                                                           class="form-label"><strong>訂單狀態</strong></label>
                                                     <select class="form-select" id="orderStatus">
-                                                        <option value="1">上架中商品</option>
-                                                        <option value="2">下架中商品</option>
+                                                        <option value="0">未出貨</option>
+                                                        <option value="1">已出貨</option>
+                                                        <option value="2">已完成訂單</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -402,17 +411,53 @@
                                                 <thead>
                                                 <tr style="background-color:lightskyblue">
                                                     <th>計數</th>
-                                                    <th class="align-middle">商品編號</th>
-                                                    <th class="align-middle">商品類型</th>
-                                                    <th class="align-middle">商品名稱</th>
-                                                    <th class="align-middle">商品原價</th>
-                                                    <th class="align-middle">商品優惠價</th>
-                                                    <th class="align-middle">最後更新日期</th>
-                                                    <th class="align-middle">修改</th>
-                                                    <th class="align-middle">上/下架</th>
+                                                    <th class="align-middle">訂單編號</th>
+                                                    <th class="align-middle">訂購人姓名</th>
+                                                    <th class="align-middle">電話</th>
+                                                    <th class="align-middle">金額</th>
+                                                    <th class="align-middle">地址</th>
+                                                    <th class="align-middle">訂購日期</th>
+                                                    <th class="align-middle">操作按鈕</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check font-size-16">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="orderidcheck01">
+                                                            <label class="form-check-label"
+                                                                   for="orderidcheck01"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td><a href="javascript: void(0);"
+                                                           class="text-body fw-bold">#SK2540</a>
+                                                    </td>
+                                                    <td>Neal Matthews</td>
+                                                    <td>
+                                                        0919314333
+                                                    </td>
+                                                    <td>
+                                                        $400
+                                                    </td>
+                                                    <td class="address-cell">
+                                                        桃園市 中壢區 民生路 39號 2樓
+                                                    </td>
+
+                                                    <td>
+                                                        07 Oct, 2019
+                                                    </td>
+                                                    <td>
+                                                        <!-- Button trigger modal -->
+                                                        <button type="button" class="btn btn-primary btn-sm btn-rounded"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target=".orderdetailsModal">
+                                                            確認出貨
+                                                        </button>
+                                                    </td>
+                                                </tr>
+
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -476,6 +521,8 @@
 
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
@@ -488,8 +535,7 @@
 <script src="js/demo/chart-pie-demo.js"></script>
 <!-- 初始化折疊功能 -->
 <script src="js/aside.js"></script>
-
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script> <!-- ●●js  for jquery datatables 用 -->
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -521,100 +567,7 @@
             }
         });
     });
-    //選擇上下架狀態抓取資料
-    let orderStatus = document.getElementById("orderStatus");
-    orderStatus.addEventListener("change", function () {
-    const statusValue = parseInt(orderStatus.value);
-    let upordown ="下架";
-    if(statusValue==2){upordown="上架"}
-    fetch(`http://localhost:8080/ezdom/backend/get/${statusValue}`)
-        .then(resp => resp.json())
-        .then(body => {
-            // 清除现有数据
-            $('#example').DataTable().clear().draw();
-
-            for (let list of body) {
-                let { productId, productName, productOriginPrice, productDiscountPrice, lastUpdatedDate, category } = list;
-                let { typeName } = category;
-                if(lastUpdatedDate==null){lastUpdatedDate="暫無更新"};
-                let rowData = `
-                    <tr>
-                        <td>
-                            <div class="form-check font-size-16">
-                                <input class="form-check-input" type="checkbox" id="orderidcheck01">
-                                <label class="form-check-label" for="orderidcheck01"></label>
-                            </div>
-                        </td>
-                        <td><a href="javascript: void(0);" class="text-body fw-bold">#${productId}</a></td>
-                        <td>${typeName}</td>
-                        <td>${productName}</td>
-                        <td>$${productOriginPrice}</td>
-                        <td>$${productDiscountPrice}</td>
-                        <td>${lastUpdatedDate}</td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-sm btn-rounded" data-bs-toggle="modal" data-bs-target=".orderdetailsModal">修改</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-sm btn-rounded" data-bs-toggle="modal" data-bs-target=".orderdetailsModal">${upordown}</button>
-                        </td>
-                    </tr>`;
-
-                // 将rowData包装成jQuery对象并添加到DataTables中
-                $('#example').DataTable().row.add($(rowData));
-            }
-
-            // 绘制表格
-            $('#example').DataTable().draw();
-        })
-});
-
-//進入頁面直接抓取上架中商品
-window.addEventListener("load", function () {
-    const statusValue = parseInt(orderStatus.value);
-    let upordown ="下架";
-    if(statusValue==2){upordown="上架"}
-    fetch(`http://localhost:8080/ezdom/backend/get/${statusValue}`)
-        .then(resp => resp.json())
-        .then(body => {
-            // 清除现有数据
-            $('#example').DataTable().clear().draw();
-
-            for (let list of body) {
-                let { productId, productName, productOriginPrice, productDiscountPrice, lastUpdatedDate, category } = list;
-                let { typeName } = category;
-                if(lastUpdatedDate==null){lastUpdatedDate="暫無更新"};
-                let rowData = `
-                    <tr>
-                        <td>
-                            <div class="form-check font-size-16">
-                                <input class="form-check-input" type="checkbox" id="orderidcheck01">
-                                <label class="form-check-label" for="orderidcheck01"></label>
-                            </div>
-                        </td>
-                        <td><a href="javascript: void(0);" class="text-body fw-bold">#${productId}</a></td>
-                        <td>${typeName}</td>
-                        <td>${productName}</td>
-                        <td>$${productOriginPrice}</td>
-                        <td>$${productDiscountPrice}</td>
-                        <td>${lastUpdatedDate}</td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-sm btn-rounded" data-bs-toggle="modal" data-bs-target=".orderdetailsModal">修改</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-sm btn-rounded" data-bs-toggle="modal" data-bs-target=".orderdetailsModal">${upordown}</button>
-                        </td>
-                    </tr>`;
-
-                // 将rowData包装成jQuery对象并添加到DataTables中
-                $('#example').DataTable().row.add($(rowData));
-            }
-
-            // 绘制表格
-            $('#example').DataTable().draw();
-        })
-});
 </script>
-
 </body>
 
 </html>

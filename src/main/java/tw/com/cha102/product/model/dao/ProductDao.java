@@ -18,4 +18,6 @@ public interface ProductDao {
     public List<ProductVO> selectAll();
 
     public List<ProductVO> selectByStatus(int productStatus);
+
+    public int updateToStatus(ProductVO productVO);
 }

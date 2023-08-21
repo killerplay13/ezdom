@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/backend")
 public class BackendProduct {
     @Autowired
-    ProductService service;
+    private ProductService service;
 
     //商品新增
     @PostMapping("/create")
@@ -29,13 +29,47 @@ public class BackendProduct {
             return vo;
         }
     }
-    //商品查詢狀態
+    //商品依狀態刷新後台頁面
     @GetMapping("/get/{productStatus}")
     public List<ProductVO> getProductByStatus(@PathVariable int productStatus){
         List<ProductVO> list = new ArrayList<ProductVO>();
-        list=service.findProduct(productStatus);
+        list=service.findProductsByStatus(productStatus);
             return list;
     }
 
+    //編輯商品抓起對應ID資料
+    @GetMapping("/getById/{productId}")
+    public  ProductVO getById(@PathVariable Integer productId){
+        return service.getById(productId);
+    }
+
+    //後台修改商品資料
+    @PutMapping("/edit/{productId}")
+    public ProductVO editProduct(@PathVariable Integer productId,@RequestBody ProductVO productVO) {
+        productVO.setProductId(productId);
+        ProductVO vo = new ProductVO();
+        if (service.editProduct(productVO) == true) {
+            vo.setSuccessful(true);
+            vo.setMessage("修改成功");
+            return vo;
+        } else {
+            vo.setSuccessful(false);
+            vo.setMessage("修改失敗 請稍後在試");
+            return vo;
+        }
+    }
+        //商品上下架
+        @PutMapping("/updown/{productId}")
+        public ProductVO productUpOrDwon(@PathVariable Integer productId){
+            ProductVO productVO=new ProductVO();
+            if(service.upOrdownProduct(productId)==true){
+                productVO.setMessage("操作成功");
+                productVO.setSuccessful(true);
+            }else{
+                productVO.setMessage("操作失敗");
+                productVO.setSuccessful(false);
+            }
+            return productVO;
+        }
 
 }

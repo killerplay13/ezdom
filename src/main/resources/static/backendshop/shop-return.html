@@ -377,7 +377,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">商城訂單</h4>
+                                    <h4 class="mb-sm-0 font-size-18">商城退貨</h4>
                                 </div>
                             </div>
                         </div>
@@ -393,65 +393,65 @@
                                                 <div class="col-sm-4">
                                                     <label for="orderStatus" class="form-label"><strong>訂單狀態</strong></label>
                                                     <select class="form-select" id="orderStatus">
-                                                        <option value="0">未出貨</option>
-                                                        <option value="1">已出貨</option>
-                                                        <option value="2">已完成訂單</option>
+                                                        <option value="3">退貨中</option>
+                                                        <option value="4">退貨完成</option>
+
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="table-responsive">
-                                                <table id="example" class="display" style="width: 100%">
-                                                    <thead>
-                                                    <tr style="background-color:lightskyblue">
-                                                        <th>計數</th>
-                                                        <th class="align-middle">訂單編號</th>
-                                                        <th class="align-middle">訂購人姓名</th>
-                                                        <th class="align-middle">電話</th>
-                                                        <th class="align-middle">金額</th>
-                                                        <th class="align-middle">地址</th>
-                                                        <th class="align-middle">訂購日期</th>
-                                                        <th class="align-middle">操作按鈕</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="form-check font-size-16">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                       id="orderidcheck01">
-                                                                <label class="form-check-label" for="orderidcheck01"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td><a href="javascript: void(0);" class="text-body fw-bold">#SK2540</a>
-                                                        </td>
-                                                        <td>Neal Matthews</td>
-                                                        <td>
-                                                            0919314333
-                                                        </td>
-                                                        <td>
-                                                            $400
-                                                        </td>
-                                                        <td  class="address-cell">
-                                                            桃園市 中壢區 民生路 39號 2樓
-                                                        </td>
+                                            <table id="example" class="display" style="width: 100%">
+                                                <thead>
+                                                <tr style="background-color:lightskyblue">
+                                                    <th>計數</th>
+                                                    <th class="align-middle">訂單編號</th>
+                                                    <th class="align-middle">訂購人姓名</th>
+                                                    <th class="align-middle">電話</th>
+                                                    <th class="align-middle">金額</th>
+                                                    <th class="align-middle">地址</th>
+                                                    <th class="align-middle">訂購日期</th>
+                                                    <th class="align-middle">操作按鈕</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check font-size-16">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="orderidcheck01">
+                                                            <label class="form-check-label" for="orderidcheck01"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#SK2540</a>
+                                                    </td>
+                                                    <td>Neal Matthews</td>
+                                                    <td>
+                                                        0919314333
+                                                    </td>
+                                                    <td>
+                                                        $400
+                                                    </td>
+                                                    <td  class="address-cell">
+                                                        桃園市 中壢區 民生路 39號 2樓
+                                                    </td>
 
-                                                        <td>
-                                                            07 Oct, 2019
-                                                        </td>
-                                                        <td>
-                                                            <!-- Button trigger modal -->
-                                                            <button type="button" class="btn btn-primary btn-sm btn-rounded"
-                                                                    data-bs-toggle="modal" data-bs-target=".orderdetailsModal">
-                                                                確認出貨
-                                                            </button>
-                                                        </td>
-                                                    </tr>
+                                                    <td>
+                                                        07 Oct, 2019
+                                                    </td>
+                                                    <td>
+                                                        <!-- Button trigger modal -->
+                                                        <button type="button" class="btn btn-primary btn-sm btn-rounded"
+                                                                data-bs-toggle="modal" data-bs-target=".orderdetailsModal">
+                                                            確認退貨
+                                                        </button>
+                                                    </td>
+                                                </tr>
 
 
-                                                    </tbody>
-                                                </table>
+                                                </tbody>
+                                            </table>
                                         </div>
 
                                     </div>
@@ -559,6 +559,9 @@
             }
         });
     });
+</script>
+<script>
+
 </script>
 </body>
 
