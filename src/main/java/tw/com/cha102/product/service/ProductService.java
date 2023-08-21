@@ -8,5 +8,13 @@ public interface ProductService {
 
     public boolean addProduct(ProductVO productVO);
 
-    public List<ProductVO> findProduct(int productStatus);
+    public List<ProductVO> findProductsByStatus(int productStatus);
+
+    public ProductVO getById(Integer productId);
+
+    public boolean editProduct(ProductVO productVO);
+
+    public boolean upOrdownProduct(Integer productId);
+
+
 }

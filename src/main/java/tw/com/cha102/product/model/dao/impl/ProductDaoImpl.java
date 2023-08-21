@@ -33,21 +33,26 @@ public class ProductDaoImpl implements ProductDao {
     public int update(ProductVO productVO) {
         final StringBuilder hql = new StringBuilder()
                 .append("UPDATE ProductVO SET ");
-        hql.append("categoryId=:categoryId ")
-                .append("productName=:productName ")
-                .append("productDescription=:productDescription ")
-                .append("productOriginPrice=:productOriginPrice ")
-                .append("productDiscountPrice=:productDiscountPrice ")
-                .append("productImage=:productImage ")
+        byte[] productImage = productVO.getProductImage();
+        if (productImage != null) {
+            hql.append("productImage=:productImage, ");
+        }
+        hql.append("categoryId=:categoryId, ")
+                .append("productName=:productName, ")
+                .append("productDescription=:productDescription, ")
+                .append("productOriginPrice=:productOriginPrice, ")
+                .append("productDiscountPrice=:productDiscountPrice, ")
                 .append("lastUpdatedDate=NOW() ")
                 .append("WHERE productId=:productId ");
         Query query = session.createQuery(hql.toString());
+        if (productImage != null) {
+            query.setParameter("productImage",productVO.getProductImage());
+        }
         return  query.setParameter("categoryId",productVO.getCategoryId())
                     .setParameter("productName",productVO.getProductName())
                     .setParameter("productDescription",productVO.getProductDescription())
                     .setParameter("productOriginPrice",productVO.getProductOriginPrice())
                     .setParameter("productDiscountPrice",productVO.getProductDiscountPrice())
-                    .setParameter("productImage",productVO.getProductImage())
                     .setParameter("productId",productVO.getProductId())
                     .executeUpdate();
 
@@ -72,6 +77,14 @@ public class ProductDaoImpl implements ProductDao {
         return session.createQuery(hql, ProductVO.class)
                 .setParameter("productStatus", (byte) productStatus)
                 .getResultList();
+    }
+
+    @Override
+    public int updateToStatus(ProductVO productVO) {
+        Query query = session.createQuery("UPDATE ProductVO SET productStatus=:productStatus where productId=:productId")
+                .setParameter("productStatus", productVO.getProductStatus()).setParameter("productId", productVO.getProductId());
+        int i = query.executeUpdate();
+        return i;
     }
 
 }
