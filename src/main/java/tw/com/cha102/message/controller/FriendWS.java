@@ -1,5 +1,6 @@
 package tw.com.cha102.message.controller;
 
+
 import com.google.gson.Gson;
 import org.aspectj.weaver.patterns.Pointcut;
 import tw.com.cha102.message.model.MessageVO;
