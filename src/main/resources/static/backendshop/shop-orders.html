@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ReviseProduct</title>
+    <title>SB Admin 2 - 404</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,50 +19,17 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-    <!-- select2 css -->
-    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>
-
-    <!-- dropzone css -->
-    <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css"/>
-
-    <!-- preloader css -->
-    <link rel="stylesheet" href="assets/css/preloader.min.css" type="text/css"/>
-
-    <!-- Bootstrap Css -->
+    <!--下面三筆新增 -->
     <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css"/>
     <!-- Icons Css -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css"/>
 
-    <style>
-        .upload-container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-        }
+    <!-- datatable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.jqueryui.min.css"/>
 
-        .upload-label {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        #imagePreview {
-            max-width: 100%;
-            max-height: 200px;
-            margin-top: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-        }
-    </style>
 </head>
 
 <body id="page-top">
@@ -328,7 +295,8 @@
                             </h6>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                                    <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                         alt="...">
                                     <div class="status-indicator bg-success"></div>
                                 </div>
                                 <div class="font-weight-bold">
@@ -340,7 +308,8 @@
                             </a>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                                    <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                         alt="...">
                                     <div class="status-indicator"></div>
                                 </div>
                                 <div>
@@ -352,7 +321,8 @@
                             </a>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                                    <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                         alt="...">
                                     <div class="status-indicator bg-warning"></div>
                                 </div>
                                 <div>
@@ -386,7 +356,8 @@
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">員工姓名</span>
-                            <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                            <img class="img-profile rounded-circle"
+                                 src="img/undraw_profile.svg">
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -401,147 +372,144 @@
                 </ul>
             </nav>
             <!-- 上方員工姓名欄位 -->
-            <!-- End of Topbar -->
+            <div style="margin:0;" class="main-content">
 
-            <!-- Begin Page Content -->
-            <div class="main-content">
-
-                <div style="padding:0px" class="page-content">
+                <div style="padding-top: 10px;" class="page-content">
                     <div class="container-fluid">
 
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">商品編輯</h4>
+                                    <h4 class="mb-sm-0 font-size-18">商城訂單</h4>
                                 </div>
                             </div>
                         </div>
                         <!-- end page title -->
 
                         <div class="row">
-                            <div style="padding: 0;" class="col-12">
+                            <div class="col-12">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">商品內容</h4>
-                                    </div>
                                     <div class="card-body">
-                                        <form>
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <div class="mb-3">
-                                                        <label for="productname">商品名稱</label>
-                                                        <input id="productname" name="productname" type="text"
-                                                               class="form-control">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="price">原始價錢</label>
-                                                        <input id="price" name="price" type="text"
-                                                               class="form-control">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="manufacturername">優惠價錢</label>
-                                                        <input id="manufacturername" name="manufacturername"
-                                                               type="text" class="form-control">
-                                                    </div>
+                                        <div class="row mb-2">
+                                            <div class="d-flex justify-content-between align-items-center">
 
-                                                </div>
-
-                                                <div class="col-sm-6">
-                                                    <div class="mb-3">
-                                                        <label class="control-label">商品類型</label>
-                                                        <select style="width: 50%" class="form-control select2">
-                                                            <option>Select</option>
-                                                            <option value="FA">Fashion</option>
-                                                            <option value="EL">Electronic</option>
-                                                            <option value="健身">健身環</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="productdesc">商品描述</label>
-                                                        <textarea class="form-control" id="productdesc"
-                                                                  rows="6"></textarea>
-                                                    </div>
-
+                                                <div class="col-sm-4">
+                                                    <label for="orderStatus"
+                                                           class="form-label"><strong>訂單狀態</strong></label>
+                                                    <select class="form-select" id="orderStatus">
+                                                        <option value="0">未出貨</option>
+                                                        <option value="1">已出貨</option>
+                                                        <option value="2">已完成訂單</option>
+                                                    </select>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <div class="d-flex flex-wrap gap-2 justify-content-end">
-                                                <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                                    確定修改
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-secondary waves-effect waves-light">取消
-                                                </button>
-                                            </div>
-                                        </form>
+                                        <div class="table-responsive">
+                                            <table id="example" class="display" style="width: 100%">
+                                                <thead>
+                                                <tr style="background-color:lightskyblue">
+                                                    <th>計數</th>
+                                                    <th class="align-middle">訂單編號</th>
+                                                    <th class="align-middle">訂購人姓名</th>
+                                                    <th class="align-middle">電話</th>
+                                                    <th class="align-middle">金額</th>
+                                                    <th class="align-middle">地址</th>
+                                                    <th class="align-middle">訂購日期</th>
+                                                    <th class="align-middle">操作按鈕</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check font-size-16">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="orderidcheck01">
+                                                            <label class="form-check-label"
+                                                                   for="orderidcheck01"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td><a href="javascript: void(0);"
+                                                           class="text-body fw-bold">#SK2540</a>
+                                                    </td>
+                                                    <td>Neal Matthews</td>
+                                                    <td>
+                                                        0919314333
+                                                    </td>
+                                                    <td>
+                                                        $400
+                                                    </td>
+                                                    <td class="address-cell">
+                                                        桃園市 中壢區 民生路 39號 2樓
+                                                    </td>
+
+                                                    <td>
+                                                        07 Oct, 2019
+                                                    </td>
+                                                    <td>
+                                                        <!-- Button trigger modal -->
+                                                        <button type="button" class="btn btn-primary btn-sm btn-rounded"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target=".orderdetailsModal">
+                                                            確認出貨
+                                                        </button>
+                                                    </td>
+                                                </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
 
                                     </div>
                                 </div>
-
-                                <div class="card" style="height: 450px;">
-                                    <div class="card-header">
-                                        <h4 class="card-title mb-0">商品圖片</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="upload-container" style="min-height: 100%;">
-                                            <label class="upload-label" for="imageUpload">選擇圖片：</label>
-                                            <input type="file" id="imageUpload" accept="image/*">
-                                            <div id="imagePreviewContainer">
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div> <!-- end card-->
-
                             </div>
                         </div>
                         <!-- end row -->
 
                     </div> <!-- container-fluid -->
                 </div>
-                <!-- End of Main Content -->
-
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>EZDOM &copy; 後台管理系統</span>
-                        </div>
-                    </div>
-                </footer>
-                <!-- End of Footer -->
-
             </div>
-            <!-- End of Content Wrapper -->
-
         </div>
-        <!-- End of Page Wrapper -->
+        <!-- End of Main Content -->
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
-                    </div>
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>EZDOM &copy; 後台管理系統</span>
                 </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
             </div>
         </div>
     </div>
@@ -553,62 +521,52 @@
 
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="js/demo/chart-area-demo.js"></script>
+<script src="js/demo/chart-pie-demo.js"></script>
 <!-- 初始化折疊功能 -->
 <script src="js/aside.js"></script>
-
-<!-- JAVASCRIPT -->
-<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/libs/metismenu/metisMenu.min.js"></script>
-<script src="assets/libs/simplebar/simplebar.min.js"></script>
-<script src="assets/libs/node-waves/waves.min.js"></script>
-<script src="assets/libs/feather-icons/feather.min.js"></script>
-<!-- pace js -->
-<script src="assets/libs/pace-js/pace.min.js"></script>
-
-<!-- select 2 plugin -->
-<script src="assets/libs/select2/js/select2.min.js"></script>
-
-<!-- dropzone plugin -->
-<script src="assets/libs/dropzone/min/dropzone.min.js"></script>
-
-<!-- init js -->
-<script src="assets/js/pages/ecommerce-select2.init.js"></script>
-
-<script src="assets/js/app.js"></script>
-
-
-<!-- 圖片新增js -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script> <!-- ●●js  for jquery datatables 用 -->
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script>
-    const imageUpload = document.getElementById('imageUpload');
-const imagePreview = document.getElementById('imagePreviewContainer');
-const imageUploadError = document.getElementById('imageUploadError');
-
-imageUpload.addEventListener('change', function(event) {
-    const selectedImage = event.target.files[0];
-    if (selectedImage) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-
-            const newImage = document.createElement('img');
-            newImage.id = 'imagePreview';
-            newImage.src = e.target.result;
-            newImage.alt = '預覽圖片';
-            newImage.style.maxWidth = '100%';
-            newImage.style.height = 'auto';
-
-            imagePreviewContainer.innerHTML = '';
-            imagePreviewContainer.appendChild(newImage);
-            imageUploadError.textContent = '';
-        };
-        reader.readAsDataURL(selectedImage);
-    } else {
-        imagePreviewContainer.innerHTML = '';
-        imageUploadError.textContent = '';
-    }
-});
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "lengthMenu": [3, 5, 10, 20, 50, 100],
+            "searching": true,  //搜尋功能, 預設是開啟
+            "paging": true,     //分頁功能, 預設是開啟
+            "ordering": true,   //排序功能, 預設是開啟
+            "language": {
+                "processing": "處理中...",
+                "loadingRecords": "載入中...",
+                "lengthMenu": "顯示 _MENU_ 筆結果",
+                "zeroRecords": "沒有符合的結果",
+                "info": "顯示第 _START_ 至 _END_ 筆結果，共<font color=red> _TOTAL_ </font>筆",
+                "infoEmpty": "顯示第 0 至 0 筆結果，共 0 筆",
+                "infoFiltered": "(從 _MAX_ 筆結果中過濾)",
+                "infoPostFix": "",
+                "search": "搜尋:",
+                "paginate": {
+                    "first": "第一頁",
+                    "previous": "上一頁",
+                    "next": "下一頁",
+                    "last": "最後一頁"
+                },
+                "aria": {
+                    "sortAscending": ": 升冪排列",
+                    "sortDescending": ": 降冪排列"
+                }
+            }
+        });
+    });
 </script>
 </body>
 

@@ -1,13 +1,14 @@
 package tw.com.cha102.product.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import tw.com.cha102.core.vo.Core;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "product",catalog ="cha102g4_test")
-public class ProductVO {
+public class ProductVO extends Core {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,7 +50,23 @@ public class ProductVO {
     @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private Timestamp lastUpdatedDate;
 
-    public ProductVO(Integer categoryId, String productName, String productDescription, Integer productOriginPrice, Integer productDiscountPrice, byte[] productImage, Timestamp lastUpdatedDate) {
+    @ManyToOne // 指定多对一关系
+    @JoinColumn(name = "CATEGORY_ID",insertable=false ,updatable = false) // 指定外键列
+    private CategoryVO category;
+
+    public ProductVO() {
+
+    }
+
+    public CategoryVO getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryVO category) {
+        this.category = category;
+    }
+
+    public ProductVO(Integer categoryId, String productName, String productDescription, Integer productOriginPrice, Integer productDiscountPrice, byte[] productImage, Timestamp lastUpdatedDate,CategoryVO category) {
         this.categoryId = categoryId;
         this.productName = productName;
         this.productDescription = productDescription;
@@ -57,6 +74,7 @@ public class ProductVO {
         this.productDiscountPrice = productDiscountPrice;
         this.productImage = productImage;
         this.lastUpdatedDate = lastUpdatedDate;
+        this.category=category;
     }
 
     public Integer getProductId() {
