@@ -54,7 +54,7 @@ public class LatestNewsService {
     public Optional<LatestNews> getLatestNewsById(Integer newsId) {
         return latestNewsRepository.findById(newsId);
     }
-}
+}//單一查詢
 
 
 
