@@ -1,26 +1,22 @@
 package tw.com.cha102.groupcreate.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tw.com.cha102.groupcreate.model.GroupCreateVO;
 import tw.com.cha102.groupcreate.service.GroupCreateService;
+import tw.com.cha102.groupcreate.service.GroupCreateServiceImpl;
 
 @RestController
 @RequestMapping("/groupcreate")
 public class GroupCreateServlet {
 
     @Autowired
-    private GroupCreateService service;
+    private GroupCreateService groupCreateService;
 
     @PostMapping("/create")
     public GroupCreateVO create(@RequestBody GroupCreateVO groupCreateVO){
-        if(groupCreateVO == null){
-            groupCreateVO = new GroupCreateVO();
-            groupCreateVO.setMessage("無揪團資訊");
-            groupCreateVO.setSuccessful(false);
-            return groupCreateVO;
-        }
-        return service.create(groupCreateVO);
+        return groupCreateService.create(groupCreateVO);
     }
     @GetMapping("/test")
     public int test(){

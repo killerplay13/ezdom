@@ -2,22 +2,36 @@ package tw.com.cha102.groupcreate.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tw.com.cha102.groupcreate.model.GroupCreateDAO;
+//import tw.com.cha102.groupcreate.model.GroupCreateDAO;
+import tw.com.cha102.groupcreate.model.GroupCreateRepository;
 import tw.com.cha102.groupcreate.model.GroupCreateVO;
 
 import javax.transaction.Transactional;
+import java.lang.reflect.Member;
 
 @Service
 @Transactional
 public class GroupCreateServiceImpl implements GroupCreateService{
-@Autowired
-private GroupCreateDAO dao;
+
+
+    @Autowired
+    public final GroupCreateRepository groupCreateRepository;
+
+    public GroupCreateServiceImpl(GroupCreateRepository groupCreateRepository) {
+        this.groupCreateRepository = groupCreateRepository;
+    }
 
 
     @Override
     public GroupCreateVO create(GroupCreateVO groupCreateVO) {
        if(groupCreateVO.getGroupDate()==null){
            groupCreateVO.setMessage("揪團時間未輸入");
+           groupCreateVO.setSuccessful(false);
+           return groupCreateVO;
+       }
+       int compareGroupDate = groupCreateVO.getGroupDate().compareTo(groupCreateVO.getEndDate());
+       if (compareGroupDate>0){
+           groupCreateVO.setMessage("揪團日期不能晚於報名截止日期");
            groupCreateVO.setSuccessful(false);
            return groupCreateVO;
        }
@@ -56,19 +70,31 @@ private GroupCreateDAO dao;
             groupCreateVO.setSuccessful(false);
             return groupCreateVO;
         }
-        if(groupCreateVO.getLimitNumber()==null){
-            groupCreateVO.setMessage("人數上限未輸入");
+        int compareStartDate = groupCreateVO.getStartDate().compareTo(groupCreateVO.getEndDate());
+        if (compareStartDate>0){
+            groupCreateVO.setMessage("報名開始日不能晚於報名截止日");
             groupCreateVO.setSuccessful(false);
             return groupCreateVO;
         }
-        if(groupCreateVO.getGroupDeposit()==null){
-            groupCreateVO.setMessage("揪團押金未輸入");
+        if(groupCreateVO.getLimitNumber()==null || groupCreateVO.getLimitNumber()<0){
+            groupCreateVO.setMessage("人數上限未輸入或小於0");
+            groupCreateVO.setSuccessful(false);
+            return groupCreateVO;
+        }
+        if(groupCreateVO.getGroupDeposit()==null || groupCreateVO.getGroupDeposit()<0){
+            groupCreateVO.setMessage("揪團押金未輸入或小於0");
             groupCreateVO.setSuccessful(false);
             return groupCreateVO;
         }
 
             groupCreateVO.setGroupStatus(0);
-            final int groupCreateResult = dao.insert(groupCreateVO);
+//            groupCreateVO.setCreateMemberId();
+            final GroupCreateVO groupCreateResult = groupCreateRepository.save(groupCreateVO);
+//            if (groupCreateResult <1){
+//                groupCreateVO.setMessage("新增錯誤");
+//                groupCreateVO.setSuccessful(false);
+//                return groupCreateVO;
+//            }
             groupCreateVO.setMessage("揪團申請已送出，我們將盡速審核");
             groupCreateVO.setSuccessful(true);
             return groupCreateVO;

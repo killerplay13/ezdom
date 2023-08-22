@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
 import tw.com.cha102.core.vo.Core;
+import tw.com.cha102.member.model.entity.Member;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -17,15 +19,16 @@ import java.sql.Timestamp;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "GROUP")
+@DynamicInsert
+@Table(name = "GROUP", catalog = "cha102g4_test")
 public class GroupCreateVO extends Core {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "GROUP_ID")
     private Integer groupId;
-    @ManyToOne
-    @JoinColumn(name = "MEMBER_ID")
-    @Column(name = "CREATE_MEMBER_ID")
+//    @ManyToOne
+//    @JoinColumn(name = "CREATE_MEMBER_ID")
+@Column(name = "CREATE_MEMBER_ID")
     private Integer createMemberId;
     @Column(name = "GROUP_DATE")
     private Date groupDate;
@@ -44,7 +47,7 @@ public class GroupCreateVO extends Core {
     private String groupName;
     @Column(name = "GROUP_PHOTO")
     private byte[] groupPhoto;
-    @Column(name = "GROUP_STATUS",insertable = false)
+    @Column(name = "GROUP_STATUS",insertable = false,columnDefinition = "TINYINT NOT NULL DEFAULT 0")
     private Integer groupStatus;
     @Column(name = "GROUP_DEPOSIT")
     private Integer groupDeposit;
