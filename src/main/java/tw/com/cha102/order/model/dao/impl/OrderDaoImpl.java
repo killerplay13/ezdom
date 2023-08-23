@@ -5,6 +5,7 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import tw.com.cha102.order.model.dao.OrderDao;
 import tw.com.cha102.order.model.entity.OrderVO;
+import tw.com.cha102.product.model.entity.ProductVO;
 
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -49,5 +50,12 @@ public class OrderDaoImpl implements OrderDao {
                 .getResultList();
     }
 
+    @Override
+    public List<OrderVO> selectByStatus(int orderStatus) {
+        final String hql = "FROM OrderVO WHERE orderStatus = :orderStatus ORDER BY orderId";
+        return session.createQuery(hql, OrderVO.class)
+                .setParameter("orderStatus", (byte) orderStatus)
+                .getResultList();
+    }
 
 }

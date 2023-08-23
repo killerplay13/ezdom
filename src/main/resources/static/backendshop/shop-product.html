@@ -524,12 +524,11 @@
     //選擇上下架狀態抓取資料的變數
     let orderStatus = document.getElementById("orderStatus");
 
-    //進入頁面直接抓取上架中商品
-    window.addEventListener("load", function renew() {
+    function renew() {
         let statusValue = parseInt(orderStatus.value);
         let upordown = "下架";
         if (statusValue == 2) { upordown = "上架" }
-        fetch(`http://localhost:8080/ezdom/backend/get/${statusValue}`)
+        fetch(`http://localhost:8080/ezdom/product/get/${statusValue}`)
             .then(resp => resp.json())
             .then(body => {
                 // 清除现有数据
@@ -557,7 +556,7 @@
                             <a href ="shop-reviseProduct.html?productId=${productId}"<button type="button" class="btn btn-primary btn-sm btn-rounded" data-bs-toggle="modal" data-bs-target=".orderdetailsModal">修改</button></a>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm btn-rounded" data-product-id="${productId}" data-bs-toggle="modal" data-bs-target=".orderdetailsModal">${upordown}</button>
+                            <button type="button" class="btn btn-primary btn-sm btn-rounded" " onclick="setUpOrDown(${productId})" data-bs-toggle="modal" data-bs-target=".orderdetailsModal">${upordown}</button>
                         </td>
                     </tr>`;
 
@@ -569,36 +568,27 @@
                 $('#example').DataTable().draw();
                 //選擇上下架狀態抓取資料
                 orderStatus.onchange = renew;
-
-                setupButtons();
-
-
             })
-    });
+    };
 
-    $('#example').on('page.dt', function () {
-        // 換頁後重新設定按鈕事件
-        setupButtons();
-    });
-
-    function setupButtons() {
-        // 取得所有上下架按鈕元素
-        const upDownButtons = document.querySelectorAll('[data-product-id]');
-
-        // 對每個按鈕設定點擊事件處理器
-        upDownButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                // 取得商品ID
-                const productId = this.getAttribute('data-product-id');
-                console.log(productId);
-                // 在這裡執行需要的操作，例如發送商品ID到後端
-                // ...
-            });
-        });
+    function setUpOrDown(productId) {
+        fetch(`http://localhost:8080/ezdom/product/updown/${productId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' }
+        }).then(resp => resp.json())
+        .then(body => {
+            const { successful, message } = body;
+            if (successful) {
+                alert(message);
+                renew();
+            } else {
+                alert(message);
+            }
+        })
     }
 
-
-
+     //進入頁面直接抓取上架中商品
+     window.onload = renew;
 </script>
 
 </body>
