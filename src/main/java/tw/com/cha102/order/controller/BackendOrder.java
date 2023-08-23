@@ -6,8 +6,7 @@ import tw.com.cha102.order.model.entity.OrderVO;
 import tw.com.cha102.order.service.OrderService;
 
 
-import javax.websocket.server.PathParam;
-import javax.websocket.server.ServerEndpoint;
+
 import java.util.ArrayList;
 import java.util.List;
 @CrossOrigin(origins = "*")
@@ -30,4 +29,32 @@ public class BackendOrder {
     public OrderVO getOrderProduct(@RequestParam Integer orderId){
         return service.selectOrderById(orderId);
     }
+
+    //出貨按鈕
+    @PutMapping("/ship/{orderId}")
+    public  OrderVO orderToShip(@PathVariable Integer orderId){
+        OrderVO orderVO=new OrderVO();
+        if(service.toShipOrder(orderId)==true){
+            orderVO.setMessage("操作成功");
+            orderVO.setSuccessful(true);
+        }else{
+            orderVO.setMessage("操作失敗");
+            orderVO.setSuccessful(false);
+        }
+        return orderVO;
+    }
+    //後台確認退貨按鈕 或買家退貨按鈕
+    @PutMapping("/return/{orderId}")
+    public  OrderVO orderToReturn(@PathVariable Integer orderId){
+        OrderVO orderVO=new OrderVO();
+        if(service.toRetrunOrder(orderId)==true){
+            orderVO.setMessage("操作成功");
+            orderVO.setSuccessful(true);
+        }else{
+            orderVO.setMessage("操作失敗");
+            orderVO.setSuccessful(false);
+        }
+        return orderVO;
+    }
+
 }

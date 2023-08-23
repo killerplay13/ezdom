@@ -18,4 +18,5 @@ public interface OrderDao {
     public List<OrderVO> selectAll();
 
     public List<OrderVO> selectByStatus(int orderStatus);
+
 }
