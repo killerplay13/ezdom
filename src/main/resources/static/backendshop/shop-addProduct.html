@@ -617,7 +617,7 @@
         let fileReader = new FileReader();
         fileReader.addEventListener("load", function (e) {
             const imageBase64 = btoa(e.target.result);
-            fetch('http://localhost:8080/ezdom/backend/create', {
+            fetch('http://localhost:8080/ezdom/product/create', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

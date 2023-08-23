@@ -545,180 +545,180 @@
         </div>
     </div>
 </div>
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
-        <!-- 初始化折疊功能 -->
-        <script src="js/aside.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
+<!-- 初始化折疊功能 -->
+<script src="js/aside.js"></script>
 
-        <!-- JAVASCRIPT -->
-        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
-        <script src="assets/libs/simplebar/simplebar.min.js"></script>
-        <script src="assets/libs/node-waves/waves.min.js"></script>
-        <script src="assets/libs/feather-icons/feather.min.js"></script>
-        <!-- pace js -->
-        <script src="assets/libs/pace-js/pace.min.js"></script>
+<!-- JAVASCRIPT -->
+<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/libs/metismenu/metisMenu.min.js"></script>
+<script src="assets/libs/simplebar/simplebar.min.js"></script>
+<script src="assets/libs/node-waves/waves.min.js"></script>
+<script src="assets/libs/feather-icons/feather.min.js"></script>
+<!-- pace js -->
+<script src="assets/libs/pace-js/pace.min.js"></script>
 
-        <!-- select 2 plugin -->
-        <script src="assets/libs/select2/js/select2.min.js"></script>
+<!-- select 2 plugin -->
+<script src="assets/libs/select2/js/select2.min.js"></script>
 
-        <!-- dropzone plugin -->
-        <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
+<!-- dropzone plugin -->
+<script src="assets/libs/dropzone/min/dropzone.min.js"></script>
 
-        <!-- init js -->
-        <script src="assets/js/pages/ecommerce-select2.init.js"></script>
+<!-- init js -->
+<script src="assets/js/pages/ecommerce-select2.init.js"></script>
 
-        <script src="assets/js/app.js"></script>
+<script src="assets/js/app.js"></script>
 
 
-        <!-- 圖片新增js -->
-        <script>
-            const imageUpload = document.getElementById('imageUpload');
-            const imagePreview = document.getElementById('imagePreviewContainer');
-            const imageUploadError = document.getElementById('imageUploadError');
+<!-- 圖片新增js -->
+<script>
+    const imageUpload = document.getElementById('imageUpload');
+    const imagePreview = document.getElementById('imagePreviewContainer');
+    const imageUploadError = document.getElementById('imageUploadError');
 
-            imageUpload.addEventListener('change', function (event) {
-                const selectedImage = event.target.files[0];
-                if (selectedImage) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
+    imageUpload.addEventListener('change', function (event) {
+        const selectedImage = event.target.files[0];
+        if (selectedImage) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
 
-                        const newImage = document.createElement('img');
-                        newImage.id = 'imagePreview';
-                        newImage.src = e.target.result;
-                        newImage.alt = '預覽圖片';
-                        newImage.style.maxWidth = '100%';
-                        newImage.style.height = 'auto';
+                const newImage = document.createElement('img');
+                newImage.id = 'imagePreview';
+                newImage.src = e.target.result;
+                newImage.alt = '預覽圖片';
+                newImage.style.maxWidth = '100%';
+                newImage.style.height = 'auto';
 
-                        imagePreviewContainer.innerHTML = '';
-                        imagePreviewContainer.appendChild(newImage);
-                        imageUploadError.textContent = '';
-                    };
-                    reader.readAsDataURL(selectedImage);
-                } else {
-                    imagePreviewContainer.innerHTML = '';
-                    imageUploadError.textContent = '';
-                }
-            });
-        </script>
+                imagePreviewContainer.innerHTML = '';
+                imagePreviewContainer.appendChild(newImage);
 
-        <script>
-            // 獲取URL中的Query參數
-            const urlParams = new URLSearchParams(window.location.search);
-            const productId = urlParams.get('productId');
-            let reviseId = document.getElementById("reviseId");
-            reviseId.innerHTML = `<span class="product-id">${productId}</span>`;
-            let renew = document.getElementById("renew");
-            //依id抓商品資料回來修改
-            window.addEventListener('load', function () {
-                fetch(`http://localhost:8080/ezdom/backend/getById/${productId}`)
-                    .then(resp => resp.json())
-                    .then(body => {
-                        let { categoryId, productName, productDescription, productOriginPrice, productDiscountPrice, productImage, category } = body;
-                        let { typeName } = category;
+            };
+            reader.readAsDataURL(selectedImage);
+        } else {
+            imagePreviewContainer.innerHTML = '';
 
-                        let html = `
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="mb-3">
-                            <label for="productname">商品名稱</label>
-                            <input id="productname" name="productname" type="text"
-                                class="form-control" value="${productName}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="originPrice">原始價錢</label>
-                            <input id="originPrice" name="originPrice" type="text"
-                                class="form-control" value="${productOriginPrice}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="discountPrice">優惠價錢</label>
-                            <input id="discountPrice" name="discountPrice"
-                                type="text" class="form-control" value="${productDiscountPrice}">
-                        </div>
+        }
+    });
+</script>
 
-                    </div>
+<script>
+    // 獲取URL中的Query參數
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('productId');
+    let reviseId = document.getElementById("reviseId");
+    reviseId.innerHTML = `<span class="product-id">${productId}</span>`;
+    let renew = document.getElementById("renew");
+    //依id抓商品資料回來修改
+    window.addEventListener('load', function () {
+        fetch(`http://localhost:8080/ezdom/product/getById/${productId}`)
+            .then(resp => resp.json())
+            .then(body => {
+                let { categoryId, productName, productDescription, productOriginPrice, productDiscountPrice, productImage, category } = body;
+                let { typeName } = category;
 
-                    <div class="col-sm-6">
-                        <div class="mb-3">
-                            <label class="control-label">商品類型</label>
-                            <select id="sportCategory" style="width: 50%"
-                            class="form-control select2">
-                            <option vlaue="${categoryId}">${typeName}</option>
-                            <option value="1" >球類</option>
-                            <option value="2">運動服</option>
-                            <option value="3">運動褲</option>
-                        </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="productdesc">商品描述</label>
-                            <textarea class="form-control" id="productdesc" ${productDescription}
-                                rows="6">${productDescription}</textarea >
-                        </div>
-
-                    </div>
+                let html = `
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="mb-3">
+                    <label for="productname">商品名稱</label>
+                    <input id="productname" name="productname" type="text"
+                        class="form-control" value="${productName}">
                 </div>
-                `;
-                        renew.innerHTML = html;
-                    })
+                <div class="mb-3">
+                    <label for="originPrice">原始價錢</label>
+                    <input id="originPrice" name="originPrice" type="text"
+                        class="form-control" value="${productOriginPrice}">
+                </div>
+                <div class="mb-3">
+                    <label for="discountPrice">優惠價錢</label>
+                    <input id="discountPrice" name="discountPrice"
+                        type="text" class="form-control" value="${productDiscountPrice}">
+                </div>
+
+            </div>
+
+            <div class="col-sm-6">
+                <div class="mb-3">
+                    <label class="control-label">商品類型</label>
+                    <select id="sportCategory" style="width: 50%"
+                    class="form-control select2">
+                    <option vlaue="${categoryId}">${typeName}</option>
+                    <option value="4" >球類</option>
+                    <option value="2">運動服</option>
+                    <option value="3">運動褲</option>
+                </select>
+                </div>
+                <div class="mb-3">
+                    <label for="productdesc">商品描述</label>
+                    <textarea class="form-control" id="productdesc" ${productDescription}
+                        rows="6">${productDescription}</textarea >
+                </div>
+
+            </div>
+        </div>
+        `;
+                renew.innerHTML = html;
+            })
 
 
-            });
+    });
 
 
-            //取消按鈕
-            let cancelBtn =document.getElementById("cancelBtn");
-            cancelBtn.addEventListener("click",function(){
-                if(confirm("確定要取消修改嗎?")){
+    //取消按鈕
+    let cancelBtn =document.getElementById("cancelBtn");
+    cancelBtn.addEventListener("click",function(){
+        if(confirm("確定要取消修改嗎?")){
+            window.location.replace("/shop-product.html");
+        }
+    })
+    //確認修改按鈕
+    let uditBtn=document.getElementById("uditBtn");
+    uditBtn.addEventListener("click",function(){
+    let productname = document.getElementById("productname");
+    let originPrice = document.getElementById("originPrice");
+    let discountPrice = document.getElementById("discountPrice");
+    let sportCategory = document.getElementById("sportCategory");
+    let productdesc = document.getElementById("productdesc");
+    let imageUpload = document.getElementById('imageUpload');
+    let fileReader = new FileReader();
+    fileReader.addEventListener('load',function(e){
+        console.log(selectedValue);
+        const imageBase64 = btoa(e.target.result);
+        fetch(`http://localhost:8080/ezdom/product/edit/${productId}`,{
+            method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body:JSON.stringify({
+            categoryId: sportCategory.value,
+            productName: productname.value,
+            productDescription: productdesc.value,
+            productOriginPrice: originPrice.value,
+            productDiscountPrice: discountPrice.value,
+            productImage: imageBase64
+        }),
+        }).then(resp => resp.json())
+        .then(body => {
+            const { successful, message } = body;
+            if (successful) {
+                alert(message);
+                setTimeout(function () {
                     window.location.replace("/shop-product.html");
-                }
-            })
-            //確認修改按鈕
-            let uditBtn=document.getElementById("uditBtn");
-            uditBtn.addEventListener("click",function(){
-            let productname = document.getElementById("productname");
-            let originPrice = document.getElementById("originPrice");
-            let discountPrice = document.getElementById("discountPrice");
-            let sportCategory = document.getElementById("sportCategory");
-            let productdesc = document.getElementById("productdesc");
-            let imageUpload = document.getElementById('imageUpload');
-
-            let fileReader = new FileReader();
-            fileReader.addEventListener('load',function(e){
-                const imageBase64 = btoa(e.target.result);
-                fetch(`http://localhost:8080/ezdom/backend/edit/${productId}`,{
-                    method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body:JSON.stringify({
-                    categoryId: sportCategory.value,
-                    productName: productname.value,
-                    productDescription: productdesc.value,
-                    productOriginPrice: originPrice.value,
-                    productDiscountPrice: discountPrice.value,
-                    productImage: imageBase64
-                }),
-                }).then(resp => resp.json())
-                .then(body => {
-                    const { successful, message } = body;
-                    if (successful) {
-                        alert(message);
-                        setTimeout(function () {
-                            window.location.replace("/shop-product.html");
-                        }, 1000);
-                    } else {
-                        alert(message);
-                    }
-                })
-            })
-            fileReader.readAsBinaryString(imageUpload.files[0]);
-            })
-        </script>
+                }, 1000);
+            } else {
+                alert(message);
+            }
+        })
+    })
+    fileReader.readAsBinaryString(imageUpload.files[0]);
+    })
+</script>
 
 
 </body>
