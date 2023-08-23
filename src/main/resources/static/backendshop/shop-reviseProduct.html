@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ReviseProduct</title>
+    <title>SB Admin 2 - Buttons</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,20 +23,20 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
     <!-- select2 css -->
-    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
 
     <!-- dropzone css -->
-    <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
 
     <!-- preloader css -->
-    <link rel="stylesheet" href="assets/css/preloader.min.css" type="text/css"/>
+    <link rel="stylesheet" href="assets/css/preloader.min.css" type="text/css" />
 
     <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
     <style>
         .upload-container {
@@ -61,6 +61,13 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 新增的 */
+        .product-id {
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
         }
     </style>
 </head>
@@ -174,8 +181,8 @@
             </a>
             <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar5">
                 <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="addProduct.html">商品列表</a>
-                    <a class="collapse-item" href="addProduct.html">商品新增</a>
+                    <a class="collapse-item" href="shop-product.html">商品列表</a>
+                    <a class="collapse-item" href="shop-addProduct.html">商品新增</a>
                 </div>
             </div>
         </li>
@@ -333,8 +340,7 @@
                                 </div>
                                 <div class="font-weight-bold">
                                     <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                        problem I've been having.
-                                    </div>
+                                        problem I've been having.</div>
                                     <div class="small text-gray-500">Emily Fowler · 58m</div>
                                 </div>
                             </a>
@@ -345,8 +351,7 @@
                                 </div>
                                 <div>
                                     <div class="text-truncate">I have the photos that you ordered last month, how
-                                        would you like them sent to you?
-                                    </div>
+                                        would you like them sent to you?</div>
                                     <div class="small text-gray-500">Jae Chun · 1d</div>
                                 </div>
                             </a>
@@ -357,8 +362,7 @@
                                 </div>
                                 <div>
                                     <div class="text-truncate">Last month's report looks great, I am very happy with
-                                        the progress so far, keep up the good work!
-                                    </div>
+                                        the progress so far, keep up the good work!</div>
                                     <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                                 </div>
                             </a>
@@ -370,8 +374,7 @@
                                 </div>
                                 <div>
                                     <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...
-                                    </div>
+                                        told me that people say this to all dogs, even if they aren't good...</div>
                                     <div class="small text-gray-500">Chicken the Dog · 2w</div>
                                 </div>
                             </a>
@@ -423,10 +426,11 @@
                             <div style="padding: 0;" class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">商品內容</h4>
+                                        <span class="card-title product-id">目前修改的商品ID:</span><span
+                                            id="reviseId"></span>
                                     </div>
                                     <div class="card-body">
-                                        <form>
+                                        <div id="renew">
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
@@ -435,13 +439,13 @@
                                                                class="form-control">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="price">原始價錢</label>
-                                                        <input id="price" name="price" type="text"
+                                                        <label for="originPrice">原始價錢</label>
+                                                        <input id="originPrice" name="originPrice" type="text"
                                                                class="form-control">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="manufacturername">優惠價錢</label>
-                                                        <input id="manufacturername" name="manufacturername"
+                                                        <label for="discountPrice">優惠價錢</label>
+                                                        <input id="discountPrice" name="discountPrice"
                                                                type="text" class="form-control">
                                                     </div>
 
@@ -450,11 +454,12 @@
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
                                                         <label class="control-label">商品類型</label>
-                                                        <select style="width: 50%" class="form-control select2">
-                                                            <option>Select</option>
-                                                            <option value="FA">Fashion</option>
-                                                            <option value="EL">Electronic</option>
-                                                            <option value="健身">健身環</option>
+                                                        <select id="sportCategory" style="width: 50%"
+                                                                class="form-control select2">
+                                                            <option>選擇</option>
+                                                            <option value="1">球類</option>
+                                                            <option value="2">運動服</option>
+                                                            <option value="3">運動褲</option>
                                                         </select>
                                                     </div>
                                                     <div class="mb-3">
@@ -465,17 +470,11 @@
 
                                                 </div>
                                             </div>
-
-                                            <div class="d-flex flex-wrap gap-2 justify-content-end">
-                                                <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                                    確定修改
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-secondary waves-effect waves-light">取消
-                                                </button>
-                                            </div>
-                                        </form>
-
+                                        </div>
+                                        <div class="d-flex flex-wrap gap-2 justify-content-end">
+                                            <button id="uditBtn" type="button"class="btn btn-primary waves-effect waves-light">確定修改</button>
+                                            <button id="cancelBtn" type="button"class="btn btn-secondary waves-effect waves-light">取消</button>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -493,7 +492,7 @@
                                         </div>
                                     </div>
 
-                                </div> <!-- end card-->
+                                </div>
 
                             </div>
                         </div>
@@ -546,7 +545,6 @@
         </div>
     </div>
 </div>
-
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -583,33 +581,146 @@
 <!-- 圖片新增js -->
 <script>
     const imageUpload = document.getElementById('imageUpload');
-const imagePreview = document.getElementById('imagePreviewContainer');
-const imageUploadError = document.getElementById('imageUploadError');
+    const imagePreview = document.getElementById('imagePreviewContainer');
+    const imageUploadError = document.getElementById('imageUploadError');
 
-imageUpload.addEventListener('change', function(event) {
-    const selectedImage = event.target.files[0];
-    if (selectedImage) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
+    imageUpload.addEventListener('change', function (event) {
+        const selectedImage = event.target.files[0];
+        if (selectedImage) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
 
-            const newImage = document.createElement('img');
-            newImage.id = 'imagePreview';
-            newImage.src = e.target.result;
-            newImage.alt = '預覽圖片';
-            newImage.style.maxWidth = '100%';
-            newImage.style.height = 'auto';
+                const newImage = document.createElement('img');
+                newImage.id = 'imagePreview';
+                newImage.src = e.target.result;
+                newImage.alt = '預覽圖片';
+                newImage.style.maxWidth = '100%';
+                newImage.style.height = 'auto';
 
+                imagePreviewContainer.innerHTML = '';
+                imagePreviewContainer.appendChild(newImage);
+
+            };
+            reader.readAsDataURL(selectedImage);
+        } else {
             imagePreviewContainer.innerHTML = '';
-            imagePreviewContainer.appendChild(newImage);
-            imageUploadError.textContent = '';
-        };
-        reader.readAsDataURL(selectedImage);
-    } else {
-        imagePreviewContainer.innerHTML = '';
-        imageUploadError.textContent = '';
-    }
-});
+
+        }
+    });
 </script>
+
+<script>
+    // 獲取URL中的Query參數
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('productId');
+    let reviseId = document.getElementById("reviseId");
+    reviseId.innerHTML = `<span class="product-id">${productId}</span>`;
+    let renew = document.getElementById("renew");
+    //依id抓商品資料回來修改
+    window.addEventListener('load', function () {
+        fetch(`http://localhost:8080/ezdom/product/getById/${productId}`)
+            .then(resp => resp.json())
+            .then(body => {
+                let { categoryId, productName, productDescription, productOriginPrice, productDiscountPrice, productImage, category } = body;
+                let { typeName } = category;
+
+                let html = `
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="mb-3">
+                    <label for="productname">商品名稱</label>
+                    <input id="productname" name="productname" type="text"
+                        class="form-control" value="${productName}">
+                </div>
+                <div class="mb-3">
+                    <label for="originPrice">原始價錢</label>
+                    <input id="originPrice" name="originPrice" type="text"
+                        class="form-control" value="${productOriginPrice}">
+                </div>
+                <div class="mb-3">
+                    <label for="discountPrice">優惠價錢</label>
+                    <input id="discountPrice" name="discountPrice"
+                        type="text" class="form-control" value="${productDiscountPrice}">
+                </div>
+
+            </div>
+
+            <div class="col-sm-6">
+                <div class="mb-3">
+                    <label class="control-label">商品類型</label>
+                    <select id="sportCategory" style="width: 50%"
+                    class="form-control select2">
+                    <option vlaue="${categoryId}">${typeName}</option>
+                    <option value="4" >球類</option>
+                    <option value="2">運動服</option>
+                    <option value="3">運動褲</option>
+                </select>
+                </div>
+                <div class="mb-3">
+                    <label for="productdesc">商品描述</label>
+                    <textarea class="form-control" id="productdesc" ${productDescription}
+                        rows="6">${productDescription}</textarea >
+                </div>
+
+            </div>
+        </div>
+        `;
+                renew.innerHTML = html;
+            })
+
+
+    });
+
+
+    //取消按鈕
+    let cancelBtn =document.getElementById("cancelBtn");
+    cancelBtn.addEventListener("click",function(){
+        if(confirm("確定要取消修改嗎?")){
+            window.location.replace("/shop-product.html");
+        }
+    })
+    //確認修改按鈕
+    let uditBtn=document.getElementById("uditBtn");
+    uditBtn.addEventListener("click",function(){
+    let productname = document.getElementById("productname");
+    let originPrice = document.getElementById("originPrice");
+    let discountPrice = document.getElementById("discountPrice");
+    let sportCategory = document.getElementById("sportCategory");
+    let productdesc = document.getElementById("productdesc");
+    let imageUpload = document.getElementById('imageUpload');
+    let fileReader = new FileReader();
+    fileReader.addEventListener('load',function(e){
+        console.log(selectedValue);
+        const imageBase64 = btoa(e.target.result);
+        fetch(`http://localhost:8080/ezdom/product/edit/${productId}`,{
+            method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body:JSON.stringify({
+            categoryId: sportCategory.value,
+            productName: productname.value,
+            productDescription: productdesc.value,
+            productOriginPrice: originPrice.value,
+            productDiscountPrice: discountPrice.value,
+            productImage: imageBase64
+        }),
+        }).then(resp => resp.json())
+        .then(body => {
+            const { successful, message } = body;
+            if (successful) {
+                alert(message);
+                setTimeout(function () {
+                    window.location.replace("/shop-product.html");
+                }, 1000);
+            } else {
+                alert(message);
+            }
+        })
+    })
+    fileReader.readAsBinaryString(imageUpload.files[0]);
+    })
+</script>
+
+
 </body>
 
 </html>

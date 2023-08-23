@@ -1,16 +1,18 @@
 package tw.com.cha102.order.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import tw.com.cha102.core.vo.Core;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
-@Table(name="order",catalog ="cha102g4_test")
-public class OrderVO {
+@Table(name="`order`",catalog ="cha102g4_test")
+public class OrderVO extends Core {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_ID")
@@ -18,6 +20,7 @@ public class OrderVO {
     @Column(name = "MEMBER_ID")
     private Integer memberId;
     @Column(name = "ORDER_DATE", insertable = false)
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private Timestamp orderDate;
     @Column(name = "RECIPIENT_NAME")
     private String recipientName;
@@ -38,6 +41,19 @@ public class OrderVO {
     @Column(name = "ORDER_STATUS", insertable = false)
     private byte orderStatus;
     private String note;
+    @OneToMany
+    @JoinColumn(name="ORDER_ID",referencedColumnName = "ORDER_ID")
+    private List<OrderDetailVO> orderDetailVOs;
+
+    public void setOrderDetailVOs(List<OrderDetailVO> orderDetailVOs) {
+        this.orderDetailVOs = orderDetailVOs;
+    }
+
+    public List<OrderDetailVO> getOrderDetailVOs() {
+        return orderDetailVOs;
+    }
+
+    public OrderVO(){};
 
     public Integer getOrderId() {
         return orderId;
@@ -143,7 +159,7 @@ public class OrderVO {
         this.note = note;
     }
 
-    public OrderVO(Integer memberId, String recipientName, Integer totalPrice, Integer pointApplied, Integer actualAmount, Integer backPoints, String phoneNumber, String telphoneNumber, String shippingAddress, String note) {
+    public OrderVO(Integer memberId, String recipientName, Integer totalPrice, Integer pointApplied, Integer actualAmount, Integer backPoints, String phoneNumber, String telphoneNumber, String shippingAddress, String note,List<OrderDetailVO> orderDetailVOs) {
         this.memberId = memberId;
         this.recipientName = recipientName;
         this.totalPrice = totalPrice;
@@ -154,7 +170,7 @@ public class OrderVO {
         this.telphoneNumber = telphoneNumber;
         this.shippingAddress = shippingAddress;
         this.note = note;
-
+        this.orderDetailVOs=orderDetailVOs;
 
     }
 }

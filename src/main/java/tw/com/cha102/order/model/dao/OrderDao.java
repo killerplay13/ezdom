@@ -16,4 +16,6 @@ public interface OrderDao {
     public OrderVO selectById(Integer orderId);
 
     public List<OrderVO> selectAll();
+
+    public List<OrderVO> selectByStatus(int orderStatus);
 }
