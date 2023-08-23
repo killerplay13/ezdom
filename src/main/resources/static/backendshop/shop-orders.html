@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - 404</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!--下面三筆新增 -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+    <!-- datatable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.jqueryui.min.css" />
+
+    <!-- 引入 SweetAlert2 的 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+
+    <style>
+        /* 自訂樣式：美化表格 */
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .custom-table th,
+        .custom-table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .custom-table th {
+            background-color: #f2f2f2;
+        }
+
+        .custom-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div style="transform: rotate(-5deg)">
+                <img width="40px" src="img/FBI.png">
+            </div>
+            <div class="sidebar-brand-text mx-3">EZDOM</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="index.html">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>員工管理</span></a>
+
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            會員管理
+        </div>
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+               aria-expanded="true" aria-controls="collapseOne">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>會員查詢</span>
+            </a>
+            <div id="collapseOne" class="collapse" data-parent="#accordionSidebar1">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="buttons.html">Buttons</a>
+                    <a class="collapse-item" href="cards.html">Cards</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>教練審核</span>
+            </a>
+            <div id="collapseTwo" class="collapse" data-parent="#accordionSidebar2">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="buttons.html">Buttons1</a>
+                    <a class="collapse-item" href="cards.html">Cards1</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            預約管理
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+               aria-expanded="true" aria-controls="collapseThree">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>款項管理</span>
+            </a>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar3">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="buttons.html">Buttons</a>
+                    <a class="collapse-item" href="cards.html">Cards</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
+               aria-expanded="true" aria-controls="collapseFour">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>預約檢舉管理</span>
+            </a>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar4">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="buttons.html">Buttons</a>
+                    <a class="collapse-item" href="cards.html">Cards</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            商城管理
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
+               aria-expanded="true" aria-controls="collapseFive">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>商品管理</span>
+            </a>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar5">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="addProduct.html">商品列表</a>
+                    <a class="collapse-item" href="addProduct.html">商品新增</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
+               aria-expanded="true" aria-controls="collapseSix">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>訂單管理</span>
+            </a>
+            <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar6">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="buttons.html">訂單列表</a>
+                    <a class="collapse-item" href="cards.html">退貨管理</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEle"
+               aria-expanded="true" aria-controls="collapseEle">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>廣告管理</span>
+            </a>
+            <div id="collapseEle" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar11">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="buttons.html">廣告一欄</a>
+                    <a class="collapse-item" href="cards.html">廣告編輯</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            揪團管理
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwe"
+               aria-expanded="true" aria-controls="collapseTwe">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>揪團審核管理</span>
+            </a>
+            <div id="collapseTwe" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar12">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="buttons.html">xxx</a>
+                    <a class="collapse-item" href="cards.html">xxx</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven"
+               aria-expanded="true" aria-controls="collapseSeven">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>揪團成員管理</span>
+            </a>
+            <div id="collapseSeven" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar7">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="buttons.html">Xxx</a>
+                    <a class="collapse-item" href="cards.html">xxx</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            其他功能
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight"
+               aria-expanded="true" aria-controls="collapseEight">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>論壇管理</span>
+            </a>
+            <div id="collapseEight" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar8">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="buttons.html">Xxx</a>
+                    <a class="collapse-item" href="cards.html">xxx</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNine"
+               aria-expanded="true" aria-controls="collapseNine">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>QA管理</span>
+            </a>
+            <div id="collapseNine" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar9">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="buttons.html">Xxx</a>
+                    <a class="collapse-item" href="cards.html">xxx</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTen"
+               aria-expanded="true" aria-controls="collapseTen">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>最新消息管理</span>
+            </a>
+            <div id="collapseTen" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar10">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="buttons.html">Xxx</a>
+                    <a class="collapse-item" href="cards.html">xxx</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <!-- 上面是左側欄位 -->
+
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+
+                    <!-- Nav Item - Messages -->
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-envelope fa-fw"></i>
+                            <!-- Counter - Messages -->
+                            <span class="badge badge-danger badge-counter">7</span>
+                        </a>
+                        <!-- Dropdown - Messages -->
+                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="messagesDropdown">
+                            <h6 class="dropdown-header">
+                                Message Center
+                            </h6>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+                                    <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                                    <div class="status-indicator bg-success"></div>
+                                </div>
+                                <div class="font-weight-bold">
+                                    <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                        problem I've been having.</div>
+                                    <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+                                    <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                                    <div class="status-indicator"></div>
+                                </div>
+                                <div>
+                                    <div class="text-truncate">I have the photos that you ordered last month, how
+                                        would you like them sent to you?</div>
+                                    <div class="small text-gray-500">Jae Chun · 1d</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+                                    <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                                    <div class="status-indicator bg-warning"></div>
+                                </div>
+                                <div>
+                                    <div class="text-truncate">Last month's report looks great, I am very happy with
+                                        the progress so far, keep up the good work!</div>
+                                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                         alt="...">
+                                    <div class="status-indicator bg-success"></div>
+                                </div>
+                                <div>
+                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                        told me that people say this to all dogs, even if they aren't good...</div>
+                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                        </div>
+                    </li>
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <!-- Nav Item - User Information 111-->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">員工姓名</span>
+                            <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                登出
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!-- 上方員工姓名欄位 -->
+            <div style="margin:0;" class="main-content">
+
+                <div style="padding-top: 10px;" class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">商城訂單</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row mb-2">
+                                            <div class="d-flex justify-content-between align-items-center">
+
+                                                <div class="col-sm-4">
+                                                    <label for="orderStatus"
+                                                           class="form-label"><strong>訂單狀態</strong></label>
+                                                    <select class="form-select" id="orderStatus">
+                                                        <option value="0">未出貨</option>
+                                                        <option value="1">已出貨</option>
+                                                        <option value="2">已完成訂單</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="table-responsive">
+                                            <table id="example" class="display" style="width: 100%">
+                                                <thead>
+                                                <tr style="background-color:lightskyblue">
+                                                    <th class="align-middle">訂單編號</th>
+                                                    <th class="align-middle">收件人姓名</th>
+                                                    <th class="align-middle">住家電話</th>
+                                                    <th class="align-middle">電話</th>
+                                                    <th class="align-middle">金額</th>
+                                                    <th class="align-middle">地址</th>
+                                                    <th class="align-middle">訂購日期</th>
+                                                    <th class="align-middle">商品明細</th>
+                                                    <th class="align-middle">操作按鈕</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                    </div> <!-- container-fluid -->
+                </div>
+            </div>
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>EZDOM &copy; 後台管理系統</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="js/demo/chart-area-demo.js"></script>
+<script src="js/demo/chart-pie-demo.js"></script>
+<!-- 初始化折疊功能 -->
+<script src="js/aside.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script> <!-- ●●js  for jquery datatables 用 -->
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+
+<!-- 引入 SweetAlert2 的 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "lengthMenu": [5, 10, 20],
+            "searching": true,  //搜尋功能, 預設是開啟
+            "paging": true,     //分頁功能, 預設是開啟
+            "ordering": true,   //排序功能, 預設是開啟
+            "language": {
+                "processing": "處理中...",
+                "loadingRecords": "載入中...",
+                "lengthMenu": "顯示 _MENU_ 筆結果",
+                "zeroRecords": "沒有符合的結果",
+                "info": "顯示第 _START_ 至 _END_ 筆結果，共<font color=red> _TOTAL_ </font>筆",
+                "infoEmpty": "顯示第 0 至 0 筆結果，共 0 筆",
+                "infoFiltered": "(從 _MAX_ 筆結果中過濾)",
+                "infoPostFix": "",
+                "search": "搜尋:",
+                "paginate": {
+                    "first": "第一頁",
+                    "previous": "上一頁",
+                    "next": "下一頁",
+                    "last": "最後一頁"
+                },
+                "aria": {
+                    "sortAscending": ": 升冪排列",
+                    "sortDescending": ": 降冪排列"
+                }
+            }
+        });
+    });
+
+    //進頁面刷新訂單(未出貨)
+    let orderStatus = document.getElementById("orderStatus");
+
+    function orderRenew() {
+        let statusValue = parseInt(orderStatus.value);
+        fetch(`http://localhost:8080/ezdom/oredr/get/${statusValue}`)
+            .then(resp => resp.json())
+            .then(body => {
+                // 清除现有数据
+                $('#example').DataTable().clear().draw();
+                if (statusValue == 0) {
+                    for (let list of body) {
+                        let { orderId, orderDate, recipientName, actualAmount, phoneNumber, telphoneNumber, shippingAddress } = list;
+                        let rowData = `
+                <tr>
+                    <td><a href="javascript: void(0);"
+                            class="text-body fw-bold">#${orderId}</a>
+                    </td>
+                    <td>${recipientName}</td>
+                    <td>${phoneNumber}</td>
+                    <td>${telphoneNumber}</td>
+
+                    <td>$${actualAmount}</td>
+                    <td class="address-cell">
+                        ${shippingAddress}
+                    </td>
+                    <td>${orderDate}</td>
+                    <td><button type="button"
+                        class="btn btn-primary btn-sm btn-rounded"
+                        data-bs-toggle="modal"
+                        data-bs-target=".orderdetailsModal" onclick="productDetail(${orderId})">
+                        商品明細
+                    </button></td>
+                    <td>
+                        <button type="button"
+                            class="btn btn-primary btn-sm btn-rounded"
+                            data-bs-toggle="modal"
+                            data-bs-target=".orderdetailsModal">
+                            確認出貨
+                        </button>
+                    </td>
+                </tr>
+                `;
+                        // 将rowData包装成jQuery对象并添加到DataTables中
+                        $('#example').DataTable().row.add($(rowData));
+                    }
+                }
+
+                if (statusValue == 1) {
+                    for (let list of body) {
+                        let { orderId, orderDate, recipientName, actualAmount, phoneNumber, telphoneNumber, shippingAddress } = list;
+                        let rowData = `
+                <tr>
+                    <td><a href="javascript: void(0);"
+                            class="text-body fw-bold">#${orderId}</a>
+                    </td>
+                    <td>${recipientName}</td>
+                    <td>${phoneNumber}</td>
+                    <td>${telphoneNumber}</td>
+
+                    <td>$${actualAmount}</td>
+                    <td class="address-cell">
+                        ${shippingAddress}
+                    </td>
+                    <td>${orderDate}</td>
+                    <td><button type="button"
+                        class="btn btn-primary btn-sm btn-rounded"
+                        data-bs-toggle="modal"
+                        data-bs-target=".orderdetailsModal" onclick="productDetail(${orderId})">
+                        商品明細
+                    </button></td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm btn-rounded" disabled>
+                            商品已出貨
+                        </button>
+                    </td>
+                </tr>
+                `;
+                        // 将rowData包装成jQuery对象并添加到DataTables中
+                        $('#example').DataTable().row.add($(rowData));
+                    }
+                }
+
+                if (statusValue == 2) {
+                    for (let list of body) {
+                        let { orderId, orderDate, recipientName, actualAmount, phoneNumber, telphoneNumber, shippingAddress } = list;
+                        let rowData = `
+                <tr>
+                    <td><a href="javascript: void(0);"
+                            class="text-body fw-bold">#${orderId}</a>
+                    </td>
+                    <td>${recipientName}</td>
+                    <td>${phoneNumber}</td>
+                    <td>${telphoneNumber}</td>
+
+                    <td>$${actualAmount}</td>
+                    <td class="address-cell">
+                        ${shippingAddress}
+                    </td>
+                    <td>${orderDate}</td>
+                    <td><button type="button"
+                        class="btn btn-primary btn-sm btn-rounded"
+                        data-bs-toggle="modal"
+                        data-bs-target=".orderdetailsModal" onclick="productDetail(${orderId})">
+                        商品明細
+                    </button></td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm btn-rounded" disabled>
+                            已完成訂單
+                        </button>
+                    </td>
+                </tr>
+                `;
+                        // 将rowData包装成jQuery对象并添加到DataTables中
+                        $('#example').DataTable().row.add($(rowData));
+                    }
+                }
+
+                // 绘制表格
+                $('#example').DataTable().draw();
+            })
+    }
+
+    function productDetail(orderId) {
+fetch(`http://localhost:8080/ezdom/oredr/product?orderId=${orderId}`)
+    .then(resp => resp.json())
+    .then(body => {
+        let { note, orderDetailVOs } = body;
+        let tableContent = '<table class="custom-table"><tr><th>項目</th><th>單入價格</th><th>購買數量</th></tr>';
+
+        for (let orderDetailVO of orderDetailVOs) {
+            let { productPrice, quantity, productVO } = orderDetailVO;
+            let { productName } = productVO;
+
+            tableContent += `<tr><td>${productName}</td><td>${productPrice}</td><td>${quantity}</td></tr>`;
+        }
+
+        tableContent += '</table>';
+
+        Swal.fire({
+            title: `訂單備註: ${note}`, // 將 note 放入標題
+            html: tableContent,
+            showCloseButton: true,
+            showCancelButton: false,
+            focusConfirm: false,
+            confirmButtonText: '關閉'
+        });
+    });
+}
+
+    //進入刷新
+    window.onload = orderRenew;
+    //狀態改變刷新
+    orderStatus.onchange = orderRenew;
+
+</script>
+</body>
+
+</html>

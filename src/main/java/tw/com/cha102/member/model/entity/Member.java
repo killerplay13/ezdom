@@ -1,9 +1,13 @@
 package tw.com.cha102.member.model.entity;
 
+
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
@@ -12,8 +16,10 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "member", catalog = "cha102g4_test")
-public class MemberVO {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,10 +43,11 @@ public class MemberVO {
     private java.util.Date memberBirthday;
     @Column(name = "MEMBER_PHOTO")
     private byte[] memberPhoto;
+    @Column(columnDefinition = "INT NOT NULL DEFAULT 0")
     private Integer point;
-    @Column(insertable = false)
-    private Byte checkIn;
-    @Column(name = "MEMBER_STATUS",insertable = false)
+    @Column(name = "checkIN",columnDefinition = "TINYINT NOT NULL DEFAULT 0")
+    private Integer checkIn;
+    @Column(name = "MEMBER_STATUS",columnDefinition = "TINYINT NOT NULL DEFAULT 0")
     private Byte memberStatus;
 
 }
