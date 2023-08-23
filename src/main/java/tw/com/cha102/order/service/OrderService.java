@@ -10,4 +10,8 @@ public interface OrderService {
     public List<OrderVO> findOrdersByStatus(int orderStatus);
 
     public OrderVO selectOrderById(Integer orderId);
+
+    public boolean toShipOrder(Integer orderId);
+
+    public boolean toRetrunOrder(Integer orderId);
 }
