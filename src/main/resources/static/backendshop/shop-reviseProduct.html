@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - 404</title>
+    <title>SB Admin 2 - Buttons</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,17 +19,57 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-    <!--下面三筆新增 -->
+    <!-- select2 css -->
+    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- dropzone css -->
+    <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- preloader css -->
+    <link rel="stylesheet" href="assets/css/preloader.min.css" type="text/css" />
+
+    <!-- Bootstrap Css -->
     <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
-    <!-- datatable -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.jqueryui.min.css" />
+    <style>
+        .upload-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
 
+        .upload-label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #imagePreview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 新增的 */
+        .product-id {
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -141,8 +181,8 @@
             </a>
             <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar5">
                 <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="addProduct.html">商品列表</a>
-                    <a class="collapse-item" href="addProduct.html">商品新增</a>
+                    <a class="collapse-item" href="shop-product.html">商品列表</a>
+                    <a class="collapse-item" href="shop-addProduct.html">商品新增</a>
                 </div>
             </div>
         </li>
@@ -364,112 +404,147 @@
                 </ul>
             </nav>
             <!-- 上方員工姓名欄位 -->
-            <div style="margin:0;" class="main-content">
+            <!-- End of Topbar -->
 
-                <div style="padding-top: 10px;" class="page-content">
+            <!-- Begin Page Content -->
+            <div class="main-content">
+
+                <div style="padding:0px" class="page-content">
                     <div class="container-fluid">
 
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">商品管理</h4>
+                                    <h4 class="mb-sm-0 font-size-18">商品編輯</h4>
                                 </div>
                             </div>
                         </div>
                         <!-- end page title -->
 
                         <div class="row">
-                            <div class="col-12">
+                            <div style="padding: 0;" class="col-12">
                                 <div class="card">
+                                    <div class="card-header">
+                                        <span class="card-title product-id">目前修改的商品ID:</span><span
+                                            id="reviseId"></span>
+                                    </div>
                                     <div class="card-body">
-                                        <div class="row mb-2">
-                                            <div class="d-flex justify-content-between align-items-center">
+                                        <div id="renew">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="mb-3">
+                                                        <label for="productname">商品名稱</label>
+                                                        <input id="productname" name="productname" type="text"
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="originPrice">原始價錢</label>
+                                                        <input id="originPrice" name="originPrice" type="text"
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="discountPrice">優惠價錢</label>
+                                                        <input id="discountPrice" name="discountPrice"
+                                                               type="text" class="form-control">
+                                                    </div>
 
-                                                <div class="col-sm-4">
-                                                    <label for="orderStatus"
-                                                           class="form-label"><strong>商品狀態</strong></label>
-                                                    <select class="form-select" id="orderStatus">
-                                                        <option value="1">上架中商品</option>
-                                                        <option value="2">下架中商品</option>
-                                                    </select>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <div class="mb-3">
+                                                        <label class="control-label">商品類型</label>
+                                                        <select id="sportCategory" style="width: 50%"
+                                                                class="form-control select2">
+                                                            <option>選擇</option>
+                                                            <option value="1">球類</option>
+                                                            <option value="2">運動服</option>
+                                                            <option value="3">運動褲</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="productdesc">商品描述</label>
+                                                        <textarea class="form-control" id="productdesc"
+                                                                  rows="6"></textarea>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="table-responsive">
-                                            <table id="example" class="display" style="width: 100%">
-                                                <thead>
-                                                <tr style="background-color:lightskyblue">
-                                                    <th>計數</th>
-                                                    <th class="align-middle">商品編號</th>
-                                                    <th class="align-middle">商品類型</th>
-                                                    <th class="align-middle">商品名稱</th>
-                                                    <th class="align-middle">商品原價</th>
-                                                    <th class="align-middle">商品優惠價</th>
-                                                    <th class="align-middle">最後更新日期</th>
-                                                    <th class="align-middle">修改</th>
-                                                    <th class="align-middle">上/下架</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
+                                        <div class="d-flex flex-wrap gap-2 justify-content-end">
+                                            <button id="uditBtn" type="button"class="btn btn-primary waves-effect waves-light">確定修改</button>
+                                            <button id="cancelBtn" type="button"class="btn btn-secondary waves-effect waves-light">取消</button>
                                         </div>
-
                                     </div>
                                 </div>
+
+                                <div class="card" style="height: 450px;">
+                                    <div class="card-header">
+                                        <h4 class="card-title mb-0">商品圖片</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="upload-container" style="min-height: 100%;">
+                                            <label class="upload-label" for="imageUpload">選擇圖片：</label>
+                                            <input type="file" id="imageUpload" accept="image/*">
+                                            <div id="imagePreviewContainer">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                         <!-- end row -->
 
                     </div> <!-- container-fluid -->
                 </div>
-            </div>
-        </div>
-        <!-- End of Main Content -->
+                <!-- End of Main Content -->
 
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>EZDOM &copy; 後台管理系統</span>
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>EZDOM &copy; 後台管理系統</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
                 </div>
             </div>
-        </footer>
-        <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
-            </div>
         </div>
     </div>
 </div>
-
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -479,141 +554,172 @@
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>
 <!-- 初始化折疊功能 -->
 <script src="js/aside.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<!-- JAVASCRIPT -->
+<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/libs/metismenu/metisMenu.min.js"></script>
+<script src="assets/libs/simplebar/simplebar.min.js"></script>
+<script src="assets/libs/node-waves/waves.min.js"></script>
+<script src="assets/libs/feather-icons/feather.min.js"></script>
+<!-- pace js -->
+<script src="assets/libs/pace-js/pace.min.js"></script>
+
+<!-- select 2 plugin -->
+<script src="assets/libs/select2/js/select2.min.js"></script>
+
+<!-- dropzone plugin -->
+<script src="assets/libs/dropzone/min/dropzone.min.js"></script>
+
+<!-- init js -->
+<script src="assets/js/pages/ecommerce-select2.init.js"></script>
+
+<script src="assets/js/app.js"></script>
+
+
+<!-- 圖片新增js -->
 <script>
-    $(document).ready(function () {
-        $('#example').DataTable({
-            "lengthMenu": [3, 5, 10, 20, 50, 100],
-            "searching": true,  //搜尋功能, 預設是開啟
-            "paging": true,     //分頁功能, 預設是開啟
-            "ordering": true,   //排序功能, 預設是開啟
-            "language": {
-                "processing": "處理中...",
-                "loadingRecords": "載入中...",
-                "lengthMenu": "顯示 _MENU_ 筆結果",
-                "zeroRecords": "沒有符合的結果",
-                "info": "顯示第 _START_ 至 _END_ 筆結果，共<font color=red> _TOTAL_ </font>筆",
-                "infoEmpty": "顯示第 0 至 0 筆結果，共 0 筆",
-                "infoFiltered": "(從 _MAX_ 筆結果中過濾)",
-                "infoPostFix": "",
-                "search": "搜尋:",
-                "paginate": {
-                    "first": "第一頁",
-                    "previous": "上一頁",
-                    "next": "下一頁",
-                    "last": "最後一頁"
-                },
-                "aria": {
-                    "sortAscending": ": 升冪排列",
-                    "sortDescending": ": 降冪排列"
-                }
-            }
-        });
+    const imageUpload = document.getElementById('imageUpload');
+    const imagePreview = document.getElementById('imagePreviewContainer');
+    const imageUploadError = document.getElementById('imageUploadError');
+
+    imageUpload.addEventListener('change', function (event) {
+        const selectedImage = event.target.files[0];
+        if (selectedImage) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+
+                const newImage = document.createElement('img');
+                newImage.id = 'imagePreview';
+                newImage.src = e.target.result;
+                newImage.alt = '預覽圖片';
+                newImage.style.maxWidth = '100%';
+                newImage.style.height = 'auto';
+
+                imagePreviewContainer.innerHTML = '';
+                imagePreviewContainer.appendChild(newImage);
+
+            };
+            reader.readAsDataURL(selectedImage);
+        } else {
+            imagePreviewContainer.innerHTML = '';
+
+        }
     });
-    //選擇上下架狀態抓取資料
-    let orderStatus = document.getElementById("orderStatus");
-    orderStatus.addEventListener("change", function () {
-    const statusValue = parseInt(orderStatus.value);
-    let upordown ="下架";
-    if(statusValue==2){upordown="上架"}
-    fetch(`http://localhost:8080/ezdom/backend/get/${statusValue}`)
-        .then(resp => resp.json())
-        .then(body => {
-            // 清除现有数据
-            $('#example').DataTable().clear().draw();
-
-            for (let list of body) {
-                let { productId, productName, productOriginPrice, productDiscountPrice, lastUpdatedDate, category } = list;
-                let { typeName } = category;
-                if(lastUpdatedDate==null){lastUpdatedDate="暫無更新"};
-                let rowData = `
-                    <tr>
-                        <td>
-                            <div class="form-check font-size-16">
-                                <input class="form-check-input" type="checkbox" id="orderidcheck01">
-                                <label class="form-check-label" for="orderidcheck01"></label>
-                            </div>
-                        </td>
-                        <td><a href="javascript: void(0);" class="text-body fw-bold">#${productId}</a></td>
-                        <td>${typeName}</td>
-                        <td>${productName}</td>
-                        <td>$${productOriginPrice}</td>
-                        <td>$${productDiscountPrice}</td>
-                        <td>${lastUpdatedDate}</td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-sm btn-rounded" data-bs-toggle="modal" data-bs-target=".orderdetailsModal">修改</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-sm btn-rounded" data-bs-toggle="modal" data-bs-target=".orderdetailsModal">${upordown}</button>
-                        </td>
-                    </tr>`;
-
-                // 将rowData包装成jQuery对象并添加到DataTables中
-                $('#example').DataTable().row.add($(rowData));
-            }
-
-            // 绘制表格
-            $('#example').DataTable().draw();
-        })
-});
-
-//進入頁面直接抓取上架中商品
-window.addEventListener("load", function () {
-    const statusValue = parseInt(orderStatus.value);
-    let upordown ="下架";
-    if(statusValue==2){upordown="上架"}
-    fetch(`http://localhost:8080/ezdom/backend/get/${statusValue}`)
-        .then(resp => resp.json())
-        .then(body => {
-            // 清除现有数据
-            $('#example').DataTable().clear().draw();
-
-            for (let list of body) {
-                let { productId, productName, productOriginPrice, productDiscountPrice, lastUpdatedDate, category } = list;
-                let { typeName } = category;
-                if(lastUpdatedDate==null){lastUpdatedDate="暫無更新"};
-                let rowData = `
-                    <tr>
-                        <td>
-                            <div class="form-check font-size-16">
-                                <input class="form-check-input" type="checkbox" id="orderidcheck01">
-                                <label class="form-check-label" for="orderidcheck01"></label>
-                            </div>
-                        </td>
-                        <td><a href="javascript: void(0);" class="text-body fw-bold">#${productId}</a></td>
-                        <td>${typeName}</td>
-                        <td>${productName}</td>
-                        <td>$${productOriginPrice}</td>
-                        <td>$${productDiscountPrice}</td>
-                        <td>${lastUpdatedDate}</td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-sm btn-rounded" data-bs-toggle="modal" data-bs-target=".orderdetailsModal">修改</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-sm btn-rounded" data-bs-toggle="modal" data-bs-target=".orderdetailsModal">${upordown}</button>
-                        </td>
-                    </tr>`;
-
-                // 将rowData包装成jQuery对象并添加到DataTables中
-                $('#example').DataTable().row.add($(rowData));
-            }
-
-            // 绘制表格
-            $('#example').DataTable().draw();
-        })
-});
 </script>
+
+<script>
+    // 獲取URL中的Query參數
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('productId');
+    let reviseId = document.getElementById("reviseId");
+    reviseId.innerHTML = `<span class="product-id">${productId}</span>`;
+    let renew = document.getElementById("renew");
+    //依id抓商品資料回來修改
+    window.addEventListener('load', function () {
+        fetch(`http://localhost:8080/ezdom/product/getById/${productId}`)
+            .then(resp => resp.json())
+            .then(body => {
+                let { categoryId, productName, productDescription, productOriginPrice, productDiscountPrice, productImage, category } = body;
+                let { typeName } = category;
+
+                let html = `
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="mb-3">
+                    <label for="productname">商品名稱</label>
+                    <input id="productname" name="productname" type="text"
+                        class="form-control" value="${productName}">
+                </div>
+                <div class="mb-3">
+                    <label for="originPrice">原始價錢</label>
+                    <input id="originPrice" name="originPrice" type="text"
+                        class="form-control" value="${productOriginPrice}">
+                </div>
+                <div class="mb-3">
+                    <label for="discountPrice">優惠價錢</label>
+                    <input id="discountPrice" name="discountPrice"
+                        type="text" class="form-control" value="${productDiscountPrice}">
+                </div>
+
+            </div>
+
+            <div class="col-sm-6">
+                <div class="mb-3">
+                    <label class="control-label">商品類型</label>
+                    <select id="sportCategory" style="width: 50%"
+                    class="form-control select2">
+                    <option vlaue="${categoryId}">${typeName}</option>
+                    <option value="4" >球類</option>
+                    <option value="2">運動服</option>
+                    <option value="3">運動褲</option>
+                </select>
+                </div>
+                <div class="mb-3">
+                    <label for="productdesc">商品描述</label>
+                    <textarea class="form-control" id="productdesc" ${productDescription}
+                        rows="6">${productDescription}</textarea >
+                </div>
+
+            </div>
+        </div>
+        `;
+                renew.innerHTML = html;
+            })
+
+
+    });
+
+
+    //取消按鈕
+    let cancelBtn =document.getElementById("cancelBtn");
+    cancelBtn.addEventListener("click",function(){
+        if(confirm("確定要取消修改嗎?")){
+            window.location.replace("/shop-product.html");
+        }
+    })
+    //確認修改按鈕
+    let uditBtn=document.getElementById("uditBtn");
+    uditBtn.addEventListener("click",function(){
+    let productname = document.getElementById("productname");
+    let originPrice = document.getElementById("originPrice");
+    let discountPrice = document.getElementById("discountPrice");
+    let sportCategory = document.getElementById("sportCategory");
+    let productdesc = document.getElementById("productdesc");
+    let imageUpload = document.getElementById('imageUpload');
+    let fileReader = new FileReader();
+    fileReader.addEventListener('load',function(e){
+        console.log(selectedValue);
+        const imageBase64 = btoa(e.target.result);
+        fetch(`http://localhost:8080/ezdom/product/edit/${productId}`,{
+            method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body:JSON.stringify({
+            categoryId: sportCategory.value,
+            productName: productname.value,
+            productDescription: productdesc.value,
+            productOriginPrice: originPrice.value,
+            productDiscountPrice: discountPrice.value,
+            productImage: imageBase64
+        }),
+        }).then(resp => resp.json())
+        .then(body => {
+            const { successful, message } = body;
+            if (successful) {
+                alert(message);
+                setTimeout(function () {
+                    window.location.replace("/shop-product.html");
+                }, 1000);
+            } else {
+                alert(message);
+            }
+        })
+    })
+    fileReader.readAsBinaryString(imageUpload.files[0]);
+    })
+</script>
+
 
 </body>
 

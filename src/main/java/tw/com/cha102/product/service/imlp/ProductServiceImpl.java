@@ -14,13 +14,41 @@ import java.util.List;
 @Transactional
 public class ProductServiceImpl implements ProductService {
     @Autowired
-    ProductDao dao;
+    private ProductDao dao;
 
 
     @Override
     public boolean addProduct(ProductVO productVO) {
         return dao.insert(productVO)>0;
     }
+    @Override
+    public List<ProductVO> findProductsByStatus(int productStatus){return dao.selectByStatus(productStatus);}
+    @Override
+    public ProductVO getById(Integer productId){
+        if(productId !=null){
+           return dao.selectById(productId);
+        }else {
+            return null;
+        }
+    }
 
-    public List<ProductVO> findProduct(int productStatus){return dao.selectByStatus(productStatus);}
+    @Override
+    public boolean editProduct(ProductVO productVO) {
+        return dao.update(productVO)>0;
+    }
+
+    @Override
+    public boolean upOrdownProduct(Integer productId) {
+        ProductVO productVO = dao.selectById(productId);
+        if(productVO.getProductStatus()==((byte) 1)){
+            productVO.setProductStatus ((byte) 2);
+        }else if(productVO.getProductStatus()==((byte) 2)) {
+            productVO.setProductStatus((byte) 1);
+        }
+        return dao.updateToStatus(productVO)>0;
+    }
+
+    ;
+
+
 }

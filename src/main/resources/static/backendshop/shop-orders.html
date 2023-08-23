@@ -30,6 +30,33 @@
     <!-- datatable -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.jqueryui.min.css" />
 
+    <!-- 引入 SweetAlert2 的 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+
+    <style>
+        /* 自訂樣式：美化表格 */
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .custom-table th,
+        .custom-table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .custom-table th {
+            background-color: #f2f2f2;
+        }
+
+        .custom-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+
 </head>
 
 <body id="page-top">
@@ -41,9 +68,9 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a  class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
             <div style="transform: rotate(-5deg)">
-                <img width="40px"  src="img/FBI.png" >
+                <img width="40px" src="img/FBI.png">
             </div>
             <div class="sidebar-brand-text mx-3">EZDOM</div>
         </a>
@@ -295,8 +322,7 @@
                             </h6>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                         alt="...">
+                                    <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
                                     <div class="status-indicator bg-success"></div>
                                 </div>
                                 <div class="font-weight-bold">
@@ -307,8 +333,7 @@
                             </a>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                         alt="...">
+                                    <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
                                     <div class="status-indicator"></div>
                                 </div>
                                 <div>
@@ -319,8 +344,7 @@
                             </a>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                         alt="...">
+                                    <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
                                     <div class="status-indicator bg-warning"></div>
                                 </div>
                                 <div>
@@ -352,8 +376,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">員工姓名</span>
-                            <img class="img-profile rounded-circle"
-                                 src="img/undraw_profile.svg">
+                            <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -377,7 +400,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">商城退貨</h4>
+                                    <h4 class="mb-sm-0 font-size-18">商城訂單</h4>
                                 </div>
                             </div>
                         </div>
@@ -385,17 +408,18 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <div  class="card">
-                                    <div  class="card-body">
+                                <div class="card">
+                                    <div class="card-body">
                                         <div class="row mb-2">
                                             <div class="d-flex justify-content-between align-items-center">
 
                                                 <div class="col-sm-4">
-                                                    <label for="orderStatus" class="form-label"><strong>訂單狀態</strong></label>
+                                                    <label for="orderStatus"
+                                                           class="form-label"><strong>訂單狀態</strong></label>
                                                     <select class="form-select" id="orderStatus">
-                                                        <option value="3">退貨中</option>
-                                                        <option value="4">退貨完成</option>
-
+                                                        <option value="0">未出貨</option>
+                                                        <option value="1">已出貨</option>
+                                                        <option value="2">已完成訂單</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -405,51 +429,18 @@
                                             <table id="example" class="display" style="width: 100%">
                                                 <thead>
                                                 <tr style="background-color:lightskyblue">
-                                                    <th>計數</th>
                                                     <th class="align-middle">訂單編號</th>
-                                                    <th class="align-middle">訂購人姓名</th>
+                                                    <th class="align-middle">收件人姓名</th>
+                                                    <th class="align-middle">住家電話</th>
                                                     <th class="align-middle">電話</th>
                                                     <th class="align-middle">金額</th>
                                                     <th class="align-middle">地址</th>
                                                     <th class="align-middle">訂購日期</th>
+                                                    <th class="align-middle">商品明細</th>
                                                     <th class="align-middle">操作按鈕</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                   id="orderidcheck01">
-                                                            <label class="form-check-label" for="orderidcheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#SK2540</a>
-                                                    </td>
-                                                    <td>Neal Matthews</td>
-                                                    <td>
-                                                        0919314333
-                                                    </td>
-                                                    <td>
-                                                        $400
-                                                    </td>
-                                                    <td  class="address-cell">
-                                                        桃園市 中壢區 民生路 39號 2樓
-                                                    </td>
-
-                                                    <td>
-                                                        07 Oct, 2019
-                                                    </td>
-                                                    <td>
-                                                        <!-- Button trigger modal -->
-                                                        <button type="button" class="btn btn-primary btn-sm btn-rounded"
-                                                                data-bs-toggle="modal" data-bs-target=".orderdetailsModal">
-                                                            確認退貨
-                                                        </button>
-                                                    </td>
-                                                </tr>
-
-
                                                 </tbody>
                                             </table>
                                         </div>
@@ -529,10 +520,14 @@
 <script src="js/aside.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script> <!-- ●●js  for jquery datatables 用 -->
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+
+<!-- 引入 SweetAlert2 的 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
 <script>
     $(document).ready(function () {
         $('#example').DataTable({
-            "lengthMenu": [3, 5, 10, 20, 50, 100],
+            "lengthMenu": [5, 10, 20],
             "searching": true,  //搜尋功能, 預設是開啟
             "paging": true,     //分頁功能, 預設是開啟
             "ordering": true,   //排序功能, 預設是開啟
@@ -559,6 +554,162 @@
             }
         });
     });
+
+    //進頁面刷新訂單(未出貨)
+    let orderStatus = document.getElementById("orderStatus");
+
+    function orderRenew() {
+        let statusValue = parseInt(orderStatus.value);
+        fetch(`http://localhost:8080/ezdom/oredr/get/${statusValue}`)
+            .then(resp => resp.json())
+            .then(body => {
+                // 清除现有数据
+                $('#example').DataTable().clear().draw();
+                if (statusValue == 0) {
+                    for (let list of body) {
+                        let { orderId, orderDate, recipientName, actualAmount, phoneNumber, telphoneNumber, shippingAddress } = list;
+                        let rowData = `
+                <tr>
+                    <td><a href="javascript: void(0);"
+                            class="text-body fw-bold">#${orderId}</a>
+                    </td>
+                    <td>${recipientName}</td>
+                    <td>${phoneNumber}</td>
+                    <td>${telphoneNumber}</td>
+
+                    <td>$${actualAmount}</td>
+                    <td class="address-cell">
+                        ${shippingAddress}
+                    </td>
+                    <td>${orderDate}</td>
+                    <td><button type="button"
+                        class="btn btn-primary btn-sm btn-rounded"
+                        data-bs-toggle="modal"
+                        data-bs-target=".orderdetailsModal" onclick="productDetail(${orderId})">
+                        商品明細
+                    </button></td>
+                    <td>
+                        <button type="button"
+                            class="btn btn-primary btn-sm btn-rounded"
+                            data-bs-toggle="modal"
+                            data-bs-target=".orderdetailsModal">
+                            確認出貨
+                        </button>
+                    </td>
+                </tr>
+                `;
+                        // 将rowData包装成jQuery对象并添加到DataTables中
+                        $('#example').DataTable().row.add($(rowData));
+                    }
+                }
+
+                if (statusValue == 1) {
+                    for (let list of body) {
+                        let { orderId, orderDate, recipientName, actualAmount, phoneNumber, telphoneNumber, shippingAddress } = list;
+                        let rowData = `
+                <tr>
+                    <td><a href="javascript: void(0);"
+                            class="text-body fw-bold">#${orderId}</a>
+                    </td>
+                    <td>${recipientName}</td>
+                    <td>${phoneNumber}</td>
+                    <td>${telphoneNumber}</td>
+
+                    <td>$${actualAmount}</td>
+                    <td class="address-cell">
+                        ${shippingAddress}
+                    </td>
+                    <td>${orderDate}</td>
+                    <td><button type="button"
+                        class="btn btn-primary btn-sm btn-rounded"
+                        data-bs-toggle="modal"
+                        data-bs-target=".orderdetailsModal" onclick="productDetail(${orderId})">
+                        商品明細
+                    </button></td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm btn-rounded" disabled>
+                            商品已出貨
+                        </button>
+                    </td>
+                </tr>
+                `;
+                        // 将rowData包装成jQuery对象并添加到DataTables中
+                        $('#example').DataTable().row.add($(rowData));
+                    }
+                }
+
+                if (statusValue == 2) {
+                    for (let list of body) {
+                        let { orderId, orderDate, recipientName, actualAmount, phoneNumber, telphoneNumber, shippingAddress } = list;
+                        let rowData = `
+                <tr>
+                    <td><a href="javascript: void(0);"
+                            class="text-body fw-bold">#${orderId}</a>
+                    </td>
+                    <td>${recipientName}</td>
+                    <td>${phoneNumber}</td>
+                    <td>${telphoneNumber}</td>
+
+                    <td>$${actualAmount}</td>
+                    <td class="address-cell">
+                        ${shippingAddress}
+                    </td>
+                    <td>${orderDate}</td>
+                    <td><button type="button"
+                        class="btn btn-primary btn-sm btn-rounded"
+                        data-bs-toggle="modal"
+                        data-bs-target=".orderdetailsModal" onclick="productDetail(${orderId})">
+                        商品明細
+                    </button></td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm btn-rounded" disabled>
+                            已完成訂單
+                        </button>
+                    </td>
+                </tr>
+                `;
+                        // 将rowData包装成jQuery对象并添加到DataTables中
+                        $('#example').DataTable().row.add($(rowData));
+                    }
+                }
+
+                // 绘制表格
+                $('#example').DataTable().draw();
+            })
+    }
+
+    function productDetail(orderId) {
+fetch(`http://localhost:8080/ezdom/oredr/product?orderId=${orderId}`)
+    .then(resp => resp.json())
+    .then(body => {
+        let { note, orderDetailVOs } = body;
+        let tableContent = '<table class="custom-table"><tr><th>項目</th><th>單入價格</th><th>購買數量</th></tr>';
+
+        for (let orderDetailVO of orderDetailVOs) {
+            let { productPrice, quantity, productVO } = orderDetailVO;
+            let { productName } = productVO;
+
+            tableContent += `<tr><td>${productName}</td><td>${productPrice}</td><td>${quantity}</td></tr>`;
+        }
+
+        tableContent += '</table>';
+
+        Swal.fire({
+            title: `訂單備註: ${note}`, // 將 note 放入標題
+            html: tableContent,
+            showCloseButton: true,
+            showCancelButton: false,
+            focusConfirm: false,
+            confirmButtonText: '關閉'
+        });
+    });
+}
+
+    //進入刷新
+    window.onload = orderRenew;
+    //狀態改變刷新
+    orderStatus.onchange = orderRenew;
+
 </script>
 </body>
 
