@@ -21,6 +21,10 @@ public class GroupCreateServiceImpl implements GroupCreateService{
         this.groupCreateRepository = groupCreateRepository;
     }
 
+    public GroupCreateVO saveGroupPhoto(GroupCreateVO groupCreateVO, byte[] photoBytes) {
+        groupCreateVO.setGroupPhoto(photoBytes);
+        return groupCreateRepository.save(groupCreateVO);
+    }
 
     @Override
     public GroupCreateVO create(GroupCreateVO groupCreateVO) {
@@ -30,7 +34,7 @@ public class GroupCreateServiceImpl implements GroupCreateService{
            return groupCreateVO;
        }
        int compareGroupDate = groupCreateVO.getGroupDate().compareTo(groupCreateVO.getEndDate());
-       if (compareGroupDate>0){
+       if (compareGroupDate<0){
            groupCreateVO.setMessage("揪團日期不能晚於報名截止日期");
            groupCreateVO.setSuccessful(false);
            return groupCreateVO;
@@ -87,8 +91,11 @@ public class GroupCreateServiceImpl implements GroupCreateService{
             return groupCreateVO;
         }
 
+//            int i = groupCreateVO.getGroupId();
+//            groupCreateVO.setGroupId(++i);//測試用
             groupCreateVO.setGroupStatus(0);
-//            groupCreateVO.setCreateMemberId();
+            groupCreateVO.setCreateMemberId(1);
+            groupCreateVO.setRegisteredNumber(0);
             final GroupCreateVO groupCreateResult = groupCreateRepository.save(groupCreateVO);
 //            if (groupCreateResult <1){
 //                groupCreateVO.setMessage("新增錯誤");

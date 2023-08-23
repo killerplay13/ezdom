@@ -45,6 +45,7 @@ public class GroupCreateVO extends Core {
     private String groupContent;
     @Column(name = "GROUP_NAME")
     private String groupName;
+    @Lob
     @Column(name = "GROUP_PHOTO")
     private byte[] groupPhoto;
     @Column(name = "GROUP_STATUS",insertable = false,columnDefinition = "TINYINT NOT NULL DEFAULT 0")
