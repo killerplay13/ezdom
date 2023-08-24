@@ -1,11 +1,13 @@
 package tw.com.cha102.product.model.entity;
 
+import tw.com.cha102.core.vo.Core;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "PRODUCT_REVIEW")
-public class ProductReviewVO {
+public class ProductReviewVO extends Core {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +24,8 @@ public class ProductReviewVO {
 
     @Column(name = "EVALUATE_DATE",insertable = false)
     private LocalDateTime evaluateDate;
+
+    public ProductReviewVO(){};
 
     public Integer getReviewId() {
         return reviewId;

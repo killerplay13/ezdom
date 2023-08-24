@@ -1,10 +1,14 @@
 package tw.com.cha102.order.model.entity;
 
+import tw.com.cha102.core.vo.Core;
+import tw.com.cha102.product.model.entity.CategoryVO;
+import tw.com.cha102.product.model.entity.ProductVO;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "order_detail",catalog ="cha102g4_test")
-public class OrderDetailVO {
+public class OrderDetailVO extends Core {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +28,19 @@ public class OrderDetailVO {
 
     @Column(name = "TOTAL_AMOUNT")
     private Integer totalAmount;
+    @ManyToOne // 指定多对一关系
+    @JoinColumn(name = "PRODUCT_ID",insertable=false ,updatable = false) // 指定外键列
+    private ProductVO productVO;
+
+    public void setProductVO(ProductVO productVO) {
+        this.productVO = productVO;
+    }
+
+    public ProductVO getProductVO() {
+        return productVO;
+    }
+
+    public OrderDetailVO(){};
 
     public Integer getOrderDetailId() {
         return orderDetailId;
@@ -73,13 +90,13 @@ public class OrderDetailVO {
         this.totalAmount = totalAmount;
     }
 
-    public OrderDetailVO(Integer orderId, Integer productId, Integer productPrice, Integer quantity, Integer totalAmount) {
+    public OrderDetailVO(Integer orderId, Integer productId, Integer productPrice, Integer quantity, Integer totalAmount,ProductVO productVO) {
         this.orderId = orderId;
         this.productId = productId;
         this.productPrice = productPrice;
         this.quantity = quantity;
         this.totalAmount = totalAmount;
-
+        this.productVO=productVO;
 
     }
 }

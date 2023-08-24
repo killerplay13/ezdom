@@ -1,9 +1,11 @@
 package tw.com.cha102.product.model.entity;
+import tw.com.cha102.core.vo.Core;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "CATEGORY")
-public class CategoryVO {
+public class CategoryVO extends Core {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,6 +14,8 @@ public class CategoryVO {
 
     @Column(name = "TYPE_NAME", nullable = false)
     private String typeName;
+    public CategoryVO() {
+    }
 
     public CategoryVO(String typeName) {
         this.typeName = typeName;
