@@ -1,6 +1,6 @@
 package tw.com.cha102.support.model.dao.impl;
 
-import tw.com.cha102.support.model.entity.SupportVO;
+import tw.com.cha102.support.model.entity.FaqVO;
 import tw.com.cha102.support.model.Util;
 import tw.com.cha102.support.model.dao.SupportDAO;
 
@@ -24,14 +24,14 @@ public class SupportDAOImpl implements SupportDAO {
     }
 
     @Override
-    public int add(SupportVO supportVO) {
+    public int add(FaqVO faqVO) {
 
         try (Connection conn = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(INSERT);)
         {
-            pstmt.setString(1, supportVO.getFaqName());
-            pstmt.setString(2, supportVO.getFaqAns());
-            pstmt.setString(3, supportVO.getFaqTag());
+            pstmt.setString(1, faqVO.getFaqName());
+            pstmt.setString(2, faqVO.getFaqAns());
+            pstmt.setString(3, faqVO.getFaqTag());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -40,13 +40,13 @@ public class SupportDAOImpl implements SupportDAO {
     }
 
     @Override
-    public int update(SupportVO supportVO) {
+    public int update(FaqVO faqVO) {
 
         try (Connection conn = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(UPDATE);)
         {
-            pstmt.setString(1, supportVO.getFaqAns());
-            pstmt.setInt(2, supportVO.getFaqId());
+            pstmt.setString(1, faqVO.getFaqAns());
+            pstmt.setInt(2, faqVO.getFaqId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -69,8 +69,8 @@ public class SupportDAOImpl implements SupportDAO {
     }
 
     @Override
-    public SupportVO findById(Integer id) {
-        SupportVO supportVO = new SupportVO();
+    public FaqVO findById(Integer id) {
+        FaqVO faqVO = new FaqVO();
         ResultSet rs = null;
 
         try (Connection conn = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
@@ -80,10 +80,10 @@ public class SupportDAOImpl implements SupportDAO {
             rs = pstmt.executeQuery();
 
             while (rs.next()){
-                supportVO.setFaqId(rs.getInt("FAQ_ID"));
-                supportVO.setFaqName(rs.getString("FAQ_NAME"));
-                supportVO.setFaqAns(rs.getString("FAQ_ANS"));
-                supportVO.setFaqTag(rs.getString("FAQ_TAG"));
+                faqVO.setFaqId(rs.getInt("FAQ_ID"));
+                faqVO.setFaqName(rs.getString("FAQ_NAME"));
+                faqVO.setFaqAns(rs.getString("FAQ_ANS"));
+                faqVO.setFaqTag(rs.getString("FAQ_TAG"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -96,12 +96,12 @@ public class SupportDAOImpl implements SupportDAO {
                 }
             }
         }
-        return supportVO;
+        return faqVO;
     }
 
     @Override
-    public List<SupportVO> findAll() {
-        List<SupportVO> datas = new ArrayList<>();
+    public List<FaqVO> findAll() {
+        List<FaqVO> datas = new ArrayList<>();
         ResultSet rs = null;
 
         try (Connection conn = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
@@ -110,12 +110,12 @@ public class SupportDAOImpl implements SupportDAO {
             rs = pstmt.executeQuery();
 
             while (rs.next()){
-                SupportVO supportVO = new SupportVO();
-                supportVO.setFaqId(rs.getInt("FAQ_ID"));
-                supportVO.setFaqName(rs.getString("FAQ_NAME"));
-                supportVO.setFaqAns(rs.getString("FAQ_ANS"));
-                supportVO.setFaqTag(rs.getString("FAQ_TAG"));
-                datas.add(supportVO);
+                FaqVO faqVO = new FaqVO();
+                faqVO.setFaqId(rs.getInt("FAQ_ID"));
+                faqVO.setFaqName(rs.getString("FAQ_NAME"));
+                faqVO.setFaqAns(rs.getString("FAQ_ANS"));
+                faqVO.setFaqTag(rs.getString("FAQ_TAG"));
+                datas.add(faqVO);
             }
         } catch (SQLException e) {
             e.printStackTrace();

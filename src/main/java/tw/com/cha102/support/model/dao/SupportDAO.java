@@ -1,13 +1,13 @@
 package tw.com.cha102.support.model.dao;
 
-import tw.com.cha102.support.model.entity.SupportVO;
+import tw.com.cha102.support.model.entity.FaqVO;
 
 import java.util.List;
 
 public interface SupportDAO {
-    int add(SupportVO supportVO);
-    int update(SupportVO supportVO);
+    int add(FaqVO faqVO);
+    int update(FaqVO faqVO);
     int deleteById(Integer id);
-    SupportVO findById(Integer id);
-    List<SupportVO> findAll();
+    FaqVO findById(Integer id);
+    List<FaqVO> findAll();
 }
