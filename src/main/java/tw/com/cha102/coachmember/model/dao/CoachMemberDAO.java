@@ -1,6 +1,6 @@
-package tw.com.cha102.coachregister.model.dao;
+package tw.com.cha102.coachmember.model.dao;
 
-import tw.com.cha102.coachregister.model.entity.CoachMemberVO;
+import tw.com.cha102.coachmember.model.entity.CoachMemberVO;
 
 import java.util.List;
 

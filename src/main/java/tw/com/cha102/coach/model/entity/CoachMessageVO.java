@@ -1,19 +1,26 @@
 package tw.com.cha102.coach.model.entity;
 
+import tw.com.cha102.core.vo.Core;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
-public class CoachMessageVO implements Serializable {
+@Table(name = "coach_message")
+public class CoachMessageVO extends Core {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MESSAGE_ID")
     private Integer messageId;
+    @NotNull
     @Column(name = "COACH_ID")
     private Integer coachId;
+    @NotNull
     @Column(name = "MEMBER_ID")
     private Integer memberId;
+    @NotNull
     private String content;
     @Column(name = "CREATE_TIME", insertable = false)
     private Timestamp createTime;
