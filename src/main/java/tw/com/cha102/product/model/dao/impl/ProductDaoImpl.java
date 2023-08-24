@@ -8,6 +8,7 @@ import tw.com.cha102.product.model.entity.ProductVO;
 
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.nio.channels.SeekableByteChannel;
 import java.util.List;
 @Repository
@@ -86,5 +87,26 @@ public class ProductDaoImpl implements ProductDao {
         int i = query.executeUpdate();
         return i;
     }
+    @Override
+    public List<ProductVO> selectBy12(Integer value){
+        int itemsPerPage = 12;
+        int skipItems = (value - 1) * itemsPerPage;
+
+        Query query = session.createQuery("FROM ProductVO", ProductVO.class)
+                .setFirstResult(skipItems)
+                .setMaxResults(itemsPerPage);
+
+        return query.getResultList();
+    }
+
+    @Override
+    public int selectProductCount() {
+        String hql = "SELECT COUNT(*) FROM ProductVO";
+        TypedQuery<Long> query = session.createQuery(hql, Long.class);
+        Long result = query.getSingleResult();
+        int count = result.intValue(); // 轉換為 int
+        return count;
+    }
+
 
 }
