@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import tw.com.cha102.member.model.entity.Member;
 
 
 import javax.persistence.*;
@@ -20,8 +21,9 @@ public class GroupVerifyVO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "GROUP_MEMBER_ID")
     private Integer groupMemberId;
-    @Column(name = "MEMBER_ID")
-    private Integer memberId;
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID", referencedColumnName = "MEMBER_ID")
+    private Member member;
     @Column(name = "GROUP_ID")
     private Integer groupId;
     @Column(name = "GROUP_APPLY_STATUS")
@@ -31,4 +33,11 @@ public class GroupVerifyVO {
     private Date groupApplyDate;
     @Column(name = "GROUP_COMMENT")
     private String groupComment;
+    @Column(name = "GROUP_SIGN_INTRO")
+    private String groupSignIntro;
+
+    public String getMemberName() {
+        return member != null ? member.getMemberName() : null;
+    }
+
 }
