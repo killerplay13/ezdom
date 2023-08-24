@@ -28,8 +28,8 @@ public class ForumReportVO extends Core {
     @Column(name = "FORUMREPORT_TIME",insertable = false)
     private Timestamp forumReportTime;
 
-    @Column(name = "FORUMREPORT_TYPE",insertable = false)
-    private Integer forumReportType;
+    @Column(name = "FORUMREPORT_STATUS",insertable = false)
+    private Integer forumReportStatus;
 
     // @ManyToOne
     // @JoinColumn(name = "FORUMPOST_ID", insertable = false, updatable = false)

@@ -2,11 +2,12 @@ package tw.com.cha102.forum.model.entity;
 
 import lombok.*;
 import tw.com.cha102.core.vo.Core;
+import tw.com.cha102.member.model.entity.MemberVO;
 //import tw.com.cha102.member.model.MemberVO;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-//import java.util.List;
+import java.util.List;
 
 
 @Entity
@@ -22,8 +23,6 @@ public class ForumPostVO extends Core {
     @Column(name = "MEMBER_ID")
     private Integer memberId;
 
-    @Column(name = "FORUMCATEGORY_ID")
-    private Integer forumCategoryId;
 
     @Column(name = "FORUMPOST_CONTENT")
     private String forumPostContent;
@@ -34,14 +33,15 @@ public class ForumPostVO extends Core {
     @Column(name = "FORUMPOST_TIME" ,insertable = false)
     private Timestamp forumPostTime;
 
+    @Column(name = "FORUMPOST_TYPE" )
+    private Integer forumPostType;
+
+
+
 //    @ManyToOne
 //    @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
 //    private MemberVO member;
-
-//    @ManyToOne
-//    @JoinColumn(name = "FORUMCATEGORY_ID", insertable = false, updatable = false)
-//    private ForumCategoryVO forumCategory;
-
+//
 //    @OneToMany(mappedBy = "forumPost")
 //    private List<ForumMsgVO> forumMsgs;
 //
