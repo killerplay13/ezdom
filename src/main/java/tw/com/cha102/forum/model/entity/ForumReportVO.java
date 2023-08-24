@@ -2,7 +2,6 @@ package tw.com.cha102.forum.model.entity;
 
 import lombok.*;
 import tw.com.cha102.core.vo.Core;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 

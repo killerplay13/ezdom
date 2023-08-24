@@ -2,7 +2,6 @@ package tw.com.cha102.forum.model.entity;
 
 import lombok.*;
 import tw.com.cha102.core.vo.Core;
-import tw.com.cha102.member.model.entity.MemberVO;
 
 import javax.persistence.*;
 

@@ -2,12 +2,10 @@ package tw.com.cha102.forum.model.entity;
 
 import lombok.*;
 import tw.com.cha102.core.vo.Core;
-import tw.com.cha102.member.model.entity.MemberVO;
-//import tw.com.cha102.member.model.MemberVO;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.List;
+
 
 
 @Entity
