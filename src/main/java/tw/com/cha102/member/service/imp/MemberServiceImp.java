@@ -22,6 +22,15 @@ public class MemberServiceImp implements MemberService {
     private MemberRepository memberRepository;
     @Override
     public void login(LoginRequest loginRequest) {
+        Member member=memberRepository.findByMemberAccount(loginRequest.getAccount());
+        if(member==null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"該帳戶不存在");
+
+        String hashedInputPassword = sha256Hash(loginRequest.getPassword());
+        if(!hashedInputPassword.equals(member.getMemberPassword()))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"密碼不正確");
+
+
 
     }
 
