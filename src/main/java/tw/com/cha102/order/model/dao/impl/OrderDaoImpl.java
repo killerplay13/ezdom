@@ -31,7 +31,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public int updateToOrderStatus(OrderVO orderVO) {
-        Query query = session.createQuery("UPDATE orderVO SET orderStatus=:orderStatus where orderId=:orderId")
+        Query query = session.createQuery("UPDATE OrderVO SET orderStatus=:orderStatus where orderId=:orderId")
                 .setParameter("orderStatus", orderVO.getOrderStatus()).setParameter("orderId", orderVO.getOrderId());
         int i = query.executeUpdate();
         return i;
