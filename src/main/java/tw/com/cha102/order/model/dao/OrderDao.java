@@ -7,16 +7,16 @@ import java.util.List;
 
 public interface OrderDao {
 
-    public int insert(OrderVO orderVO);
+    int insert(OrderVO orderVO);
 
-    public int deleteById(Integer orderId);
+    int deleteById(Integer orderId);
 
-    public int updateToOrderStatus(OrderVO orderVO);
+    int updateToOrderStatus(OrderVO orderVO);
 
-    public OrderVO selectById(Integer orderId);
+    OrderVO selectById(Integer orderId);
 
-    public List<OrderVO> selectAll();
+    List<OrderVO> selectAll();
 
-    public List<OrderVO> selectByStatus(int orderStatus);
+    List<OrderVO> selectByStatus(int orderStatus);
 
 }

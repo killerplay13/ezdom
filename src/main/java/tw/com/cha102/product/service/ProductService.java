@@ -6,15 +6,17 @@ import java.util.List;
 
 public interface ProductService {
 
-    public boolean addProduct(ProductVO productVO);
+    boolean addProduct(ProductVO productVO);
 
-    public List<ProductVO> findProductsByStatus(int productStatus);
+    List<ProductVO> findProductsByStatus(int productStatus);
 
-    public ProductVO getById(Integer productId);
+    ProductVO getById(Integer productId);
 
-    public boolean editProduct(ProductVO productVO);
+    boolean editProduct(ProductVO productVO);
 
-    public boolean upOrdownProduct(Integer productId);
+    boolean upOrdownProduct(Integer productId);
 
+    List<ProductVO> showProducts(Integer value);
 
+    int findProductCount();
 }
