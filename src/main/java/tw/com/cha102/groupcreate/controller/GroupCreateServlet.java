@@ -10,6 +10,7 @@ import tw.com.cha102.groupcreate.service.GroupCreateService;
 import tw.com.cha102.groupcreate.service.GroupCreateServiceImpl;
 
 import java.util.Base64;
+import java.util.List;
 
 @RestController
 @RequestMapping("/groupcreate")
@@ -18,31 +19,29 @@ public class GroupCreateServlet {
     @Autowired
     private GroupCreateService groupCreateService;
 
-//    @PostMapping("/create")
-//    public GroupCreateVO create(@RequestBody GroupCreateVO groupCreateVO) {
-//        return groupCreateService.create(groupCreateVO);
-//    }
-
     @PostMapping("/create")
     public ResponseEntity<String> createGroup(@RequestBody GroupCreateVO groupCreateVO) {
 
             if (groupCreateVO.getGroupPhoto() != null && groupCreateVO.getGroupPhoto().length > 0) {
-                // 解码 Base64 编码的图片数据为 byte[]
+
                 byte[] photoBytes = groupCreateVO.getGroupPhoto();
 
-                // 将 byte[] 数据存储到 GroupCreateVO 对象中
                 groupCreateVO.setGroupPhoto(photoBytes);
             }
 
-
-            // 呼叫服務層的 create 方法處理創建群組
             GroupCreateVO result = groupCreateService.create(groupCreateVO);
 
             if (result.isSuccessful()) {
-                return ResponseEntity.ok("Group created successfully");
+                return ResponseEntity.ok("新增揪團成功");
             } else {
                 return ResponseEntity.badRequest().body(result.getMessage());
             }
-
     }
+
+    @GetMapping("/listAllGroupCreate")
+    public List<GroupCreateVO> listAllGroupCreate(@RequestParam Integer createMemberId) {
+        List<GroupCreateVO> groupCreateList = groupCreateService.findAllGroupCreateByMemberId(createMemberId);
+        return groupCreateList;
+    }
+
 }

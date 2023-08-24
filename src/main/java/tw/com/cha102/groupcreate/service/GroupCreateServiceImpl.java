@@ -8,6 +8,7 @@ import tw.com.cha102.groupcreate.model.GroupCreateVO;
 
 import javax.transaction.Transactional;
 import java.lang.reflect.Member;
+import java.util.List;
 
 @Service
 @Transactional
@@ -25,6 +26,12 @@ public class GroupCreateServiceImpl implements GroupCreateService{
         groupCreateVO.setGroupPhoto(photoBytes);
         return groupCreateRepository.save(groupCreateVO);
     }
+
+    @Override
+    public List<GroupCreateVO> findAllGroupCreateByMemberId(Integer createMemberId) {
+        return groupCreateRepository.findAllGroupCreate(createMemberId);
+    }
+
 
     @Override
     public GroupCreateVO create(GroupCreateVO groupCreateVO) {
@@ -91,8 +98,7 @@ public class GroupCreateServiceImpl implements GroupCreateService{
             return groupCreateVO;
         }
 
-//            int i = groupCreateVO.getGroupId();
-//            groupCreateVO.setGroupId(++i);//測試用
+
             groupCreateVO.setGroupStatus(0);
             groupCreateVO.setCreateMemberId(1);
             groupCreateVO.setRegisteredNumber(0);
