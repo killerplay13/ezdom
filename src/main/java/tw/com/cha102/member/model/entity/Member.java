@@ -19,7 +19,7 @@ import javax.persistence.*;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "member", catalog = "cha102g4_test")
-public class Member {
+public class    Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
