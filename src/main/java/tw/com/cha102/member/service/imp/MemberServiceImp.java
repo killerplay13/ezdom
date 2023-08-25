@@ -1,6 +1,7 @@
 package tw.com.cha102.member.service.imp;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import tw.com.cha102.member.model.entity.Member;
 import tw.com.cha102.member.service.MemberService;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.nio.charset.StandardCharsets;
@@ -26,10 +28,10 @@ public class MemberServiceImp implements MemberService {
     @Autowired
     private MemberRepository memberRepository;
 
-    @Autowired
-    private HttpSession httpSession;
+
     @Override
-    public void login(LoginRequest loginRequest, HttpServletResponse response) {
+    public void login(LoginRequest loginRequest, HttpServletRequest request, HttpServletResponse response) {
+
         Member member = memberRepository.findByMemberAccount(loginRequest.getAccount());
         if(member ==null)
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"無此使用者");
@@ -37,6 +39,7 @@ public class MemberServiceImp implements MemberService {
         //比較帳號密碼
         if(!member.getMemberAccount().equals(loginRequest.getAccount()) || !member.getMemberPassword().equals(hashReqPwd))
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"帳號密碼錯誤");
+        HttpSession httpSession  =request.getSession();
         httpSession.setAttribute("loggedInMember", member.getMemberId());
         // 添加 Cookie 到回應中
         Cookie sessionCookie = new Cookie("JSESSIONID", httpSession.getId());

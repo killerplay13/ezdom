@@ -4,12 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import tw.com.cha102.member.dto.CommonResponse;
 import tw.com.cha102.member.dto.LoginRequest;
 import tw.com.cha102.member.dto.SignUpRequest;
 import tw.com.cha102.member.model.entity.Member;
 import tw.com.cha102.member.service.MemberService;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -25,15 +27,17 @@ public class MemberController {
     private HttpSession httpSession;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody @Valid LoginRequest loginRequest,HttpServletResponse response) {
-        memberService.login(loginRequest,response);
-        return ResponseEntity.ok("登入成功");
+    public CommonResponse<String> login(@RequestBody @Valid LoginRequest loginRequest,
+                                        HttpServletRequest request,
+                                        HttpServletResponse response) {
+        memberService.login(loginRequest,request,response);
+        return new CommonResponse("登入成功");
     }
 
     @PostMapping("/signUp")
-    public  ResponseEntity<String> signUp(@RequestBody @Valid SignUpRequest signUpRequest){
+    public  CommonResponse<String> signUp(@RequestBody @Valid SignUpRequest signUpRequest){
         memberService.signUp(signUpRequest);
-        return  ResponseEntity.ok("註冊成功");
+        return  new CommonResponse("註冊成功");
     }
 
     @GetMapping("/member")
