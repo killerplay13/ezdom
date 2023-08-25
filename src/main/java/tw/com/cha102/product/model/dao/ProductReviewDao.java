@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface ProductReviewDao {
 
-    public int insert(ProductReviewVO productReviewVO);
+    int insert(ProductReviewVO productReviewVO);
 
-    public int deleteById(Integer reviewId);
+    int deleteById(Integer reviewId);
 
-    public int update(ProductReviewVO productReviewVO);
+    int update(ProductReviewVO productReviewVO);
 
-    public ProductReviewVO selectById(Integer reviewId);
+    ProductReviewVO selectById(Integer reviewId);
 
-    public List<ProductReviewVO> selectAll();
+    List<ProductReviewVO> selectAll();
 }

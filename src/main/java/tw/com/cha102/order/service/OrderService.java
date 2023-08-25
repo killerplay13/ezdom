@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface OrderService {
 
-    public List<OrderVO> findOrdersByStatus(int orderStatus);
+    List<OrderVO> findOrdersByStatus(int orderStatus);
 
-    public OrderVO selectOrderById(Integer orderId);
+    OrderVO selectOrderById(Integer orderId);
 
-    public boolean toShipOrder(Integer orderId);
+    boolean toShipOrder(Integer orderId);
 
-    public boolean toRetrunOrder(Integer orderId);
+    boolean toRetrunOrder(Integer orderId);
 }

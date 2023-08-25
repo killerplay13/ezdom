@@ -1,12 +1,10 @@
-package tw.com.cha102.coachregister.model.dao.impl;
+package tw.com.cha102.coachmember.model.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
-import tw.com.cha102.coach.model.entity.CoachMessageVO;
-import tw.com.cha102.coachregister.model.dao.CoachMemberDAO;
-import tw.com.cha102.coachregister.model.entity.CoachMemberVO;
-import tw.com.cha102.order.model.entity.OrderVO;
+import tw.com.cha102.coachmember.model.dao.CoachMemberDAO;
+import tw.com.cha102.coachmember.model.entity.CoachMemberVO;
 
 import javax.persistence.PersistenceContext;
 import java.util.List;

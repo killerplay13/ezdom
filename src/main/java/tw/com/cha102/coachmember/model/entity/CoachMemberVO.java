@@ -1,18 +1,22 @@
-package tw.com.cha102.coachregister.model.entity;
+package tw.com.cha102.coachmember.model.entity;
+
+import tw.com.cha102.core.vo.Core;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "COACH_MEMBER", catalog = "cha102g4_test")
-public class CoachMemberVO implements Serializable {
+@Table(name = "COACH_MEMBER")
+public class CoachMemberVO extends Core {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COACH_ID")
     private Integer coachId;
     @Column(name = "MEMBER_ID")
+    @NotNull
     private Integer memberId;
+    @NotNull
     private String introduction;
     private byte[] picture;
     @Column(name = "STATUS", insertable = false)
