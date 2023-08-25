@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/forum")
 public class ForumMsgController {
 
-	private final ForumMsgService forumMsgService;
+	private ForumMsgService forumMsgService;
 
 	@Autowired
 	public ForumMsgController(ForumMsgService forumMsgService) {
@@ -30,7 +30,7 @@ public class ForumMsgController {
 		}
 	}
 
-	@DeleteMapping("/msg/{msgId}")
+	@DeleteMapping("/delete/msg/{msgId}")
 	public ResponseEntity<String> deleteMessage(@PathVariable Integer msgId) {
 		boolean deleted = forumMsgService.deleteMessage(msgId);
 		if (deleted) {

@@ -1,7 +1,9 @@
 package tw.com.cha102.forum.model.entity;
 
+
 import lombok.*;
 import tw.com.cha102.core.vo.Core;
+import tw.com.cha102.member.model.entity.Member;
 
 import javax.persistence.*;
 
@@ -21,14 +23,12 @@ public class ForumCollectVO extends Core {
     @Column(name = "MEMBER_ID")
     private Integer memberId;
 
-
-//     @ManyToOne
-//     @JoinColumn(name = "FORUMPOST_ID", insertable = false, updatable = false)
-//     private ForumPostVO forumPost;
-
+     @ManyToOne
+     @JoinColumn(name = "FORUMPOST_ID", insertable = false, updatable = false)
+     private ForumPostVO forumPost;
 
 //     @ManyToOne
 //     @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
-//     private MemberVO member;
+//     private Member member;
 }
 

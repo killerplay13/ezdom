@@ -47,7 +47,7 @@ public class ForumCollectController {
 		}
 	}
 
-	@DeleteMapping("/collect/{collectId}")
+	@DeleteMapping("/delete/collect/{collectId}")
 	public ResponseEntity<String> deleteCollectedPost(@PathVariable Integer collectId) {
 		boolean deleted = forumCollectService.delete(collectId);
 		if (deleted) {

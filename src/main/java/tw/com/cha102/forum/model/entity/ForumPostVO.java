@@ -1,11 +1,13 @@
 package tw.com.cha102.forum.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import tw.com.cha102.core.vo.Core;
+import tw.com.cha102.member.model.entity.Member;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-
+import java.util.List;
 
 
 @Entity
@@ -21,7 +23,6 @@ public class ForumPostVO extends Core {
     @Column(name = "MEMBER_ID")
     private Integer memberId;
 
-
     @Column(name = "FORUMPOST_CONTENT")
     private String forumPostContent;
 
@@ -34,20 +35,21 @@ public class ForumPostVO extends Core {
     @Column(name = "FORUMPOST_TYPE" )
     private Integer forumPostType;
 
-
-
 //    @ManyToOne
 //    @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
-//    private MemberVO member;
-//
-//    @OneToMany(mappedBy = "forumPost")
-//    private List<ForumMsgVO> forumMsgs;
-//
-//    @OneToMany(mappedBy = "forumPost")
-//    private List<ForumCollectVO> forumCollects;
-//
-//    @OneToMany(mappedBy = "forumPost")
-//    private List<ForumReportVO> forumReports;
+//    private Member member;
+
+    @OneToMany(mappedBy = "forumPost", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<ForumMsgVO> forumMsgs;
+
+    @OneToMany(mappedBy = "forumPost", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<ForumCollectVO> forumCollects;
+
+    @OneToMany(mappedBy = "forumPost", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<ForumReportVO> forumReports;
 }
 
 

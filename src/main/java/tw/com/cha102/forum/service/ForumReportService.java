@@ -14,5 +14,8 @@ public interface ForumReportService {
 
     boolean deleteReport(Integer reportId);
 
+//    boolean updateReportStatus(Integer reportId, Integer newStatus);
+
+
 
 }

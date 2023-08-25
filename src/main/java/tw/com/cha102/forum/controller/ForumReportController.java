@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/forum")
 public class ForumReportController {
 
-    private final ForumReportService forumReportService;
+    private  ForumReportService forumReportService;
 
     @Autowired
     public ForumReportController(ForumReportService forumReportService) {
@@ -47,7 +47,18 @@ public class ForumReportController {
         }
     }
 
-    @DeleteMapping("/report/{reportId}")
+//    @PutMapping("/report/{reportId}/status")
+//    public ResponseEntity<String> updateReportStatus(@PathVariable Integer reportId, @RequestParam Integer newStatus) {
+//        boolean updated = forumReportService.updateReportStatus(reportId, newStatus);
+//        if (updated) {
+//            return ResponseEntity.ok("檢舉狀態修改成功");
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
+
+
+    @DeleteMapping("/delete/report/{reportId}")
     public ResponseEntity<String> deleteReport(@PathVariable Integer reportId) {
         boolean deleted = forumReportService.deleteReport(reportId);
         if (deleted) {

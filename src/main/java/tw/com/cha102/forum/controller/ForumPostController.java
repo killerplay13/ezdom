@@ -10,12 +10,18 @@ import tw.com.cha102.forum.service.ForumPostService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/forum")
 public class ForumPostController {
 
-    @Autowired
+
     private ForumPostService forumPostService;
+
+    @Autowired
+    public ForumPostController(ForumPostService forumPostService) {
+        this.forumPostService = forumPostService;
+    }
 
     @PostMapping("/post")
     public ResponseEntity<String> createPost(@RequestBody ForumPostVO forumPostVO) {
@@ -23,7 +29,7 @@ public class ForumPostController {
         if (result.isSuccessful()) {
             return ResponseEntity.ok(result.getMessage()); // 返回插入结果的消息
         } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 返回服务器错误状态码
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 返回服務氣錯誤狀態碼
         }
     }
 
@@ -44,7 +50,7 @@ public class ForumPostController {
         return ResponseEntity.ok(posts);
     }
 
-    @DeleteMapping("/delete/{postId}")
+    @DeleteMapping("/delete/post/{postId}")
     public ResponseEntity<String> deletePost(@PathVariable Integer postId) {
         boolean deleted = forumPostService.delete(postId);
         if (deleted) {

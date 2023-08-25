@@ -7,6 +7,7 @@ import tw.com.cha102.forum.model.dao.ForumReportDao;
 import tw.com.cha102.forum.service.ForumReportService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ForumReportServiceImpl implements ForumReportService {
@@ -44,13 +45,27 @@ public class ForumReportServiceImpl implements ForumReportService {
 
     @Override
     public List<ForumReportVO> getAllReports() {
+
         return forumReportDao.findAll();
     }
 
     @Override
     public ForumReportVO getReportById(Integer reportId) {
+
         return forumReportDao.findById(reportId).orElse(null);
     }
+//    @Override
+//    public boolean updateReportStatus(Integer reportId, Integer newStatus) {
+//        Optional<ForumReportVO> optionalReport = forumReportDao.findById(reportId);
+//        if (optionalReport.isPresent()) {
+//            ForumReportVO report = optionalReport.get();
+//            report.setForumReportStatus(newStatus);
+//            forumReportDao.save(report);
+//            return true;
+//        }
+//        return false;
+//    }
+
 
     @Override
     public boolean deleteReport(Integer reportId) {
@@ -66,5 +81,5 @@ public class ForumReportServiceImpl implements ForumReportService {
         return forumReportDao.existsByForumPostIdAndMemberId(forumPostId, memberId);
     }
 
-    // 可以實現其他需要的方法
+
 }
