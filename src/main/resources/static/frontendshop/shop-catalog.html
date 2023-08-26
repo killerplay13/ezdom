@@ -36,6 +36,8 @@
 
 
   </script>
+  <!-- 引入 SweetAlert2 的 CSS 文件 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
   <!-- Page loading styles-->
   <style>
     .page-loading {
@@ -149,6 +151,30 @@
     .carousel-control-prev {
       border: none;
       background: none;
+    }
+
+    .accordion-button::after {
+      display: none;
+    }
+
+    /* 修改按鈕文字樣式 */
+    .accordion-button span.fs-base {
+      font-weight: bold;
+      /* 加粗字體 */
+      color: #336699;
+      /* 設定文字顏色 */
+      text-decoration: underline;
+      /* 添加底線效果 */
+      cursor: pointer;
+      /* 設定滑鼠樣式為手指 */
+    }
+
+    /* 激活時的文字樣式 */
+    .accordion-button.active-button span.fs-base {
+      color: #cc0000;
+      /* 修改文字顏色 */
+      text-decoration: none;
+      /* 移除底線效果 */
     }
   </style>
   <!-- Page loading scripts-->
@@ -494,7 +520,7 @@
     <!-- Page title-->
     <div class="row pt-xl-3 mt-n1 mt-sm-0">
       <div class="col-lg-9 offset-lg-3 pt-lg-3">
-        <h1 class="pb-2 pb-sm-3">全部商品</h1>
+        <h1 class="pb-2 pb-sm-3">商品特賣</h1>
       </div>
     </div>
     <div class="row pb-2 pb-sm-4">
@@ -512,227 +538,57 @@
             <div class="accordion accordion-alt pb-2 mb-4" id="shopCategories">
               <div class="accordion-item mb-0">
                 <h4 class="accordion-header">
-                  <button class="accordion-button fs-xl fw-medium py-2" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#livingRoom" aria-expanded="true" aria-controls="livingRoom"><span
-                          class="fs-base">運動帽</span></button>
+                  <button class="accordion-button active-button fs-xl fw-medium py-2" type="button"
+                          data-bs-toggle="collapse" data-bs-target="#livingRoom" aria-expanded="true"
+                          aria-controls="livingRoom"><span class="fs-base" onclick="showProduct(1)">全部商品</span></button>
                 </h4>
-                <div class="accordion-collapse collapse show" id="livingRoom" data-bs-parent="#shopCategories">
-                  <div class="accordion-body py-1 mb-1">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="lr-all">
-                      <label class="form-check-label d-flex align-items-center" for="lr-all"><span
-                              class="text-nav fw-medium">全部商品</span><span
-                              class="fs-xs text-muted ms-auto">697</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" checked id="lr-vases">
-                      <label class="form-check-label d-flex align-items-center" for="lr-vases"><span
-                              class="text-nav fw-medium">Vases</span><span
-                              class="fs-xs text-muted ms-auto">234</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="lr-mirrors">
-                      <label class="form-check-label d-flex align-items-center" for="lr-mirrors"><span
-                              class="text-nav fw-medium">Mirrors</span><span
-                              class="fs-xs text-muted ms-auto">182</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="lr-paintings">
-                      <label class="form-check-label d-flex align-items-center" for="lr-paintings"><span
-                              class="text-nav fw-medium">Paintings</span><span
-                              class="fs-xs text-muted ms-auto">133</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="lr-furniture">
-                      <label class="form-check-label d-flex align-items-center" for="lr-furniture"><span
-                              class="text-nav fw-medium">Furniture</span><span
-                              class="fs-xs text-muted ms-auto">24</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" checked id="lr-clocks">
-                      <label class="form-check-label d-flex align-items-center" for="lr-clocks"><span
-                              class="text-nav fw-medium">Clocks</span><span
-                              class="fs-xs text-muted ms-auto">49</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="lr-frames">
-                      <label class="form-check-label d-flex align-items-center" for="lr-frames"><span
-                              class="text-nav fw-medium">Photo frames</span><span
-                              class="fs-xs text-muted ms-auto">75</span></label>
-                    </div>
-                  </div>
-                </div>
+              </div>
+              <div class="accordion-item mb-0">
+                <h4 class="accordion-header">
+                  <button class="accordion-button fs-xl fw-medium py-2" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#livingRoom" aria-expanded="true" aria-controls="livingRoom"><span class="fs-base"
+                                                                                                             onclick="sortProduct(1,1)">健身器材</span></button>
+                </h4>
               </div>
               <div class="accordion-item mb-0">
                 <h4 class="accordion-header">
                   <button class="accordion-button collapsed fs-xl fw-medium py-2" type="button"
                           data-bs-toggle="collapse" data-bs-target="#kitchen" aria-expanded="false"
-                          aria-controls="kitchen"><span class="fs-base">運動上衣</span></button>
+                          aria-controls="kitchen"><span class="fs-base" onclick="sortProduct(1,2)">戶外運動用品</span></button>
                 </h4>
-                <div class="accordion-collapse collapse" id="kitchen" data-bs-parent="#shopCategories">
-                  <div class="accordion-body py-1 mb-1">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="kitchen-all">
-                      <label class="form-check-label d-flex align-items-center" for="kitchen-all"><span
-                              class="text-nav fw-medium">全部商品</span><span
-                              class="fs-xs text-muted ms-auto">813</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="kitchen-cutlery">
-                      <label class="form-check-label d-flex align-items-center" for="kitchen-cutlery"><span
-                              class="text-nav fw-medium">無袖背心</span><span
-                              class="fs-xs text-muted ms-auto">387</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="kitchen-storage">
-                      <label class="form-check-label d-flex align-items-center" for="kitchen-storage"><span
-                              class="text-nav fw-medium">Storage</span><span
-                              class="fs-xs text-muted ms-auto">124</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="kitchen-bins">
-                      <label class="form-check-label d-flex align-items-center" for="kitchen-bins"><span
-                              class="text-nav fw-medium">Waste bins</span><span
-                              class="fs-xs text-muted ms-auto">59</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="kitchen-holders">
-                      <label class="form-check-label d-flex align-items-center" for="kitchen-holders"><span
-                              class="text-nav fw-medium">Holders</span><span
-                              class="fs-xs text-muted ms-auto">227</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="kitchen-sinks">
-                      <label class="form-check-label d-flex align-items-center" for="kitchen-sinks"><span
-                              class="text-nav fw-medium">Sinks</span><span
-                              class="fs-xs text-muted ms-auto">16</span></label>
-                    </div>
-                  </div>
-                </div>
               </div>
               <div class="accordion-item mb-0">
                 <h4 class="accordion-header">
                   <button class="accordion-button collapsed fs-xl fw-medium py-2" type="button"
                           data-bs-toggle="collapse" data-bs-target="#bathroom" aria-expanded="false"
-                          aria-controls="bathroom"><span class="fs-base">運動下裝</span></button>
+                          aria-controls="bathroom"><span class="fs-base" onclick="sortProduct(1,3)">球類運動用品</span></button>
                 </h4>
-                <div class="accordion-collapse collapse" id="bathroom" data-bs-parent="#shopCategories">
-                  <div class="accordion-body py-1 mb-1">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="bathroom-all">
-                      <label class="form-check-label d-flex align-items-center" for="bathroom-all"><span
-                              class="text-nav fw-medium">全部商品</span><span
-                              class="fs-xs text-muted ms-auto">1416</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="bathroom-showers">
-                      <label class="form-check-label d-flex align-items-center" for="bathroom-showers"><span
-                              class="text-nav fw-medium">Showers</span><span
-                              class="fs-xs text-muted ms-auto">113</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="bathroom-basins">
-                      <label class="form-check-label d-flex align-items-center" for="bathroom-basins"><span
-                              class="text-nav fw-medium">Basins</span><span
-                              class="fs-xs text-muted ms-auto">98</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="bathroom-dispensers">
-                      <label class="form-check-label d-flex align-items-center" for="bathroom-dispensers"><span
-                              class="text-nav fw-medium">Dispensers</span><span
-                              class="fs-xs text-muted ms-auto">205</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="bathroom-cleaning">
-                      <label class="form-check-label d-flex align-items-center" for="bathroom-cleaning"><span
-                              class="text-nav fw-medium">Cleaning</span><span
-                              class="fs-xs text-muted ms-auto">747</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="bathroom-holders">
-                      <label class="form-check-label d-flex align-items-center" for="bathroom-holders"><span
-                              class="text-nav fw-medium">Holders</span><span
-                              class="fs-xs text-muted ms-auto">253</span></label>
-                    </div>
-                  </div>
-                </div>
               </div>
               <div class="accordion-item mb-0">
                 <h4 class="accordion-header">
                   <button class="accordion-button collapsed fs-xl fw-medium py-2" type="button"
                           data-bs-toggle="collapse" data-bs-target="#bedroom" aria-expanded="false"
-                          aria-controls="bedroom"><span class="fs-base">運動鞋</span></button>
+                          aria-controls="bedroom"><span class="fs-base" onclick="sortProduct(1,4)">水上運動用品</span></button>
                 </h4>
-                <div class="accordion-collapse collapse" id="bedroom" data-bs-parent="#shopCategories">
-                  <div class="accordion-body py-1 mb-1">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="bedroom-all">
-                      <label class="form-check-label d-flex align-items-center" for="bedroom-all"><span
-                              class="text-nav fw-medium">全部商品</span><span
-                              class="fs-xs text-muted ms-auto">1219</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="bedroom-furniture">
-                      <label class="form-check-label d-flex align-items-center" for="bedroom-furniture"><span
-                              class="text-nav fw-medium">Furniture</span><span
-                              class="fs-xs text-muted ms-auto">43</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="bedroom-linen">
-                      <label class="form-check-label d-flex align-items-center" for="bedroom-linen"><span
-                              class="text-nav fw-medium">Bed linen</span><span
-                              class="fs-xs text-muted ms-auto">528</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="bedroom-lighting">
-                      <label class="form-check-label d-flex align-items-center" for="bedroom-lighting"><span
-                              class="text-nav fw-medium">Lighting</span><span
-                              class="fs-xs text-muted ms-auto">391</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="bedroom-storage">
-                      <label class="form-check-label d-flex align-items-center" for="bedroom-storage"><span
-                              class="text-nav fw-medium">Storage</span><span
-                              class="fs-xs text-muted ms-auto">75</span></label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="bedroom-mirrors">
-                      <label class="form-check-label d-flex align-items-center" for="bedroom-mirrors"><span
-                              class="text-nav fw-medium">Mirrors</span><span
-                              class="fs-xs text-muted ms-auto">182</span></label>
-                    </div>
-
-                  </div>
-                </div>
+              </div>
+              <div class="accordion-item mb-0">
+                <h4 class="accordion-header">
+                  <button class="accordion-button collapsed fs-xl fw-medium py-2" type="button"
+                          data-bs-toggle="collapse" data-bs-target="#bedroom" aria-expanded="false"
+                          aria-controls="bedroom"><span class="fs-base" onclick="sortProduct(1,5)">運動服飾與鞋款</span></button>
+                </h4>
+              </div>
+              <div class="accordion-item mb-0">
+                <h4 class="accordion-header">
+                  <button class="accordion-button collapsed fs-xl fw-medium py-2" type="button"
+                          data-bs-toggle="collapse" data-bs-target="#bedroom" aria-expanded="false"
+                          aria-controls="bedroom"><span class="fs-base"
+                                                        onclick="sortProduct(1,6)">運動食品與營養補充品</span></button>
+                </h4>
               </div>
             </div>
             <!-- Brand (checkboxes)-->
-            <h3 class="h5">Brand</h3>
             <div class="pb-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="Pazolinni" id="brand1">
-                <label class="form-check-label d-flex align-items-center" for="brand1"><span
-                        class="text-nav fw-medium">Pazolinni</span><span
-                        class="fs-xs text-muted ms-auto">48</span></label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="Tither Room" checked id="brand2">
-                <label class="form-check-label d-flex align-items-center" for="brand2"><span
-                        class="text-nav fw-medium">Tither Room</span><span
-                        class="fs-xs text-muted ms-auto">32</span></label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="Moissy Decor" id="brand3">
-                <label class="form-check-label d-flex align-items-center" for="brand3"><span
-                        class="text-nav fw-medium">Moissy Decor</span><span
-                        class="fs-xs text-muted ms-auto">25</span></label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="Victorio Via" id="brand4">
-                <label class="form-check-label d-flex align-items-center" for="brand4"><span
-                        class="text-nav fw-medium">Victorio Via</span><span
-                        class="fs-xs text-muted ms-auto">56</span></label>
-              </div>
             </div>
           </div>
         </div>
@@ -779,139 +635,35 @@
   <button class="d-lg-none btn btn-sm fs-sm btn-primary w-100 rounded-0 fixed-bottom" data-bs-toggle="offcanvas"
           data-bs-target="#shopSidebar"><i class="ai-filter me-2"></i>Filters</button>
 </main>
-<!-- Footer-->
-<footer class="footer bg-dark position-relative pb-4 pt-md-3 py-lg-4 py-xl-5">
-  <div class="d-none d-dark-mode-block position-absolute top-0 start-0 w-100 h-100"
-       style="background-color: rgba(255,255,255, .02);"></div>
-  <div class="dark-mode container position-relative zindex-2 pt-5 pb-2">
-    <!-- Columns with links-->
-    <div class="row" id="links">
-      <div class="col-md-3 col-xl-2 pb-2 pb-md-0">
-        <h3 class="h6 text-uppercase d-none d-md-block">Useful links</h3><a
-              class="btn-more h6 mb-1 text-uppercase text-decoration-none d-flex align-items-center collapsed d-md-none"
-              href="#useful" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="useful"
-              data-show-label="Useful links" data-hide-label="Useful links"></a>
-        <div class="collapse d-md-block" id="useful" data-bs-parent="#links">
-          <ul class="nav flex-column pb-2 pb-md-0">
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Trending</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Sale</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">About us</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Blog</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Contact</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Shipping &amp; Returns</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Delivery info</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-3 col-xl-2 pb-2 pb-md-0">
-        <h3 class="h6 text-uppercase d-none d-md-block">Decors</h3><a
-              class="btn-more h6 mb-1 text-uppercase text-decoration-none d-flex align-items-center collapsed d-md-none"
-              href="#decors" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="decors"
-              data-show-label="Decors" data-hide-label="Decors"></a>
-        <div class="collapse d-md-block" id="decors" data-bs-parent="#links">
-          <ul class="nav flex-column pb-2 pb-md-0">
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Vases</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Mirrors</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Paintings</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Figurines</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Textile</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Lighting</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Photo frames</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-3 col-xl-2 pb-2 pb-md-0">
-        <h3 class="h6 text-uppercase d-none d-md-block">Categories</h3><a
-              class="btn-more h6 mb-1 text-uppercase text-decoration-none d-flex align-items-center collapsed d-md-none"
-              href="#categories" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="categories"
-              data-show-label="Categories" data-hide-label="Categories"></a>
-        <div class="collapse d-md-block" id="categories" data-bs-parent="#links">
-          <ul class="nav flex-column pb-2 pb-md-0">
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Kitchen</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Bathroom</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Living room</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Bedroom</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-3 pb-2 pb-md-0">
-        <h3 class="h6 text-uppercase d-none d-md-block">Showroom</h3><a
-              class="btn-more h6 mb-1 text-uppercase text-decoration-none d-flex align-items-center collapsed d-md-none"
-              href="#showroom" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="showroom"
-              data-show-label="Showroom" data-hide-label="Showroom"></a>
-        <div class="collapse d-md-block" id="showroom" data-bs-parent="#links">
-          <ul class="nav flex-column pb-3">
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">1501 Main St, Ste 50<br>Tewksbury MA
-              01876</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1"
-                                    href="mailto:email@example.com">email@example.com</a></li>
-            <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="+15262200459">+1 526 220 0459</a></li>
-          </ul>
-          <ul class="list-unstyled mb-0 pb-3 pb-md-0">
-            <li class="text-nav mb-2">Mon-Fri: 8:00 - 21:00</li>
-            <li class="text-nav mb-2">Sat: 8:00 - 21:00</li>
-            <li class="text-nav">Sun: 8:00 - 21:00</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-12 col-xl-3 mt-md-2 mt-xl-0 pt-2 pt-md-4 pt-xl-0">
-        <h3 class="h6 text-uppercase mb-1 pb-1">Download our app</h3>
-        <div class="d-flex d-xl-block d-xxl-flex"><a class="btn btn-secondary px-3 py-2 mt-3 me-3" href="#"><img
-                class="mx-1" src="assets/img/market/appstore-light.svg" width="120" alt="App Store"></a><a
-                class="btn btn-secondary px-3 py-2 mt-3" href="#"><img class="mx-1"
-                                                                       src="assets/img/market/googleplay-light.svg" width="119" alt="Google Play"></a></div>
-      </div>
+<footer class="footer bg-secondary py-5">
+  <div class="container pt-1 pt-sm-2 pt-md-3 pt-lg-4 pt-xl-5">
+    <div class="border-bottom text-center pb-4"><a class="navbar-brand d-inline-flex text-nav py-0 mb-3 mb-md-4"
+                                                   href="index.html"><span class="text-primary flex-shrink-0 me-2">
+            <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor"
+                    d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+              </path>
+            </svg></span><span>EZ-DOM</span></a>
+      <ul class="nav justify-content-center py-1 pb-sm-2">
+        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Classes</a></li>
+        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Trainers</a></li>
+        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Schedule</a></li>
+        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Contact</a></li>
+      </ul>
     </div>
-    <!-- Nav + Switcher-->
-    <div class="d-sm-flex align-items-end justify-content-between border-bottom mt-2 mt-sm-1 pt-4 pt-sm-5">
-      <!-- Nav-->
-      <nav class="d-flex mb-3 mb-sm-4"><a class="nav-link text-muted fs-sm fw-normal ps-0 pe-2 py-2 me-4"
-                                          href="#">Support</a><a class="nav-link text-muted fs-sm fw-normal ps-0 pe-2 py-2 me-4"
-                                                                 href="#">Privacy</a><a class="nav-link text-muted fs-sm fw-normal ps-0 pe-2 py-2 me-sm-4" href="#">Terms of
-        use</a></nav>
-      <!-- Language / currency switcher-->
-      <div class="dropdown mb-4">
-        <button class="btn btn-outline-secondary dropdown-toggle px-4" type="button" data-bs-toggle="dropdown"
-                data-bs-auto-close="outside" aria-expanded="false"><img class="me-2" src="assets/img/flags/en.png"
-                                                                        width="18" alt="English / USD">Eng / USD</button>
-        <div class="dropdown-menu dropdown-menu-end my-1">
-          <div class="dropdown-item">
-            <select class="form-select form-select-sm">
-              <option value="usd">$ USD</option>
-              <option value="eur">€ EUR</option>
-              <option value="ukp">£ UKP</option>
-              <option value="jpy">¥ JPY</option>
-            </select>
-          </div><a class="dropdown-item pb-1" href="#"><img class="me-2" src="assets/img/flags/fr.png" width="18"
-                                                            alt="Français">Français</a><a class="dropdown-item pb-1" href="#"><img class="me-2"
-                                                                                                                                   src="assets/img/flags/de.png" width="18" alt="Deutsch">Deutsch</a><a class="dropdown-item" href="#"><img
-                class="me-2" src="assets/img/flags/it.png" width="18" alt="Italiano">Italiano</a>
-        </div>
+    <div class="d-sm-flex align-items-center justify-content-between pt-4 mt-2 mt-sm-0">
+      <div class="d-flex justify-content-center order-sm-2 mb-4 mb-sm-0"><a
+              class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle me-3" href="#"><i
+              class="ai-instagram"></i></a><a class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle me-3"
+                                              href="#"><i class="ai-facebook"></i></a><a
+              class="btn btn-icon btn-sm btn-secondary btn-youtube rounded-circle" href="#"><i class="ai-youtube"></i></a>
       </div>
-    </div>
-    <!-- Logo + Socials + Cards-->
-    <div class="d-sm-flex align-items-center pt-4">
-      <div class="d-sm-flex align-items-center pe-sm-2"><a
-              class="navbar-brand d-inline-flex align-items-center me-sm-5 mb-4 mb-sm-0" href="index.html"><span
-              class="text-primary flex-shrink-0 me-2">
-              <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
-                <path fill="currentColor"
-                      d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
-                </path>
-              </svg></span><span class="text-nav">Around</span></a>
-        <div class="text-nowrap mb-4 mb-sm-0"><a
-                class="btn btn-icon btn-sm btn-secondary btn-telegram rounded-circle mx-2 ms-sm-0 me-sm-3" href="#"><i
-                class="ai-telegram"></i></a><a
-                class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle mx-2 ms-sm-0 me-sm-3" href="#"><i
-                class="ai-instagram"></i></a><a
-                class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle mx-2 ms-sm-0 me-sm-3" href="#"><i
-                class="ai-facebook"></i></a><a
-                class="btn btn-icon btn-sm btn-secondary btn-pinterest rounded-circle mx-2 ms-sm-0 me-sm-3" href="#"><i
-                class="ai-pinterest"></i></a></div>
-      </div><img class="ms-sm-auto" src="assets/img/shop/footer-cards.png" width="187" alt="Accepted cards">
+      <p class="fs-sm order-sm-1 text-center mb-0"><span class="opacity-70">&copy; All rights reserved. Made by
+          </span><a class="nav-link d-inline fw-normal p-0" href="https://createx.studio/" target="_blank"
+                    rel="noopener">Createx Studio</a></p>
     </div>
   </div>
-  <div class="pt-5 pt-lg-0"></div>
 </footer>
 <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll>
   <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -927,20 +679,32 @@
 <script src="assets/js/theme.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 
+<!-- 引入 SweetAlert2 的 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
 
 <script>
-  //輪播圖
-  // var swiper = new Swiper('.swiper', JSON.parse($('.swiper').attr('data-swiper-options')));
-  //前台商品抓取
-  function showProduct(value) {
+  // 取得所有標有 "accordion-button" class 的按鈕元素
+  const accordionButtons = document.querySelectorAll('.accordion-button');
+
+  // 為每個按鈕添加點擊事件監聽器
+  accordionButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // 移除所有按鈕的 "active-button" class
+      accordionButtons.forEach(btn => btn.classList.remove('active-button'));
+      // 為被點擊的按鈕添加 "active-button" class
+      button.classList.add('active-button');
+    });
+  });
+
+  //分類按鈕
+  function sortProduct(value, categoryId) {
     let showProduct = document.getElementById("showProduct");
-    let html="";
-    fetch(`http://localhost:8080/ezdom/product/show/${value}`)
+    let html = "";
+    fetch(`http://localhost:8080/ezdom/product/sort?value=${value}&categoryId=${categoryId}`)
       .then(resp => resp.json())
       .then(body => {
         for (let list of body) {
-
-          let { productName, productDiscountPrice, productImage } = list;
+          let { productName, productDiscountPrice, productImage, productId } = list;
           html += `
           <div class="col pb-2 pb-sm-3">
               <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4">
@@ -950,7 +714,7 @@
                     class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button>
                 <div class="swiper swiper-nav-onhover"
                   data-swiper-options="{&quot;loop&quot;: true, &quot;navigation&quot;: {&quot;prevEl&quot;: &quot;.btn-prev&quot;, &quot;nextEl&quot;: &quot;.btn-next&quot;}}">
-                  <a class="swiper-wrapper" href="shop-single.html">
+                  <a class="swiper-wrapper" href="shop-single.html?productId=${productId}">
                     <div style="max-height: 250px;;" class="swiper-slide p-2 p-xl-4"><img class="d-block mx-auto"
                       src="data:image/jpeg;base64,${productImage}" style="max-width: 100%;"  alt="Product"></div>
                   </a>
@@ -962,7 +726,7 @@
               <div class="d-flex align-items-center"><span class="me-2">$${productDiscountPrice}</span>
                 <div class="nav ms-auto" data-bs-toggle="tooltip"
                   data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
-                  data-bs-placement="left" title="Add to cart"><a class="nav-link fs-lg py-2 px-1" href="#"><i
+                  data-bs-placement="left" title="Add to cart"><a onclick="addCart(${productId})" class="nav-link fs-lg py-2 px-1" style="cursor:pointer"><i
                       class="ai-cart"></i></a></div>
               </div>
             </div>
@@ -970,29 +734,108 @@
 
         }
         showProduct.innerHTML = html;
+        sortPage(categoryId);
       })
   }
-  //前台分頁1234
-  let productPage=document.getElementById("productPage");
-  function page(){
+
+
+  //輪播圖
+  // var swiper = new Swiper('.swiper', JSON.parse($('.swiper').attr('data-swiper-options')));
+  //前台商品抓取
+  function showProduct(value) {
+    let showProduct = document.getElementById("showProduct");
+    let html = "";
+    fetch(`http://localhost:8080/ezdom/product/show/${value}`)
+      .then(resp => resp.json())
+      .then(body => {
+        for (let list of body) {
+
+          let { productName, productDiscountPrice, productImage, productId } = list;
+          html += `
+          <div class="col pb-2 pb-sm-3">
+              <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4">
+                <button
+                  class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
+                  type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
+                    class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button>
+                <div class="swiper swiper-nav-onhover"
+                  data-swiper-options="{&quot;loop&quot;: true, &quot;navigation&quot;: {&quot;prevEl&quot;: &quot;.btn-prev&quot;, &quot;nextEl&quot;: &quot;.btn-next&quot;}}">
+                  <a class="swiper-wrapper" href="shop-single.html?productId=${productId}">
+                    <div style="max-height: 250px;;" class="swiper-slide p-2 p-xl-4"><img class="d-block mx-auto"
+                      src="data:image/jpeg;base64,${productImage}" style="max-width: 100%;"  alt="Product"></div>
+                  </a>
+                </div>
+              </div>
+              <div class="d-flex mb-1">
+                <h3 class="h6 mb-0"><a href="shop-single.html">${productName}</a></h3>
+              </div>
+              <div class="d-flex align-items-center"><span class="me-2">$${productDiscountPrice}</span>
+                <div class="nav ms-auto" data-bs-toggle="tooltip"
+                  data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
+                  data-bs-placement="left" title="Add to cart"><a onclick="addCart(${productId},1)" class="nav-link fs-lg py-2 px-1" style="cursor:pointer"><i
+                      class="ai-cart"></i></a></div>
+              </div>
+            </div>
+          `;
+
+        }
+        showProduct.innerHTML = html;
+        page();
+      })
+  }
+  //全部商品前台分頁1234
+  let productPage = document.getElementById("productPage");
+  function page() {
     fetch(`http://localhost:8080/ezdom/product/total`)
-    .then(resp=>resp.json())
-    .then(body=>{
-      let count = Math.ceil(body / 12);
-      let html="";
-      for(let i=1;i<=count;i++){
-        html+=`
-        <li class="page-item"><a class="page-link" href="#" onclick="showProduct(${i})">${i}</a></li>
+      .then(resp => resp.json())
+      .then(body => {
+        let count = Math.ceil(body / 12);
+        let html = "";
+        for (let i = 1; i <= count; i++) {
+          html += `
+        <li class="page-item"><a class="page-link" href="#" onclick="showProduct(${i})" >${i}</a></li>
         `
-      }
-      productPage.innerHTML=html;
-    })
+        }
+        productPage.innerHTML = html;
+      })
   }
 
+  //分類得分頁
+  function sortPage(categoryId) {
+    fetch(`http://localhost:8080/ezdom/product/sortPage?categoryId=${categoryId}`)
+      .then(resp => resp.json())
+      .then(body => {
+        let count = Math.ceil(body / 12);
+        let html = "";
+        for (let i = 1; i <= count; i++) {
+          html += `
+        <li class="page-item"><a class="page-link" href="#" onclick="sortProduct(${i},${categoryId})">${i}</a></li>
+        `
+        }
+        productPage.innerHTML = html;
+      })
 
+  }
+  //加入購物車
+  let memberId = 1;
+
+function addCart(productId, quantity) {
+fetch(`http://localhost:8080/ezdom/product/getById/${productId}`)
+  .then(resp => resp.json())
+  .then(product => {
+    fetch(`http://localhost:8080/ezdom/cart/add?memberId=${memberId}&quantity=${quantity}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(product),
+    }).then(relatedResp => relatedResp.json())
+    .then(relatedBody => {
+      alert(relatedBody);
+    });
+  });
+}
 
   showProduct(1);
-  page();
+
 
 </script>
 
