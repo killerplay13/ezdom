@@ -17,12 +17,12 @@ public class CartController {
 
 
     @PostMapping("/add")
-    public ResponseEntity<String> addToCart(@RequestParam Integer memberId, @RequestBody ProductVO product, @RequestParam int quantity) {
+    public ResponseEntity<String> addToCart(@RequestParam Integer memberId, @RequestBody ProductVO product, @RequestParam Integer quantity) {
         cartService.addToCart(memberId, product, quantity);
         return ResponseEntity.ok("Item added to cart");
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/{memberId}")
     public ResponseEntity<List<CartItem>> getCart(@PathVariable Integer memberId) {
         List<CartItem> cartItems = cartService.getCartItems(memberId);
         return ResponseEntity.ok(cartItems);
@@ -32,6 +32,11 @@ public class CartController {
     public ResponseEntity<String> removeFromCart(@RequestParam Integer memberId, @RequestParam Integer productId) {
         cartService.removeFromCart(memberId, productId);
         return ResponseEntity.ok("Item removed from cart");
+    }
+
+    @GetMapping("/view/{memberId}")
+    public List<CartItem> viewCart(@PathVariable Integer memberId) {
+        return cartService.viewCart(memberId);
     }
 }
 
