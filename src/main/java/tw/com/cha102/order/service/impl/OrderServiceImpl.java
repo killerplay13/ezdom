@@ -24,4 +24,26 @@ public class OrderServiceImpl implements OrderService {
     public OrderVO selectOrderById(Integer orderId) {
         return dao.selectById(orderId);
     }
+
+    @Override
+    public boolean toShipOrder(Integer orderId) {
+        OrderVO orderVO = dao.selectById(orderId);
+        if(orderVO.getOrderStatus()==((byte) 0)){
+            orderVO.setOrderStatus((byte) 1);
+        }else if(orderVO.getOrderStatus()==((byte) 1)){
+            orderVO.setOrderStatus((byte) 2);
+        }
+        return dao.updateToOrderStatus(orderVO)>0;
+    }
+
+    @Override
+    public boolean toRetrunOrder(Integer orderId) {
+        OrderVO orderVO = dao.selectById(orderId);
+        if(orderVO.getOrderStatus()==((byte) 1)){
+            orderVO.setOrderStatus((byte) 3);
+        }else if(orderVO.getOrderStatus()==((byte) 3)){
+            orderVO.setOrderStatus((byte) 4);
+        }
+        return dao.updateToOrderStatus(orderVO)>0;
+    }
 }

@@ -48,7 +48,16 @@ public class ProductServiceImpl implements ProductService {
         return dao.updateToStatus(productVO)>0;
     }
 
-    ;
+    @Override
+    public List<ProductVO> showProducts(Integer value) {
+        return dao.selectBy12(value);
+    }
+    @Override
+    public int findProductCount(){
+        return dao.selectProductCount();
+    }
+
+
 
 
 }

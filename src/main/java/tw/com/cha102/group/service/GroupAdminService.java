@@ -19,6 +19,10 @@ public class GroupAdminService {
         this.groupRepository = groupRepository;
     }
 
+    public List<Group> getApprovedGroups() {
+        return groupRepository.findByGroupStatus(1); // 1表示審核成功狀態
+    }
+
     public List<Group> getAllGroups() {
         return (List<Group>) groupRepository.findAll();
     } //瀏覽揪團審核列表
