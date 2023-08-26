@@ -1,13 +1,13 @@
 package tw.com.cha102.support.model;
 
 import tw.com.cha102.support.model.dao.impl.SupportDAOImpl;
-import tw.com.cha102.support.model.entity.SupportVO;
+import tw.com.cha102.support.model.entity.FaqVO;
 
 public class test {
     public static void main(String[] args) {
 
         SupportDAOImpl sdi = new SupportDAOImpl();
-        SupportVO supportVO = new SupportVO();
+        FaqVO faqVO = new FaqVO();
 
         // INSERT
 //        supportVO.setFaqName("xxx");
