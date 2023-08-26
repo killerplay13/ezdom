@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import tw.com.cha102.groupcreate.DTO.GroupIdsDTO;
 import tw.com.cha102.groupcreate.model.GroupVerifyVO;
 import tw.com.cha102.groupcreate.service.GroupVerifyService;
+import tw.com.cha102.member.model.entity.Member;
 
 import java.util.List;
 
@@ -18,6 +19,8 @@ public class GroupVerifyController {
     @GetMapping("/listAllGroupVerify")
     public List<GroupVerifyVO> listAllGroupVerify(@ModelAttribute GroupIdsDTO dto){
         List<GroupVerifyVO> groupVerifyList = groupVerifyService.findAllGroupVerifyByGroupId(dto.getGroupIds());
+
         return groupVerifyList;
+
     }
 }

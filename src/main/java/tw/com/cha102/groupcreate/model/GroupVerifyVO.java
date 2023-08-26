@@ -10,6 +10,7 @@ import tw.com.cha102.member.model.entity.Member;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Base64;
 
 @Entity
 @Getter
@@ -38,6 +39,13 @@ public class GroupVerifyVO {
 
     public String getMemberName() {
         return member != null ? member.getMemberName() : null;
+    }
+    public String getMemberPhotoBase64() {
+        if (member != null && member.getMemberPhoto() != null) {
+            byte[] memberPhoto = member.getMemberPhoto();
+            return Base64.getEncoder().encodeToString(memberPhoto);
+        }
+        return null;
     }
 
 }
