@@ -1,15 +1,14 @@
 package tw.com.cha102.coachmember.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import tw.com.cha102.coachmember.model.dto.CoachList;
 import tw.com.cha102.coachmember.model.entity.CoachMemberVO;
 import tw.com.cha102.coachmember.service.CoachMemberService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/browse")
 public class BrowseCoachController {
@@ -18,8 +17,8 @@ public class BrowseCoachController {
     private CoachMemberService coachMemberService;
 
     @GetMapping("/list")
-    public List<CoachMemberVO> browseCoachList(){
-        return coachMemberService.getCoachMemberList();
+    public List<CoachList> browseCoachList(){
+        return coachMemberService.getCoachList();
     }
 
     @GetMapping("/list/{coachId}")
