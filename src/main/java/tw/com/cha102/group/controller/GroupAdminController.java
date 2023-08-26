@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/group")
 public class GroupAdminController {
 
     private final GroupAdminService groupAdminService;
@@ -24,12 +24,18 @@ public class GroupAdminController {
         this.groupAdminService = groupAdminService;
     }
 
-    @GetMapping("/list") // 瀏覽揪團審核列表
+    @GetMapping("/admin/list") // 瀏覽揪團審核列表
     public ResponseEntity<List<Group>> listGroups() {
         List<Group> groupList = groupAdminService.getAllGroups();
         return new ResponseEntity<>(groupList, HttpStatus.OK);
     }
-    @GetMapping("/{groupId}")//單一查詢揪團審核
+
+    @GetMapping("/list") // 前台揪團列表，只有審核成功才會列在這邊
+    public ResponseEntity<List<Group>> listApprovedGroups() {
+        List<Group> approvedGroupList = groupAdminService.getApprovedGroups();
+        return new ResponseEntity<>(approvedGroupList, HttpStatus.OK);
+    }
+    @GetMapping("/admin/{groupId}")//單一查詢揪團審核
     public ResponseEntity<Group> getGroupById(@PathVariable Integer groupId) {
         Optional<Group> group = groupAdminService.getGroupById(groupId);
 
@@ -39,7 +45,7 @@ public class GroupAdminController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @PutMapping("/{groupId}") // 修改揪團狀態
+    @PutMapping("/admin/{groupId}") // 修改揪團狀態
     public ResponseEntity<Group> updateGroupStatus(
             @PathVariable Integer groupId,
             @RequestBody AdminGroup updateGroup) {
