@@ -772,7 +772,7 @@
               <div class="d-flex align-items-center"><span class="me-2">$${productDiscountPrice}</span>
                 <div class="nav ms-auto" data-bs-toggle="tooltip"
                   data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
-                  data-bs-placement="left" title="Add to cart"><a onclick="addCart(${productId},1)" class="nav-link fs-lg py-2 px-1" style="cursor:pointer"><i
+                  data-bs-placement="left" title="Add to cart"><a onclick="addCart(${productId})" class="nav-link fs-lg py-2 px-1" style="cursor:pointer"><i
                       class="ai-cart"></i></a></div>
               </div>
             </div>
@@ -819,19 +819,14 @@
   //加入購物車
   let memberId = 1;
 
-function addCart(productId, quantity) {
-fetch(`http://localhost:8080/ezdom/product/getById/${productId}`)
-  .then(resp => resp.json())
-  .then(product => {
-    fetch(`http://localhost:8080/ezdom/cart/add?memberId=${memberId}&quantity=${quantity}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(product),
-    }).then(relatedResp => relatedResp.json())
-    .then(relatedBody => {
-      alert(relatedBody);
-    });
-  });
+function addCart(productId) {
+fetch(`http://localhost:8080/ezdom/cart/add?memberId=${memberId}&productId=${productId}`,{
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+}).then(resp => resp.text())
+  .then(body => {
+    alert(body)
+  })
 }
 
   showProduct(1);
