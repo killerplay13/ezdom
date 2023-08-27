@@ -1,7 +1,6 @@
 package tw.com.cha102.coach.model.dao;
 
 import tw.com.cha102.coach.model.entity.CoachMessageVO;
-import tw.com.cha102.coachregister.model.dao.CoachMemberDAO;
 
 import java.util.List;
 
