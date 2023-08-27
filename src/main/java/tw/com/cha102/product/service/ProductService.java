@@ -19,4 +19,10 @@ public interface ProductService {
     List<ProductVO> showProducts(Integer value);
 
     int findProductCount();
+
+    List<ProductVO> findProductByCategoryId(Integer value,Integer categoryId);
+
+    int findProductCountByCategoryId(Integer categoryId);
+
+    ProductVO findProductById (Integer productId);
 }
