@@ -3,6 +3,7 @@ package tw.com.cha102.coach.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tw.com.cha102.coach.model.dao.CoachMessageRepository;
+import tw.com.cha102.coach.model.dto.ByCoachMessage;
 import tw.com.cha102.coach.model.entity.CoachMessageVO;
 
 import java.util.List;
@@ -46,8 +47,7 @@ public class CoachMessageService {
     }
 
     // 留言板
-    public List<CoachMessageVO> getCoachMessageList(Integer coachId){
-        return coachMessageRepository.findByCoachIdOrderByCreateTime(coachId);
+    public List<ByCoachMessage> getCoachMessage(Integer coachId){
+        return coachMessageRepository.getCoachMessage(coachId);
     }
-
 }

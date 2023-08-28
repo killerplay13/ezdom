@@ -17,21 +17,26 @@ public class CartController {
 
 
     @PostMapping("/add")
-    public ResponseEntity<String> addToCart(@RequestParam Integer memberId, @RequestBody ProductVO product, @RequestParam int quantity) {
-        cartService.addToCart(memberId, product, quantity);
+    public ResponseEntity<String> addToCart(@RequestParam Integer memberId, @RequestParam Integer productId) {
+        cartService.addToCart(memberId, productId);
         return ResponseEntity.ok("Item added to cart");
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<List<CartItem>> getCart(@PathVariable Integer memberId) {
-        List<CartItem> cartItems = cartService.getCartItems(memberId);
-        return ResponseEntity.ok(cartItems);
-    }
-
-    @DeleteMapping("/remove")
-    public ResponseEntity<String> removeFromCart(@RequestParam Integer memberId, @RequestParam Integer productId) {
-        cartService.removeFromCart(memberId, productId);
-        return ResponseEntity.ok("Item removed from cart");
-    }
+//    @GetMapping("/{memberId}")
+//    public ResponseEntity<List<CartItem>> getCart(@PathVariable Integer memberId) {
+//        List<CartItem> cartItems = cartService.getCartItems(memberId);
+//        return ResponseEntity.ok(cartItems);
+//    }
+//
+//    @DeleteMapping("/remove")
+//    public ResponseEntity<String> removeFromCart(@RequestParam Integer memberId, @RequestParam Integer productId) {
+//        cartService.removeFromCart(memberId, productId);
+//        return ResponseEntity.ok("Item removed from cart");
+//    }
+//
+//    @GetMapping("/view/{memberId}")
+//    public List<CartItem> viewCart(@PathVariable Integer memberId) {
+//        return cartService.viewCart(memberId);
+//    }
 }
 

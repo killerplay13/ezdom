@@ -2,6 +2,7 @@ package tw.com.cha102.coachmember.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tw.com.cha102.coachmember.model.dto.CoachList;
 import tw.com.cha102.coachmember.model.entity.CoachMemberVO;
 import tw.com.cha102.coachmember.service.CoachMemberService;
 
@@ -15,8 +16,8 @@ public class CoachVerifyController {
     private CoachMemberService coachMemberService;
 
     @GetMapping("/list")
-    public List<CoachMemberVO> coachMemberList(){
-        return coachMemberService.getCoachMemberList();
+    public List<CoachList> coachMemberList(){
+        return coachMemberService.getVerifyCoachList();
     }
 
     @GetMapping("/list/{coachId}")
