@@ -2,6 +2,7 @@ package tw.com.cha102.message.controller;
 
 import com.google.gson.Gson;
 import org.aspectj.weaver.patterns.Pointcut;
+import org.springframework.stereotype.Component;
 import tw.com.cha102.message.model.MessageVO;
 import tw.com.cha102.message.model.State;
 import tw.com.cha102.message.service.JedisHandleMessage;
@@ -18,12 +19,13 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 @ServerEndpoint("/FriendWS/{username}")
+@Component
 public class FriendWS {
     private static Map<String, Session> sessionsMap = new ConcurrentHashMap<>();
     Gson gson = new Gson();
 
     @OnOpen
-    public void onOpen(@PathParam("userName") String userName, Session userSession) throws IOException {
+    public void onOpen(@PathParam("username") String userName, Session userSession) throws IOException {
         sessionsMap.put(userName, userSession);
         Set<String> userNames = sessionsMap.keySet();
         State stateMessage = new State("open", userName, userNames);
@@ -43,11 +45,19 @@ public class FriendWS {
     @OnMessage
     public void onMessage(Session userSession,String message){
         MessageVO chatMessage = gson.fromJson(message, MessageVO.class);
-        Integer sender = chatMessage.getMemberIdA();
-        Integer receiver = chatMessage.getMemberIdB();
+        String sender = chatMessage.getMemberIdA();
+        String receiver = chatMessage.getMemberIdB();
         boolean read =  chatMessage.isMessageStatus();
-        Timestamp time = chatMessage.getMessageTime();
+        String time = chatMessage.getMessageTime();
 
+        if (receiver == null) {
+            String errorMessage = "Receiver ID is invalid";
+            MessageVO errorResponse = new MessageVO("error", sender, receiver, errorMessage, read, time);
+            if (userSession != null && userSession.isOpen()) {
+                userSession.getAsyncRemote().sendText(gson.toJson(errorResponse));
+            }
+            return;
+        }
 
         if ("history".equals(chatMessage.getType())){
             List<String> histroyData = JedisHandleMessage.getHistoryMsg(sender,receiver);
@@ -60,10 +70,11 @@ public class FriendWS {
             }
         }
     Session receiverSession = sessionsMap.get(receiver);
+
         if (receiverSession != null && receiverSession.isOpen()){
             receiverSession.getAsyncRemote().sendText(message);
             userSession.getAsyncRemote().sendText(message);
-            JedisHandleMessage.saveChatMessage(sender,receiver,message,read,time);
+            JedisHandleMessage.saveChatMessage(sender,receiver,message);
         }
         System.out.println("Message received: " + message );
     }

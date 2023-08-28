@@ -1,24 +1,33 @@
 package tw.com.cha102.message.model;
 
-import java.sql.Timestamp;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import tw.com.cha102.member.model.entity.Member;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import java.sql.Timestamp;
+import java.util.Base64;
+
+//@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class MessageVO {
 
     private String type;
-    private Integer memberIdA;
-    private Integer memberIdB;
+
+    private String memberIdA;
+//    @ManyToOne
+//    @JoinColumn(name = "MEMBER_IDA", referencedColumnName = "MEMBER_ID")
+
+    private String memberIdB;
+//    @ManyToOne
+//    @JoinColumn(name = "MEMBER_IDB", referencedColumnName = "MEMBER_ID")
     private String messageContent;
     private boolean messageStatus;
-    private Timestamp messageTime;
+    private String messageTime;
 
-    public MessageVO(String type, Integer memberIdA, Integer memberIdB, String messageContent, boolean messageStatus, Timestamp messagetime) {
-        this.type = type;
-        this.memberIdA = memberIdA;
-        this.memberIdB = memberIdB;
-        this.messageContent = messageContent;
-        this.messageStatus = messageStatus;
-        this.messageTime = messagetime;
-    }
 
     public String getType() {
         return type;
@@ -28,19 +37,19 @@ public class MessageVO {
         this.type = type;
     }
 
-    public Integer getMemberIdA() {
+    public String getMemberIdA() {
         return memberIdA;
     }
 
-    public void setMemberIdA(Integer memberIdA) {
+    public void setMemberIdA(String memberIdA) {
         this.memberIdA = memberIdA;
     }
 
-    public Integer getMemberIdB() {
+    public String getMemberIdB() {
         return memberIdB;
     }
 
-    public void setMemberIdB(Integer memberIdB) {
+    public void setMemberIdB(String memberIdB) {
         this.memberIdB = memberIdB;
     }
 
@@ -60,11 +69,11 @@ public class MessageVO {
         this.messageStatus = messageStatus;
     }
 
-    public Timestamp getMessageTime() {
+    public String getMessageTime() {
         return messageTime;
     }
 
-    public void setMessageTime(Timestamp messagetime) {
+    public void setMessageTime(String messagetime) {
         this.messageTime = messagetime;
     }
 }
