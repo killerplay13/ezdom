@@ -26,10 +26,13 @@ public class CartController {
     }
 
     @GetMapping("/list/{memberId}")
-    public ResponseVO<CartVO> list(Integer memberId) {
+    public CartVO list(@PathVariable Integer memberId) {
         return cartService.list(memberId);
     }
 
-
+    @DeleteMapping("/delete/{memberId}/{productId}")
+    public CartVO delete(@PathVariable Integer memberId,@PathVariable Integer productId){
+        return cartService.delete(memberId,productId);
+    }
 }
 

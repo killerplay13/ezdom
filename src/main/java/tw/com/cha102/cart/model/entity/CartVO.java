@@ -1,12 +1,13 @@
 package tw.com.cha102.cart.model.entity;
 
 import lombok.Data;
+import tw.com.cha102.core.vo.Core;
 
 
 import java.util.List;
 
 @Data
-public class CartVO {
+public class CartVO extends Core {
 
     private Integer cartTotalPrice;
 
