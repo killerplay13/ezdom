@@ -3,6 +3,7 @@ package tw.com.cha102.groupcreate.service;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Service;
 import tw.com.cha102.groupcreate.model.GroupVerifyVO;
+import tw.com.cha102.member.model.entity.Member;
 
 import java.util.List;
 
@@ -10,4 +11,5 @@ import java.util.List;
 @SpringBootApplication
 public interface GroupVerifyService {
     List<GroupVerifyVO> findAllGroupVerifyByGroupId(List<String> groupIds);
+
 }

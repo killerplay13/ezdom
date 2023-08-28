@@ -264,7 +264,7 @@
   <!-- Cart offcanvas-->
   <div class="offcanvas offcanvas-end py-2 p-sm-4 p-md-5" id="cartOffcanvas" style="width: 680px;">
     <!-- Title-->
-    <div class="px-4 pt-3">
+    <div id="canvas" class="px-4 pt-3">
       <div class="d-flex justify-content-between align-items-center border-bottom pb-3 pb-sm-4">
         <h2 class="offcanvas-title d-flex align-items-center mb-1">購物車 <span
                 class="fs-base fw-normal text-muted ms-3">(3 items)</span></h2>
@@ -272,81 +272,10 @@
                 data-bs-target="#cartOffcanvas"></button>
       </div>
     </div>
-    <div class="offcanvas-body">
-      <!-- Item-->
-      <div class="d-sm-flex align-items-center pb-4"><a
-              class="d-inline-block flex-shrink-0 bg-secondary rounded-1 p-sm-2 p-md-3 mb-2 mb-sm-0"
-              href="shop-single.html"><img src="assets/img/shop/cart/01.png" width="110" alt="Product"></a>
-        <div class="w-100 pt-1 ps-sm-4">
-          <div class="d-flex">
-            <div class="me-3">
-              <h3 class="h5 mb-2"><a href="shop-single.html">Candle in concrete bowl</a></h3>
-              <div class="d-flex flex-wrap">
-                <div class="text-muted fs-sm me-3">Color: <span class='text-dark fw-medium'>Gray night</span></div>
-                <div class="text-muted fs-sm me-3">Weight: <span class='text-dark fw-medium'>140g</span></div>
-              </div>
-            </div>
-            <div class="text-end ms-auto">
-              <div class="fs-5 mb-2">$11.00</div>
-              <del class="text-muted ms-auto">$15.00</del>
-            </div>
-          </div>
-          <div class="count-input ms-n3">
-            <button class="btn btn-icon fs-xl" type="button" data-decrement>-</button>
-            <input class="form-control" type="number" value="2" readonly>
-            <button class="btn btn-icon fs-xl" type="button" data-increment>+</button>
-          </div>
-          <div class="nav justify-content-end mt-n5 mt-sm-n3"><a class="nav-link fs-xl p-2" href="#"
-                                                                 data-bs-toggle="tooltip" title="Remove"><i class="ai-trash"></i></a></div>
-        </div>
-      </div>
-      <!-- Item-->
-      <div class="d-sm-flex align-items-center border-top py-4"><a
-              class="d-inline-block flex-shrink-0 bg-secondary rounded-1 p-sm-2 p-md-3 mb-2 mb-sm-0"
-              href="shop-single.html"><img src="assets/img/shop/cart/02.png" width="110" alt="Product"></a>
-        <div class="w-100 pt-1 ps-sm-4">
-          <div class="d-flex">
-            <div class="me-3">
-              <h3 class="h5 mb-2"><a href="shop-single.html">Exquisite glass vase</a></h3>
-            </div>
-            <div class="text-end ms-auto">
-              <div class="fs-5 mb-2">$23.00</div>
-            </div>
-          </div>
-          <div class="count-input ms-n3">
-            <button class="btn btn-icon fs-xl" type="button" data-decrement>-</button>
-            <input class="form-control" type="number" value="1" readonly>
-            <button class="btn btn-icon fs-xl" type="button" data-increment>+</button>
-          </div>
-          <div class="nav justify-content-end mt-n5 mt-sm-n3"><a class="nav-link fs-xl p-2" href="#"
-                                                                 data-bs-toggle="tooltip" title="Remove"><i class="ai-trash"></i></a></div>
-        </div>
-      </div>
-      <!-- Item-->
-      <div class="d-sm-flex align-items-center border-top pt-4"><a
-              class="d-inline-block flex-shrink-0 bg-secondary rounded-1 p-sm-2 p-md-3 mb-2 mb-sm-0"
-              href="shop-single.html"><img src="assets/img/shop/cart/03.png" width="110" alt="Product"></a>
-        <div class="w-100 pt-1 ps-sm-4">
-          <div class="d-flex">
-            <div class="me-3">
-              <h3 class="h5 mb-2"><a href="shop-single.html">Set for a dinner party of 7 items</a></h3>
-            </div>
-            <div class="text-end ms-auto">
-              <div class="fs-5 mb-2">$47.00</div>
-            </div>
-          </div>
-          <div class="count-input ms-n3">
-            <button class="btn btn-icon fs-xl" type="button" data-decrement>-</button>
-            <input class="form-control" type="number" value="1" readonly>
-            <button class="btn btn-icon fs-xl" type="button" data-increment>+</button>
-          </div>
-          <div class="nav justify-content-end mt-n5 mt-sm-n3"><a class="nav-link fs-xl p-2" href="#"
-                                                                 data-bs-toggle="tooltip" title="Remove"><i class="ai-trash"></i></a></div>
-        </div>
-      </div>
+    <div id="cartBody" class="offcanvas-body">
     </div>
     <!-- Coupon input + total-->
-    <div class="px-4 pb-3 pb-sm-4 pb-sm-5">
+    <div id="totalPrice" class="px-4 pb-3 pb-sm-4 pb-sm-5">
       <div class="d-sm-flex align-items-center border-top pt-4">
         <div style="padding-left: 60%;" class="d-flex align-items-center justify-content-center"><span
                 style="width: 80px;" class="fs-xl me-3">總計:</span><span class="h3 mb-0">$92.00</span></div>
@@ -372,9 +301,10 @@
       <div class="nav align-items-center order-lg-3 ms-n1 me-3 me-sm-0"><a class="nav-link fs-4 p-2 mx-sm-1"
                                                                            href="#searchModal" data-bs-toggle="modal"><i class="ai-search"></i></a><a
               class="nav-link fs-4 p-2 mx-sm-1 d-none d-sm-flex" href="account-signin.html"><i class="ai-user"></i></a><a
-              class="nav-link position-relative fs-4 p-2" href="#cartOffcanvas" data-bs-toggle="offcanvas"><i
-              class="ai-cart"></i><span class="badge bg-primary fs-xs position-absolute end-0 top-0 me-n1"
-                                        style="padding: .25rem .375rem;">3</span></a>
+              class="nav-link position-relative fs-4 p-2" href="#cartOffcanvas" onclick="showCart()"
+              data-bs-toggle="offcanvas"><i class="ai-cart"></i><span id="badgeElement"
+                                                                      class="badge bg-primary fs-xs position-absolute end-0 top-0 me-n1"
+                                                                      style="padding: .25rem .375rem;">3</span></a>
       </div>
       <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
               class="navbar-toggler-icon"></span></button>
@@ -772,7 +702,7 @@
               <div class="d-flex align-items-center"><span class="me-2">$${productDiscountPrice}</span>
                 <div class="nav ms-auto" data-bs-toggle="tooltip"
                   data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
-                  data-bs-placement="left" title="Add to cart"><a onclick="addCart(${productId},1)" class="nav-link fs-lg py-2 px-1" style="cursor:pointer"><i
+                  data-bs-placement="left" title="Add to cart"><a onclick="addCart(${productId})" class="nav-link fs-lg py-2 px-1" style="cursor:pointer"><i
                       class="ai-cart"></i></a></div>
               </div>
             </div>
@@ -819,23 +749,125 @@
   //加入購物車
   let memberId = 1;
 
-function addCart(productId, quantity) {
-fetch(`http://localhost:8080/ezdom/product/getById/${productId}`)
-  .then(resp => resp.json())
-  .then(product => {
-    fetch(`http://localhost:8080/ezdom/cart/add?memberId=${memberId}&quantity=${quantity}`, {
+  function addCart(productId) {
+    fetch(`http://localhost:8080/ezdom/carts/add?memberId=${memberId}&productId=${productId}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(product),
-    }).then(relatedResp => relatedResp.json())
-    .then(relatedBody => {
-      alert(relatedBody);
-    });
-  });
-}
+    }).then(resp => resp.text())
+      .then(body => {
+        Swal.fire({
+          icon: 'success',
+          title: '新增成功',
+          text: '商品已加入購物車！',
+          confirmButtonText: '確定',
+          focusConfirm: true
+        });
+        showCart();
+      })
+  }
+  //購物車列表
+  let cartBody = document.getElementById("cartBody");
+  let canvas = document.getElementById("canvas");
+  let totalPrice = document.getElementById("totalPrice");
+  const badgeElement = document.getElementById("badgeElement");
+  function showCart() {
+    fetch(`http://localhost:8080/ezdom/carts/list/${memberId}`)
+      .then(resp => resp.json())
+      .then(body => {
+        let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
+        let html = "";
+        let canvashtml = "";
+        let totalPricehtml = "";
+        totalPricehtml = `
+  <div class="d-sm-flex align-items-center border-top pt-4">
+        <div style="padding-left: 60%;" class="d-flex align-items-center justify-content-center"><span
+            style="width: 80px;" class="fs-xl me-3">總計:</span><span class="h3 mb-0">$${cartTotalPrice}</span></div>
+  </div>
+  `;
+        canvashtml = `
+  <div class="d-flex justify-content-between align-items-center border-bottom pb-3 pb-sm-4">
+        <h2 class="offcanvas-title d-flex align-items-center mb-1">購物車 <span
+            class="fs-base fw-normal text-muted ms-3">(購物車商品總數:${cartTotalQuantity}個)</span></h2>
+        <button class="btn-close mb-1 me-n1" type="button" data-bs-dismiss="offcanvas"
+          data-bs-target="#cartOffcanvas"></button>
+      </div>
+  `;
+        for (let cartProductVo of cartProductVoList) {
+          let { productId, quantity, productName, productMainImage, productPrice, productStatus } = cartProductVo;
+          html += `
+    <div class="d-sm-flex align-items-center border-top py-4"><a
+          class="d-inline-block flex-shrink-0 bg-secondary rounded-1 p-sm-2 p-md-3 mb-2 mb-sm-0"
+          href="shop-single.html?productId=${productId}"><img src="data:image/jpeg;base64,${productMainImage}" width="110" alt="Product"></a>
+        <div class="w-100 pt-1 ps-sm-4">
+          <div class="d-flex">
+            <div class="me-3">
+              <h3 class="h5 mb-2"><a href="shop-single.html?productId=${productId}">${productName}</a></h3>
+            </div>
+            <div class="text-end ms-auto">
+              <div class="fs-5 mb-2">單價:$${productPrice}</div>
+            </div>
+          </div>
+          <div class="count-input ms-n3">
+            <button class="btn btn-icon fs-xl" type="button" data-decrement>-</button>
+            <input class="form-control" type="number" value="${quantity}" readonly>
+            <button class="btn btn-icon fs-xl" type="button" data-increment onclick="addCart(${productId})">+</button>
+          </div>
+          <div class="nav justify-content-end mt-n5 mt-sm-n3"><a class="nav-link fs-xl p-2" href="#"
+              data-bs-toggle="tooltip" title="Remove" onclick="deleteCartProduct(${productId},1)"><i class="ai-trash"></i></a></div>
+        </div>
+      </div>
+    `;
+        }
+        //商品內容
+        cartBody.innerHTML = html;
+        //購物車title
+        canvas.innerHTML = canvashtml;
+        //購物車總價
+        totalPrice.innerHTML = totalPricehtml;
+        //購物車外部數量
+        badgeElement.textContent = cartTotalQuantity;
+      })
+  }
+
+  function deleteCartProduct(productId, memberId) {
+    Swal.fire({
+      icon: 'question',
+      title: '確認',
+      text: '您確定要繼續嗎？',
+      confirmButtonText: '確定',
+      showCancelButton: true,
+      cancelButtonText: '取消'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:8080/ezdom/carts/delete/${memberId}/${productId}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+            // Add other headers if needed
+          }
+        })
+          .then(resp => resp.json())
+          .then(body => {
+            let { successful, message } = body;
+            if (successful) {
+              showCart();
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: '錯誤',
+                text: '操作失敗',
+                confirmButtonText: '確定'
+              });
+            }
+          })
+      }
+    })
+  }
+
+
 
   showProduct(1);
-
+  showCart();
 
 </script>
 
