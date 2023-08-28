@@ -2,15 +2,13 @@ package tw.com.cha102.cart.model.entity;
 
 import lombok.Data;
 
-import java.math.BigDecimal;
+
 import java.util.List;
 
 @Data
 public class CartVO {
 
-    private Boolean selectedAll;
-
-    private BigDecimal cartTotalPrice;
+    private Integer cartTotalPrice;
 
     private Integer cartTotalQuantity;
 
@@ -24,19 +22,11 @@ public class CartVO {
         this.cartProductVoList = cartProductVoList;
     }
 
-    public Boolean getSelectedAll() {
-        return selectedAll;
-    }
-
-    public void setSelectedAll(Boolean selectedAll) {
-        this.selectedAll = selectedAll;
-    }
-
-    public BigDecimal getCartTotalPrice() {
+    public Integer getCartTotalPrice() {
         return cartTotalPrice;
     }
 
-    public void setCartTotalPrice(BigDecimal cartTotalPrice) {
+    public void setCartTotalPrice(Integer cartTotalPrice) {
         this.cartTotalPrice = cartTotalPrice;
     }
 
