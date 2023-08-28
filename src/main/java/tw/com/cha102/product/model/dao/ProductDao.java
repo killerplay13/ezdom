@@ -7,17 +7,25 @@ import java.util.List;
 
 public interface ProductDao {
 
-    public int insert(ProductVO productVO);
+    int insert(ProductVO productVO);
 
-    public int deleteById(Integer productId);
+    int deleteById(Integer productId);
 
-    public int update(ProductVO productVO);
+    int update(ProductVO productVO);
 
-    public ProductVO selectById(Integer productId);
+    ProductVO selectById(Integer productId);
 
-    public List<ProductVO> selectAll();
+    List<ProductVO> selectAll();
 
-    public List<ProductVO> selectByStatus(int productStatus);
+    List<ProductVO> selectByStatus(int productStatus);
 
-    public int updateToStatus(ProductVO productVO);
+    int updateToStatus(ProductVO productVO);
+
+    List<ProductVO> selectBy12(Integer value);
+
+    int selectProductCount();
+
+    List<ProductVO> selectByCategoryId(Integer value,Integer categoryId);
+
+    int selectProductCountByCategoryId(Integer categoryId);
 }

@@ -592,7 +592,7 @@
                         <button type="button"
                             class="btn btn-primary btn-sm btn-rounded"
                             data-bs-toggle="modal"
-                            data-bs-target=".orderdetailsModal">
+                            data-bs-target=".orderdetailsModal" onclick="ship(${orderId})">
                             確認出貨
                         </button>
                     </td>
@@ -678,8 +678,9 @@
             })
     }
 
+    //商品明細跳框
     function productDetail(orderId) {
-fetch(`http://localhost:8080/ezdom/oredr/product?orderId=${orderId}`)
+    fetch(`http://localhost:8080/ezdom/oredr/product?orderId=${orderId}`)
     .then(resp => resp.json())
     .then(body => {
         let { note, orderDetailVOs } = body;
@@ -705,6 +706,34 @@ fetch(`http://localhost:8080/ezdom/oredr/product?orderId=${orderId}`)
     });
 }
 
+    //出貨按鈕
+    function ship(orderId){
+        fetch(`http://localhost:8080/ezdom/oredr/ship/${orderId}`,{
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' }
+        }).then(resp => resp.json())
+        .then(body => {
+            const { successful, message } = body;
+            if (successful) {
+                Swal.fire({
+            icon: 'success',
+            title: '成功',
+            text: '商品已出貨！',
+            confirmButtonText: '確定',
+            focusConfirm: true
+            });
+                orderRenew();
+            } else {
+                Swal.fire({
+            icon: 'error',
+            title: '失敗',
+            text: '請再次確認有無錯誤',
+            confirmButtonText: '確定',
+            focusConfirm: true
+        });
+            }
+        })
+    }
     //進入刷新
     window.onload = orderRenew;
     //狀態改變刷新

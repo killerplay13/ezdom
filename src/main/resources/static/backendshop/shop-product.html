@@ -30,6 +30,9 @@
     <!-- datatable -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.jqueryui.min.css" />
 
+    <!-- 引入 SweetAlert2 的 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+
 </head>
 
 <body id="page-top">
@@ -491,6 +494,8 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<!-- 引入 SweetAlert2 的 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#example').DataTable({
@@ -523,7 +528,6 @@
     });
     //選擇上下架狀態抓取資料的變數
     let orderStatus = document.getElementById("orderStatus");
-
     function renew() {
         let statusValue = parseInt(orderStatus.value);
         let upordown = "下架";
@@ -570,7 +574,7 @@
                 orderStatus.onchange = renew;
             })
     };
-
+    //上下架
     function setUpOrDown(productId) {
         fetch(`http://localhost:8080/ezdom/product/updown/${productId}`, {
             method: 'PUT',
@@ -579,10 +583,19 @@
         .then(body => {
             const { successful, message } = body;
             if (successful) {
-                alert(message);
+                Swal.fire({
+                icon: 'success',
+                title: '操作成功',
+                confirmButtonText: '確定',
+                focusConfirm: true
+                });
                 renew();
             } else {
-                alert(message);
+                Swal.fire({
+                icon: 'error',
+                title: '操作失敗',
+                confirmButtonText: '確定'
+                })
             }
         })
     }
