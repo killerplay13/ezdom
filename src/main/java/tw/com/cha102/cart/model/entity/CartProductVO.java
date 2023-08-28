@@ -16,7 +16,7 @@ public class CartProductVO {
 
     private byte[] productMainImage;
 
-    private Integer productDiscountPrice;
+    private Integer productPrice;
 
     private byte productStatus;
 
@@ -54,11 +54,11 @@ public class CartProductVO {
     }
 
     public Integer getProductPrice() {
-        return productDiscountPrice;
+        return productPrice;
     }
 
-    public void setProductPrice(Integer productDiscountPrice) {
-        this.productDiscountPrice = productDiscountPrice;
+    public void setProductPrice(Integer productPrice) {
+        this.productPrice = productPrice;
     }
 
     public byte getProductStatus() {
@@ -87,12 +87,12 @@ public class CartProductVO {
 
 
 
-    public CartProductVO(Integer productId, Integer quantity, String productName, byte[] productMainImage, Integer productDiscountPrice, byte productStatus, Integer productTotalPrice) {
+    public CartProductVO(Integer productId, Integer quantity, String productName, byte[] productMainImage, Integer productPrice, byte productStatus, Integer productTotalPrice) {
         this.productId = productId;
         this.quantity = quantity;
         this.productName = productName;
         this.productMainImage = productMainImage;
-        this.productDiscountPrice = productDiscountPrice;
+        this.productPrice = productPrice;
         this.productStatus = productStatus;
         this.productTotalPrice = productTotalPrice;
     }

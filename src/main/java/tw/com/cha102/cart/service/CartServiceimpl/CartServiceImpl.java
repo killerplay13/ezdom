@@ -53,7 +53,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public ResponseVO<CartVO> list(Integer memberId) {
+    public CartVO list(Integer memberId) {
         HashOperations<String, String, String> opsForHash = redisTemplate.opsForHash();
         String cartKey = getCartKey(memberId);
 //      這行程式碼使用 opsForHash.entries 從 Redis 中獲取指定鍵的所有數據。
@@ -84,23 +84,26 @@ public class CartServiceImpl implements CartService {
         cartVO.setCartTotalQuantity(cartTotalQuantity);
         cartVO.setCartTotalPrice(cartTotalPrice);
         cartVO.setCartProductVoList(cartProductVoList);
-        return ResponseVO.success(cartVO);
+        return cartVO;
     }
 
     @Override
-    public void removeFromCart(Integer memberId, Integer productId) {
-
+    public CartVO delete(Integer memberId, Integer productId) {
+        HashOperations<String, String, String> opsForHash = redisTemplate.opsForHash();
+        String cartKey = getCartKey(memberId);
+        CartVO cartVO=new CartVO();
+        String value = opsForHash.get(cartKey, String.valueOf(productId));
+        if (value == null || value.trim().isEmpty()){
+            cartVO.setMessage("購物車無此商品");
+            cartVO.setSuccessful(false);
+        }else {
+            cartVO.setMessage("此商品已從購物車刪除");
+            cartVO.setSuccessful(true);
+        }
+        opsForHash.delete(cartKey, String.valueOf(productId));
+        return cartVO;
     }
 
-    @Override
-    public List<CartItem> getCartItems(Integer memberId) {
-        return null;
-    }
-
-    @Override
-    public List<CartItem> viewCart(Integer memberId) {
-        return null;
-    }
 
 
     private String getCartKey(Integer memberId) {

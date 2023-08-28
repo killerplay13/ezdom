@@ -10,11 +10,7 @@ import java.util.List;
 public interface CartService {
     void addToCart(Integer memberId,Integer productId);
 
-    ResponseVO<CartVO> list(Integer memberId);
+    CartVO list(Integer memberId);
 
-    void removeFromCart(Integer memberId, Integer productId);
-
-    List<CartItem> getCartItems(Integer memberId);
-
-    List<CartItem> viewCart(Integer memberId);
+    CartVO delete(Integer memberId, Integer productId);
 }
