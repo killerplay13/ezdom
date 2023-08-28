@@ -21,6 +21,4 @@ public class SignUpRequest {
     private  String uid;
     @Email
     private  String email;
-
-
 }

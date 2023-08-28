@@ -1,13 +1,12 @@
-package tw.com.cha102.member.service.imp;
+package tw.com.cha102.member.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import tw.com.cha102.member.dto.LoginRequest;
 import tw.com.cha102.member.dto.SignUpRequest;
+import tw.com.cha102.member.dto.UploadPhotoRequest;
 import tw.com.cha102.member.model.dao.MemberRepository;
 import tw.com.cha102.member.model.entity.Member;
 import tw.com.cha102.member.service.MemberService;
@@ -17,13 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.List;
 
 @Service
-public class MemberServiceImp implements MemberService {
+public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private MemberRepository memberRepository;
@@ -37,10 +36,10 @@ public class MemberServiceImp implements MemberService {
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"無此使用者");
         String hashReqPwd=sha256Hash(loginRequest.getPassword()) ;//傳入密碼加密
         //比較帳號密碼
-        if(!member.getMemberAccount().equals(loginRequest.getAccount()) || !member.getMemberPassword().equals(hashReqPwd))
+        if(!member.getMemberAccount().equals(loginRequest.getAccount()) || !member.getMemberPassword().equals(loginRequest.getPassword()))
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"帳號密碼錯誤");
         HttpSession httpSession  =request.getSession();
-        httpSession.setAttribute("loggedInMember", member.getMemberId());
+//        httpSession.setAttribute("loggedInMember", member.getMemberId());
         // 添加 Cookie 到回應中
         Cookie sessionCookie = new Cookie("JSESSIONID", httpSession.getId());
         sessionCookie.setMaxAge(30 * 60); // 30 分鐘的過期時間
@@ -61,15 +60,41 @@ public class MemberServiceImp implements MemberService {
         newMem.setMemberAccount(signUpRequest.getAccount());
         String hashPwd = sha256Hash(signUpRequest.getPassword());//把傳遞的密碼加密
         newMem.setMemberPassword(hashPwd);
-        newMem.setMemberName(signUpRequest.getName());
-        newMem.setMemberAddress(signUpRequest.getAddress());
-        newMem.setMemberPhone(signUpRequest.getPhone());
         newMem.setMemberEmail(signUpRequest.getEmail());
-        newMem.setMemberUid(signUpRequest.getUid());
         memberRepository.save(newMem);
-
     }
 
+
+    @Override
+    public void uploadPhoto(UploadPhotoRequest uploadPhotoRequest, HttpServletRequest request, HttpServletResponse response) {
+        // 獲取會員的 ID，從 session 中獲取
+        HttpSession httpSession = request.getSession();
+        Integer memberId = (Integer) httpSession.getAttribute("memberId");
+
+        // 根據會員的 ID 從資料庫中獲取會員實體
+        Member member = memberRepository.findById(memberId).orElse(null);
+
+        if (member == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "找不到該會員");
+        }
+
+        // 將 Base64 編碼的圖片資料轉換為 byte 陣列
+        byte[] decodedPhoto = Base64.getDecoder().decode(uploadPhotoRequest.getMemberPhoto());
+
+        // 將解碼後的照片數據設置到會員實體的 memberPhoto 屬性中
+        member.setMemberPhoto(decodedPhoto);
+
+        // 更新會員實體到資料庫中
+        memberRepository.save(member);
+    }
+
+    public void rewardPointForLogin(Integer memberId) {
+        Member member = memberRepository.findById(memberId).orElse(null);
+        if (member != null) {
+            member.setPoint(member.getPoint() + 1); // 每次登入給予一點
+            memberRepository.save(member);
+        }
+    }
 
     @Override
     public List<Member> getMembers() {
@@ -98,13 +123,4 @@ public class MemberServiceImp implements MemberService {
         }
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "密碼格式異常");
     }
-
-    public void rewardPointForLogin(Integer memberId) {
-        Member member = memberRepository.findById(memberId).orElse(null);
-        if (member != null) {
-            member.setPoint(member.getPoint() + 1); // 每次登入給予一點
-            memberRepository.save(member);
-        }
-    }
-
 }

@@ -7,5 +7,5 @@ import tw.com.cha102.member.model.entity.Member;
 @Repository
 public interface MemberRepository extends JpaRepository<Member,Integer> {
     Member findByMemberAccount(String account);
-    Member findByMemberPassword(String password);
+    Member findByMemberPhoto(byte[] memberPhoto);
 }
