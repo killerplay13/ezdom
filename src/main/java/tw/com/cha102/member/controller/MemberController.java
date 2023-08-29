@@ -25,8 +25,7 @@ import java.util.List;
 public class MemberController {
     @Autowired
     private MemberService memberService;
-    @Autowired
-    private HttpSession httpSession;
+
 
     @PostMapping("/login")
     public CommonResponse<String> login(@RequestBody @Valid LoginRequest loginRequest,
