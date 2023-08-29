@@ -47,7 +47,7 @@ public class FaqService {
         }
     }
 
-    // FAQ List
+    // ==================== FAQ List ==================== //
     public List<FaqVO> getFaqList(){
         return faqRepository.findAll();
     }

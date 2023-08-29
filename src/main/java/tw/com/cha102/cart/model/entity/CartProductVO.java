@@ -14,9 +14,9 @@ public class CartProductVO {
 
     private String productName;
 
-    private String productMainImage;
+    private byte[] productMainImage;
 
-    private Integer productDiscountPrice;
+    private Integer productPrice;
 
     private byte productStatus;
 
@@ -45,20 +45,20 @@ public class CartProductVO {
     }
 
 
-    public String getProductMainImage() {
+    public byte[] getProductMainImage() {
         return productMainImage;
     }
 
-    public void setProductMainImage(String productMainImage) {
+    public void setProductMainImage(byte[] productMainImage) {
         this.productMainImage = productMainImage;
     }
 
     public Integer getProductPrice() {
-        return productDiscountPrice;
+        return productPrice;
     }
 
-    public void setProductPrice(Integer productDiscountPrice) {
-        this.productDiscountPrice = productDiscountPrice;
+    public void setProductPrice(Integer productPrice) {
+        this.productPrice = productPrice;
     }
 
     public byte getProductStatus() {
@@ -69,52 +69,32 @@ public class CartProductVO {
         this.productStatus = productStatus;
     }
 
-    public BigDecimal getProductTotalPrice() {
+    public Integer getProductTotalPrice() {
         return productTotalPrice;
     }
 
-    public void setProductTotalPrice(BigDecimal productTotalPrice) {
+    public void setProductTotalPrice(Integer productTotalPrice) {
         this.productTotalPrice = productTotalPrice;
     }
 
-    public Integer getProductStock() {
-        return productStock;
-    }
-
-    public void setProductStock(Integer productStock) {
-        this.productStock = productStock;
-    }
-
-    public Boolean getProductSelected() {
-        return productSelected;
-    }
-
-    public void setProductSelected(Boolean productSelected) {
-        this.productSelected = productSelected;
-    }
 
     /**
      * 等於quantity數量 * productPrice單價
      */
-    private BigDecimal productTotalPrice;
+    private Integer productTotalPrice;
 
-    private Integer productStock;
 
-    /**
-     * 商品是否選中
-     */
-    private Boolean productSelected;
 
-    public CartProductVO(Integer productId, Integer quantity, String productName, String productMainImage, Integer productDiscountPrice, byte productStatus, BigDecimal productTotalPrice, Integer productStock, Boolean productSelected) {
+
+
+    public CartProductVO(Integer productId, Integer quantity, String productName, byte[] productMainImage, Integer productPrice, byte productStatus, Integer productTotalPrice) {
         this.productId = productId;
         this.quantity = quantity;
         this.productName = productName;
         this.productMainImage = productMainImage;
-        this.productDiscountPrice = productDiscountPrice;
+        this.productPrice = productPrice;
         this.productStatus = productStatus;
         this.productTotalPrice = productTotalPrice;
-        this.productStock = productStock;
-        this.productSelected = productSelected;
     }
 }
 

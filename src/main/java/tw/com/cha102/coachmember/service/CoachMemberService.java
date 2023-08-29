@@ -2,6 +2,7 @@ package tw.com.cha102.coachmember.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tw.com.cha102.coachmember.model.dto.CoachDetails;
 import tw.com.cha102.coachmember.model.dto.CoachList;
 import tw.com.cha102.coachmember.model.dao.CoachMemberRepository;
 import tw.com.cha102.coachmember.model.entity.CoachMemberVO;
@@ -90,6 +91,10 @@ public class CoachMemberService {
     }
 
     // 查詢教練個人頁面
+    public CoachDetails getCoachDetails(Integer coachId){
+        return coachMemberRepository.getCoachDetails(coachId);
+    }
+
     public CoachMemberVO getCoachMember(Integer coachId){
         Optional<CoachMemberVO> check = coachMemberRepository.findById(coachId);
 
