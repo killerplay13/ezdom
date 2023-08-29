@@ -12,8 +12,11 @@ import java.util.List;
 public interface CoachMessageRepository extends JpaRepository<CoachMessageVO, Integer> {
 
     @Query(value = "SELECT CM.MESSAGE_ID as messageId, CM.COACH_ID as coachId, M.MEMBER_NAME as memberName, " +
-            "CM.CONTENT as content, CM.CREATE_TIME as createTime " +
-            "FROM coach_message CM LEFT JOIN `MEMBER` M ON CM.MEMBER_ID = M.MEMBER_ID " +
+            "CM.CONTENT as content, CM.CREATE_TIME as createTime, CMEM.PICTURE as coachPicture, " +
+            "M.MEMBER_PHOTO as memberPicture, M.MEMBER_ID as memberId " +
+            "FROM coach_message CM " +
+            "LEFT JOIN `MEMBER` M ON CM.MEMBER_ID = M.MEMBER_ID " +
+            "LEFT JOIN COACH_MEMBER CMEM ON CMEM.COACH_ID = CM.COACH_ID " +
             "WHERE CM.COACH_ID = ?1 ORDER BY CM.MESSAGE_ID",nativeQuery = true)
     public List<ByCoachMessage> getCoachMessage(Integer coachId);
 

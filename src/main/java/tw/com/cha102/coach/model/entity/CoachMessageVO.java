@@ -1,5 +1,7 @@
 package tw.com.cha102.coach.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 import tw.com.cha102.core.vo.Core;
 
 import javax.persistence.*;
@@ -23,6 +25,7 @@ public class CoachMessageVO extends Core {
     @NotNull
     private String content;
     @Column(name = "CREATE_TIME", insertable = false)
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm", timezone = "GMT+8")
     private Timestamp createTime;
 
     public Integer getMessageId() {

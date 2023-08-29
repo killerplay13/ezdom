@@ -17,6 +17,12 @@ public class CoachMemberVO extends Core {
     @NotNull
     private Integer memberId;
     @NotNull
+    private String nickname;
+    @NotNull
+    private String gender;
+    @NotNull
+    private String skills;
+    @NotNull
     private String introduction;
     private byte[] picture;
     @Column(name = "STATUS", insertable = false)
@@ -38,6 +44,30 @@ public class CoachMemberVO extends Core {
 
     public void setMemberId(Integer memberId) {
         this.memberId = memberId;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String skills) {
+        this.skills = skills;
     }
 
     public String getIntroduction() {

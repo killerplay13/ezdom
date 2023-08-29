@@ -16,4 +16,6 @@ public interface CoachList {
     Integer getStatus();
 
     Timestamp getCreateTime();
+
+    String getNickname();
 }

@@ -5,12 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import tw.com.cha102.cart.model.CartItem;
 import tw.com.cha102.cart.model.entity.Cart;
+import tw.com.cha102.cart.model.entity.CartProductVO;
+import tw.com.cha102.cart.model.entity.CartVO;
 import tw.com.cha102.cart.service.CartService;
+import tw.com.cha102.core.vo.ResponseVO;
 import tw.com.cha102.product.model.dao.ProductDao;
 import tw.com.cha102.product.model.entity.ProductVO;
 
-import javax.annotation.PostConstruct;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -47,24 +51,60 @@ public class CartServiceImpl implements CartService {
                 gson.toJson(cart));
 
     }
-//    @Override
-//    public void removeFromCart(Integer memberId, Integer productId) {
-//        String cartKey = getCartKey(memberId);
-//        opsForHash.delete(cartKey, productId);
-//    }
-//    @Override
-//    public List<CartItem> getCartItems(Integer memberId) {
-//        String cartKey = getCartKey(memberId);
-//        Map<String, CartItem> cartMap = opsForHash.entries(cartKey);
-//        return new ArrayList<>(cartMap.values());
-//    }
-//    @Override
-//    public List<CartItem> viewCart(Integer memberId) {
-//        String cartKey = getCartKey(memberId);
-//        Map<String, CartItem> cartMap = opsForHash.entries(cartKey);
-//        ArrayList<CartItem> cartItems = new ArrayList(cartMap.values());
-//        return cartItems;
-//    }
+
+    @Override
+    public CartVO list(Integer memberId) {
+        HashOperations<String, String, String> opsForHash = redisTemplate.opsForHash();
+        String cartKey = getCartKey(memberId);
+//      這行程式碼使用 opsForHash.entries 從 Redis 中獲取指定鍵的所有數據。
+        Map<String, String> entries = opsForHash.entries(cartKey);
+        Integer cartTotalQuantity = 0;
+        Integer cartTotalPrice = 0;
+        CartVO cartVO = new CartVO();
+        List<CartProductVO> cartProductVoList = new ArrayList<>();
+        for (Map.Entry<String, String> entry : entries.entrySet()){
+            Integer productId = Integer.valueOf(entry.getKey());
+            Cart cart = gson.fromJson(entry.getValue(), Cart.class);
+
+            ProductVO productVO = dao.selectById(productId);
+            if(productVO != null){
+                CartProductVO cartProductVo = new CartProductVO(productId,
+                        cart.getQuantity(),
+                        productVO.getProductName(),
+                        productVO.getProductImage(),
+                        productVO.getProductDiscountPrice(),
+                        productVO.getProductStatus(),
+                        productVO.getProductDiscountPrice()*(cart.getQuantity())
+                        );
+                cartProductVoList.add(cartProductVo);
+                cartTotalPrice+=cartProductVo.getProductTotalPrice();
+            }
+            cartTotalQuantity += cart.getQuantity();
+        }
+        cartVO.setCartTotalQuantity(cartTotalQuantity);
+        cartVO.setCartTotalPrice(cartTotalPrice);
+        cartVO.setCartProductVoList(cartProductVoList);
+        return cartVO;
+    }
+
+    @Override
+    public CartVO delete(Integer memberId, Integer productId) {
+        HashOperations<String, String, String> opsForHash = redisTemplate.opsForHash();
+        String cartKey = getCartKey(memberId);
+        CartVO cartVO=new CartVO();
+        String value = opsForHash.get(cartKey, String.valueOf(productId));
+        if (value == null || value.trim().isEmpty()){
+            cartVO.setMessage("購物車無此商品");
+            cartVO.setSuccessful(false);
+        }else {
+            cartVO.setMessage("此商品已從購物車刪除");
+            cartVO.setSuccessful(true);
+        }
+        opsForHash.delete(cartKey, String.valueOf(productId));
+        return cartVO;
+    }
+
+
 
     private String getCartKey(Integer memberId) {
         return "cart:" + memberId;
