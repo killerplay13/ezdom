@@ -11,6 +11,14 @@ public interface CoachDetails {
 
     byte[] getPicture();
 
+    String getEmail();
+
     Integer getPhone();
+
+    String getGender();
+
+    String getSkills();
+
+    String getNickname();
 
 }
