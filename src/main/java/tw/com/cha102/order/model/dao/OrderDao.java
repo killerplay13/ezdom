@@ -1,13 +1,14 @@
 package tw.com.cha102.order.model.dao;
 
 
+import tw.com.cha102.member.model.entity.Member;
 import tw.com.cha102.order.model.entity.OrderVO;
 
 import java.util.List;
 
 public interface OrderDao {
 
-    int insert(OrderVO orderVO);
+    Integer insert(OrderVO orderVO);
 
     int deleteById(Integer orderId);
 
@@ -18,5 +19,7 @@ public interface OrderDao {
     List<OrderVO> selectAll();
 
     List<OrderVO> selectByStatus(int orderStatus);
+
+    Member selecMembertById(Integer memberId);
 
 }
