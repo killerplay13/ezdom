@@ -52,18 +52,6 @@ public class ForumReportServiceImpl implements ForumReportService {
 
         return forumReportDao.findById(reportId).orElse(null);
     }
-//    @Override
-//    public boolean updateReportStatus(Integer reportId, Integer newStatus) {
-//        Optional<ForumReportVO> optionalReport = forumReportDao.findById(reportId);
-//        if (optionalReport.isPresent()) {
-//            ForumReportVO report = optionalReport.get();
-//            report.setForumReportStatus(newStatus);
-//            forumReportDao.save(report);
-//            return true;
-//        }
-//        return false;
-//    }
-
 
     @Override
     public boolean deleteReport(Integer reportId) {

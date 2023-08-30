@@ -47,15 +47,6 @@ public class ForumReportController {
         }
     }
 
-//    @PutMapping("/report/{reportId}/status")
-//    public ResponseEntity<String> updateReportStatus(@PathVariable Integer reportId, @RequestParam Integer newStatus) {
-//        boolean updated = forumReportService.updateReportStatus(reportId, newStatus);
-//        if (updated) {
-//            return ResponseEntity.ok("檢舉狀態修改成功");
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
 
 
     @DeleteMapping("/delete/report/{reportId}")
