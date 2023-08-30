@@ -54,17 +54,11 @@ public class CoachMemberService {
 
         CoachMemberVO coachMemberVO = coachMemberRepository.findByMemberId(memberId);
 
-        if(coachMemberVO == null){
+        if(coachMemberVO == null && coachMemberVO.getStatus() == 3){
             CoachMemberVO coachMember = new CoachMemberVO();
             coachMember.setMessage("此會員不為教練會員");
             coachMember.setSuccessful(false);
             return coachMember;
-        }
-
-        if(coachMemberVO != null && coachMemberVO.getStatus() == 1){
-            coachMemberVO.setMessage("此會員已申請成為教練，待審核中");
-            coachMemberVO.setSuccessful(false);
-            return coachMemberVO;
         }
 
         if(coachMemberVO != null && coachMemberVO.getStatus() == 0){
@@ -155,6 +149,8 @@ public class CoachMemberService {
 
         if(check.isPresent()){
             CoachMemberVO coachMember = check.get();
+            coachMember.setNickname(updateDetails.getNickname());
+            coachMember.setSkills(updateDetails.getSkills());
             coachMember.setIntroduction(updateDetails.getIntroduction());
             coachMember.setMessage("修改資訊成功");
             coachMember.setSuccessful(true);
