@@ -1,13 +1,12 @@
-package tw.com.cha102.forum.service.impl;
+package tw.com.cha102.forumreport.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tw.com.cha102.forum.model.entity.ForumReportVO;
-import tw.com.cha102.forum.model.dao.ForumReportDao;
-import tw.com.cha102.forum.service.ForumReportService;
+import tw.com.cha102.forumreport.model.entity.ForumReportVO;
+import tw.com.cha102.forumreport.model.dao.ForumReportDao;
+import tw.com.cha102.forumreport.service.ForumReportService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ForumReportServiceImpl implements ForumReportService {
