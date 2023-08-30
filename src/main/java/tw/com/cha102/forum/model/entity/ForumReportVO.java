@@ -2,6 +2,7 @@ package tw.com.cha102.forum.model.entity;
 
 import lombok.*;
 import tw.com.cha102.core.vo.Core;
+import tw.com.cha102.member.model.entity.Member;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -28,17 +29,17 @@ public class ForumReportVO extends Core {
     @Column(name = "FORUMREPORT_TIME",insertable = false)
     private Timestamp forumReportTime;
 
-    @Column(name = "FORUMREPORT_TYPE",insertable = false)
-    private Integer forumReportType;
+    @Column(name = "FORUMREPORT_STATUS",insertable = false)
+    private Integer forumReportStatus;
 
-    // @ManyToOne
-    // @JoinColumn(name = "FORUMPOST_ID", insertable = false, updatable = false)
-    // private ForumPostVO forumPost;
+    @ManyToOne
+    @JoinColumn(name = "FORUMPOST_ID", insertable = false, updatable = false)
+    private ForumPostVO forumPost;
 
-
-    // @ManyToOne
-    // @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
-    // private MemberVO member;
+//
+//     @ManyToOne
+//     @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
+//     private Member member;
 
 }
 
