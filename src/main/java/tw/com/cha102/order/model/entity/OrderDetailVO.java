@@ -1,5 +1,6 @@
 package tw.com.cha102.order.model.entity;
 
+import lombok.Getter;
 import tw.com.cha102.core.vo.Core;
 import tw.com.cha102.product.model.entity.CategoryVO;
 import tw.com.cha102.product.model.entity.ProductVO;
@@ -26,11 +27,21 @@ public class OrderDetailVO extends Core {
 
     private Integer quantity;
 
-    @Column(name = "TOTAL_AMOUNT")
-    private Integer totalAmount;
+    @Getter
+    @Column(name = "PRODUCT_TOTAL_PRICE")
+    private Integer productTotalPrice;
+
     @ManyToOne // 指定多对一关系
     @JoinColumn(name = "PRODUCT_ID",insertable=false ,updatable = false) // 指定外键列
     private ProductVO productVO;
+
+    @ManyToOne
+    @JoinColumn(name="ORDER_ID",insertable = false,updatable = false)
+    private OrderVO orderVO;
+
+    public Integer getProductTotalPrice() {
+        return productTotalPrice;
+    }
 
     public void setProductVO(ProductVO productVO) {
         this.productVO = productVO;
@@ -83,20 +94,21 @@ public class OrderDetailVO extends Core {
     }
 
     public Integer getTotalAmount() {
-        return totalAmount;
+        return productTotalPrice;
     }
 
     public void setTotalAmount(Integer totalAmount) {
-        this.totalAmount = totalAmount;
+        this.productTotalPrice = totalAmount;
     }
 
-    public OrderDetailVO(Integer orderId, Integer productId, Integer productPrice, Integer quantity, Integer totalAmount,ProductVO productVO) {
+    public OrderDetailVO(Integer orderId, Integer productId, Integer productPrice, Integer quantity, Integer productTotalPrice,ProductVO productVO,OrderVO orderVO) {
         this.orderId = orderId;
         this.productId = productId;
         this.productPrice = productPrice;
         this.quantity = quantity;
-        this.totalAmount = totalAmount;
+        this.productTotalPrice = productTotalPrice;
         this.productVO=productVO;
+        this.orderVO=orderVO;
 
     }
 }

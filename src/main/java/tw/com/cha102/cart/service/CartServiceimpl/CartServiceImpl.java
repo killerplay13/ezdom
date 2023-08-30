@@ -5,16 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import tw.com.cha102.cart.model.CartItem;
 import tw.com.cha102.cart.model.entity.Cart;
 import tw.com.cha102.cart.model.entity.CartProductVO;
 import tw.com.cha102.cart.model.entity.CartVO;
 import tw.com.cha102.cart.service.CartService;
-import tw.com.cha102.core.vo.ResponseVO;
 import tw.com.cha102.product.model.dao.ProductDao;
 import tw.com.cha102.product.model.entity.ProductVO;
-
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,9 +24,10 @@ public class CartServiceImpl implements CartService {
     private ProductDao dao;
     private Gson gson = new Gson();
 
+
+
     @Override
-    public void addToCart(Integer memberId, Integer productId) {
-        Integer quantity = 1;
+    public void addToCart(Integer memberId, Integer productId,Integer quantity) {
         ProductVO product = dao.selectById(productId);
         HashOperations<String, String, String> opsForHash = redisTemplate.opsForHash();
         String cartKey = getCartKey(memberId);
@@ -73,7 +70,6 @@ public class CartServiceImpl implements CartService {
                         productVO.getProductName(),
                         productVO.getProductImage(),
                         productVO.getProductDiscountPrice(),
-                        productVO.getProductStatus(),
                         productVO.getProductDiscountPrice()*(cart.getQuantity())
                         );
                 cartProductVoList.add(cartProductVo);
@@ -104,6 +100,41 @@ public class CartServiceImpl implements CartService {
         return cartVO;
     }
 
+    @Override
+    public CartVO reduce(Integer memberId, Integer productId) {
+        Integer quantity = 1;
+        ProductVO product = dao.selectById(productId);
+        HashOperations<String, String, String> opsForHash = redisTemplate.opsForHash();
+        String cartKey = getCartKey(memberId);
+        String productIdstr = String.valueOf(product.getProductId());
+        CartVO cartVO=new CartVO();
+        Cart cart;
+        String value = opsForHash.get(cartKey, productIdstr);
+        cart = gson.fromJson(value, Cart.class);
+        if(cart.getQuantity()==1){
+            opsForHash.delete(cartKey, productIdstr);
+            cartVO.setMessage("商品數量歸0，商品已刪除");
+        }else{
+            cart.setQuantity(cart.getQuantity() - quantity);
+            cartVO.setMessage("商品數量-1");
+            opsForHash.put(cartKey,
+                    productIdstr,
+                    gson.toJson(cart));
+        }
+        return cartVO;
+    }
+
+    @Override
+    public CartVO deleteAll(Integer memberId) {
+        CartVO cartVO=new CartVO();
+        if(memberId!=null){
+        String cartKey = getCartKey(memberId);
+        redisTemplate.delete(cartKey);
+        cartVO.setMessage("結帳成功");
+        cartVO.setSuccessful(true);
+        }
+        return cartVO;
+    }
 
 
     private String getCartKey(Integer memberId) {

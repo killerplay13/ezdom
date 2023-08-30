@@ -3,7 +3,10 @@ package tw.com.cha102.order.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tw.com.cha102.member.model.entity.Member;
 import tw.com.cha102.order.model.dao.OrderDao;
+import tw.com.cha102.order.model.dao.OrderDetailDao;
+import tw.com.cha102.order.model.entity.OrderDetailVO;
 import tw.com.cha102.order.model.entity.OrderVO;
 import tw.com.cha102.order.service.OrderService;
 
@@ -14,6 +17,8 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     @Autowired
     OrderDao dao;
+    @Autowired
+    OrderDetailDao detail;
 
     @Override
     public List<OrderVO> findOrdersByStatus(int orderStatus) {
@@ -45,5 +50,22 @@ public class OrderServiceImpl implements OrderService {
             orderVO.setOrderStatus((byte) 4);
         }
         return dao.updateToOrderStatus(orderVO)>0;
+    }
+
+    @Override
+    public Member getGuestInformation(Integer memberId) {
+        return dao.selecMembertById(memberId);
+    }
+    //結帳新增訂單
+    @Override
+    public boolean addToOrder(OrderVO orderVO) {
+        Integer orderId = dao.insert(orderVO);
+        List<OrderDetailVO> orderDetailVOs = orderVO.getOrderDetailVOs();
+        for(OrderDetailVO orderDetailVO : orderDetailVOs){
+            orderDetailVO.setOrderId(orderId);
+            detail.insert(orderDetailVO);
+        }
+        
+        return true;
     }
 }
