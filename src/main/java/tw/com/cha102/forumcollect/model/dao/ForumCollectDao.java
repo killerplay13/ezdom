@@ -1,10 +1,8 @@
-package tw.com.cha102.forum.model.dao;
+package tw.com.cha102.forumcollect.model.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import tw.com.cha102.forum.model.entity.ForumCollectVO;
+import tw.com.cha102.forumcollect.model.entity.ForumCollectVO;
 
 import java.util.List;
 

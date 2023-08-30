@@ -3,7 +3,9 @@ package tw.com.cha102.forum.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import tw.com.cha102.core.vo.Core;
-import tw.com.cha102.member.model.entity.Member;
+import tw.com.cha102.forumcollect.model.entity.ForumCollectVO;
+import tw.com.cha102.forummsg.model.entity.ForumMsgVO;
+import tw.com.cha102.forumreport.model.entity.ForumReportVO;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

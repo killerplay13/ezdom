@@ -1,6 +1,6 @@
-package tw.com.cha102.forum.service;
+package tw.com.cha102.forummsg.service;
 
-import tw.com.cha102.forum.model.entity.ForumMsgVO;
+import tw.com.cha102.forummsg.model.entity.ForumMsgVO;
 
 import java.util.List;
 
