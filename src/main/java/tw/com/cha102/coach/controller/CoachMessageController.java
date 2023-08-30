@@ -9,6 +9,7 @@ import tw.com.cha102.coach.service.CoachMessageService;
 import java.util.List;
 import javax.validation.Valid;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/coach/message")
 public class CoachMessageController{
@@ -32,7 +33,7 @@ public class CoachMessageController{
 			return coachMessageService.updateMessage(messageId, updateMessage);
 		}
 
-		@GetMapping("/list/{coachId}")
+		@GetMapping("/{coachId}")
 		public List<ByCoachMessage> coachMessageList(@PathVariable Integer coachId){
 			return coachMessageService.getCoachMessage(coachId);
 		}

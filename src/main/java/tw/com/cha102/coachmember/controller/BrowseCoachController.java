@@ -2,6 +2,7 @@ package tw.com.cha102.coachmember.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tw.com.cha102.coachmember.model.dto.CoachDetails;
 import tw.com.cha102.coachmember.model.dto.CoachList;
 import tw.com.cha102.coachmember.model.entity.CoachMemberVO;
 import tw.com.cha102.coachmember.service.CoachMemberService;
@@ -22,8 +23,8 @@ public class BrowseCoachController {
     }
 
     @GetMapping("/list/{coachId}")
-    public CoachMemberVO browseCoach(@PathVariable Integer coachId){
-        return coachMemberService.getCoachMember(coachId);
+    public CoachDetails browseCoach(@PathVariable Integer coachId){
+        return coachMemberService.getCoachDetails(coachId);
     }
 
 }

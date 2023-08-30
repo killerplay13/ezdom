@@ -1,5 +1,8 @@
 package tw.com.cha102.coach.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Timestamp;
 
 public interface ByCoachMessage {
@@ -11,5 +14,12 @@ public interface ByCoachMessage {
 
     String getContent();
 
-    Timestamp getCreateTime();
+//    待測試 TimeStamp型別
+    String getCreateTime();
+
+    byte[] getCoachPicture();
+
+    byte[] getMemberPicture();
+
+    Integer getMemberId();
 }
