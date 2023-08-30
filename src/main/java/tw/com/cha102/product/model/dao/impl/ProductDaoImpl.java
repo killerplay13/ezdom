@@ -108,5 +108,26 @@ public class ProductDaoImpl implements ProductDao {
         return count;
     }
 
+    @Override
+    public List<ProductVO> selectByCategoryId(Integer value, Integer categoryId) {
+        int itemsPerPage = 12;
+        int skipItems = (value - 1) * itemsPerPage;
+
+        Query query = session.createQuery("FROM ProductVO WHERE categoryId=:categoryId", ProductVO.class)
+                .setParameter("categoryId",categoryId)
+                .setFirstResult(skipItems)
+                .setMaxResults(itemsPerPage);
+        return query.getResultList();
+    }
+
+    @Override
+    public int selectProductCountByCategoryId(Integer categoryId) {
+        String hql = "SELECT COUNT(*) FROM ProductVO WHERE categoryId=:categoryId";
+        TypedQuery<Long> query = session.createQuery(hql, Long.class).setParameter("categoryId",categoryId);
+        Long result = query.getSingleResult();
+        int count = result.intValue(); // 轉換為 int
+        return count;
+    }
+
 
 }

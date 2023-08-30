@@ -2,6 +2,8 @@ package tw.com.cha102.coachmember.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tw.com.cha102.coachmember.model.dto.CoachDetails;
+import tw.com.cha102.coachmember.model.dto.CoachList;
 import tw.com.cha102.coachmember.model.dao.CoachMemberRepository;
 import tw.com.cha102.coachmember.model.entity.CoachMemberVO;
 import tw.com.cha102.member.model.dao.MemberRepository;
@@ -76,14 +78,23 @@ public class CoachMemberService {
         return coachMemberVO;
     }
 
-    // ==================== 教練審核 ==================== //
+    // ==================== 教練資訊 ==================== //
 
-    // 查詢教練列表
-    public List<CoachMemberVO> getCoachMemberList(){
-        return coachMemberRepository.findAll();
+    // 查詢教練審核列表
+    public List<CoachList> getVerifyCoachList(){
+        return coachMemberRepository.getVerifyCoachList();
     }
 
-    // 查詢教練資訊
+    // 查詢教練列表
+    public List<CoachList> getCoachList(){
+        return coachMemberRepository.getCoachList();
+    }
+
+    // 查詢教練個人頁面
+    public CoachDetails getCoachDetails(Integer coachId){
+        return coachMemberRepository.getCoachDetails(coachId);
+    }
+
     public CoachMemberVO getCoachMember(Integer coachId){
         Optional<CoachMemberVO> check = coachMemberRepository.findById(coachId);
 

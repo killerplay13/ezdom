@@ -24,4 +24,8 @@ public interface ProductDao {
     List<ProductVO> selectBy12(Integer value);
 
     int selectProductCount();
+
+    List<ProductVO> selectByCategoryId(Integer value,Integer categoryId);
+
+    int selectProductCountByCategoryId(Integer categoryId);
 }

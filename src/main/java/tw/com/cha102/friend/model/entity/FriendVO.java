@@ -2,9 +2,22 @@ package tw.com.cha102.friend.model.entity;
 
 
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@DynamicInsert
+@DynamicUpdate
 @Table(name="friend", catalog="cha102g4_test")
 public class FriendVO {
 
@@ -18,36 +31,4 @@ public class FriendVO {
     private Integer memberIdB;
     @Column(name = "FRIEND_STATUS", insertable = false)
     private Byte friendStatus;
-
-    public Integer getFriendId() {
-        return friendId;
-    }
-
-    public void setFriendId(Integer friendId) {
-        this.friendId = friendId;
-    }
-
-    public Integer getMemberIdA() {
-        return memberIdA;
-    }
-
-    public void setMemberIdA(Integer memberIdA) {
-        this.memberIdA = memberIdA;
-    }
-
-    public Integer getMemberIdB() {
-        return memberIdB;
-    }
-
-    public void setMemberIdB(Integer memberIdB) {
-        this.memberIdB = memberIdB;
-    }
-
-    public Byte getFriendStatus() {
-        return friendStatus;
-    }
-
-    public void setFriendStatus(Byte friendStatus) {
-        this.friendStatus = friendStatus;
-    }
 }
