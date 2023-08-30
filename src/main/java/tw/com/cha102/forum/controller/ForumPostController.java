@@ -24,24 +24,19 @@ public class ForumPostController {
     }
 
     @PostMapping("/post")
-    public ResponseEntity<String> createPost(@RequestBody ForumPostVO forumPostVO) {
+    public ResponseEntity<ForumPostVO> createPost(@RequestBody ForumPostVO forumPostVO) {
         ForumPostVO result = forumPostService.post(forumPostVO);
-        if (result.isSuccessful()) {
-            return ResponseEntity.ok(result.getMessage()); // 返回插入结果的消息
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 返回服務氣錯誤狀態碼
-        }
+            return ResponseEntity.ok(result); // 返回完整的 ForumPostVO 物件
     }
 
+
+
     @PutMapping("/edit/{postId}")
-    public ResponseEntity<String> editPost(@PathVariable Integer postId, @RequestBody ForumPostVO forumPostVO) {
+    public ResponseEntity<ForumPostVO> editPost(@PathVariable Integer postId, @RequestBody ForumPostVO forumPostVO) {
         forumPostVO.setForumPostId(postId);
         ForumPostVO result = forumPostService.edit(forumPostVO);
-        if (result != null) {
-            return ResponseEntity.ok(result.getMessage());
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+            return ResponseEntity.ok(result);
+
     }
 
     @GetMapping("/list")

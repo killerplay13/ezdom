@@ -7,6 +7,7 @@ import tw.com.cha102.forum.model.entity.ForumMsgVO;
 import tw.com.cha102.forum.service.ForumMsgService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ForumMsgServiceImpl implements ForumMsgService {
@@ -20,27 +21,28 @@ public class ForumMsgServiceImpl implements ForumMsgService {
 
     @Override
     public ForumMsgVO createMessage(ForumMsgVO forumMsgVO) {
-        ForumMsgVO savedMsg = forumMsgDao.save(forumMsgVO);
+        ForumMsgVO doMsg = forumMsgDao.save(forumMsgVO);
 
-        if (savedMsg != null) {
-            savedMsg.setSuccessful(true);
-            savedMsg.setMessage("留言發送成功");
+        if (doMsg != null) {
+            doMsg.setSuccessful(true);
+            doMsg.setMessage("留言發送成功");
         } else {
-            forumMsgVO.setSuccessful(false);
-            forumMsgVO.setMessage("留言發送失敗");
+            doMsg.setSuccessful(false);
+            doMsg.setMessage("留言發送失敗");
         }
 
-        return savedMsg;
+        return doMsg;
     }
 
     @Override
     public boolean deleteMessage(Integer forumMsgId) {
-        if (forumMsgDao.existsById(forumMsgId)) {
-            forumMsgDao.deleteById(forumMsgId);
-            return true;
-        } else {
+        Optional<ForumMsgVO> existingMsgOptional = forumMsgDao.findById(forumMsgId);
+        if (!existingMsgOptional.isPresent()) {
             return false;
         }
+
+        forumMsgDao.deleteById(forumMsgId);
+        return true;
     }
 
     @Override
@@ -51,8 +53,8 @@ public class ForumMsgServiceImpl implements ForumMsgService {
 
     @Override
     public ForumMsgVO getMessageById(Integer forumMsgId) {
-        ForumMsgVO msg = forumMsgDao.findById(forumMsgId).orElse(null);
-        return msg;
+        Optional<ForumMsgVO> msgOptional = forumMsgDao.findById(forumMsgId);
+        return msgOptional.get();
     }
 
     @Override

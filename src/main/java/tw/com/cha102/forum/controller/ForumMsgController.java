@@ -21,13 +21,10 @@ public class ForumMsgController {
 	}
 
 	@PostMapping("/msg")
-	public ResponseEntity<ForumMsgVO> createMessage(@RequestBody ForumMsgVO forumMsgVO) {
+	public ResponseEntity<String> createMessage(@RequestBody ForumMsgVO forumMsgVO) {
 		ForumMsgVO result = forumMsgService.createMessage(forumMsgVO);
-		if (result.isSuccessful()) {
-			return ResponseEntity.ok(result);
-		} else {
-			return ResponseEntity.status(500).body(result);
-		}
+			return ResponseEntity.ok(result.getMessage());
+
 	}
 
 	@DeleteMapping("/delete/msg/{msgId}")

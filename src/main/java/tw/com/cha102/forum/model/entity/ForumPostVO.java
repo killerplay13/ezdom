@@ -39,15 +39,15 @@ public class ForumPostVO extends Core {
 //    @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
 //    private Member member;
 
-    @OneToMany(mappedBy = "forumPost", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "forumPost", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<ForumMsgVO> forumMsgs;
 
-    @OneToMany(mappedBy = "forumPost", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "forumPost", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<ForumCollectVO> forumCollects;
 
-    @OneToMany(mappedBy = "forumPost", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "forumPost", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<ForumReportVO> forumReports;
 }

@@ -33,8 +33,8 @@ public class ForumCollectServiceImpl implements ForumCollectService {
             savedCollect.setSuccessful(true);
             savedCollect.setMessage("收藏成功");
         } else {
-            forumCollectVO.setSuccessful(false);
-            forumCollectVO.setMessage("收藏失敗");
+            savedCollect.setSuccessful(false);
+            savedCollect.setMessage("收藏失敗");
         }
 
         return savedCollect;

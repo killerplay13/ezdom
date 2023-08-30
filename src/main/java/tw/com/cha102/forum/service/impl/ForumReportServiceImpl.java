@@ -35,12 +35,11 @@ public class ForumReportServiceImpl implements ForumReportService {
         if (createdReport != null) {
             createdReport.setSuccessful(true);
             createdReport.setMessage("檢舉成功");
-            return createdReport;
         } else {
-            forumReportVO.setSuccessful(false);
-            forumReportVO.setMessage("檢舉失敗");
-            return forumReportVO;
+            createdReport.setSuccessful(false);
+            createdReport.setMessage("檢舉失敗");
         }
+        return createdReport;
     }
 
     @Override
