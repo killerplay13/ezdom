@@ -20,6 +20,8 @@
     <meta name="msapplication-TileColor" content="#080032">
     <meta name="msapplication-config" content="../frontendshop/assets/favicon/browserconfig.xml">
     <meta name="theme-color" content="white">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+
     <!-- Theme mode-->
     <script>
         let mode = window.localStorage.getItem('mode'),
@@ -178,17 +180,19 @@
                 <form class="needs-validation" novalidate>
                     <div class="pb-3 mb-3">
                         <div class="position-relative"><i
-                                class="ai-user  fs-lg position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-                            <input id="acct" name="account" class="form-control form-control-lg ps-5" type="text" placeholder="帳號"
-                                   required>
+                                class="fs-lg position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                            <input id="accountName" name="account" class="form-control form-control-lg" type="text" placeholder="帳號"
+                                   required onblur="validateAccount(this.value)">
+                            <p id="accountnameError" style="color: red;"></p>
                         </div>
                     </div>
                     <div class="mb-4">
                         <div class="position-relative"><i
-                                class="ai-lock-closed fs-lg position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                                class="fs-lg position-absolute top-50 start-0 translate-middle-y ms-3"></i>
                             <div class="password-toggle">
-                                <input id="pw" name="password" class="form-control form-control-lg ps-5" type="password"
-                                       placeholder="密碼" required>
+                                <input id="pw" name="password" class="form-control form-control-lg" type="password" placeholder="密碼"
+                                       required onblur="validatePassword(this.value)">
+                                <p id="passwordError" style="color: red;"></p>
                                 <label class="password-toggle-btn" aria-label="Show/hide password">
                                     <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                                 </label>
@@ -232,42 +236,92 @@
 <script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
 <!-- Main theme script-->
 <script src="../frontendshop/assets/js/theme.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+
 
 <!-- 登入 fetch -->
 <!-- <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> // jquery -->
 <script>
-    (() => {
-      const account = document.getElementById('acct');
+    function validateAccount(accountValue) {
+      let accountnameError = document.getElementById("accountnameError");
+      if (!accountValue) {
+        accountnameError.textContent = "請輸入帳號";
+        return false;
+      } else {
+        accountnameError.textContent = "";
+        return true;
+      }
+    }
+
+    function validatePassword(passwordValue) {
+      let passwordError = document.getElementById("passwordError");
+      if (!passwordValue) {
+        passwordError.textContent = "請輸入密碼";
+        return false;
+      } else {
+        passwordError.textContent = "";
+        return true;
+      }
+    }
+
+    document.getElementById('login').addEventListener('click', (event) => {
+      const account = document.getElementById('accountName');
       const password = document.getElementById('pw');
       const errMsg = document.getElementById('errMsg');
 
-      document.getElementById('login').addEventListener('click', (event) => {
-        event.preventDefault();
+      event.preventDefault();
+
+      if (!account.value || !password.value) {
+        // 使用者帳號和密碼都未輸入的處理，加入相應的 Swal 提示
+        Swal.fire({
+          icon: 'error',
+          title: '失敗',
+          text: '請輸入帳號密碼！',
+          confirmButtonText: '確定',
+          focusConfirm: false
+        });
+      } else if (validateAccount(account.value) && validatePassword(password.value)) {
         const data = {
           account: account.value,
           password: password.value
         };
-        console.log(data.account + " /n" + data.password);
 
         fetch('http://localhost:8080/ezdom/member/login', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         })
           .then(resp => resp.text())
           .then(body => {
+            Swal.fire({
+              icon: 'success',
+              title: '成功',
+              text: '登入成功！',
+              confirmButtonText: '確定',
+              focusConfirm: true
+            }).then((result) => {
               var redirectUrl = "ezdomindex.html";
               // 使用 window.location.replace 進行跳轉
               window.location.replace(redirectUrl);
-            })
-          .catch(error => {
+            });
+          }).catch(error => {
             // 處理 fetch 發生的錯誤
             console.error("Fetch Error:", error);
           });
-      });
-    })();
+      } else {
+        // 驗證失敗的處理，加入失敗的 Swal 提示
+        Swal.fire({
+          icon: 'error',
+          title: '失敗',
+          text: '查無此帳號！',
+          confirmButtonText: '確定',
+          focusConfirm: false
+        }).then((result) => {
+          var redirectUrl = "account-signin.html";
+          window.location.replace(redirectUrl);
+        });
+      }
+    });
 </script>
 </body>
 
