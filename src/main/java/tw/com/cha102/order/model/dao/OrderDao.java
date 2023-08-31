@@ -22,4 +22,10 @@ public interface OrderDao {
 
     Member selecMembertById(Integer memberId);
 
+    List<OrderVO> selectByStatusTo3(Integer value,int orderStatus);
+
+    int selectOrderCountByOrderStatus(int orderStatus);
+
+    int updatePoint(Member member);
+
 }

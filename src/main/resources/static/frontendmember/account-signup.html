@@ -20,9 +20,9 @@
     <meta name="msapplication-TileColor" content="#080032">
     <meta name="msapplication-config" content="../frontendshop/assets/favicon/browserconfig.xml">
     <meta name="theme-color" content="white">
-    <!-- Theme mode-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
 
+    <!-- Theme mode-->
     <script>
         let mode = window.localStorage.getItem('mode'),
           root = document.getElementsByTagName('html')[0];
@@ -206,11 +206,6 @@
           /* 或其他颜色 */
           cursor: not-allowed;
         }
-
-        /* 紅色警告外框樣式 */
-        .error-border {
-          border: 1px solid red !important;
-        }
     </style>
     <!-- Page loading scripts-->
     <script>
@@ -271,7 +266,7 @@
                     </div>
                     <div class="password-toggle mb-4">
                         <input id="password" class="form-control form-control-lg" type="password"
-                               placeholder="密碼 (8 ~ 12個英文字母不限大小寫)" required onblur="validatePassword()">
+                               placeholder="密碼 (8 ~ 12個英文字母、數字不限大小寫)" required onblur="validatePassword()">
                         <label class="password-toggle-btn" aria-label="Show/hide password">
                             <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                         </label>
@@ -349,9 +344,9 @@
                     </div>
                     <div class="pb-4">
                         <!-- <div class="form-check my-2">
-                            <input class="form-check-input" type="checkbox" id="terms">
-                            <label class="form-check-label ms-1" for="terms">I agree to <a href="#">Terms &amp; Conditions</a></label>
-                          </div> -->
+                                      <input class="form-check-input" type="checkbox" id="terms">
+                                      <label class="form-check-label ms-1" for="terms">I agree to <a href="#">Terms &amp; Conditions</a></label>
+                                    </div> -->
                     </div>
                     <button id="register" class="btn btn-lg btn-primary w-100 mb-4" type="button">註冊</button>
                     <h2 class="h6 text-center pt-3 pt-lg-4 mb-4">或選則以下方式</h2>
@@ -481,8 +476,14 @@
             password: password.value
           })
         })
-          .then(resp => resp.text())
-          .then(body => {
+          .then(resp => {
+            if (!resp.ok) {
+              throw new Error("已有此帳號 ! 請重新輸入");
+            }
+            return resp.json();
+          })
+          .then(data => {
+            // 成功回應的處理
             Swal.fire({
               icon: 'success',
               title: '成功',
@@ -494,12 +495,20 @@
               // 使用 window.location.replace 進行跳轉
               window.location.replace(redirectUrl);
             });
-          }).catch(error => {
-            // 處理 fetch 發生的錯誤
+          })
+          .catch(error => {
+            // 處理錯誤回應
             console.error("Fetch Error:", error);
+            Swal.fire({
+              icon: 'error',
+              title: '錯誤',
+              text: '註冊失敗：' + error.message, // 顯示錯誤訊息
+              confirmButtonText: '確定',
+              focusConfirm: false
+            });
           });
       } else {
-        // 驗證失敗的處理，加入失敗的 Swal 提示
+        // 驗證失敗的處理
         Swal.fire({
           icon: 'error',
           title: '失敗',
@@ -512,6 +521,7 @@
         });
       }
     });
+
 </script>
 </body>
 
