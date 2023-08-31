@@ -26,7 +26,6 @@ const coachId = 2;
 
 // ====================== 網頁載入完成後執行 ====================== //
 window.addEventListener("load", function() {
-    // getCoachDetails();
 
     (async () => {
         await getCoachDetails(); // 等待第一个函数完成
@@ -67,7 +66,7 @@ function showCoachDetails(){
         reportURL.style = "display:none";
     }
 
-    
+
     // ====================== 設定資訊 ====================== //
     bord.innerHTML = `
         <h1 class="h2 mb-4">設置</h1>
@@ -131,7 +130,7 @@ function showCoachDetails(){
                 </div>
             </div>
             <div>
-                <div class="form-check form-check-inline">  
+                <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" id="ex-check-8">
                 <label class="form-check-label" for="ex-check-8">攀岩</label>
                 </div>
@@ -215,19 +214,19 @@ $(bord).on("click", "#save", function() {
 
 function check() {
     let text = "";
-    
+
     if (formData.nickname === "") {
         text += "教練暱稱不能為空\n";
       }
-      
+
       if (formData.skills.length === 0) {
         text += "請至少選擇一項專業項目\n";
       }
-      
+
       if (formData.introduction === "") {
         text += "自我介紹不能為空\n";
       }
-      
+
     //   if (picture.files.length === 0) {
     //     text += "請選擇教練圖片\n";
     //   }
@@ -276,33 +275,7 @@ function collectFormData() {
 
     // 判斷項目是否為空
     if(check()){
-        
-        // 讀取完成後觸發
-        // reader.onload = function(event) {
-        //     const imageBase64 = btoa(event.target.result);
 
-            // formData.picture = imageBase64;  // 將圖片的 base64數據存入 formData
-            // console.log(formData);
-
-        //     fetch(req, {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: JSON.stringify(formData)
-        //     })
-        //     .then(response => response.json())
-        //     .then(body => {
-        //         // const { successful } = body;
-        //         if (body.successful) {
-        //             location.reload();
-        //             alert(body.message);
-        //         } else {
-        //             alert(body.message);
-        //         }
-        //     });
-        // };
-        // reader.readAsBinaryString(picture.files[0]); // 讀取上傳的圖片
         fetch(req, {
             method: "PUT",
             headers: {
@@ -312,10 +285,10 @@ function collectFormData() {
         })
         .then(response => response.json())
         .then(body => {
-            // const { successful } = body;
             if (body.successful) {
-                location.reload();
                 alert(body.message);
+                location.reload();
+                // window.location.replace(window.location.href);
             } else {
                 alert(body.message);
             }
@@ -325,13 +298,36 @@ function collectFormData() {
 
 $(bord).on("click", "#load_btn", function() {
     $("#load").click();
+})
 
-    //     reader.onload = function(event) {
-    //         const imageBase64 = btoa(event.target.result);
+var preview_img = function(file){
 
-    //         // formData.picture = imageBase64;  // 將圖片的 base64數據存入 formData
-    //         console.log(imageBase64);
-    //     };
+    reader.readAsDataURL(file); // 讀取檔案
+    reader.addEventListener("load", function () {
 
-    // reader.readAsBinaryString(this.files[0]); // 讀取上傳的圖片
+      let img_str = reader.result;
+    //   console.log(img_str);
+      let img = document.querySelector("#img");
+      img.style.backgroundImage = `url(${img_str})`;
+      base64 = img_str.substring(img_str.indexOf(",") + 1);
+    //   console.log(base64);
+      img.setAttribute("data-value", base64);
+    });
+  };
+
+
+$(bord).on("change", "#load" , function(e){
+if(this.files.length > 0){
+    preview_img(this.files[0]);
+}else{
+//   preview_el.innerHTML = '<span class="text">預覽圖</span>';
+}
+});
+
+$(bord).on("click", "#cancel", function() {
+    // console.log("ok");
+    let href = `coach-details.html?coachId=${coachDetails.coachId}`;
+    if(confirm("要放棄修改嗎??")){
+        window.location.replace(href);
+    }
 })
