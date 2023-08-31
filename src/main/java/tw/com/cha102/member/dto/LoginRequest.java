@@ -2,9 +2,12 @@ package tw.com.cha102.member.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 public class LoginRequest {
-    //todo  maven 加入 validation
+    @NotBlank
     private  String account;
+    @NotBlank
     private  String password;
 }

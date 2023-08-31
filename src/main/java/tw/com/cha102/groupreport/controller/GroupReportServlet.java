@@ -1,5 +1,8 @@
 package tw.com.cha102.groupreport.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import tw.com.cha102.groupreport.model.GroupReportDAO;
 import tw.com.cha102.groupreport.model.GroupReportDAOImpl;
 import tw.com.cha102.groupreport.model.GroupReportVO;
@@ -14,7 +17,17 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+@Controller
 public class GroupReportServlet extends HttpServlet {
+
+    @GetMapping("/groupreport/selectpage")
+    public String selectPage(){
+        return "selectpage";
+    }
+    @GetMapping("/groupreport/listAll_GROUP_REPORT")
+    public String listall(){
+        return "listAll_GROUP_REPORT";
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -33,7 +46,7 @@ public class GroupReportServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("list", list);
 
-            String url = "/listAll_GROUP_REPORT.jsp";
+            String url = "listAll_GROUP_REPORT";
             RequestDispatcher successView = req.getRequestDispatcher(url);
             successView.forward(req, resp);
             return;
