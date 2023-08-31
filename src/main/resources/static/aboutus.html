@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>EZDOM | 關於我們</title>
+  <!-- SEO Meta Tags-->
+  <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
+  <meta name="keywords"
+    content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, dark mode, html5, css3, javascript, gallery, slider, touch, creative">
+  <meta name="author" content="Createx Studio">
+  <!-- Viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Favicon and Touch Icons-->
+  <link rel="apple-touch-icon" sizes="180x180" href="frontendshop/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="frontendshop/assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="frontendshop/assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="frontendshop/assets/favicon/site.webmanifest">
+  <link rel="mask-icon" color="#6366f1" href="frontendshop/assets/favicon/safari-pinned-tab.svg">
+  <meta name="msapplication-TileColor" content="#080032">
+  <meta name="msapplication-config" content="frontendshop/assets/favicon/browserconfig.xml">
+  <meta name="theme-color" content="white">
+  <!-- Theme mode-->
+  <script>
+    let mode = window.localStorage.getItem('mode'),
+      root = document.getElementsByTagName('html')[0];
+    if (mode !== undefined && mode === 'dark') {
+      root.classList.add('dark-mode');
+    } else {
+      root.classList.remove('dark-mode');
+    }
+
+
+  </script>
+  <!-- Page loading styles-->
+  <style>
+    .page-loading {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: all .4s .2s ease-in-out;
+      transition: all .4s .2s ease-in-out;
+      background-color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9999;
+    }
+
+    .dark-mode .page-loading {
+      background-color: #121519;
+    }
+
+    .page-loading.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-loading-inner {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: opacity .2s ease-in-out;
+      transition: opacity .2s ease-in-out;
+      opacity: 0;
+    }
+
+    .page-loading.active>.page-loading-inner {
+      opacity: 1;
+    }
+
+    .page-loading-inner>span {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #6f788b;
+    }
+
+    .dark-mode .page-loading-inner>span {
+      color: #fff;
+      opacity: .6;
+    }
+
+    .page-spinner {
+      display: inline-block;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: .75rem;
+      vertical-align: text-bottom;
+      background-color: #d7dde2;
+      border-radius: 50%;
+      opacity: 0;
+      -webkit-animation: spinner .75s linear infinite;
+      animation: spinner .75s linear infinite;
+    }
+
+    .dark-mode .page-spinner {
+      background-color: rgba(255, 255, 255, .25);
+    }
+
+    @-webkit-keyframes spinner {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+
+      50% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+
+    @keyframes spinner {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+
+      50% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+  </style>
+  <!-- Page loading scripts-->
+  <script>
+    (function () {
+      window.onload = function () {
+        const preloader = document.querySelector('.page-loading');
+        preloader.classList.remove('active');
+        setTimeout(function () {
+          preloader.remove();
+        }, 1500);
+      };
+    })();
+
+  </script>
+  <!-- Import Google Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"
+    id="google-font">
+  <!-- Vendor styles-->
+  <link rel="stylesheet" media="screen" href="frontendshop/assets/vendor/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" media="screen" href="frontendshop/assets/vendor/lightgallery/css/lightgallery-bundle.min.css" />
+  <!-- Main Theme Styles + Bootstrap-->
+  <link rel="stylesheet" media="screen" href="frontendshop/assets/css/theme.min.css">
+</head>
+<!-- Body-->
+
+<body>
+  <!-- Page loading spinner-->
+  <div class="page-loading active">
+    <div class="page-loading-inner">
+      <div class="page-spinner"></div><span>Loading...</span>
+    </div>
+  </div>
+  <!-- 頁首-->
+  <main class="page-wrapper">
+    <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
+    <header class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode">
+      <div class="container"><a class="navbar-brand pe-sm-3" href="index.html"><span
+            class="text-primary flex-shrink-0 me-2">
+            <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor"
+                d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+              </path>
+            </svg></span>EZ-DOM</a>
+        <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+          <input class="form-check-input" type="checkbox" id="theme-mode">
+          <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
+          <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
+        </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+          href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
+          rel="noopener">登入/註冊</a>
+        <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
+            class="navbar-toggler-icon"></span></button>
+        <nav class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">揪團 Group</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">揪團列表</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">My揪團</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">開團管理</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">瀏覽商品</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">購物車</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">管理我的訂單</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">瀏覽論壇</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">論壇管理</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">預約 Reserve</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">預約管理</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">瀏覽教練</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">時段管理</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">項目管理</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">自我介紹管理</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">會員中心 Member</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">我的頁面</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">好友管理</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">收藏文章</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">收藏商品</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">個人設定</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">聊天室</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">聯絡客服 Help</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- 頁首結束-->
+    <!-- Hero-->
+    <section class="bg-dark position-relative py-5">
+      <div class="d-none d-dark-mode-block position-absolute top-0 start-0 w-100 h-100"
+        style="background-color: rgba(255,255,255, .02);"></div>
+      <div class="container dark-mode position-relative zindex-2 py-5 mb-4 mb-sm-5">
+        <div class="row pb-5 mb-2 mb-sm-0 mb-lg-3">
+          <div class="col-lg-10 col-xl-9">
+            <!-- Breadcrumb-->
+            <nav aria-label="breadcrumb">
+              <ol class="pt-lg-3 pb-lg-4 pb-2 breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">關於我們</li>
+              </ol>
+            </nav>
+            <h1 class="display-2 pb-2 pb-sm-3">Become the one you like</h1>
+            <ul class="list-unstyled d-flex flex-wrap mb-0">
+              <li class="d-flex py-1 me-4"><i class="ai-check-alt text-primary lead me-2"></i>想動就來</li>
+              <li class="d-flex py-1 me-4"><i class="ai-check-alt text-primary lead me-2"></i>感興趣的運動</li>
+              <li class="d-flex py-1"><i class="ai-check-alt text-primary lead me-2"></i>揪團還是找教練，依你所選</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- About-->
+    <section class="container position-relative zindex-3" style="margin-top: -135px;">
+      <div class="rounded-5 overflow-hidden">
+        <div class="jarallax ratio ratio-16x9" data-jarallax data-speed="0.6">
+          <div class="jarallax-img" style="background-image: url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);"></div>
+        </div>
+      </div>     
+    </section>
+
+    <section class="container pt-sm-2 pt-md-3 pt-lg-4 pt-xl-5 mt-xxl-4 pb-lg-2 pb-xl-4 pb-xxl-5">
+      <h2 class="h1 text-center pb-3 pb-lg-4">平台所提供的服務</h2>
+      <div class="swiper" data-swiper-options="
+    {
+      &quot;spaceBetween&quot;: 24,
+      &quot;pagination&quot;: {
+        &quot;el&quot;: &quot;.swiper-pagination&quot;,
+        &quot;clickable&quot;: true
+      },
+      &quot;breakpoints&quot;: {
+        &quot;576&quot;: { &quot;slidesPerView&quot;: 2 },
+        &quot;992&quot;: { &quot;slidesPerView&quot;: 3 }
+      }
+    }
+  ">
+        <div class="swiper-wrapper">
+          <!-- Item-->
+          <div class="swiper-slide h-auto"><a class="card bg-secondary border-0 h-100 text-center text-decoration-none" href="#">
+              <div class="card-body">
+                <svg xmlns="http://www.w3.org/2000/svg" height="5em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M72 88a56 56 0 1 1 112 0A56 56 0 1 1 72 88zM64 245.7C54 256.9 48 271.8 48 288s6 31.1 16 42.3V245.7zm144.4-49.3C178.7 222.7 160 261.2 160 304c0 34.3 12 65.8 32 90.5V416c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V389.2C26.2 371.2 0 332.7 0 288c0-61.9 50.1-112 112-112h32c24 0 46.2 7.5 64.4 20.3zM448 416V394.5c20-24.7 32-56.2 32-90.5c0-42.8-18.7-81.3-48.4-107.7C449.8 183.5 472 176 496 176h32c61.9 0 112 50.1 112 112c0 44.7-26.2 83.2-64 101.2V416c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32zm8-328a56 56 0 1 1 112 0A56 56 0 1 1 456 88zM576 245.7v84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM320 32a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM240 304c0 16.2 6 31 16 42.3V261.7c-10 11.3-16 26.1-16 42.3zm144-42.3v84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM448 304c0 44.7-26.2 83.2-64 101.2V448c0 17.7-14.3 32-32 32H288c-17.7 0-32-14.3-32-32V405.2c-37.8-18-64-56.5-64-101.2c0-61.9 50.1-112 112-112h32c61.9 0 112 50.1 112 112z"/></svg>
+                <h3 style="margin-top: 15px;">揪團一起動</h3>
+                <p class="card-text">擔心運動沒人陪嗎？擔心聚會找不到夥伴嗎？我們的運動揪團功能解決您的煩惱！不論您是運動小白還是尋找新朋友，我們的平台為您帶來健康的活動選擇。加入我們，與志同道合的人一同享受運動的樂趣吧！</p>
+              </div>
+              <div class="card-footer border-0 px-0 pt-0 pb-4 mb-3">
+                <div class="btn btn-icon btn-outline-primary rounded-circle stretched-link"><i class="ai-arrow-right"></i></div>
+              </div></a></div>
+          <!-- Item-->
+          <div class="swiper-slide h-auto"><a class="card bg-secondary border-0 h-100 text-center text-decoration-none" href="#">
+              <div class="card-body">
+                <svg xmlns="http://www.w3.org/2000/svg" height="5em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64v48H160V112zm-48 48H48c-26.5 0-48 21.5-48 48V416c0 53 43 96 96 96H352c53 0 96-43 96-96V208c0-26.5-21.5-48-48-48H336V112C336 50.1 285.9 0 224 0S112 50.1 112 112v48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"/></svg>
+                <h3 style="margin-top: 15px;">逛逛運動商城</h3>
+                <p class="card-text">這裡是您尋找優質運動用品的最佳去處。無論您是運動新手還是資深運動愛好者，我們的商城提供各種豐富多樣的選擇，讓您找到最適合自己的運動器材和配備。</p>
+              </div>
+              <div class="card-footer border-0 px-0 pt-0 pb-4 mb-3">
+                <div class="btn btn-icon btn-outline-primary rounded-circle stretched-link"><i class="ai-arrow-right"></i></div>
+              </div></a></div>
+          <!-- Item-->
+          <div class="swiper-slide h-auto"><a class="card bg-secondary border-0 h-100 text-center text-decoration-none" href="#">
+              <div class="card-body">
+                <svg xmlns="http://www.w3.org/2000/svg" height="5em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M96 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32V224v64V448c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32V384H64c-17.7 0-32-14.3-32-32V288c-17.7 0-32-14.3-32-32s14.3-32 32-32V160c0-17.7 14.3-32 32-32H96V64zm448 0v64h32c17.7 0 32 14.3 32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32v64c0 17.7-14.3 32-32 32H544v64c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32V288 224 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32zM416 224v64H224V224H416z"/></svg>
+                <h3 style="margin-top: 15px;">預約教練</h3>
+                <p class="card-text">想要更個性化的運動指導和專業指導嗎？現在您可以透過我們的平台輕鬆預約一對一教練！我們的一對一教練服務專注於您的個人目標和需求，為您量身定制運動計劃，助您在健康和體能方面達到更出色的成就。</p>
+              </div>
+              <div class="card-footer border-0 px-0 pt-0 pb-4 mb-3">
+                <div class="btn btn-icon btn-outline-primary rounded-circle stretched-link"><i class="ai-arrow-right"></i></div>
+              </div></a></div>
+        </div>
+        <!-- Pagination (bullets)-->
+        <div class="swiper-pagination position-relative bottom-0 mt-2 pt-4 d-lg-none"></div>
+      </div>
+    </section>
+
+    <!-- Skills (Carousel)-->
+    <section class="pt-2 py-md-4 py-lg-5 mt-2 mt-xl-4 mt-xxl-5">
+      <div class="container d-flex align-items-center justify-content-between pb-4 mb-sm-2 mb-md-3">
+        <h2 class="h1 mb-0">平台技術</h2>
+        <div class="d-flex">
+          <button class="btn btn-sm btn-icon btn-outline-primary rounded-circle" type="button" id="prev-skill"><i class="ai-arrow-left"></i></button>
+          <button class="btn btn-sm btn-icon btn-outline-primary rounded-circle ms-3" type="button" id="next-skill"><i class="ai-arrow-right"></i></button>
+        </div>
+      </div>
+      <!-- Swiper slider-->
+      <div class="container-start">
+        <div class="swiper" data-swiper-options="{
+      &quot;slidesPerView&quot;: &quot;auto&quot;,
+      &quot;spaceBetween&quot;: 24,
+      &quot;loop&quot;: true,
+      &quot;navigation&quot;: {
+        &quot;prevEl&quot;: &quot;#prev-skill&quot;,
+        &quot;nextEl&quot;: &quot;#next-skill&quot;
+      }
+    }">
+          <div class="swiper-wrapper text-center">
+            <!-- Item  java-->
+            <div class="swiper-slide w-sm-auto h-auto">
+              <div class="card card-flip card-hover border-0 w-sm-auto h-100 bg-secondary rounded-5">
+                <div class="card-flip-inner mx-auto" style="max-width: 306px;">
+                  <div class="card-flip-front p-0">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 opacity-100"><img src="https://upload.wikimedia.org/wikipedia/zh/8/88/Java_logo.png" width="180" alt="java"></div>
+                  </div>
+                  <div class="card-flip-back p-0 bg-transparent">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center h-100"><img src="https://upload.wikimedia.org/wikipedia/zh/8/88/Java_logo.png" width="52" alt="Figma">
+                      <p class="fs-sm pt-3 mb-0">我們的專題採用Java作為主要程式語言，主要特點包括跨平台運行、物件導向設計、豐富的標準庫和廣泛的社區支援。透過選用Java，我們能夠建立出更具彈性和可擴展性的應用程式，為我們的專題提供強大的基礎。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Item  spring boot-->
+            <div class="swiper-slide w-sm-auto h-auto">
+              <div class="card card-flip card-hover border-0 w-sm-auto h-100 bg-secondary rounded-5">
+                <div class="card-flip-inner mx-auto" style="max-width: 306px;">
+                  <div class="card-flip-front p-0">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 opacity-100"><img src="https://blog.kennycoder.io/2020/07/20/Spring-Boot-%E6%95%99%E5%AD%B8%E7%B3%BB%E5%88%97-%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84Spring-Boot-Starter-Library/cover.png" width="200" alt="CSS3"></div>
+                  </div>
+                  <div class="card-flip-back p-0 bg-transparent">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center h-100"><img src="https://blog.kennycoder.io/2020/07/20/Spring-Boot-%E6%95%99%E5%AD%B8%E7%B3%BB%E5%88%97-%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84Spring-Boot-Starter-Library/cover.png" width="52" alt="CSS3">
+                      <p class="fs-sm pt-3 mb-0">我們的專題採用了Spring Boot。Spring Boot是一個快速開發框架，專注於簡化Spring應用程式的建立和配置。它提供預設設定，讓您能夠快速啟動項目並輕鬆構建各種應用程式，從簡單的到複雜的。使用Spring Boot，我們能夠更高效地開發，並專注於業務邏輯的實現。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Item  mysql-->
+            <div class="swiper-slide w-sm-auto h-auto">
+              <div class="card card-flip card-hover border-0 w-sm-auto h-100 bg-secondary rounded-5">
+                <div class="card-flip-inner mx-auto" style="max-width: 306px;">
+                  <div class="card-flip-front p-0">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 opacity-100"><img src="https://upload.wikimedia.org/wikipedia/zh/thumb/6/62/MySQL.svg/langzh-hk-1500px-MySQL.svg.png" width="180" alt="Bootstrap"></div>
+                  </div>
+                  <div class="card-flip-back p-0 bg-transparent">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center h-100"><img src="https://upload.wikimedia.org/wikipedia/zh/thumb/6/62/MySQL.svg/langzh-hk-1500px-MySQL.svg.png" width="52" alt="Bootstrap">
+                      <p class="fs-sm pt-3 mb-0">我們的專題使用了MySQL作為主要資料庫系統，以有效管理我們所需的數據。MySQL以其廣泛的應用、可靠性和高效性在專案中發揮著關鍵作用，確保數據的有效存儲和操作。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Item html-->
+            <div class="swiper-slide w-sm-auto h-auto">
+              <div class="card card-flip card-hover border-0 w-sm-auto h-100 bg-secondary rounded-5">
+                <div class="card-flip-inner mx-auto" style="max-width: 306px;">
+                  <div class="card-flip-front p-0">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 opacity-100"><img src="https://cdn-icons-png.flaticon.com/512/919/919827.png" width="160" alt="Python"></div>
+                  </div>
+                  <div class="card-flip-back p-0 bg-transparent">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center h-100"><img src="https://cdn-icons-png.flaticon.com/512/919/919827.png" width="52" alt="Python">
+                      <p class="fs-sm pt-3 mb-0">我們專題使用HTML，這是網頁結構的基礎語言，用於呈現和排列網頁內容，包括文字、圖像和連結等。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Item css-->
+            <div class="swiper-slide w-sm-auto h-auto">
+              <div class="card card-flip card-hover border-0 w-sm-auto h-100 bg-secondary rounded-5">
+                <div class="card-flip-inner mx-auto" style="max-width: 306px;">
+                  <div class="card-flip-front p-0">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 opacity-100"><img src="https://cdn-icons-png.flaticon.com/512/919/919826.png" width="160" alt="Python"></div>
+                  </div>
+                  <div class="card-flip-back p-0 bg-transparent">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center h-100"><img src="https://cdn-icons-png.flaticon.com/512/919/919826.png" width="52" alt="Python">
+                      <p class="fs-sm pt-3 mb-0">我們的專題也運用了CSS（層疊樣式表），這是用來為網頁添加風格和外觀的語言。通過CSS，我們能夠控制文字的樣式、版面的佈局、顏色和其他視覺效果，以使我們的網頁更具吸引力和一致性。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Item js-->
+            <div class="swiper-slide w-sm-auto h-auto">
+              <div class="card card-flip card-hover border-0 w-sm-auto h-100 bg-secondary rounded-5">
+                <div class="card-flip-inner mx-auto" style="max-width: 306px;">
+                  <div class="card-flip-front p-0">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 opacity-100"><img src="https://cdn.iconscout.com/icon/free/png-256/free-javascript-2038874-1720087.png" width="160" alt="Python"></div>
+                  </div>
+                  <div class="card-flip-back p-0 bg-transparent">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center h-100"><img src="https://cdn.iconscout.com/icon/free/png-256/free-javascript-2038874-1720087.png" width="52" alt="Python">
+                      <p class="fs-sm pt-3 mb-0">我們的專題也運用了JavaScript（JS），這是一種用於網頁交互性的程式語言。通過JavaScript，我們能夠為網頁添加動態效果、即時更新內容，以及與用戶進行互動，從而提升用戶體驗。它是使網頁更具活力和功能性的關鍵元素。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+             <!-- Item jquery-->
+             <div class="swiper-slide w-sm-auto h-auto">
+              <div class="card card-flip card-hover border-0 w-sm-auto h-100 bg-secondary rounded-5">
+                <div class="card-flip-inner mx-auto" style="max-width: 306px;">
+                  <div class="card-flip-front p-0">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 opacity-100"><img src="https://jambasangsang.com/language_icon/jquery.png" width="160" alt="Python"></div>
+                  </div>
+                  <div class="card-flip-back p-0 bg-transparent">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center h-100"><img src="https://jambasangsang.com/language_icon/jquery.png" width="52" alt="Python">
+                      <p class="fs-sm pt-3 mb-0">我們的專題也使用了jQuery，這是一個流行的JavaScript函式庫。jQuery簡化了在網頁中使用JavaScript的操作，提供了簡潔的語法來處理事件、DOM操作、動畫效果等。通過jQuery，我們能夠更快速、更簡單地開發交互性豐富的網頁功能。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Item bootstrap-->
+            <div class="swiper-slide w-sm-auto h-auto">
+              <div class="card card-flip card-hover border-0 w-sm-auto h-100 bg-secondary rounded-5">
+                <div class="card-flip-inner mx-auto" style="max-width: 306px;">
+                  <div class="card-flip-front p-0">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 opacity-100"><img src="https://www.computerhope.com/jargon/b/bootstrap.png" width="160" alt="Python"></div>
+                  </div>
+                  <div class="card-flip-back p-0 bg-transparent">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center h-100"><img src="https://www.computerhope.com/jargon/b/bootstrap.png" width="52" alt="Python">
+                      <p class="fs-sm pt-3 mb-0">我們的專題使用了Bootstrap，這是一個前端框架，提供預設的CSS和JavaScript，用於快速創建響應式的現代網頁。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Item git-->
+            <div class="swiper-slide w-sm-auto h-auto">
+              <div class="card card-flip card-hover border-0 w-sm-auto h-100 bg-secondary rounded-5">
+                <div class="card-flip-inner mx-auto" style="max-width: 306px;">
+                  <div class="card-flip-front p-0">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 opacity-100"><img src="https://seeklogo.com/images/G/github-logo-5F384D0265-seeklogo.com.png" width="160" alt="Python"></div>
+                  </div>
+                  <div class="card-flip-back p-0 bg-transparent">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center h-100"><img src="https://seeklogo.com/images/G/github-logo-5F384D0265-seeklogo.com.png" width="52" alt="Python">
+                      <p class="fs-sm pt-3 mb-0">我們的專題使用了Git，這是一個分散式版本控制系統，用於有效管理和追蹤專案代碼的變更。它有助於協作開發和保持代碼的整潔。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Swiper pagination (bullets)-->
+    <div class="swiper-pagination position-relative bottom-0 pt-4 mt-2 mt-md-3" id="testimonials-bullets"></div>
+    </div>
+
+    <!-- Gallery (Carousel)-->
+    <section class="bg-secondary py-5">
+      <div class="container pt-5 pb-lg-2 pb-xl-4 py-xxl-5">
+      
+        <!-- Page title-->
+        <h1 class="display-2">聯絡我們</h1>
+        <p class="fs-lg pb-4 mb-2 mb-sm-3">歡迎透過下方資訊找到我們!</p>
+        <!-- Details cards-->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-4 pb-2 pb-sm-4 pb-lg-5">
+          <!-- Address-->
+          <div class="col">
+            <div class="card border-0 h-100">
+              <div class="card-body">
+                <h4 class="card-title mb-4">Address</h4>
+                <p class="fs-lg fw-medium pb-3 mb-3">320桃園市中壢區復興路46號9樓</p>
+              </div>
+            </div>
+          </div>
+          <!-- Phone-->
+          <div class="col">
+            <div class="card border-0 h-100">
+              <div class="card-body">
+                <h4 class="card-title mb-4">Phone</h4>
+                <ul class="list-unstyled mb-0">
+                  <li class="pb-1 mb-2"><span class="d-block fs-sm text-muted mb-1">Main office</span><a class="nav-link fs-lg p-0" href="tel:+178632256033">+1 (786) 322 560 33</a></li>
+                  <li><span class="d-block fs-sm text-muted mb-1">Reception room</span><a class="nav-link fs-lg p-0" href="tel:+178630056044">+1 (786) 300 560 44</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Schedule-->
+          <div class="col">
+            <div class="card border-0 h-100">
+              <div class="card-body">
+                <h4 class="card-title mb-4">Schedule</h4>
+                <ul class="list-unstyled mb-0">
+                  <li class="pb-1 mb-2"><span class="d-block fs-sm text-muted mb-1">Mon - Thu</span>
+                    <div class="d-flex align-items-center"><span class="text-nav fs-lg fw-medium">10:00</span><span class="border-top mx-4" style="width: 36px; height: 1px;"></span><span class="text-nav fs-lg fw-medium">22:00</span></div>
+                  </li>
+                  <li><span class="d-block fs-sm text-muted mb-1">Fri - Sat</span>
+                    <div class="d-flex align-items-center"><span class="text-nav fs-lg fw-medium">10:00</span><span class="border-top mx-4" style="width: 36px; height: 1px;"></span><span class="text-nav fs-lg fw-medium">20:00</span></div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Email-->
+          <div class="col">
+            <div class="card border-0 h-100">
+              <div class="card-body">
+                <h4 class="card-title mb-4">Email</h4>
+                <ul class="list-unstyled mb-0">
+                  <li class="pb-1 mb-2"><span class="d-block fs-sm text-muted mb-1">Main office</span><a class="nav-link fs-lg p-0" href="mailto:office@example.com">office@example.com</a></li>
+                  <li><span class="d-block fs-sm text-muted mb-1">Reception room</span><a class="nav-link fs-lg p-0" href="mailto:reception@example.com">reception@example.com</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="height: 250px;"></div>
+    </section>
+  </main>
+  <!-- Footer-->
+  <footer class="footer py-5">
+    <div class="container pt-md-2 pt-lg-3 pt-xl-4">
+      <div class="row pb-5 pt-sm-2 mb-lg-2">
+        <div class="col-md-12 col-lg-3 pb-2 pb-lg-0 mb-4 mb-lg-0"><a class="navbar-brand py-0 mb-3 mb-lg-4"
+            href="index.html"><span class="text-primary flex-shrink-0 me-2">
+              <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor"
+                  d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                </path>
+              </svg></span><span class="text-nav">EZDOM 一起動~</span></a>
+          <p class="fs-sm pb-2 pb-lg-3 mb-3">還在等什麼，趕快加入一起DOM!</p>
+
+
+          <div class="d-flex"><a class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle me-3" href="#"><i
+                class="ai-facebook"></i></a><a
+              class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle me-3" href="#"><i
+                class="ai-instagram"></i></a><a class="btn btn-icon btn-sm btn-secondary btn-linkedin rounded-circle"
+              href="#"><i class="ai-linkedin"></i></a></div>
+        </div>
+        <div class="col-sm-3 col-lg-2 offset-xl-1 mb-4 mb-sm-0">
+          <ul class="nav flex-column">
+            <li><a class="nav-link py-1 px-0" href="#">關於我們</a></li>
+            <li><a class="nav-link py-1 px-0" href="#">FAQ</a></li>
+            <li><a class="nav-link py-1 px-0" href="#">揪團</a></li>
+            <li><a class="nav-link py-1 px-0" href="#">商城</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-4 col-lg-2 mb-4 mb-sm-0">
+          <ul class="nav flex-column">
+            <li><a class="nav-link py-1 px-0" href="#">聯絡我們</a></li>
+            <li><a class="nav-link py-1 px-0" href="mailto:contact@example.com">EZDOM@email.com</a></li>
+            <li><a class="nav-link py-1 px-0" href="tel:+15262200459">+1 526 220 0459</a></li>
+            <li><a class="nav-link py-1 px-0" href="tel:+15262200444">+1 526 220 0444</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-5 col-lg-4 col-xl-3 offset-lg-1">
+          <h3 class="h6 mb-2">Stay up to date</h3>
+          <p class="fs-sm">Subscribe to our news and case studies</p>
+          <div class="input-group input-group-sm">
+            <input class="form-control" type="text" placeholder="Your email">
+            <button class="btn btn-primary" type="button">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <p class="fs-sm mb-0"><span class="opacity-70">&copy; All rights reserved. Made by </span><a
+          class="nav-link d-inline fw-normal p-0" href="https://createx.studio/" target="_blank" rel="noopener">Createx
+          Studio</a></p>
+    </div>
+  </footer>
+
+  <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll>
+    <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10">
+      </circle>
+    </svg><i class="ai-arrow-up"></i></a>
+  <!-- Vendor scripts: js libraries and plugins-->
+  <script src="frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="frontendshop/assets/vendor/jarallax/dist/jarallax.min.js"></script>
+  <script src="frontendshop/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="frontendshop/assets/vendor/lightgallery/lightgallery.min.js"></script>
+  <script src="frontendshop/assets/vendor/lightgallery/plugins/fullscreen/lg-fullscreen.min.js"></script>
+  <script src="frontendshop/assets/vendor/lightgallery/plugins/zoom/lg-zoom.min.js"></script>
+  <!-- Main theme script-->
+  <script src="frontendshop/assets/js/theme.min.js"></script>
+</body>
+
+</html>
