@@ -29,8 +29,8 @@ public class CoachMessageController{
 
 		@PutMapping("/update/{messageId}")
 		public CoachMessageVO update(@PathVariable Integer messageId,
-									 @RequestBody CoachMessageVO updateMessage){
-			return coachMessageService.updateMessage(messageId, updateMessage);
+									 @RequestBody String content){
+			return coachMessageService.updateMessage(messageId, content);
 		}
 
 		@GetMapping("/{coachId}")

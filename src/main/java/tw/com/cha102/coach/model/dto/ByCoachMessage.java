@@ -22,4 +22,6 @@ public interface ByCoachMessage {
     byte[] getMemberPicture();
 
     Integer getMemberId();
+
+    String getNickname();
 }
