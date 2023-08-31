@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Around | Account - Orders</title>
+  <!-- SEO Meta Tags-->
+  <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
+  <meta name="keywords"
+        content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, dark mode, html5, css3, javascript, gallery, slider, touch, creative">
+  <meta name="author" content="Createx Studio">
+  <!-- Viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Favicon and Touch Icons-->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  <link rel="mask-icon" color="#6366f1" href="assets/favicon/safari-pinned-tab.svg">
+  <meta name="msapplication-TileColor" content="#080032">
+  <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+  <meta name="theme-color" content="white">
+  <!-- Theme mode-->
+  <script>
+    let mode = window.localStorage.getItem('mode'),
+      root = document.getElementsByTagName('html')[0];
+    if (mode !== undefined && mode === 'dark') {
+      root.classList.add('dark-mode');
+    } else {
+      root.classList.remove('dark-mode');
+    }
+
+
+  </script>
+  <!-- Page loading styles-->
+  <style>
+    .page-loading {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: all .4s .2s ease-in-out;
+      transition: all .4s .2s ease-in-out;
+      background-color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9999;
+    }
+
+    .dark-mode .page-loading {
+      background-color: #121519;
+    }
+
+    .page-loading.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-loading-inner {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: opacity .2s ease-in-out;
+      transition: opacity .2s ease-in-out;
+      opacity: 0;
+    }
+
+    .page-loading.active>.page-loading-inner {
+      opacity: 1;
+    }
+
+    .page-loading-inner>span {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #6f788b;
+    }
+
+    .dark-mode .page-loading-inner>span {
+      color: #fff;
+      opacity: .6;
+    }
+
+    .page-spinner {
+      display: inline-block;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: .75rem;
+      vertical-align: text-bottom;
+      background-color: #d7dde2;
+      border-radius: 50%;
+      opacity: 0;
+      -webkit-animation: spinner .75s linear infinite;
+      animation: spinner .75s linear infinite;
+    }
+
+    .dark-mode .page-spinner {
+      background-color: rgba(255, 255, 255, .25);
+    }
+
+    @-webkit-keyframes spinner {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+
+      50% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+
+    @keyframes spinner {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+
+      50% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+  </style>
+  <!-- Page loading scripts-->
+  <script>
+    (function () {
+      window.onload = function () {
+        const preloader = document.querySelector('.page-loading');
+        preloader.classList.remove('active');
+        setTimeout(function () {
+          preloader.remove();
+        }, 1500);
+      };
+    })();
+
+  </script>
+  <!-- Import Google Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"
+        id="google-font">
+  <!-- Vendor styles-->
+  <!-- Main Theme Styles + Bootstrap-->
+  <link rel="stylesheet" media="screen" href="assets/css/theme.min.css">
+  <!-- 引入 SweetAlert2 的 CSS 文件 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+</head>
+<!-- Body-->
+
+<body class="bg-secondary">
+<!-- Page loading spinner-->
+<div class="page-loading active">
+  <div class="page-loading-inner">
+    <div class="page-spinner"></div><span>Loading...</span>
+  </div>
+</div>
+<!-- Page wrapper-->
+<main class="page-wrapper">
+  <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
+  <header class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode">
+    <div class="container"><a class="navbar-brand pe-sm-3" href="ezdomindex.html"><span
+            class="text-primary flex-shrink-0 me-2">
+            <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor"
+                    d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+              </path>
+            </svg></span>EZ-DOM</a>
+      <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+        <input class="form-check-input" type="checkbox" id="theme-mode">
+        <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
+        <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
+      </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+               href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
+               rel="noopener">登入/註冊</a>
+      <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
+              class="navbar-toggler-icon"></span></button>
+      <nav class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                           data-bs-auto-close="outside" aria-expanded="false">揪團 Group</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">揪團列表</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">My揪團</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">開團管理</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                           data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="shop-catalog.html"
+                                      data-bs-toggle="dropdown" aria-expanded="false">瀏覽商品</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">購物車</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">管理我的訂單</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                           data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">瀏覽論壇</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">論壇管理</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                           data-bs-auto-close="outside" aria-expanded="false">預約 Reserve</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">預約管理</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">瀏覽教練</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">時段管理</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">項目管理</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">自我介紹管理</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                           data-bs-auto-close="outside" aria-expanded="false">會員中心 Member</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">我的頁面</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">好友管理</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">收藏文章</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">收藏商品</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">個人設定</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">聊天室</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                           data-bs-auto-close="outside" aria-expanded="false">聯絡客服 Help</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- Page content-->
+  <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
+    <div class="row pt-sm-2 pt-lg-0">
+      <!-- Sidebar (offcanvas on sreens < 992px)-->
+      <aside class="col-lg-3 pe-lg-4 pe-xl-5 mt-n3">
+        <div class="position-lg-sticky top-0">
+          <div class="d-none d-lg-block" style="padding-top: 105px;"></div>
+          <div class="offcanvas-lg offcanvas-start" id="sidebarAccount">
+            <button class="btn-close position-absolute top-0 end-0 mt-3 me-3 d-lg-none" type="button"
+                    data-bs-dismiss="offcanvas" data-bs-target="#sidebarAccount"></button>
+            <div class="offcanvas-body">
+              <div class="pb-2 pb-lg-0 mb-4 mb-lg-5"><img class="d-block rounded-circle mb-2"
+                                                          src="assets/img/avatar/02.jpg" width="80" alt="Isabella Bocouse">
+                <h3 class="h5 mb-1">Isabella Bocouse</h3>
+                <p class="fs-sm text-muted mb-0">bocouse@example.com</p>
+              </div>
+              <nav class="nav flex-column pb-2 pb-lg-4 mb-3">
+                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">會員</h4><a
+                      class="nav-link fw-semibold py-2 px-0 active" href="account-overview.html"><i
+                      class="ai-user-check fs-5 opacity-60 me-2"></i>個人資料</a><a class="nav-link fw-semibold py-2 px-0"
+                                                                                    href="friend-management.html"><i class="ai-user-group fs-5 opacity-60 me-2"></i>好友管理</a><a
+                      class="nav-link fw-semibold py-2 px-0" href="account-settings.html"><i
+                      class="ai-settings fs-5 opacity-60 me-2"></i>設定</a><a class="nav-link fw-semibold py-2 px-0"
+                                                                              href="account-billing.html"><i class="ai-wallet fs-5 opacity-60 me-2"></i>付款方式</a>
+              </nav>
+              <nav class="nav flex-column pb-2 pb-lg-4 mb-1">
+                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">功能專區</h4><a
+                      class="nav-link fw-semibold py-2 px-0" href="account-orders.html"><i
+                      class="ai-cart fs-5 opacity-60 me-2"></i>訂單</a><a class="nav-link fw-semibold py-2 px-0"
+                                                                          href="account-chat.html"><i class="ai-messages fs-5 opacity-60 me-2"></i>聊天室<span
+                      class="badge bg-danger ms-auto">4</span></a><a class="nav-link fw-semibold py-2 px-0"
+                                                                     href="account-favorites.html"><i class="ai-heart fs-5 opacity-60 me-2"></i>我的最愛</a>
+              </nav>
+              <nav class="nav flex-column"><a class="nav-link fw-semibold py-2 px-0" href="account-signin.html"><i
+                      class="ai-logout fs-5 opacity-60 me-2"></i>登出</a></nav>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <!-- Page content-->
+      <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
+        <div class="d-flex align-items-center mb-4">
+          <h1 class="h2 mb-0">商城訂單</h1>
+        </div>
+        <div class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4">
+          <div class="card-body pb-4">
+            <!-- Orders accordion-->
+            <div class="col-sm-4">
+              <label for="orderStatus" class="form-label"><strong>商品狀態</strong></label>
+              <select style="margin-bottom: 20px;" class="form-select" id="orderStatus" onchange="orderRenew(1)">
+                <option value="0">訂單待出貨</option>
+                <option value="1">訂單已出貨</option>
+                <option value="2">訂單已完成</option>
+                <option value="3">訂單退貨中</option>
+                <option value="4">訂單已退貨</option>
+              </select>
+            </div>
+            <div class="accordion accordion-alt accordion-orders" id="orders">
+            </div>
+            <!-- Pagination-->
+            <div class="d-sm-flex align-items-center pt-4 pt-sm-5">
+              <nav class="order-sm-2 ms-sm-auto mb-4 mb-sm-0" aria-label="Orders pagination">
+                <ul id="orderPage" class="pagination pagination-sm justify-content-center">
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Divider for dark mode only-->
+  <hr class="d-none d-dark-mode-block">
+  <!-- Sidebar toggle button-->
+  <button class="d-lg-none btn btn-sm fs-sm btn-primary w-100 rounded-0 fixed-bottom" data-bs-toggle="offcanvas"
+          data-bs-target="#sidebarAccount"><i class="ai-menu me-2"></i>Account menu</button>
+</main>
+<!-- Footer-->
+<footer class="footer bg-secondary py-5">
+  <div class="container pt-1 pt-sm-2 pt-md-3 pt-lg-4 pt-xl-5">
+    <div class="border-bottom text-center pb-4"><a class="navbar-brand d-inline-flex text-nav py-0 mb-3 mb-md-4"
+                                                   href="index.html"><span class="text-primary flex-shrink-0 me-2">
+            <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor"
+                    d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+              </path>
+            </svg></span><span>EZ-DOM</span></a>
+      <ul class="nav justify-content-center py-1 pb-sm-2">
+        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Classes</a></li>
+        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Trainers</a></li>
+        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Schedule</a></li>
+        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="d-sm-flex align-items-center justify-content-between pt-4 mt-2 mt-sm-0">
+      <div class="d-flex justify-content-center order-sm-2 mb-4 mb-sm-0"><a
+              class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle me-3" href="#"><i
+              class="ai-instagram"></i></a><a class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle me-3"
+                                              href="#"><i class="ai-facebook"></i></a><a
+              class="btn btn-icon btn-sm btn-secondary btn-youtube rounded-circle" href="#"><i class="ai-youtube"></i></a>
+      </div>
+      <p class="fs-sm order-sm-1 text-center mb-0"><span class="opacity-70">&copy; All rights reserved. Made by
+          </span><a class="nav-link d-inline fw-normal p-0" href="https://createx.studio/" target="_blank"
+                    rel="noopener">Createx Studio</a></p>
+    </div>
+  </div>
+</footer>
+<!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll>
+  <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10">
+    </circle>
+  </svg><i class="ai-arrow-up"></i></a>
+<!-- Vendor scripts: js libraries and plugins-->
+<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<!-- Main theme script-->
+<script src="assets/js/theme.min.js"></script>
+<!-- 引入 SweetAlert2 的 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+<script>
+  //進頁面刷新訂單(未出貨)
+  let orderStatus = document.getElementById("orderStatus");
+  function orderRenew(value) {
+    let statusValue = parseInt(orderStatus.value);
+    let orders = document.getElementById("orders");
+    fetch(`http://localhost:8080/ezdom/oredr/limit3/${value}/${statusValue}`)
+      .then(resp => resp.json())
+      .then(body => {
+        if (statusValue == 0) {
+          let html = "";
+          for (let list of body) {
+            let { orderId, orderDate, recipientName, totalPrice, pointApplied, actualAmount, backPoints, shippingAddress, paymentMethod, orderDetailVOs } = list;
+            if (paymentMethod == 0) {
+              paymentMethod = "信用卡";
+            } else {
+              paymentMethod = "貨到付款";
+            }
+            html += `
+            <div class="accordion-item border-top mb-0">
+              <div class="accordion-header"><a class="accordion-button d-flex fs-4 fw-normal text-decoration-none py-3 collapsed" href="#orderOne" data-bs-toggle="collapse" aria-expanded="false" aria-controls="orderOne">
+                  <div class="d-flex justify-content-between w-100" style="max-width: 700px;">
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted">#${orderId}</div><span class="badge bg-faded-info text-info fs-xs">待出貨</span>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="d-none d-sm-block fs-sm text-muted mb-2">訂單日期</div>
+                      <div class="d-sm-none fs-sm text-muted mb-2">Date</div>
+                      <div class="fs-sm fw-medium text-dark">${orderDate}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">訂單總額</div>
+                      <div class="fs-sm fw-medium text-dark">$${totalPrice}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">積分折抵</div>
+                      <div class="fs-sm fw-medium text-dark">$${pointApplied}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">實付金額</div>
+                      <div class="fs-sm fw-medium text-dark">$${actualAmount}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">回饋積分</div>
+                      <div class="fs-sm fw-medium text-dark">$${backPoints}</div>
+                    </div>
+                  </div>
+                  <div class="accordion-button-img d-none d-sm-flex ms-auto">
+                    <div class="mx-1"></div>
+                  </div></a></div>
+              <div class="accordion-collapse collapse" id="orderOne" data-bs-parent="#orders">
+                <div class="accordion-body">
+                  <div class="table-responsive pt-1">
+                    <table class="table align-middle w-100" style="min-width: 450px;">
+            `;
+            for (let orderDetailVO of orderDetailVOs) {
+              let { productPrice, quantity, productTotalPrice, productVO, productId } = orderDetailVO;
+              let { productImage, productName } = productVO;
+              html += `
+                <tr>
+                  <td class="border-0 py-1 px-0">
+                    <div class="d-flex align-items-center"><a class="d-inline-block flex-shrink-0 bg-secondary rounded-1 p-md-2 p-lg-3" href="shop-single.html?productId=${productId}"><img src="data:image/jpeg;base64,${productImage}" width="110" alt="Product"></a>
+                      <div class="ps-3 ps-sm-4">
+                        <h4 class="h6 mb-2"><a href="shop-single.html?productId=${productId}">${productName}</a></h4>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
+                    <div class="fs-sm text-muted mb-2">數量</div>
+                    <div class="fs-sm fw-medium text-dark">${quantity}</div>
+                  </td>
+                  <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
+                    <div class="fs-sm text-muted mb-2">單價</div>
+                    <div class="fs-sm fw-medium text-dark">$${productPrice}</div>
+                  </td>
+                  <td class="border-0 text-end py-1 pe-0 ps-3 ps-sm-4">
+                    <div class="fs-sm text-muted mb-2">總額</div>
+                    <div class="fs-sm fw-medium text-dark">$${productTotalPrice}</div>
+                  </td>
+                </tr>
+              `;
+            }
+            html += `
+            </table>
+                </div>
+                  <div class="bg-secondary rounded-1 p-4 my-2">
+                    <div class="row">
+                      <div class="col-sm-5 col-md-3 col-lg-4 mb-3 mb-md-0">
+                        <div class="fs-sm fw-medium text-dark mb-1">付款方式:</div>
+                        <div class="fs-sm">${paymentMethod}</div>
+                      </div>
+                      <div class="col-sm-7 col-md-5 mb-4 mb-md-0">
+                        <div class="fs-sm fw-medium text-dark mb-1">收件人姓名:</div>
+                        <div class="fs-sm">${recipientName}</div>
+                        <br>
+                        <div class="fs-sm fw-medium text-dark mb-1">送貨地址:</div>
+                        <div class="fs-sm">${shippingAddress}</div>
+                      </div>
+                      <div class="col-md-4 col-lg-3 text-md-end">
+                        <button class="btn btn-sm btn-primary w-100 w-md-auto" type="button" onclick="ship(${orderId})" ><i class="ai-star me-2 ms-n1"></i>訂單退貨</button>
+                        <br>
+                        <br>
+                        <button class="btn btn-sm btn-primary w-100 w-md-auto" type="button" disabled><i class="ai-star me-2 ms-n1"></i>完成訂單</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            `;
+          }
+          orders.innerHTML = html;
+          sortPage(statusValue);
+        } else if (statusValue == 1) {
+          let html = "";
+          for (let list of body) {
+            let { orderId, orderDate, recipientName, totalPrice, pointApplied, actualAmount, backPoints, shippingAddress, paymentMethod, orderDetailVOs } = list;
+            if (paymentMethod == 0) {
+              paymentMethod = "信用卡";
+            } else {
+              paymentMethod = "貨到付款";
+            }
+            html += `
+            <div class="accordion-item border-top mb-0">
+              <div class="accordion-header"><a class="accordion-button d-flex fs-4 fw-normal text-decoration-none py-3 collapsed" href="#orderOne" data-bs-toggle="collapse" aria-expanded="false" aria-controls="orderOne">
+                  <div class="d-flex justify-content-between w-100" style="max-width: 700px;">
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted">#${orderId}</div><span class="badge bg-faded-info text-info fs-xs">配送中</span>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="d-none d-sm-block fs-sm text-muted mb-2">訂單日期</div>
+                      <div class="d-sm-none fs-sm text-muted mb-2">Date</div>
+                      <div class="fs-sm fw-medium text-dark">${orderDate}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">訂單總額</div>
+                      <div class="fs-sm fw-medium text-dark">$${totalPrice}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">積分折抵</div>
+                      <div class="fs-sm fw-medium text-dark">$${pointApplied}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">實付金額</div>
+                      <div class="fs-sm fw-medium text-dark">$${actualAmount}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">回饋積分</div>
+                      <div class="fs-sm fw-medium text-dark">$${backPoints}</div>
+                    </div>
+                  </div>
+                  <div class="accordion-button-img d-none d-sm-flex ms-auto">
+                    <div class="mx-1"></div>
+                  </div></a></div>
+              <div class="accordion-collapse collapse" id="orderOne" data-bs-parent="#orders">
+                <div class="accordion-body">
+                  <div class="table-responsive pt-1">
+                    <table class="table align-middle w-100" style="min-width: 450px;">
+            `;
+            for (let orderDetailVO of orderDetailVOs) {
+              let { productPrice, quantity, productTotalPrice, productVO, productId } = orderDetailVO;
+              let { productImage, productName } = productVO;
+              html += `
+                <tr>
+                  <td class="border-0 py-1 px-0">
+                    <div class="d-flex align-items-center"><a class="d-inline-block flex-shrink-0 bg-secondary rounded-1 p-md-2 p-lg-3" href="shop-single.html?productId=${productId}"><img src="data:image/jpeg;base64,${productImage}" width="110" alt="Product"></a>
+                      <div class="ps-3 ps-sm-4">
+                        <h4 class="h6 mb-2"><a href="shop-single.html?productId=${productId}">${productName}</a></h4>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
+                    <div class="fs-sm text-muted mb-2">數量</div>
+                    <div class="fs-sm fw-medium text-dark">${quantity}</div>
+                  </td>
+                  <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
+                    <div class="fs-sm text-muted mb-2">單價</div>
+                    <div class="fs-sm fw-medium text-dark">$${productPrice}</div>
+                  </td>
+                  <td class="border-0 text-end py-1 pe-0 ps-3 ps-sm-4">
+                    <div class="fs-sm text-muted mb-2">總額</div>
+                    <div class="fs-sm fw-medium text-dark">$${productTotalPrice}</div>
+                  </td>
+                </tr>
+              `;
+            }
+            html += `
+            </table>
+                </div>
+                  <div class="bg-secondary rounded-1 p-4 my-2">
+                    <div class="row">
+                      <div class="col-sm-5 col-md-3 col-lg-4 mb-3 mb-md-0">
+                        <div class="fs-sm fw-medium text-dark mb-1">付款方式:</div>
+                        <div class="fs-sm">${paymentMethod}</div>
+                      </div>
+                      <div class="col-sm-7 col-md-5 mb-4 mb-md-0">
+                        <div class="fs-sm fw-medium text-dark mb-1">收件人姓名:</div>
+                        <div class="fs-sm">${recipientName}</div>
+                        <br>
+                        <div class="fs-sm fw-medium text-dark mb-1">送貨地址:</div>
+                        <div class="fs-sm">${shippingAddress}</div>
+                      </div>
+                      <div class="col-md-4 col-lg-3 text-md-end">
+                        <button class="btn btn-sm btn-primary w-100 w-md-auto" type="button" onclick="ship(${orderId})" ><i class="ai-star me-2 ms-n1"></i>訂單退貨</button>
+                        <br>
+                        <br>
+                        <button class="btn btn-sm btn-primary w-100 w-md-auto" type="button" onclick="confirmOrder(${orderId});"><i class="ai-star me-2 ms-n1"></i>完成訂單</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            `;
+          }
+          orders.innerHTML = html;
+          sortPage(statusValue);
+        } else if (statusValue == 2) {
+          let html = "";
+          for (let list of body) {
+            let { orderId, orderDate, recipientName, totalPrice, pointApplied, actualAmount, backPoints, shippingAddress, paymentMethod, orderDetailVOs } = list;
+            if (paymentMethod == 0) {
+              paymentMethod = "信用卡";
+            } else {
+              paymentMethod = "貨到付款";
+            }
+            html += `
+            <div class="accordion-item border-top mb-0">
+              <div class="accordion-header"><a class="accordion-button d-flex fs-4 fw-normal text-decoration-none py-3 collapsed" href="#orderOne" data-bs-toggle="collapse" aria-expanded="false" aria-controls="orderOne">
+                  <div class="d-flex justify-content-between w-100" style="max-width: 700px;">
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted">#${orderId}</div><span class="badge bg-faded-info text-info fs-xs">訂單已完成</span>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="d-none d-sm-block fs-sm text-muted mb-2">訂單日期</div>
+                      <div class="d-sm-none fs-sm text-muted mb-2">Date</div>
+                      <div class="fs-sm fw-medium text-dark">${orderDate}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">訂單總額</div>
+                      <div class="fs-sm fw-medium text-dark">$${totalPrice}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">積分折抵</div>
+                      <div class="fs-sm fw-medium text-dark">$${pointApplied}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">實付金額</div>
+                      <div class="fs-sm fw-medium text-dark">$${actualAmount}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">回饋積分</div>
+                      <div class="fs-sm fw-medium text-dark">$${backPoints}</div>
+                    </div>
+                  </div>
+                  <div class="accordion-button-img d-none d-sm-flex ms-auto">
+                    <div class="mx-1"></div>
+                  </div></a></div>
+              <div class="accordion-collapse collapse" id="orderOne" data-bs-parent="#orders">
+                <div class="accordion-body">
+                  <div class="table-responsive pt-1">
+                    <table class="table align-middle w-100" style="min-width: 450px;">
+            `;
+            for (let orderDetailVO of orderDetailVOs) {
+              let { productPrice, quantity, productTotalPrice, productVO, productId } = orderDetailVO;
+              let { productImage, productName } = productVO;
+              html += `
+                <tr>
+                  <td class="border-0 py-1 px-0">
+                    <div class="d-flex align-items-center"><a class="d-inline-block flex-shrink-0 bg-secondary rounded-1 p-md-2 p-lg-3" href="shop-single.html?productId=${productId}"><img src="data:image/jpeg;base64,${productImage}" width="110" alt="Product"></a>
+                      <div class="ps-3 ps-sm-4">
+                        <h4 class="h6 mb-2"><a href="shop-single.html?productId=${productId}">${productName}</a></h4>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
+                    <div class="fs-sm text-muted mb-2">數量</div>
+                    <div class="fs-sm fw-medium text-dark">${quantity}</div>
+                  </td>
+                  <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
+                    <div class="fs-sm text-muted mb-2">單價</div>
+                    <div class="fs-sm fw-medium text-dark">$${productPrice}</div>
+                  </td>
+                  <td class="border-0 text-end py-1 pe-0 ps-3 ps-sm-4">
+                    <div class="fs-sm text-muted mb-2">總額</div>
+                    <div class="fs-sm fw-medium text-dark">$${productTotalPrice}</div>
+                  </td>
+                </tr>
+              `;
+            }
+            html += `
+            </table>
+                </div>
+                  <div class="bg-secondary rounded-1 p-4 my-2">
+                    <div class="row">
+                      <div class="col-sm-5 col-md-3 col-lg-4 mb-3 mb-md-0">
+                        <div class="fs-sm fw-medium text-dark mb-1">付款方式:</div>
+                        <div class="fs-sm">${paymentMethod}</div>
+                      </div>
+                      <div class="col-sm-7 col-md-5 mb-4 mb-md-0">
+                        <div class="fs-sm fw-medium text-dark mb-1">收件人姓名:</div>
+                        <div class="fs-sm">${recipientName}</div>
+                        <br>
+                        <div class="fs-sm fw-medium text-dark mb-1">送貨地址:</div>
+                        <div class="fs-sm">${shippingAddress}</div>
+                      </div>
+                      <div class="col-md-4 col-lg-3 text-md-end">
+                        <button class="btn btn-sm btn-primary w-100 w-md-auto" type="button" disabled ><i class="ai-star me-2 ms-n1"></i>訂單退貨</button>
+                        <br>
+                        <br>
+                        <button class="btn btn-sm btn-primary w-100 w-md-auto" type="button" disabled ><i class="ai-star me-2 ms-n1"></i>完成訂單</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            `;
+          }
+          orders.innerHTML = html;
+          sortPage(statusValue);
+        } else if (statusValue == 3) {
+          let html = "";
+          for (let list of body) {
+            let { orderId, orderDate, recipientName, totalPrice, pointApplied, actualAmount, backPoints, shippingAddress, paymentMethod, orderDetailVOs } = list;
+            if (paymentMethod == 0) {
+              paymentMethod = "信用卡";
+            } else {
+              paymentMethod = "貨到付款";
+            }
+            html += `
+            <div class="accordion-item border-top mb-0">
+              <div class="accordion-header"><a class="accordion-button d-flex fs-4 fw-normal text-decoration-none py-3 collapsed" href="#orderOne" data-bs-toggle="collapse" aria-expanded="false" aria-controls="orderOne">
+                  <div class="d-flex justify-content-between w-100" style="max-width: 700px;">
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted">#${orderId}</div><span class="badge bg-faded-danger text-danger fs-xs">訂單待退中</span>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="d-none d-sm-block fs-sm text-muted mb-2">訂單日期</div>
+                      <div class="d-sm-none fs-sm text-muted mb-2">Date</div>
+                      <div class="fs-sm fw-medium text-dark">${orderDate}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">訂單總額</div>
+                      <div class="fs-sm fw-medium text-dark">$${totalPrice}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">積分折抵</div>
+                      <div class="fs-sm fw-medium text-dark">$${pointApplied}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">實付金額</div>
+                      <div class="fs-sm fw-medium text-dark">$${actualAmount}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">回饋積分</div>
+                      <div class="fs-sm fw-medium text-dark">$${backPoints}</div>
+                    </div>
+                  </div>
+                  <div class="accordion-button-img d-none d-sm-flex ms-auto">
+                    <div class="mx-1"></div>
+                  </div></a></div>
+              <div class="accordion-collapse collapse" id="orderOne" data-bs-parent="#orders">
+                <div class="accordion-body">
+                  <div class="table-responsive pt-1">
+                    <table class="table align-middle w-100" style="min-width: 450px;">
+            `;
+            for (let orderDetailVO of orderDetailVOs) {
+              let { productPrice, quantity, productTotalPrice, productVO, productId } = orderDetailVO;
+              let { productImage, productName } = productVO;
+              html += `
+                <tr>
+                  <td class="border-0 py-1 px-0">
+                    <div class="d-flex align-items-center"><a class="d-inline-block flex-shrink-0 bg-secondary rounded-1 p-md-2 p-lg-3" href="shop-single.html?productId=${productId}"><img src="data:image/jpeg;base64,${productImage}" width="110" alt="Product"></a>
+                      <div class="ps-3 ps-sm-4">
+                        <h4 class="h6 mb-2"><a href="shop-single.html?productId=${productId}">${productName}</a></h4>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
+                    <div class="fs-sm text-muted mb-2">數量</div>
+                    <div class="fs-sm fw-medium text-dark">${quantity}</div>
+                  </td>
+                  <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
+                    <div class="fs-sm text-muted mb-2">單價</div>
+                    <div class="fs-sm fw-medium text-dark">$${productPrice}</div>
+                  </td>
+                  <td class="border-0 text-end py-1 pe-0 ps-3 ps-sm-4">
+                    <div class="fs-sm text-muted mb-2">總額</div>
+                    <div class="fs-sm fw-medium text-dark">$${productTotalPrice}</div>
+                  </td>
+                </tr>
+              `;
+            }
+            html += `
+            </table>
+                </div>
+                  <div class="bg-secondary rounded-1 p-4 my-2">
+                    <div class="row">
+                      <div class="col-sm-5 col-md-3 col-lg-4 mb-3 mb-md-0">
+                        <div class="fs-sm fw-medium text-dark mb-1">付款方式:</div>
+                        <div class="fs-sm">${paymentMethod}</div>
+                      </div>
+                      <div class="col-sm-7 col-md-5 mb-4 mb-md-0">
+                        <div class="fs-sm fw-medium text-dark mb-1">收件人姓名:</div>
+                        <div class="fs-sm">${recipientName}</div>
+                        <br>
+                        <div class="fs-sm fw-medium text-dark mb-1">送貨地址:</div>
+                        <div class="fs-sm">${shippingAddress}</div>
+                      </div>
+                      <div class="col-md-4 col-lg-3 text-md-end">
+                        <button class="btn btn-sm btn-primary w-100 w-md-auto" type="button" disabled ><i class="ai-star me-2 ms-n1" ></i>訂單退貨</button>
+                        <br>
+                        <br>
+                        <button class="btn btn-sm btn-primary w-100 w-md-auto" type="button" disabled ><i class="ai-star me-2 ms-n1"></i>完成訂單</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            `;
+          }
+          orders.innerHTML = html;
+          sortPage(statusValue);
+        } else if (statusValue == 4) {
+          let html = "";
+          for (let list of body) {
+            let { orderId, orderDate, recipientName, totalPrice, pointApplied, actualAmount, backPoints, shippingAddress, paymentMethod, orderDetailVOs } = list;
+            if (paymentMethod == 0) {
+              paymentMethod = "信用卡";
+            } else {
+              paymentMethod = "貨到付款";
+            }
+            html += `
+            <div class="accordion-item border-top mb-0">
+              <div class="accordion-header"><a class="accordion-button d-flex fs-4 fw-normal text-decoration-none py-3 collapsed" href="#orderOne" data-bs-toggle="collapse" aria-expanded="false" aria-controls="orderOne">
+                  <div class="d-flex justify-content-between w-100" style="max-width: 700px;">
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted">#${orderId}</div><span class="badge bg-faded-danger text-danger fs-xs">訂單退貨完成</span>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="d-none d-sm-block fs-sm text-muted mb-2">訂單日期</div>
+                      <div class="d-sm-none fs-sm text-muted mb-2">Date</div>
+                      <div class="fs-sm fw-medium text-dark">${orderDate}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">訂單總額</div>
+                      <div class="fs-sm fw-medium text-dark">$${totalPrice}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">積分折抵</div>
+                      <div class="fs-sm fw-medium text-dark">$${pointApplied}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">實付金額</div>
+                      <div class="fs-sm fw-medium text-dark">$${actualAmount}</div>
+                    </div>
+                    <div class="me-3 me-sm-4">
+                      <div class="fs-sm text-muted mb-2">回饋積分</div>
+                      <div class="fs-sm fw-medium text-dark">$${backPoints}</div>
+                    </div>
+                  </div>
+                  <div class="accordion-button-img d-none d-sm-flex ms-auto">
+                    <div class="mx-1"></div>
+                  </div></a></div>
+              <div class="accordion-collapse collapse" id="orderOne" data-bs-parent="#orders">
+                <div class="accordion-body">
+                  <div class="table-responsive pt-1">
+                    <table class="table align-middle w-100" style="min-width: 450px;">
+            `;
+            for (let orderDetailVO of orderDetailVOs) {
+              let { productPrice, quantity, productTotalPrice, productVO, productId } = orderDetailVO;
+              let { productImage, productName } = productVO;
+              html += `
+                <tr>
+                  <td class="border-0 py-1 px-0">
+                    <div class="d-flex align-items-center"><a class="d-inline-block flex-shrink-0 bg-secondary rounded-1 p-md-2 p-lg-3" href="shop-single.html?productId=${productId}"><img src="data:image/jpeg;base64,${productImage}" width="110" alt="Product"></a>
+                      <div class="ps-3 ps-sm-4">
+                        <h4 class="h6 mb-2"><a href="shop-single.html?productId=${productId}">${productName}</a></h4>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
+                    <div class="fs-sm text-muted mb-2">數量</div>
+                    <div class="fs-sm fw-medium text-dark">${quantity}</div>
+                  </td>
+                  <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
+                    <div class="fs-sm text-muted mb-2">單價</div>
+                    <div class="fs-sm fw-medium text-dark">$${productPrice}</div>
+                  </td>
+                  <td class="border-0 text-end py-1 pe-0 ps-3 ps-sm-4">
+                    <div class="fs-sm text-muted mb-2">總額</div>
+                    <div class="fs-sm fw-medium text-dark">$${productTotalPrice}</div>
+                  </td>
+                </tr>
+              `;
+            }
+            html += `
+            </table>
+                </div>
+                  <div class="bg-secondary rounded-1 p-4 my-2">
+                    <div class="row">
+                      <div class="col-sm-5 col-md-3 col-lg-4 mb-3 mb-md-0">
+                        <div class="fs-sm fw-medium text-dark mb-1">付款方式:</div>
+                        <div class="fs-sm">${paymentMethod}</div>
+                      </div>
+                      <div class="col-sm-7 col-md-5 mb-4 mb-md-0">
+                        <div class="fs-sm fw-medium text-dark mb-1">收件人姓名:</div>
+                        <div class="fs-sm">${recipientName}</div>
+                        <br>
+                        <div class="fs-sm fw-medium text-dark mb-1">送貨地址:</div>
+                        <div class="fs-sm">${shippingAddress}</div>
+                      </div>
+                      <div class="col-md-4 col-lg-3 text-md-end">
+                        <button class="btn btn-sm btn-primary w-100 w-md-auto" type="button" disabled ><i class="ai-star me-2 ms-n1" ></i>訂單退貨</button>
+                        <br>
+                        <br>
+                        <button class="btn btn-sm btn-primary w-100 w-md-auto" type="button" disabled ><i class="ai-star me-2 ms-n1"></i>完成訂單</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            `;
+          }
+          orders.innerHTML = html;
+          sortPage(statusValue);
+        }
+      })
+  }
+
+  //分頁
+  let orderPage = document.getElementById("orderPage")
+  function sortPage(statusValue) {
+    fetch(`http://localhost:8080/ezdom/oredr/sortPage?orderStatus=${statusValue}`)
+      .then(resp => resp.json())
+      .then(body => {
+        let count = Math.ceil(body / 3);
+        let html = "";
+        for (let i = 1; i <= count; i++) {
+          html += `
+        <li class="page-item"><a class="page-link" href="#" onclick="orderRenew(${i})">${i}</a></li>
+        `
+        }
+        orderPage.innerHTML = html;
+      })
+  }
+
+  //退貨按鈕
+  function ship(orderId) {
+    fetch(`http://localhost:8080/ezdom/oredr/return/${orderId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' }
+    }).then(resp => resp.json())
+      .then(body => {
+        const { successful, message } = body;
+        if (successful) {
+          Swal.fire({
+            icon: 'success',
+            title: '操作成功',
+            text: '已將訂單申請退貨',
+            confirmButtonText: '確定',
+            focusConfirm: true
+          })
+          orderRenew(1);
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: '操作失敗',
+            text: '請再次確認有無錯誤',
+            confirmButtonText: '確定',
+            focusConfirm: true
+          });
+        }
+      })
+  }
+
+  //訂單確認按鈕
+  function confirmOrder(orderId) {
+    fetch(`http://localhost:8080/ezdom/oredr/confirm/${orderId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' }
+    }).then(resp => resp.json())
+      .then(body => {
+        const { successful, message } = body;
+        if (successful) {
+          Swal.fire({
+            icon: 'success',
+            title: '操作成功',
+            text: '已完成訂單~~',
+            confirmButtonText: '確定',
+            focusConfirm: true
+          })
+          addPoints(orderId);
+          orderRenew(1);
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: '操作失敗',
+            text: '請再次確認有無錯誤',
+            confirmButtonText: '確定',
+            focusConfirm: true
+          });
+        }
+      })
+  }
+    //會員完成訂單 新增積分
+    function addPoints(orderId){
+      let memberId=1;
+      fetch(`http://localhost:8080/ezdom/oredr/addpoint/${memberId}/${orderId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    }
+
+
+
+  orderRenew(1);
+</script>
+</body>
+
+</html>
