@@ -23,6 +23,15 @@ public class GroupAdminService {
         return groupRepository.findByGroupStatus(1); // 1表示審核成功狀態
     }
 
+    public List<Group> getHotApprovedGroups() {
+        return groupRepository.findByGroupStatusAndRegisteredNumberIsGreaterThanEqual(1,10); // 1表示審核成功狀態
+    }
+
+    public List<Group> conditionApprovedGroups(String groupName) {
+        return groupRepository.findByGroupStatusAndGroupNameStartingWith(1,groupName); // 1表示審核成功狀態
+    }
+
+
     public List<Group> getAllGroups() {
         return (List<Group>) groupRepository.findAll();
     } //瀏覽揪團審核列表
@@ -44,5 +53,4 @@ public class GroupAdminService {
         }
     }
 }
-
 
