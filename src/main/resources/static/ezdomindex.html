@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>EZDOM | 一起動 !</title>
+  <!-- SEO Meta Tags-->
+  <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
+  <meta name="keywords"
+    content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, dark mode, html5, css3, javascript, gallery, slider, touch, creative">
+  <meta name="author" content="Createx Studio">
+  <!-- Viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Favicon and Touch Icons-->
+  <link rel="apple-touch-icon" sizes="180x180" href="frontendshop/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="frontendshop/assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="frontendshop/assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="frontendshop/assets/favicon/site.webmanifest">
+  <link rel="mask-icon" color="#6366f1" href="frontendshop/assets/favicon/safari-pinned-tab.svg">
+  <meta name="msapplication-TileColor" content="#080032">
+  <meta name="msapplication-config" content="frontendshop/assets/favicon/browserconfig.xml">
+  <meta name="theme-color" content="white">
+  <!-- Theme mode-->
+  <script>
+    let mode = window.localStorage.getItem('mode'),
+      root = document.getElementsByTagName('html')[0];
+    if (mode !== undefined && mode === 'dark') {
+      root.classList.add('dark-mode');
+    } else {
+      root.classList.remove('dark-mode');
+    }
+
+
+  </script>
+  <!-- Page loading styles-->
+  <style>
+    .page-loading {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: all .4s .2s ease-in-out;
+      transition: all .4s .2s ease-in-out;
+      background-color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9999;
+    }
+
+    .dark-mode .page-loading {
+      background-color: #121519;
+    }
+
+    .page-loading.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-loading-inner {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: opacity .2s ease-in-out;
+      transition: opacity .2s ease-in-out;
+      opacity: 0;
+    }
+
+    .page-loading.active>.page-loading-inner {
+      opacity: 1;
+    }
+
+    .page-loading-inner>span {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #6f788b;
+    }
+
+    .dark-mode .page-loading-inner>span {
+      color: #fff;
+      opacity: .6;
+    }
+
+    .page-spinner {
+      display: inline-block;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: .75rem;
+      vertical-align: text-bottom;
+      background-color: #d7dde2;
+      border-radius: 50%;
+      opacity: 0;
+      -webkit-animation: spinner .75s linear infinite;
+      animation: spinner .75s linear infinite;
+    }
+
+    .dark-mode .page-spinner {
+      background-color: rgba(255, 255, 255, .25);
+    }
+
+    @-webkit-keyframes spinner {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+
+      50% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+
+    @keyframes spinner {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+
+      50% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+  </style>
+  <!-- Page loading scripts-->
+  <script>
+    (function () {
+      window.onload = function () {
+        const preloader = document.querySelector('.page-loading');
+        preloader.classList.remove('active');
+        setTimeout(function () {
+          preloader.remove();
+        }, 1500);
+      };
+    })();
+
+  </script>
+  <!-- Import Google Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"
+    id="google-font">
+  <!-- Vendor styles-->
+  <link rel="stylesheet" media="screen" href="frontendshop/assets/vendor/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" media="screen" href="frontendshop/assets/vendor/lightgallery/css/lightgallery-bundle.min.css" />
+  <link rel="stylesheet" media="screen" href="frontendshop/assets/vendor/fullcalendar/main.min.css" />
+  <!-- Main Theme Styles + Bootstrap-->
+  <link rel="stylesheet" media="screen" href="frontendshop/assets/css/theme.min.css">
+</head>
+<!-- Body-->
+
+<body>
+  <!-- Page loading spinner-->
+  <div class="page-loading active">
+    <div class="page-loading-inner">
+      <div class="page-spinner"></div><span>Loading...</span>
+    </div>
+  </div>
+  <!-- 頁首-->
+  <main class="page-wrapper">
+    <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
+    <header class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode">
+      <div class="container"><a class="navbar-brand pe-sm-3" href="ezdomindex.html"><span
+            class="text-primary flex-shrink-0 me-2">
+            <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor"
+                d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+              </path>
+            </svg></span>EZ-DOM</a>
+        <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+          <input class="form-check-input" type="checkbox" id="theme-mode">
+          <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
+          <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
+        </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+          href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
+          rel="noopener">登入/註冊</a>
+        <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
+            class="navbar-toggler-icon"></span></button>
+        <nav class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">揪團 Group</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">揪團列表</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">My揪團</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">開團管理</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">瀏覽商品</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">購物車</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">管理我的訂單</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">瀏覽論壇</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">論壇管理</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">預約 Reserve</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">預約管理</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">瀏覽教練</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">時段管理</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">項目管理</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">自我介紹管理</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">會員中心 Member</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">我的頁面</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">好友管理</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">收藏文章</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">收藏商品</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">個人設定</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">聊天室</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">聯絡客服 Help</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- 頁首結束-->
+    <!-- 首頁輪播圖-->
+    <section class="ignore-dark-mode position-relative min-vh-100 py-5">
+      <!-- Background image slider-->
+      <div class="swiper swiper-scale-effect position-absolute top-0 start-0 w-100 h-100" data-swiper-options="{
+      &quot;effect&quot;: &quot;fade&quot;,
+      &quot;speed&quot;: 800,
+      &quot;autoplay&quot;: {
+        &quot;delay&quot;: 7000,
+        &quot;disableOnInteraction&quot;: false
+      },
+      &quot;pagination&quot;: {
+        &quot;el&quot;: &quot;.swiper-pagination&quot;,
+        &quot;clickable&quot;: true
+      }
+    }">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="swiper-slide-cover bg-position-top-center"
+              style="background-image: url(https://images.unsplash.com/photo-1577372570570-fe08f7adc27b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80);">
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="swiper-slide-cover bg-position-top-center"
+              style="background-image: url(assets/img/landing/yoga-studio/hero/ED02.jpg);"></div>
+          </div>
+          <div class="swiper-slide">
+            <div class="swiper-slide-cover bg-position-top-center"
+              style="background-image: url(assets/img/landing/yoga-studio/hero/ED03.jpg);"></div>
+          </div>
+        </div>
+        <div class="swiper-pagination mb-4"></div>
+      </div>
+      <!-- Content-->
+      <div class="container position-relative zindex-2 py-lg-3 py-xl-5 my-5">
+        <div class="row pt-md-3 py-xxl-5 my-5">
+          <div class="col py-5 mb-md-4 mb-lg-5">
+            <h1 class="display-1 text-uppercase mb-4" style="color: rgb(248, 248, 249);">EZ-DOM 一起動</h1>
+            <h2 class="d-block fs-xl pb-2 mb-4 mb-md-5" style="max-width: 500px ; color: rgb(220, 220, 224);">
+              踏出你的圈子，活出精彩！
+              <br>Step out of your comfort zone, live the EZ-DOM life!
+            </h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 首頁輪播圖 結束-->
+
+    <!-- 最新消息 開頭-->
+    <section class="pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
+      <div class="container pt-2 pt-sm-4 pt-lg-5 mt-md-3 mt-lg-0">
+          <div class="row pb-3 mb-3 mb-lg-4">
+              <div class="col-lg-11 d-sm-flex justify-content-between text-center text-sm-start">
+                  <h2 class="h1 mb-sm-0 mx-auto me-sm-4" style="max-width: 500px;">最新消息 | What’s NEWS</h2>
+                  <p class="pt-2 mb-0 mx-auto" style="max-width: 420px; font-size: 18px;">
+                      親愛的用戶們，請注意消息可能包含了重要的更新、通知或活動資訊。感謝您的支持與使用！</p>
+              </div>
+          </div>
+      </div>
+      <div class="container-start pe-0">
+          <div class="swiper" data-swiper-options="{
+  &quot;slidesPerView&quot;: &quot;auto&quot;,
+  &quot;spaceBetween&quot;: 24,
+  &quot;loop&quot;: true,
+  &quot;navigation&quot;: {
+    &quot;prevEl&quot;: &quot;#prev-feature&quot;,
+    &quot;nextEl&quot;: &quot;#next-feature&quot;
+  }
+}">
+              <div class="swiper-wrapper">
+                  <!-- Item-->
+                  <div class="swiper-slide w-auto h-auto">
+                      <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 540px;">
+                          <div
+                              class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5">
+                          </div>
+                          <div class="card-body text-center"
+                              style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                              <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                                  <path
+                                      d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z" />
+                              </svg>
+                              <h3 class="news-title">系統維修</h3>
+                              <p class="news-content">親愛的顧客您好：為提供更優質的服務，本行行動銀行視訊服務將於2023/07/17(一)
+                                  09:00起進行系統維護作業，「簡訊密碼設定」、「數位帳戶非約定轉帳限額變更」、「玉山銀行人臉辨識首次註冊」功能暫停使用，待系統完成更新將另行公告，造成您的不便，敬請見諒。
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Item-->
+                  <div class="swiper-slide w-auto h-auto">
+                      <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 540px;">
+                          <div
+                              class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5">
+                          </div>
+                          <div class="card-body text-center"
+                              style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                              <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                                  <path
+                                      d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z" />
+                              </svg>
+                              <h3 style="margin-top: 0;">系統維修</h3>
+                              <p class="card-text">親愛的顧客您好：
+                                  為提供更優質的服務，本行行動銀行視訊服務將於2023/07/17(一)
+                                  09:00起進行系統維護作業，「簡訊密碼設定」、「數位帳戶非約定轉帳限額變更」、「玉山銀行人臉辨識首次註冊」功能暫停使用，待系統完成更新將另行公告，造成您的不便，敬請見諒。
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Item-->
+                  <div class="swiper-slide w-auto h-auto">
+                      <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 540px;">
+                          <div
+                              class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5">
+                          </div>
+                          <div class="card-body text-center"
+                              style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                              <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                                  <path
+                                      d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z" />
+                              </svg>
+                              <h3 style="margin-top: 0;">系統維修</h3>
+                              <p class="card-text">親愛的顧客您好：
+                                  為提供更優質的服務，本行行動銀行視訊服務將於2023/07/17(一)
+                                  09:00起進行系統維護作業，「簡訊密碼設定」、「數位帳戶非約定轉帳限額變更」、「玉山銀行人臉辨識首次註冊」功能暫停使用，待系統完成更新將另行公告，造成您的不便，敬請見諒。
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Item-->
+                  <div class="swiper-slide w-auto h-auto">
+                      <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 540px;">
+                          <div
+                              class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5">
+                          </div>
+                          <div class="card-body text-center"
+                              style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                              <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                                  <path
+                                      d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z" />
+                              </svg>
+                              <h3 style="margin-top: 0;">系統維修</h3>
+                              <p class="card-text">親愛的顧客您好：
+                                  為提供更優質的服務，本行行動銀行視訊服務將於2023/07/17(一)
+                                  09:00起進行系統維護作業，「簡訊密碼設定」、「數位帳戶非約定轉帳限額變更」、「玉山銀行人臉辨識首次註冊」功能暫停使用，待系統完成更新將另行公告，造成您的不便，敬請見諒。
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+
+
+
+              </div>
+          
+          <!-- 最新消息輪播圖 按鈕-->
+          <div class="container d-flex justify-content-center justify-content-sm-end pt-3 mt-3 mt-lg-4">
+              <button class="btn btn-icon btn-sm btn-outline-primary rounded-circle me-3" type="button"
+                  id="prev-feature"><i class="ai-arrow-left"></i></button>
+              <button class="btn btn-icon btn-sm btn-outline-primary rounded-circle" type="button"
+                  id="next-feature"><i class="ai-arrow-right"></i></button>
+          </div>
+      </div>
+  </section>
+    <!-- 預約教練 開頭-->
+    <section class="container pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
+      <h2 class="h1 text-center pt-2 pt-sm-3">預約教練 | Personal Trainer</h2>
+      <p class="text-center pb-3 mb-3 mb-lg-4">啟動您的個人成長之旅 <br>Book a coach and embark on your journey of personal
+        growth.</p>
+      <!-- 預約上面的按鈕-->
+      <ul class="nav nav-tabs flex-nowrap overflow-auto text-nowrap w-100 mx-auto pb-3 mb-3 mb-lg-4" role="tablist"
+        style="max-width: 892px;">
+        <li class="nav-item mb-0"><a class="nav-link active" href="#beginners" data-bs-toggle="tab" role="tab">個人訓練</a>
+        </li>
+        <li class="nav-item mb-0"><a class="nav-link" href="#stretching" data-bs-toggle="tab" role="tab">球類運動</a></li>
+        <li class="nav-item mb-0"><a class="nav-link" href="#fly-yoga" data-bs-toggle="tab" role="tab">伸展放鬆</a></li>
+        <li class="nav-item mb-0"><a class="nav-link" href="#for-pregnant" data-bs-toggle="tab" role="tab">水上運動</a></li>
+        <li class="nav-item mb-0"><a class="nav-link" href="#healthy-back" data-bs-toggle="tab" role="tab">有氧運動</a></li>
+        <li class="nav-item mb-0"><a class="nav-link" href="#relax-yoga" data-bs-toggle="tab" role="tab">重量訓練</a></li>
+        <li class="nav-item mb-0"><a class="nav-link" href="#relax-yoga" data-bs-toggle="tab" role="tab">重量訓練</a></li>
+      </ul>
+      <!-- Tab content-->
+      <div class="tab-content">
+        <!-- 個人訓練-->
+        <div class="tab-pane fade show active" id="beginners" role="tabpanel">
+          <div class="row align-items-lg-center">
+            <div class="col-md-6 pb-4 pb-md-0 mb-2 mb-md-0"><img class="rounded-5"
+                src="frontendshop/assets/img/landing/yoga-studio/classes/beginners.jpg" alt="Beginners"></div>
+            <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1">
+              <div class="ps-md-4 ps-lg-0">
+                <h2 class="mb-xl-4" style="max-width: 500px;"> 個人訓練 <br> Personal Training</h2>
+                <p class="pb-3 mb-3 mb-xl-4">
+                  個人訓練是一對一的定制課程，專注於您的健身目標和需求。這種一對一的訓練可以根據您的健康狀況、體能水平和時間表來制定，確保您獲得最有效的指導和支持，實現健康的生活方式和運動目標。</p>
+                <div class="row row-cols-2 g-4 pb-2 pb-xl-0 mb-4 mb-xl-5">
+                  <div class="col"><i class="ai-spa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">增加安全性</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-towel d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">飲食建議</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-cafe d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">提高動力</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-sofa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">突破極限</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                </div><a class="btn btn-primary w-100 w-sm-auto" href="#">我要預約!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 球類運動-->
+        <div class="tab-pane fade" id="stretching" role="tabpanel">
+          <div class="row align-items-lg-center">
+            <div class="col-md-6 pb-4 pb-md-0 mb-2 mb-md-0"><img class="rounded-5"
+                src="frontendshop/assets/img/landing/yoga-studio/classes/stretching.jpg" alt="Stretching"></div>
+            <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1">
+              <div class="ps-md-4 ps-lg-0">
+                <h2 class="mb-xl-4">球類運動 <br>ball sports</h2>
+                <p class="pb-3 mb-3 mb-xl-4">
+                  想要擁有健康活力的生活嗎？想要培養出色的協調性和團隊合作能力嗎？球類運動是您實現這些目標的絕佳選擇！我們誠摯地邀請您參加我們精心設計的球類運動教學課程，為您打開通往健康和成功的大門。</p>
+                <div class="row row-cols-2 g-4 pb-2 pb-xl-0 mb-4 mb-xl-5">
+                  <div class="col"><i class="ai-sofa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">網球</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-spa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">羽毛球</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-cafe d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">排球</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-towel d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">桌球</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                </div><a class="btn btn-primary w-100 w-sm-auto" href="#">我要預約!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fly-yoga-->
+        <div class="tab-pane fade" id="fly-yoga" role="tabpanel">
+          <div class="row align-items-lg-center">
+            <div class="col-md-6 pb-4 pb-md-0 mb-2 mb-md-0"><img class="rounded-5"
+                src="frontendshop/assets/img/landing/yoga-studio/classes/fly-yoga.jpg" alt="Fly-yoga"></div>
+            <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1">
+              <div class="ps-md-4 ps-lg-0">
+                <h2 class="mb-xl-4">Fly-yoga</h2>
+                <p class="pb-3 mb-3 mb-xl-4">Varius purus dui nunc faucibus mauris iaculis tortor enim cursus quisque
+                  eu, vel amet massa suscipit cursus sit mattis quis magnis dignissim dui fames tortor amet quis.</p>
+                <div class="row row-cols-2 g-4 pb-2 pb-xl-0 mb-4 mb-xl-5">
+                  <div class="col"><i class="ai-towel d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Changing rooms</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-rug d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Free rugs</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-spa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Spa area</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-sofa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Bright halls</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                </div><a class="btn btn-primary w-100 w-sm-auto" href="#">我要預約!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- For pregnant-->
+        <div class="tab-pane fade" id="for-pregnant" role="tabpanel">
+          <div class="row align-items-lg-center">
+            <div class="col-md-6 pb-4 pb-md-0 mb-2 mb-md-0"><img class="rounded-5"
+                src="frontendshop/assets/img/landing/yoga-studio/classes/for-pregnant.jpg" alt="For pregnant"></div>
+            <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1">
+              <div class="ps-md-4 ps-lg-0">
+                <h2 class="mb-xl-4">For pregnant</h2>
+                <p class="pb-3 mb-3 mb-xl-4">At duis est ante tortor, dictum dictumst nisl erat. Tellus erat pharetra
+                  eget vestibulum. Netus eu sit cursus et vehicula porttitor nulla turpis a. In volutpat at orci.</p>
+                <div class="row row-cols-2 g-4 pb-2 pb-xl-0 mb-4 mb-xl-5">
+                  <div class="col"><i class="ai-sofa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Bright halls</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-spa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Spa area</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-cafe d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Lounge cafe</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-towel d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Changing rooms</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                </div><a class="btn btn-primary w-100 w-sm-auto" href="#">我要預約!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Healthy back-->
+        <div class="tab-pane fade" id="healthy-back" role="tabpanel">
+          <div class="row align-items-lg-center">
+            <div class="col-md-6 pb-4 pb-md-0 mb-2 mb-md-0"><img class="rounded-5"
+                src="frontendshop/assets/img/landing/yoga-studio/classes/healthy-back.jpg" alt="Healthy back"></div>
+            <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1">
+              <div class="ps-md-4 ps-lg-0">
+                <h2 class="mb-xl-4">Healthy back</h2>
+                <p class="pb-3 mb-3 mb-xl-4">Facilisi tempus pharetra, egestas dolor. Nulla lorem interdum cursus
+                  habitasse. Morbi aliquam, mauris, varius nulla tortor ut nullam. Est eu eu eget fames leo nisl est.
+                </p>
+                <div class="row row-cols-2 g-4 pb-2 pb-xl-0 mb-4 mb-xl-5">
+                  <div class="col"><i class="ai-cafe d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Lounge cafe</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-sofa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Bright halls</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-towel d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Changing rooms</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-spa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Spa area</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                </div><a class="btn btn-primary w-100 w-sm-auto" href="#">我要預約!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Relax yoga-->
+        <div class="tab-pane fade" id="relax-yoga" role="tabpanel">
+          <div class="row align-items-lg-center">
+            <div class="col-md-6 pb-4 pb-md-0 mb-2 mb-md-0"><img class="rounded-5"
+                src="frontendshop/assets/img/landing/yoga-studio/classes/relax-yoga.jpg" alt="Relax yoga"></div>
+            <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1">
+              <div class="ps-md-4 ps-lg-0">
+                <h2 class="mb-xl-4">Relax yoga</h2>
+                <p class="pb-3 mb-3 mb-xl-4">Aliquam risus, leo mattis commodo id pretium. In sapien, lacus, cursus id
+                  vulputate. Pellentesque quis et posuere maecenas sed aenean quisque ut. Pellentesque sed at.</p>
+                <div class="row row-cols-2 g-4 pb-2 pb-xl-0 mb-4 mb-xl-5">
+                  <div class="col"><i class="ai-towel d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Changing rooms</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-cafe d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Lounge cafe</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-sofa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Bright halls</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-spa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Spa area</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                </div><a class="btn btn-primary w-100 w-sm-auto" href="#">Try a free lesson</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Relax yoga-->
+        <div class="tab-pane fade" id="relax-yoga" role="tabpanel">
+          <div class="row align-items-lg-center">
+            <div class="col-md-6 pb-4 pb-md-0 mb-2 mb-md-0"><img class="rounded-5"
+                src="frontendshop/assets/img/landing/yoga-studio/classes/relax-yoga.jpg" alt="Relax yoga"></div>
+            <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1">
+              <div class="ps-md-4 ps-lg-0">
+                <h2 class="mb-xl-4">Relax yoga</h2>
+                <p class="pb-3 mb-3 mb-xl-4">Aliquam risus, leo mattis commodo id pretium. In sapien, lacus, cursus id
+                  vulputate. Pellentesque quis et posuere maecenas sed aenean quisque ut. Pellentesque sed at.</p>
+                <div class="row row-cols-2 g-4 pb-2 pb-xl-0 mb-4 mb-xl-5">
+                  <div class="col"><i class="ai-towel d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Changing rooms</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-cafe d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Lounge cafe</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-sofa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Bright halls</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                  <div class="col"><i class="ai-spa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
+                    <h3 class="h6 mb-2">Spa area</h3>
+                    <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
+                  </div>
+                </div><a class="btn btn-primary w-100 w-sm-auto" href="#">Try a free lesson</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 預約教練 結束-->
+
+    <!-- 揪團-->
+    <section class="container pb-2 pb-sm-3 pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
+      <h2 class="h1 text-center pt-2 pt-sm-4 pt-lg-5 pb-2 mb-3 mb-lg-4 mt-md-3 mt-lg-0">揪團去 | Join Togather</h2>
+      <p class="text-center pb-3 mb-3 mb-lg-4">與朋友一同享受健康快樂的時光 <br>Gather for sports, and enjoy healthy and joyful
+        moments with friends.</p>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        <div class="col text-center pt-2"><a class="card-hover card-lifted d-inline-block text-decoration-none"
+            href="#"><img class="card-lifted d-block rounded-5 mb-3"
+              src="frontendshop/assets/img/landing/yoga-studio/trainers/01.jpg" width="340" alt="Alisa Black">
+            <h3 class="h5 mb-1">Alisa Black</h3>
+            <p class="mb-0 text-muted">Fly-yoga trainer</p>
+          </a></div>
+        <div class="col text-center pt-2"><a class="card-hover card-lifted d-inline-block text-decoration-none"
+            href="#"><img class="card-lifted d-block rounded-5 mb-3"
+              src="frontendshop/assets/img/landing/yoga-studio/trainers/02.jpg" width="340" alt="Michelle Yang">
+            <h3 class="h5 mb-1">Michelle Yang</h3>
+            <p class="mb-0 text-muted">Fly-yoga and relax trainer</p>
+          </a></div>
+        <div class="col text-center pt-2"><a class="card-hover card-lifted d-inline-block text-decoration-none"
+            href="#"><img class="card-lifted d-block rounded-5 mb-3"
+              src="frontendshop/assets/img/landing/yoga-studio/trainers/03.jpg" width="340" alt="Robert Fox">
+            <h3 class="h5 mb-1">Robert Fox</h3>
+            <p class="mb-0 text-muted">Stretching trainer</p>
+          </a></div>
+        <div class="col text-center pt-2"><a class="card-hover card-lifted d-inline-block text-decoration-none"
+            href="#"><img class="card-lifted d-block rounded-5 mb-3"
+              src="frontendshop/assets/img/landing/yoga-studio/trainers/04.jpg" width="340" alt="Jane Cooper">
+            <h3 class="h5 mb-1">Jane Cooper</h3>
+            <p class="mb-0 text-muted">Fly-yoga trainer</p>
+          </a></div>
+        <div class="col text-center pt-2"><a class="card-hover card-lifted d-inline-block text-decoration-none"
+            href="#"><img class="card-lifted d-block rounded-5 mb-3"
+              src="frontendshop/assets/img/landing/yoga-studio/trainers/05.jpg" width="340" alt="Cody Fisher">
+            <h3 class="h5 mb-1">Cody Fisher</h3>
+            <p class="mb-0 text-muted">Fly-yoga and relax trainer</p>
+          </a></div>
+        <div class="col text-center pt-2"><a class="card-hover card-lifted d-inline-block text-decoration-none"
+            href="#"><img class="card-lifted d-block rounded-5 mb-3"
+              src="frontendshop/assets/img/landing/yoga-studio/trainers/06.jpg" width="340" alt="Jenny Wilson">
+            <h3 class="h5 mb-1">Jenny Wilson</h3>
+            <p class="mb-0 text-muted">Women's practices</p>
+          </a></div>
+        <div class="col text-center pt-2"><a class="card-hover card-lifted d-inline-block text-decoration-none"
+            href="#"><img class="card-lifted d-block rounded-5 mb-3"
+              src="frontendshop/assets/img/landing/yoga-studio/trainers/07.jpg" width="340" alt="Annette Black">
+            <h3 class="h5 mb-1">Annette Black</h3>
+            <p class="mb-0 text-muted">Fly-yoga trainer</p>
+          </a></div>
+        <div class="col text-center pt-2"><a class="card-hover card-lifted d-inline-block text-decoration-none"
+            href="#"><img class="card-lifted d-block rounded-5 mb-3"
+              src="frontendshop/assets/img/landing/yoga-studio/trainers/08.jpg" width="340" alt="Ralph Edwards">
+            <h3 class="h5 mb-1">Ralph Edwards</h3>
+            <p class="mb-0 text-muted">Stretching trainer, healthy back</p>
+          </a></div>
+      </div>
+    </section>
+     <!-- 揪團 結束-->
+    <div class="container" style="margin-top: 100px;"></div>
+    <!-- 熱門文章 -->
+    <section class="container pt-2 pt-sm-3 pb-5 mb-md-3 mb-lg-4 mb-xl-5">
+      <div class="d-flex align-items-center pb-3 mb-3 mb-lg-4">
+        <h2 class="h1 mb-0 me-4">熱門文章 | Popular Articles</h2>
+        <div class="d-flex ms-auto">
+          <button class="btn btn-prev btn-icon btn-sm btn-outline-primary rounded-circle me-3" type="button"
+            id="prev-post"><i class="ai-arrow-left"></i></button>
+          <button class="btn btn-next btn-icon btn-sm btn-outline-primary rounded-circle" type="button"
+            id="next-post"><i class="ai-arrow-right"></i></button>
+        </div>
+      </div>
+      <div class="swiper pb-2 pb-sm-3 pb-md-4" data-swiper-options="
+            {
+              &quot;spaceBetween&quot;: 24,
+              &quot;loop&quot;: true,
+              &quot;autoHeight&quot;: true,
+              &quot;navigation&quot;: {
+                &quot;prevEl&quot;: &quot;#prev-post&quot;,
+                &quot;nextEl&quot;: &quot;#next-post&quot;
+              },
+              &quot;breakpoints&quot;: {
+                &quot;576&quot;: { &quot;slidesPerView&quot;: 2 },
+                &quot;1000&quot;: { &quot;slidesPerView&quot;: 3 }
+              }
+            }
+          ">
+        <div class="swiper-wrapper">
+          <!-- Post-->
+          <article class="swiper-slide">
+            <div class="position-relative"><img class="rounded-5" src="frontendshop/assets/img/blog/list/01.jpg" alt="Post image">
+              <h3 class="h4 mt-4 mb-0"><a class="stretched-link" href="blog-single-v2.html">The fashion for eco bags
+                  with vintage prints will still be relevant for more than one year</a></h3>
+            </div>
+          </article>
+          <!-- Post-->
+          <article class="swiper-slide">
+            <div class="position-relative"><img class="rounded-5" src="frontendshop/assets/img/blog/list/04.jpg" alt="Post image">
+              <h3 class="h4 mt-4 mb-0"><a class="stretched-link" href="blog-single-v3.html">How to look for inspiration
+                  for new goals in life and remember to give yourself a break?</a></h3>
+            </div>
+          </article>
+          <!-- Post-->
+          <article class="swiper-slide">
+            <div class="position-relative"><img class="rounded-5" src="frontendshop/assets/img/blog/list/06.jpg" alt="Post image">
+              <h3 class="h4 mt-4 mb-0"><a class="stretched-link" href="blog-single-v2.html">A session with a
+                  psychologist as a personal choice or a fashion trend in society</a></h3>
+            </div>
+          </article>
+          <!-- Post-->
+          <article class="swiper-slide">
+            <div class="position-relative"><img class="rounded-5" src="frontendshop/assets/img/blog/list/05.jpg" alt="Post image">
+              <h3 class="h4 mt-4 mb-0"><a class="stretched-link" href="blog-single-v3.html">Top 10 best TV shows on
+                  Netflix for your next weekend</a></h3>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- 熱門文章 結束 -->
+    <!-- 瀏覽廣告-->
+    <section class="container pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
+      <div class="bg-primary rounded-5 overflow-hidden mt-2 mt-sm-4 mt-lg-5"><img
+          class="position-absolute top-50 start-0 translate-middle-y d-none d-md-block"
+          src="frontendshop/assets/img/landing/yoga-studio/cta/bg.svg" width="186" alt="Background flower">
+        <div class="row position-relative zindex-2 align-items-center">
+          <div class="col-md-6 col-lg-5 offset-lg-1">
+            <div class="text-center text-md-start py-5 px-4 px-sm-5 pe-md-0 ps-lg-4 ps-xl-5">
+              <div class="d-flex align-items-center justify-content-center justify-content-md-start mb-2"><span
+                  class="bg-white opacity-70 me-2 d-none d-md-block"
+                  style="width: 40px; height: 1px; margin-top: -1px;"></span><span
+                  class="fs-xs fw-semibold text-white opacity-70 text-uppercase">Special offer</span></div>
+              <h2 class="h1 text-white pb-2 pb-sm-3">Get 30% off when you buy an annual pass</h2><a
+                class="btn btn-outline-light fs-base" href="#">Buy an annual pass</a>
+            </div>
+          </div>
+          <div class="col-md-6"><img class="d-block mx-auto mx-md-0 mt-n4 mt-md-0"
+              src="frontendshop/assets/img/landing/yoga-studio/cta/image.png" width="534" alt="Image"></div>
+        </div>
+      </div>
+    </section>
+    <!-- 瀏覽廣告 結束-->
+    <div class="container" style="margin-top: 100px;"></div>
+    <!-- 商城開始-->
+    <section class="container pb-5 mb-lg-3 mb-xl-4 mb-xxl-5">
+      <div class="d-flex align-items-center justify-content-between pb-4 mb-2 mb-md-3">
+        <h2 class="h1 pt-1 mb-0">來去逛逛 | Shopping</h2>
+        <!-- Slider prev/next buttons-->
+        <div class="d-flex">
+          <button class="btn btn-prev btn-icon btn-sm btn-outline-primary rounded-circle ms-3" type="button"
+            id="relevant-prev"><i class="ai-arrow-left"></i></button>
+          <button class="btn btn-next btn-icon btn-sm btn-outline-primary rounded-circle ms-3" type="button"
+            id="relevant-next"><i class="ai-arrow-right"></i></button>
+        </div>
+      </div>
+      <!-- Slider (popular items)-->
+      <div class="swiper pb-sm-2 pb-md-3" data-swiper-options="{
+            &quot;slidesPerView&quot;: 1,
+            &quot;spaceBetween&quot;: 24,
+            &quot;loop&quot;: true,
+            &quot;navigation&quot;: {
+              &quot;prevEl&quot;: &quot;#relevant-prev&quot;,
+              &quot;nextEl&quot;: &quot;#relevant-next&quot;
+            },
+            &quot;breakpoints&quot;: {
+              &quot;500&quot;: {
+                &quot;slidesPerView&quot;: 2
+              },
+              &quot;768&quot;: {
+                &quot;slidesPerView&quot;: 3
+              },
+              &quot;1000&quot;: {
+                &quot;slidesPerView&quot;: 4
+              }
+            }
+          }">
+        <div class="swiper-wrapper">
+          <!-- Item-->
+          <div class="swiper-slide">
+            <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4"><span
+                class="badge bg-faded-danger text-danger position-absolute top-0 start-0 mt-3 ms-3">Sale</span>
+              <button
+                class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
+                type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
+                  class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button><a class="d-block p-2 p-xl-4"
+                href="shop-single.html"><img class="d-block mx-auto" src="frontendshop/assets/img/shop/products/01.png" width="226"
+                  alt="Product"></a>
+            </div>
+            <div class="d-flex mb-1">
+              <h3 class="h6 mb-0"><a href="shop-single.html">Loft style lamp</a></h3>
+              <div class="d-flex ps-2 mt-n1 ms-auto">
+                <div class="ms-1">
+                  <input class="btn-check" type="radio" name="color1" value="Dark gray" checked id="color1-1">
+                  <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle" for="color1-1"><span
+                      class="d-block rounded-circle"
+                      style="width: .625rem; height: .625rem; background-color: #576071;"></span></label>
+                </div>
+                <div class="ms-1">
+                  <input class="btn-check" type="radio" name="color1" value="Light gray" id="color1-2">
+                  <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle" for="color1-2"><span
+                      class="d-block rounded-circle"
+                      style="width: .625rem; height: .625rem; background-color: #d5d4d3;"></span></label>
+                </div>
+                <div class="ms-1">
+                  <input class="btn-check" type="radio" name="color1" value="Blue" id="color1-3">
+                  <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle" for="color1-3"><span
+                      class="d-block rounded-circle"
+                      style="width: .625rem; height: .625rem; background-color: #a1b7d9;"></span></label>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center"><span class="me-2">$21.00</span>
+              <del class="fs-sm text-muted">$35.00</del>
+              <div class="nav ms-auto" data-bs-toggle="tooltip"
+                data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
+                data-bs-placement="left" title="Add to cart"><a class="nav-link fs-lg py-2 px-1" href="#"><i
+                    class="ai-cart"></i></a></div>
+            </div>
+          </div>
+          <!-- Item-->
+          <div class="swiper-slide">
+            <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4">
+              <button
+                class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
+                type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
+                  class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button><a class="d-block p-2 p-xl-4"
+                href="shop-single.html"><img class="d-block mx-auto" src="frontendshop/assets/img/shop/products/02.png" width="226"
+                  alt="Product"></a>
+            </div>
+            <div class="d-flex mb-1">
+              <h3 class="h6 mb-0"><a href="shop-single.html">Dispenser for soap</a></h3>
+            </div>
+            <div class="d-flex align-items-center"><span class="me-2">$16.00</span>
+              <div class="nav ms-auto" data-bs-toggle="tooltip"
+                data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
+                data-bs-placement="left" title="Add to cart"><a class="nav-link fs-lg py-2 px-1" href="#"><i
+                    class="ai-cart"></i></a></div>
+            </div>
+          </div>
+          <!-- Item-->
+          <div class="swiper-slide">
+            <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4"><span
+                class="badge bg-faded-danger text-danger position-absolute top-0 start-0 mt-3 ms-3">Sale</span>
+              <button
+                class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
+                type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
+                  class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button><a class="d-block p-2 p-xl-4"
+                href="shop-single.html"><img class="d-block mx-auto" src="frontendshop/assets/img/shop/products/03.png" width="226"
+                  alt="Product"></a>
+            </div>
+            <div class="d-flex mb-1">
+              <h3 class="h6 mb-0"><a href="shop-single.html">Glossy round vase</a></h3>
+              <div class="d-flex ps-2 mt-n1 ms-auto">
+                <div class="ms-1">
+                  <input class="btn-check" type="radio" name="color2" value="Light gray" checked id="color2-1">
+                  <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle" for="color2-1"><span
+                      class="d-block rounded-circle"
+                      style="width: .625rem; height: .625rem; background-color: #d5d4d3;"></span></label>
+                </div>
+                <div class="ms-1">
+                  <input class="btn-check" type="radio" name="color2" value="Dark gray" id="color2-2">
+                  <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle" for="color2-2"><span
+                      class="d-block rounded-circle"
+                      style="width: .625rem; height: .625rem; background-color: #576071;"></span></label>
+                </div>
+                <div class="ms-1">
+                  <input class="btn-check" type="radio" name="color2" value="Blue" id="color2-3">
+                  <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle" for="color2-3"><span
+                      class="d-block rounded-circle"
+                      style="width: .625rem; height: .625rem; background-color: #a1b7d9;"></span></label>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center"><span class="me-2">$11.00</span>
+              <del class="fs-sm text-muted">$15.00</del>
+              <div class="nav ms-auto" data-bs-toggle="tooltip"
+                data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
+                data-bs-placement="left" title="Add to cart"><a class="nav-link fs-lg py-2 px-1" href="#"><i
+                    class="ai-cart"></i></a></div>
+            </div>
+          </div>
+          <!-- Item-->
+          <div class="swiper-slide">
+            <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4"><span
+                class="badge bg-faded-primary text-primary position-absolute top-0 start-0 mt-3 ms-3">New</span>
+              <button
+                class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
+                type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
+                  class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button><a class="d-block p-2 p-xl-4"
+                href="shop-single.html"><img class="d-block mx-auto" src="frontendshop/assets/img/shop/products/09.png" width="226"
+                  alt="Product"></a>
+            </div>
+            <div class="d-flex mb-1">
+              <h3 class="h6 mb-0"><a href="shop-single.html">Scented candle</a></h3>
+            </div>
+            <div class="d-flex align-items-center"><span class="me-2">$13.00</span>
+              <div class="nav ms-auto" data-bs-toggle="tooltip"
+                data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
+                data-bs-placement="left" title="Add to cart"><a class="nav-link fs-lg py-2 px-1" href="#"><i
+                    class="ai-cart"></i></a></div>
+            </div>
+          </div>
+          <!-- Item-->
+          <div class="swiper-slide">
+            <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4">
+              <button
+                class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
+                type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
+                  class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button><a class="d-block p-2 p-xl-4"
+                href="shop-single.html"><img class="d-block mx-auto" src="frontendshop/assets/img/shop/products/06.png" width="226"
+                  alt="Product"></a>
+            </div>
+            <div class="d-flex mb-1">
+              <h3 class="h6 mb-0"><a href="shop-single.html">Living room table</a></h3>
+            </div>
+            <div class="d-flex align-items-center"><span class="me-2">$46.00</span>
+              <div class="nav ms-auto" data-bs-toggle="tooltip"
+                data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
+                data-bs-placement="left" title="Add to cart"><a class="nav-link fs-lg py-2 px-1" href="#"><i
+                    class="ai-cart"></i></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 商城結束-->
+  </main>
+  <!-- 頁尾-->
+  <footer class="footer bg-secondary py-5">
+    <div class="container pt-1 pt-sm-2 pt-md-3 pt-lg-4 pt-xl-5">
+      <div class="border-bottom text-center pb-4"><a class="navbar-brand d-inline-flex text-nav py-0 mb-3 mb-md-4"
+          href="index.html"><span class="text-primary flex-shrink-0 me-2">
+            <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor"
+                d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+              </path>
+            </svg></span><span>EZ-DOM</span></a>
+        <ul class="nav justify-content-center py-1 pb-sm-2">
+          <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Classes</a></li>
+          <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Trainers</a></li>
+          <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Schedule</a></li>
+          <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="d-sm-flex align-items-center justify-content-between pt-4 mt-2 mt-sm-0">
+        <div class="d-flex justify-content-center order-sm-2 mb-4 mb-sm-0"><a
+            class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle me-3" href="#"><i
+              class="ai-instagram"></i></a><a class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle me-3"
+            href="#"><i class="ai-facebook"></i></a><a
+            class="btn btn-icon btn-sm btn-secondary btn-youtube rounded-circle" href="#"><i class="ai-youtube"></i></a>
+        </div>
+        <p class="fs-sm order-sm-1 text-center mb-0"><span class="opacity-70">&copy; All rights reserved. Made by
+          </span><a class="nav-link d-inline fw-normal p-0" href="https://createx.studio/" target="_blank"
+            rel="noopener">Createx Studio</a></p>
+      </div>
+    </div>
+  </footer>
+  <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll>
+    <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10">
+      </circle>
+    </svg><i class="ai-arrow-up"></i></a>
+  <!-- Vendor scripts: js libraries and plugins-->
+  <script src="frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="frontendshop/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="frontendshop/assets/vendor/lightgallery/lightgallery.min.js"></script>
+  <script src="frontendshop/assets/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+  <script src="frontendshop/assets/vendor/fullcalendar/main.min.js"></script>
+  <!-- Main theme script-->
+  <script src="frontendshop/assets/js/theme.min.js"></script>
+</body>
+
+</html>
