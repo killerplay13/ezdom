@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import tw.com.cha102.core.vo.Core;
 
 import javax.persistence.*;
 
@@ -19,7 +20,7 @@ import javax.persistence.*;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "member", catalog = "cha102g4_test")
-public class Member {
+public class Member extends Core {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
