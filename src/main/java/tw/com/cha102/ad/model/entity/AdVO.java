@@ -17,8 +17,8 @@ public class AdVO implements Serializable {
     private int adId;
 
     @ManyToOne
-    @JoinColumn(name = "PRODUCT_ID")
-    private ProductVO productid;
+    @JoinColumn(name = "PRODUCT_ID", insertable = false, updatable = false)
+    private ProductVO productId;
 
     @Lob
     @Column(name = "PRODUCT_PIC")
@@ -32,15 +32,16 @@ public class AdVO implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date endTime;
 
-    public AdVO(int adId, ProductVO productid, byte[] productPic, Date startTime, Date endTime) {
+    public AdVO(int adId, ProductVO productId, byte[] productPic, Date startTime, Date endTime) {
         this.adId = adId;
-        this.productid = productid;
+        this.productId = productId;
         this.productPic = productPic;
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
-// Constructors, getters and setters
+    public AdVO() {
+    }
 
     public int getAdId() {
         return adId;
@@ -74,6 +75,11 @@ public class AdVO implements Serializable {
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+
+    public ProductVO getProductId() {
+        return productId;
     }
 }
 
