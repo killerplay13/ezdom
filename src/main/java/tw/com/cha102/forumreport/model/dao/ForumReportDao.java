@@ -1,9 +1,7 @@
-package tw.com.cha102.forum.model.dao;
+package tw.com.cha102.forumreport.model.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import tw.com.cha102.forum.model.entity.ForumReportVO;
-
-import java.util.List;
+import tw.com.cha102.forumreport.model.entity.ForumReportVO;
 
 public interface ForumReportDao extends JpaRepository<ForumReportVO, Integer> {
     boolean existsByForumPostIdAndMemberId(Integer forumPostId, Integer memberId);

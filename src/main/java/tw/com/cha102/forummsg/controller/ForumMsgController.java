@@ -1,10 +1,10 @@
-package tw.com.cha102.forum.controller;
+package tw.com.cha102.forummsg.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tw.com.cha102.forum.model.entity.ForumMsgVO;
-import tw.com.cha102.forum.service.ForumMsgService;
+import tw.com.cha102.forummsg.model.entity.ForumMsgVO;
+import tw.com.cha102.forummsg.service.ForumMsgService;
 
 import java.util.List;
 

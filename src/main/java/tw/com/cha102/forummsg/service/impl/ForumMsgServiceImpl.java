@@ -1,10 +1,10 @@
-package tw.com.cha102.forum.service.impl;
+package tw.com.cha102.forummsg.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tw.com.cha102.forum.model.dao.ForumMsgDao;
-import tw.com.cha102.forum.model.entity.ForumMsgVO;
-import tw.com.cha102.forum.service.ForumMsgService;
+import tw.com.cha102.forummsg.model.dao.ForumMsgDao;
+import tw.com.cha102.forummsg.model.entity.ForumMsgVO;
+import tw.com.cha102.forummsg.service.ForumMsgService;
 
 import java.util.List;
 import java.util.Optional;

@@ -324,7 +324,7 @@
           <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                            data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
             <ul class="dropdown-menu">
-              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="shop-catalog.html" data-bs-toggle="dropdown"
                                       aria-expanded="false">瀏覽商品</a></li>
               <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                       aria-expanded="false">購物車</a></li>
@@ -750,7 +750,8 @@
   let memberId = 1;
 
   function addCart(productId) {
-    fetch(`http://localhost:8080/ezdom/carts/add?memberId=${memberId}&productId=${productId}`, {
+    let quantity=1;
+    fetch(`http://localhost:8080/ezdom/carts/add?memberId=${memberId}&productId=${productId}&quantity=${quantity}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
     }).then(resp => resp.text())
@@ -765,6 +766,26 @@
         showCart();
       })
   }
+  //商品刪除
+  function reduceCart(productId,quantity) {
+    fetch(`http://localhost:8080/ezdom/carts/reduce?memberId=${memberId}&productId=${productId}&quantity=${quantity}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    }).then(resp => resp.json())
+      .then(body => {
+        let {message}=body;
+        Swal.fire({
+          icon: 'success',
+          title: '操作成功',
+          text: `${message}`,
+          confirmButtonText: '確定',
+          focusConfirm: true
+        });
+        showCart();
+      })
+  }
+
+
   //購物車列表
   let cartBody = document.getElementById("cartBody");
   let canvas = document.getElementById("canvas");
@@ -808,7 +829,7 @@
             </div>
           </div>
           <div class="count-input ms-n3">
-            <button class="btn btn-icon fs-xl" type="button" data-decrement>-</button>
+            <button class="btn btn-icon fs-xl" type="button" data-decrement onclick="reduceCart(${productId})">-</button>
             <input class="form-control" type="number" value="${quantity}" readonly>
             <button class="btn btn-icon fs-xl" type="button" data-increment onclick="addCart(${productId})">+</button>
           </div>
@@ -833,7 +854,7 @@
     Swal.fire({
       icon: 'question',
       title: '確認',
-      text: '您確定要繼續嗎？',
+      text: '您確定要刪除嗎？',
       confirmButtonText: '確定',
       showCancelButton: true,
       cancelButtonText: '取消'

@@ -41,8 +41,9 @@ public class OrderVO extends Core {
     @Column(name = "ORDER_STATUS", insertable = false)
     private byte orderStatus;
     private String note;
-    @OneToMany
-    @JoinColumn(name="ORDER_ID",referencedColumnName = "ORDER_ID")
+    @Column(name = "PAYMENT_METHOD")
+    private byte paymentMethod;
+    @OneToMany(mappedBy="orderVO")
     private List<OrderDetailVO> orderDetailVOs;
 
     public void setOrderDetailVOs(List<OrderDetailVO> orderDetailVOs) {
@@ -51,6 +52,14 @@ public class OrderVO extends Core {
 
     public List<OrderDetailVO> getOrderDetailVOs() {
         return orderDetailVOs;
+    }
+
+    public void setPaymentMethod(byte paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public byte getPaymentMethod() {
+        return paymentMethod;
     }
 
     public OrderVO(){};
@@ -159,7 +168,7 @@ public class OrderVO extends Core {
         this.note = note;
     }
 
-    public OrderVO(Integer memberId, String recipientName, Integer totalPrice, Integer pointApplied, Integer actualAmount, Integer backPoints, String phoneNumber, String telphoneNumber, String shippingAddress, String note,List<OrderDetailVO> orderDetailVOs) {
+    public OrderVO(Integer memberId, String recipientName, Integer totalPrice, Integer pointApplied, Integer actualAmount, Integer backPoints, String phoneNumber, String telphoneNumber, String shippingAddress, String note,List<OrderDetailVO> orderDetailVOs,byte paymentMethod) {
         this.memberId = memberId;
         this.recipientName = recipientName;
         this.totalPrice = totalPrice;
@@ -171,6 +180,6 @@ public class OrderVO extends Core {
         this.shippingAddress = shippingAddress;
         this.note = note;
         this.orderDetailVOs=orderDetailVOs;
-
+        this.paymentMethod=paymentMethod;
     }
 }

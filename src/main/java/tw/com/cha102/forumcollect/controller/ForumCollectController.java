@@ -1,11 +1,11 @@
-package tw.com.cha102.forum.controller;
+package tw.com.cha102.forumcollect.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tw.com.cha102.forum.model.entity.ForumCollectVO;
-import tw.com.cha102.forum.service.ForumCollectService;
+import tw.com.cha102.forumcollect.model.entity.ForumCollectVO;
+import tw.com.cha102.forumcollect.service.ForumCollectService;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package tw.com.cha102.forum.controller;
+package tw.com.cha102.forumreport.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tw.com.cha102.forum.model.entity.ForumReportVO;
-import tw.com.cha102.forum.service.ForumReportService;
+import tw.com.cha102.forumreport.model.entity.ForumReportVO;
+import tw.com.cha102.forumreport.service.ForumReportService;
 
 import java.util.List;
 
@@ -47,15 +47,6 @@ public class ForumReportController {
         }
     }
 
-//    @PutMapping("/report/{reportId}/status")
-//    public ResponseEntity<String> updateReportStatus(@PathVariable Integer reportId, @RequestParam Integer newStatus) {
-//        boolean updated = forumReportService.updateReportStatus(reportId, newStatus);
-//        if (updated) {
-//            return ResponseEntity.ok("檢舉狀態修改成功");
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
 
 
     @DeleteMapping("/delete/report/{reportId}")
