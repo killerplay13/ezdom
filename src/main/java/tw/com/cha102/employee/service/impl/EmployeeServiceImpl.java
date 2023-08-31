@@ -71,13 +71,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void login(LoginRequest loginRequest, HttpServletRequest request, HttpServletResponse response) {
+
         EmployeeVO employeeVO = employeeRepository.findByEmployeeId(loginRequest.getAccount());
-        if(employeeVO ==null)
-            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"無此使用者");
-        //比較帳號密碼
-        if(!employeeVO.getEmployeeId().equals(loginRequest.getAccount()) || !employeeVO.getEmployeePassword().equals(loginRequest.getPassword()))
-            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"帳號密碼錯誤");
-        HttpSession httpSession  =request.getSession();
+        if (employeeVO == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "無此使用者");
+
+        // 比較帳號密碼
+        if (!employeeVO.getEmployeePassword().equals(loginRequest.getPassword()))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "帳號密碼錯誤");
+
+        HttpSession httpSession = request.getSession();
         // 添加 Cookie 到回應中
         Cookie sessionCookie = new Cookie("JSESSIONID", httpSession.getId());
         sessionCookie.setMaxAge(30 * 60); // 30 分鐘的過期時間
@@ -85,6 +88,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         response.addCookie(sessionCookie);
         httpSession.setAttribute("employeeId", employeeVO.getEmployeeId()); // 保存目前登入的會員id，供後續使用
     }
+
+
 
     public String sha256Hash(String data) {
         try {

@@ -47,7 +47,7 @@ public class EmployeeServlet {
         }
 
         @PostMapping("/edit/{employeeId}")
-        public  EmployeeVO editEmployee(@RequestBody EmployeeVO employeeVO,@PathVariable Integer employeeId){
+        public  EmployeeVO editEmployee(@RequestBody EmployeeVO employeeVO,@PathVariable String employeeId){
             employeeVO.setEmployeeId(employeeId);
             if (service.edit(employeeVO)) {
                 employeeVO.setSuccessful(true);
@@ -66,40 +66,7 @@ public class EmployeeServlet {
             return employeeList;
         }
 
-//        @DeleteMapping("/delete/{employeeId}")
-//        public ResponseEntity<String> deleteEmployee(@PathVariable Integer employeeId) {
-//            if (service.remove(employeeId)) {
-//                return ResponseEntity.ok("員工資料已刪除");
-//            } else {
-//                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("刪除員工資料失敗");
-//            }
-//        }
-
-//    @DeleteMapping("/employee/delete/{employeeId}")
-//    public ResponseEntity<String> deleteEmployee(@PathVariable Integer employeeId) {
-//        // 先刪除與員工相關的其他資料（例如 employee_auth 表中的記錄）
-//        boolean authDeleted = employeeAuthService.removeByEmployeeId(employeeId); // 假設有一個名為 employeeAuthService 的服務
 //
-//        if (authDeleted) {
-//            if (service.remove(employeeId)) {
-//                return ResponseEntity.ok("員工資料已刪除");
-//            } else {
-//                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("刪除員工資料失敗");
-//            }
-//        } else {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("刪除員工相關資料失敗");
-//        }
-//    }
-
-
-//        @PostMapping("/login")
-//        public
-
-
-
-
-
-
 
 
 }

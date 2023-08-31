@@ -5,7 +5,6 @@ import lombok.Data;
 import tw.com.cha102.core.vo.Core;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -16,7 +15,7 @@ public class EmployeeVO extends Core {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "EMPLOYEE_ID")
-    private Integer employeeId;
+    private String employeeId;
 
     @Column(name = "EMPLOYEE_STATUS")
     private byte employeeStatus;
@@ -43,7 +42,7 @@ public class EmployeeVO extends Core {
 
 
 
-    public Integer getEmployeeId() {
+    public String getEmployeeId() {
         return employeeId;
     }
 
