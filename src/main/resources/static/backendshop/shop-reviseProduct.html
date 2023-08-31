@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Buttons</title>
+    <title>ezdom</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -82,7 +82,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="shop-index.html">
             <div style="transform: rotate(-5deg)">
                 <img width="40px" src="img/FBI.png">
             </div>
@@ -195,8 +195,8 @@
             </a>
             <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar6">
                 <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="buttons.html">訂單列表</a>
-                    <a class="collapse-item" href="cards.html">退貨管理</a>
+                    <a class="collapse-item" href="shop-orders.html">訂單列表</a>
+                    <a class="collapse-item" href="shop-return.html">退貨管理</a>
                 </div>
             </div>
         </li>
@@ -658,9 +658,12 @@
                     <select id="sportCategory" style="width: 50%"
                     class="form-control select2">
                     <option value="${categoryId}">${typeName}</option>
-                    <option value="4" >球類</option>
-                    <option value="2">運動服</option>
-                    <option value="3">運動褲</option>
+                    <option value="1">健身器材</option>
+                    <option value="2">戶外運動用品</option>
+                    <option value="3">球類運動用品</option>
+                    <option value="4">水上運動用品</option>
+                    <option value="5">運動服飾與鞋款</option>
+                    <option value="6">運動食品與營養補充品</option>
                 </select>
                 <p id="sportCategoryError" style="color: red;"></p>
                 </div>
@@ -675,8 +678,6 @@
         `;
                 renew.innerHTML = html;
             })
-
-
     });
 
 
@@ -794,8 +795,8 @@ function validateImageUpload() {
                 // 在確認後進行頁面跳轉
                 fileReader.addEventListener("load", function (e) {
                     const imageBase64 = btoa(e.target.result);
-                    fetch('http://localhost:8080/ezdom/product/create', {
-                        method: 'POST',
+                    fetch(`http://localhost:8080/ezdom/product/edit/${productId}`, {
+                        method: 'PUT',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             categoryId: sportCategory.value,

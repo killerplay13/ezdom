@@ -3,6 +3,7 @@ package tw.com.cha102.order.model.dao.impl;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
+import tw.com.cha102.member.model.entity.Member;
 import tw.com.cha102.order.model.dao.OrderDao;
 import tw.com.cha102.order.model.entity.OrderVO;
 import tw.com.cha102.product.model.entity.ProductVO;
@@ -17,9 +18,9 @@ public class OrderDaoImpl implements OrderDao {
     private Session session;
 
     @Override
-    public int insert(OrderVO orderVO) {
+    public Integer insert(OrderVO orderVO) {
         session.persist(orderVO);
-        return 1;
+        return orderVO.getOrderId(); // 返回新生成的 orderId
     }
 
     @Override
@@ -56,6 +57,11 @@ public class OrderDaoImpl implements OrderDao {
         return session.createQuery(hql, OrderVO.class)
                 .setParameter("orderStatus", (byte) orderStatus)
                 .getResultList();
+    }
+
+    @Override
+    public Member selecMembertById(Integer memberId) {
+        return session.get(Member.class,memberId);
     }
 
 }

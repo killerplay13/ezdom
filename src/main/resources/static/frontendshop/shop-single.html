@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Product Page</title>
+  <title>ezdom</title>
   <!-- SEO Meta Tags-->
   <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
   <meta name="keywords"
@@ -354,7 +354,7 @@
       <nav aria-label="breadcrumb">
         <ol class="pt-lg-3 pb-2 pb-md-4 breadcrumb">
           <li class="breadcrumb-item"><a href="ezdomindex.html">首頁</a></li>
-          <li class="breadcrumb-item"><a href="shop-catalogMM.html">商城首頁</a></li>
+          <li class="breadcrumb-item"><a href="shop-catalog.html">商城首頁</a></li>
           <li class="breadcrumb-item active" aria-current="page">商品詳情</li>
         </ol>
       </nav>
@@ -705,6 +705,7 @@
 
 <!-- 引入 SweetAlert2 的 JavaScript 文件 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
   const urlParams = new URLSearchParams(window.location.search);
@@ -759,12 +760,12 @@
             <!-- Action buttons-->
             <div class="d-sm-flex d-md-block d-lg-flex py-4 py-md-5 my-3 my-md-0 mt-lg-0 mb-lg-4">
               <div class="count-input bg-gray rounded-3 me-4 mb-3 mb-sm-0 mb-md-3 mb-lg-0">
-                <button class="btn btn-icon btn-lg fs-xl" type="button" data-decrement>-</button>
-                <input class="form-control" type="number" value="1" readonly>
-                <button class="btn btn-icon btn-lg fs-xl" type="button" data-increment>+</button>
+                <button id="reduce" class="btn btn-icon btn-lg fs-xl" type="button" data-decrement>-</button>
+                <input id="productValue" class="form-control" type="number" value="1" readonly>
+                <button id="add" class="btn btn-icon btn-lg fs-xl" type="button" data-increment>+</button>
               </div>
               <div class="d-flex align-items-center">
-                <button class="btn btn-lg btn-primary w-100 w-lg-auto me-2" type="button" onclick="addCart(${productId})"><i class="ai-cart me-2 ms-n1" ></i>加入購物車</button>
+                <button class="btn btn-lg btn-primary w-100 w-lg-auto me-2" type="button" onclick="addCarts(${productId})"><i class="ai-cart me-2 ms-n1" ></i>加入購物車</button>
               <div class="nav">
                  <a class="nav-link fs-3 px-3" href="#" data-bs-toggle="tooltip" title="Add to Favorites" onclick="toggleHeart(this)"><i id="heartIcon" class="ai-heart"></i></a></div>
               </div>
@@ -794,6 +795,34 @@
     </section>
         `;
         productContent.innerHTML = html;
+
+        // 取得按鈕和輸入元素
+        const addButton = document.getElementById('add');
+        const reduceButton = document.getElementById('reduce');
+        const productValueInput = document.getElementById('productValue');
+
+        // 監聽 "add" 按鈕的點擊事件
+        addButton.addEventListener('click', () => {
+          // 取得目前的值並加 1
+          let currentValue = parseInt(productValueInput.value);
+          currentValue += 1;
+          console.log($("input#productValue"));
+          console.log($("input#productValue").val());
+          // 更新輸入元素的值
+          productValueInput.value = currentValue;
+        });
+
+        // 監聽 "reduce" 按鈕的點擊事件
+        reduceButton.addEventListener('click', () => {
+          // 取得目前的值並減 1，但最小為 1
+          let currentValue = parseInt(productValueInput.value);
+          if (currentValue > 1) {
+            currentValue -= 1;
+
+            // 更新輸入元素的值
+            productValueInput.value = currentValue;
+          }
+        });
       })
   }
 
@@ -824,11 +853,12 @@
     }
   }
 
-     //加入購物車
-     let memberId = 1;
 
+     let memberId = 1;
+//加入購物車  單一數量
 function addCart(productId) {
-fetch(`http://localhost:8080/ezdom/carts/add?memberId=${memberId}&productId=${productId}`,{
+let quantity =1;
+fetch(`http://localhost:8080/ezdom/carts/add?memberId=${memberId}&productId=${productId}&quantity=${quantity}`,{
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
 }).then(resp => resp.text())
@@ -843,6 +873,43 @@ fetch(`http://localhost:8080/ezdom/carts/add?memberId=${memberId}&productId=${pr
     showCart();
   })
 }
+//加入複數個商品 購物車
+function addCarts(productId) {
+let quantity = $("input#productValue").val();
+fetch(`http://localhost:8080/ezdom/carts/add?memberId=${memberId}&productId=${productId}&quantity=${quantity}`,{
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+}).then(resp => resp.text())
+  .then(body => {
+    Swal.fire({
+        icon: 'success',
+        title: '新增成功',
+        text: '商品已加入購物車！',
+        confirmButtonText: '確定',
+        focusConfirm: true
+      });
+    showCart();
+  })
+}
+//商品刪除
+function reduceCart(productId) {
+    fetch(`http://localhost:8080/ezdom/carts/reduce?memberId=${memberId}&productId=${productId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    }).then(resp => resp.json())
+      .then(body => {
+        let {message}=body;
+        Swal.fire({
+          icon: 'success',
+          title: '操作成功',
+          text: `${message}`,
+          confirmButtonText: '確定',
+          focusConfirm: true
+        });
+        showCart();
+      })
+  }
+
 //購物車列表
 let cartBody=document.getElementById("cartBody");
 let canvas=document.getElementById("canvas");
@@ -886,7 +953,7 @@ fetch(`http://localhost:8080/ezdom/carts/list/${memberId}`)
             </div>
           </div>
           <div class="count-input ms-n3">
-            <button class="btn btn-icon fs-xl" type="button" data-decrement>-</button>
+            <button class="btn btn-icon fs-xl" type="button" data-decrement onclick="reduceCart(${productId})">-</button>
             <input class="form-control" type="number" value="${quantity}" readonly>
             <button class="btn btn-icon fs-xl" type="button" data-increment onclick="addCart(${productId})">+</button>
           </div>
@@ -911,7 +978,7 @@ function deleteCartProduct(productId, memberId) {
     Swal.fire({
       icon: 'question',
       title: '確認',
-      text: '您確定要繼續嗎？',
+      text: '您確定要刪除嗎？',
       confirmButtonText: '確定',
       showCancelButton: true,
       cancelButtonText: '取消'
