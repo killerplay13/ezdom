@@ -37,6 +37,11 @@ public class GroupCreateServiceImpl implements GroupCreateService{
         return groupCreateRepository.save(groupCreateVO);
     }
 
+//    @Override
+//    public List<GroupCreateVO> findOneGroupCreateByMemberIdAndStatus() {
+//        return null;
+//    }
+    
 
     @Override
     public GroupCreateVO create(GroupCreateVO groupCreateVO) {
