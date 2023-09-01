@@ -11,8 +11,10 @@ import java.util.List;
 public interface GroupCreateService {
  GroupCreateVO create(GroupCreateVO groupCreateVO);
 
-
  List<GroupCreateVO> findAllGroupCreateByMemberId(Integer createMemberId);
+ GroupCreateVO update(GroupCreateVO groupCreateVO);
+
+ List<GroupCreateVO> findOneGroupCreateByMemberIdAndStatus();
 }
 
 
