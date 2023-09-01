@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+
+
+    <!-- logo圖 未放 -->
+    <link rel="shortcut icon" href="">
+
+    <!-- preloader css -->
+    <link rel="stylesheet" href="../backendshop/assets/css/preloader.min.css" type="text/css" />
+
+    <!-- Bootstrap Css -->
+    <link href="../backendshop/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="../backendshop/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="../backendshop/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+    <!-- Custom fonts for this template-->
+    <link href="../backendshop/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../backendshop/css/sb-admin-2.min.css" rel="stylesheet">
+
+
+    <!-- 自訂css -->
+    <style>
+        .product-image {
+            max-width: 100px;
+            height: 100px;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        /* 設置表格容器的最大高度，超過該高度時出現滾動條 */
+        .table-container {
+            max-height: 1px;
+            /* 調整為適當的值 */
+            overflow-y: scroll;
+            /* 顯示縱向滾動條 */
+        }
+
+        /* 設置表格的最小寬度 */
+        .custom-datatable {
+            min-width: 800px;
+            /* 調整為適當的值 */
+        }
+
+        /* 設置表格每列的最小寬度 */
+        .custom-datatable th,
+        .custom-datatable td {
+            min-width: 100px;
+            /* 調整為適當的值 */
+            max-width: 150px;
+            /* 設置最大寬度，調整為適當的值 */
+            white-space: nowrap;
+            /* 防止內容換行 */
+            overflow: hidden;
+            /* 隱藏溢出內容 */
+            text-overflow: ellipsis;
+            /* 在溢出時顯示省略號 */
+        }
+    </style>
+</head>
+
+<body>
+
+    <body id="page-top">
+
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+
+            <!-- 左側欄位 -->
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                    <div style="transform: rotate(-5deg)">
+                        <img width="40px" src="../backendshop/img/FBI.png">
+                    </div>
+                    <div class="sidebar-brand-text mx-3">EZDOM</div>
+                </a>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>員工管理</span></a>
+
+                </li>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    會員管理
+                </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>會員查詢</span>
+                    </a>
+                    <div id="collapseOne" class="collapse" data-parent="#accordionSidebar1">
+                        <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="buttons.html">Buttons</a>
+                            <a class="collapse-item" href="cards.html">Cards</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>教練審核</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" data-parent="#accordionSidebar2">
+                        <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="buttons.html">Buttons1</a>
+                            <a class="collapse-item" href="cards.html">Cards1</a>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    預約管理
+                </div>
+
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                        aria-expanded="true" aria-controls="collapseThree">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>款項管理</span>
+                    </a>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar3">
+                        <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="buttons.html">Buttons</a>
+                            <a class="collapse-item" href="cards.html">Cards</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
+                        aria-expanded="true" aria-controls="collapseFour">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>預約檢舉管理</span>
+                    </a>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar4">
+                        <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="buttons.html">Buttons</a>
+                            <a class="collapse-item" href="cards.html">Cards</a>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    商城管理
+                </div>
+
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
+                        aria-expanded="true" aria-controls="collapseFive">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>商品管理</span>
+                    </a>
+                    <div id="collapseFive" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar5">
+                        <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="buttons.html">上架中商品</a>
+                            <a class="collapse-item" href="cards.html">下架中商品</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
+                        aria-expanded="true" aria-controls="collapseSix">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>訂單管理</span>
+                    </a>
+                    <div id="collapseSix" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar6">
+                        <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="buttons.html">未出貨訂單</a>
+                            <a class="collapse-item" href="cards.html">已出貨訂單</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEle"
+                        aria-expanded="true" aria-controls="collapseEle">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>廣告管理</span>
+                    </a>
+                    <div id="collapseEle" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar11">
+                        <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="buttons.html">廣告一欄</a>
+                            <a class="collapse-item" href="cards.html">廣告編輯</a>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    揪團管理
+                </div>
+
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwe"
+                        aria-expanded="true" aria-controls="collapseTwe">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>揪團審核管理</span>
+                    </a>
+                    <div id="collapseTwe" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar12">
+                        <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="buttons.html">xxx</a>
+                            <a class="collapse-item" href="cards.html">xxx</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven"
+                        aria-expanded="true" aria-controls="collapseSeven">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>揪團成員管理</span>
+                    </a>
+                    <div id="collapseSeven" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar7">
+                        <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="buttons.html">Xxx</a>
+                            <a class="collapse-item" href="cards.html">xxx</a>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    其他功能
+                </div>
+
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight"
+                        aria-expanded="true" aria-controls="collapseEight">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>論壇管理</span>
+                    </a>
+                    <div id="collapseEight" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar8">
+                        <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="buttons.html">Xxx</a>
+                            <a class="collapse-item" href="cards.html">xxx</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNine"
+                        aria-expanded="true" aria-controls="collapseNine">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>QA管理</span>
+                    </a>
+                    <div id="collapseNine" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar9">
+                        <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="buttons.html">Xxx</a>
+                            <a class="collapse-item" href="cards.html">xxx</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTen"
+                        aria-expanded="true" aria-controls="collapseTen">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>最新消息管理</span>
+                    </a>
+                    <div id="collapseTen" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar10">
+                        <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="buttons.html">Xxx</a>
+                            <a class="collapse-item" href="cards.html">xxx</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <!-- 上面是左側欄位 -->
+
+
+            <!--  -->
+            <div id="content-wrapper" class="d-flex flex-column">
+                <div id="content">
+
+                    <!-- header -->
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <ul class="navbar-nav ml-auto">
+                            <!-- Nav Item - Messages -->
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-envelope fa-fw"></i>
+                                    <!-- Counter - Messages -->
+                                    <span class="badge badge-danger badge-counter">7</span>
+                                </a>
+                                <!-- Dropdown - Messages -->
+                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="messagesDropdown">
+                                    <h6 class="dropdown-header">
+                                        Message Center
+                                    </h6>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="dropdown-list-image mr-3">
+                                            <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                                            <div class="status-indicator bg-success"></div>
+                                        </div>
+                                        <div class="font-weight-bold">
+                                            <div class="text-truncate">Hi there! I am wondering if you can help me with
+                                                a
+                                                problem I've been having.</div>
+                                            <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="dropdown-list-image mr-3">
+                                            <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                                            <div class="status-indicator"></div>
+                                        </div>
+                                        <div>
+                                            <div class="text-truncate">I have the photos that you ordered last month,
+                                                how
+                                                would you like them sent to you?</div>
+                                            <div class="small text-gray-500">Jae Chun · 1d</div>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="dropdown-list-image mr-3">
+                                            <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                                            <div class="status-indicator bg-warning"></div>
+                                        </div>
+                                        <div>
+                                            <div class="text-truncate">Last month's report looks great, I am very happy
+                                                with
+                                                the progress so far, keep up the good work!</div>
+                                            <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="dropdown-list-image mr-3">
+                                            <img class="rounded-circle"
+                                                src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
+                                            <div class="status-indicator bg-success"></div>
+                                        </div>
+                                        <div>
+                                            <div class="text-truncate">Am I a good boy? The reason I ask is because
+                                                someone
+                                                told me that people say this to all dogs, even if they aren't good...
+                                            </div>
+                                            <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item text-center small text-gray-500" href="#">Read More
+                                        Messages</a>
+                                </div>
+                            </li>
+
+                            <div class="topbar-divider d-none d-sm-block"></div>
+
+                            <!-- Nav Item - User Information 111-->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">員工姓名</span>
+                                    <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="userDropdown">
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        登出
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- header -->
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h3 class="m-0 font-weight-bold text-primary">最新消息管理</h3>
+                                <button class="btn btn-primary float-right"
+                                    onclick="redirectToNewPage()">新增最新消息</button>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="myTable" class="display cell-border">
+                                        <thead>
+                                            <tr>
+                                                <th width="70px">消息編號</th>
+                                                <th>消息標題</th>
+                                                <th>發布時間</th>
+                                                <th>重要性</th>
+                                                <th>員工編號</th>
+                                                <th>詳細內容</th>
+                                                <th>刪除</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="newsTableBody">
+                                            <!-- 最新消息將在這裡動態插入 -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script>
+                            function redirectToNewPage() {
+                                var newPageUrl = "http://localhost:8080/ezdom/latestnews/back-addnews.html";
+                                window.location.href = newPageUrl;
+                            }
+
+                            const importanceText = {
+                                0: '低',
+                                1: '中',
+                                2: '高'
+                            };
+
+                            async function fetchNews() {
+                                try {
+                                    const response = await fetch('http://localhost:8080/ezdom/news/list');
+                                    const newsData = await response.json();
+
+                                    // 對 newsData 按照發布時間排序
+                                    newsData.sort((a, b) => new Date(b.releaseTime) - new Date(a.releaseTime));
+
+                                    const newsTableBody = document.getElementById('newsTableBody');
+
+                                    newsData.forEach(news => {
+                                        const releaseDate = new Date(news.releaseTime);
+                                        const formattedDate = `${releaseDate.getFullYear()}/${releaseDate.getMonth() + 1}/${releaseDate.getDate()}`;
+
+                                        const row = document.createElement('tr');
+                                        row.innerHTML = `
+                                            <td>${news.newsId}</td>
+                                            <td>${news.newsTitle}</td> 
+                                            <td>${formattedDate}</td>
+                                            <td>${importanceText[news.importance]}</td>
+                                            <td>${news.employeeId || ''}</td>
+                                            <td><button class="btn btn-outline-info" onclick="redirectToDetailPage(${news.newsId})">detail</button></td>
+                                            <td><button class="btn btn-outline-danger" onclick="deleteNews(${news.newsId})">刪除</button></td>
+                                        `;
+                                        newsTableBody.appendChild(row);
+                                    });
+
+                                    // 在資料填充完成後初始化 DataTable
+                                    $('#myTable').DataTable({
+                                        scrollY: '400px', // 設置 tbody 的最大高度
+                                        scrollCollapse: true,
+                                        paging: false, // 禁用分頁
+                                        "language": {
+                                            "sProcessing": "處理中...",
+                                            "sLengthMenu": "顯示 _MENU_ 項結果",
+                                            "sZeroRecords": "沒有匹配結果",
+                                            "sInfo": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+                                            "sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+                                            "sInfoFiltered": "(從 _MAX_ 項結果過濾)",
+                                            "sInfoPostFix": "",
+                                            "sSearch": "搜索:",
+                                            "sUrl": "",
+                                            "sEmptyTable": "表中數據為空",
+                                            "sLoadingRecords": "載入中...",
+                                            "sInfoThousands": ",",
+                                            "oPaginate": {
+                                                "sFirst": "首頁",
+                                                "sPrevious": "上頁",
+                                                "sNext": "下頁",
+                                                "sLast": "末頁"
+                                            },
+                                            "oAria": {
+                                                "sSortAscending": ": 以升序排列此列",
+                                                "sSortDescending": ": 以降序排列此列"
+                                            }
+                                        },
+                                    });
+
+                                } catch (error) {
+                                    console.error('Error fetching news:', error);
+                                }
+                            }
+
+                            function redirectToDetailPage(newsId) {
+                                var newPageUrl = `http://localhost:8080/ezdom/latestnews/back-newsdetail.html?newsId=${newsId}`;
+                                window.location.href = newPageUrl;
+                            }
+
+                            async function deleteNews(newsId) {
+                                const confirmation = confirm("確定要刪除此消息嗎？");
+                            if (!confirmation) {
+                                return;
+                            }
+
+                            try {
+                                const response = await fetch(`http://localhost:8080/ezdom/news/${newsId}`, {
+                                    method: 'DELETE'
+                                });
+
+                                if (response.ok) {
+                                    alert("消息已成功刪除");
+                                    // 在這裡你可以進行頁面重新整理或其他處理
+                                    location.reload(); // 重新整理頁面
+                                } else {
+                                    alert("刪除消息失敗");
+                                }
+                            } catch (error) {
+                                console.error("Error:", error);
+                                alert("刪除消息失敗");
+                            }
+                            }
+
+                            fetchNews(); // 呼叫 fetchNews 函數以填充表格資料
+
+                        </script>
+                    </div>
+
+                   
+
+
+
+
+    </body>
+
+</html>

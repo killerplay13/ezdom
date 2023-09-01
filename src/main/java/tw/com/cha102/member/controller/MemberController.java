@@ -25,33 +25,45 @@ import java.util.List;
 public class MemberController {
     @Autowired
     private MemberService memberService;
-    @Autowired
-    private HttpSession httpSession;
+
+
+    @PostMapping("/signUp")
+    public CommonResponse<String> signUp(@RequestBody @Valid SignUpRequest signUpRequest) {
+        memberService.signUp(signUpRequest);
+        return new CommonResponse("註冊成功");
+    }
 
     @PostMapping("/login")
     public CommonResponse<String> login(@RequestBody @Valid LoginRequest loginRequest,
                                         HttpServletRequest request,
                                         HttpServletResponse response
-                                        ) {
-        memberService.login(loginRequest,request, response);
+    ) {
+        memberService.login(loginRequest, request, response);
         return new CommonResponse("登入成功");
     }
 
-    @PostMapping("/signUp")
-    public  CommonResponse<String> signUp(@RequestBody SignUpRequest signUpRequest){
-        memberService.signUp(signUpRequest);
-        return  new CommonResponse("註冊成功");
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        // 清除會話數據
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+
+        // 可選：重定向到登出成功頁面或登入頁面
+        return "redirect:/login"; // 或其他適當的重定向
     }
 
     @PostMapping("/uploadPhoto")
     public CommonResponse<String> uploadPhoto(@RequestParam("uploadPhotoRequest") UploadPhotoRequest uploadPhotoRequest,
                                               HttpServletRequest request, HttpServletResponse response) {
         // 處理上傳的圖片，將 photo 儲存到你的資料庫
-        memberService.uploadPhoto(uploadPhotoRequest,request,response);
+        memberService.uploadPhoto(uploadPhotoRequest, request, response);
         return new CommonResponse("圖片上傳成功");
     }
+
     @GetMapping("/member")
-    public List<Member> getMembers(){
+    public List<Member> getMembers() {
         return memberService.getMembers();
     }
 }

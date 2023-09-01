@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import tw.com.cha102.coachmember.model.entity.CoachMemberVO;
 import tw.com.cha102.coachmember.service.CoachMemberService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/coach/details")
 public class SetCoachDetailsController {
@@ -12,7 +13,7 @@ public class SetCoachDetailsController {
     @Autowired
     private CoachMemberService coachMemberService;
 
-    @PutMapping("/{coachId}")
+    @PutMapping("/update/{coachId}")
     public CoachMemberVO setDetails(@PathVariable Integer coachId,
                                     @RequestBody CoachMemberVO updateDetails){
         return coachMemberService.updateDetails(coachId, updateDetails);

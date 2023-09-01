@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>EZdom | 註冊</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
+    <meta name="keywords"
+          content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, dark mode, html5, css3, javascript, gallery, slider, touch, creative">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="../frontendshop/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../frontendshop/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../frontendshop/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../frontendshop/assets/favicon/site.webmanifest">
+    <link rel="mask-icon" color="#6366f1" href="../frontendshop/assets/favicon/safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="../frontendshop/assets/favicon/browserconfig.xml">
+    <meta name="theme-color" content="white">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+
+    <!-- Theme mode-->
+    <script>
+        let mode = window.localStorage.getItem('mode'),
+          root = document.getElementsByTagName('html')[0];
+        if (mode !== undefined && mode === 'dark') {
+          root.classList.add('dark-mode');
+        } else {
+          root.classList.remove('dark-mode');
+        }
+
+
+    </script>
+    <!-- Page loading styles-->
+    <style>
+        .page-loading {
+          position: fixed;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          -webkit-transition: all .4s .2s ease-in-out;
+          transition: all .4s .2s ease-in-out;
+          background-color: #fff;
+          opacity: 0;
+          visibility: hidden;
+          z-index: 9999;
+        }
+
+        .dark-mode .page-loading {
+          background-color: #121519;
+        }
+
+        .page-loading.active {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .page-loading-inner {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 100%;
+          text-align: center;
+          -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+          -webkit-transition: opacity .2s ease-in-out;
+          transition: opacity .2s ease-in-out;
+          opacity: 0;
+        }
+
+        .page-loading.active>.page-loading-inner {
+          opacity: 1;
+        }
+
+        .page-loading-inner>span {
+          display: block;
+          font-family: 'Inter', sans-serif;
+          font-size: 1rem;
+          font-weight: normal;
+          color: #6f788b;
+        }
+
+        .dark-mode .page-loading-inner>span {
+          color: #fff;
+          opacity: .6;
+        }
+
+        .page-spinner {
+          display: inline-block;
+          width: 2.75rem;
+          height: 2.75rem;
+          margin-bottom: .75rem;
+          vertical-align: text-bottom;
+          background-color: #d7dde2;
+          border-radius: 50%;
+          opacity: 0;
+          -webkit-animation: spinner .75s linear infinite;
+          animation: spinner .75s linear infinite;
+        }
+
+        .dark-mode .page-spinner {
+          background-color: rgba(255, 255, 255, .25);
+        }
+
+        @-webkit-keyframes spinner {
+          0% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+          }
+
+          50% {
+            opacity: 1;
+            -webkit-transform: none;
+            transform: none;
+          }
+        }
+
+        @keyframes spinner {
+          0% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+          }
+
+          50% {
+            opacity: 1;
+            -webkit-transform: none;
+            transform: none;
+          }
+        }
+
+        /* 隱私條款 & 使用條款 button */
+        div.pb-4>button.btn_modal {
+          cursor: pointer;
+        }
+
+        div.overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 800px;
+          background-color: hsla(0, 0%, 0%, .5);
+
+          display: none;
+        }
+
+        /* 元素 article 置中及基本樣式 */
+        div.overlay>article {
+          background-color: white;
+          width: 90%;
+          max-width: 800px;
+          border-radius: 10px;
+          box-shadow: 0 0 10px #ddd;
+          padding: 20px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-family: Arial, sans-serif;
+          font-size: 16px;
+          line-height: 1.6;
+        }
+
+        div.overlay>article h2 {
+          font-size: 24px;
+          margin-bottom: 15px;
+        }
+
+        div.overlay>article p {
+          margin-bottom: 15px;
+        }
+
+        div.overlay.btn_modal_close {
+          display: block;
+          margin: 0 auto;
+          padding: 10px 20px;
+          background-color: #f0f0f0;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+
+        .article {
+          max-height: 600px;
+          overflow: hidden;
+        }
+
+        .article::-webkit-scrollbar {
+          display: none;
+        }
+
+        .article {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+
+        /* (我同意)勾選 */
+        .form-check-label.disabled {
+          color: gray;
+          /* 或其他颜色 */
+          cursor: not-allowed;
+        }
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+        (function () {
+          window.onload = function () {
+            const preloader = document.querySelector('.page-loading');
+            preloader.classList.remove('active');
+            setTimeout(function () {
+              preloader.remove();
+            }, 1500);
+          };
+        })();
+
+    </script>
+    <!-- Import Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"
+          id="google-font">
+    <!-- Vendor styles-->
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
+</head>
+<!-- Body-->
+
+<body>
+<!-- Page loading spinner-->
+<div class="page-loading active">
+    <div class="page-loading-inner">
+        <div class="page-spinner"></div><span>Loading...</span>
+    </div>
+</div>
+<!-- Page wrapper-->
+<main class="page-wrapper">
+    <!-- Page content-->
+    <div class="d-lg-flex position-relative h-100">
+        <!-- Home button--><a
+            class="text-nav btn btn-icon bg-light border rounded-circle position-absolute top-0 end-0 p-0 mt-3 me-3 mt-sm-4 me-sm-4"
+            href="index.html" data-bs-toggle="tooltip" data-bs-placement="left" title="Back to home"><i
+            class="ai-home"></i></a>
+        <!-- Sign up form-->
+        <div class="d-flex flex-column align-items-center w-lg-50 h-100 px-3 px-lg-5 pt-5">
+            <div class="w-100 mt-auto" style="max-width: 526px;">
+                <h1>EZdom 註冊</h1>
+                <p class="pb-3 mb-3 mb-lg-4">已有帳戶 ?&nbsp;&nbsp;<a href='account-signin.html'>按這裡 !</a></p>
+                <form class="needs-validation" novalidate>
+                    <div class="row row-cols-1 row-cols-sm-2">
+                        <div class="col mb-4">
+                            <input id="accountName" class="form-control form-control-lg" type="text" placeholder="帳號" required
+                                   onblur="validateAccount()">
+                            <p id="accountnameError" style="color: red;"></p>
+                        </div>
+                        <div class="col mb-4">
+                            <input id="mail" class="form-control form-control-lg" type="email" placeholder="信箱" required
+                                   onblur="validateMail()">
+                            <p id="mailError" style="color: red;"></p>
+                        </div>
+                    </div>
+                    <div class="password-toggle mb-4">
+                        <input id="password" class="form-control form-control-lg" type="password"
+                               placeholder="密碼 (8 ~ 12個英文字母、數字不限大小寫)" required onblur="validatePassword()">
+                        <label class="password-toggle-btn" aria-label="Show/hide password">
+                            <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                        </label>
+                        <p id="passwordError" style="color: red;"></p>
+                    </div>
+                    <div class="password-toggle mb-4">
+                        <input id="confirmPassword" class="form-control form-control-lg" type="password" placeholder="確認密碼"
+                               required onblur="validateConfirmPassword()">
+                        <label class="password-toggle-btn" aria-label="Show/hide password">
+                            <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                        </label>
+                        <p id="checkpasswordError" style="color: red;"></p>
+                    </div>
+                    <div class="pb-4">
+                        <div class="form-check my-2">
+                            <input class="form-check-input" type="checkbox" id="checkTerms" disabled>
+                            <label class="form-check-label ms-1 disabled" for="checkTerms">
+                                我同意
+                                <button type="button" class="btn_modal">使用條款 &amp; 隱私條款</button>
+                            </label>
+                        </div>
+                        <div class="overlay">
+                            <article class="article" style="overflow-y: auto;">
+                                <h1>使用條款 &amp; 隱私條款</h1>
+                                <p>
+                                <h2>隱私權政策</h2>
+
+                                歡迎使用我們的 ezdom
+                                運動論壇（以下稱為「本平台」）。我們重視您的隱私權保護，並致力於保護您的個人資料。本隱私權政策將說明我們收集、使用和保護您的個人資料的方式。請在使用本平台之前詳細閱讀此政策。
+
+                                <p>
+                                <h5>一、資料收集與使用</h5>
+                                </p>
+
+                                個人資料的收集：為了提供更好的使用體驗，我們可能會收集您的某些個人資料，包括但不限於姓名、電子郵件地址、聯絡方式等。
+
+                                資料使用目的：我們將使用收集的個人資料來操作、維護和改善本平台的功能和服務，包括但不限於向您提供討論論壇、揪團商城、活動資訊等相關資訊。
+
+                                資料保護：我們將採取合理的技術和組織手段，保護您的個人資料，防止未經授權的訪問、使用、修改或洩露。
+
+                                <p>
+                                <h5>二、資料分享與揭露</h5>
+                                </p>
+
+                                第三方服務：在某些情況下，我們可能會與第三方服務提供者合作，以便為您提供更多的服務。我們將只會分享必要的資料，並要求這些第三方服務提供者遵守本隱私權政策。
+
+                                法律要求：我們可能會根據法律的要求或政府的命令，透露您的個人資料。
+
+                                <p>
+                                <h5>三、資料存儲與轉移</h5>
+                                </p>
+
+                                您的個人資料可能會被儲存在您所在國家/地區以外的伺服器上，並受到適用的法律保護。如果您使用本平台，即表示您同意將您的資料轉移到其他國家/地區。
+
+                                <p>
+                                <h5>四、隱私權選項與權利</h5>
+                                </p>
+
+                                資料存取與更正：您有權存取、更正或刪除您的個人資料，如有需要，請與我們聯繫。
+
+                                郵件通訊：如果您不想收到來自我們的郵件通訊，您可以選擇取消訂閱。
+
+                                <p>
+                                <h5>五、隱私權政策的變更</h5>
+                                </p>
+
+                                我們保留隨時修改本隱私權政策的權利。任何修改都將在本平台上公布，並自公布之日起生效。
+
+                                如果您對於本隱私權政策有任何疑問或意見，請通過我們提供的聯絡方式與我們聯繫。
+
+                                感謝您使用我們的運動論壇及揪團商城！</p>
+                                <button class="btn_modal_close">關閉</button>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="pb-4">
+                        <!-- <div class="form-check my-2">
+                                      <input class="form-check-input" type="checkbox" id="terms">
+                                      <label class="form-check-label ms-1" for="terms">I agree to <a href="#">Terms &amp; Conditions</a></label>
+                                    </div> -->
+                    </div>
+                    <button id="register" class="btn btn-lg btn-primary w-100 mb-4" type="button">註冊</button>
+                    <h2 class="h6 text-center pt-3 pt-lg-4 mb-4">或選則以下方式</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 gy-3">
+                        <div class="col"><a class="btn btn-icon btn-outline-secondary btn-google btn-lg w-100" href="#"><i
+                                class="ai-google fs-xl me-2"></i>Google</a></div>
+                        <div class="col"><a class="btn btn-icon btn-outline-secondary btn-facebook btn-lg w-100" href="#"><i
+                                class="ai-facebook fs-xl me-2"></i>Facebook</a></div>
+                    </div>
+                </form>
+            </div>
+            <!-- Copyright-->
+            <p class="w-100 fs-sm pt-5 mt-auto mb-5" style="max-width: 526px;"><span class="text-muted">&copy; All rights
+            reserved. Made by</span><a class="nav-link d-inline-block p-0 ms-1" href="https://createx.studio/"
+                                       target="_blank" rel="noopener">Createx Studio</a></p>
+        </div>
+        <!-- Cover image-->
+        <div class="w-50 bg-size-cover bg-repeat-0 bg-position-center"
+             style="background-image: url(../frontendshop/assets/img/account/cover.jpg);"></div>
+    </div>
+</main>
+<!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll>
+    <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10">
+        </circle>
+    </svg><i class="ai-arrow-up"></i></a>
+<!-- Vendor scripts: js libraries and plugins-->
+<script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<!-- Main theme script-->
+<script src="../frontendshop/assets/js/theme.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
+
+<!-- 註冊驗證 -->
+<script>
+    let account = document.getElementById("accountName");
+    let mail = document.getElementById("mail");
+    let password = document.getElementById("password");
+    let confirmPassword = document.getElementById("confirmPassword");
+
+    function validateAccount() {
+      let accountnameError = document.getElementById("accountnameError");
+      if (!account.value) {
+        accountnameError.textContent = "帳號不可為空";
+        return false;
+      } else {
+        accountnameError.textContent = "";
+        return true;
+      }
+    }
+
+    function validateMail() {
+      let mailError = document.getElementById("mailError");
+      var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      if (!mail.value.trim()) {
+        mailError.textContent = "信箱不可為空";
+        return false;
+      } else if (!emailRegex.test(mail.value)) {
+        mailError.textContent = "請輸入正確格式";
+        return false;
+      } else {
+        mailError.textContent = "";
+        return true;
+      }
+    }
+
+    function validatePassword() {
+      let passwordError = document.getElementById("passwordError");
+      var passwordRegex = /^[A-Za-z\d]{8,12}$/;
+      if (!password.value.trim()) {
+        passwordError.textContent = "密碼不可為空";
+        return false;
+      } else if (!passwordRegex.test(password.value)) {
+        passwordError.textContent = "請輸入正確格式";
+        return false;
+      } else {
+        passwordError.textContent = "";
+        return true;
+      }
+    }
+
+    function validateConfirmPassword() {
+      let checkpasswordError = document.getElementById("checkpasswordError");
+
+      if (!confirmPassword.value.trim()) {
+        checkpasswordError.textContent = "請輸入密碼";
+        return false;
+      } else if (confirmPassword.value === password.value) {
+        checkpasswordError.textContent = "";
+        return true;
+      } else {
+        checkpasswordError.textContent = "請輸入相同密碼";
+        return false;
+      }
+    }
+</script>
+
+<!-- 使用條款&隱私條款-->
+<script>
+    let modalButton = document.querySelector("button.btn_modal");
+    modalButton.addEventListener("click", function () {
+      document.querySelector("div.overlay").style.display = "block";
+    });
+
+    let closeButton = document.querySelector("button.btn_modal_close");
+    let overlay = document.querySelector("div.overlay");
+    closeButton.addEventListener("click", function () {
+      event.preventDefault(); // 防止表單提交預設行為
+      // 關閉模態視窗區塊
+      overlay.style.display = "none";
+      checkTerms.disabled = false; // 啟用「我同意」勾選框
+    });
+</script>
+<!-- 註冊按鈕點擊事件處理 -->
+<script>
+    register.addEventListener("click", function (event) {
+      event.preventDefault(); // 防止表單提交預設行為
+
+      if (validateAccount() && validateMail() && validatePassword() && validateConfirmPassword()) {
+        fetch('http://localhost:8080/ezdom/member/signUp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            account: accountName.value,
+            email: mail.value,
+            password: password.value
+          })
+        })
+          .then(resp => {
+            if (!resp.ok) {
+              throw new Error("已有此帳號 ! 請重新輸入");
+            }
+            return resp.json();
+          })
+          .then(data => {
+            // 成功回應的處理
+            Swal.fire({
+              icon: 'success',
+              title: '成功',
+              text: '帳號已成功註冊！',
+              confirmButtonText: '確定',
+              focusConfirm: true
+            }).then((result) => {
+              var redirectUrl = "account-signin.html";
+              // 使用 window.location.replace 進行跳轉
+              window.location.replace(redirectUrl);
+            });
+          })
+          .catch(error => {
+            // 處理錯誤回應
+            console.error("Fetch Error:", error);
+            Swal.fire({
+              icon: 'error',
+              title: '錯誤',
+              text: '註冊失敗：' + error.message, // 顯示錯誤訊息
+              confirmButtonText: '確定',
+              focusConfirm: false
+            });
+          });
+      } else {
+        // 驗證失敗的處理
+        Swal.fire({
+          icon: 'error',
+          title: '失敗',
+          text: '請重新註冊！',
+          confirmButtonText: '確定',
+          focusConfirm: false
+        }).then((result) => {
+          var redirectUrl = "account-signup.html";
+          window.location.replace(redirectUrl);
+        });
+      }
+    });
+
+</script>
+</body>
+
+</html>

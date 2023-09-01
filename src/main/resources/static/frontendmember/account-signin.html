@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>EZdom | 登入</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
+    <meta name="keywords"
+          content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, dark mode, html5, css3, javascript, gallery, slider, touch, creative">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="../frontendshop/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../frontendshop/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../frontendshop/assets/favicon/favicon-16x16.png">
+    <!-- <link rel="manifest" href="assets/favicon/site.webmanifest"> -->
+    <link rel="mask-icon" color="#6366f1" href="../frontendshop/assets/favicon/safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="../frontendshop/assets/favicon/browserconfig.xml">
+    <meta name="theme-color" content="white">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+
+    <!-- Theme mode-->
+    <script>
+        let mode = window.localStorage.getItem('mode'),
+          root = document.getElementsByTagName('html')[0];
+        if (mode !== undefined && mode === 'dark') {
+          root.classList.add('dark-mode');
+        } else {
+          root.classList.remove('dark-mode');
+        }
+
+
+    </script>
+    <!-- Page loading styles-->
+    <style>
+        .page-loading {
+          position: fixed;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          -webkit-transition: all .4s .2s ease-in-out;
+          transition: all .4s .2s ease-in-out;
+          background-color: #fff;
+          opacity: 0;
+          visibility: hidden;
+          z-index: 9999;
+        }
+
+        .dark-mode .page-loading {
+          background-color: #121519;
+        }
+
+        .page-loading.active {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .page-loading-inner {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 100%;
+          text-align: center;
+          -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+          -webkit-transition: opacity .2s ease-in-out;
+          transition: opacity .2s ease-in-out;
+          opacity: 0;
+        }
+
+        .page-loading.active>.page-loading-inner {
+          opacity: 1;
+        }
+
+        .page-loading-inner>span {
+          display: block;
+          font-family: 'Inter', sans-serif;
+          font-size: 1rem;
+          font-weight: normal;
+          color: #6f788b;
+        }
+
+        .dark-mode .page-loading-inner>span {
+          color: #fff;
+          opacity: .6;
+        }
+
+        .page-spinner {
+          display: inline-block;
+          width: 2.75rem;
+          height: 2.75rem;
+          margin-bottom: .75rem;
+          vertical-align: text-bottom;
+          background-color: #d7dde2;
+          border-radius: 50%;
+          opacity: 0;
+          -webkit-animation: spinner .75s linear infinite;
+          animation: spinner .75s linear infinite;
+        }
+
+        .dark-mode .page-spinner {
+          background-color: rgba(255, 255, 255, .25);
+        }
+
+        @-webkit-keyframes spinner {
+          0% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+          }
+
+          50% {
+            opacity: 1;
+            -webkit-transform: none;
+            transform: none;
+          }
+        }
+
+        @keyframes spinner {
+          0% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+          }
+
+          50% {
+            opacity: 1;
+            -webkit-transform: none;
+            transform: none;
+          }
+        }
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+        (function () {
+          window.onload = function () {
+            const preloader = document.querySelector('.page-loading');
+            preloader.classList.remove('active');
+            setTimeout(function () {
+              preloader.remove();
+            }, 1500);
+          };
+        })();
+
+    </script>
+    <!-- Import Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"
+          id="google-font">
+    <!-- Vendor styles-->
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
+</head>
+<!-- Body-->
+
+<body>
+<!-- Page loading spinner-->
+<div class="page-loading active">
+    <div class="page-loading-inner">
+        <div class="page-spinner"></div><span>Loading...</span>
+    </div>
+</div>
+<!-- Page wrapper-->
+<main class="page-wrapper">
+    <!-- Page content-->
+    <div class="d-lg-flex position-relative h-100">
+        <!-- Home button--><a
+            class="text-nav btn btn-icon bg-light border rounded-circle position-absolute top-0 end-0 p-0 mt-3 me-3 mt-sm-4 me-sm-4"
+            href="ezdomindex.html" data-bs-toggle="tooltip" data-bs-placement="left" title="回首頁"><i class="ai-home"></i></a>
+        <!-- Sign in form-->
+        <div class="d-flex flex-column align-items-center w-lg-50 h-100 px-3 px-lg-5 pt-5">
+            <div class="w-100 mt-auto" style="max-width: 526px;">
+                <h1>登入 EZdom</h1>
+                <p class="pb-3 mb-3 mb-lg-4">還沒有帳戶 ?&nbsp;&nbsp;<a href='account-signup.html'>按這裡 !</a></p>
+                <form class="needs-validation" novalidate>
+                    <div class="pb-3 mb-3">
+                        <div class="position-relative"><i
+                                class="fs-lg position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                            <input id="accountName" name="account" class="form-control form-control-lg" type="text" placeholder="帳號"
+                                   required onblur="validateAccount(this.value)">
+                            <p id="accountnameError" style="color: red;"></p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="position-relative"><i
+                                class="fs-lg position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                            <div class="password-toggle">
+                                <input id="pw" name="password" class="form-control form-control-lg" type="password" placeholder="密碼"
+                                       required onblur="validatePassword(this.value)">
+                                <p id="passwordError" style="color: red;"></p>
+                                <label class="password-toggle-btn" aria-label="Show/hide password">
+                                    <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap align-items-center justify-content-between pb-4">
+                        <form-check class="my-1">
+                            <input class="form-check-input" type="checkbox" id="keep-signedin">
+                            <label class="form-check-label ms-1" for="keep-signedin">記住我</label>
+                        </form-check><a class="fs-sm fw-semibold text-decoration-none my-1"
+                                        href="account-password-recovery.html">忘記密碼 ?</a>
+                    </div>
+                    <button id="login" class="btn btn-lg btn-primary w-100 mb-4" type="submit">登入</button>
+                    <h2 class="h6 text-center pt-3 pt-lg-4 mb-4">或選擇以下方式</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 gy-3">
+                        <div class="col"><a class="btn btn-icon btn-outline-secondary btn-google btn-lg w-100" href="#"><i
+                                class="ai-google fs-xl me-2"></i>Google</a></div>
+                        <div class="col"><a class="btn btn-icon btn-outline-secondary btn-facebook btn-lg w-100" href="#"><i
+                                class="ai-facebook fs-xl me-2"></i>Facebook</a></div>
+                    </div>
+                </form>
+            </div>
+            <!-- Copyright-->
+            <p class="w-100 fs-sm pt-5 mt-auto mb-5" style="max-width: 526px;"><span class="text-muted">&copy; All rights
+            reserved. Made by</span><a class="nav-link d-inline-block p-0 ms-1" href="https://createx.studio/"
+                                       target="_blank" rel="noopener">Createx Studio</a></p>
+        </div>
+        <!-- Cover image-->
+        <div class="w-50 bg-size-cover bg-repeat-0 bg-position-center"
+             style="background-image: url(../frontendshop/assets/img/account/cover.jpg);"></div>
+    </div>
+</main>
+<!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll>
+    <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10">
+        </circle>
+    </svg><i class="ai-arrow-up"></i></a>
+<!-- Vendor scripts: js libraries and plugins-->
+<script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<!-- Main theme script-->
+<script src="../frontendshop/assets/js/theme.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+
+
+<!-- 登入 fetch -->
+<!-- <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> // jquery -->
+<script>
+    function validateAccount(accountValue) {
+      let accountnameError = document.getElementById("accountnameError");
+      if (!accountValue) {
+        accountnameError.textContent = "請輸入帳號";
+        return false;
+      } else {
+        accountnameError.textContent = "";
+        return true;
+      }
+    }
+
+    function validatePassword(passwordValue) {
+      let passwordError = document.getElementById("passwordError");
+      if (!passwordValue) {
+        passwordError.textContent = "請輸入密碼";
+        return false;
+      } else {
+        passwordError.textContent = "";
+        return true;
+      }
+    }
+
+    document.getElementById('login').addEventListener('click', (event) => {
+      const account = document.getElementById('accountName');
+      const password = document.getElementById('pw');
+      const errMsg = document.getElementById('errMsg');
+
+      event.preventDefault();
+
+      if (!account.value || !password.value) {
+        // 使用者帳號和密碼都未輸入的處理，加入相應的 Swal 提示
+        Swal.fire({
+          icon: 'error',
+          title: '失敗',
+          text: '請輸入帳號密碼！',
+          confirmButtonText: '確定',
+          focusConfirm: false
+        });
+      } else if (validateAccount(account.value) && validatePassword(password.value)) {
+        const data = {
+          account: account.value,
+          password: password.value
+        };
+
+        fetch('http://localhost:8080/ezdom/member/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+          .then(resp => resp.text())
+          .then(body => {
+            Swal.fire({
+              icon: 'success',
+              title: '成功',
+              text: '登入成功！',
+              confirmButtonText: '確定',
+              focusConfirm: true
+            }).then((result) => {
+              var redirectUrl = "ezdomindex.html";
+              // 使用 window.location.replace 進行跳轉
+              window.location.replace(redirectUrl);
+            });
+          }).catch(error => {
+            // 處理 fetch 發生的錯誤
+            console.error("Fetch Error:", error);
+          });
+      } else {
+        // 驗證失敗的處理，加入失敗的 Swal 提示
+        Swal.fire({
+          icon: 'error',
+          title: '失敗',
+          text: '查無此帳號！',
+          confirmButtonText: '確定',
+          focusConfirm: false
+        }).then((result) => {
+          var redirectUrl = "account-signin.html";
+          window.location.replace(redirectUrl);
+        });
+      }
+    });
+</script>
+</body>
+
+</html>

@@ -1,5 +1,7 @@
 package tw.com.cha102.coachmember.model.dto;
 
+import java.sql.Timestamp;
+
 public interface CoachDetails {
     Integer getCoachId();
 
@@ -11,6 +13,18 @@ public interface CoachDetails {
 
     byte[] getPicture();
 
+    String getEmail();
+
     Integer getPhone();
+
+    String getGender();
+
+    String getSkills();
+
+    String getNickname();
+
+    Integer getStatus();
+
+    String getCreateTime();
 
 }
