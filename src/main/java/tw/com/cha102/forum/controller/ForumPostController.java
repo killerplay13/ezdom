@@ -3,9 +3,11 @@ package tw.com.cha102.forum.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tw.com.cha102.forum.dto.PostDTO;
 import tw.com.cha102.forum.model.entity.ForumPostVO;
 import tw.com.cha102.forum.service.ForumPostService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -17,23 +19,35 @@ public class ForumPostController {
 
     @Autowired
     public ForumPostController(ForumPostService forumPostService) {
+
         this.forumPostService = forumPostService;
     }
 
     //發布新文章
     @PostMapping("/post")
-    public ResponseEntity<ForumPostVO> createPost(@RequestBody ForumPostVO forumPostVO) {
-        ForumPostVO result = forumPostService.post(forumPostVO);
-        return ResponseEntity.ok(result); // 返回完整的 ForumPostVO 物件
+    public ResponseEntity<ForumPostVO> createPost(@RequestBody PostDTO postDTO, HttpSession session) {
+        //Integer memberId = (Integer) session.getAttribute("memberId");
+        Integer memberId=2;
+
+        ForumPostVO result = forumPostService.post(postDTO, memberId); // 正確的參數順序
+        result.setSuccessful(true);
+        result.setMessage("文章發布成功");
+        return ResponseEntity.ok(result);
     }
+
 
     //編輯指定文章
     @PutMapping("/edit/{postId}")
-    public ResponseEntity<ForumPostVO> editPost(@PathVariable Integer postId, @RequestBody ForumPostVO forumPostVO) {
-        forumPostVO.setForumPostId(postId);
-        ForumPostVO result = forumPostService.edit(forumPostVO);
+    public ResponseEntity<ForumPostVO> editPost(@PathVariable Integer postId, @RequestBody PostDTO postDTO) {
+        // 實現 'editPost' 方法：編輯指定文章
+        ForumPostVO result = forumPostService.edit(postId, postDTO);  // 使用修改後的方法
+        result.setSuccessful(true);
+        result.setMessage("文章修改成功");
         return ResponseEntity.ok(result);
     }
+
+    // 其他方法...
+
     //列出所有文章
     @GetMapping("/list")
     public ResponseEntity<List<ForumPostVO>> listPosts() {
@@ -62,10 +76,13 @@ public class ForumPostController {
         }
     }
     //列出指定會員ID的文章
-    @GetMapping("/my-posts/{memberId}")
-    public ResponseEntity<List<ForumPostVO>> listMyPosts(@PathVariable Integer memberId) {
+    @GetMapping("/my-posts")
+    public ResponseEntity<List<ForumPostVO>> listMyPosts(HttpSession session) {
+        //Integer memberId = (Integer) session.getAttribute("memberId");
+        Integer memberId=2;
         List<ForumPostVO> myPosts = forumPostService.findPostsByMemberId(memberId);
         return ResponseEntity.ok(myPosts);
     }
+
 }
 
