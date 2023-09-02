@@ -13,7 +13,7 @@ public interface CoachMessageRepository extends JpaRepository<CoachMessageVO, In
 
     @Query(value = "SELECT CM.MESSAGE_ID as messageId, CM.COACH_ID as coachId, M.MEMBER_NAME as memberName, " +
             "CM.CONTENT as content, CM.CREATE_TIME as createTime, CMEM.PICTURE as coachPicture, " +
-            "M.MEMBER_PHOTO as memberPicture, M.MEMBER_ID as memberId " +
+            "M.MEMBER_PHOTO as memberPicture, M.MEMBER_ID as memberId, CMEM.NICKNAME as nickname " +
             "FROM coach_message CM " +
             "LEFT JOIN `MEMBER` M ON CM.MEMBER_ID = M.MEMBER_ID " +
             "LEFT JOIN COACH_MEMBER CMEM ON CMEM.COACH_ID = CM.COACH_ID " +

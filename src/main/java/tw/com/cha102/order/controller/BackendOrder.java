@@ -18,7 +18,7 @@ public class BackendOrder {
 
     //訂單依狀態刷新後台頁面
     @GetMapping("/get/{orderStatus}")
-    public List<OrderVO> getProductByStatus(@PathVariable int orderStatus){
+    public List<OrderVO> getOrderByStatus(@PathVariable int orderStatus){
         List<OrderVO> list = new ArrayList<OrderVO>();
         list=service.findOrdersByStatus(orderStatus);
         return list;

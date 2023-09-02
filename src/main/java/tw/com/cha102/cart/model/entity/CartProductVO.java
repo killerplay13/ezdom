@@ -18,7 +18,11 @@ public class CartProductVO {
 
     private Integer productPrice;
 
-    private byte productStatus;
+    /**
+     * 等於quantity數量 * productPrice單價
+     */
+    private Integer productTotalPrice;
+
 
     public Integer getProductId() {
         return productId;
@@ -61,13 +65,6 @@ public class CartProductVO {
         this.productPrice = productPrice;
     }
 
-    public byte getProductStatus() {
-        return productStatus;
-    }
-
-    public void setProductStatus(byte productStatus) {
-        this.productStatus = productStatus;
-    }
 
     public Integer getProductTotalPrice() {
         return productTotalPrice;
@@ -78,22 +75,13 @@ public class CartProductVO {
     }
 
 
-    /**
-     * 等於quantity數量 * productPrice單價
-     */
-    private Integer productTotalPrice;
 
-
-
-
-
-    public CartProductVO(Integer productId, Integer quantity, String productName, byte[] productMainImage, Integer productPrice, byte productStatus, Integer productTotalPrice) {
+    public CartProductVO(Integer productId, Integer quantity, String productName, byte[] productMainImage, Integer productPrice, Integer productTotalPrice) {
         this.productId = productId;
         this.quantity = quantity;
         this.productName = productName;
         this.productMainImage = productMainImage;
         this.productPrice = productPrice;
-        this.productStatus = productStatus;
         this.productTotalPrice = productTotalPrice;
     }
 }

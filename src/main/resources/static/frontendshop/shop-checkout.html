@@ -3,11 +3,11 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Checkout</title>
+  <title>ezdom</title>
   <!-- SEO Meta Tags-->
   <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
   <meta name="keywords"
-    content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, dark mode, html5, css3, javascript, gallery, slider, touch, creative">
+        content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, dark mode, html5, css3, javascript, gallery, slider, touch, creative">
   <meta name="author" content="Createx Studio">
   <!-- Viewport-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,6 +27,8 @@
   <!-- App Css-->
   <link href="assets1/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
+  <!-- 引入 SweetAlert2 的 CSS 文件 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
   <!-- Theme mode-->
   <script>
     let mode = window.localStorage.getItem('mode'),
@@ -156,7 +158,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"
-    id="google-font">
+        id="google-font">
   <!-- Vendor styles-->
   <!-- Main Theme Styles + Bootstrap-->
   <link rel="stylesheet" media="screen" href="assets/css/theme.min.css">
@@ -164,366 +166,579 @@
 <!-- Body-->
 
 <body>
-  <!-- Page loading spinner-->
-  <div class="page-loading active">
-    <div class="page-loading-inner">
-      <div class="page-spinner"></div><span>Loading...</span>
-    </div>
+<!-- Page loading spinner-->
+<div class="page-loading active">
+  <div class="page-loading-inner">
+    <div class="page-spinner"></div><span>Loading...</span>
   </div>
-  <!-- Page wrapper-->
-  <main class="page-wrapper">
-    <header class="navbar navbar-expand-lg fixed-top bg-light">
-      <div class="container"><a class="navbar-brand pe-sm-3" href="index.html"><span
+</div>
+<!-- Page wrapper-->
+<main class="page-wrapper">
+  <header class="navbar navbar-expand-lg fixed-top bg-light">
+    <div class="container"><a class="navbar-brand pe-sm-3" href="index.html"><span
             class="text-primary flex-shrink-0 me-2">
             <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
               <path fill="currentColor"
-                d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                    d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
               </path>
             </svg></span><span class="d-none d-sm-inline">Around</span></a>
-        <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
-            class="navbar-toggler-icon"></span></button>
-        <nav class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                data-bs-auto-close="outside" aria-expanded="false">揪團 Group</a>
-              <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">揪團列表</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">My揪團</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">開團管理</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
-              <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">瀏覽商品</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">購物車</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">管理我的訂單</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
-              <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">瀏覽論壇</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">論壇管理</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                data-bs-auto-close="outside" aria-expanded="false">預約 Reserve</a>
-              <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">預約管理</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">瀏覽教練</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">時段管理</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">項目管理</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">自我介紹管理</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                data-bs-auto-close="outside" aria-expanded="false">會員中心 Member</a>
-              <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">我的頁面</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">好友管理</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">收藏文章</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">收藏商品</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">個人設定</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">聊天室</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                data-bs-auto-close="outside" aria-expanded="false">聯絡客服 Help</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-    <div style="margin: 0;" class="main-content">
+      <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
+              class="navbar-toggler-icon"></span></button>
+      <nav class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                           data-bs-auto-close="outside" aria-expanded="false">揪團 Group</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">揪團列表</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">My揪團</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">開團管理</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                           data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">瀏覽商品</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">購物車</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">管理我的訂單</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                           data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">瀏覽論壇</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">論壇管理</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                           data-bs-auto-close="outside" aria-expanded="false">預約 Reserve</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">預約管理</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">瀏覽教練</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">時段管理</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">項目管理</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">自我介紹管理</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                           data-bs-auto-close="outside" aria-expanded="false">會員中心 Member</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">我的頁面</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">好友管理</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">收藏文章</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">收藏商品</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">個人設定</a></li>
+              <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                      aria-expanded="false">聊天室</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                           data-bs-auto-close="outside" aria-expanded="false">聯絡客服 Help</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div style="margin: 0;" class="main-content">
 
-      <div class="page-content">
-        <div class="container-fluid">
+    <div class="page-content">
+      <div class="container-fluid">
 
-          <!-- start page title -->
-          <div class="row">
-            <div class="col-12">
-              <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0 font-size-18">結帳頁面</h4>
-              </div>
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0 font-size-18">結帳頁面</h4>
             </div>
           </div>
-          <!-- end page title -->
+        </div>
+        <!-- end page title -->
 
-          <div class="checkout-tabs">
-            <div class="row">
-              <div class="col-xl-12">
+        <div class="checkout-tabs">
+          <div class="row">
+            <div class="col-xl-12">
 
-                <div class="nav nav-pills flex-column flex-sm-row nav-justified" id="v-pills-tab" role="tablist"
-                  aria-orientation="vertical">
-                  <a class="nav-link active" id="v-pills-shipping-tab" data-bs-toggle="pill" href="#v-pills-shipping"
-                    role="tab" aria-controls="v-pills-shipping" aria-selected="true">
-                    <i class="bx bxs-truck d-block check-nav-icon mt-4 mb-2"></i>
-                    <p class="fw-bold mb-4">收件人資料</p>
-                  </a>
-                  <a class="nav-link" id="v-pills-payment-tab" data-bs-toggle="pill" href="#v-pills-payment" role="tab"
-                    aria-controls="v-pills-payment" aria-selected="false">
-                    <i class="bx bx-money d-block check-nav-icon mt-4 mb-2"></i>
-                    <p class="fw-bold mb-4">付款頁面</p>
-                  </a>
-                  <a class="nav-link" id="v-pills-confir-tab" data-bs-toggle="pill" href="#v-pills-confir" role="tab"
-                    aria-controls="v-pills-confir" aria-selected="false">
-                    <i class="bx bx-badge-check d-block check-nav-icon mt-4 mb-2"></i>
-                    <p class="fw-bold mb-4">訂單明細</p>
-                  </a>
-                </div>
+              <div class="nav nav-pills flex-column flex-sm-row nav-justified" id="v-pills-tab" role="tablist"
+                   aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-shipping-tab" data-bs-toggle="pill" href="#v-pills-shipping"
+                   role="tab" aria-controls="v-pills-shipping" aria-selected="true">
+                  <i class="bx bxs-truck d-block check-nav-icon mt-4 mb-2"></i>
+                  <p class="fw-bold mb-4">收件人資料</p>
+                </a>
+                <a class="nav-link" id="v-pills-payment-tab" data-bs-toggle="pill" href="#v-pills-payment" role="tab"
+                   aria-controls="v-pills-payment" aria-selected="false">
+                  <i class="bx bx-money d-block check-nav-icon mt-4 mb-2"></i>
+                  <p class="fw-bold mb-4">付款頁面</p>
+                </a>
+                <a class="nav-link" id="v-pills-confir-tab" data-bs-toggle="pill" href="#v-pills-confir" role="tab"
+                   aria-controls="v-pills-confir" aria-selected="false">
+                  <i class="bx bx-badge-check d-block check-nav-icon mt-4 mb-2"></i>
+                  <p class="fw-bold mb-4">訂單明細</p>
+                </a>
+              </div>
 
-                <div class="card">
-                  <div class="card-body">
-                    <div class="tab-content" id="v-pills-tabContent">
-                      <div class="tab-pane fade show active" id="v-pills-shipping" role="tabpanel"
-                        aria-labelledby="v-pills-shipping-tab">
-                        <div>
-                          <h4 class="card-title">收件人資料</h4>
-                          <form>
-                            <div class="row">
-                              <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                  <label for="billing-name" class="col-form-label">收件人姓名</label>
-                                  <input type="text" class="form-control" id="billing-name"
-                                    placeholder="Enter your name">
-                                </div>
-
-                                <div class="form-group mb-3">
-                                  <label for="billing-phone" class="col-form-label">住家電話</label>
-                                  <input type="text" class="form-control" id="billing-phone"
-                                    placeholder="Enter your Phone no.">
-                                </div>
-
-                                <div class="form-group mb-3">
-                                  <label for="billing-phone" class="col-form-label">手機號碼</label>
-                                  <input type="text" class="form-control" id="billing-phone"
-                                    placeholder="Enter your Phone no.">
-                                </div>
-
-
-                                <div class="form-group mb-0">
-                                  <label for="example-textarea" class="col-form-label">訂單備註:</label>
-                                  <textarea class="form-control" id="example-textarea" rows="3"
-                                    placeholder="Write some note.."></textarea>
-                                </div>
-
-                              </div>
-
-                              <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                  <label for="billing-email-address" class="col-form-label">訂購人姓名</label>
-                                  <input type="text" class="form-control" id="billing-email-address"
-                                    placeholder="Enter your email">
-                                </div>
-
-                                <div class="form-group mb-3">
-                                  <label for="billing-phone" class="col-form-label">Email</label>
-                                  <input type="email" class="form-control" id="billing-phone"
-                                    placeholder="Enter your Phone no.">
-                                </div>
-
-                                <div class="form-group mb-3">
-                                  <label for="billing-address" class="col-form-label">配送地址</label>
-                                  <textarea class="form-control" id="billing-address" rows="3"
-                                    placeholder="Enter full address"></textarea>
-                                </div>
-
-                              </div>
-
+              <div class="card">
+                <div class="card-body">
+                  <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-shipping" role="tabpanel"
+                         aria-labelledby="v-pills-shipping-tab">
+                      <div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group mb-3">
+                              <label for="recipientName" class="col-form-label">收件人姓名</label>
+                              <input type="text" class="form-control" id="recipientName" placeholder="請輸入收件人姓名"
+                                     onblur="validateRecipientName()">
+                              <p id="recipientNameError" style="color: red;"></p>
                             </div>
-                          </form>
-                        </div>
-                      </div>
 
-                      <div class="tab-pane fade" id="v-pills-payment" role="tabpanel"
-                        aria-labelledby="v-pills-payment-tab">
-                        <div>
-                          <h4 class="card-title">付款資訊</h4>
+                            <div class="form-group mb-3">
+                              <label for="homePhone" class="col-form-label">住家電話(選填)</label>
+                              <input type="text" class="form-control" id="homePhone" placeholder="請輸入住家電話">
+                            </div>
 
-                          <div>
-                            <div class="form-check form-check-inline font-size-16">
-                              <input class="form-check-input" type="radio" name="paymentoptionsRadio"
-                                id="paymentoptionsRadio1" checked>
-                              <label class="form-check-label font-size-13" for="paymentoptionsRadio1"><i
-                                  class="fab fa-cc-mastercard me-1 font-size-20 align-top"></i>
-                                信用卡</label>
+                            <div class="form-group mb-3">
+                              <label for="cellPhone" class="col-form-label">手機號碼</label>
+                              <input type="text" class="form-control" id="cellPhone" placeholder="請輸入手機號碼"
+                                     onblur="validateCellPhone()">
+                              <p id="cellPhoneError" style="color: red;"></p>
                             </div>
-                            <div class="form-check form-check-inline font-size-16">
-                              <input class="form-check-input" type="radio" name="paymentoptionsRadio"
-                                id="paymentoptionsRadio3">
-                              <label class="form-check-label font-size-13" for="paymentoptionsRadio3"><i
-                                  class="far fa-money-bill-alt me-1 font-size-20 align-top"></i>
-                                貨到付款</label>
+
+
+                            <div class="form-group mb-0">
+                              <label for="note" class="col-form-label">訂單備註:</label>
+                              <textarea class="form-control" id="note" rows="3" placeholder="備註要求"></textarea>
                             </div>
+
                           </div>
 
-                          <h5 class="mt-5 mb-3 font-size-15">刷卡支付</h5>
-                          <div class="p-4 border">
-                            <form>
-                              <div class="form-group mb-0">
-                                <label for="cardnumberInput">卡號</label>
-                                <input type="text" class="form-control" id="cardnumberInput"
-                                  placeholder="0000 0000 0000 0000">
-                              </div>
-                              <div class="row">
-                                <div class="col-lg-6">
-                                  <div class="form-group mt-4 mb-0">
-                                    <label for="cardnameInput">卡片姓名</label>
-                                    <input type="text" class="form-control" id="cardnameInput"
-                                      placeholder="Name on Card">
-                                  </div>
-                                </div>
-                                <div class="col-lg-3">
-                                  <div class="form-group mt-4 mb-0">
-                                    <label for="expirydateInput">到期日</label>
-                                    <input type="text" class="form-control" id="expirydateInput" placeholder="MM/YY">
-                                  </div>
-                                </div>
-                                <div class="col-lg-3">
-                                  <div class="form-group mt-4 mb-0">
-                                    <label for="cvvcodeInput">後三碼</label>
-                                    <input type="text" class="form-control" id="cvvcodeInput"
-                                      placeholder="Enter CVV Code">
-                                  </div>
-                                </div>
-                              </div>
-                            </form>
+                          <div class="col-md-6">
+                            <div class="form-group mb-3">
+                              <label for="orderName" class="col-form-label">訂購人姓名</label>
+                              <input type="text" class="form-control" id="orderName" placeholder="Enter your name"
+                                     disabled value="李小龍">
+                            </div>
+
+                            <div class="form-group mb-3">
+                              <label for="emailAddress" class="col-form-label">Email</label>
+                              <input type="email" class="form-control" id="emailAddress"
+                                     placeholder="Enter your email." disabled value="coco123@gmail.com">
+                            </div>
+
+                            <div class="form-group mb-3">
+                              <label for="address" class="col-form-label">配送地址</label>
+                              <textarea class="form-control" id="address" rows="3" placeholder="輸入送件地址"
+                                        onblur="validateAddress()"></textarea>
+                              <p id="addressError" style="color: red;"></p>
+                            </div>
                           </div>
                         </div>
+
                       </div>
+                    </div>
 
-                      <div class="tab-pane fade" id="v-pills-confir" role="tabpanel"
-                        aria-labelledby="v-pills-confir-tab">
-                        <div class="card shadow-none border mb-0">
-                          <div class="card-body">
-                            <h4 class="card-title mb-4">訂單明細</h4>
+                    <div class="tab-pane fade" id="v-pills-payment" role="tabpanel"
+                         aria-labelledby="v-pills-payment-tab">
+                      <div>
+                        <h4 class="card-title">付款資訊</h4>
 
-                            <div class="table-responsive">
-                              <table class="table align-middle mb-0 table-nowrap">
-                                <thead class="table-light">
-                                  <tr>
-                                    <th scope="col">產品圖片</th>
-                                    <th scope="col">產品名稱</th>
-                                    <th scope="col">價錢</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <th scope="row"><img src="assets/images/product/img-1.png" alt="product-img"
-                                        title="product-img" class="avatar-md"></th>
-                                    <td>
-                                      <h5 class="font-size-14 text-truncate"><a href="ecommerce-product-detail.html"
-                                          class="text-dark">Half sleeve
-                                          T-shirt (64GB) </a></h5>
-                                      <p class="text-muted mb-0">$ 450 x 1</p>
-                                    </td>
-                                    <td>$ 450</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row"><img src="assets/images/product/img-7.png" alt="product-img"
-                                        title="product-img" class="avatar-md"></th>
-                                    <td>
-                                      <h5 class="font-size-14 text-truncate"><a href="ecommerce-product-detail.html"
-                                          class="text-dark">Wireless Headphone
-                                        </a></h5>
-                                      <p class="text-muted mb-0">$ 225 x 1</p>
-                                    </td>
-                                    <td>$ 225</td>
-                                  </tr>
-                                  <tr>
-                                    <td colspan="2">
-                                      <h6 class="m-0 text-end">總額:</h6>
-                                    </td>
-                                    <td>
-                                      $ 675
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td colspan="2">
-                                      <h6 class="m-0 text-end">積分折抵:</h6>
-                                    </td>
-                                    <td>
-                                      $ -75
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td colspan="3">
-                                      <div class="bg-soft-primary p-3 rounded">
-                                        <h5 class="font-size-14 text-primary mb-0">
-                                          <i class="fas fa-shipping-fast me-2"></i>
-                                          Shipping <span class="float-end">Free</span>
-                                        </h5>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td colspan="2">
-                                      <h6 class="m-0 text-end">結帳金額:</h6>
-                                    </td>
-                                    <td>
-                                      $ 600
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
+                        <div>
+                          <div class="form-check form-check-inline font-size-16">
+                            <input class="form-check-input" type="radio" name="paymentoptionsRadio"
+                                   id="paymentoptionsRadio1" value="0" checked>
+                            <label class="form-check-label font-size-13" for="paymentoptionsRadio1"><i
+                                    class="fab fa-cc-mastercard me-1 font-size-20 align-top"></i>
+                              信用卡</label>
+                          </div>
+                          <div class="form-check form-check-inline font-size-16">
+                            <input class="form-check-input" type="radio" name="paymentoptionsRadio"
+                                   id="paymentoptionsRadio3" value="1">
+                            <label class="form-check-label font-size-13" for="paymentoptionsRadio3"><i
+                                    class="far fa-money-bill-alt me-1 font-size-20 align-top"></i>
+                              貨到付款</label>
+                          </div>
+                        </div>
+
+                        <h5 class="mt-5 mb-3 font-size-15">積分使用</h5>
+                        <div>您擁有的積分:<span id="points">0</span></div>
+                        <div style="width: 22%;"
+                             class="input-group input-group-sm border-dashed mb-3 mb-sm-0 me-sm-4 me-md-5">
+                          <input class="form-control text-uppercase" type="text" placeholder="輸入你要使用的積分"
+                                 onblur="validatePoint()" id="usePoint">
+                          <button class="btn btn-secondary" type="button" id="pointBtn">確認使用</button>
+                        </div>
+                        <p id="pointError" style="color: red;"></p>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="v-pills-confir" role="tabpanel"
+                         aria-labelledby="v-pills-confir-tab">
+                      <div class="card shadow-none border mb-0">
+                        <div class="card-body">
+                          <h4 class="card-title mb-4">訂單明細</h4>
+
+                          <div class="table-responsive">
+                            <table class="table align-middle mb-0 table-nowrap">
+                              <thead class="table-light">
+                              <tr>
+                                <th scope="col">產品圖片</th>
+                                <th scope="col">產品名稱</th>
+                                <th scope="col">價錢</th>
+                              </tr>
+                              </thead>
+                              <tbody id="orderDetails">
+                              <tr>
+                                <th scope="row"><img src="assets/images/product/img-7.png" alt="product-img"
+                                                     title="product-img" class="avatar-md"></th>
+                                <td>
+                                  <h5 class="font-size-14 text-truncate"><a href="ecommerce-product-detail.html"
+                                                                            class="text-dark">Wireless Headphone
+                                  </a></h5>
+                                  <p class="text-muted mb-0">$ 225 x 1</p>
+                                </td>
+                                <td>$ 225</td>
+                              </tr>
+                              <tr>
+                                <td colspan="2">
+                                  <h6 class="m-0 text-end">總額:</h6>
+                                </td>
+                                <td>
+                                  $ 675
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="2">
+                                  <h6 class="m-0 text-end">積分折抵:</h6>
+                                </td>
+                                <td>$ -75</td>
+                              </tr>
+                              <tr>
+                                <td colspan="3">
+                                  <div class="bg-soft-primary p-3 rounded">
+                                    <h5 class="font-size-14 text-primary mb-0">
+                                      <i class="fas fa-shipping-fast me-2"></i>
+                                      Shipping <span class="float-end">Free</span>
+                                    </h5>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="2">
+                                  <h6 class="m-0 text-end">結帳金額:</h6>
+                                </td>
+                                <td>
+                                  $ 600
+                                </td>
+                              </tr>
+                              </tbody>
+                            </table>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="row my-4">
-                  <div class="col-sm-6">
-                    <a style="font-size:25px;padding-top:3px" href="ecommerce-cart.html" class="btn text-muted d-none d-sm-inline-block btn-link">
-                      <i class="mdi mdi-arrow-left me-1"></i > 返回 </a>
-                  </div> <!-- end col -->
-                  <div class="col-sm-6">
-                    <div class="text-end">
-                      <a href="ecommerce-checkout.html" class="btn btn-success">
-                        <i class="mdi mdi-truck-fast me-1"></i> 確認結帳 </a>
-                    </div>
-                  </div> <!-- end col -->
-                </div> <!-- end row -->
               </div>
+              <div class="row my-4">
+                <div class="col-sm-6">
+                  <a style="font-size:25px;padding-top:3px" href="shop-catalog.html"
+                     class="btn text-muted d-none d-sm-inline-block btn-link">
+                    <i class="mdi mdi-arrow-left me-1"></i> 返回 </a>
+                </div> <!-- end col -->
+                <div class="col-sm-6">
+                  <div class="text-end">
+                    <button class="btn btn-success" type="button" onclick="checkout()">
+                      <i class="mdi mdi-truck-fast me-1"></i> 確認結帳 </button>
+                  </div>
+                </div> <!-- end col -->
+              </div> <!-- end row -->
             </div>
           </div>
-          <!-- end row -->
+        </div>
+        <!-- end row -->
 
-        </div> <!-- container-fluid -->
-      </div>
-      <!-- End Page-content -->
-
-
+      </div> <!-- container-fluid -->
     </div>
-    <!-- end main content-->
+    <!-- End Page-content -->
 
-    <!-- Vendor scripts: js libraries and plugins-->
-    <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    <script src="assets/vendor/cleave.js/dist/cleave.min.js"></script>
-    <!-- Main theme script-->
-    <script src="assets/js/theme.min.js"></script>
+
+  </div>
+</main>
+<!-- end main content-->
+
+<!-- Vendor scripts: js libraries and plugins-->
+<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="assets/vendor/cleave.js/dist/cleave.min.js"></script>
+<!-- Main theme script-->
+<script src="assets/js/theme.min.js"></script>
+
+<!-- 引入 SweetAlert2 的 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+<script>
+  let recipientName = document.getElementById("recipientName");
+  let homePhone = document.getElementById("homePhone");
+  let cellPhone = document.getElementById("cellPhone");
+  let note = document.getElementById("note");
+  let orderName = document.getElementById("orderName")
+  let emailAddress = document.getElementById("emailAddress");
+  let address = document.getElementById("address");
+  let recipientNameError = document.getElementById("recipientNameError");
+  let cellPhoneError = document.getElementById("cellPhoneError");
+  let addressError = document.getElementById("addressError");
+  //積分使用相關
+  let points = document.getElementById("points");
+  let usePoint = document.getElementById("usePoint");
+  let pointBtn = document.getElementById("pointBtn");
+  //錯誤驗證
+  function validateRecipientName() {
+    if (!recipientName.value) {
+      recipientNameError.textContent = "請勿為空值";
+      return false;
+    } else {
+      recipientNameError.textContent = "";
+      return true;
+    }
+  }
+  function validateCellPhone() {
+    var cellPhonePattern = /^\d{10}$/; // 正則表達式：十位數字
+
+    if (!cellPhonePattern.test(cellPhone.value)) {
+      cellPhoneError.textContent = "請輸入正確的10位數字";
+      return false;
+    } else {
+      cellPhoneError.textContent = "";
+      return true;
+    }
+  }
+  function validateAddress() {
+    if (!address.value) {
+      addressError.textContent = "請勿為空值";
+      return false;
+    } else {
+      addressError.textContent = "";
+      return true;
+    }
+  }
+  //積分折抵驗證
+  function validatePoint() {
+    let pointError = document.getElementById("pointError");
+    var pointPattern = /^[0-9]+$/;
+
+    if (!pointPattern.test(usePoint.value)) {
+      pointError.textContent = "僅能輸入數字";
+      return false;
+    } else if (parseInt(usePoint.value) > parseInt(points.textContent)) {
+      pointError.textContent = "積分不足";
+      return false;
+    } else {
+      pointError.textContent = "";
+      return true;
+    }
+  }
+
+  //結帳
+  function checkout() {
+    let recipientNameValidate = validateRecipientName();
+    let cellPhoneValidate = validateCellPhone();
+    let addressValidate = validateAddress();
+    let usePointValue = usePoint.value;
+    // 找到所有的選項元素
+    const paymentOptions = document.getElementsByName("paymentoptionsRadio");
+    // 遍歷所有選項，找到被勾選的選項
+    let selectedOptionValue;
+    for (const option of paymentOptions) {
+      if (option.checked) {
+        selectedOptionValue = option.value;
+        break;
+      }
+    }
+    // 根據被勾選的選項的值設定相應的值
+    let paymentValue;
+    if (selectedOptionValue === "0") {
+      paymentValue = 0; // 信用卡
+    } else if (selectedOptionValue === "1") {
+      paymentValue = 1; // 貨到付款
+    }
+    if (usePointValue.trim() === "") {
+      usePointValue = 0;
+    }
+    let isValid = recipientNameValidate && cellPhoneValidate && addressValidate;
+    if (isValid) {
+
+      fetch(`http://localhost:8080/ezdom/carts/list/${memberId}`)
+        .then(resp => resp.json())
+        .then(body => {
+          let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
+          fetch(`http://localhost:8080/ezdom/oredr/add`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              memberId: memberId,
+              recipientName: recipientName.value,
+              totalPrice: cartTotalPrice,
+              pointApplied: usePointValue,
+              actualAmount: `${cartTotalPrice - usePointValue}`,
+              backPoints: `${Math.floor((cartTotalPrice - usePointValue) / 10)}`,
+              phoneNumber: homePhone.value,
+              telphoneNumber: cellPhone.value,
+              shippingAddress: address.value,
+              note: note.value,
+              paymentMethod: paymentValue,
+              orderDetailVOs: cartProductVoList
+            }),
+          }).then(resp => resp.json())
+            .then(body => {
+              let { successful, message } = body;
+              if (successful) {
+                reducePoints(usePointValue);
+                deleteRedis();
+                window.location.replace("shop-account-orders.html");
+              } else {
+                alert(message);
+              }
+            })
+        })
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: '操作失敗',
+        text: '請再次確認有無錯誤',
+        confirmButtonText: '確定',
+        focusConfirm: true
+      })
+    }
+  }
+
+  //刪除redis
+  function deleteRedis() {
+    fetch(`http://localhost:8080/ezdom/carts/deleteAll/${memberId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+  }
+
+  //會員使用積分 扣除
+  function reducePoints(usePointValue){
+    fetch(`http://localhost:8080/ezdom/oredr/point/${memberId}/${usePointValue}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' }
+  })
+  }
+
+  pointBtn.addEventListener('click', function (e) {
+    //訂單積分折抵與總價折扣
+    let pointsDiscount = document.getElementById("pointsDiscount");
+    let cartTotalPrice = document.getElementById("cartTotalPrice");
+    let pointValidate = validatePoint();
+    if (pointValidate) {
+      pointBtn.disabled = true;
+      usePoint.disabled = true;
+      pointsDiscount.textContent = `$- ${usePoint.value}`;
+      cartTotalPrice.textContent = `${cartTotalPrice.textContent - usePoint.value}`
+    }
+    e.stopPropagation();
+  })
+
+
+  //取得會員訊息 mail跟姓名跟積分
+  let memberId = 1;
+  function getMemberProfile() {
+    fetch(`http://localhost:8080/ezdom/oredr/profile/${memberId}`)
+      .then(resp => resp.json())
+      .then(body => {
+        let { memberName, memberEmail, point } = body;
+        orderName.value = memberName;
+        emailAddress.value = memberEmail;
+        points.innerText = point;
+      })
+  }
+
+  //取得訂單明細
+  let orderDetails = document.getElementById("orderDetails");
+  function orderDetail() {
+    fetch(`http://localhost:8080/ezdom/carts/list/${memberId}`)
+      .then(resp => resp.json())
+      .then(body => {
+        let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
+        let html = "";
+        for (let cartProductVo of cartProductVoList) {
+          let { productId, quantity, productName, productMainImage, productPrice, productStatus } = cartProductVo;
+          html += `
+        <tr>
+          <th scope="row"><img src="data:image/jpeg;base64,${productMainImage}" alt="product-img"
+              title="product-img" class="avatar-md"></th>
+          <td>
+            <h5 class="font-size-14 text-truncate"><div
+                class="text-dark">${productName}
+              </div></h5>
+            <p class="text-muted mb-0">$ ${productPrice} x ${quantity}</p>
+          </td>
+          <td>$${productPrice * quantity}</td>
+        </tr>
+        `;
+        }
+        html += `
+      <tr>
+        <td colspan="2">
+          <h6 class="m-0 text-end">總額:</h6>
+        </td>
+        <td>
+          $ ${cartTotalPrice}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <h6 class="m-0 text-end">積分折抵:</h6>
+        </td>
+        <td id="pointsDiscount">$ -0</td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <div class="bg-soft-primary p-3 rounded">
+            <h5 class="font-size-14 text-primary mb-0">
+              <i class="fas fa-shipping-fast me-2"></i>
+              Shipping <span class="float-end">Free</span>
+            </h5>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <h6 class="m-0 text-end">結帳金額:</h6>
+        </td>
+        <td id="cartTotalPrice">
+          ${cartTotalPrice}
+        </td>
+      </tr>
+      `;
+        orderDetails.innerHTML = html;
+      })
+  }
+
+  getMemberProfile()
+  orderDetail();
+</script>
 </body>
 
 </html>
