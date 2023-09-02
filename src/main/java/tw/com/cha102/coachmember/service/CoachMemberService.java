@@ -1,6 +1,9 @@
 package tw.com.cha102.coachmember.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import tw.com.cha102.coachmember.model.dto.CoachDetails;
 import tw.com.cha102.coachmember.model.dto.CoachList;
@@ -54,17 +57,11 @@ public class CoachMemberService {
 
         CoachMemberVO coachMemberVO = coachMemberRepository.findByMemberId(memberId);
 
-        if(coachMemberVO == null){
+        if(coachMemberVO == null && coachMemberVO.getStatus() == 3){
             CoachMemberVO coachMember = new CoachMemberVO();
             coachMember.setMessage("此會員不為教練會員");
             coachMember.setSuccessful(false);
             return coachMember;
-        }
-
-        if(coachMemberVO != null && coachMemberVO.getStatus() == 1){
-            coachMemberVO.setMessage("此會員已申請成為教練，待審核中");
-            coachMemberVO.setSuccessful(false);
-            return coachMemberVO;
         }
 
         if(coachMemberVO != null && coachMemberVO.getStatus() == 0){
@@ -81,8 +78,13 @@ public class CoachMemberService {
     // ==================== 教練資訊 ==================== //
 
     // 查詢教練審核列表
-    public List<CoachList> getVerifyCoachList(){
-        return coachMemberRepository.getVerifyCoachList();
+    public List<CoachDetails> getVerifyCoachList(Integer status, Integer page){
+        Page<CoachDetails> pageResult = coachMemberRepository.getVerifyCoachList(status,
+                PageRequest.of(page, 10, Sort.by("createTime").ascending()));
+
+        return pageResult.getContent();
+
+//        return coachMemberRepository.getVerifyCoachList(status);
     }
 
     // 查詢教練列表
@@ -112,32 +114,34 @@ public class CoachMemberService {
     }
 
     // 修改教練狀態
-    public CoachMemberVO updateStatus(Integer coachId, CoachMemberVO updateCoachMember){
+    public CoachMemberVO updateStatus(Integer coachId, byte status){
         Optional<CoachMemberVO> check = coachMemberRepository.findById(coachId);
 
         if(check.isPresent()){
             CoachMemberVO coachMember = check.get();
+            coachMember.setStatus(status);
+            coachMemberRepository.save(coachMember);
 
-            switch (updateCoachMember.getStatus()){
-                case 0:
-                    coachMember.setStatus((byte) 0);
-                    coachMember.setMessage("已將該名教練會員停權!");
-                    coachMember.setSuccessful(true);
-                    coachMemberRepository.save(coachMember);
-                    break;
-                case 2:
-                    coachMember.setStatus((byte) 2);
-                    coachMember.setMessage("已啟用該名教練會員資格!");
-                    coachMember.setSuccessful(true);
-                    coachMemberRepository.save(coachMember);
-                    break;
-                case 3:
-                    coachMember.setStatus((byte) 3);
-                    coachMember.setMessage("已取消該名教練會員的申請!");
-                    coachMember.setSuccessful(true);
-                    coachMemberRepository.save(coachMember);
-                    break;
-            }
+//            switch (updateCoachMember.getStatus()){
+//                case 0:
+//                    coachMember.setStatus((byte) 0);
+//                    coachMember.setMessage("已將該名教練會員停權!");
+//                    coachMember.setSuccessful(true);
+//                    coachMemberRepository.save(coachMember);
+//                    break;
+//                case 2:
+//                    coachMember.setStatus((byte) 2);
+//                    coachMember.setMessage("已啟用該名教練會員資格!");
+//                    coachMember.setSuccessful(true);
+//                    coachMemberRepository.save(coachMember);
+//                    break;
+//                case 3:
+//                    coachMember.setStatus((byte) 3);
+//                    coachMember.setMessage("已取消該名教練會員的申請!");
+//                    coachMember.setSuccessful(true);
+//                    coachMemberRepository.save(coachMember);
+//                    break;
+//            }
             return coachMember;
         }else {
             CoachMemberVO coachMemberVO = new CoachMemberVO();
@@ -155,7 +159,10 @@ public class CoachMemberService {
 
         if(check.isPresent()){
             CoachMemberVO coachMember = check.get();
+            coachMember.setNickname(updateDetails.getNickname());
+            coachMember.setSkills(updateDetails.getSkills());
             coachMember.setIntroduction(updateDetails.getIntroduction());
+            coachMember.setPicture(updateDetails.getPicture());
             coachMember.setMessage("修改資訊成功");
             coachMember.setSuccessful(true);
             coachMemberRepository.save(coachMember);

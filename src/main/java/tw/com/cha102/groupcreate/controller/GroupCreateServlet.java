@@ -21,7 +21,68 @@ public class GroupCreateServlet {
 
     @PostMapping("/create")
     public ResponseEntity<String> createGroup(@RequestBody GroupCreateVO groupCreateVO) {
-
+        if(groupCreateVO.getGroupDate()==null){
+            groupCreateVO.setMessage("揪團時間未輸入");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
+        int compareGroupDate = groupCreateVO.getGroupDate().compareTo(groupCreateVO.getEndDate());
+        if (compareGroupDate<0){
+            groupCreateVO.setMessage("揪團日期不能晚於報名截止日期");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
+        if(groupCreateVO.getGroupLocation()==null){
+            groupCreateVO.setMessage("揪團地點未輸入");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
+        if(groupCreateVO.getGroupTitle()==null){
+            groupCreateVO.setMessage("揪團主題未輸入");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
+        if(groupCreateVO.getGroupNotice()==null){
+            groupCreateVO.setMessage("揪團注意事項未輸入");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
+        if(groupCreateVO.getGroupContent()==null){
+            groupCreateVO.setMessage("揪團內容未輸入");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
+        if(groupCreateVO.getGroupName()==null){
+            groupCreateVO.setMessage("揪團名稱未輸入");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
+        if(groupCreateVO.getStartDate()==null){
+            groupCreateVO.setMessage("報名開始日未輸入");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
+        if(groupCreateVO.getEndDate()==null){
+            groupCreateVO.setMessage("報名截止日未輸入");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
+        int compareStartDate = groupCreateVO.getStartDate().compareTo(groupCreateVO.getEndDate());
+        if (compareStartDate>0){
+            groupCreateVO.setMessage("報名開始日不能晚於報名截止日");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
+        if(groupCreateVO.getLimitNumber()==null || groupCreateVO.getLimitNumber()<0){
+            groupCreateVO.setMessage("人數上限未輸入或小於0");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
+        if(groupCreateVO.getGroupDeposit()==null || groupCreateVO.getGroupDeposit()<0){
+            groupCreateVO.setMessage("揪團押金未輸入或小於0");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
             if (groupCreateVO.getGroupPhoto() != null && groupCreateVO.getGroupPhoto().length > 0) {
 
                 byte[] photoBytes = groupCreateVO.getGroupPhoto();
@@ -44,4 +105,31 @@ public class GroupCreateServlet {
         return groupCreateList;
     }
 
+    @PutMapping("/updateGroup/{groupId}")
+    public ResponseEntity<String> updateGroup(@RequestBody GroupCreateVO groupCreateVO){
+        if(groupCreateVO.getGroupName()==null){
+            groupCreateVO.setMessage("揪團名稱未輸入");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
+        int compareGroupDate = groupCreateVO.getGroupDate().compareTo(groupCreateVO.getEndDate());
+        if (compareGroupDate<0){
+            groupCreateVO.setMessage("揪團日期不能晚於報名截止日期");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
+        int compareEndDate = groupCreateVO.getEndDate().compareTo(groupCreateVO.getStartDate());
+        if (compareEndDate<0){
+            groupCreateVO.setMessage("報名開始日不能晚於報名截止日");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
+        if(groupCreateVO.getGroupDeposit()==null || groupCreateVO.getGroupDeposit()<0){
+            groupCreateVO.setMessage("揪團押金未輸入或小於0");
+            groupCreateVO.setSuccessful(false);
+            return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
+        }
+        GroupCreateVO result = groupCreateService.update(groupCreateVO);
+        return ResponseEntity.ok("修改成功");
+    }
 }
