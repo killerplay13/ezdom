@@ -15,30 +15,14 @@ public class ForumReportServiceImpl implements ForumReportService {
 
     @Autowired
     public ForumReportServiceImpl(ForumReportDao forumReportDao) {
+
         this.forumReportDao = forumReportDao;
     }
 
     @Override
     public ForumReportVO createReport(ForumReportVO forumReportVO) {
-        //檢查是否已經檢舉過相同的文章
-        boolean hasReported = hasReportedSamePost(forumReportVO.getForumPostId(), forumReportVO.getMemberId());
-        //傳遞了兩個參數：要檢舉的文章的ID,要執行檢舉的會員的ID
-        if (hasReported) {
-            forumReportVO.setSuccessful(false);
-            forumReportVO.setMessage("您已檢舉過此文章");
-            return forumReportVO;
-        }
 
-        //執行實際的檢舉新增
-        ForumReportVO createdReport = forumReportDao.save(forumReportVO);
-        if (createdReport != null) {
-            createdReport.setSuccessful(true);
-            createdReport.setMessage("檢舉成功");
-        } else {
-            createdReport.setSuccessful(false);
-            createdReport.setMessage("檢舉失敗");
-        }
-        return createdReport;
+        return forumReportDao.save(forumReportVO);
     }
 
     @Override
@@ -61,9 +45,9 @@ public class ForumReportServiceImpl implements ForumReportService {
         }
         return false;
     }
-
+    @Override
     // 檢查是否已經檢舉過相同的文章
-    private boolean hasReportedSamePost(Integer forumPostId, Integer memberId) {
+    public boolean hasReportedSamePost(Integer forumPostId, Integer memberId) {
         return forumReportDao.existsByForumPostIdAndMemberId(forumPostId, memberId);
     }
 
