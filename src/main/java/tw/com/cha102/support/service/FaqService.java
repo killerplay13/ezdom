@@ -48,8 +48,15 @@ public class FaqService {
     }
 
     // ==================== FAQ List ==================== //
-    public List<FaqVO> getFaqList(){
-        return faqRepository.findAll();
+    public List<FaqVO> getFaqList(String faqTag){
+
+        // 預設為查詢所有類別
+        if(faqTag == null){
+            return faqRepository.findAll();
+        }
+
+        // 依照傳入的類別查詢
+        return faqRepository.findAllByFaqTag(faqTag);
     }
 
 }
