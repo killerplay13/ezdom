@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>EZDOM | 一起動 !</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
+    <meta name="keywords"
+        content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, dark mode, html5, css3, javascript, gallery, slider, touch, creative">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="frontendshop/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="frontendshop/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="frontendshop/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="frontendshop/assets/favicon/site.webmanifest">
+    <link rel="mask-icon" color="#6366f1" href="frontendshop/assets/favicon/safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="frontendshop/assets/favicon/browserconfig.xml">
+    <meta name="theme-color" content="white">
+    <!-- Theme mode-->
+    <script>
+        let mode = window.localStorage.getItem('mode'),
+            root = document.getElementsByTagName('html')[0];
+        if (mode !== undefined && mode === 'dark') {
+            root.classList.add('dark-mode');
+        } else {
+            root.classList.remove('dark-mode');
+        }
+
+
+    </script>
+    <!-- Page loading styles-->
+    <style>
+        .page-loading {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all .4s .2s ease-in-out;
+            transition: all .4s .2s ease-in-out;
+            background-color: #fff;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 9999;
+        }
+
+        .dark-mode .page-loading {
+            background-color: #121519;
+        }
+
+        .page-loading.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .page-loading-inner {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            -webkit-transition: opacity .2s ease-in-out;
+            transition: opacity .2s ease-in-out;
+            opacity: 0;
+        }
+
+        .page-loading.active>.page-loading-inner {
+            opacity: 1;
+        }
+
+        .page-loading-inner>span {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: normal;
+            color: #6f788b;
+        }
+
+        .dark-mode .page-loading-inner>span {
+            color: #fff;
+            opacity: .6;
+        }
+
+        .page-spinner {
+            display: inline-block;
+            width: 2.75rem;
+            height: 2.75rem;
+            margin-bottom: .75rem;
+            vertical-align: text-bottom;
+            background-color: #d7dde2;
+            border-radius: 50%;
+            opacity: 0;
+            -webkit-animation: spinner .75s linear infinite;
+            animation: spinner .75s linear infinite;
+        }
+
+        .dark-mode .page-spinner {
+            background-color: rgba(255, 255, 255, .25);
+        }
+
+        @-webkit-keyframes spinner {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            50% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        @keyframes spinner {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            50% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+        (function () {
+            window.onload = function () {
+                const preloader = document.querySelector('.page-loading');
+                preloader.classList.remove('active');
+                setTimeout(function () {
+                    preloader.remove();
+                }, 1500);
+            };
+        })();
+
+    </script>
+    <!-- Import Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" id="google-font">
+    <!-- Vendor styles-->
+    <link rel="stylesheet" media="screen" href="frontendshop/assets/vendor/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" media="screen" href="frontendshop/assets/vendor/lightgallery/css/lightgallery-bundle.min.css" />
+    <link rel="stylesheet" media="screen" href="frontendshop/assets/vendor/fullcalendar/main.min.css" />
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="frontendshop/assets/css/theme.min.css">
+</head>
+<!-- Body-->
+
+<body>
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+        <div class="page-loading-inner">
+            <div class="page-spinner"></div><span>Loading...</span>
+        </div>
+    </div>
+    <!-- 頁首-->
+    <main class="page-wrapper">
+        <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
+        <header class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode">
+            <div class="container"><a class="navbar-brand pe-sm-3" href="ezdomindex.html"><span
+                        class="text-primary flex-shrink-0 me-2">
+                        <svg version="1.1" width="35" height="32" viewBox="0 0 36 33"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill="currentColor"
+                                d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                            </path>
+                        </svg></span>EZ-DOM</a>
+                <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+                    <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top " >
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <style>
+                            /* 整個消息下拉選單容器的樣式 */
+                            .dropdown-list {
+                                max-height: 500px;
+                                /* 控制下拉選單的最大高度 */
+                                overflow-y: auto;
+                                /* 向下滾動如果內容超出最大高度 */
+                                max-width: 300px;
+                                /* 設定最大寬度為200像素 */
+                            }
+
+                            /* 單個消息項目的樣式 */
+                            .dropdown-item {
+                                padding: 10px;
+                                transition: background-color 0.2s ease;
+                                /* 添加 hover 效果 */
+                            }
+
+                            .dropdown-item:hover {
+                                background-color: #f8f9fc;
+                                /* hover 時的背景色 */
+                            }
+
+                            /* 消息頭部標題的樣式 */
+                            .dropdown-header {
+                                font-size: 1rem;
+                                font-weight: bold;
+                            }
+
+                            /* 消息內容文本的樣式 */
+                            .text-truncate {
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                margin-bottom: 5px;
+                            }
+
+                            /* 發送者和時間的樣式 */
+                            .small.text-gray-500 {
+                                font-size: 0.8rem;
+                                color: #888888;
+                            }
+
+                            /* 消息計數的樣式 */
+                            .badge-counter {
+                                background-color: #e74a3b;
+                                /* 背景色 */
+                                color: #fff;
+                                /* 文字顏色 */
+                                font-size: 0.75rem;
+                                /* 字體大小 */
+                                padding: 4px 6px;
+                                /* 內邊距 */
+                                border-radius: 50%;
+                                /* 圓角形狀 */
+                            }
+                        </style>
+                        <ul class="navbar-nav ml-auto">
+                            <!-- Nav Item - Messages -->
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                                 
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M160 368c26.5 0 48 21.5 48 48v16l72.5-54.4c8.3-6.2 18.4-9.6 28.8-9.6H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16V352c0 8.8 7.2 16 16 16h96zm48 124l-.2 .2-5.1 3.8-17.1 12.8c-4.8 3.6-11.3 4.2-16.8 1.5s-8.8-8.2-8.8-14.3V474.7v-6.4V468v-4V416H112 64c-35.3 0-64-28.7-64-64V64C0 28.7 28.7 0 64 0H448c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H309.3L208 492z"/></svg>
+                                </a>
+                                <!-- Dropdown - Messages -->
+                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="messagesDropdown">
+                                    <h6 class="dropdown-header">
+                                        Message Center
+                                    </h6>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+
+                                        <div class="font-weight-bold">
+                                            <div class="text-truncate">Hi there! I am wondering if you can help me with
+                                                a
+                                                problem I've been having.</div>
+                                            <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+
+                                        <div>
+                                            <div class="text-truncate">I have the photos that you ordered last month,
+                                                how
+                                                would you like them sent to you?</div>
+                                            <div class="small text-gray-500">Jae Chun · 1d</div>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+
+                                        <div>
+                                            <div class="text-truncate">Last month's report looks great, I am very happy
+                                                with
+                                                the progress so far, keep up the good work!</div>
+                                            <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+
+                                        <div>
+                                            <div class="text-truncate">Am I a good boy? The reason I ask is because
+                                                someone
+                                                told me that people say this to all dogs, even if they aren't good...
+                                            </div>
+                                            <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item text-center small text-gray-500" href="#">Read More
+                                        Messages</a>
+                                </div>
+                            </li>
+
+                            <div class="topbar-divider d-none d-sm-block"></div>
+                        </ul>
+                    </nav>
+                    
+                </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+                    href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
+                    rel="noopener">登出</a>
+                <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+                <nav class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">揪團
+                                Group</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">揪團列表</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">My揪團</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">開團管理</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">瀏覽商品</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">購物車</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">管理我的訂單</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">論壇
+                                Forum</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">瀏覽論壇</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">論壇管理</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">預約
+                                Reserve</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">預約管理</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">瀏覽教練</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">時段管理</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">項目管理</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">自我介紹管理</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">會員中心
+                                Member</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">我的頁面</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">好友管理</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">收藏文章</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">收藏商品</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">個人設定</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">聊天室</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">聯絡客服
+                                Help</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!-- 頁首結束-->
+        <!-- 最新消息 開頭-->
+        <section class="pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
+            <div class="container pt-2 pt-sm-4 pt-lg-5 mt-md-3 mt-lg-0">
+                <div class="row pb-3 mb-3 mb-lg-4">
+                    <div class="col-lg-11 d-sm-flex justify-content-between text-center text-sm-start">
+                        <h2 class="h1 mb-sm-0 mx-auto me-sm-4" style="max-width: 500px;">最新消息 | What’s NEWS</h2>
+                        <p class="pt-2 mb-0 mx-auto" style="max-width: 420px; font-size: 18px;">
+                            親愛的用戶們，請注意消息可能包含了重要的更新、通知或活動資訊。感謝您的支持與使用！</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container-start pe-0">
+                <div class="swiper" data-swiper-options="{
+&quot;slidesPerView&quot;: &quot;auto&quot;,
+&quot;spaceBetween&quot;: 24,
+&quot;loop&quot;: true,
+&quot;navigation&quot;: {
+  &quot;prevEl&quot;: &quot;#prev-feature&quot;,
+  &quot;nextEl&quot;: &quot;#next-feature&quot;
+}
+}">
+                    <div class="swiper-wrapper">
+                        <!-- Item-->
+                        <div class="swiper-slide w-auto h-auto">
+                            <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 540px;">
+                                <div
+                                    class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5">
+                                </div>
+                                <div class="card-body text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                                        <path
+                                            d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z" />
+                                    </svg>
+                                    <h3 class="news-title">系統維修</h3>
+                                    <p class="news-content">親愛的顧客您好：為提供更優質的服務，本行行動銀行視訊服務將於2023/07/17(一)
+                                        09:00起進行系統維護作業，「簡訊密碼設定」、「數位帳戶非約定轉帳限額變更」、「玉山銀行人臉辨識首次註冊」功能暫停使用，待系統完成更新將另行公告，造成您的不便，敬請見諒。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Item-->
+                        <div class="swiper-slide w-auto h-auto">
+                            <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 540px;">
+                                <div
+                                    class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5">
+                                </div>
+                                <div class="card-body text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                                        <path
+                                            d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z" />
+                                    </svg>
+                                    <h3 style="margin-top: 0;">系統維修</h3>
+                                    <p class="card-text">親愛的顧客您好：
+                                        為提供更優質的服務，本行行動銀行視訊服務將於2023/07/17(一)
+                                        09:00起進行系統維護作業，「簡訊密碼設定」、「數位帳戶非約定轉帳限額變更」、「玉山銀行人臉辨識首次註冊」功能暫停使用，待系統完成更新將另行公告，造成您的不便，敬請見諒。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Item-->
+                        <div class="swiper-slide w-auto h-auto">
+                            <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 540px;">
+                                <div
+                                    class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5">
+                                </div>
+                                <div class="card-body text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                                        <path
+                                            d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z" />
+                                    </svg>
+                                    <h3 style="margin-top: 0;">系統維修</h3>
+                                    <p class="card-text">親愛的顧客您好：
+                                        為提供更優質的服務，本行行動銀行視訊服務將於2023/07/17(一)
+                                        09:00起進行系統維護作業，「簡訊密碼設定」、「數位帳戶非約定轉帳限額變更」、「玉山銀行人臉辨識首次註冊」功能暫停使用，待系統完成更新將另行公告，造成您的不便，敬請見諒。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Item-->
+                        <div class="swiper-slide w-auto h-auto">
+                            <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 540px;">
+                                <div
+                                    class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5">
+                                </div>
+                                <div class="card-body text-center"
+                                    style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                                        <path
+                                            d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z" />
+                                    </svg>
+                                    <h3 style="margin-top: 0;">系統維修</h3>
+                                    <p class="card-text">親愛的顧客您好：
+                                        為提供更優質的服務，本行行動銀行視訊服務將於2023/07/17(一)
+                                        09:00起進行系統維護作業，「簡訊密碼設定」、「數位帳戶非約定轉帳限額變更」、「玉山銀行人臉辨識首次註冊」功能暫停使用，待系統完成更新將另行公告，造成您的不便，敬請見諒。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- 最新消息輪播圖 按鈕-->
+                    <div class="container d-flex justify-content-center justify-content-sm-end pt-3 mt-3 mt-lg-4">
+                        <button class="btn btn-icon btn-sm btn-outline-primary rounded-circle me-3" type="button"
+                            id="prev-feature"><i class="ai-arrow-left"></i></button>
+                        <button class="btn btn-icon btn-sm btn-outline-primary rounded-circle" type="button"
+                            id="next-feature"><i class="ai-arrow-right"></i></button>
+                    </div>
+                </div>
+        </section>
+        <!-- 頁尾-->
+        <footer class="footer bg-secondary py-5">
+            <div class="container pt-1 pt-sm-2 pt-md-3 pt-lg-4 pt-xl-5">
+                <div class="border-bottom text-center pb-4"><a
+                        class="navbar-brand d-inline-flex text-nav py-0 mb-3 mb-md-4" href="index.html"><span
+                            class="text-primary flex-shrink-0 me-2">
+                            <svg version="1.1" width="35" height="32" viewBox="0 0 36 33"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill="currentColor"
+                                    d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                                </path>
+                            </svg></span><span>EZ-DOM</span></a>
+                    <ul class="nav justify-content-center py-1 pb-sm-2">
+                        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Classes</a></li>
+                        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Trainers</a></li>
+                        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Schedule</a></li>
+                        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Pricing</a></li>
+                        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="d-sm-flex align-items-center justify-content-between pt-4 mt-2 mt-sm-0">
+                    <div class="d-flex justify-content-center order-sm-2 mb-4 mb-sm-0"><a
+                            class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle me-3" href="#"><i
+                                class="ai-instagram"></i></a><a
+                            class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle me-3" href="#"><i
+                                class="ai-facebook"></i></a><a
+                            class="btn btn-icon btn-sm btn-secondary btn-youtube rounded-circle" href="#"><i
+                                class="ai-youtube"></i></a>
+                    </div>
+                    <p class="fs-sm order-sm-1 text-center mb-0"><span class="opacity-70">&copy; All rights reserved.
+                            Made by
+                        </span><a class="nav-link d-inline fw-normal p-0" href="https://createx.studio/" target="_blank"
+                            rel="noopener">Createx Studio</a></p>
+                </div>
+            </div>
+        </footer>
+        <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll>
+            <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-miterlimit="10">
+                </circle>
+            </svg><i class="ai-arrow-up"></i></a>
+        <!-- Vendor scripts: js libraries and plugins-->
+        <script src="frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+        <script src="frontendshop/assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="frontendshop/assets/vendor/lightgallery/lightgallery.min.js"></script>
+        <script src="frontendshop/assets/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+        <script src="frontendshop/assets/vendor/fullcalendar/main.min.js"></script>
+        <!-- Main theme script-->
+        <script src="frontendshop/assets/js/theme.min.js"></script>
+</body>
+
+</html>

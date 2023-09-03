@@ -34,8 +34,8 @@ public class FaqController {
     }
 
     @GetMapping("/list")
-    public List<FaqVO> faqList(){
-        return faqService.getFaqList();
+    public List<FaqVO> faqList(@RequestParam(required = false) String faqTag){
+        return faqService.getFaqList(faqTag);
     }
 
 }

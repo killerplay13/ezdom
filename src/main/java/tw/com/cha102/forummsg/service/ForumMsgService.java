@@ -15,4 +15,6 @@ public interface ForumMsgService {
     ForumMsgVO getMessageById(Integer forumMsgId);
 
     List<ForumMsgVO> getAllMessages();
+
+    List<ForumMsgVO> getMessagesByForumPostId(Integer forumPostId);
 }

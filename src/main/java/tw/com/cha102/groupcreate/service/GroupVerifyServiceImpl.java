@@ -25,4 +25,16 @@ public class GroupVerifyServiceImpl implements GroupVerifyService{
         return groupVerifyRepository.findAllGroupVerify(groupIds);
     }
 
+    public GroupVerifyVO updateGroupApplyStatus(Integer groupMemberId, Integer GroupApplyStatus) {
+        GroupVerifyVO existingGroupVerify = groupVerifyRepository.findById(groupMemberId).orElse(null);
+        if (existingGroupVerify != null) {
+            existingGroupVerify.setGroupApplyStatus(GroupApplyStatus);
+            return groupVerifyRepository.save(existingGroupVerify);
+        } else {
+            return null;
+        }
+    }
+
+
+
 }

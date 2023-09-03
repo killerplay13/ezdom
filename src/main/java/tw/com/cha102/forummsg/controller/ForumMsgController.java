@@ -1,6 +1,7 @@
 package tw.com.cha102.forummsg.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tw.com.cha102.forummsg.model.entity.ForumMsgVO;
@@ -17,14 +18,19 @@ public class ForumMsgController {
 
 	@Autowired
 	public ForumMsgController(ForumMsgService forumMsgService) {
+
 		this.forumMsgService = forumMsgService;
 	}
 
 	@PostMapping("/msg")
 	public ResponseEntity<String> createMessage(@RequestBody ForumMsgVO forumMsgVO) {
 		ForumMsgVO result = forumMsgService.createMessage(forumMsgVO);
-			return ResponseEntity.ok(result.getMessage());
 
+		if (result != null) {
+			return ResponseEntity.ok("留言發送成功");
+		} else {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("留言發送失敗");
+		}
 	}
 
 	@DeleteMapping("/delete/msg/{msgId}")
@@ -52,4 +58,11 @@ public class ForumMsgController {
 		List<ForumMsgVO> messages = forumMsgService.getAllMessages();
 		return ResponseEntity.ok(messages);
 	}
+
+	@GetMapping("/msg/forumPost/{forumPostId}")
+	public ResponseEntity<List<ForumMsgVO>> getMessagesByForumPostId(@PathVariable Integer forumPostId) {
+		List<ForumMsgVO> messages = forumMsgService.getMessagesByForumPostId(forumPostId);
+		return ResponseEntity.ok(messages);
+	}
+
 }

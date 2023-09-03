@@ -17,4 +17,6 @@ public interface ForumCollectService {
     boolean delete(Integer forumCollectId);
 
     boolean save(ForumCollectVO forumCollectVO);
+
+    boolean isPostAlreadyCollected(Integer forumPostId,Integer memberId);
 }
