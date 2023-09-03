@@ -810,7 +810,7 @@ function validateImageUpload() {
                         .then(body => {
                             const { successful, message } = body;
                             if (successful) {
-                                window.location.replace("/shop-product.html");
+                                window.location.replace("shop-product.html");
                             } else {
                                 alert(message);
                             }
