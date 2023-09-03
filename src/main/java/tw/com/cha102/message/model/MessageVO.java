@@ -18,12 +18,9 @@ public class MessageVO {
     private String type;
 
     private String memberIdA;
-//    @ManyToOne
-//    @JoinColumn(name = "MEMBER_IDA", referencedColumnName = "MEMBER_ID")
 
     private String memberIdB;
-//    @ManyToOne
-//    @JoinColumn(name = "MEMBER_IDB", referencedColumnName = "MEMBER_ID")
+
     private String messageContent;
     private boolean messageStatus;
     private String messageTime;

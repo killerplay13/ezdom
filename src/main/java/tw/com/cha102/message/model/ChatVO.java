@@ -4,17 +4,27 @@ import java.sql.Timestamp;
 
 public class ChatVO {
     private String type;
-    private Integer groupId;
+    private String sender;
+    private String groupId;
     private String chatContent;
     private Integer readNum;
-    private Timestamp chatTime;
+    private String chatTime;
 
-    public ChatVO(String type, Integer groupId, String chatContent, Integer readNum, Timestamp chatTime) {
+    public ChatVO(String type, String sender, String groupId, String chatContent, Integer readNum, String chatTime) {
         this.type = type;
+        this.sender = sender;
         this.groupId = groupId;
         this.chatContent = chatContent;
         this.readNum = readNum;
         this.chatTime = chatTime;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
     public String getType() {
@@ -25,11 +35,11 @@ public class ChatVO {
         this.type = type;
     }
 
-    public Integer getGroupId() {
+    public String getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(Integer groupId) {
+    public void setGroupId(String groupId) {
         this.groupId = groupId;
     }
 
@@ -49,11 +59,11 @@ public class ChatVO {
         this.readNum = readNum;
     }
 
-    public Timestamp getChatTime() {
+    public String getChatTime() {
         return chatTime;
     }
 
-    public void setChatTime(Timestamp chatTime) {
+    public void setChatTime(String chatTime) {
         this.chatTime = chatTime;
     }
 }

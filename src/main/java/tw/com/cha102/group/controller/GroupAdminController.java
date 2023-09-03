@@ -81,7 +81,7 @@ public class GroupAdminController {
         }
     }
 
-    @GetMapping("/mycomming/list")
+    @GetMapping("/mycomming/list")//即將到來揪團列表
     public ResponseEntity<List<Group>> getMycomingGroup(HttpSession session){
         // TODO: 用來獲取已登入的member訊息
         // Member member = (Member) session.getAttribute("member");

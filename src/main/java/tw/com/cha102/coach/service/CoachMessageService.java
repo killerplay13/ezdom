@@ -31,12 +31,12 @@ public class CoachMessageService {
     }
 
     // 修改留言
-    public CoachMessageVO updateMessage(Integer id, CoachMessageVO updateMessage){
+    public CoachMessageVO updateMessage(Integer id, String content){
         Optional<CoachMessageVO> check = coachMessageRepository.findById(id);
 
         if(check.isPresent()){
             CoachMessageVO message = check.get();
-            message.setContent(updateMessage.getContent());
+            message.setContent(content);
             message.setMessage("修改留言成功");
             message.setSuccessful(true);
             return coachMessageRepository.save(message);

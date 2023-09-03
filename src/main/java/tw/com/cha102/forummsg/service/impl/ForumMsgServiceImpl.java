@@ -21,17 +21,7 @@ public class ForumMsgServiceImpl implements ForumMsgService {
 
     @Override
     public ForumMsgVO createMessage(ForumMsgVO forumMsgVO) {
-        ForumMsgVO doMsg = forumMsgDao.save(forumMsgVO);
-
-        if (doMsg != null) {
-            doMsg.setSuccessful(true);
-            doMsg.setMessage("留言發送成功");
-        } else {
-            doMsg.setSuccessful(false);
-            doMsg.setMessage("留言發送失敗");
-        }
-
-        return doMsg;
+        return forumMsgDao.save(forumMsgVO);
     }
 
     @Override
@@ -60,5 +50,9 @@ public class ForumMsgServiceImpl implements ForumMsgService {
     @Override
     public List<ForumMsgVO> getAllMessages() {
         return forumMsgDao.findAll();
+    }
+    @Override
+    public List<ForumMsgVO> getMessagesByForumPostId(Integer forumPostId) {
+        return forumMsgDao.findByForumPostId(forumPostId);
     }
 }

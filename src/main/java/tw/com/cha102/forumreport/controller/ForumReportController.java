@@ -22,14 +22,20 @@ public class ForumReportController {
     }
 
     @PostMapping("/report")
-    public ResponseEntity<String> createReport(@RequestBody ForumReportVO forumReportVO) {
+    public ResponseEntity<ForumReportVO> createReport(@RequestBody ForumReportVO forumReportVO) {
         ForumReportVO result = forumReportService.createReport(forumReportVO);
-        if (result.isSuccessful()) {
-            return ResponseEntity.ok(result.getMessage()); // 返回插入结果的消息
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 返回服务器错误状态码
+        if(result!=null){
+            result.setSuccessful(true);
+            result.setMessage("完成");
+            return ResponseEntity.ok(result);
+        }else{
+            result.setSuccessful(false);
+            result.setMessage("失敗");
+            return ResponseEntity.notFound().build();
         }
+
     }
+
 
     @GetMapping("/report/list")
     public ResponseEntity<List<ForumReportVO>> listAllReports() {
@@ -57,5 +63,11 @@ public class ForumReportController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/hasReported/{forumPostId}/{memberId}")
+    public ResponseEntity<Boolean> hasReported(@PathVariable Integer forumPostId, @PathVariable Integer memberId) {
+        boolean hasReported = forumReportService.hasReportedSamePost(forumPostId, memberId);
+        return ResponseEntity.ok(hasReported);
     }
 }

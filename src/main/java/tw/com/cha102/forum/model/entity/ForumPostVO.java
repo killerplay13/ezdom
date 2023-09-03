@@ -37,11 +37,12 @@ public class ForumPostVO extends Core {
     @Column(name = "FORUMPOST_TYPE" )
     private Integer forumPostType;
 
+
 //    @ManyToOne
 //    @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
 //    private Member member;
 
-    @OneToMany(mappedBy = "forumPost", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "forumPost",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<ForumMsgVO> forumMsgs;
 
