@@ -27,6 +27,6 @@ public interface ReserveService {
 
     List<ReserveItemDTO> findMemberReservationFormByMemberId(Integer memberId);
 
-
+    boolean updateReserveStatusByReserveId(Integer reserveId);
 }
 
