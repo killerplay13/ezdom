@@ -19,4 +19,14 @@ public interface OrderService {
     Member getGuestInformation(Integer memberId);
 
     boolean addToOrder(OrderVO orderVO);
+
+    List<OrderVO> findByStatusTo3(Integer value,int orderStatus);
+
+    int findOrderCountByOrderStatus(Integer orderStatus);
+
+    boolean confirmOrder(Integer orderId);
+
+    boolean reduceMemberPoint(Integer memberId,Integer usePoints);
+
+    boolean addMemberPoint(Integer memberId,Integer orderId);
 }

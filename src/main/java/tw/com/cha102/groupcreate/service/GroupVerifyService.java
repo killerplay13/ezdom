@@ -12,4 +12,5 @@ import java.util.List;
 public interface GroupVerifyService {
     List<GroupVerifyVO> findAllGroupVerifyByGroupId(List<String> groupIds);
 
+    GroupVerifyVO updateGroupApplyStatus(Integer groupMemberId, Integer newGroupApplyStatus);
 }

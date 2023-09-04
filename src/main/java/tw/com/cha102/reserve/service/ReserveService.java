@@ -1,5 +1,9 @@
 package tw.com.cha102.reserve.service;
 
-public class ReserveService {
+import tw.com.cha102.reserve.model.entity.ReserveItemVO;
 
+public interface ReserveService {
+
+    ReserveItemVO insertReserveItem(ReserveItemVO reserveItemVO);
 }
+

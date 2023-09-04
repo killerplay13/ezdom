@@ -23,12 +23,17 @@ public class JedisHandleMessage {
 
         String senderKey = new StringBuilder(memberIdA).append(":").append(memberIdB).toString();
         String receiverKey = new StringBuilder(memberIdB).append(":").append(memberIdA).toString();
-//        Jedis jedis = pool.getResource();
        Jedis jedis = pool.getResource();
             jedis.rpush(senderKey, message);
             jedis.rpush(receiverKey, message);
             logger.info("Chat message saved successfully.");
             jedis.close();
     }
-
+    public static void saveGroupMessage(String memberIdA, String groupId, String message){
+        String receiverKey = new StringBuilder(groupId).append(":").append(memberIdA).toString();
+        Jedis jedis = pool.getResource();
+        jedis.rpush(receiverKey, message);
+        logger.info("Group message saved successfully.");
+        jedis.close();
+    }
 }

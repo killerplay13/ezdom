@@ -2,6 +2,7 @@ package tw.com.cha102.forum.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tw.com.cha102.forum.dto.PostDTO;
 import tw.com.cha102.forum.model.entity.ForumPostVO;
 import tw.com.cha102.forum.model.dao.ForumPostDao;
 import tw.com.cha102.forum.service.ForumPostService;
@@ -17,53 +18,38 @@ public class ForumPostServiceImpl implements ForumPostService {
 
     //發布新文章
     @Override
-    public ForumPostVO post(ForumPostVO forumPostVO) {
-        // 檢查文章標題和內容是否存在
-        if (forumPostVO.getForumPostTitle() == null || forumPostVO.getForumPostContent() == null) {
-            forumPostVO.setMessage("標題或內容未輸入");
-            forumPostVO.setSuccessful(false);
-        } else {
-            //呼叫DAO進行文章儲存
-            ForumPostVO doPost = forumPostDao.save(forumPostVO);
-            if (doPost != null) {
-                forumPostVO.setMessage("發文成功");
-                forumPostVO.setSuccessful(true);
-            } else {
-                forumPostVO.setMessage("發文錯誤");
-                forumPostVO.setSuccessful(false);
-            }
-        }
+    public ForumPostVO post(PostDTO postDTO,Integer memberId) {  // 修改方法參數名稱和返回類型
+        ForumPostVO forumPostVO = new ForumPostVO();
+        forumPostVO.setForumPostContent(postDTO.getForumPostContent());
+        forumPostVO.setForumPostTitle(postDTO.getForumPostTitle());
+        forumPostVO.setForumPostType(postDTO.getForumPostType());
+        forumPostVO.setMemberId(memberId);
 
-        return forumPostVO;
+        return forumPostDao.save(forumPostVO);
+
+
     }
 
     //編輯指定文章
     @Override
-    public ForumPostVO edit(ForumPostVO forumPostVO) {
-        Optional<ForumPostVO> existingPostOptional = forumPostDao.findById(forumPostVO.getForumPostId());
+    public ForumPostVO edit(Integer postId, PostDTO postDTO) {  // 修改方法參數名稱
+        Optional<ForumPostVO> existingPostOptional = forumPostDao.findById(postId);
 
         if (existingPostOptional.isPresent()) {
             ForumPostVO existingPost = existingPostOptional.get();
-            //更新文章標題、內容和類型
-            existingPost.setForumPostTitle(forumPostVO.getForumPostTitle());
-            existingPost.setForumPostContent(forumPostVO.getForumPostContent());
-            existingPost.setForumPostType(forumPostVO.getForumPostType());
+            existingPost.setForumPostTitle(postDTO.getForumPostTitle());
+            existingPost.setForumPostContent(postDTO.getForumPostContent());
+            existingPost.setForumPostType(postDTO.getForumPostType());
+
+            // 其他邏輯 - 處理相關業務邏輯
 
             ForumPostVO updatedPost = forumPostDao.save(existingPost);
+            // 根據需要執行其他處理
 
-            if (updatedPost != null) {
-                forumPostVO.setMessage("修改文章成功");
-                forumPostVO.setSuccessful(true);
-            } else {
-                forumPostVO.setMessage("修改文章失敗");
-                forumPostVO.setSuccessful(false);
-            }
-        } else {
-            forumPostVO.setMessage("文章不存在");
-            forumPostVO.setSuccessful(false);
+            return updatedPost;
         }
 
-        return forumPostVO;
+        return null;
     }
 
     //列出所有文章
@@ -111,6 +97,8 @@ public class ForumPostServiceImpl implements ForumPostService {
     public List<ForumPostVO> findPostsByMemberId(Integer memberId) {
 
         return forumPostDao.findByMemberId(memberId);
+
     }
+
 
 }
