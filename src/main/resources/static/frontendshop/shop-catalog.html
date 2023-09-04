@@ -888,12 +888,13 @@
       }
     })
   }
+  //幻燈片
   $.ajax({
-    url: "http://localhost:8080/ezdom/ads/getTodaysAds", // 后端端点的URL，根据你的路由设置
+    url: "http://localhost:8080/ezdom/ads/getTodaysAds",
     type: "GET",
-    dataType: "json", // 期望的响应数据类型
+    dataType: "json",
     success: function (adIds) {
-        // 动态生成幻灯片项
+        //
         adIds.forEach(adId => {
             const imageSrc = `http://localhost:8080/ezdom/ads/getAdImage/${adId}`;
             const slideHtml = `
@@ -905,13 +906,13 @@
                     </div>
                 </div>
             `;
-            // 将幻灯片项添加到幻灯片容器
+
             $(".swiper-wrapper").append(slideHtml);
         });
     },
     error: function () {
-        // 处理请求错误
-        console.error("无法获取今天的广告ID列表");
+
+        console.error("錯誤");
     }
 });
 
