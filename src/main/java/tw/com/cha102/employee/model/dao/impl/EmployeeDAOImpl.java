@@ -25,7 +25,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public int update(EmployeeVO employeeVO) {
         StringBuilder hql = new StringBuilder()
-                .append("UPDATE Employee SET ");
+                .append("UPDATE EmployeeVO SET ");
 
         String password = employeeVO.getEmployeePassword();
         if (password != null && !password.isEmpty()) {
@@ -35,14 +35,15 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                 .append("employeeName = :name, ")
                 .append("hiredate = :hiredate, ")
                 .append("employeeEmail = :email, ")
-                .append("employeePhone = :phone ")
+                .append("employeePhone = :phone, ")
+                .append("employeePosition = :position ")
                 .append("WHERE employeeId = :id");
 
 
         Query<?> query = session.createQuery(hql.toString());
 
         if (Objects.nonNull(password) && !password.isEmpty()) {
-            query.setParameter("password", password);
+            query.setParameter("password", employeeVO.getEmployeePassword());
         }
 
         query.setParameter("status", employeeVO.getEmployeeStatus())
@@ -50,6 +51,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                 .setParameter("hiredate", employeeVO.getHiredate())
                 .setParameter("email", employeeVO.getEmployeeEmail())
                 .setParameter("phone", employeeVO.getEmployeePhone())
+                .setParameter("position", employeeVO.getEmployeePosition())
                 .setParameter("id", employeeVO.getEmployeeId());
 
         return query.executeUpdate();
@@ -59,18 +61,25 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public int deleteById(Integer employeeId) {
         EmployeeVO employeeVO = session.get(EmployeeVO.class, employeeId);
-        session.remove(employeeId);
-        return 1;
+        if (employeeVO != null) {
+            session.remove(employeeVO);
+            return 1;
+        }
+        return 0;
     }
 
     @Override
     public List<EmployeeVO> selectAll() {
-        final String hql = "FROM EMPLOYEE ORDER BY EMPLOYEE";
+        final String hql = "FROM EmployeeVO ORDER BY employeeId";
         return session.createQuery(hql, EmployeeVO.class).getResultList();
     }
+
 
     @Override
     public EmployeeVO selectById(Integer employeeId) {
         return session.get(EmployeeVO.class, employeeId);
     }
+
+
+
 }
