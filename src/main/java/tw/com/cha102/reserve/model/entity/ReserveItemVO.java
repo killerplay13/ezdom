@@ -21,12 +21,11 @@ public class ReserveItemVO extends Core {
     @Column(name = "RESERVE_ITEM", nullable = false)
     private String reserveItem;
 
-
     private String place;
-
 
     private String content;
 
-
     private Integer amounts;
+    @Column(name = "RESERVE_ITEM_STATUS", insertable = false)
+    private byte reserveItemStatus;
 }
