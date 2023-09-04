@@ -73,4 +73,11 @@ public class ReserveServiceImpl implements ReserveService {
         return reserveItemRepository.getMemberReservationFormByMemberId(memberId);
     }
 
+    @Override
+    public boolean updateReserveStatusByReserveId(Integer reserveId) {
+        //會員將訂單完成
+        byte orderStatus=1;
+        return reserveRepository.updateReserveStatusByReserveId(orderStatus,reserveId)>0;
+    }
+
 }

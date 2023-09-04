@@ -106,9 +106,20 @@ public class ReserveController {
     }
     //會員預約單
     @GetMapping("/member/list")
-    List<ReserveItemDTO> memberReservationForm(){
+    public List<ReserveItemDTO> memberReservationForm(){
         //之後從session抓
         Integer memberId=1;
         return reserveService.findMemberReservationFormByMemberId(memberId);
+    }
+    //會員預約單完成訂單
+    @PutMapping("/member/compelete/{reserveId}")
+    public ReserveVO completeReserve(@PathVariable Integer reserveId){
+        ReserveVO reserveVO =new ReserveVO();
+        if(reserveService.updateReserveStatusByReserveId(reserveId)){
+            reserveVO.setSuccessful(true);
+            reserveVO.setMessage("訂單完成!");
+            return reserveVO;
+        }
+        return null;
     }
 }
