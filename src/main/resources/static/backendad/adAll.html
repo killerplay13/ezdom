@@ -22,6 +22,8 @@
 
     <!-- Custom styles for this page -->
     <link href="../backendshop/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.min.css">
+
     <!-- 自訂css -->
     <style>
         .product-image {
@@ -56,6 +58,7 @@
             text-overflow: ellipsis; /* 在溢出時顯示省略號 */
         }
 
+       
 
 
 
@@ -406,8 +409,9 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
+                        <div class="card-header py-4 d-flex justify-content-between">
                             <h3 class="m-0 font-weight-bold text-primary">廣告一覽</h3>
+                            <a class="btn btn-primary" href="adadd.html">新增</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -550,85 +554,135 @@
         // }
         
         function getAllAds() {
-                    fetch('http://localhost:8080/ezdom/ads/all')
-                        .then(resp => resp.json())
-                        .then(data => {
-                            // 清空表格内容
-                            adTable.clear().draw();
-                            
-                            // 使用 jQuery 构建 HTML 并添加到表格中
-                            data.forEach(ad => {
-                                // 將日期時間字符串轉換為 Date 對象
-                                const startDate = new Date(ad.startTime);
-                                const endDate = new Date(ad.endTime);
-                                
-                                // 獲取日期部分的字符串（YYYY-MM-DD 格式）
-                                const startDateStr = startDate.toISOString().split('T')[0];
-                                const endDateStr = endDate.toISOString().split('T')[0];
+    fetch('http://localhost:8080/ezdom/ads/all')
+        .then(resp => resp.json())
+        .then(data => {
+            // 清空表格内容
+            adTable.clear().draw();
 
-                                let imageHtml = '';
-                                if (ad.productPic) {
-                                    imageHtml = `<img src="data:image/png;base64, ${ad.productPic}" alt="Product Image" width="50" height="50">`;
-                                } else {
-                                    imageHtml = `<span>No Image Available</span>`;
-                                }
-                                let rowHtml = `
-                                    <tr>
-                                        <td>${ad.adId}</td>
-                                        <td>${ad.product.productId}</td>
-                                        <td>${startDateStr}</td>
-                                        <td>${endDateStr}</td>
-                                        <td>${imageHtml}</td>
-                                        
-                                        <td><button class='btn btn-outline-info'>編輯</button></td>
-                                        <td><button class='btn btn-outline-danger'>刪除</button></td>
-                                    </tr>
-                                `;
-                                adTable.row.add($(rowHtml));
-                                // console.log(ad.product.productId);
-                            });
+            // 使用 jQuery 构建 HTML 并添加到表格中
+            data.forEach(ad => {
+                // 將日期時間字符串轉換為 Date 對象
+                const startDate = new Date(ad.startTime);
+                const endDate = new Date(ad.endTime);
 
-                            // 重新绘制表格
-                            adTable.draw();
-                        })
-                        .catch(error => {
-                            console.error("Error fetching ad data:", error);
-                        });
-                }
-                
-                // 调用函数以获取员工数据并填充表格
-                getAllAds();
+                // 獲取日期部分的字符串（YYYY-MM-DD 格式）
+                const startDateStr = startDate.toISOString().split('T')[0];
+                const endDateStr = endDate.toISOString().split('T')[0];
+
+                // 创建唯一的图像元素的ID
+                const imageId = `adImage_${ad.adId}`;
+
+                // 在每行中使用唯一的图像元素ID
+                let rowHtml = `<tr id="row_${ad.adId}">
+                                <th>${ad.adId}</th>
+                                <th>${ad.productId}</th>
+                                <th>${startDateStr}</th>
+                                <th>${endDateStr}</th>
+                                <th><img id="${imageId}" src="./assets/images/product/img-1.png" alt="商品圖片" class="product-image"></th>
+                                <td><button class="btn btn-outline-info"  onclick="editAd(${ad.adId})">編輯</button></td>
+                                <td><button class="btn btn-outline-danger" onclick="deleteRow(${ad.adId})" >删除</button></td>
+                            </tr>`;
+                adTable.row.add($(rowHtml));
+
+                // 调用获取广告图片的函数，传入唯一的图像元素ID和广告ID
+                getAdImageBase64(imageId, ad.adId);
+            });
+
+            // 重新绘制表格
+            adTable.draw();
+        })
+        .catch(error => {
+            console.error("Error fetching ad data:", error);
+        });
+}
+
+function editAd(adId) {
+    const editUrl = `adEdit.html?adId=${adId}`;
+    window.location.href = editUrl;
+}
 
 
-                // ====送資料去編輯====
-                $('#dataTable1').on('click', '.btn-outline-info', function() {
-                    var row = $(this).closest('tr');
-                    var adId = row.find('td:eq(0)').text();
-                    var productId = row.find('td:eq(1)').text();
-                    var productPic = row.find('td:eq(2)').text();
-                    var startTime = row.find('td:eq(3)').text();
-                    var endTime = row.find('td:eq(4)').text();
 
-                    // 將需要的廣告資料轉換為 URL 參數
-                    var queryParams = {
-                        adId: adId,
-                        productId: productId,
-                        productPic: productPic,
-                        startTime: startTime,
-                        endTime: endTime
-                    };
+// 获取Base64格式的广告图片
+function getAdImageBase64(imageId, adId) {
+    const imageUrl = `http://localhost:8080/ezdom/ads/images/${adId}`; // 使用模板字符串构建完整的 URL
+    fetch(imageUrl)
+        .then(resp => {
+            if (resp.status === 200) {
+                return resp.text(); // 将响应转换为文本
+            } else {
+                throw new Error('Failed to fetch ad image');
+            }
+        })
+        .then(base64Image => {
+            // 将Base64格式的图片数据设置为img元素的src
+            const imageElement = document.getElementById(imageId);
+            imageElement.src = `data:image/jpeg;base64, ${base64Image}`;
+        })
+        .catch(error => {
+            console.error('Error fetching ad image:', error);
+        });
+}
 
-                    // 將參數轉換為查詢字符串
-                    var queryString = $.param(queryParams);
+// 在页面加载时调用getAllAds以获取广告数据
+    getAllAds();
 
-                    // 導航至 adEdit.html 頁面並攜帶參數
-                    window.location.href = 'adEdit.html?' + queryString;
+    function deleteRow(adId) {
+    Swal.fire({
+        title: '確定要刪除嗎？',
+        text: "刪除後將無法還原此廣告!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '確定',
+        cancelButtonText: '取消'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // 发送DELETE请求删除广告
+            fetch(`http://localhost:8080/ezdom/ads/delete/${adId}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.status === 204) {
+                        // 成功删除，移除对应行
+                        const rowToDelete = document.getElementById(`row_${adId}`);
+                        if (rowToDelete) {
+                            rowToDelete.remove();
+                        } else {
+                            console.error('Error deleting ad: Ad row not found');
+                        }
+                        Swal.fire(
+                            '已刪除!',
+                            '您的廣告已被刪除。',
+                            'success'
+                        );
+                    } else {
+                        Swal.fire(
+                            '刪除失敗',
+                            '刪除廣告時發生錯誤。',
+                            'error'
+                        );
+                    }
+                })
+                .catch(error => {
+                    console.error('Error deleting ad:', error);
+                    Swal.fire(
+                        '刪除失敗',
+                        '刪除廣告時發生錯誤。',
+                        'error'
+                    );
                 });
-
-
+        }
+    });
+}
 
 
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script>
+
+    
 </body>
 
 </html>

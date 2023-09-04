@@ -390,7 +390,7 @@
                                             <th>電子郵件</th>
                                             <th>電話</th>
                                             <th>編輯</th>
-                                            <th>刪除</th>
+                                            <!-- <th>刪除</th> -->
                                         </tr>
                                     </thead>
                                     <!-- <tfoot>
@@ -454,7 +454,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="empSignin.html">Logout</a>
+                    <a class="btn btn-primary" href="account-signin.html">Logout</a>
                 </div>
             </div>
         </div>
@@ -516,24 +516,35 @@
                         .then(data => {
                             // 清空表格内容
                             employeeTable.clear().draw();
+                            // console.log(data);
+                            // for(var i = 0; i <=data.length; i++ ){
+                            //     var employee = data[i];
+                            //     console.log(employee.employeeId);
+                            // }
 
                             // 使用 jQuery 构建 HTML 并添加到表格中
                             data.forEach(employee => {
+                                let status;
+                                if(employee.employeeStatus = 1){
+                                    status = "已啟用";
+                                }else{
+                                    status = "未啟用";
+                                }
                                 let rowHtml = `
                                     <tr>
                                         <td>${employee.employeeId}</td>
                                         <td>${employee.employeePassword}</td>
-                                        <td>${employee.employeeStatus}</td>
+                                        <td>${status}</td>
                                         <td>${employee.employeeName}</td>
                                         <td>${employee.hiredate}</td>
                                         <td>${employee.employeeEmail}</td>
                                         <td>${employee.employeePhone}</td>
-                                        <td><button class='btn btn-outline-info'>編輯</button></td>
-                                        <td><button class='btn btn-outline-danger'>刪除</button></td>
+                                        <td><a class='btn btn-outline-info' href='empEdit.html?employeeId=${employee.employeeId}'>編輯</a></td>
                                     </tr>
                                 `;
                                 employeeTable.row.add($(rowHtml));
                             });
+                                        // <td><button class='btn btn-outline-danger'>離職</button></td>
 
                             // 重新绘制表格
                             employeeTable.draw();
@@ -548,33 +559,99 @@
 
 
                 // ====送資料去編輯====
-                $('#dataTable1').on('click', '.btn-outline-info', function() {
-                    var row = $(this).closest('tr');
-                    var employeeId = row.find('td:eq(0)').text();
-                    var employeeName = row.find('td:eq(3)').text();
-                    var employeePassword = row.find('td:eq(1)').text();
-                    var employeeStatus = row.find('td:eq(2)').text();
-                    var hiredate = row.find('td:eq(4)').text() ? new Date(row.find('td:eq(4)').text()) : null;
-                    var employeeEmail = row.find('td:eq(5)').text();
-                    var employeePhone = row.find('td:eq(6)').text();
+                // $('#dataTable1').on('click', '.btn-outline-info', function() {
+                //     fetch('http://localhost:8080/ezdom/employee/all')
+                //         .then(resp => resp.json())
+                //         .then(data => {
+                //             // console.log(data);
+                //             var row = $(this).closest('tr');
+                //             var employeeId = row.find('td:eq(0)').text();
+                //             var targetEmployeeId = employeeId;
+                //             for(var i = 0; i <=data.length; i++ ){
+                //                 var employee = data[i];
+                //                 // console.log(employee);
+                //                 if (employee.employeeId === targetEmployeeId) {
+                //                     var position = employee.employeePosition;
+                //                     // console.log("Employee Position: " + position);
+                //                     break; // 找到匹配的员工后，退出循环
 
-                    // 將需要的員工資料轉換為 URL 參數
-                    var queryParams = {
-                        employeeId: employeeId,
-                        employeeName: employeeName,
-                        employeePassword: employeePassword,
-                        employeeStatus: employeeStatus,
-                        hiredate: hiredate,
-                        employeeEmail: employeeEmail,
-                        employeePhone: employeePhone
-                    };
 
-                    // 將參數轉換為查詢字符串
-                    var queryString = $.param(queryParams);
 
-                    // 導航至 empEdit.html 頁面並攜帶參數
-                    window.location.href = 'empEdit.html?' + queryString;
-                });
+
+                //             }}
+                //             console.log("Employee Position: " + position);
+                //             // console.log(employee);
+                            
+                //             // var row = $(this).closest('tr');
+                //             var employeeId = row.find('td:eq(0)').text();
+                //             // var targetEmployeeId = employeeId;
+                //             // console.log(targetEmployeeId);
+
+                //             var employeeName = row.find('td:eq(3)').text();
+                //             var employeePassword = row.find('td:eq(1)').text();
+                //             var employeeStatus = row.find('td:eq(2)').text();
+                //             var hiredate = row.find('td:eq(4)').text() ? new Date(row.find('td:eq(4)').text()) : null;
+                //             var employeeEmail = row.find('td:eq(5)').text();
+                //             var employeePhone = row.find('td:eq(6)').text();
+                //             var employeePosition = position;
+                            
+                //             // var employeePosition = 
+                //             var queryParams = {
+                //             employeeId: employeeId,
+                //             employeeName: employeeName,
+                //             employeePassword: employeePassword,
+                //             employeeStatus: employeeStatus,
+                //             hiredate: hiredate,
+                //             employeeEmail: employeeEmail,
+                //             employeePhone: employeePhone,
+                //             employeePosition: employeePosition
+                //         };
+
+                //         // 將參數轉換為查詢字符串
+                //         var queryString = $.param(queryParams);
+
+                //         // 導航至 empEdit.html 頁面並攜帶參數
+                //         window.location.href = 'empEdit.html?' + queryString;
+
+                //         })
+
+                //         // 將需要的員工資料轉換為 URL 參數
+                        
+                // });
+
+
+                // // ====送資料去編輯====
+                // $('#dataTable1').on('click', '.btn-outline-info', function() {
+                //     var row = $(this).closest('tr');
+                //     var employeeId = row.find('td:eq(0)').text();
+                //     employeeId = employeeId.toString();
+                //     // 发起AJAX请求，获取员工详细信息
+                //     $.ajax({
+                //         url: 'empEdit.html', // 替换为获取员工详细信息的后端接口URL
+                //         type: 'GET',
+                //         data: { employeeId: employeeId },
+                //         success: function(response) {
+                //             // 将从后端获取的员工详细信息填充到表单字段中
+                //             $('#employeeId').val(response.employeeId);
+                //             $('#employeeName').val(response.employeeName);
+                //             $('#employeePassword').val(response.employeePassword);
+                //             $('#employeeStatus').val(response.employeeStatus);
+                //             $('#hiredate').val(response.hiredate);
+                //             $('#employeeEmail').val(response.employeeEmail);
+                //             $('#employeePhone').val(response.employeePhone);
+
+                //             // 可以在这里执行其他需要的操作
+                //             // ...
+
+                //             // 跳转到编辑页面
+                //             window.location.href = 'empEdit.html?employeeId=' + employeeId;
+                //         },
+                //         error: function(error) {
+                //             console.log('Error:', error);
+                //         }
+                //     });
+                // });
+
 
             
             

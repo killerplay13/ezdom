@@ -4,6 +4,7 @@ package tw.com.cha102.ad.model.entity;
 import tw.com.cha102.product.model.entity.ProductVO;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,9 +17,9 @@ public class AdVO implements Serializable {
     @Column(name = "AD_ID")
     private int adId;
 
-    @ManyToOne
-    @JoinColumn(name = "PRODUCT_ID", insertable = false, updatable = false)
-    private ProductVO productId;
+
+    @Column(name = "PRODUCT_ID")
+    private Integer productId;
 
     @Lob
     @Column(name = "PRODUCT_PIC")
@@ -32,7 +33,7 @@ public class AdVO implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date endTime;
 
-    public AdVO(int adId, ProductVO productId, byte[] productPic, Date startTime, Date endTime) {
+    public AdVO(int adId, Integer productId, byte[] productPic, Date startTime, Date endTime) {
         this.adId = adId;
         this.productId = productId;
         this.productPic = productPic;
@@ -78,7 +79,7 @@ public class AdVO implements Serializable {
     }
 
 
-    public ProductVO getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 }

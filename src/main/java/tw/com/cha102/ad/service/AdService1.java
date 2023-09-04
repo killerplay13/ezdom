@@ -5,13 +5,16 @@ import org.springframework.stereotype.Service;
 import tw.com.cha102.ad.model.dao.AdRepository;
 import tw.com.cha102.ad.model.entity.AdVO;
 
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdService1 {
 
     private final AdRepository adRepository;
+
 
     @Autowired
     public AdService1(AdRepository adRepository) {
@@ -56,5 +59,21 @@ public class AdService1 {
 
         adRepository.save(existingAd);
     }
+
+    public int getMaxAdId() {
+        Optional<AdVO> adVO = adRepository.findTopByOrderByAdIdDesc();
+        return adVO.map(AdVO::getAdId).orElse(0);
+    }
+
+    public String getAdImageBase64ById(int adId) {
+        AdVO ad = adRepository.findById(adId).orElse(null);
+
+        byte[] productPic = ad.getProductPic();
+        String base64Image = Base64.getEncoder().encodeToString(productPic);
+        return base64Image;
+
+    }
+
+
 }
 

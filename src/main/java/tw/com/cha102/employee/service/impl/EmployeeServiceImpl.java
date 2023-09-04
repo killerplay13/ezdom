@@ -10,7 +10,6 @@ import tw.com.cha102.employee.model.dao.EmployeeDAO;
 import tw.com.cha102.employee.model.dao.EmployeeRepository;
 import tw.com.cha102.employee.model.entity.EmployeeVO;
 import tw.com.cha102.employee.service.EmployeeService;
-import tw.com.cha102.member.model.entity.Member;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -39,15 +38,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         return dao.insert(employeeVO)>0;
     }
 
-//    @Override
-//    public EmployeeVO login(EmployeeVO employeeVO) {
-//        EmployeeVO storedEmployee = dao.selectById(employeeVO.getEmployeeId());
-//        if (storedEmployee != null && storedEmployee.getEmployeePassword().equals(employeeVO.getEmployeePassword())) {
-//            return storedEmployee;
-//        } else {
-//            return null;
-//        }
-//    }
 
     @Override
     public boolean edit(EmployeeVO employeeVO) {
@@ -67,6 +57,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public boolean save(EmployeeVO employeeVO) {
         return dao.update(employeeVO) > 0;
+    }
+
+    @Override
+    public EmployeeVO getById(Integer EmployeeId) {
+        if(EmployeeId !=null){
+            return dao.selectById(EmployeeId);
+        }else {
+            return null;
+        }
     }
 
     @Override
