@@ -6,11 +6,10 @@ import java.util.List;
 
 public interface ForumMsgService {
 
-    ForumMsgVO createMessage(ForumMsgVO forumMsgVO);
+    boolean createMessage(ForumMsgVO forumMsgVO);
 
     boolean deleteMessage(Integer forumMsgId);
 
-    boolean saveMessage(ForumMsgVO forumMsgVO);
 
     ForumMsgVO getMessageById(Integer forumMsgId);
 
