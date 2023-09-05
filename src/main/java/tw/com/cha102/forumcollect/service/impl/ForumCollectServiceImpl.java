@@ -19,20 +19,21 @@ public class ForumCollectServiceImpl implements ForumCollectService {
     }
 
     @Override
-    public ForumCollectVO collect(ForumCollectVO forumCollectVO) {
+    public boolean collect(ForumCollectVO forumCollectVO) {
         Integer forumPostId = forumCollectVO.getForumPostId();
         Integer memberId = forumCollectVO.getMemberId();
+
         // 檢查是否已經收藏過該文章
         if (isPostAlreadyCollected(forumPostId, memberId)) {
-            forumCollectVO.setSuccessful(false);
-            forumCollectVO.setMessage("收藏過該文章");
-            return forumCollectVO;
+            return false; // 已經收藏過該文章，返回false
         }
 
         ForumCollectVO savedCollect = forumCollectDao.save(forumCollectVO);
 
-        return savedCollect;
+        // 如果保存成功，返回true
+        return savedCollect != null;
     }
+
 
     @Override
     public List<ForumCollectVO> findAll() {
@@ -51,11 +52,6 @@ public class ForumCollectServiceImpl implements ForumCollectService {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public boolean save(ForumCollectVO forumCollectVO) {
-        return forumCollectDao.save(forumCollectVO) != null;
     }
 
     public boolean isPostAlreadyCollected(Integer forumPostId, Integer memberId) {
