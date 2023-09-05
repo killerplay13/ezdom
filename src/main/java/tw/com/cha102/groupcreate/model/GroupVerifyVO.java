@@ -52,5 +52,14 @@ public class GroupVerifyVO {
     public String getGroupName() {
         return groupId != null ? groupId.getGroupName() : null;
     }
+    public Integer getMemberId(){
+        return member != null ? member.getMemberId(): null;
+    }
 
+    public String getGroupPhoto(){
+        if (groupId != null && groupId.getGroupPhoto() != null) {
+            byte[] groupPhoto = groupId.getGroupPhoto();
+            return Base64.getEncoder().encodeToString(groupPhoto);
+        }
+        return null;    }
 }

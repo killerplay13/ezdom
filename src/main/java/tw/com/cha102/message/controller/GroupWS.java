@@ -2,6 +2,7 @@ package tw.com.cha102.message.controller;
 
 import com.google.gson.Gson;
 import org.springframework.stereotype.Component;
+import redis.clients.jedis.Tuple;
 import tw.com.cha102.message.model.ChatVO;
 import tw.com.cha102.message.model.MessageVO;
 import tw.com.cha102.message.service.JedisHandleMessage;
@@ -24,7 +25,7 @@ public class GroupWS {
     @OnOpen
     public void onOpen(@PathParam("groupId") String userName, Session userSession) throws IOException {
         connectedSessions.add(userSession);
-        String text = String.format("Session ID = %s, connected; userName = %s", userSession.getId(), userName);
+        String text = String.format("Session ID = %s, connected; groupId = %s", userSession.getId(), userName);
         System.out.println(text);
     }
 
@@ -36,19 +37,20 @@ public class GroupWS {
         Integer readNum = groupMessage.getReadNum();
         String time = groupMessage.getChatTime();
         if ("history".equals(groupMessage.getType())){
-            List<String> histroyData = JedisHandleMessage.getHistoryMsg(sender,groupId);
+            Set<Tuple> histroyData = JedisHandleMessage.getgroupHistoryMsg(groupId);
             String historyMsg = gson.toJson(histroyData);
             ChatVO cmHistory = new ChatVO("history",sender,groupId,historyMsg,readNum,time);
             if (userSession != null && userSession.isOpen()){
                 userSession.getAsyncRemote().sendText(gson.toJson(cmHistory));
                 System.out.println("history="+gson.toJson(cmHistory));
-                return;
+                return ;
             }
         }
+        JedisHandleMessage.saveGroupMessage(groupId,sender,message);
         for (Session session : connectedSessions) {
             if (session.isOpen())
                 session.getAsyncRemote().sendText(message);
-            JedisHandleMessage.saveGroupMessage(sender,groupId,message);
+
         }
         System.out.println("Message received: " + message);
     }
