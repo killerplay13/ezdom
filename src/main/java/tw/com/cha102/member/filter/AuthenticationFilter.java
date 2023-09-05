@@ -23,14 +23,14 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         String requestUrl = request.getRequestURI().replace(contextPath, "");
 
         // 允許特定 URL 通過Filter
-        if ("/frontendmember/account-signin.html".equals(requestUrl) || "/frontendmember/account-signup.html".equals(requestUrl)) {
+        if ("/frontendmember/empSignin.html".equals(requestUrl) || "/frontendmember/account-signup.html".equals(requestUrl)) {
             filterChain.doFilter(request, response);
             return;
         }
 
         HttpSession session = request.getSession();
         if (session.getAttribute("account") == null) {
-            response.sendRedirect(request.getContextPath() + "/frontendmember/account-signin.html");
+            response.sendRedirect(request.getContextPath() + "/frontendmember/empSignin.html");
             return;
         }
 
