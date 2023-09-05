@@ -24,10 +24,10 @@ public class ForumCollectController {
 	@PostMapping("/collect")
 	public ResponseEntity<String> collectPost(@RequestBody ForumCollectVO forumCollectVO) {
 		ForumCollectVO result = forumCollectService.collect(forumCollectVO);
-		if (result.isSuccessful()) {
-			return ResponseEntity.ok(result.getMessage()); // 返回插入结果的消息
+		if (result != null) {
+			return ResponseEntity.ok("收藏成功");
 		} else {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 返回服务器错误状态码
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("收藏失敗");
 		}
 	}
 

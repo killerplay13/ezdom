@@ -39,15 +39,37 @@ public class CoachMemberService {
             return coachMember;
         }
 
-        // 如果已存在教練資訊，則不能重複註冊
-        if(checkCoachMember != null){
+        if(checkCoachMember.getStatus() == 0){
+            checkCoachMember.setMessage("此會員ID的教練身分已被停權");
+            checkCoachMember.setSuccessful(false);
+            return checkCoachMember;
+        }
+        if(checkCoachMember.getStatus() == 1){
+            checkCoachMember.setMessage("此會員ID已註冊為教練，待審核中");
+            checkCoachMember.setSuccessful(false);
+            return checkCoachMember;
+        }
+        if(checkCoachMember.getStatus() == 2){
             checkCoachMember.setMessage("此會員ID已註冊為教練，不能重複註冊");
             checkCoachMember.setSuccessful(false);
             return checkCoachMember;
         }
+        if(checkCoachMember.getStatus() == 3){
+            checkCoachMember.setMessage("註冊成功，請等待審核!");
+            checkCoachMember.setSuccessful(true);
+            checkCoachMember.setNickname(registerCoachMember.getNickname());
+            checkCoachMember.setGender(registerCoachMember.getGender());
+            checkCoachMember.setSkills(registerCoachMember.getSkills());
+            checkCoachMember.setIntroduction(registerCoachMember.getIntroduction());
+            checkCoachMember.setPicture(registerCoachMember.getPicture());
+            checkCoachMember.setStatus((byte) 1);
+            coachMemberRepository.save(checkCoachMember);
+            return checkCoachMember;
+        }
+
 
         registerCoachMember = coachMemberRepository.save(registerCoachMember);
-        registerCoachMember.setMessage("註冊成功");
+        registerCoachMember.setMessage("註冊成功，請等待審核!");
         registerCoachMember.setSuccessful(true);
         return registerCoachMember;
     }
