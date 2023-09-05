@@ -6,6 +6,7 @@ import tw.com.cha102.core.vo.Core;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Data
@@ -24,7 +25,7 @@ public class ReserveTimeVO  extends Core {
     private Timestamp date;
 
     @Column(name = "CLASS_TIME", nullable = false)
-    private Integer classTime;
+    private byte classTime;
 
     @Column(name = "APPOINTMENT_STATUS", insertable = false)
     private Integer appointmentStatus;
