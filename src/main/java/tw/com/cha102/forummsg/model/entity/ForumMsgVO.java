@@ -36,8 +36,12 @@ public class ForumMsgVO extends Core {
     @JoinColumn(name = "FORUMPOST_ID", insertable = false, updatable = false)
     private ForumPostVO forumPost;
 
-//    @ManyToOne
-//    @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
-//    private Member member;
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID", referencedColumnName = "MEMBER_ID", insertable = false, updatable = false)
+    private Member member;
+
+    // 新增一個屬性以包含 memberName
+    @Transient // 使用 @Transient 標註，以防止該屬性映射到數據庫表格
+    private String memberName;;
 }
 

@@ -2,6 +2,8 @@ package tw.com.cha102.forumreport.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tw.com.cha102.forum.model.dao.ForumPostDao;
+import tw.com.cha102.forumcollect.model.entity.ForumCollectVO;
 import tw.com.cha102.forumreport.model.entity.ForumReportVO;
 import tw.com.cha102.forumreport.model.dao.ForumReportDao;
 import tw.com.cha102.forumreport.service.ForumReportService;
@@ -20,11 +22,17 @@ public class ForumReportServiceImpl implements ForumReportService {
     }
 
     @Override
-    public ForumReportVO createReport(ForumReportVO forumReportVO) {
-
-        return forumReportDao.save(forumReportVO);
+    public boolean createReport(ForumReportVO forumReportVO) {
+        Integer forumPostId = forumReportVO.getForumPostId();
+        Integer memberId = forumReportVO.getMemberId();
+        // 檢查是否已經檢舉過該文章
+        if (hasReportedSamePost(forumPostId, memberId)) {
+            return false; // 已經檢舉過該文章，返回false
+        }
+        ForumReportVO savedReport = forumReportDao.save(forumReportVO);
+        // 如果保存成功，返回true
+        return savedReport != null;
     }
-
     @Override
     public List<ForumReportVO> getAllReports() {
 
@@ -32,15 +40,15 @@ public class ForumReportServiceImpl implements ForumReportService {
     }
 
     @Override
-    public ForumReportVO getReportById(Integer reportId) {
+    public ForumReportVO getReportById(Integer forumReportId) {
 
-        return forumReportDao.findById(reportId).orElse(null);
+        return forumReportDao.findById(forumReportId).orElse(null);
     }
 
     @Override
-    public boolean deleteReport(Integer reportId) {
-        if (forumReportDao.existsById(reportId)) {
-            forumReportDao.deleteById(reportId);
+    public boolean deleteReport(Integer forumReportId) {
+        if (forumReportDao.existsById(forumReportId)) {
+            forumReportDao.deleteById(forumReportId);
             return true;
         }
         return false;
@@ -49,6 +57,20 @@ public class ForumReportServiceImpl implements ForumReportService {
     // 檢查是否已經檢舉過相同的文章
     public boolean hasReportedSamePost(Integer forumPostId, Integer memberId) {
         return forumReportDao.existsByForumPostIdAndMemberId(forumPostId, memberId);
+    }
+
+    @Override
+    public boolean updateReportStatus(Integer reportId) {
+        ForumReportVO report = forumReportDao.findById(reportId).orElse(null);
+
+        if (report != null && report.getForumReportStatus() == 0) {
+            // 更新檢舉狀態為 1
+            report.setForumReportStatus(1);
+            forumReportDao.save(report);
+            return true;
+        }
+
+        return false;
     }
 
 
