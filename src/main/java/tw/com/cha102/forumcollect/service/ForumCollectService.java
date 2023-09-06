@@ -17,6 +17,5 @@ public interface ForumCollectService {
     boolean delete(Integer forumCollectId);
 
 
-
     boolean isPostAlreadyCollected(Integer forumPostId,Integer memberId);
 }

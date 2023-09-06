@@ -1,13 +1,12 @@
 package tw.com.cha102.forum.service;
 
-import tw.com.cha102.forum.dto.PostDTO;
 import tw.com.cha102.forum.model.entity.ForumPostVO;
 
 import java.util.List;
 
 public interface ForumPostService {
 
-    boolean post(ForumPostVO forumPostVO,Integer memberId);
+    boolean post(ForumPostVO forumPostVO);
 
     boolean edit(Integer postId,ForumPostVO forumPostVO);
 
@@ -15,7 +14,6 @@ public interface ForumPostService {
     ForumPostVO getPostById(Integer forumPostId);
 
     boolean delete(Integer forumPostId);
-
 
 
     List<ForumPostVO> findPostsByMemberId(Integer memberId);
