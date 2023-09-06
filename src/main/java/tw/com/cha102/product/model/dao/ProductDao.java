@@ -28,4 +28,6 @@ public interface ProductDao {
     List<ProductVO> selectByCategoryId(Integer value,Integer categoryId);
 
     int selectProductCountByCategoryId(Integer categoryId);
+
+    List<ProductVO> selectProductByRand();
 }

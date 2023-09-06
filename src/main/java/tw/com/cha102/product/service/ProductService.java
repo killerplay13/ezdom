@@ -25,4 +25,6 @@ public interface ProductService {
     int findProductCountByCategoryId(Integer categoryId);
 
     ProductVO findProductById (Integer productId);
+
+    List<ProductVO> findProductByRand();
 }

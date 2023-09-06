@@ -72,5 +72,10 @@ public class ProductServiceImpl implements ProductService {
         return dao.selectById(productId);
     }
 
+    @Override
+    public List<ProductVO> findProductByRand() {
+        return dao.selectProductByRand();
+    }
+
 
 }

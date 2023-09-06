@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tw.com.cha102.coachmember.model.entity.CoachMemberVO;
 import tw.com.cha102.coachmember.service.CoachMemberService;
+import tw.com.cha102.reserve.model.dto.ReserveDTO;
 import tw.com.cha102.reserve.model.dto.ReserveItemDTO;
 import tw.com.cha102.reserve.model.dto.ReserveTime;
+import tw.com.cha102.reserve.model.dto.ReserveTimeDTO;
 import tw.com.cha102.reserve.model.entity.ReserveItemVO;
 import tw.com.cha102.reserve.model.entity.ReserveTimeVO;
 import tw.com.cha102.reserve.model.entity.ReserveVO;
@@ -113,13 +115,44 @@ public class ReserveController {
     }
     //會員預約單完成訂單
     @PutMapping("/member/compelete/{reserveId}")
-    public ReserveVO completeReserve(@PathVariable Integer reserveId){
+    public ReserveVO completeReserve(@PathVariable Integer reserveId ,@RequestBody ReserveTimeDTO reserveTimeDTO){
+        String dateStr = reserveTimeDTO.getDateStr();
+        java.sql.Timestamp date = java.sql.Timestamp.valueOf(dateStr);
+        Integer classTime = reserveTimeDTO.getClassTime();
+        Integer coachId = reserveTimeDTO.getCoachId();
         ReserveVO reserveVO =new ReserveVO();
-        if(reserveService.updateReserveStatusByReserveId(reserveId)){
+        if(reserveService.updateReserveStatusByReserveId(reserveId)&& 
+           reserveService.updateAppointmentStatusByDateAndClassTimeAndCoachId(date,classTime,coachId)){
             reserveVO.setSuccessful(true);
             reserveVO.setMessage("訂單完成!");
             return reserveVO;
         }
         return null;
+    }
+    //教練排班表抓取教練可預約時間
+    @GetMapping("/coach/time")
+    public List<ReserveTimeVO> findReserveTimeByCoachId(){
+        Integer coachId=1;
+        return reserveService.selectReserveTimeByCoachId(coachId);
+    }
+    //教練排班表對已預約時段查看詳情
+    @GetMapping("/coach/details")
+    public ReserveDTO getCoachReservationFormByCoachId(@RequestParam String reserveDate,@RequestParam byte reserveTime){
+        //session抓coachId
+        Integer coachId=1;
+        return reserveService.getCoachReservationFormByCoachId(coachId,reserveDate,reserveTime);
+    }
+
+    @PostMapping("/coach/time")
+    public ReserveTimeVO insetReserveTime(@RequestBody ReserveTimeVO reserveTimeVO,@RequestParam String dateStr){
+        //後面從session抓
+        java.sql.Timestamp date = java.sql.Timestamp.valueOf(dateStr);
+        Integer coachId=1;
+        reserveTimeVO.setCoachId(coachId);
+        reserveTimeVO.setDate(date);
+        ReserveTimeVO reserveTimeVO1 = reserveService.insetReserveTime(reserveTimeVO);
+        reserveTimeVO1.setMessage("新增成功");
+        reserveTimeVO1.setSuccessful(true);
+        return reserveTimeVO1;
     }
 }
