@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import tw.com.cha102.forumcollect.model.entity.ForumCollectVO;
 import tw.com.cha102.forumcollect.service.ForumCollectService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/forum")
+@RequestMapping("/frontend/forum")
 public class ForumCollectController {
 
 	private ForumCollectService forumCollectService;
@@ -22,7 +23,10 @@ public class ForumCollectController {
 	}
 
 	@PostMapping("/collect")
-	public ForumCollectVO collectPost(@RequestBody ForumCollectVO forumCollectVO) {
+	public ForumCollectVO collectPost(@RequestBody ForumCollectVO forumCollectVO, HttpSession session) {
+		//Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別
+		Integer memberId = 3;
+		forumCollectVO.setMemberId(memberId);
 		ForumCollectVO vo = new ForumCollectVO();
 		if (forumCollectService.collect(forumCollectVO)==true) {
 				vo.setSuccessful(true);
@@ -36,6 +40,7 @@ public class ForumCollectController {
 
 	@GetMapping("/collect/list")
 	public List<ForumCollectVO> listAllCollectedPosts() {
+
 		return  forumCollectService.findAll();
 	}
 
@@ -58,9 +63,10 @@ public class ForumCollectController {
 	}
 
 
-
-	@GetMapping("/collect/member/{memberId}")
-	public List<ForumCollectVO> listCollectedPostsByMember(@PathVariable Integer memberId) {
+	@GetMapping("/my-collects")
+	public List<ForumCollectVO> listCollectedPostsByMember(HttpSession session) {
+		//Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別
+		Integer memberId = 3;
 		return forumCollectService.findByMemberId(memberId);
 
 	}

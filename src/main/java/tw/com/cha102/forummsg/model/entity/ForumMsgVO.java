@@ -42,6 +42,9 @@ public class ForumMsgVO extends Core {
 
     // 新增一個屬性以包含 memberName
     @Transient // 使用 @Transient 標註，以防止該屬性映射到數據庫表格
-    private String memberName;;
+    private String memberName;
+
+//    @Transient
+//    private byte[] memberPhoto;
 }
 
