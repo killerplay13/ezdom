@@ -20,4 +20,5 @@ public interface ReserveItemDTO {
     String getContent();
     Integer getAmounts();
     String getNickname();
+    Integer getCoachId();
 }
