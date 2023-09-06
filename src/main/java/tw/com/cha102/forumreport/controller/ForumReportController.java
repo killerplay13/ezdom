@@ -12,7 +12,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/forum")
+@RequestMapping("/backend/forum")
 public class ForumReportController {
 
     private ForumReportService forumReportService;
@@ -26,21 +26,22 @@ public class ForumReportController {
     }
 
 
-    @PostMapping("/report")
-    public ForumReportVO createReport(@RequestBody ForumReportVO forumReportVO) {
-        ForumReportVO vo = new ForumReportVO();
-        if (forumReportService.createReport(forumReportVO) == true) {
-            vo.setSuccessful(true);
-            vo.setMessage("檢舉成功");
-        } else {
-            vo.setSuccessful(false);
-            vo.setMessage("您已經檢舉過了");
-        }
-        return vo;
-    }
+//    @PostMapping("/report")
+//    public ForumReportVO createReport(@RequestBody ForumReportVO forumReportVO) {
+//        ForumReportVO vo = new ForumReportVO();
+//        if (forumReportService.createReport(forumReportVO) == true) {
+//            vo.setSuccessful(true);
+//            vo.setMessage("檢舉成功");
+//        } else {
+//            vo.setSuccessful(false);
+//            vo.setMessage("您已經檢舉過了");
+//        }
+//        return vo;
+//    }
 
     @GetMapping("/report/list")
     public List<ForumReportVO> listAllReports() {
+
         return forumReportService.getAllReports();
     }
 
@@ -64,13 +65,6 @@ public class ForumReportController {
         return vo;
     }
 
-
-
-
-//    @GetMapping("/hasReported/{forumPostId}/{memberId}")
-//    public Boolean hasReported(@PathVariable Integer forumPostId, @PathVariable Integer memberId) {
-//        return  forumReportService.hasReportedSamePost(forumPostId, memberId);
-//    }
 
     @PutMapping("/updateStatusAndToggle/{reportId}/{postId}")
     public ForumReportVO updateStatusAndToggle(@PathVariable Integer reportId, @PathVariable Integer postId) {

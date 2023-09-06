@@ -8,11 +8,12 @@ import tw.com.cha102.forum.model.entity.ForumPostVO;
 import tw.com.cha102.forummsg.model.entity.ForumMsgVO;
 import tw.com.cha102.forummsg.service.ForumMsgService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/forum")
+@RequestMapping("/frontend/forum")
 public class ForumMsgController {
 
 	private ForumMsgService forumMsgService;
@@ -24,7 +25,10 @@ public class ForumMsgController {
 	}
 
 	@PostMapping("/msg")
-	public ForumMsgVO createMessage(@RequestBody ForumMsgVO forumMsgVO) {
+	public ForumMsgVO createMessage(@RequestBody ForumMsgVO forumMsgVO, HttpSession session) {
+		//Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別
+		Integer memberId = 3;
+		forumMsgVO.setMemberId(memberId);
 		ForumMsgVO vo=new ForumMsgVO();
 		if (forumMsgService.createMessage(forumMsgVO)==true) {
 			vo.setSuccessful(true);
@@ -51,16 +55,19 @@ public class ForumMsgController {
 
 	@GetMapping("/msg/{msgId}")
 	public ForumMsgVO getMessageById(@PathVariable Integer msgId) {
+
 		return forumMsgService.getMessageById(msgId);
 	}
 
 	@GetMapping("/msg1")
 	public List<ForumMsgVO> getAllMessages() {
-		return  forumMsgService.getAllMessages();
+
+		return forumMsgService.getAllMessages();
 	}
 
 	@GetMapping("/msg/forumPost/{forumPostId}")
 	public List<ForumMsgVO> getMessagesByForumPostId(@PathVariable Integer forumPostId) {
+
 		return forumMsgService.getMessagesByForumPostId(forumPostId);
 	}
 }
