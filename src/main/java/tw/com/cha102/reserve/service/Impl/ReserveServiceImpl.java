@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tw.com.cha102.reserve.model.dao.ReserveItemRepository;
 import tw.com.cha102.reserve.model.dao.ReserveRepository;
 import tw.com.cha102.reserve.model.dao.ReserveTimeRepository;
+import tw.com.cha102.reserve.model.dto.ReserveDTO;
 import tw.com.cha102.reserve.model.dto.ReserveItemDTO;
 import tw.com.cha102.reserve.model.entity.ReserveItemVO;
 import tw.com.cha102.reserve.model.entity.ReserveTimeVO;
@@ -36,7 +37,8 @@ public class ReserveServiceImpl implements ReserveService {
 
     @Override
     public List<ReserveItemVO> selectReserveItemByCoachId(Integer coachId) {
-        return reserveItemRepository.findByCoachId(coachId);
+        byte reserveItemStatus=1;
+        return reserveItemRepository.findByCoachIdAndReserveItemStatus(coachId,reserveItemStatus);
     }
 
     @Override
@@ -78,6 +80,23 @@ public class ReserveServiceImpl implements ReserveService {
         //會員將訂單完成
         byte orderStatus=1;
         return reserveRepository.updateReserveStatusByReserveId(orderStatus,reserveId)>0;
+
+    }
+
+    @Override
+    public boolean updateAppointmentStatusByDateAndClassTimeAndCoachId(Timestamp date, Integer classTime, Integer coachId) {
+        Integer appointmentStatus=3;
+        return reserveTimeRepository.updateAppointmentStatus(appointmentStatus,date,classTime,coachId)>0;
+    }
+
+    @Override
+    public ReserveDTO getCoachReservationFormByCoachId(Integer coachId, String reserveDate, byte reserveTime) {
+        return reserveRepository.getCoachReservationFormByCoachId(coachId,reserveDate,reserveTime);
+    }
+
+    @Override
+    public ReserveTimeVO insetReserveTime(ReserveTimeVO reserveTimeVO) {
+        return reserveTimeRepository.save(reserveTimeVO);
     }
 
 }

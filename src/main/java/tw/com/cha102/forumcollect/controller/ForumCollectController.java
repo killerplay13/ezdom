@@ -22,55 +22,47 @@ public class ForumCollectController {
 	}
 
 	@PostMapping("/collect")
-	public ResponseEntity<String> collectPost(@RequestBody ForumCollectVO forumCollectVO) {
-		ForumCollectVO result = forumCollectService.collect(forumCollectVO);
-		if (result != null) {
-			return ResponseEntity.ok("收藏成功");
-		} else {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("收藏失敗");
-		}
+	public ForumCollectVO collectPost(@RequestBody ForumCollectVO forumCollectVO) {
+		ForumCollectVO vo = new ForumCollectVO();
+		if (forumCollectService.collect(forumCollectVO)==true) {
+				vo.setSuccessful(true);
+				vo.setMessage("收藏成功");
+			}else{
+				vo.setSuccessful(false);
+				vo.setMessage("您已經收藏過了");
+			}
+			return vo;
 	}
 
 	@GetMapping("/collect/list")
-	public ResponseEntity<List<ForumCollectVO>> listAllCollectedPosts() {
-		List<ForumCollectVO> collectedPosts = forumCollectService.findAll();
-		return ResponseEntity.ok(collectedPosts);
+	public List<ForumCollectVO> listAllCollectedPosts() {
+		return  forumCollectService.findAll();
 	}
 
 	@GetMapping("/collect/{collectId}")
-	public ResponseEntity<ForumCollectVO> getCollectedPostById(@PathVariable Integer collectId) {
-		ForumCollectVO result = forumCollectService.getCollectById(collectId);
-		if (result != null) {
-			return ResponseEntity.ok(result);
-		} else {
-			return ResponseEntity.notFound().build();
-		}
+	public ForumCollectVO getCollectedPostById(@PathVariable Integer collectId) {
+		return forumCollectService.getCollectById(collectId);
 	}
 
 	@DeleteMapping("/delete/collect/{collectId}")
-	public ResponseEntity<String> deleteCollectedPost(@PathVariable Integer collectId) {
-		boolean deleted = forumCollectService.delete(collectId);
-		if (deleted) {
-			return ResponseEntity.ok("刪除收藏成功");
-		} else {
-			return ResponseEntity.notFound().build();
+	public ForumCollectVO deleteCollectedPost(@PathVariable Integer collectId) {
+		ForumCollectVO vo=new ForumCollectVO();
+		if (forumCollectService.delete(collectId)==true) {
+			vo.setSuccessful(true);
+			vo.setMessage("刪除成功");
+		}else{
+			vo.setSuccessful(false);
+			vo.setMessage("刪除失敗");
 		}
+		return vo;
 	}
 
-	@PostMapping("/collect/save")
-	public ResponseEntity<String> saveCollectedPost(@RequestBody ForumCollectVO forumCollectVO) {
-		boolean saved = forumCollectService.save(forumCollectVO);
-		if (saved) {
-			return ResponseEntity.ok("儲存收藏成功");
-		} else {
-			return ResponseEntity.status(500).body("儲存收藏失敗");
-		}
-	}
+
 
 	@GetMapping("/collect/member/{memberId}")
-	public ResponseEntity<List<ForumCollectVO>> listCollectedPostsByMember(@PathVariable Integer memberId) {
-		List<ForumCollectVO> collectedPosts = forumCollectService.findByMemberId(memberId);
-		return ResponseEntity.ok(collectedPosts);
+	public List<ForumCollectVO> listCollectedPostsByMember(@PathVariable Integer memberId) {
+		return forumCollectService.findByMemberId(memberId);
+
 	}
 
 }
