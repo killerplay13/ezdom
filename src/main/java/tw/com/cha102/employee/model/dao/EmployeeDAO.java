@@ -13,7 +13,10 @@ public interface EmployeeDAO {
 
     public List<EmployeeVO> selectAll();
 
+
     public EmployeeVO selectById(Integer employeeId);
+
+
 
 
 }

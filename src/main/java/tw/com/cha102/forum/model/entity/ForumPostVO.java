@@ -37,6 +37,12 @@ public class ForumPostVO extends Core {
     @Column(name = "FORUMPOST_TYPE" )
     private Integer forumPostType;
 
+    @Column(name = "FORUMPOST_STATUS" )
+    private  Integer forumPostStatus;
+
+    @Column(name = "FORUMPOST_CLICK_COUNT")
+    private Integer forumPostClickCount;
+
 
 //    @ManyToOne
 //    @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)

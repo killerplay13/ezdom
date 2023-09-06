@@ -13,4 +13,6 @@ public interface ForumCollectDao extends JpaRepository<ForumCollectVO, Integer> 
 
 //    List<ForumCollectVO> findByForumPostId(Integer forumPostId);
 
+
+
 }

@@ -34,5 +34,10 @@ GroupVerifyVO result = groupVerifyService.updateGroupApplyStatus(groupMemberId, 
         return ResponseEntity.ok("修改成功");
     }
 
+    @GetMapping("/findGroupJoined/{memberId}")
+    public List<GroupVerifyVO> findGroupJoined(@PathVariable Integer memberId){
+        List<GroupVerifyVO> groupJoinedList = groupVerifyService.findGroupJoined(memberId);
+        return groupJoinedList;
+    }
 
 }

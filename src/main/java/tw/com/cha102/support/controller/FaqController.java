@@ -9,7 +9,7 @@ import tw.com.cha102.support.service.FaqService;
 import javax.validation.Valid;
 import java.util.List;
 
-@CrossOrigin(value = "*")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/faq")
 public class FaqController {
@@ -34,8 +34,8 @@ public class FaqController {
     }
 
     @GetMapping("/list")
-    public List<FaqVO> faqList(){
-        return faqService.getFaqList();
+    public List<FaqVO> faqList(@RequestParam(required = false) String faqTag){
+        return faqService.getFaqList(faqTag);
     }
 
 }

@@ -1,20 +1,24 @@
 package tw.com.cha102.employee.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+import tw.com.cha102.core.vo.Core;
+
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
+@Data
 @Table(name = "EMPLOYEE",catalog ="cha102g4_test")
-public class EmployeeVO implements Serializable {
+public class EmployeeVO extends Core {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "EMPLOYEE_ID")
-    private int employeeId;
+    private String employeeId;
 
     @Column(name = "EMPLOYEE_STATUS")
-    private int employeeStatus;
+    private byte employeeStatus;
 
     @Column(name = "EMPLOYEE_PASSWORD")
     private String employeePassword;
@@ -22,8 +26,9 @@ public class EmployeeVO implements Serializable {
     @Column(name = "EMPLOYEE_NAME")
     private String employeeName;
 
+
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @Column(name = "HIREDATE")
-    @Temporal(TemporalType.TIMESTAMP)
     private Date hiredate;
 
     @Column(name = "EMPLOYEE_EMAIL")
@@ -32,70 +37,15 @@ public class EmployeeVO implements Serializable {
     @Column(name = "EMPLOYEE_PHONE")
     private String employeePhone;
 
-    public EmployeeVO(int employeeId, int employeeStatus, String employeePassword, String employeeName, Date hiredate, String employeeEmail, String employeePhone) {
-        this.employeeId = employeeId;
-        this.employeeStatus = employeeStatus;
-        this.employeePassword = employeePassword;
-        this.employeeName = employeeName;
-        this.hiredate = hiredate;
-        this.employeeEmail = employeeEmail;
-        this.employeePhone = employeePhone;
-    }
+    @Column(name = "EMPLOYEE_POSITION")
+    private byte employeePosition;
 
 
-    public int getEmployeeId() {
+
+
+
+    public String getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public int getEmployeeStatus() {
-        return employeeStatus;
-    }
-
-    public void setEmployeeStatus(int employeeStatus) {
-        this.employeeStatus = employeeStatus;
-    }
-
-    public String getEmployeePassword() {
-        return employeePassword;
-    }
-
-    public void setEmployeePassword(String employeePassword) {
-        this.employeePassword = employeePassword;
-    }
-
-    public String getEmployeeName() {
-        return employeeName;
-    }
-
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
-    }
-
-    public Date getHiredate() {
-        return hiredate;
-    }
-
-    public void setHiredate(Date hiredate) {
-        this.hiredate = hiredate;
-    }
-
-    public String getEmployeeEmail() {
-        return employeeEmail;
-    }
-
-    public void setEmployeeEmail(String employeeEmail) {
-        this.employeeEmail = employeeEmail;
-    }
-
-    public String getEmployeePhone() {
-        return employeePhone;
-    }
-
-    public void setEmployeePhone(String employeePhone) {
-        this.employeePhone = employeePhone;
-    }
 }

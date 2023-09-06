@@ -2,9 +2,11 @@ package tw.com.cha102.message.service;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.Tuple;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 public class JedisHandleMessage {
@@ -29,11 +31,25 @@ public class JedisHandleMessage {
             logger.info("Chat message saved successfully.");
             jedis.close();
     }
-    public static void saveGroupMessage(String memberIdA, String groupId, String message){
-        String receiverKey = new StringBuilder(groupId).append(":").append(memberIdA).toString();
+    public static void saveGroupMessage(String groupId, String memberId, String message) {
+        String zsetName = "groupId:memberId";
         Jedis jedis = pool.getResource();
-        jedis.rpush(receiverKey, message);
+        double timestamp = System.currentTimeMillis();
+
+        double memberScore = Double.valueOf(groupId) + (Double.valueOf(memberId) / 1000.0);
+
+        jedis.zadd(zsetName, timestamp, message + "|" + memberScore);
         logger.info("Group message saved successfully.");
         jedis.close();
     }
+
+    public static Set<Tuple> getgroupHistoryMsg(String Group_ID) {
+        String zsetName = "group:" + Group_ID + ":messages";
+        Jedis jedis = pool.getResource();
+        Set<Tuple> historyData = jedis.zrangeWithScores("groupId", 0, -1);
+        jedis.close();
+        return historyData;
+    }
+
+
 }

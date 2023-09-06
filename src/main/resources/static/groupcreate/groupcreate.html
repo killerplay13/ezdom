@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group Create</title>
-    <link rel="stylesheet" media="screen" href="assets\css\theme.min.css">
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script>
     <!-- <script src="<https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js>"></script> -->
     <!-- Theme mode-->
     <script>
@@ -22,11 +24,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
-        rel="stylesheet" id="google-font">
+          rel="stylesheet" id="google-font">
     <!-- Vendor styles-->
-    <link rel="stylesheet" media="screen" href="assets/vendor/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" media="screen" href="assets/vendor/lightgallery/css/lightgallery-bundle.min.css" />
-    <link rel="stylesheet" media="screen" href="assets/vendor/fullcalendar/main.min.css" />
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/lightgallery/css/lightgallery-bundle.min.css" />
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/fullcalendar/main.min.css" />
     <!-- 揪團圖片 -->
     <style>
         .change-img-div {
@@ -46,305 +48,419 @@
 </head>
 
 <body>
-    <header class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
-        <div class="container"><a class="navbar-brand pe-sm-3" href="ezdomindex.html"><span
-                    class="text-primary flex-shrink-0 me-2">
+<header class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
+    <div class="container"><a class="navbar-brand pe-sm-3" href="ezdomindex.html"><span
+            class="text-primary flex-shrink-0 me-2">
                     <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
                         <path fill="currentColor"
-                            d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                              d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
                         </path>
                     </svg></span>EZ-DOM</a>
-            <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
-                <input class="form-check-input" type="checkbox" id="theme-mode">
-                <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
-                <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
-            </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
-                href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
-                rel="noopener">登入/註冊</a>
-            <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
+        <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+            <input class="form-check-input" type="checkbox" id="theme-mode">
+            <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
+            <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
+        </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+                 href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
+                 rel="noopener">登入/註冊</a>
+        <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
-            <nav class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside" aria-expanded="false">揪團 Group</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">揪團列表</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">My揪團</a></li>
-                            <li class="dropdown" style="border-bottom: none;"><a class="dropdown-item dropdown-toggle"
-                                    href="#" data-bs-toggle="dropdown" aria-expanded="false">開團管理</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="testgroupcreate.html">建立揪團</a></li>
-                                    <li><a class="dropdown-item" href="testgroupCreateVerify.html">管理開團</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">瀏覽商品</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">購物車</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">管理我的訂單</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">瀏覽論壇</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">論壇管理</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside" aria-expanded="false">預約 Reserve</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">預約管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">瀏覽教練</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">時段管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">項目管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">自我介紹管理</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside" aria-expanded="false">會員中心 Member</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">我的頁面</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">好友管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">收藏文章</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">收藏商品</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">個人設定</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">聊天室</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside" aria-expanded="false">聯絡客服 Help</a>
-                    </li>
-                </ul>
-            </nav>
+        <nav class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">揪團 Group</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">揪團列表</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">My揪團</a></li>
+                        <li class="dropdown" style="border-bottom: none;"><a class="dropdown-item dropdown-toggle"
+                                                                             href="#" data-bs-toggle="dropdown" aria-expanded="false">開團管理</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="testgroupcreate.html">建立揪團</a></li>
+                                <li><a class="dropdown-item" href="testgroupCreateVerify.html">管理開團</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">瀏覽商品</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">購物車</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">管理我的訂單</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">瀏覽論壇</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">論壇管理</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">預約 Reserve</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">預約管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">瀏覽教練</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">時段管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">項目管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">自我介紹管理</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">會員中心 Member</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">我的頁面</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">好友管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">收藏文章</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">收藏商品</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">個人設定</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href=""
+                                                data-bs-toggle="dropdown" aria-expanded="false">聊天室</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">聯絡客服 Help</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5" id="app">
+    <div class="row pt-sm-2 pt-lg-0">
+
+        <!-- Page content-->
+        <div class="col-lg-12 pt-4 pb-2 pb-sm-4">
+            <h1 class="h2 mb-4">建立揪團</h1>
+            <!-- Basic info-->
+            <section class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"><i
+                            class="ai-user text-primary lead pe-1 me-2"></i>
+                        <h2 class="h4 mb-0">填寫揪團資訊</h2>
+                    </div>
+                    <div class="container-fluid">
+                        <!-- 圖片上傳區 -->
+                        <div class="d-flex align-items-center row g-3 g-sm-4 mt-0 mt-lg-2">
+                            <div class="mb-2 change-img-div col-sm-6 px-2" @mouseenter="handleMouseEnter"
+                                 @mouseleave="handleMouseLeave">
+                                <img class="avatar-img border border-2 border-white change-img overflow-hidden"
+                                     :src="previewImage || imageSrc" :style="imgStyle" alt="Image" />
+                                <label class="btn btn-sm btn-secondary mb-0 change-img-btn" for="uploadfile-1">
+                                    <i class="ai ai-camera"></i>
+                                </label>
+                                <input id="uploadfile-1" class="form-control d-none" type="file"
+                                       @change="handleImageUpload" />
+                            </div>
+
+                            <div class="col-sm-6 pe-1">
+
+                                <label class="form-label" for="grouptheme">揪團主題</label>
+                                <select class="form-select" id="grouptheme" v-model="grouptheme">
+                                    <option value="" selected disabled>選擇主題</option>
+                                    <option value="wourkout">健身</option>
+                                    <option value="basketball">籃球</option>
+                                    <option value="badminton">羽球</option>
+                                    <option value="tabletennis">桌球</option>
+                                    <option value="volly">排球</option>
+                                    <option value="yoga">瑜珈</option>
+                                    <option value="other">其他</option>
+                                </select>
+
+                                <label class="form-label" for="groupname">揪團名稱</label>
+                                <input class="form-control" type="text" id="groupname" placeholder="輸入揪團名稱"
+                                       v-model="groupname">
+                                <div v-if="groupnameError" class="text-danger">{{ groupnameError }}</div>
+                                <br>
+
+                                <label class="form-label" for="groupcontent">揪團內容</label>
+                                <textarea class="form-control" rows="5" id="groupcontent" placeholder="新增揪團內容"
+                                          v-model="groupcontent"></textarea>
+                                <div v-if="groupcontentError" class="text-danger">{{ groupcontentError }}</div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
+
+                        <div class="col-sm-6">
+                            <label class="form-label" for="groupdate">揪團日期</label>
+                            <input class="form-control" type="datetime-local" v-model="groupdate" id="groupdate">
+                            <div v-if="groupdateError" class="text-danger">{{ groupdateError }}</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="grouploc">揪團地點</label>
+                            <input class="form-control" type="text" v-model="grouploc" id="grouploc">
+                            <div v-if="grouplocError" class="text-danger">{{ grouplocError }}</div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label class="form-label" for="signpstartdate">報名開始時間</label>
+                            <input class="form-control" type="date" v-model="signpstartdate" id="signpstartdate">
+                            <div v-if="grouplocError" class="text-danger">{{ signpstartdateError }}</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="limit">參加人數上限</label>
+                            <input class="form-control" type="text" v-model="limit" id="limit">
+                            <div v-if="grouplocError" class="text-danger">{{ limitError }}</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="singupenddate">報名截止時間</label>
+                            <input class="form-control" type="date" v-model="singupenddate" id="singupenddate">
+                            <div v-if="grouplocError" class="text-danger">{{ singupenddateError }}</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="deposit">揪團押金</label>
+                            <input class="form-control" type="text" v-model="deposit" id="deposit">
+                            <div v-if="grouplocError" class="text-danger">{{ depositError }}</div>
+                        </div>
+
+
+
+                        <div class="col-12">
+                            <label class="form-label" for="groupnotice">揪團注意事項</label>
+                            <textarea class="form-control" rows="5" placeholder="新增揪團注意事項" id="groupnotice"
+                                      v-model="groupnotice"></textarea>
+                            <div v-if="groupnoticeError" class="text-danger">{{ groupnoticeError }}</div>
+                        </div>
+
+                        <div class="col-12 d-flex justify-content-end pt-3">
+                            <button class="btn btn-secondary" type="button" @click="empty">刪除</button>
+                            <button class="btn btn-primary ms-3" type="button" @click="submitCreate">確認送出</button>
+                            <!-- <button @click="salert">test</button> -->
+                        </div>
+                    </div>
+            </section>
         </div>
-    </header>
-    <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5" id="app">
-        <div class="row pt-sm-2 pt-lg-0">
-
-            <!-- Page content-->
-            <div class="col-lg-12 pt-4 pb-2 pb-sm-4">
-                <h1 class="h2 mb-4">建立揪團</h1>
-                <!-- Basic info-->
-                <section class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"><i
-                                class="ai-user text-primary lead pe-1 me-2"></i>
-                            <h2 class="h4 mb-0">填寫揪團資訊</h2>
-                        </div>
-                        <div class="container-fluid">
-                            <!-- 圖片上傳區 -->
-                            <div class="d-flex align-items-center row g-3 g-sm-4 mt-0 mt-lg-2">
-                                <div class="mb-2 change-img-div col-sm-6 px-2" @mouseenter="handleMouseEnter"
-                                    @mouseleave="handleMouseLeave">
-                                    <img class="avatar-img border border-2 border-white change-img overflow-hidden"
-                                        :src="previewImage || imageSrc" :style="imgStyle" alt="Image" />
-                                    <label class="btn btn-sm btn-secondary mb-0 change-img-btn" for="uploadfile-1">
-                                        <i class="ai ai-camera"></i>
-                                    </label>
-                                    <input id="uploadfile-1" class="form-control d-none" type="file"
-                                        @change="handleImageUpload" />
-                                </div>
-
-                                <div class="col-sm-6 pe-1">
-
-                                    <label class="form-label" for="grouptheme">揪團主題</label>
-                                    <select class="form-select" id="grouptheme" v-model="grouptheme">
-                                        <option value="" selected disabled>選擇主題</option>
-                                        <option value="wourkout">健身</option>
-                                        <option value="basketball">籃球</option>
-                                        <option value="badminton">羽球</option>
-                                        <option value="tabletennis">桌球</option>
-                                        <option value="volly">排球</option>
-                                        <option value="yoga">瑜珈</option>
-                                        <option value="other">其他</option>
-
-                                    </select>
-
-                                    <label class="form-label" for="groupname">揪團名稱</label>
-                                    <input class="form-control" type="text" id="groupname" placeholder="輸入揪團名稱"
-                                        v-model="groupname">
-
-                                    <br>
-
-                                    <label class="form-label" for="groupcontent">揪團內容</label>
-                                    <textarea class="form-control" rows="5" id="groupcontent" placeholder="新增揪團內容"
-                                        v-model="groupcontent"></textarea>
-
-                                </div>
-
-
-                            </div>
-                        </div>
-                        <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
-
-                            <div class="col-sm-6">
-                                <label class="form-label" for="groupdate">揪團日期</label>
-                                <input class="form-control" type="datetime-local" v-model="groupdate" id="groupdate">
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="form-label" for="grouploc">揪團地點</label>
-                                <input class="form-control" type="text" v-model="grouploc" id="grouploc">
-                            </div>
-
-                            <div class="col-sm-6">
-                                <label class="form-label" for="signpstartdate">報名開始時間</label>
-                                <input class="form-control" type="date" v-model="signpstartdate" id="signpstartdate">
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="form-label" for="limit">參加人數上限</label>
-                                <input class="form-control" type="text" v-model="limit" id="limit">
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="form-label" for="singupenddate">報名截止時間</label>
-                                <input class="form-control" type="date" v-model="singupenddate" id="singupenddate">
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="form-label" for="deposit">揪團押金</label>
-                                <input class="form-control" type="text" v-model="deposit" id="deposit">
-                            </div>
-
-
-
-                            <div class="col-12">
-                                <label class="form-label" for="groupnotice">揪團注意事項</label>
-                                <textarea class="form-control" rows="5" placeholder="新增揪團注意事項" id="groupnotice"
-                                    v-model="groupnotice"></textarea>
-                            </div>
-
-                            <div class="col-12 d-flex justify-content-end pt-3">
-                                <button class="btn btn-secondary" type="button">刪除</button>
-                                <button class="btn btn-primary ms-3" type="button" @click="submitCreate">確認送出</button>
-                            </div>
-                        </div>
-                </section>
+        <footer class="footer bg-dark position-relative pb-4 pt-md-3 py-lg-4 py-xl-5">
+            <div class="d-none d-dark-mode-block position-absolute top-0 start-0 w-100 h-100"
+                 style="background-color: rgba(255,255,255, .02);"></div>
+            <div class="dark-mode container position-relative zindex-2 pt-5 pb-2">
             </div>
-            <footer class="footer bg-dark position-relative pb-4 pt-md-3 py-lg-4 py-xl-5">
-                <div class="d-none d-dark-mode-block position-absolute top-0 start-0 w-100 h-100"
-                    style="background-color: rgba(255,255,255, .02);"></div>
-                <div class="dark-mode container position-relative zindex-2 pt-5 pb-2">
-                </div>
-                <div class="pt-5 pt-lg-0"></div>
-            </footer>
-            <script>
-                const app = Vue.createApp({
-                    data() {
-                        return {
-                            groupname: "",
-                            groupcontent: "",
-                            groupdate: "",
-                            grouptheme: "",
-                            grouploc: "",
-                            groupnotice: "",
-                            signpstartdate: "",
-                            singupenddate: "",
-                            limit: "",
-                            deposit: "",
-                            imageSrc: "assets/img/landing/yoga-studio/instagram/05.jpg",
-                            imgStyle: {},
-                            showButton: false,
-                            previewImage: null,
-                            imageFile: null,
-                            imagebase64: null,
-                        };
-                    },
-                    methods: {
-                        async submitCreate() {
-                            const url = "http://localhost:8080/ezdom/groupcreate/create";
-                            let imagebase64 = null;
-                            if (this.imageFile) {
-                                imagebase64 = await this.convertImageToBase64(this.imageFile);
-                            };
-                            const requestData = {
-                                groupName: this.groupname,
-                                groupContent: this.groupcontent,
-                                groupDate: this.groupdate,
-                                groupTitle: this.grouptheme,
-                                groupLocation: this.grouploc,
-                                groupNotice: this.groupnotice,
-                                startDate: this.signpstartdate,
-                                endDate: this.singupenddate,
-                                limitNumber: this.limit,
-                                groupDeposit: this.deposit,
-                                groupPhoto: imagebase64
-                            };
-                            
-                            try {
-                                const response = await fetch(url, {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                    },
-                                    body: JSON.stringify(requestData),
-                                });
-                                if (response.ok) {
-                                    alert("揪團建立成功！");
-                                    window.location.href = "groupCreateSuccess.html";
-                                } else {
-                                    alert("揪團建立失败！");
-                                }
-                            } catch (error) {
-                                alert("發生錯誤：" + error);
-                            }
-                        },
-                        handleMouseEnter() {
-                            this.imgStyle = { filter: "grayscale(20%)" };
-                            this.showButton = true;
-                        },
-                        handleMouseLeave() {
-                            this.imgStyle = {};
-                            this.showButton = false;
-                        },
-                        handleImageUpload(event) {
-                            const file = event.target.files[0];
-                            if (file) {
-                                this.previewImage = URL.createObjectURL(file);
-                                this.imageFile = file; 
-                            } else {
-                                this.previewImage = null;
-                                this.imageFile = null;
-                            }
-                        },
-                        async convertImageToBase64(imageFile) {
-                            return new Promise((resolve, reject) => {
-                                const reader = new FileReader();
-                                reader.onload = () => resolve(reader.result.split(",")[1]);
-                                reader.onerror = (error) => reject(error);
-                                reader.readAsDataURL(imageFile);
-                            });
-                        },
-                    }
-                });
-                app.mount('#app');
-            </script>
+            <div class="pt-5 pt-lg-0"></div>
+        </footer>
+        <script>
 
-            <!-- Vendor scripts: js libraries and plugins-->
-            <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-            <script src="assets/vendor/cleave.js/dist/cleave.min.js"></script>
-            <!-- Main theme script-->
-            <script src="assets/js/theme.min.js"></script>
+            const app = Vue.createApp({
+                data() {
+                    return {
+                        groupname: "",
+                        groupcontent: "",
+                        groupdate: "",
+                        grouptheme: "",
+                        grouploc: "",
+                        groupnotice: "",
+                        signpstartdate: "",
+                        singupenddate: "",
+                        limit: "",
+                        deposit: "",
+                        imageSrc: "../frontendshop/assets/img/landing/yoga-studio/instagram/05.jpg",
+                        imgStyle: {},
+                        showButton: false,
+                        previewImage: null,
+                        imageFile: null,
+                        imagebase64: null,
+                        groupnameError: "",
+                        groupcontentError: "",
+                        groupdateError: "",
+                        grouplocError: "",
+                        signpstartdateError: "",
+                        limitError: "",
+                        singupenddateError: "",
+                        depositError: "",
+                        groupnoticeError: "",
+                    };
+                },
+                methods: {
+                    async submitCreate() {
+                        if (!this.validateForm()) {
+                            return;
+                        }
+                        const url = "http://localhost:8080/ezdom/groupcreate/create";
+                        let imagebase64 = null;
+                        if (this.imageFile) {
+                            imagebase64 = await this.convertImageToBase64(this.imageFile);
+                        };
+                        const requestData = {
+                            groupName: this.groupname,
+                            groupContent: this.groupcontent,
+                            groupDate: this.groupdate,
+                            groupTitle: this.grouptheme,
+                            groupLocation: this.grouploc,
+                            groupNotice: this.groupnotice,
+                            startDate: this.signpstartdate,
+                            endDate: this.singupenddate,
+                            limitNumber: this.limit,
+                            groupDeposit: this.deposit,
+                            groupPhoto: imagebase64
+                        };
+                        try {
+                            const response = await fetch(url, {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify(requestData),
+                            });
+                            if (response.ok) {
+                                this.salert2();
+
+                                // window.location.href = "groupCreateSuccess.html";
+                            } else {
+                                this.salert();
+                            }
+                        } catch (error) {
+                            alert("發生錯誤：" + error);
+                        }
+                    },
+                    validateForm() {
+                        let valid = true;
+
+                        if (!this.groupname) {
+                            this.groupnameError = "請輸入揪團名稱";
+                            valid = false;
+                        } else {
+                            this.groupnameError = "";
+                        }
+
+                        if (!this.groupcontent) {
+                            this.groupcontentError = "請輸入揪團內容";
+                            valid = false;
+                        } else {
+                            this.groupcontentError = "";
+                        }
+
+                        if (!this.groupdate) {
+                            this.groupdateError = "請選擇揪團日期";
+                            valid = false;
+                        } else {
+                            this.groupdateError = "";
+                        }
+
+                        if (!this.grouploc) {
+                            this.grouplocError = "請輸入揪團地點";
+                            valid = false;
+                        } else {
+                            this.grouplocError = "";
+                        }
+
+                        if (!this.signpstartdate) {
+                            this.signpstartdateError = "請選擇報名開始時間";
+                            valid = false;
+                        } else {
+                            this.signpstartdateError = "";
+                        }
+
+                        if (!this.limit) {
+                            this.limitError = "請輸入參加人數上限";
+                            valid = false;
+                        } else {
+                            this.limitError = "";
+                        }
+                        if (!this.singupenddate) {
+                            this.singupenddateError = "請選擇報名截止時間";
+                            valid = false;
+                        } else {
+                            this.singupenddateError = "";
+                        }
+
+                        if (!this.deposit) {
+                            this.depositError = "請輸入揪團押金";
+                            valid = false;
+                        } else {
+                            this.depositError = "";
+                        }
+
+                        if (!this.groupnotice) {
+                            this.groupnoticeError = "請輸入揪團注意事項";
+                            valid = false;
+                        } else {
+                            this.groupnoticeError = "";
+                        }
+                        return valid;
+                    },
+                    empty() {
+                        this.groupname = "";
+                        this.groupcontent = "";
+                        this.groupdate = "";
+                        this.grouptheme = "";
+                        this.grouploc = "";
+                        this.groupnotice = "";
+                        this.signpstartdate = "";
+                        this.singupenddate = "";
+                        this.limit = "";
+                        this.deposit = "";
+                        this.imageSrc = "../frontendshop/assets/img/landing/yoga-studio/instagram/05.jpg";
+                        this.imgStyle = {};
+                        this.showButton = false;
+                        this.previewImage = null;
+                        this.imageFile = null;
+                        this.imagebase64 = null;
+                    },
+                    handleMouseEnter() {
+                        this.imgStyle = { filter: "grayscale(20%)" };
+                        this.showButton = true;
+                    },
+                    handleMouseLeave() {
+                        this.imgStyle = {};
+                        this.showButton = false;
+                    },
+                    handleImageUpload(event) {
+                        const file = event.target.files[0];
+                        if (file) {
+                            this.previewImage = URL.createObjectURL(file);
+                            this.imageFile = file;
+                        } else {
+                            this.previewImage = null;
+                            this.imageFile = null;
+                        }
+                    },
+                    async convertImageToBase64(imageFile) {
+                        return new Promise((resolve, reject) => {
+                            const reader = new FileReader();
+                            reader.onload = () => resolve(reader.result.split(",")[1]);
+                            reader.onerror = (error) => reject(error);
+                            reader.readAsDataURL(imageFile);
+                        });
+                    },
+                    salert() {
+                        // console.log("salert");
+                        swal.fire('揪團失敗!')
+                    },
+                    salert2() {
+                        Swal.fire('揪團送出申請!')
+                        setTimeout(function () {
+                            window.location.href = "groupCreateSuccess.html";
+                        }, 1000)
+                    }
+                }
+            });
+            app.mount('#app');
+        </script>
+
+        <!-- Vendor scripts: js libraries and plugins-->
+        <script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+        <script src="../frontendshop/assets/vendor/cleave.js/dist/cleave.min.js"></script>
+        <!-- Main theme script-->
+        <script src="../frontendshop/assets/js/theme.min.js"></script>
 </body>
 
 </html>
