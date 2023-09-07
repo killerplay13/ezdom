@@ -17,9 +17,11 @@ public interface MemberService {
 
     List<Member> getMembers();
 
+
     MemberProfileResponse getMemberProfile(String memberAccount);
 
     MemberPhotoResponse getMebmerPhoto(String memberAccount);
 
     MemberStateResponse getMemberState(String memberAccount);
+
 }
