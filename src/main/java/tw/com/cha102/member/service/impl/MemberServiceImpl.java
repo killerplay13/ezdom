@@ -101,6 +101,11 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.findAll();
     }
 
+    @Override //我的揪團 映射會員資料需要
+    public Member findById(Integer memberId) {
+        return memberRepository.findById(memberId).get();
+    }
+
     /**
      * sha 256 加密
      */
