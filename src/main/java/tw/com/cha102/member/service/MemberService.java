@@ -16,5 +16,5 @@ public interface MemberService {
     void uploadPhoto(UploadPhotoRequest uploadPhotoRequest, HttpServletRequest request, HttpServletResponse response);
     List<Member> getMembers();
 
-
+    Member findById(Integer memberId);//我的揪團 映射會員資料需要
 }
