@@ -20,10 +20,10 @@ public class AuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         String contextPath = request.getContextPath();
-        String requestUrl = request.getRequestURI().replace(contextPath, "");
+        String requestUrl = request.getRequestURI();
 
         // 允許特定 URL 通過Filter
-        if ("/frontendmember/account-signin.html".equals(requestUrl) || "/frontendmember/account-signup.html".equals(requestUrl)) {
+        if (requestUrl.contains("account-signin.html") || requestUrl.contains("account-signup.html") || requestUrl.contains("ezdomindex.html")) {
             filterChain.doFilter(request, response);
             return;
         }
