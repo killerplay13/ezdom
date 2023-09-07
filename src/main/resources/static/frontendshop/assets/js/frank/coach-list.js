@@ -9,7 +9,7 @@ window.addEventListener("load", function() {
 })
 
 async function getCoachList(){
-	let response = await fetch("http://localhost:8080/ezdom/browse/list");
+	let response = await fetch("http://localhost:8080/ezdom/frontend/browse/list");
     coachList = await response.json();
     console.log(coachList);
     showCoachList();
@@ -32,7 +32,7 @@ function showCoachList(){
             <a class="card-hover card-lifted d-inline-block text-decoration-none" href="coach-details.html?coachId=${coachList[i].coachId}">
             <img class="card-lifted d-block rounded-5 mb-3" src= ${imgUrl} width="340" alt="Alisa Black" style="min-height:270px; max-height:270px">
             <h3 class="h5 mb-1">${coachList[i].nickname}</h3>
-            <p class="mb-0 d-inline-block text-truncate" style="max-width: 150px;">${coachList[i].introduction}</p>
+            <p class="mb-0 d-inline-block text-truncate" style="max-width: 150px;">${coachList[i].skills}</p>
             </a>
         </div>
         `;
