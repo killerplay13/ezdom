@@ -59,6 +59,7 @@ public class ForumMsgServiceImpl implements ForumMsgService {
         // 設置 memberName
         for (ForumMsgVO msg : messages) {
             msg.setMemberName(msg.getMember().getMemberName());
+//            msg.setMemberPhoto(msg.getMember().getMemberPhoto());
         }
 
         return forumMsgDao.findByForumPostId(forumPostId);

@@ -11,39 +11,26 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/forum")
+@RequestMapping("/frontend/forum")
 public class ForumPostController {
 
-    private final ForumPostService forumPostService;
-//    private final ForumViewService forumViewService;
+    private ForumPostService forumPostService;
 
-//    @Autowired
-//    public ForumPostController(ForumPostService forumPostService, ForumViewService forumViewService) {
-//        this.forumPostService = forumPostService;
-//        this.forumViewService = forumViewService;
-//    }
     @Autowired
     public ForumPostController(ForumPostService forumPostService) {
         this.forumPostService = forumPostService;
 
     }
 
-    //發布新文章
-    @PostMapping("/post")
+
+    @PostMapping("/post")//發布新文章
     public ForumPostVO createPost(@RequestBody ForumPostVO forumPostVO, HttpSession session) {
-        Integer memberId = 2; // 假设这里也使用固定的 memberId，你可以根据实际情况修改
-
-//        // 在创建文章之前，获取 memberId 和 forumPostId
-//        Integer forumPostId = forumPostVO.getForumPostId();
-//
-//        // 确保 memberId 和 forumPostId 的值在 Redis 和 MySQL 中一致
-//        ForumViewVO view = new ForumViewVO();
-//        view.setMemberId(memberId);
-//        view.setForumPostId(forumPostId);
-//        forumViewService.addView(view);
-
+        //Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別
+        Integer memberId = 3;
+        forumPostVO.setMemberId(memberId);
+        forumPostVO.setForumPostStatus(0);
         ForumPostVO vo = new ForumPostVO();
-        if (forumPostService.post(forumPostVO, memberId) == true) {
+        if (forumPostService.post(forumPostVO) == true) {
             vo.setSuccessful(true);
             vo.setMessage("文章發布成功");
         } else {
@@ -53,12 +40,13 @@ public class ForumPostController {
         return vo;
     }
 
-    @PutMapping("/edit/{postId}")
-    public ForumPostVO editPost(@PathVariable Integer postId, @RequestBody ForumPostVO forumPostVO) {
-        // 實現 'editPost' 方法：編輯指定文章
-        Integer memberId = 2; // 假設這裡也使用固定的 memberId，你可以根據實際情況修改
+    @PutMapping("/edit/{postId}")//編輯指定文章
+    public ForumPostVO editPost(@PathVariable Integer postId, @RequestBody ForumPostVO forumPostVO,HttpSession session) {
+        //Integer memberId = (Integer) session.getAttribute("memberId");
+        Integer memberId = 3;
+        forumPostVO.setMemberId(memberId);
         ForumPostVO vo = new ForumPostVO();
-        if (forumPostService.edit(postId, forumPostVO) == true) { // 修改 'edit' 方法的參數和返回類型
+        if (forumPostService.edit(postId, forumPostVO) == true) {
             vo.setSuccessful(true);
             vo.setMessage("文章修改成功");
         } else {
@@ -66,28 +54,17 @@ public class ForumPostController {
             vo.setMessage("文章修改失敗");
         }
 
-        // 在编辑文章之后，获取 forumPostId
-//        Integer forumPostId = forumPostVO.getForumPostId();
-//
-//        // 确保 memberId 和 forumPostId 的值在 Redis 和 MySQL 中一致
-//        ForumViewVO view = new ForumViewVO();
-//        view.setMemberId(memberId);
-//        view.setForumPostId(forumPostId);
-//        forumViewService.addView(view);
-
         return vo;
     }
 
 
-    // 其他方法...
-
-    //列出所有文章
-    @GetMapping("/list")
+    @GetMapping("/list")//列出所有文章
     public List<ForumPostVO> listPosts() {
-        return  forumPostService.findAll();
+
+        return forumPostService.findAll();
     }
-    //刪除指定文章
-    @DeleteMapping("/delete/post/{postId}")
+
+    @DeleteMapping("/delete/post/{postId}")//刪除指定文章
     public ForumPostVO deletePost(@PathVariable Integer postId) {
         ForumPostVO vo = new ForumPostVO();
         if (forumPostService.delete(postId)==true) {
@@ -101,22 +78,22 @@ public class ForumPostController {
     }
 
 
-    //取得指定ID的文章
-    @GetMapping("/get/{postId}")
+
+    @GetMapping("/get/{postId}")//取得指定ID的文章
     public ForumPostVO getPostById(@PathVariable Integer postId) {
         return forumPostService.getPostById(postId);
 
     }
-    //列出指定會員ID的文章
-    @GetMapping("/my-posts")
+
+    @GetMapping("/my-posts") //列出指定會員ID的文章
     public List<ForumPostVO> listMyPosts(HttpSession session) {
-        //Integer memberId = (Integer) session.getAttribute("memberId");
-        Integer memberId=2;
+//        Integer memberId = (Integer) session.getAttribute("memberId");
+        Integer memberId=3;
         return forumPostService.findPostsByMemberId(memberId);
     }
 
-    // 增加點擊次數
-    @PostMapping("/click/{postId}")
+
+    @PostMapping("/click/{postId}") // 增加點擊次數
     public ForumPostVO incrementClick(@PathVariable Integer postId) {
         ForumPostVO vo = new ForumPostVO();
         if (forumPostService.incrementClickCount(postId)) {
@@ -129,12 +106,10 @@ public class ForumPostController {
         return vo;
     }
 
-    // 查詢熱門文章
-    @GetMapping("/popular")
+
+    @GetMapping("/popular")// 查詢熱門文章
     public List<ForumPostVO> listPopularPosts() {
         return forumPostService.findPopularPosts();
     }
-
-
 }
 
