@@ -13,9 +13,9 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://127.0.0.1:5500") // 允许访问的域
-                        .allowedMethods("GET", "POST", "PUT", "DELETE") // 允许的HTTP方法
-                        .allowedHeaders("Content-Type"); // 允许的HTTP头
+                        .allowedOrigins("http://127.0.0.1:5500")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowedHeaders("Content-Type");
             }
         };
     }

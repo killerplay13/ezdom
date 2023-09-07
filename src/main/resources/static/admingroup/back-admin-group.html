@@ -447,7 +447,7 @@
 
                     async function fetchGroupList() {
                         try {
-                            const response = await fetch('http://localhost:8080/ezdom/group/admin/list'); // 瀏覽揪團審核列表
+                            const response = await fetch('http://localhost:8080/ezdom/backend/group/admin/list'); // 瀏覽揪團審核列表
                             const groupList = await response.json();
 
                             const dataTableBody = document.getElementById("dataTableBody");

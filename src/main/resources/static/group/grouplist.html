@@ -385,27 +385,27 @@
                 <div class="container position-relative zindex-2 py-5 mt-xl-2 mb-lg-2 mb-xl-3 mb-xxl-5 mt-xxl-4">
                     <h2 class="h1 pt-xxl-1 pb-4 mb-2 mb-lg-3">揪團列表 | Group List</h2>
                     <div class="row" id="groupList">
-                        <!-- 卡片将通过 JavaScript 动态生成 -->
+                        <!-- 卡片通过 JavaScript 動態生成 -->
                     </div>
                 </div>
             </section>
             <script>
-                // 获取卡片容器
+                // 獲取卡片容器
                 const groupListContainer = document.getElementById("groupList");
 
-                // 使用 Fetch API 获取数据
-                fetch("http://localhost:8080/ezdom/group/list")
+
+                fetch("http://localhost:8080/ezdom/frontend/group/list")
                     .then(response => response.json())
                     .then(data => {
-                        // 清空卡片容器内容
+                        // 清空卡片內容
                         groupListContainer.innerHTML = "";
 
-                        // 循环遍历数据并生成卡片
+                        // 遍歷生成卡片
                         data.forEach(group => {
                             const card = document.createElement("div");
                             card.className = "col-md-6 col-lg-3 mb-4";
 
-                            // 处理日期格式
+                            // 處理日期格式
                             const groupDate = new Date(group.groupDate);
                             const formattedDate = `${groupDate.getFullYear()}/${groupDate.getMonth() + 1}/${groupDate.getDate()}`;
 
@@ -437,22 +437,22 @@
 
                     function getHot(){
 
-                                            // 获取卡片容器
+                                            // 獲取卡片容器
                     const groupListContainer = document.getElementById("groupList");
 
-                    // 使用 Fetch API 获取数据
-                    fetch("http://localhost:8080/ezdom/group/hot/list")
+
+                    fetch("http://localhost:8080/ezdom/frontend/group/hot/list")
                         .then(response => response.json())
                         .then(data => {
-                            // 清空卡片容器内容
+                            // 清空卡片內容
                             groupListContainer.innerHTML = "";
 
-                            // 循环遍历数据并生成卡片
+                            // 遍歷生成卡片
                             data.forEach(group => {
                                 const card = document.createElement("div");
                                 card.className = "col-md-6 col-lg-3 mb-4";
 
-                                // 处理日期格式
+                                // 處理日期格式
                                 const groupDate = new Date(group.groupDate);
                                 const formattedDate = `${groupDate.getFullYear()}/${groupDate.getMonth() + 1}/${groupDate.getDate()}`;
 
@@ -488,22 +488,22 @@
                         let inputField = document.getElementById("groupName");
                         let inputValue = inputField.value;
 
-                        // 获取卡片容器
+                        // 取得卡片容器
                         const groupListContainer = document.getElementById("groupList");
 
-                        // 使用 Fetch API 获取数据
-                        fetch("http://localhost:8080/ezdom/group/condition/list?groupName=" + inputValue)
+
+                        fetch("http://localhost:8080/ezdom/frontend/group/condition/list?groupName=" + inputValue)
                         .then(response => response.json())
                         .then(data => {
                         // 清空卡片容器内容
                         groupListContainer.innerHTML = "";
 
-                        // 循环遍历数据并生成卡片
+                        // 遍歷生成卡片
                         data.forEach(group => {
                         const card = document.createElement("div");
                         card.className = "col-md-6 col-lg-3 mb-4";
 
-                        // 处理日期格式
+                            // 處理日期格式
                         const groupDate = new Date(group.groupDate);
                         const formattedDate = `${groupDate.getFullYear()}/${groupDate.getMonth() + 1}/${groupDate.getDate()}`;
 

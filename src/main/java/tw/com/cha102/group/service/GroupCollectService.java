@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tw.com.cha102.group.model.GroupCollect;
 import tw.com.cha102.group.model.dao.GroupCollectRepository;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -24,6 +25,11 @@ public class GroupCollectService {
     public GroupCollect findByGroupIdAndMemberId(Integer groupId, Integer memberId){
         return groupCollectRepository.findByGroupIdAndMemberId(groupId, memberId);
     }
+
+    public List<GroupCollect> findByMemberId(Integer memberId){
+        return groupCollectRepository.findByMemberId(memberId);
+    }
+
 
 
     public void addCollect(Integer groupId, Integer memberId) {

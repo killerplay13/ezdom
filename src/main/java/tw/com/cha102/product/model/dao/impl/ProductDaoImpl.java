@@ -129,5 +129,14 @@ public class ProductDaoImpl implements ProductDao {
         return count;
     }
 
+    @Override
+    public List<ProductVO> selectProductByRand() {
+        int itemsPerPage = 6;
+        final String sql = "select * from product WHERE PRODUCT_STATUS=1 order by rand()";
+        return session.createNativeQuery(sql, ProductVO.class)
+                .setMaxResults(itemsPerPage)
+                .getResultList();
+    }
+
 
 }

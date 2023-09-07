@@ -3,10 +3,10 @@ package tw.com.cha102.forum.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tw.com.cha102.forum.dto.PostDTO;
 import tw.com.cha102.forum.model.entity.ForumPostVO;
 import tw.com.cha102.forum.model.dao.ForumPostDao;
 import tw.com.cha102.forum.service.ForumPostService;
+import tw.com.cha102.forummsg.model.entity.ForumMsgVO;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,9 +19,9 @@ public class ForumPostServiceImpl implements ForumPostService {
 
     //發布新文章
     @Override
-    public boolean post(ForumPostVO forumPostVO, Integer memberId) {
-        forumPostVO.setMemberId(memberId);
-        forumPostVO.setForumPostStatus(0);
+    public boolean post(ForumPostVO forumPostVO) {
+//        forumPostVO.setMemberId(memberId);
+//        forumPostVO.setForumPostStatus(0);
         ForumPostVO savedPost = forumPostDao.save(forumPostVO);
         // 檢查savedPost是否為null來判斷保存是否成功
         return savedPost != null;
@@ -82,25 +82,30 @@ public class ForumPostServiceImpl implements ForumPostService {
 //
 //    }
     @Override
-    public List<ForumPostVO> findAll() {
+    public List<ForumPostVO> findAll() {//列出所有文章
+
         return forumPostDao.findAllByForumPostStatus(0);
     }
 
     @Override
-    public ForumPostVO getPostById(Integer forumPostId) {
+    public ForumPostVO getPostById(Integer forumPostId) {//取得指定ID的文章
         Optional<ForumPostVO> postOptional = forumPostDao.findById(forumPostId);
+
         if (postOptional.isPresent()) {
             ForumPostVO post = postOptional.get();
             if (post.getForumPostStatus() == 0) {
+                // 設置相關的成員名稱
+                post.setMemberName(post.getMember().getMemberName());
+
                 return post;
             }
         }
-        // 返回 null 或其他適當的處理方式
         return null;
     }
 
+
     @Override
-    public List<ForumPostVO> findPostsByMemberId(Integer memberId) {
+    public List<ForumPostVO> findPostsByMemberId(Integer memberId) {//列出指定會員ID的文章
         return forumPostDao.findByMemberIdAndForumPostStatus(memberId, 0);
     }
     @Override
@@ -108,14 +113,14 @@ public class ForumPostServiceImpl implements ForumPostService {
         ForumPostVO post = forumPostDao.findById(postId).orElse(null);
 
         if (post != null) {
-            post.setForumPostStatus(1); // 直接將文章狀態設置為 1
+            post.setForumPostStatus(1); //直接將文章狀態設置為 1
             ForumPostVO updatedPost = forumPostDao.save(post);
 
-            // 檢查操作是否成功
+            //檢查操作是否成功
             return updatedPost != null;
         }
 
-        // 如果文章不存在或者其他原因導致操作無法執行，返回 false
+        //如果文章不存在或者其他原因導致操作無法執行，返回 false
         return false;
     }
 

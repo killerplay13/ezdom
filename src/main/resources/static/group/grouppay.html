@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>EZDOM | Join Togather</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
+    <meta name="keywords"
+        content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, dark mode, html5, css3, javascript, gallery, slider, touch, creative">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="../frontendshop/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../frontendshop/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../frontendshop/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../frontendshop/assets/favicon/site.webmanifest">
+    <link rel="mask-icon" color="#6366f1" href="../frontendshop/assets/favicon/safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+    <meta name="theme-color" content="white">
+    <!-- Theme mode-->
+    <script>
+        let mode = window.localStorage.getItem('mode'),
+            root = document.getElementsByTagName('html')[0];
+        if (mode !== undefined && mode === 'dark') {
+            root.classList.add('dark-mode');
+        } else {
+            root.classList.remove('dark-mode');
+        }
+
+
+    </script>
+    <!-- Page loading styles-->
+    <style>
+        .page-loading {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all .4s .2s ease-in-out;
+            transition: all .4s .2s ease-in-out;
+            background-color: #fff;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 9999;
+        }
+
+        .dark-mode .page-loading {
+            background-color: #121519;
+        }
+
+        .page-loading.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .page-loading-inner {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            -webkit-transition: opacity .2s ease-in-out;
+            transition: opacity .2s ease-in-out;
+            opacity: 0;
+        }
+
+        .page-loading.active>.page-loading-inner {
+            opacity: 1;
+        }
+
+        .page-loading-inner>span {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: normal;
+            color: #6f788b;
+        }
+
+        .dark-mode .page-loading-inner>span {
+            color: #fff;
+            opacity: .6;
+        }
+
+        .page-spinner {
+            display: inline-block;
+            width: 2.75rem;
+            height: 2.75rem;
+            margin-bottom: .75rem;
+            vertical-align: text-bottom;
+            background-color: #d7dde2;
+            border-radius: 50%;
+            opacity: 0;
+            -webkit-animation: spinner .75s linear infinite;
+            animation: spinner .75s linear infinite;
+        }
+
+        .dark-mode .page-spinner {
+            background-color: rgba(255, 255, 255, .25);
+        }
+
+        @-webkit-keyframes spinner {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            50% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        @keyframes spinner {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            50% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+        (function () {
+            window.onload = function () {
+                const preloader = document.querySelector('.page-loading');
+                preloader.classList.remove('active');
+                setTimeout(function () {
+                    preloader.remove();
+                }, 1500);
+            };
+        })();
+
+    </script>
+    <!-- Import Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" id="google-font">
+    <!-- Vendor styles-->
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/lightgallery/css/lightgallery-bundle.min.css" />
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/fullcalendar/main.min.css" />
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
+</head>
+<!-- Body-->
+
+<body>
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+        <div class="page-loading-inner">
+            <div class="page-spinner"></div><span>Loading...</span>
+        </div>
+    </div>
+    <!-- 頁首-->
+    <main class="page-wrapper">
+        <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
+        <header class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode">
+            <div class="container"><a class="navbar-brand pe-sm-3" href="ezdomindex.html"><span
+                        class="text-primary flex-shrink-0 me-2">
+                        <svg version="1.1" width="35" height="32" viewBox="0 0 36 33"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill="currentColor"
+                                d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                            </path>
+                        </svg></span>EZ-DOM</a>
+                <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+                    <input class="form-check-input" type="checkbox" id="theme-mode">
+                    <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
+                    <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
+                </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+                    href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
+                    rel="noopener">登入/註冊</a>
+                <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+                <nav class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">揪團
+                                Group</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">揪團列表</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">My揪團</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">開團管理</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">瀏覽商品</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">購物車</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">管理我的訂單</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">論壇
+                                Forum</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">瀏覽論壇</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">論壇管理</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">預約
+                                Reserve</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">預約管理</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">瀏覽教練</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">時段管理</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">項目管理</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">自我介紹管理</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">會員中心
+                                Member</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">我的頁面</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">好友管理</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">收藏文章</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">收藏商品</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">個人設定</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">聊天室</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">聯絡客服
+                                Help</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!-- 頁首結束-->
+        <!-- Features (Why choose Around)-->
+        <section class="bg-secondary py-5">
+            <div class="container py-lg-3 py-xl-4 py-xxl-5">
+                <h2 class="h1 text-center pt-1 pt-sm-3 pt-md-4 pb-3 pb-sm-4 pb-lg-5">準備前往付款頁面</h2>
+                <h3 class="h2 pb-md-2 pb-lg-3" style="text-align: center;">請確保您已準備好信用卡資訊</h3>
+                <a class="btn btn-sm btn-primary" href="#"
+                    style="display: block; text-align: center; margin-top: 10px; margin-bottom: 10px;font-size: 20px;">去付款GO</a>
+                <div class="row align-items-center pb-5 mb-2 mb-md-3 mb-lg-4 mb-xl-5" data-aos="fade-up"
+                    data-aos-duration="600" data-aos-offset="300" data-disable-parallax-down="md">
+                    <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1" data-aos="fade-up" data-aos-duration="850"
+                        data-aos-offset="200" data-disable-parallax-down="md">
+                    </div>
+                    
+                        <img class="d-block rounded-5 mx-auto"
+                            src="https://plus.unsplash.com/premium_photo-1681627553506-51a9afddb15d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1906&q=80"
+                            width="470" alt="Image">
+                    
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Vendor scripts: js libraries and plugins-->
+        <script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+        <script src="../frontendshop/assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="../frontendshop/assets/vendor/lightgallery/lightgallery.min.js"></script>
+        <script src="../frontendshop/assets/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+        <script src="../frontendshop/assets/vendor/fullcalendar/main.min.js"></script>
+        <!-- Main theme script-->
+        <script src="../frontendshop/assets/js/theme.min.js"></script>
+</body>
+
+</html>

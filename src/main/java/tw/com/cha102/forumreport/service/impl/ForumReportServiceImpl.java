@@ -53,7 +53,7 @@ public class ForumReportServiceImpl implements ForumReportService {
         }
         return false;
     }
-    @Override
+
     // 檢查是否已經檢舉過相同的文章
     public boolean hasReportedSamePost(Integer forumPostId, Integer memberId) {
         return forumReportDao.existsByForumPostIdAndMemberId(forumPostId, memberId);
