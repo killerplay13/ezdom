@@ -10,5 +10,7 @@ public interface GroupRepository extends JpaRepository<Group, Integer> {
 
     List<Group> findByGroupStatusAndRegisteredNumberIsGreaterThanEqual(int groupStatus,int  registeredNumber); //
 
-    List<Group> findByGroupStatusAndGroupNameStartingWith(int status,String groupName);//
+    List<Group> findByGroupStatusAndGroupNameStartingWith(int status,String groupName);
+
+    List<Group> findByGroupIdIn(List<Integer> groupIds);
 }

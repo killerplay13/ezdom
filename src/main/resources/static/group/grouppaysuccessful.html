@@ -20,10 +20,6 @@
     <meta name="msapplication-TileColor" content="#080032">
     <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
     <meta name="theme-color" content="white">
-    <!--可以用網路Icons-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-        integrity="sha384-eVeOjdkuwGJm8R7K2Jd8FmB1PzkddHPw4+4Y6rHfPs6LhOVlT5MWt1k1BokJBf" crossorigin="anonymous">
-
     <!-- Theme mode-->
     <script>
         let mode = window.localStorage.getItem('mode'),
@@ -41,7 +37,7 @@
         .page-loading {
             position: fixed;
             top: 0;
-            right: 0; 
+            right: 0;
             bottom: 0;
             left: 0;
             width: 100%;
@@ -135,70 +131,16 @@
                 transform: none;
             }
         }
-
-        .group-leader {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            overflow: hidden;
-
-        }
-
-        .group-leader img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-    
-
-        /*搜尋&熱門揪團按鈕*/
-        .center-container {
-            display: block;
-            justify-content: center;
-            align-items: center;
-
-        }
-
-        .tf__menu_search_area {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            background-color: #EEF6EB;
-            padding: 10px;
-            border-radius: 15px;
-
-        }
-
-        .tf__menu_search_area .tf__menu_search {
-            padding: 5px;
-            border-radius: 10px;
-        }
-
-        .tf__menu_search_area input[type="text"],
-        .tf__menu_search_area select,
-        .tf__menu_search_area button {
-            border: none;
-            outline: none;
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        .tf__menu_search_area select {
-            width: 100%;
-        }
-
-        .common_btn {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
+        .order-complete-bg {
+        background-position: center;
+        background-size: cover;
+        background-color: rgb(219, 241, 231);
+        box-shadow: 0 5px 9.3px 0.7px rgba(183,177,199,0.1);
+        padding: 70px 85px 35px;
+        width: 900px;
+        height: 600px;
+        text-align: center;
+    }
     </style>
     <!-- Page loading scripts-->
     <script>
@@ -333,222 +275,35 @@
             </div>
         </header>
         <!-- 頁首結束-->
-        <div class="container py-5 mt-5 mb-lg-4 mb-xl-5">
-            <!-- 揪團開頭小介紹-->
-            <div class="ignore-dark-mode rounded-1 overflow-hidden mb-5 enlarged-background">
-                <div class="row align-items-center g-0">
-                    <div class="col-md-6 offset-xl-1 text-center text-md-start">
-                        <div class="py-4 px-4 px-sm-5 pe-md-0 ps-xl-4">
-                            <div class="container" style="margin-top: 30px;"></div>
-                            <h4 style="color: #3f3335;">相約美好揪團運動時光<br>既保持身體健康， 也能擴展交友圈子，共創美好時光！
-                            </h4>
+        <section class="order-complete-area pattern-bg pt-100 pb-100" data-background="static/picture/pattern_bg.jpg">
+            <div class="container py-lg-3 py-xl-4 py-xxl-5">
+                <div class="row justify-content-center" style="margin-top: 70px;">
+                    <div class="col-xl-8 col-lg-10">
+                        <div class="order-complete-bg" data-background="img/bg/order_comp_bg.png">
+                            <div class="order-complete-content">
+                                <h3>完成揪團訂金付款</h3>
+                                <div class="check mb-25"><img src="https://kafkalin.com/wp-content/uploads/20190814212507_2.png" alt=""style="width: 300px; height: 300px;"></div>
+                                
+                                <a href="grouplist.html" class="btn" style="margin-top: 30px; background-color: #448c74;">回到揪團列表</a>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <style>
-                .enlarged-background {
-                    background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80');
-                    background-size: cover;
-                    /* 調整背景圖片大小以填滿元素 */
-                    background-position: center center;
-                    /* 將背景圖片居中 */
-                    background-repeat: no-repeat;
-                    /* 禁止背景圖片重複 */
-                    height: 400px;
-                    /* 設定元素高度，以顯示背景圖片 */
-                }
-            </style>
-            <!-- 揪團介紹結束-->
-
-            <!-- 搜尋&熱門揪團 -->
-            <div class="center-container">
-                <form class="tf__menu_search_area">
-                    <div class="tf__menu_search">
-                        <input type="text" id="groupName" name="groupName" placeholder="search...">
-                    </div>
-                    <div class="tf__menu_search">
-                        <button class="common_btn" type="button" onclick="conditionSearch()">Search</button>
-                    </div>
-                    <div class="tf__menu_search">
-                        <div class="select_area">
-                            <button class="new_btn" type="submit">最新揪團</button>
-                            <button class="hot_btn" type="button" onclick="getHot()">熱門揪團</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <!-- 揪團列表 -->
-            <section class="position-relative py-2 py-sm-3 py-md-4 py-lg-5">
-                <div class="container position-relative zindex-2 py-5 mt-xl-2 mb-lg-2 mb-xl-3 mb-xxl-5 mt-xxl-4">
-                    <h2 class="h1 pt-xxl-1 pb-4 mb-2 mb-lg-3">揪團列表 | Group List</h2>
-                    <div class="row" id="groupList">
-                        <!-- 卡片通过 JavaScript 動態生成 -->
-                    </div>
-                </div>
-            </section>
-            <script>
-                // 獲取卡片容器
-                const groupListContainer = document.getElementById("groupList");
-
-
-                fetch("http://localhost:8080/ezdom/frontend/group/list")
-                    .then(response => response.json())
-                    .then(data => {
-                        // 清空卡片內容
-                        groupListContainer.innerHTML = "";
-
-                        // 遍歷生成卡片
-                        data.forEach(group => {
-                            const card = document.createElement("div");
-                            card.className = "col-md-6 col-lg-3 mb-4";
-
-                            // 處理日期格式
-                            const groupDate = new Date(group.groupDate);
-                            const formattedDate = `${groupDate.getFullYear()}/${groupDate.getMonth() + 1}/${groupDate.getDate()}`;
-
-                            card.innerHTML = `
-        <a href="groupdetail.html?groupId=${group.groupId}" class="card h-100 border rounded-4 pb-3">
-          <div class="position-relative ignore-dark-mode">
-            <img class="card-img-top rounded-4" src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Group Image">
-          </div>
-          <div class="card-body py-4">
-            <h3 class="h3">${group.groupName}</h3>
-            <div class="group-leader">
-              <img src="https://pic4.zhimg.com/80/v2-33211227f196223db1ad4bd7585993c7_1440w.webp" alt="Group Leader">
-            </div>
-            <ul class="fs-sm ps-4 mb-0">
-              <li class="mb-2">${group.groupLocation}</li>
-              <li class="mb-2">${formattedDate}</li>
-              <li class="mb-2">${group.groupContent}</li>
-            </ul>
-          </div>
-        </a>
-    `;
-                            groupListContainer.appendChild(card);
-                        });
-                    })
-                    .catch(error => {
-                        console.error("Error fetching data:", error);
-                    });
-
-
-                    function getHot(){
-
-                                            // 獲取卡片容器
-                    const groupListContainer = document.getElementById("groupList");
-
-
-                    fetch("http://localhost:8080/ezdom/frontend/group/hot/list")
-                        .then(response => response.json())
-                        .then(data => {
-                            // 清空卡片內容
-                            groupListContainer.innerHTML = "";
-
-                            // 遍歷生成卡片
-                            data.forEach(group => {
-                                const card = document.createElement("div");
-                                card.className = "col-md-6 col-lg-3 mb-4";
-
-                                // 處理日期格式
-                                const groupDate = new Date(group.groupDate);
-                                const formattedDate = `${groupDate.getFullYear()}/${groupDate.getMonth() + 1}/${groupDate.getDate()}`;
-
-                                card.innerHTML = `
-                    <a href="groupdetail.html?groupId=${group.groupId}" class="card h-100 border rounded-4 pb-3">
-                    <div class="position-relative ignore-dark-mode">
-                    <img class="card-img-top rounded-4" src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Group Image">
-                    </div>
-                    <div class="card-body py-4">
-                    <h3 class="h3">${group.groupName}</h3>
-                    <div class="group-leader">
-                    <img src="https://pic4.zhimg.com/80/v2-33211227f196223db1ad4bd7585993c7_1440w.webp" alt="Group Leader">
-                    </div>
-                    <ul class="fs-sm ps-4 mb-0">
-                    <li class="mb-2">${group.groupLocation}</li>
-                    <li class="mb-2">${formattedDate}</li>
-                    <li class="mb-2">${group.groupContent}</li>
-                    </ul>
-                    </div>
-                    </a>
-                    `;
-                                groupListContainer.appendChild(card);
-                            });
-                        })
-                        .catch(error => {
-                            console.error("Error fetching data:", error);
-                        });
-                    }
-
-                    
-                    function conditionSearch(){
-
-                        let inputField = document.getElementById("groupName");
-                        let inputValue = inputField.value;
-
-                        // 取得卡片容器
-                        const groupListContainer = document.getElementById("groupList");
-
-
-                        fetch("http://localhost:8080/ezdom/frontend/group/condition/list?groupName=" + inputValue)
-                        .then(response => response.json())
-                        .then(data => {
-                        // 清空卡片容器内容
-                        groupListContainer.innerHTML = "";
-
-                        // 遍歷生成卡片
-                        data.forEach(group => {
-                        const card = document.createElement("div");
-                        card.className = "col-md-6 col-lg-3 mb-4";
-
-                            // 處理日期格式
-                        const groupDate = new Date(group.groupDate);
-                        const formattedDate = `${groupDate.getFullYear()}/${groupDate.getMonth() + 1}/${groupDate.getDate()}`;
-
-                        card.innerHTML = `
-                        <a href="groupdetail.html?groupId=${group.groupId}" class="card h-100 border rounded-4 pb-3">
-                        <div class="position-relative ignore-dark-mode">
-                        <img class="card-img-top rounded-4" src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Group Image">
-                        </div>
-                        <div class="card-body py-4">
-                        <h3 class="h3">${group.groupName}</h3>
-                        <div class="group-leader">
-                        <img src="https://pic4.zhimg.com/80/v2-33211227f196223db1ad4bd7585993c7_1440w.webp" alt="Group Leader">
-                        </div>
-                        <ul class="fs-sm ps-4 mb-0">
-                        <li class="mb-2">${group.groupLocation}</li>
-                        <li class="mb-2">${formattedDate}</li>
-                        <li class="mb-2">${group.groupContent}</li>
-                        </ul>
-                        </div>
-                        </a>
-                        `;
-                        groupListContainer.appendChild(card);
-                        });
-                        })
-                        .catch(error => {
-                        console.error("Error fetching data:", error);
-                        });
-                    }
-
-
-            </script>
-            <!-- 揪團列表結束 -->
+        </section><!-- order-complete-area-end --><!-- limited-offer-area -->
 
 
 
-
-            <!-- Vendor scripts: js libraries and plugins-->
-            <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-            <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-            <script src="assets/vendor/lightgallery/lightgallery.min.js"></script>
-            <script src="assets/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
-            <script src="assets/vendor/fullcalendar/main.min.js"></script>
-            <!-- Main theme script-->
-            <script src="assets/js/theme.min.js"></script>
+        <!-- Vendor scripts: js libraries and plugins-->
+        <script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+        <script src="../frontendshop/assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="../frontendshop/assets/vendor/lightgallery/lightgallery.min.js"></script>
+        <script src="../frontendshop/assets/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+        <script src="../frontendshop/assets/vendor/fullcalendar/main.min.js"></script>
+        <!-- Main theme script-->
+        <script src="../frontendshop/assets/js/theme.min.js"></script>
 </body>
 
 </html>

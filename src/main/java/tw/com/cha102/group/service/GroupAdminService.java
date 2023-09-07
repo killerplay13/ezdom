@@ -40,6 +40,10 @@ public class GroupAdminService {
         return groupRepository.findById(groupId);
     }
 
+    public List<Group> getGroupsInIds(List<Integer> groupIds) {
+        return groupRepository.findByGroupIdIn(groupIds);
+    }
+
     public Group updateGroup(Integer groupId, AdminGroup updateGroup) {
         Optional<Group> existingGroupOptional = groupRepository.findById(groupId);
         if (existingGroupOptional.isPresent()) {

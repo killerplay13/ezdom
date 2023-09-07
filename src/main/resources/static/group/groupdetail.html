@@ -374,17 +374,19 @@
               </svg>
               <span id="groupLocation" class="ps-2">位置資訊</span>
             </div>
-            <div class="d-none d-md-flex align-items-center pb-3 mb-3">
+            <div class="d-none d-md-flex align-items-center pb-3 mb-3" id="member-avatar">
               <svg xmlns="http://www.w3.org/2000/svg" height="2em"
                 viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                 <path
                   d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
               </svg>
               <span id="registeredNumber" class="ps-2">0人/</span>
-              <div id="limitNumber" class="capacity-value">50</div>
-              <div class="member-avatar">
-                <img src="https://pic4.zhimg.com/80/v2-33211227f196223db1ad4bd7585993c7_1440w.webp" alt="Member Avatar">
-              </div>
+              <div id="limitNumber"  class="capacity-value">50</div>
+
+
+              <!--<div class="member-avatar" >-->
+              <!--  <img src="https://pic4.zhimg.com/80/v2-33211227f196223db1ad4bd7585993c7_1440w.webp" alt="Member Avatar">-->
+              <!--</div>-->
             </div>
             <div class="d-none d-md-flex align-items-center pb-3 mb-3">
               <svg xmlns="http://www.w3.org/2000/svg" height="2em"
@@ -441,9 +443,9 @@
           : "";
         document.getElementById("groupNotice").textContent = groupData.groupNotice || "揪團注意事項:";
       }
- 
+
       function fetchGroupInfo(groupId) {
-        const apiUrl = `http://localhost:8080/ezdom/group/admin/${groupId}`; // 请替换成实际的API URL
+        const apiUrl = `http://localhost:8080/ezdom/frontend/group/admin/${groupId}`;
 
         fetch(apiUrl)
           .then(response => response.json())
@@ -465,8 +467,10 @@
       // 获取并显示对应groupCollect
       getGroupCollect(groupId);
 
+      getMembers();
+
       function getGroupCollect() {
-        const apiUrl = `http://localhost:8080/ezdom/group/collect/${groupId}`; // 请替换成实际的API URL
+        const apiUrl = `http://localhost:8080/ezdom/frontend/group/collect/${groupId}`;
 
 
 
@@ -489,11 +493,39 @@
           });
       }
 
+      function getMembers() {
+        const apiUrl = `http://localhost:8080/ezdom/frontend/group/applied/list/${groupId}`;
+        const memberAvatar = document.getElementById("member-avatar");
+
+        fetch(apiUrl)
+                .then(response => response.json())
+                .then((members) => {
+                  console.log(members);
+
+                  let html = "";
+                  for (let i = 0; i < members.length; i++) {
+                    html += '<div class="member-avatar" >'
+                    html +=   '<img src="' + 'data:image/jpeg;base64,' + members[i].memberPhoto + '" alt="Member Avatar">'
+                    html += '</div>'
+
+                    let newDiv = document.createElement("div");
+                    let newImg = document.createElement("img");
+                    newImg.src = 'data:image/jpeg;base64,' + members[i].memberPhoto;
+                    newImg.alt = "Image " + (i);
+                    newDiv.appendChild(newImg);
+                    memberAvatar.appendChild(newDiv);
+                  }
+                })
+                .catch(error => {
+                  console.error("Error fetching group collect:", error);
+                });
+      }
+
       function addFavorites() {
-        const apiUrl = `http://localhost:8080/ezdom/group/collect/${groupId}`; // 请替换成实际的API URL
+        const apiUrl = `http://localhost:8080/ezdom/frontend/group/collect/${groupId}`;
 
         const options = {
-          method: 'POST', // 设置请求方法，默认为 'GET'
+          method: 'POST',
         };
 
         const heart = document.getElementById("heart");
@@ -510,7 +542,7 @@
       }
 
       function delFavorites() {
-        const apiUrl = `http://localhost:8080/ezdom/group/collect/${groupId}`; // 请替换成实际的API URL
+        const apiUrl = `http://localhost:8080/ezdom/frontend/group/collect/${groupId}`; // 请替换成实际的API URL
 
         const options = {
           method: 'DELETE'
