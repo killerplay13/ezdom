@@ -12,13 +12,13 @@
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon and Touch Icons-->
-    <link rel="apple-touch-icon" sizes="180x180" href="../frontendshop/../frontendshop/assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../frontendshop/../frontendshop/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../frontendshop/../frontendshop/assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="../frontendshop/../frontendshop/assets/favicon/site.webmanifest">
-    <link rel="mask-icon" color="#6366f1" href="../frontendshop/../frontendshop/assets/favicon/safari-pinned-tab.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="mask-icon" color="#6366f1" href="assets/favicon/safari-pinned-tab.svg">
     <meta name="msapplication-TileColor" content="#080032">
-    <meta name="msapplication-config" content="../frontendshop/../frontendshop/assets/favicon/browserconfig.xml">
+    <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
     <meta name="theme-color" content="white">
     <!-- Theme mode-->
     <script>
@@ -49,16 +49,16 @@
           visibility: hidden;
           z-index: 9999;
         }
-    
+
         .dark-mode .page-loading {
           background-color: #121519;
         }
-    
+
         .page-loading.active {
           opacity: 1;
           visibility: visible;
         }
-    
+
         .page-loading-inner {
           position: absolute;
           top: 50%;
@@ -71,11 +71,11 @@
           transition: opacity .2s ease-in-out;
           opacity: 0;
         }
-    
+
         .page-loading.active>.page-loading-inner {
           opacity: 1;
         }
-    
+
         .page-loading-inner>span {
           display: block;
           font-family: 'Inter', sans-serif;
@@ -83,12 +83,12 @@
           font-weight: normal;
           color: #6f788b;
         }
-    
+
         .dark-mode .page-loading-inner>span {
           color: #fff;
           opacity: .6;
         }
-    
+
         .page-spinner {
           display: inline-block;
           width: 2.75rem;
@@ -101,30 +101,30 @@
           -webkit-animation: spinner .75s linear infinite;
           animation: spinner .75s linear infinite;
         }
-    
+
         .dark-mode .page-spinner {
           background-color: rgba(255, 255, 255, .25);
         }
-    
+
         @-webkit-keyframes spinner {
           0% {
             -webkit-transform: scale(0);
             transform: scale(0);
           }
-    
+
           50% {
             opacity: 1;
             -webkit-transform: none;
             transform: none;
           }
         }
-    
+
         @keyframes spinner {
           0% {
             -webkit-transform: scale(0);
             transform: scale(0);
           }
-    
+
           50% {
             opacity: 1;
             -webkit-transform: none;
@@ -139,10 +139,13 @@
           id="google-font">
     <!-- Vendor styles-->
     <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="../frontendshop/../frontendshop/assets/css/theme.min.css">
+    <link rel="stylesheet" media="screen" href="assets/css/theme.min.css">
+    <!-- Swal -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
 </head>
 
 <!-- 頁首-->
+
 <body>
 <main class="page-wrapper">
     <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
@@ -245,7 +248,7 @@
                                 data-bs-dismiss="offcanvas" data-bs-target="#sidebarAccount"></button>
                         <div class="offcanvas-body">
                             <div class="pb-2 pb-lg-0 mb-4 mb-lg-5"><img class="d-block rounded-circle mb-2"
-                                                                        src="../frontendshop/../frontendshop/assets/img/avatar/02.jpg" width="80" alt="Isabella Bocouse">
+                                                                        src="assets/img/avatar/02.jpg" width="80" alt="Isabella Bocouse">
                                 <h3 class="h5 mb-1">Isabella Bocouse</h3>
                                 <p class="fs-sm text-muted mb-0">bocouse@example.com</p>
                             </div>
@@ -283,126 +286,107 @@
                             <h2 class="h4 mb-0">基本設定</h2>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <!-- <div class="w-100 border rounded-3 p-4" style="max-width: 212px;">
-                              <div class="d-flex justify-content-between fs-sm pb-1 mb-2">個資填寫進度<strong class="ms-2">62%</strong>
-                              </div>
-                              <div class="progress" style="height: 5px;">
-                                <div class="progress-bar" role="progressbar" style="width: 62%" aria-valuenow="62" aria-valuemin="0"
-                                  aria-valuemax="100"></div>
-                              </div>
-                            </div> -->
                         </div>
                         <div class="d-flex align-items-center">
-                            <div class="dropdown"><a
-                                    class="d-flex flex-column justify-content-end position-relative overflow-hidden rounded-circle bg-size-cover bg-position-center flex-shrink-0"
-                                    href="#" data-bs-toggle="dropdown" aria-expanded="false"
-                                    style="width: 80px; height: 80px; background-image: url(../frontendshop/../frontendshop/assets/img/avatar/02.jpg);"><span
-                                    class="d-block text-light text-center lh-1 pb-1" style="background-color: rgba(0,0,0,.5)"><i
-                                    class="ai-camera"></i></span></a>
-                                <div class="dropdown-menu my-1"><a class="dropdown-item fw-normal" href="#"><i
-                                        class="ai-camera fs-base opacity-70 me-2"></i>Upload new photo</a><a
-                                        class="dropdown-item text-danger fw-normal" href="#"><i class="ai-trash fs-base me-2"></i>Delete
-                                    photo</a></div>
+                            <div class="dropdown">
+                                <a class="d-flex flex-column justify-content-end position-relative overflow-hidden rounded-circle bg-size-cover bg-position-center flex-shrink-0"
+                                   href="#" data-bs-toggle="dropdown" aria-expanded="false"
+                                   style="width: 80px; height: 80px; background-image: url(assets/img/avatar/02.jpg);">
+                    <span class="d-block text-light text-center lh-1 pb-1" style="background-color: rgba(0,0,0,.5)">
+                      <i class="ai-camera"></i>
+                    </span>
+                                </a>
+                                <div class="dropdown-menu my-1">
+                                    <a class="dropdown-item fw-normal">
+                                        <i class="ai-camera fs-base opacity-70 me-2" id="newPhoto" accept="image/*"></i>Upl
+                                    </a>
+                                    <a class="dropdown-item text-danger fw-normal" id="delPhoto">
+                                        <i class="ai-trash fs-base me-2"></i>Delete photo
+                                    </a>
+                                </div>
                             </div>
                             <div class="ps-3">
-                                <h3 class="h6 mb-1">Profile picture</h3>
-                                <p class="fs-sm text-muted mb-0">PNG 或 JPG 的寬跟高不可超過 1000px</p>
+                                <h3 class="h6 mb-1"></h3>
                             </div>
                         </div>
+
+                        <!-- 文件输入元素 -->
+                        <input type="file" id="photoInput" style="display: none;">
+
                         <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
                             <div class="col-sm-6">
                                 <label class="form-label" for="fn">姓名</label>
-                                <input class="form-control" type="text" value="Isabella" id="fn">
+                                <input class="form-control" type="text" id="name" disabled>
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-label" for="ln">身分證</label>
-                                <input class="form-control" type="text" value="FXXXXXXXXX" id="ln">
+                                <input class="form-control" type="text" id="memberId" placeholder="請輸入正確身分證格式" required
+                                       oninput="ValidateId()">
+                                <p id="idError" style="color: red;"></p>
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-label" for="email">信箱</label>
-                                <input class="form-control" type="email" value="bocouse@gmail.com" id="email">
+                                <input class="form-control" type="email" id="email" placeholder="格式 : test@example.com" required
+                                       oninput="ValidateMail()">
+                                <a class="ai-circle-info btn btn-link float-end" id="sendVerificationCodeLink"
+                                   onclick="sendVerificationCode()">傳送驗證碼</a>
+                                <p id="mailError" style="color: red;"></p>
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-label" for="phone">手機 <span class='text-muted'>(*選填)</span></label>
-                                <input class="form-control" type="tel" pattern="09\d{2}-\d{3}-\d{3}" placeholder="09xx-xxx-xxx"
-                                       id="phone">
+                                <input class="form-control" type="tel" id="phone" placeholder="請輸入10碼" required
+                                       oninput="ValidatePhone()">
+                                <p id="phoneError" style="color: red;"></p>
                             </div>
                             <div class="col-sm-6">
-                                <label class="form-label" for="birth-year">出生（年/月/日）</label>
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <select class="form-select" id="birth-year">
-                                            <option value="" disabled selected>年份</option>
-                                            <!-- 在這裡添加年份選項 -->
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <select class="form-select" id="birth-month">
-                                            <option value="" disabled selected>月份</option>
-                                            <!-- 在這裡添加月份選項 -->
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <select class="form-select" id="birth-day">
-                                            <option value="" disabled selected>日期</option>
-                                            <!-- 在這裡添加日期選項 -->
-                                        </select>
-                                    </div>
-                                </div>
+                                <label class="form-label" for="birth-year">生日</label>
+                                <input class="form-control" type="date" id="birth">
                             </div>
                             <div class="col-12 d-sm-flex align-items-center pt-sm-2 pt-md-3">
                                 <div class="form-label text-muted mb-2 mb-sm-0 me-sm-4">性別:</div>
                                 <div class="form-check form-check-inline mb-0">
-                                    <input class="form-check-input" type="radio" name="gender" value="男" id="male">
+                                    <input class="form-check-input" type="radio" name="gender" id="male">
                                     <label class="form-check-label" for="male">男</label>
                                 </div>
                                 <div class="form-check form-check-inline mb-0">
-                                    <input class="form-check-input" type="radio" name="gender" value="女" checked id="female">
+                                    <input class="form-check-input" type="radio" name="gender" checked id="female">
                                     <label class="form-check-label" for="female">女</label>
                                 </div>
                                 <div class="form-check form-check-inline mb-0">
-                                    <input class="form-check-input" type="radio" name="gender" value="其他" id="other">
+                                    <input class="form-check-input" type="radio" name="gender" id="other">
                                     <label class="form-check-label" for="Other">其他</label>
                                 </div>
                             </div>
-                            <div class="col-12 d-sm-flex align-items-center">
-                                <div class="form-label text-muted mb-2 mb-sm-0 me-sm-4">聯絡方式:</div>
-                                <div class="form-check form-check-inline mb-0">
-                                    <input class="form-check-input" type="checkbox" name="communication" value="信箱" checked
-                                           id="c-email">
-                                    <label class="form-check-label" for="c-email">信箱</label>
-                                </div>
-                                <div class="form-check form-check-inline mb-0">
-                                    <input class="form-check-input" type="checkbox" name="communication" value="手機" id="c-phone">
-                                    <label class="form-check-label" for="c-phone">手機</label>
-                                </div>
-                            </div>
+                            <!-- <div class="col-12 d-sm-flex align-items-center" id="contact">
+                              <div class="form-label text-muted mb-2 mb-sm-0 me-sm-4">聯絡方式:</div>
+                              <div class="form-check form-check-inline mb-0">
+                                <input class="form-check-input" type="checkbox" name="communication" value="信箱" checked id="email">
+                                <label class="form-check-label" for="c-email">信箱</label>
+                              </div>
+                              <div class="form-check form-check-inline mb-0">
+                                <input class="form-check-input" type="checkbox" name="communication" value="手機" id="phone">
+                                <label class="form-check-label" for="c-phone">手機</label>
+                              </div>
+                            </div> -->
                             <div class="col-sm-7">
                                 <label class="form-label" for="intro">自我介紹</label>
                                 <textarea class="form-control" id="intro" rows="4"></textarea>
                             </div>
+                            <!-- 位址 -->
+                            <div>
+                                <div class="d-flex align-items-center mt-sm-n1 pb-4 mb-1 mb-lg-2">
+                                    <i class="ai-map-pin text-primary lead pe-1 me-2"></i>
+                                    <h2 class="h4 mb-0">地址</h2>
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="text" id="address">
+                                </div>
+                            </div>
+
                             <div class="col-12 d-flex justify-content-end pt-3">
                                 <button class="btn btn-primary ms-3" id="saveIntro">儲存</button>
                             </div>
                         </div>
-                    </div>
-                </section>
-
-                <!-- 位址 -->
-                <section class="col">
-                    <div class="card h-100 border-0 py-1 p-md-2 p-xl-3 p-xxl-4">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mt-sm-n1 pb-4 mb-1 mb-lg-2"><i
-                                    class="ai-map-pin text-primary lead pe-1 me-2"></i>
-                                <h2 class="h4 mb-0">地址</h2><a class="btn btn-sm btn-secondary ms-auto" href="account-settings.html"><i
-                                        class="ai-edit ms-n1 me-2"></i>編輯</a>
-                            </div>
-                            <div class="d-flex align-items-center pb-1 mb-2">
-                                <h3 class="h6 mb-0 me-3">收件地址</h3><span class="badge bg-faded-primary text-primary">預設</span>
-                            </div>
-                            <p class="mb-0">320 桃園市中壢區復興路XX號XX樓</p>
-                        </div>
-                    </div>
                 </section>
                 <!-- Password-->
                 <section class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
@@ -561,9 +545,9 @@
             <div class="col-12 col-xl-3 mt-md-2 mt-xl-0 pt-2 pt-md-4 pt-xl-0">
                 <h3 class="h6 text-uppercase mb-1 pb-1">Download our app</h3>
                 <div class="d-flex d-xl-block d-xxl-flex"><a class="btn btn-secondary px-3 py-2 mt-3 me-3" href="#"><img
-                        class="mx-1" src="../frontendshop/../frontendshop/assets/img/market/appstore-light.svg" width="120" alt="App Store"></a><a
+                        class="mx-1" src="assets/img/market/appstore-light.svg" width="120" alt="App Store"></a><a
                         class="btn btn-secondary px-3 py-2 mt-3" href="#"><img class="mx-1"
-                                                                               src="../frontendshop/../frontendshop/assets/img/market/googleplay-light.svg" width="119" alt="Google Play"></a></div>
+                                                                               src="assets/img/market/googleplay-light.svg" width="119" alt="Google Play"></a></div>
             </div>
         </div>
         <!-- Nav + Switcher-->
@@ -576,7 +560,7 @@
             <!-- Language / currency switcher-->
             <div class="dropdown mb-4">
                 <button class="btn btn-outline-secondary dropdown-toggle px-4" type="button" data-bs-toggle="dropdown"
-                        data-bs-auto-close="outside" aria-expanded="false"><img class="me-2" src="../frontendshop/../frontendshop/assets/img/flags/en.png"
+                        data-bs-auto-close="outside" aria-expanded="false"><img class="me-2" src="assets/img/flags/en.png"
                                                                                 width="18" alt="English / USD">Eng / USD</button>
                 <div class="dropdown-menu dropdown-menu-end my-1">
                     <div class="dropdown-item">
@@ -586,10 +570,10 @@
                             <option value="ukp">£ UKP</option>
                             <option value="jpy">¥ JPY</option>
                         </select>
-                    </div><a class="dropdown-item pb-1" href="#"><img class="me-2" src="../frontendshop/../frontendshop/assets/img/flags/fr.png" width="18"
+                    </div><a class="dropdown-item pb-1" href="#"><img class="me-2" src="assets/img/flags/fr.png" width="18"
                                                                       alt="Français">Français</a><a class="dropdown-item pb-1" href="#"><img class="me-2"
-                                                                                                                                             src="../frontendshop/../frontendshop/assets/img/flags/de.png" width="18" alt="Deutsch">Deutsch</a><a class="dropdown-item" href="#"><img
-                        class="me-2" src="../frontendshop/../frontendshop/assets/img/flags/it.png" width="18" alt="Italiano">Italiano</a>
+                                                                                                                                             src="assets/img/flags/de.png" width="18" alt="Deutsch">Deutsch</a><a class="dropdown-item" href="#"><img
+                        class="me-2" src="assets/img/flags/it.png" width="18" alt="Italiano">Italiano</a>
                 </div>
             </div>
         </div>
@@ -612,7 +596,7 @@
                         class="ai-facebook"></i></a><a
                         class="btn btn-icon btn-sm btn-secondary btn-pinterest rounded-circle mx-2 ms-sm-0 me-sm-3" href="#"><i
                         class="ai-pinterest"></i></a></div>
-            </div><img class="ms-sm-auto" src="../frontendshop/../frontendshop/assets/img/shop/footer-cards.png" width="187" alt="Accepted cards">
+            </div><img class="ms-sm-auto" src="assets/img/shop/footer-cards.png" width="187" alt="Accepted cards">
         </div>
     </div>
     <div class="pt-5 pt-lg-0"></div>
@@ -636,128 +620,220 @@
     })();
 </script>
 <!-- Vendor scripts: js libraries and plugins-->
-<script src="../frontendshop/../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../frontendshop/../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-<script src="../frontendshop/../frontendshop/assets/vendor/cleave.js/dist/cleave.min.js"></script>
+<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="assets/vendor/cleave.js/dist/cleave.min.js"></script>
 <!-- Main theme script-->
-<script src="../frontendshop/../frontendshop/assets/js/theme.min.js"></script>
+<script src="assets/js/theme.min.js"></script>
+<!-- Swal -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
 
-<!-- 出生年月日 -->
+<!-- 驗證輸入格式函式 -->
 <script>
-    // 範例年份、月份和日期的選項生成
-    const yearSelect = document.getElementById("birth-year");
-    const monthSelect = document.getElementById("birth-month");
-    const daySelect = document.getElementById("birth-day");
 
-    // 生成年份選項（範圍：1900 到當前年份）
-    const currentYear = new Date().getFullYear();
-    for (let year = 1900; year <= currentYear; year++) {
-      const option = document.createElement("option");
-      option.value = year;
-      option.textContent = year;
-      yearSelect.appendChild(option);
-    }
+    // 身分證
+    function ValidateId() {
+      const idError = document.getElementById("idError");
+      const id = document.getElementById('memberId');
+      const idRegex = /^[A-Z][12][0-9]{8}$/;
 
-    // 生成月份選項（1 到 12）
-    for (let month = 1; month <= 12; month++) {
-      const option = document.createElement("option");
-      const monthString = month < 10 ? `0${month}` : `${month}`;
-      option.value = monthString;
-      option.textContent = monthString;
-      monthSelect.appendChild(option);
-    }
-
-    // 根據選擇的年份和月份生成對應的日期選項
-    function updateDays() {
-      const selectedYear = parseInt(yearSelect.value);
-      const selectedMonth = parseInt(monthSelect.value);
-      const daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
-
-      daySelect.innerHTML = ""; // 清空日期選項
-
-      for (let day = 1; day <= daysInMonth; day++) {
-        const option = document.createElement("option");
-        const dayString = day < 10 ? `0${day}` : `${day}`;
-        option.value = dayString;
-        option.textContent = dayString;
-        daySelect.appendChild(option);
+      if (!idRegex.test(id.value)) {
+        idError.textContent = "請輸入正確格式";
+        return false;
+      } else {
+        idError.textContent = "";
+        return true;
       }
     }
 
-    // 監聽年份和月份選擇變化，更新日期選項
-    yearSelect.addEventListener("change", updateDays);
-    monthSelect.addEventListener("change", updateDays);
+    // 信箱
+    function ValidateMail() {
+      const mailError = document.getElementById("mailError");
+      const mail = document.getElementById('email');
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+      if (!emailRegex.test(mail.value)) {
+        mailError.textContent = "請輸入正確格式";
+        return false;
+      } else {
+        mailError.textContent = "";
+        return true;
+      }
+    }
+
+    // 手機
+    function ValidatePhone() {
+      const phoneError = document.getElementById("phoneError");
+      const phone = document.getElementById('phone');
+      const phoneRegex = /^09[0-9]{8}$/;
+
+      if (!phoneRegex.test(phone.value)) {
+        phoneError.textContent = "請輸入正確格式";
+        return false;
+      } else {
+        phoneError.textContent = "";
+        return true;
+      }
+    }
 
 </script>
-<!-- 傳送基本資料到overview -->
+
+<!-- 解除 oninput -->
 <script>
-    const saveIntroButton = document.getElementById("saveIntro");
+    // 取得輸入框和相關錯誤訊息元素
+    const memberIdInput = document.getElementById('memberId');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
 
-    saveIntroButton.addEventListener("click", () => {
-      // Email
-      const mailTextarea = document.getElementById("email");
-      const mailText = mailTextarea.value;
-      localStorage.setItem("mailText", mailText);
+    const idError = document.getElementById('idError');
+    const mailError = document.getElementById('mailError');
+    const phoneError = document.getElementById('phoneError');
 
-      // 自傳
-      // const introTextarea = document.getElementById("intro");
-      // const introText = introTextarea.value;
-      // localStorage.setItem("introText", introText);
+    // 設定每個輸入框的 oninput 事件
+    memberIdInput.addEventListener('input', ValidateId);
+    emailInput.addEventListener('input', ValidateMail);
+    phoneInput.addEventListener('input', ValidatePhone);
 
-      // 儲存性別
-      const genderInputs = document.querySelectorAll("input[name='gender']");
-      let selectedGender = "";
-      for (const input of genderInputs) {
-        if (input.checked) {
-          selectedGender = input.value;
-          break;
-        }
+    // 監聽文檔點擊事件
+    document.addEventListener('click', (event) => {
+      // 移除每個輸入框的 oninput 事件
+      memberIdInput.removeEventListener('input', ValidateId);
+      emailInput.removeEventListener('input', ValidateMail);
+      phoneInput.removeEventListener('input', ValidatePhone);
+
+      // 清除錯誤訊息
+      idError.textContent = '';
+      mailError.textContent = '';
+      phoneError.textContent = '';
+    });
+
+</script>
+
+<!-- 性別值轉換 -->
+
+<script>
+
+    // 獲取選中的性別
+    const maleRadioButton = document.getElementById('male');
+    const femaleRadioButton = document.getElementById('female');
+    const otherRadioButton = document.getElementById('other');
+
+
+    // 設置事件監聽器來監聽選項的變化
+    maleRadioButton.addEventListener('change', function () {
+      selectedGender = '0';
+    });
+
+    femaleRadioButton.addEventListener('change', function () {
+      selectedGender = '1';
+    });
+
+    otherRadioButton.addEventListener('change', function () {
+      selectedGender = '2';
+    });
+
+</script>
+
+<!-- 上傳個資變數 -->
+<script>
+
+    const saveIntro = document.getElementById('saveIntro');
+    const name = document.getElementById('name');
+    const memberId = document.getElementById('memberId');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const birthInput = document.getElementById('birth');
+    const contact = document.getElementById('contact');
+    const intro = document.getElementById('intro');
+    const address = document.getElementById('address');
+
+</script>
+
+<!-- 上傳個資 -->
+<script>
+    saveIntro.addEventListener('click', function (event) {
+      event.preventDefault();
+
+
+      // 創建一個空的對象
+      const requestData = {};
+
+      // 將有值的字段添加到 requestData 中
+      if (name.value) {
+        requestData.name = name.value;
       }
-      localStorage.setItem("selectedGender", selectedGender);
 
-      // 儲存出生日期
-      const selectedYear = yearSelect.value;
-      const selectedMonth = monthSelect.value;
-      const selectedDay = daySelect.value;
-      let birthdate = "";
-      if (selectedYear !== "" && selectedMonth !== "" && selectedDay !== "") {
-        birthdate = `${selectedYear}/${selectedMonth}/${selectedDay}`;
+      if (memberId.value) {
+        requestData.uid = memberId.value;
       }
-      localStorage.setItem("birthdate", birthdate);
 
-      // 儲存聯絡方式
-      const communicationInputs = document.querySelectorAll("input[name='communication']");
-      const selectedCommunications = [];
-      for (const input of communicationInputs) {
-        if (input.checked) {
-          selectedCommunications.push(input.value);
-        }
+      if (email.value) {
+        requestData.email = email.value;
       }
-      localStorage.setItem("selectedCommunications", JSON.stringify(selectedCommunications));
 
-      // 更新 account-setting 部分
-      const fnInput = document.getElementById("fn");
-      const lnInput = document.getElementById("ln");
-      const emailInput = document.getElementById("email");
-      const phoneInput = document.getElementById("phone");
-      const genderRadioInputs = document.querySelectorAll("input[name='gender']");
-      const introTextArea = document.getElementById("intro");
-
-      // 更新相關欄位的值
-      fnInput.value = localStorage.getItem("fnText");
-      lnInput.value = localStorage.getItem("lnText");
-      emailInput.value = localStorage.getItem("mailText");
-      phoneInput.value = localStorage.getItem("phoneText");
-      for (const input of genderRadioInputs) {
-        if (input.value === localStorage.getItem("selectedGender")) {
-          input.checked = true;
-        }
+      if (phone.value) {
+        requestData.phone = phone.value;
       }
-      introTextArea.value = localStorage.getItem("introText");
 
-      alert("資料已儲存！");
+      if (birth.value) {
+        requestData.birth = birth.value;
+      }
+
+      if (selectedGender) {
+        requestData.gender = selectedGender;
+      }
+
+      if (contact.value) {
+        requestData.contact = contact.value;
+      }
+
+      if (intro.value) {
+        requestData.introduction = intro.value;
+      }
+
+      if (address.value) {
+        requestData.address = address.value;
+      }
+
+      console.log("Selected gender: " + selectedGender);
+
+      fetch('http://localhost:8080/ezdom/member/profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestData)
+      })
+        .then(response => {
+          // 獲取 HTTP 狀態碼
+          const statusCode = response.status;
+
+          // 判斷狀態碼並進行相應處理
+          if (statusCode === 200) {
+            // 登入成功的處理
+            Swal.fire({
+              icon: 'success',
+              title: '成功',
+              text: '個資上傳成功！',
+              confirmButtonText: '確定',
+              focusConfirm: true
+            });
+          } else if (statusCode === 400) {
+            // 驗證失敗的處理
+            return response.json(); // 將回應轉換為 JSON
+          } else {
+            // 其他狀態碼處理
+            throw new Error("HTTP Error: " + statusCode);
+          }
+        })
     });
 </script>
+
+<!-- 上傳照片函式 -->
+<script>
+    const newPhoto = document.getElementById('newPhoto');
+
+</script>
+
+
 
 </body>
 

@@ -28,6 +28,9 @@ public class MemberDaoImp implements MemberDao {
     }
 
     @Override
+    public Member selectByAccount(String memberAccount) {return null;}
+
+    @Override
     public List<Member> selectAll() {
         return null;
     }
