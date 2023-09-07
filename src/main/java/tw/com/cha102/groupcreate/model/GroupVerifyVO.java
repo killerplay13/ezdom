@@ -17,6 +17,7 @@ import java.util.Base64;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "group_member", catalog = "cha102g4_test")
 public class GroupVerifyVO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +26,9 @@ public class GroupVerifyVO {
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID", referencedColumnName = "MEMBER_ID")
     private Member member;
-    @Column(name = "GROUP_ID")
-    private Integer groupId;
+    @ManyToOne
+    @JoinColumn(name = "GROUP_ID", referencedColumnName = "GROUP_ID")
+    private GroupCreateVO groupId;
     @Column(name = "GROUP_APPLY_STATUS")
     private Integer groupApplyStatus;
     @Column(name = "GROUP_APPLY_DATE")
@@ -47,5 +49,17 @@ public class GroupVerifyVO {
         }
         return null;
     }
+    public String getGroupName() {
+        return groupId != null ? groupId.getGroupName() : null;
+    }
+    public Integer getMemberId(){
+        return member != null ? member.getMemberId(): null;
+    }
 
+    public String getGroupPhoto(){
+        if (groupId != null && groupId.getGroupPhoto() != null) {
+            byte[] groupPhoto = groupId.getGroupPhoto();
+            return Base64.getEncoder().encodeToString(groupPhoto);
+        }
+        return null;    }
 }

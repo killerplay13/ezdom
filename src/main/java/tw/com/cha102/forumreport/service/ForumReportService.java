@@ -6,13 +6,16 @@ import java.util.List;
 
 public interface ForumReportService {
 
-    ForumReportVO createReport(ForumReportVO forumReportVO);
+    boolean createReport(ForumReportVO forumReportVO);
 
     List<ForumReportVO> getAllReports();
 
-    ForumReportVO getReportById(Integer reportId);
+    ForumReportVO getReportById(Integer forumReportId);
 
-    boolean deleteReport(Integer reportId);
+    boolean deleteReport(Integer forumReportId);
+
+    boolean hasReportedSamePost(Integer forumPostId, Integer memberId);
+    boolean updateReportStatus(Integer reportId);
 
 //    boolean updateReportStatus(Integer reportId, Integer newStatus);
 

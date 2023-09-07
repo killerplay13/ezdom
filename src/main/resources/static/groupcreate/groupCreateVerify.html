@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group Verify</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    
-    <link rel="stylesheet" media="screen" href="assets\css\theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script>
+
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
     <!-- Theme mode-->
     <script>
         let mode = window.localStorage.getItem('mode'),
@@ -20,449 +22,759 @@
 
 
     </script>
+    <!-- 點擊兩下開始編輯 -->
+    <style>
+        .multi-column-text {
+            columns: 4;
+            column-gap: 0px;
+            margin-top: -10px;
+        }
+    </style>
 </head>
 
 <body>
-    <header class="navbar navbar-expand-lg fixed-top">
-        <div class="container"><a class="navbar-brand pe-sm-3" href="ezdomindex.html"><span
-                    class="text-primary flex-shrink-0 me-2">
+<header class="navbar navbar-expand-lg fixed-top">
+    <div class="container"><a class="navbar-brand pe-sm-3" href="ezdomindex.html"><span
+            class="text-primary flex-shrink-0 me-2">
                     <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
                         <path fill="currentColor"
-                            d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                              d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
                         </path>
                     </svg></span>EZ-DOM</a>
-            <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
-                <input class="form-check-input" type="checkbox" id="theme-mode">
-                <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
-                <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
-            </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
-                href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
-                rel="noopener">登入/註冊</a>
-            <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
+        <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+            <input class="form-check-input" type="checkbox" id="theme-mode">
+            <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
+            <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
+        </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+                 href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
+                 rel="noopener">登入/註冊</a>
+        <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
-            <nav class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside" aria-expanded="false">揪團 Group</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">揪團列表</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">My揪團</a></li>
-                            <li class="dropdown" style="border-bottom: none;"><a class="dropdown-item dropdown-toggle"
-                                    href="#" data-bs-toggle="dropdown" aria-expanded="false">開團管理</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="testgroupcreate.html">建立揪團</a></li>
-                                    <li><a class="dropdown-item" href="testgroupCreateVerify.html">審核揪團成員</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">瀏覽商品</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">購物車</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">管理我的訂單</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">瀏覽論壇</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">論壇管理</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside" aria-expanded="false">預約 Reserve</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">預約管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">瀏覽教練</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">時段管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">項目管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">自我介紹管理</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside" aria-expanded="false">會員中心 Member</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">我的頁面</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">好友管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">收藏文章</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">收藏商品</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">個人設定</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown" aria-expanded="false">聊天室</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside" aria-expanded="false">聯絡客服 Help</a>
-                    </li>
-                </ul>
-            </nav>
+        <nav class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">揪團 Group</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">揪團列表</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">My揪團</a></li>
+                        <li class="dropdown" style="border-bottom: none;"><a class="dropdown-item dropdown-toggle"
+                                                                             href="#" data-bs-toggle="dropdown" aria-expanded="false">開團管理</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="testgroupcreate.html">建立揪團</a></li>
+                                <li><a class="dropdown-item" href="testgroupCreateVerify.html">審核揪團成員</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">瀏覽商品</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">購物車</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">管理我的訂單</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">瀏覽論壇</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">論壇管理</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">預約 Reserve</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">預約管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">瀏覽教練</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">時段管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">項目管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">自我介紹管理</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">會員中心 Member</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">我的頁面</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">好友管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">收藏文章</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">收藏商品</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                data-bs-toggle="dropdown" aria-expanded="false">個人設定</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="testchat.html"
+                                                data-bs-toggle="dropdown" aria-expanded="false">聊天室</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">聯絡客服 Help</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="container mt-5 " id="app">
+
+    <!-- Title -->
+    <div class="row mt-5">
+        <div class="col-12 mb-4 mb-sm-5">
+            <h4>審核揪團成員</h4>
         </div>
-    </header>
+    </div>
 
-    <div class="container mt-5 " id="app">
-
-        <!-- Title -->
-        <div class="row mt-5">
-            <div class="col-12 mb-4 mb-sm-5">
-                <h4>審核揪團成員</h4>
-            </div>
+    <!-- Filters START -->
+    <div class="row g-4 align-items-center">
+        <!-- Tabs -->
+        <div class="col-lg-6">
+            <ul class="nav nav-pills-shadow nav-responsive">
+                <li class="nav-item">
+                    <a class="nav-link mb-0" :class="{ active: activeTab === 'tab-1' }"
+                       @click="changeTabAndFetch('tab-1')" href="#tab-1">
+                        開團管理
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mb-0" :class="{ active: activeTab === 'tab-2' }"
+                       @click="changeTabAndFetch('tab-2')" href="#tab-2">
+                        入團審核
+                    </a>
+                </li>
+            </ul>
         </div>
 
-        <!-- Filters START -->
-        <div class="row g-4 align-items-center">
-            <!-- Tabs -->
-            <div class="col-lg-6">
-                <ul class="nav nav-pills-shadow nav-responsive">
-                    <li class="nav-item">
-                        <a class="nav-link mb-0" :class="{ active: activeTab === 'tab-1' }"
-                            @click="changeTabAndFetch('tab-1')" href="#tab-1">
-                            開團管理
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mb-0" :class="{ active: activeTab === 'tab-2' }" @click="changeTab('tab-2')"
-                            href="#tab-2">
-                            揪團審核
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Search -->
-            <div class="col-md-6 col-lg-3">
-                <form class="rounded position-relative">
-                    <input class="form-control bg-transparent" type="search" placeholder="Search" aria-label="Search">
-                    <button
+        <!-- Search -->
+        <div class="col-md-6 col-lg-3">
+            <form class="rounded position-relative">
+                <input class="form-control bg-transparent" type="search" placeholder="輸入揪團主題、名稱" aria-label="Search"
+                       v-model.lazy.trim="search">
+                <button
                         class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset"
                         type="submit">
-                        <i class="fas fa-search fs-6"></i>
-                    </button>
-                </form>
-            </div>
-
-            <!-- Select -->
-            <div class="col-md-6 col-lg-3">
-                <form>
-                    <select class="form-select js-choice" aria-label=".form-select-sm">
-                        <option value="">瀏覽全部揪團</option>
-                        <option>瀏覽未審核揪團</option>
-                        <option>瀏覽已審核揪團</option>
-                        <option>瀏覽已結束揪團</option>
-                        <option>瀏覽審核失敗揪團</option>
-                        <option>瀏覽已取消揪團</option>
-                    </select>
-                </form>
-            </div>
+                    <i class="fas fa-search fs-6"></i>
+                </button>
+            </form>
         </div>
-        <!-- Filters END -->
-
-        <!-- Page content START -->
-        <div class="card shadow mt-5">
-            <!-- Card body1 START -->
-            <div class="card-body" v-if="activeTab === 'tab-1'">
-                <!-- Table head -->
-                <div class="bg-light rounded p-3 d-none d-lg-block">
-                    <div class="row row-cols-7 g-4">
-                        <div class="col">
-                            <h6 class="mb-0">揪團編號</h6>
-                        </div>
-                        <div class="col">
-                            <h6 class="mb-0">揪團主題</h6>
-                        </div>
-                        <div class="col">
-                            <h6 class="mb-0">揪團名稱</h6>
-                        </div>
-                        <div class="col">
-                            <h6 class="mb-0">審核內容</h6>
-                        </div>
-                        <div class="col">
-                            <h6 class="mb-0">揪團日期</h6>
-                        </div>
-                        <div class="col">
-                            <h6 class="mb-0">揪團地點</h6>
-                        </div>
-                        <div class="col">
-                            <h6 class="mb-0">報名截止時間</h6>
-                        </div>
-                        <div class="col">
-                            <h6 class="mb-0">已報名人數</h6>
-                        </div>
-                        <div class="col">
-                            <h6 class="mb-0">揪團押金</h6>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Table data -->
-                <div v-for="groupDetail in VerifyDetail" :key="groupDetail.id"
-                    class="row row-cols-xl-8 align-items-lg-center border-bottom g-4 px-2 py-4">
-                    <div class="col">{{ groupDetail.groupId }}</div>
-                    <div class="col">{{ groupDetail.groupTitle }}</div>
-                    <div class="col">{{ groupDetail.groupName }}</div>
-                    <div class="col">{{ groupDetail.groupStatus }}</div>
-                    <div class="col">{{ groupDetail.groupDate }}</div>
-                    <div class="col">{{ groupDetail.groupLocation }}</div>
-                    <div class="col">{{ groupDetail.endDate }}</div>
-                    <div class="col">{{ groupDetail.registeredNumber }}</div>
-                    <div class="col">{{ groupDetail.groupDeposit }}</div>
-                </div>
-
-                <!-- Pagination -->
-                <nav class="mb-sm-0 d-flex justify-content-center" aria-label="navigation">
-                    <ul class="pagination pagination-sm pagination-primary-soft mb-0">
-                        <li class="page-item" :class="{ disabled: currentPage === 1 }">
-                            <a class="page-link" href="#" tabindex="-1"
-                                @click.prevent="changePage(currentPage - 1)">Prev</a>
-                        </li>
-                        <li class="page-item" v-for="page in totalPagesTab1" :key="page"
-                            :class="{ active: currentPage === page }">
-                            <a class="page-link" href="#" @click.prevent="changePageTab1(page)">{{ page }}</a>
-                        </li>
-                        <li class="page-item" :class="{ disabled: currentPage === lastPageTab1 }">
-                            <a class="page-link" href="#" @click.prevent="changePageTab1(currentPage + 1)">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-
-
-            </div>
-            <!-- Card body1 END -->
-
-            <!-- Card body2 START -->
-            <div class="card-body" v-if="activeTab === 'tab-2'">
-                <!-- Table head -->
-                <div class="bg-light rounded p-3 d-none d-lg-block">
-                    <div class="row row-cols-7 g-4">
-                        <div class="col">
-                            <h6 class="mb-0">成員資訊</h6>
-                        </div>
-                        <div class="col">
-                            <h6 class="mb-0">揪團活動編號</h6>
-                        </div>
-                        <div class="col">
-                            <h6 class="mb-0">揪團報名時間</h6>
-                        </div>
-                        <div class="col">
-                            <h6 class="mb-0">審核狀態</h6>
-                        </div>
-                        <div class="col">
-                            <h6 class="mb-0">動作</h6>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Table data -->
-                <div v-for="applyMember in groupApplyList"
-                    class="row row-cols-xl-7 align-items-lg-center border-bottom g-4 px-2 py-4">
-                    <!-- Data item -->
-                    <div class="col">
-                        <small class="d-block d-lg-none">成員資訊:</small>
-                        <div class="d-flex align-items-center">
-                            <!-- Avatar -->
-                            <div class="avatar avatar-xs flex-shrink-0">
-                                <img class="avatar-img rounded-circle" :src="applyMember.avatar" alt="avatar">
-                            </div>
-                            <!-- Info -->
-                            <div class="ms-2">
-                                <h6 class="mb-0 fw-light">{{applyMember.name}}</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Data item -->
-                    <div class="col">
-                        <small class="d-block d-lg-none">揪團活動編號:</small>
-                        <h6 class="mb-0 fw-normal">{{applyMember.groupid}}</h6>
-                    </div>
-
-                    <!-- Data item -->
-                    <div class="col">
-                        <small class="d-block d-lg-none">揪團報名時間:</small>
-                        <h6 class="mb-0 fw-normal">{{applyMember.applytime}}</h6>
-                    </div>
-
-
-                    <!-- Data item -->
-                    <div class="col">
-                        <small class="d-block d-lg-none">審核狀態:</small>
-                        <h6 class="mb-0 fw-normal">{{applyMember.status}}</h6>
-                    </div>
-
-                    <!-- Data item -->
-                    <div class="col">
-                        <small class="d-block d-lg-none">動作:</small>
-                        <a class="ai-circle-check p-md-4 fs-3"></a>
-                        <a class="ai-circle-x fs-3 text-danger"></a>
-                    </div>
-                </div>
-                <!-- Page content End -->
-
-
-                <!-- Pagination -->
-                <nav class="mb-sm-0 d-flex justify-content-center" aria-label="navigation">
-                    <ul class="pagination pagination-sm pagination-primary-soft mb-0">
-                        <li class="page-item" :class="{ disabled: currentPage === 1 }">
-                            <a class="page-link" href="#" tabindex="-1"
-                                @click.prevent="changePage(currentPage - 1)">上一頁</a>
-                        </li>
-                        <li class="page-item" v-for="page in totalPages" :key="page"
-                            :class="{ active: currentPage === page }">
-                            <a class="page-link" href="#" @click.prevent="changePage(page)">{{ page }}</a>
-                        </li>
-                        <li class="page-item"
-                            :class="{ disabled: currentPage === totalPages || currentPage === lastPage }">
-                            <a class="page-link" href="#" @click.prevent="changePage(currentPage + 1)">下一頁</a>
-                        </li>
-                    </ul>
-                </nav>
-
-
-            </div>
-            <!-- Card body2 END -->
-
-
+        <!-- Select -->
+        <div class="col-md-6 col-lg-3 " v-if="activeTab === 'tab-1'">
+            <form>
+                <select class="form-select js-choice " aria-label=".form-select-sm" v-model="selectedGroupStatus">
+                    <option value="">瀏覽全部揪團</option>
+                    <option value="0">瀏覽未審核揪團</option>
+                    <option value="1">瀏覽已審核揪團</option>
+                    <option value="2">瀏覽已結束揪團</option>
+                    <option value="3">瀏覽審核失敗揪團</option>
+                    <option value="4">瀏覽已取消揪團</option>
+                </select>
+            </form>
         </div>
-        <!-- Page main content END -->
+        <div class="col-md-6 col-lg-3" v-if="activeTab === 'tab-2'">
+            <form>
+                <select class="form-select js-choice" aria-label=".form-select-sm" v-model="selectedApplyStatus">
+                    <option value="">瀏覽全部團員申請</option>
+                    <option value="0">瀏覽未審核團員</option>
+                    <option value="4">瀏覽已完成報名</option>
+                    <option value="5">瀏覽審核通過未付款</option>
+                    <option value="2">瀏覽審核未通過團員</option>
+                    <option value="3">瀏覽已取消報名</option>
+                </select>
+            </form>
+        </div>
     </div>
-    <!-- Page content END -->
+    <!-- Filters END -->
 
-    </main>
-    <!-- **************** MAIN CONTENT END **************** -->
-    </template>
+    <!-- Page content START -->
+    <div class="card shadow mt-5">
+        <!-- Card body1 START -->
+        <div class="card-body" v-if="activeTab === 'tab-1'">
+            <!-- Table head -->
+            <div class="bg-light rounded p-3 d-none d-lg-block">
+                <div class="row row-cols-97 g-4">
+                    <div class="col">
+                        <h6 class="mb-0 text-center">揪團編號</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="mb-0 text-center">揪團主題</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="mb-0 text-center">揪團名稱</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="mb-0 text-center">審核內容</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="mb-0 text-center">揪團日期</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="mb-0 text-center">揪團地點</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="mb-0 text-center ">截止時間</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="mb-0 text-center">已報名人數</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="mb-0 text-center">揪團押金</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="mb-0 text-center fst-italic multi-column-text">點開擊使兩編下輯</h6>
+                    </div>
+                </div>
+            </div>
 
-    <footer class="footer bg-dark" style="position:relative; bottom: 0%; height: 200px;">
-        <div class="d-none d-dark-mode-block position-absolute top-0 start-0 w-100 h-100"
-            style="background-color: rgba(255,255,255, .02);"></div>
-        <div class="dark-mode container position-relative zindex-2 pt-5 pb-2">
+            <!-- Table data -->
+            <div v-for="groupDetail in filteredGroupDetails.slice(pageStartTab1, pageEndTab1)" :key="groupDetail.id"
+                 class="row row-cols-xl-8 align-items-lg-center border-bottom g-4 px-2 py-4">
+                <div class="col text-center">{{ groupDetail.groupId }}</div>
+                <div class="col text-center">{{ groupDetail.groupTitle }}</div>
+                <div class="col text-center" v-show="!groupDetail.isUpdating"
+                     :class="{updating: groupDetail.id === currentUpdateGroup}"
+                     @dblclick="handleDblClick(groupDetail)">
+                    {{ groupDetail.groupName }}
+                </div>
+                <input class="col text-center" v-model="groupDetail.groupName" type="text" class="edit"
+                       v-show="groupDetail.isUpdating && groupDetail.groupStatus===0"
+                       @keyup.esc="cancelEdit(groupDetail)">
+                <div class="col text-center">{{ groupStatusFilter(groupDetail.groupStatus) }}</div>
+                <div class="col text-center" @dblclick="handleDblClick(groupDetail)"
+                     v-show="!groupDetail.isUpdating" :class="{updating: groupDetail.id === currentUpdateGroup}">{{
+                    groupDetail.groupDate }}</div>
+                <input class="col text-center" v-model="groupDetail.groupDate" type="datetime-local" class="edit"
+                       v-show="groupDetail.isUpdating && groupDetail.groupStatus===0"
+                       @keyup.esc="cancelEdit(groupDetail)">
+                <div class="col text-center" @dblclick="handleDblClick(groupDetail)"
+                     v-show="!groupDetail.isUpdating" :class="{updating: groupDetail.id === currentUpdateGroup}">{{
+                    groupDetail.groupLocation }}</div>
+                <input class="col text-center" v-model="groupDetail.groupLocation" type="text" class="edit"
+                       v-show="groupDetail.isUpdating && groupDetail.groupStatus===0"
+                       @keyup.esc="cancelEdit(groupDetail)">
+                <div class="col text-center" @dblclick="handleDblClick(groupDetail)"
+                     v-show="!groupDetail.isUpdating" :class="{updating: groupDetail.id === currentUpdateGroup}">{{
+                    groupDetail.endDate }}</div>
+                <input class="col text-center" v-model="groupDetail.endDate" type="datetime-local" class="edit"
+                       v-show="groupDetail.isUpdating && groupDetail.groupStatus===0"
+                       @keyup.esc="cancelEdit(groupDetail)">
+                <div class="col text-center">{{ groupDetail.registeredNumber }}</div>
+                <div class="col text-center" @dblclick="handleDblClick(groupDetail)"
+                     v-show="!groupDetail.isUpdating" :class="{updating: groupDetail.id === currentUpdateGroup}">{{
+                    groupDetail.groupDeposit }}</div>
+                <input class="col text-center" v-model="groupDetail.groupDeposit" type="text" class="edit"
+                       v-show="groupDetail.isUpdating && groupDetail.groupStatus===0"
+                       @keyup.esc="cancelEdit(groupDetail)">
+                <div class="col text-center"><a class="ai-edit"
+                                                v-show="!groupDetail.isUpdating && groupDetail.groupStatus===0"
+                                                @dblclick="toggleEdit(groupDetail)">
+                    <a class="ai-circle-check fs-3 text-primary p-md-2" @click="doneUpdate(groupDetail)"
+                       v-show="groupDetail.isUpdating && currentUpdateGroup === groupDetail.id">
+                    </a>
+                    <a class="ai-circle-x fs-3 text-danger" @dblclick="cancelEdit(groupDetail)"
+                       v-show="groupDetail.isUpdating"></a></div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-container" style="display: flex; justify-content: center;">
+                <ul class="Pagination" style="list-style: none; display: flex; justify-content: center;">
+                    <li class="page-item mx-1" @click.prevent="setPage(currentPage-1)">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">上一頁</span>
+                        </a>
+                    </li>
+                    <li class="page-item mx-1" :class="{'active': (currentPage === (n))}"
+                        v-for="(n, index) in totalPage" :key="index" @click.prevent="setPage(n)">
+                        <a class="page-link" href="#">{{ n }}</a>
+                    </li>
+                    <li class="page-item mx-1" @click.prevent="setPage(currentPage+1)">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">下一頁</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
         </div>
-        <div class="pt-5 pt-lg-0"></div>
-    </footer>
+        <!-- Card body1 END -->
 
-    <script>
-        console.log("VerifyDetail:", this.VerifyDetail);
-        console.log("totalPagesTab1:", this.totalPagesTab1);
-        console.log("lastPageTab1:", this.lastPageTab1);
+        <!-- Card body2 START -->
+        <div class="card-body" v-if="activeTab === 'tab-2'">
+            <!-- Table head -->
+            <div class="bg-light rounded p-3 d-none d-lg-block">
+                <div class="row row-cols-7 g-4">
+                    <div class="col">
+                        <h6 class="mb-0 text-center">成員資訊</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="mb-0 text-center">自我介紹</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="mb-0 text-center">揪團活動資訊</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="mb-0 text-center">揪團報名時間</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="mb-0 text-center">審核狀態</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="mb-0 text-center">動作</h6>
+                        <p><small class="text-center">(注意:審核通過後不可改)</small></p>
+                    </div>
+                </div>
+            </div>
 
-        const app = Vue.createApp({
-            data() {
-                return {
-                    activeTab: 'tab-1',
-                    currentPage: 1,
-                    itemsPerPage: 6,
-                    groupApplyList: [
-                        {
-                            avatar: 'assets/img/avatar/01.jpg',
-                            memberName: 'Lori Stevens',
-                            groupid: 'G0001',
-                            applytime: '2021/08/01',
-                            status: '審核中',
-                        },
-                        {
-                            avatar: 'assets/img/avatar/01.jpg',
-                            memberName: 'Lori Stevens',
-                            groupid: 'G0001',
-                            applytime: '2021/08/01',
-                            status: '審核中',
-                        },
+            <!-- Table data -->
+            <div v-for="applyMember in filteredApplyMembers.slice(pageStartTab2, pageEndTab2)" :key="applyMember.id"
+                 class="row row-cols-xl-7 align-items-lg-center border-bottom g-4 px-2 py-4">
+                <!-- Data item -->
+                <div class="col">
+                    <small class="d-block d-lg-none">成員資訊:</small>
+                    <div class="d-flex align-items-center">
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xs flex-shrink-0">
+                            <img class="avatar-img rounded-circle" v-if="applyMember.memberPhotoBase64"
+                                 :src="'data:image/jpeg;base64,' + applyMember.memberPhotoBase64" alt="Member Photo">
+                        </div>
+                        <!-- Info -->
+                        <div class="ms-2">
+                            <h6 class="mb-0 fw-light">{{ applyMember.memberName }}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="ms-2" style="display: none;">
+                    <h6 class="mb-0 fw-light">{{ applyMember.groupMemberId }}</h6>
+                </div>
+                <!-- Data item -->
+                <div class="col">
+                    <small class="d-block d-lg-none">自我介紹:</small>
+                    <h6 class="mb-0 fw-normal">{{ applyMember.groupSignIntro }}</h6>
+                </div>
 
-                    ],
+                <!-- Data item -->
+                <div class="col">
+                    <small class="d-block d-lg-none">揪團活動編號:</small>
+                    <!-- <h6 class="mb-0 fw-normal text-center">{{ applyMember.groupId }}</h6> -->
+                    <h6 class="mb-0 fw-normal text-center">{{ applyMember.groupName }}</h6>
+                </div>
 
-                    VerifyDetail: [
+                <!-- Data item -->
+                <div class="col">
+                    <small class="d-block d-lg-none">揪團報名時間:</small>
+                    <h6 class="mb-0 fw-normal">{{ applyMember.groupApplyDate }}</h6>
+                </div>
 
-                    ],
-                };
-            },
-            methods: {
-                changeTabAndFetch(tab) {
-                    this.changeTab(tab);
+                <!-- Data item -->
+                <div class="col">
+                    <small class="d-block d-lg-none">審核狀態:</small>
+                    <h6 class="mb-0 fw-normal text-center">{{ groupApplyFilter(applyMember.groupApplyStatus) }}</h6>
+                </div>
+
+
+
+                <!-- Data item -->
+                <div class="col text-center">
+                    <small class="d-block d-lg-none">動作:</small>
+                    <a class="ai-circle-check p-md-2 fs-3" @click="acceptApply(applyMember)"
+                       v-show="applyMember.groupApplyStatus===0 || applyMember.groupApplyStatus===2"></a>
+                    <a class="ai-circle-x fs-3 text-danger" @click="rejectApply(applyMember)"
+                       v-show="applyMember.groupApplyStatus===0"></a>
+                </div>
+            </div>
+            <!-- Page content End -->
+
+
+            <!-- Pagination -->
+            <div class="pagination-container" style="display: flex; justify-content: center;">
+                <ul class="Pagination" style="list-style: none; display: flex; justify-content: center;">
+                    <li class="page-item mx-1" @click.prevent="setPage2(currentPage2-1)">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">上一頁</span>
+                        </a>
+                    </li>
+                    <li class="page-item mx-1" :class="{'active': (currentPage2 === (n))}"
+                        v-for="(n, index) in totalPage" :key="index" @click.prevent="setPage2(n)">
+                        <a class="page-link" href="#">{{ n }}</a>
+                    </li>
+                    <li class="page-item mx-1" @click.prevent="setPage2(currentPage2+1)">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">下一頁</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+        <!-- Card body2 END -->
+
+
+    </div>
+    <!-- Page main content END -->
+</div>
+<!-- Page content END -->
+
+</main>
+<!-- **************** MAIN CONTENT END **************** -->
+</template>
+
+<footer class="footer bg-dark" style="position:relative; bottom: 0%; height: 200px;">
+    <div class="d-none d-dark-mode-block position-absolute top-0 start-0 w-100 h-100"
+         style="background-color: rgba(255,255,255, .02);"></div>
+    <div class="dark-mode container position-relative zindex-2 pt-5 pb-2">
+    </div>
+    <div class="pt-5 pt-lg-0"></div>
+</footer>
+
+<script>
+
+    const app = Vue.createApp({
+        data() {
+            return {
+                activeTab: 'tab-1',
+                currentPage: 1,
+                currentPage2: 1,
+                itemsPerPage: 6,
+                itemsPerPage2: 4,
+                imageData: "",
+                groupApplyList: [
+
+                ],
+
+                VerifyDetail: [
+
+                ],
+                currentUpdateGroup: {},
+                selectedGroupStatus: '',
+                selectedApplyStatus: '',
+                searchKeyword: '',
+            };
+        },
+        props: {
+            applyMember: Object
+        },
+        methods: {
+            changeTabAndFetch(tab) {
+                this.changeTab(tab);
+                if (tab === 'tab-1') {
                     this.getVerifyDetail();
-                },
-                changeTab(tab) {
-                    this.activeTab = tab;
-                },
-                changePageTab1(page) {
-                    if (page >= 1 && page <= this.totalPagesTab1 && page !== this.currentPage) {
-                        this.currentPage = page;
+                } else {
+                    this.getGroupApplyList();
+                }
+            },
+            changeTab(tab) {
+                this.activeTab = tab;
+            },
+            changePageTab1(page) {
+                if (page >= 1 && page <= this.totalPagesTab1 && page !== this.currentPage) {
+                    this.currentPage = page;
+                }
+            },
+
+            async getVerifyDetail() {
+                const url = "http://localhost:8080/ezdom/groupcreate/listAllGroupCreate?createMemberId=1";
+                try {
+                    const res = await fetch(url, {
+                        method: "GET",
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+                    const data = await res.json();
+                    this.VerifyDetail = data;
+                } catch (error) {
+                    console.log("Error fetching data:", error);
+                }
+            },
+            setPage(page) {
+                if (page <= 0 || page > this.totalPagesTab1) {
+                    return;
+                } this.currentPage = page;
+            },
+            setPage2(page) {
+                if (page <= 0 || page > this.totalPagesTab2) {
+                    return;
+                } this.currentPage2 = page;
+            },
+            groupStatusFilter(groupStatus) {
+                if (groupStatus == 0) {
+                    return '未審核';
+                } else if (groupStatus == 1) {
+                    return '審核成功';
+                } else if (groupStatus == 2) {
+                    return '審核失敗';
+                } else if (groupStatus == 3) {
+                    return '取消揪團';
+                } else if (groupStatus == 4) {
+                    return '延期揪團';
+                }
+            },
+            groupApplyFilter(groupApplyStatus) {
+                if (groupApplyStatus == 0) {
+                    return '已報名待審核';
+                } else if (groupApplyStatus == 1) {
+                    return '審核通過(待付款)';
+                } else if (groupApplyStatus == 2) {
+                    return '審核失敗';
+                } else if (groupApplyStatus == 3) {
+                    return '取消報名';
+                } else if (groupApplyStatus == 4) {
+                    return '完成報名';
+                } else if (groupApplyStatus == 5) {
+                    return '審核通過未付款';
+                }
+            },
+            async getGroupApplyList() {
+                console.log("getVerifyDetail method is called");
+                const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+                const endIndex = startIndex + this.itemsPerPage;
+
+                const url = "http://localhost:8080/ezdom/groupVerify/listAllGroupVerify?groupIds=1,2,3";
+                try {
+                    const res = await fetch(url, {
+                        method: "GET",
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+                    const data = await res.json();
+                    console.log(data);
+
+                    this.groupApplyList = data.slice(startIndex, endIndex);
+                } catch (error) {
+                    console.log("Error fetching data:", error);
+                }
+            },
+            showInput(groupDetail) {
+                this.VerifyDetail.forEach(detail => {
+                    detail.isUpdating = false;
+                });
+                groupDetail.originalGroupName = groupDetail.groupName;
+                groupDetail.originalGroupDate = groupDetail.groupDate;
+                groupDetail.originalGroupLocation = groupDetail.groupLocation;
+                groupDetail.originalEndDate = groupDetail.endDate;
+                groupDetail.originalGroupDeposit = groupDetail.groupDeposit;
+                groupDetail.isUpdating = true;
+                this.currentUpdateGroup = groupDetail.id;
+            },
+            toggleEdit(clickedGroupDetail) {
+                this.VerifyDetail.forEach(detail => {
+                    if (detail !== clickedGroupDetail) {
+                        detail.isUpdating = false;
                     }
-                },
-                async getVerifyDetail() {
-                    console.log("getVerifyDetail method is called");
-                    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-                    const endIndex = startIndex + this.itemsPerPage;
+                });
+                clickedGroupDetail.originalGroupName = clickedGroupDetail.groupName;
+                clickedGroupDetail.originalGroupDate = clickedGroupDetail.groupDate;
+                clickedGroupDetail.originalGroupLocation = clickedGroupDetail.groupLocation;
+                clickedGroupDetail.originalEndDate = clickedGroupDetail.endDate;
+                clickedGroupDetail.originalGroupDeposit = clickedGroupDetail.groupDeposit;
+                clickedGroupDetail.isUpdating = !clickedGroupDetail.isUpdating;
+                this.currentUpdateGroup = clickedGroupDetail.id;
+            },
+            handleDblClick(groupDetail) {
+                if (groupDetail.groupStatus === 0) {
+                    this.toggleEdit(groupDetail);
+                } else {
+                }
+            },
+            hideInput(groupDetail) {
+                groupDetail.isUpdating = false;
+                this.currentUpdateGroup = null;
+                this.cancelEdit(groupDetail);
+            },
+            cancelEdit(groupDetail) {
+                groupDetail.isUpdating = false;
+                this.currentUpdateGroup = null;
+                groupDetail.groupName = groupDetail.originalGroupName;
+                groupDetail.groupDate = groupDetail.originalGroupDate;
+                groupDetail.groupLocation = groupDetail.originalGroupLocation;
+                groupDetail.endDate = groupDetail.originalEndDate;
+                groupDetail.groupDeposit = groupDetail.originalGroupDeposit;
+            },
+            handleClickOutside(event) {
+                const target = event.target;
+                const isInput = target.tagName.toLowerCase() === "input";
 
-                    const url = "http://localhost:8080/ezdom/groupcreate/listAllGroupCreate?createMemberId=1";
-                    try {
-                        const res = await fetch(url, {
-                            method: "GET",
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                        });
-                        const data = await res.json();
-                        console.log(data); // Log the data to see what you're receiving
-                        this.VerifyDetail = data.slice(startIndex, endIndex); // 根据分页信息获取数据
-                        // 手动更新 total 和 lastPage
-                        this.totalPagesTab1 = Math.ceil(this.VerifyDetail.length / this.itemsPerPage);
-                        this.lastPageTab1 = this.totalPagesTab1;
-
-                        // 确保数据更新后再进行渲染
-                        this.$forceUpdate();
-                    } catch (error) {
-                        console.log("Error fetching data:", error);
+                if (!isInput) {
+                    const editingDetail = this.VerifyDetail.find(detail => detail.isUpdating);
+                    if (editingDetail) {
+                        this.cancelEdit(editingDetail);
                     }
-                },
+                }
+            },
+            doneUpdate(groupDetail) {
+                console.log(groupDetail);
+                console.log(groupDetail.id);
+                const url = `http://localhost:8080/ezdom/groupcreate/updateGroup/` + groupDetail.groupId;
+                const requestData = {
+                    createMemberId: 1,
+                    groupId: groupDetail.groupId,
+                    groupName: groupDetail.groupName,
+                    groupContent: groupDetail.groupContent,
+                    groupDate: groupDetail.groupDate,
+                    groupTitle: groupDetail.groupTitle,
+                    groupLocation: groupDetail.groupLocation,
+                    groupNotice: groupDetail.groupNotice,
+                    startDate: groupDetail.startDate,
+                    endDate: groupDetail.endDate,
+                    limitNumber: groupDetail.limitNumber,
+                    groupDeposit: groupDetail.groupDeposit,
+                    groupStatus: groupDetail.groupStatus,
+                    registeredNumber: groupDetail.registeredNumber,
+                    groupCreate: groupDetail.groupCreate,
+                };
+                console.log(requestData);
+                fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+
+                    },
+                    body: JSON.stringify(requestData)
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            this.getVerifyDetail()
+                            groupDetail.isUpdating = false;
+                            this.currentUpdateGroup = null;
+
+                        } else {
+                            console.log(response);
+                            this.salert();
+                            console.error('Update failed');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            },
+            salert() {
+                swal.fire('修改失敗')
+            },
+            acceptApply(applyMember) {
+                const url = "http://localhost:8080/ezdom/groupVerify/updateGroup/" + applyMember.groupMemberId + "?groupApplyStatus=" + 1;
+                fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            swal.fire('修改成功')
+
+                        } else {
+                            console.log(response);
+                            this.salert();
+                            console.error('Update failed');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+
+                setTimeout(() => {
+                    this.getGroupApplyList();
+                }, 100);
 
             },
-            computed: {
 
+            rejectApply(applyMember) {
+                const url = "http://localhost:8080/ezdom/groupVerify/updateGroup/" + applyMember.groupMemberId + "?groupApplyStatus=" + 2;
+                fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            swal.fire('修改成功')
 
-                totalPagesTab1() {
-            return Math.ceil(this.VerifyDetail.length / this.itemsPerPage);
+                        } else {
+                            console.log(response);
+                            this.salert();
+                            console.error('Update failed');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+
+                setTimeout(() => {
+                    this.getGroupApplyList();
+                }, 100);
+            },
         },
-        lastPageTab1() {
-            return Math.ceil(this.VerifyDetail.length / this.itemsPerPage);
+        computed: {
+            totalPagesTab1() {
+                return Math.ceil(this.VerifyDetail.length / this.itemsPerPage);
+            },
+            pageStartTab1() {
+                return (this.currentPage - 1) * this.itemsPerPage;
+            },
+            pageEndTab1() {
+                return this.currentPage * this.itemsPerPage;
+            },
+            totalPagesTab2() {
+                return Math.ceil(this.groupApplyList.length / this.itemsPerPage2);
+            },
+            pageStartTab2() {
+                return (this.currentPage2 - 1) * this.itemsPerPage2;
+            },
+            pageEndTab2() {
+                return this.currentPage2 * this.itemsPerPage2;
+            },
+            filteredGroupDetails() {
+                if (!this.selectedGroupStatus) {
+                    return this.VerifyDetail;
+                }
+                return this.VerifyDetail.filter(item => item.groupStatus === Number(this.selectedGroupStatus));
+            },
+            filteredApplyMembers() {
+                if (!this.selectedApplyStatus) {
+                    return this.groupApplyList;
+                }
+                return this.groupApplyList.filter(item => item.groupApplyStatus === Number(this.selectedApplyStatus));
+            },
         },
-            },
+        mounted() {
+            this.getVerifyDetail();
+            window.addEventListener('click', this.handleClickOutside);
+        },
+        beforeDestroy() {
+            window.removeEventListener('click', this.handleClickOutside);
+        },
 
-            mounted() {
-                this.getVerifyDetail();
-            },
-        });
-        app.mount('#app');
-    </script>
-
-
-
-
-
+    });
+    app.mount('#app');
+</script>
 
 
 
-    <!-- Vendor scripts: js libraries and plugins-->
-    <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    <script src="assets/vendor/cleave.js/dist/cleave.min.js"></script>
-    <!-- Main theme script-->
-    <script src="assets/js/theme.min.js"></script>
+
+
+
+
+
+<!-- Vendor scripts: js libraries and plugins-->
+<script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="../frontendshop/assets/vendor/cleave.js/dist/cleave.min.js"></script>
+<!-- Main theme script-->
+<script src="../frontendshop/assets/js/theme.min.js"></script>
 </body>
 
 </html>

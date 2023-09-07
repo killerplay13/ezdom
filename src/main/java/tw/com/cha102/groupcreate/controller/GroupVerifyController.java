@@ -1,6 +1,7 @@
 package tw.com.cha102.groupcreate.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tw.com.cha102.groupcreate.DTO.GroupIdsDTO;
 import tw.com.cha102.groupcreate.model.GroupVerifyVO;
@@ -22,6 +23,21 @@ public class GroupVerifyController {
 
         return groupVerifyList;
 
+    }
+
+    @PutMapping("/updateGroup/{groupMemberId}")
+    public ResponseEntity<String> updateGroupApplyStatus(
+            @PathVariable Integer groupMemberId,
+            @RequestParam Integer groupApplyStatus) {
+GroupVerifyVO result = groupVerifyService.updateGroupApplyStatus(groupMemberId, groupApplyStatus);
+
+        return ResponseEntity.ok("修改成功");
+    }
+
+    @GetMapping("/findGroupJoined/{memberId}")
+    public List<GroupVerifyVO> findGroupJoined(@PathVariable Integer memberId){
+        List<GroupVerifyVO> groupJoinedList = groupVerifyService.findGroupJoined(memberId);
+        return groupJoinedList;
     }
 
 }

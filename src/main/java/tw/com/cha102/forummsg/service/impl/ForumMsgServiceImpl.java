@@ -16,23 +16,19 @@ public class ForumMsgServiceImpl implements ForumMsgService {
 
     @Autowired
     public ForumMsgServiceImpl(ForumMsgDao forumMsgDao) {
+
         this.forumMsgDao = forumMsgDao;
     }
 
-    @Override
-    public ForumMsgVO createMessage(ForumMsgVO forumMsgVO) {
-        ForumMsgVO doMsg = forumMsgDao.save(forumMsgVO);
-
-        if (doMsg != null) {
-            doMsg.setSuccessful(true);
-            doMsg.setMessage("留言發送成功");
-        } else {
-            doMsg.setSuccessful(false);
-            doMsg.setMessage("留言發送失敗");
+    public boolean createMessage(ForumMsgVO forumMsgVO) {
+        try {
+            forumMsgDao.save(forumMsgVO);
+            return true; // 如果保存成功，返回true
+        } catch (Exception e) {
+            return false; // 如果保存出現異常，返回false
         }
-
-        return doMsg;
     }
+
 
     @Override
     public boolean deleteMessage(Integer forumMsgId) {
@@ -45,11 +41,6 @@ public class ForumMsgServiceImpl implements ForumMsgService {
         return true;
     }
 
-    @Override
-    public boolean saveMessage(ForumMsgVO forumMsgVO) {
-        ForumMsgVO savedMsg = forumMsgDao.save(forumMsgVO);
-        return savedMsg != null;
-    }
 
     @Override
     public ForumMsgVO getMessageById(Integer forumMsgId) {
@@ -60,5 +51,17 @@ public class ForumMsgServiceImpl implements ForumMsgService {
     @Override
     public List<ForumMsgVO> getAllMessages() {
         return forumMsgDao.findAll();
+    }
+    @Override
+    public List<ForumMsgVO> getMessagesByForumPostId(Integer forumPostId) {
+        List<ForumMsgVO> messages = forumMsgDao.findByForumPostId(forumPostId);
+
+        // 設置 memberName
+        for (ForumMsgVO msg : messages) {
+            msg.setMemberName(msg.getMember().getMemberName());
+//            msg.setMemberPhoto(msg.getMember().getMemberPhoto());
+        }
+
+        return forumMsgDao.findByForumPostId(forumPostId);
     }
 }

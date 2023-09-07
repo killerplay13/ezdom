@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tw.com.cha102.groupcreate.model.GroupVerifyRepository;
 import tw.com.cha102.groupcreate.model.GroupVerifyVO;
-import tw.com.cha102.member.model.entity.Member;
 
 import java.util.List;
 
@@ -23,6 +22,21 @@ public class GroupVerifyServiceImpl implements GroupVerifyService{
     @Override
     public List<GroupVerifyVO> findAllGroupVerifyByGroupId(List<String> groupIds) {
         return groupVerifyRepository.findAllGroupVerify(groupIds);
+    }
+
+    public GroupVerifyVO updateGroupApplyStatus(Integer groupMemberId, Integer GroupApplyStatus) {
+        GroupVerifyVO existingGroupVerify = groupVerifyRepository.findById(groupMemberId).orElse(null);
+        if (existingGroupVerify != null) {
+            existingGroupVerify.setGroupApplyStatus(GroupApplyStatus);
+            return groupVerifyRepository.save(existingGroupVerify);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public List<GroupVerifyVO> findGroupJoined(Integer memberId) {
+        return groupVerifyRepository.findGroupJoined(memberId);
     }
 
 }

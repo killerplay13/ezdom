@@ -22,23 +22,18 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         String contextPath = request.getContextPath();
         String requestUrl = request.getRequestURI();
 
-        // 允許特定 URL 通過Filter
 
+        if ("/frontendmember/account-signin.html".equals(requestUrl) || "/frontendmember/account-signup.html".equals(requestUrl)) {
 
-
-            if ("/frontendmember/account-signin.html".equals(requestUrl) || "/frontendmember/account-signup.html".equals(requestUrl)) {
-
-                filterChain.doFilter(request, response);
-                return;
-            }
-
-            HttpSession session = request.getSession();
-            if (session.getAttribute("account") == null) {
-                response.sendRedirect(request.getContextPath() + "/frontendmember/empSignin.html");
-                return;
-            }
-
-            // 若已登入，則繼續處理請求
             filterChain.doFilter(request, response);
+            return;
         }
+
+        HttpSession session = request.getSession();
+        if (session.getAttribute("account") == null) {
+            response.sendRedirect(request.getContextPath() + "/frontendmember/empSignin.html");
+            return;
+        }
+
     }
+}

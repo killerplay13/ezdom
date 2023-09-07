@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oldtestchat拿來測試用的喔</title>
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
+    <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
+    <script src="https://unpkg.com/vue-emoji-picker/dist/vue-emoji-picker.js"></script>
+    <script>
+        let mode = window.localStorage.getItem('mode'),
+          root = document.getElementsByTagName('html')[0];
+        if (mode !== undefined && mode === 'dark') {
+          root.classList.add('dark-mode');
+        } else {
+          root.classList.remove('dark-mode');
+        }
+
+
+    </script>
+    <!-- Page loading styles -->
+    <style>
+        .page-loading {
+          position: fixed;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          -webkit-transition: all .4s .2s ease-in-out;
+          transition: all .4s .2s ease-in-out;
+          background-color: #fff;
+          opacity: 0;
+          visibility: hidden;
+          z-index: 9999;
+        }
+
+        .dark-mode .page-loading {
+          background-color: #121519;
+        }
+
+        .page-loading.active {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .page-loading-inner {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 100%;
+          text-align: center;
+          -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+          -webkit-transition: opacity .2s ease-in-out;
+          transition: opacity .2s ease-in-out;
+          opacity: 0;
+        }
+
+        .page-loading.active>.page-loading-inner {
+          opacity: 1;
+        }
+
+        .page-loading-inner>span {
+          display: block;
+          font-family: 'Inter', sans-serif;
+          font-size: 1rem;
+          font-weight: normal;
+          color: #6f788b;
+        }
+
+        .dark-mode .page-loading-inner>span {
+          color: #fff;
+          opacity: .6;
+        }
+
+        .page-spinner {
+          display: inline-block;
+          width: 2.75rem;
+          height: 2.75rem;
+          margin-bottom: .75rem;
+          vertical-align: text-bottom;
+          background-color: #d7dde2;
+          border-radius: 50%;
+          opacity: 0;
+          -webkit-animation: spinner .75s linear infinite;
+          animation: spinner .75s linear infinite;
+        }
+
+        .dark-mode .page-spinner {
+          background-color: rgba(255, 255, 255, .25);
+        }
+
+        @-webkit-keyframes spinner {
+          0% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+          }
+
+          50% {
+            opacity: 1;
+            -webkit-transform: none;
+            transform: none;
+          }
+        }
+
+        @keyframes spinner {
+          0% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+          }
+
+          50% {
+            opacity: 1;
+            -webkit-transform: none;
+            transform: none;
+          }
+        }
+    </style>
+    <!-- contact list滾動軸 -->
+    <style>
+        .contact-list {
+          max-height: 300px;
+          overflow-y: auto;
+
+        }
+    </style>
+    <!-- 時間大小 -->
+    <style>
+        .time-container {
+          font-size: 0.5em;
+        }
+    </style>
+    <!-- emoji -->
+    <style>
+        .emoji-invoker {
+          position: relative;
+          width: 1.5rem;
+          height: 1.5rem;
+          border-radius: 50%;
+          cursor: pointer;
+          transition: transform 0.2s;
+          background: transparent;
+          border: none;
+          padding: 0;
+        }
+
+        .emoji-invoker:hover {
+          transform: scale(1.1);
+        }
+
+        .emoji-invoker>svg {
+          fill: #b1c6d0;
+        }
+        .emoji-picker {
+          position: absolute;
+          z-index: 1001;
+          font-family: Montserrat;
+          border: 1px solid #ccc;
+          width: 15rem;
+          max-height: 20rem;
+          overflow-y: scroll;
+          padding: 1rem;
+          box-sizing: border-box;
+          border-radius: 0.5rem;
+          background: #fff;
+          box-shadow: 1px 1px 8px #c7dbe6;
+          bottom: 10px;
+          right: 10px;
+        }
+
+        .emoji-picker__search {
+          display: flex;
+          margin-bottom: 0.5rem;
+          /* 增加一些间距 */
+        }
+
+        .emoji-picker__search>input {
+          flex: 1;
+          border-radius: 10rem;
+          border: 1px solid #ccc;
+          padding: 0.5rem 1rem;
+          outline: none;
+        }
+
+        .emoji-picker h5 {
+          margin-bottom: 0;
+          color: #b1b1b1;
+          text-transform: uppercase;
+          font-size: 0.8rem;
+          cursor: default;
+        }
+
+        .emoji-picker .emojis {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+
+        .emoji-picker .emojis span {
+          padding: 0.2rem;
+          cursor: pointer;
+          border-radius: 5px;
+        }
+
+        .emoji-picker .emojis span:hover {
+          background: #ececec;
+          cursor: pointer;
+        }
+    </style>
+    <!-- Import Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"
+          id="google-font">
+    <!-- Vendor styles-->
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/simplebar/dist/simplebar.min.css" />
+</head>
+
+<body>
+<header class="navbar navbar-expand-lg fixed-top">
+    <div class="container"><a class="navbar-brand pe-sm-3" href="ezdomindex.html"><span
+            class="text-primary flex-shrink-0 me-2">
+          <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor"
+                  d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+            </path>
+          </svg></span>EZ-DOM</a>
+        <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+            <input class="form-check-input" type="checkbox" id="theme-mode">
+            <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
+            <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
+        </div>
+
+
+        <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
+                class="navbar-toggler-icon"></span></button>
+        <nav class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">揪團 Group</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">揪團列表</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">My揪團</a></li>
+                        <li class="dropdown" style="border-bottom: none;"><a class="dropdown-item dropdown-toggle" href="#"
+                                                                             data-bs-toggle="dropdown" aria-expanded="false">開團管理</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="testgroupcreate.html">建立揪團</a></li>
+                                <li><a class="dropdown-item" href="testgroupCreateVerify.html">審核揪團成員</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">瀏覽商品</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">購物車</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">管理我的訂單</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">瀏覽論壇</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">論壇管理</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">預約 Reserve</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">預約管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">瀏覽教練</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">時段管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">項目管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">自我介紹管理</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">會員中心 Member</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">我的頁面</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">好友管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">收藏文章</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">收藏商品</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">個人設定</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">聊天室</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">聯絡客服 Help</a>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link" href="#" data-bs-toggle="dropdown"
+                                                 aria-expanded="false"><img class="border rounded-circle" src="../frontendshop/assets/img/avatar/50.png" width="48"
+                                                                            alt="Isabella Bocouse"></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</header>
+
+<!-- Page content-->
+<div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
+    <div class="row pt-sm-2 pt-lg-0">
+
+        <!-- Page content-->
+        <div id="app" class="col-lg-12 pt-5 pb-2 pb-sm-4">
+            <h1 class="h2 mb-2">測試用聊天室</h1>
+
+            <a><i class="ai-messages fs-5 opacity-60 me-2"></i>未讀訊息 <span class="badge bg-danger ms-auto">
+            5</span></a>
+            <!-- ------------------------------------------------------------------------------------------------------------------------------- -->
+            <!-- 測試用 -->
+            <div><input v-model="chatId" type="text" class="form-control" placeholder="輸入聊天ID" style="max-width: 300px;">
+            </div>
+            <button class="btn btn-outline-secondary" type="button" @click="startChat">開始聊天</button>
+            <!-- ------------------------------------------------------------------------------------------------------------------------------- -->
+
+            <div class="position-relative overflow-hidden gx-2 zindex-1 container">
+
+
+                <!-- Contacts list-->
+                <div class="row">
+                    <div
+                            class="col-xl-5 offcanvas-xl offcanvas-start position-absolute position-xl-relative h-100 bg-light rounded-5 border border-xl-0 scrollable"
+                            id="contactsList" data-bs-scroll="true" data-bs-backdrop="false">
+                        <div class="rounded-5 overflow-hidden">
+                            <div class="card-header w-100 border-0 px-4 pt-4 pb-3">
+                                <div class="d-flex d-xl-none justify-content-end mt-n2 mb-2">
+                                    <button class="btn btn-outline-secondary border-0 px-3 me-n2" type="button"
+                                            data-bs-dismiss="offcanvas" data-bs-target=" #contactsList"><i
+                                            class="ai-cross me-2"></i>Close</button>
+                                </div>
+                                <div class="position-relative">
+                                    <input class="form-control pe-5" type="text" placeholder="Search by name or email"><i
+                                        class="ai-search fs-lg text-nav position-absolute top-50 end-0 translate-middle-y me-3"></i>
+                                </div>
+                            </div>
+                            <div class="contact-list" data-simplebar>
+                                <div v-for="contact in contactlists" :key="contact.id" class="contact">
+                                    <a class="d-flex align-items-center text-decoration-none px-4 py-3"
+                                       :class="{ 'bg-gray': contact.clicked }" @click="startChatWithContact(contact)">
+                                        <!-- 添加一个图标或类以表示在线状态 -->
+                                        <div class="position-relative flex-shrink-0 my-1">
+                                            <img class="rounded-circle" :src="contact.avatar" width="48" alt="Avatar">
+                                            <span class="position-absolute bottom-0 end-0 rounded-circle online-status"
+                                                  :class="{ 'bg-success': contact.online, 'bg-danger': !contact.online }"></span>
+                                            <!-- <div class="position-relative flex-shrink-0 my-1"><img class="rounded-circle"
+                                                  :src="contact.avatar" width="48" alt="Avatar"><span
+                                                  class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle me-1"
+                                                  style="width: .625rem; height: .625rem;"></span>
+                                              </div> -->
+                                            <div id="contactwindow" class="d-flex justify-content-between w-100 ps-2 ms-1 my-1">
+                                                <div class="me-3">
+                                                    <div class="h6 mb-1">{{contact.name}}</div>
+                                                    <p class="text-body fs-sm mb-0">{{contact.latestmsg}}</p>
+                                                </div>
+                                                <div class="text-end"><span class="d-block fs-xs text-muted">{{contact.latestmsgtime |
+                              formattedTime}}</span><span
+                                                        class="badge bg-danger fs-xs lh-1 py-1 px-2">{{contact.unreadmsg}}</span></div>
+                                            </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Chat window-->
+                <div class="col-xl-7">
+                    <div id="chatwindow" v-if="selectedContact">
+                        <div class="card h-100 border-0">
+                            <!-- Body-->
+                            <div class="navbar card-header w-100 mx-0 px-4">
+                                <div class="d-flex align-items-center w-100 px-sm-3">
+                                    <button class="navbar-toggler d-xl-none me-3 me-sm-4" type="button" data-bs-toggle="offcanvas"
+                                            data-bs-target="#contactsList" aria-controls="contactsList"
+                                            aria-label="Toggle contacts list"><span class="navbar-toggler-icon"></span></button>
+                                    <div class="position-relative flex-shrink-0">
+                                        <img class="rounded-circle" :src="selectedContactAvatar" width="48" alt="Avatar">
+                                        <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle me-1"
+                                              style="width: .625rem; height: .625rem;"></span>
+                                    </div>
+                                    <div class="h6 ps-2 ms-1 mb-0">{{selectedContactName}}</div>
+                                    <div class="dropdown ms-auto">
+                                        <button class="btn btn-icon btn-sm btn-outline-secondary border-0 rounded-circle me-n2"
+                                                type="button" data-bs-toggle="dropdown"><i class="ai-dots-vertical fs-4 fw-bold"></i></button>
+                                        <div class="dropdown-menu dropdown-menu-end my-1">
+                                            <a class="dropdown-item" href="#"><i class="ai-user fs-base opacity-80 me-2"></i>View
+                                                profile</a>
+                                            <a class="dropdown-item" href="#"><i class="ai-bell-off fs-base opacity-80 me-2"></i>Disable
+                                                notifications</a>
+                                            <a class="dropdown-item" href="#"><i class="ai-edit fs-base opacity-80 me-2"></i>Edit
+                                                contact</a>
+                                            <a class="dropdown-item" href="#"><i class="ai-trash fs-base opacity-80 me-2"></i>Delete
+                                                contact</a>
+                                            <a class="dropdown-item" href="#"><i class="ai-logout fs-base opacity-80 me-2"></i>Leave
+                                                chat</a>
+                                            <a class="dropdown-item" href="#"><i class="ai-circle-slash fs-base opacity-80 me-2"></i>Block
+                                                user</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 訊息內容 -->
+                            <div class="card-body pb-0 pt-4 overflow-auto" data-simplebar style="max-height: 300px;" ref="chatroom">
+                                <div v-for="message in chatMessages" :key="message.id" class="mb-3"
+                                     :style="{'ms-auto': message.isReceived, 'ms-auto mb-3': !message.isReceived }">
+                                    <div v-if="message.isReceived" class="d-flex align-items-end mb-2" style="padding-right: 30%;">
+                                        <div class="flex-shrink-0 pe-2 me-1"><img class="rounded-circle" :src="message.avatar" width="48"
+                                                                                  alt="Avatar"></div>
+                                        <div v-if="message.isReceived" class="message-box-start text-dark text-align">
+                                            {{message.content}}</div>
+                                        <div class="fs-xs text-muted text-end" v-if="message.messageTime" style="max-width: 79px;"><i
+                                                class="ai-checks text-primary fs-se mt-n1 me-1"></i>{{message.messageTime | formattedTime}}
+                                        </div>
+                                    </div>
+                                    <div v-if="!message.isReceived" class="d-flex align-items-end mb-2" style="padding-left: 30%;">
+                                        <div class="fs-xs text-muted text-end" style="max-width: 79px;" v-if="message.messageTime"><i
+                                                class="ai-checks text-primary fs-se mt-n1 me-1"></i>{{message.messageTime | formattedTime}}
+                                        </div>
+                                        <div class="message-box-end bg-primary text-white text-end" id="selfmsg">{{message.content}}</div>
+                                        <div v-if="!message.isReceived" class="flex-shrink-0 ps-2 ms-1"><img class="rounded-circle"
+                                                                                                             :src="message.avatar" width="48" alt="Avatar"></div>
+
+                                    </div>
+                                    <!-- <div class="fs-xs text-muted text-end" v-if="message.time"><i
+                                        class="ai-checks text-primary fs-xl mt-n1 me-1"></i>{{message.time}}</div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer (Textarea)-->
+
+        </div>
+
+        <div class="card-footer w-100 border-0 mx-0 px-4" style="position: relative; left: 0%; bottom: 1%;">
+            <div class="d-flex align-items-end border rounded-3 pb-3 pe-3 mx-sm-3">
+          <textarea v-model="newMsg" class="form-control border-0" rows="3" placeholder="Type a message"
+                    style="resize: none;" @keyup.enter="sendMSG"></textarea>
+                <div class="nav flex-nowrap align-items-center">
+                    <emoji-picker @emoji="insert" :search="search">
+                        <button class="emoji-invoker" slot="emoji-invoker" slot-scope="{ events: { click: clickEvent } }"
+                                @click.stop="clickEvent">
+                            <a class="nav-link text-muted p-1" href="#" type="button">
+                                <i class="ai-emoji-smile fs-xl"></i>
+                            </a>
+                        </button>
+                        <div slot="emoji-picker" slot-scope="{ emojis, insert, display }">
+                            <div class="emoji-picker" :style="{ bottom: display.y - 'px', right: display.x - 'px' }">
+                                <div class="emoji-picker__search">
+                                    <input type="text" v-model="search" v-focus>
+                                </div>
+                                <div>
+                                    <div v-for="(emojiGroup, category) in emojis" :key="category">
+                                        <h5>{{ category }}</h5>
+                                        <div class="emojis">
+                        <span v-for="(emoji, emojiName) in emojiGroup" :key="emojiName" @click="insert(emoji)"
+                              :title="emojiName">{{ emoji }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </emoji-picker>
+                </div>
+                <button class="btn btn-sm btn-secondary ms-3" type="button" @click="sendMSG">Send</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+<!-- Divider for dark mode only-->
+<hr class="d-none d-dark-mode-block">
+<footer class="footer bg-dark position-relative pb-4 pt-md-3 py-lg-4 py-xl-5">
+    <div class="d-none d-dark-mode-block position-absolute top-0 start-0 w-100 h-100"
+         style="background-color: rgba(255,255,255, .02);"></div>
+    <div class="dark-mode container position-relative zindex-2 pt-5 pb-2">
+    </div>
+    <div class="pt-5 pt-lg-0"></div>
+</footer>
+<script>
+    Vue.use(EmojiPicker);
+    new Vue({
+      el: '#app',
+      data: {
+        baseURL: "http://localhost:8080/ezdom/",
+        websock: null,
+        message: "",
+        chatId: "",
+        newMsg: "",
+        memberIdA: this.chatId,
+        memberIdB: "",
+        contactlists: [],
+        chatname: "",
+        avatar: '',
+        messageGroups: [{
+          date: ""
+
+        }],
+        selectedContact: null,
+        chatMessages: [
+
+        ],
+        search: '',
+        showEmojiPicker: false,
+        dialogVisible: false,
+      },
+      methods: {
+        toggleContactClick(clickedContact) {
+          this.contactlists.forEach(contact => {
+            if (contact !== clickedContact) {
+              contact.clicked = false;
+            }
+          });
+          clickedContact.clicked = !clickedContact.clicked;
+        },
+        startChatWithContact(contact) {
+
+          this.selectedContact = contact;
+          this.memberIdB = contact.id;
+          this.chatname = contact.name;
+          this.avatar = contact.avatar;
+          this.toggleContactClick(contact);
+
+
+          this.chatMessages = [];
+
+          const historyMessageRequest = {
+            type: 'history',
+            memberIdA: this.chatId,
+            memberIdB: this.memberIdB
+          };
+
+          if (this.websock && this.websock.readyState === WebSocket.OPEN) {
+            this.websock.send(JSON.stringify(historyMessageRequest));
+          } else {
+            console.log('WebSocket未連接');
+          }
+          console.log(this.selectedContact)
+        },
+
+        sendMSG() {
+          const messageContent = this.newMsg.trim();
+          if (!messageContent) {
+            return;
+          }
+          const currentTime = new Date();
+          currentTime.setHours(currentTime.getHours() + 8);
+          if (this.websock && this.websock.readyState === WebSocket.OPEN) {
+            const messageObject = {
+              type: 'chat',
+              memberIdA: this.chatId,
+              memberIdB: this.memberIdB,
+              messageContent: messageContent,
+              messageStatus: false,
+              messageTime: currentTime.toISOString()
+            };
+            this.websock.send(JSON.stringify(messageObject));
+            this.newMsg = '';
+          } else {
+            console.log('WebSocket未连接');
+          }
+        },
+
+        insert(emoji) {
+          this.newMsg += emoji
+        },
+        scrollToBottom() {
+          let chatroom = this.$refs.chatroom;
+          chatroom.scrollTop = chatroom.scrollHeight;
+        },
+        websocketonopen() {
+          console.log("websocket連接成功");
+        },
+        websocketonerror() {
+          console.log("websocket連接錯誤");
+        },
+        websocketonmessage(e) {
+          const receivedMessage = JSON.parse(e.data);
+          if ('history' === receivedMessage.type) {
+            const historyMessagesStr = receivedMessage.messageContent;
+            try {
+              const historyMessages = JSON.parse(historyMessagesStr);
+              historyMessages.forEach(historyMessage => {
+                const { memberIdA: id, messageContent: content, messageTime: messageTime } = JSON.parse(historyMessage);
+                const isReceived = id !== this.chatId;
+                const message = {
+                  id,
+                  content,
+                  messageTime,
+                  avatar: isReceived ? historyMessage.senderAvatar : this.avatar,
+                  isReceived: isReceived,
+                };
+                console.log(message)
+                this.chatMessages.push(message);
+                lastMessage = message;
+                if (lastMessage) {
+                  this.selectedContact.latestmsg = lastMessage.content;
+                  this.selectedContact.latestmsgtime = lastMessage.messageTime;
+                  this.selectedContact.unreadmsg = this.chatMessages.filter(msg => !msg.isReceived && !msg.messageStatus).length;
+                }
+              });
+            } catch (error) {
+              console.log('解析历史消息失败', error);
+            }
+          } else if ('chat' === receivedMessage.type) {
+            console.log("接收到chat訊息")
+            const isReceived = receivedMessage.memberIdA !== this.chatId;
+
+            const message = {
+              id: receivedMessage.id,
+              content: receivedMessage.messageContent,
+              messageTime: receivedMessage.messageTime,
+              avatar: isReceived ? receivedMessage.senderAvatar : this.avatar,
+              isReceived: isReceived
+            };
+            this.chatMessages.push(message);
+            lastMessage = message;
+            if (lastMessage) {
+              this.selectedContact.latestmsg = lastMessage.content;
+              this.selectedContact.latestmsgtime = lastMessage.messageTime;
+              this.selectedContact.unreadmsg = this.chatMessages.filter(msg => !msg.isReceived && !msg.messageStatus).length;
+            }
+          } else if ('open' === receivedMessage.type) {
+            const newUser = receivedMessage.user;
+            const onlineUsers = receivedMessage.users;
+            for (const user of this.contactlists) {
+              if (onlineUsers.includes(user.id)) {
+                user.online = true;
+                user.connected = user.id === newUser;
+              } else {
+                user.online = false;
+                user.connected = false;
+              }
+            }
+            for (const user of onlineUsers) {
+              if (user == newUser && user !== this.chatId && newUser !== this.chatId && !this.contactlists.some(contact => contact.id === newUser)) {
+                const newUserContact = {
+                  id: user,
+                  name: user,
+                  avatar: "../frontendshop/assets/img/avatar/04.jpg",
+                  online: true,
+                  connected: false
+                };
+                this.contactlists.push(newUserContact);
+              }
+              if (user !== newUser && user !== this.chatId && !this.contactlists.some(contact => contact.id === user)) {
+                const newUserContact = {
+                  id: user,
+                  name: user,
+                  avatar: "../frontendshop/assets/img/avatar/03.jpg",
+                  online: true,
+                  connected: false
+                };
+                this.contactlists.push(newUserContact);
+              }
+            }
+          }
+          console.log("接收到websocket消息", e.data);
+        },
+        websocketclose() {
+          console.log("websocket關閉");
+        },
+        close() {
+          this.websock.close();
+        },
+        startChat() {
+          //之後再改成從資料庫撈，並改回mounted(),這裡只是測試用
+          this.websock = new WebSocket("ws://localhost:8080/ezdom/FriendWS/" + this.chatId);
+          this.websock.onopen = this.websocketonopen;
+          this.websock.onerror = this.websocketonerror;
+          this.websock.onmessage = this.websocketonmessage;
+          this.websock.onclose = this.websocketclose;
+        },
+      },
+      mounted() {
+        this.scrollToBottom()
+      },
+      updated() {
+        this.scrollToBottom()
+      },
+      computed: {
+        selectedContactAvatar() {
+          return this.selectedContact ? this.selectedContact.avatar : '';
+        },
+        selectedContactName() {
+          return this.selectedContact ? this.selectedContact.name : '';
+        },
+
+      },
+      filters: {
+        formattedTime(messageTime) {
+          const taiwanTimeZoneOffset = 8 * 60;
+          const date = new Date(messageTime);
+          const utcTime = date.getTime() - date.getTimezoneOffset() * 60000;
+          const taiwanTime = new Date(utcTime + taiwanTimeZoneOffset * 60000);
+          const optionsdate = { year: 'numeric', month: '2-digit', day: '2-digit' };
+          const optionstime = { hour: '2-digit', minute: '2-digit' };
+          const formateDate = taiwanTime.toLocaleString('zh-TW', optionsdate).replace(',', '');
+          const formateTime = taiwanTime.toLocaleString('zh-TW', optionstime).replace(',', '');
+          return formateDate + formateTime;
+        }
+      }
+
+    });
+</script>
+<!-- Back to top button-->
+<!-- <a class="btn-scroll-top" href="#top" data-scroll>
+  <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10">
+    </circle>
+  </svg><i class="ai-arrow-up"></i></a> -->
+<!-- Vendor scripts: js libraries and plugins-->
+<script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="../frontendshop/assets/vendor/simplebar/dist/simplebar.min.js"></script>
+<!-- Main theme script-->
+<script src="../frontendshop/assets/js/theme.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const preloader = document.querySelector('.page-loading');
+      if (preloader) {
+        preloader.classList.remove('active');
+        setTimeout(function () {
+          preloader.remove();
+        }, 1500);
+      }
+    });
+
+</script>
+</body>
+
+</html>

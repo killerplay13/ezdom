@@ -483,7 +483,7 @@
                         // 使用 fetch API 發送請求，獲取單筆消息的詳細資訊
                         async function fetchNewsDetail() {
                             try {
-                                const response = await fetch(`http://localhost:8080/ezdom/news/${newsId}`);
+                                const response = await fetch(`http://localhost:8080/ezdom/backend/news/${newsId}`);
                                 const newsDetail = await response.json();
                     
                                 // 將消息詳細資訊填充到輸入框中
@@ -513,7 +513,7 @@
                             };
                     
                             try {
-                                const response = await fetch(`http://localhost:8080/ezdom/news/${newsId}`, {
+                                const response = await fetch(`http://localhost:8080/ezdom/backend/news/${newsId}`, {
                                     method: 'PUT',
                                     headers: {
                                         'Content-Type': 'application/json'

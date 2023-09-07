@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ForumCollectService {
 
-    ForumCollectVO collect(ForumCollectVO forumCollectVO);
+    boolean collect(ForumCollectVO forumCollectVO);
 
     List<ForumCollectVO> findAll();
 
@@ -16,5 +16,6 @@ public interface ForumCollectService {
 
     boolean delete(Integer forumCollectId);
 
-    boolean save(ForumCollectVO forumCollectVO);
+
+    boolean isPostAlreadyCollected(Integer forumPostId,Integer memberId);
 }

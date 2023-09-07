@@ -19,26 +19,21 @@ public class ForumCollectServiceImpl implements ForumCollectService {
     }
 
     @Override
-    public ForumCollectVO collect(ForumCollectVO forumCollectVO) {
+    public boolean collect(ForumCollectVO forumCollectVO) {
+        Integer forumPostId = forumCollectVO.getForumPostId();
+        Integer memberId = forumCollectVO.getMemberId();
+
         // 檢查是否已經收藏過該文章
-        if (isPostAlreadyCollected(forumCollectVO.getForumPostId())) {
-            forumCollectVO.setSuccessful(false);
-            forumCollectVO.setMessage("已經收藏過該文章了");
-            return forumCollectVO;
+        if (isPostAlreadyCollected(forumPostId, memberId)) {
+            return false; // 已經收藏過該文章，返回false
         }
 
         ForumCollectVO savedCollect = forumCollectDao.save(forumCollectVO);
 
-        if (savedCollect != null) {
-            savedCollect.setSuccessful(true);
-            savedCollect.setMessage("收藏成功");
-        } else {
-            savedCollect.setSuccessful(false);
-            savedCollect.setMessage("收藏失敗");
-        }
-
-        return savedCollect;
+        // 如果保存成功，返回true
+        return savedCollect != null;
     }
+
 
     @Override
     public List<ForumCollectVO> findAll() {
@@ -59,18 +54,14 @@ public class ForumCollectServiceImpl implements ForumCollectService {
         return false;
     }
 
-    @Override
-    public boolean save(ForumCollectVO forumCollectVO) {
-        return forumCollectDao.save(forumCollectVO) != null;
+    public boolean isPostAlreadyCollected(Integer forumPostId, Integer memberId) {
+        return forumCollectDao.existsByForumPostIdAndMemberId(forumPostId, memberId);
     }
 
-    private boolean isPostAlreadyCollected(Integer forumPostId) {
-        // 根據 forumPostId 查詢是否已經存在收藏記錄
-        return forumCollectDao.existsByForumPostId(forumPostId);
-    }
 
     @Override
     public List<ForumCollectVO> findByMemberId(Integer memberId) {
+
         return forumCollectDao.findByMemberId(memberId);
     }
 

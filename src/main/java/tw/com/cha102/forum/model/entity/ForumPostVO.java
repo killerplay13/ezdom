@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import tw.com.cha102.core.vo.Core;
 import tw.com.cha102.forumcollect.model.entity.ForumCollectVO;
+import tw.com.cha102.forumhistory.model.entity.ForumHistoryVO;
 import tw.com.cha102.forummsg.model.entity.ForumMsgVO;
 import tw.com.cha102.forumreport.model.entity.ForumReportVO;
+import tw.com.cha102.member.model.entity.Member;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -37,11 +39,18 @@ public class ForumPostVO extends Core {
     @Column(name = "FORUMPOST_TYPE" )
     private Integer forumPostType;
 
-//    @ManyToOne
-//    @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
-//    private Member member;
+    @Column(name = "FORUMPOST_STATUS" )
+    private  Integer forumPostStatus;
 
-    @OneToMany(mappedBy = "forumPost", cascade = CascadeType.REMOVE)
+    @Column(name = "FORUMPOST_CLICK_COUNT")
+    private Integer forumPostClickCount;
+
+
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
+    private Member member;
+
+    @OneToMany(mappedBy = "forumPost",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<ForumMsgVO> forumMsgs;
 
@@ -52,6 +61,13 @@ public class ForumPostVO extends Core {
     @OneToMany(mappedBy = "forumPost", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<ForumReportVO> forumReports;
+
+    @OneToMany(mappedBy = "forumPost", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<ForumHistoryVO> forumHistorys;
+
+    @Transient // 使用 @Transient 標註，以防止該屬性映射到數據庫表格
+    private String memberName;
 }
 
 
