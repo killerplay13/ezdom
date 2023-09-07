@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<span style="font-size:14px" ;>
 <html lang="en">
 
 <head>
@@ -15,7 +16,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../frontendshop/assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../frontendshop/assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../frontendshop/assets/favicon/favicon-16x16.png">
-    <!-- <link rel="manifest" href="assets/favicon/site.webmanifest"> -->
+    <!-- <link rel="manifest" href="../frontendshop/assets/favicon/site.webmanifest"> -->
     <link rel="mask-icon" color="#6366f1" href="../frontendshop/assets/favicon/safari-pinned-tab.svg">
     <meta name="msapplication-TileColor" content="#080032">
     <meta name="msapplication-config" content="../frontendshop/assets/favicon/browserconfig.xml">
@@ -51,16 +52,16 @@
           visibility: hidden;
           z-index: 9999;
         }
-
+    
         .dark-mode .page-loading {
           background-color: #121519;
         }
-
+    
         .page-loading.active {
           opacity: 1;
           visibility: visible;
         }
-
+    
         .page-loading-inner {
           position: absolute;
           top: 50%;
@@ -73,11 +74,11 @@
           transition: opacity .2s ease-in-out;
           opacity: 0;
         }
-
+    
         .page-loading.active>.page-loading-inner {
           opacity: 1;
         }
-
+    
         .page-loading-inner>span {
           display: block;
           font-family: 'Inter', sans-serif;
@@ -85,12 +86,12 @@
           font-weight: normal;
           color: #6f788b;
         }
-
+    
         .dark-mode .page-loading-inner>span {
           color: #fff;
           opacity: .6;
         }
-
+    
         .page-spinner {
           display: inline-block;
           width: 2.75rem;
@@ -103,30 +104,30 @@
           -webkit-animation: spinner .75s linear infinite;
           animation: spinner .75s linear infinite;
         }
-
+    
         .dark-mode .page-spinner {
           background-color: rgba(255, 255, 255, .25);
         }
-
+    
         @-webkit-keyframes spinner {
           0% {
             -webkit-transform: scale(0);
             transform: scale(0);
           }
-
+    
           50% {
             opacity: 1;
             -webkit-transform: none;
             transform: none;
           }
         }
-
+    
         @keyframes spinner {
           0% {
             -webkit-transform: scale(0);
             transform: scale(0);
           }
-
+    
           50% {
             opacity: 1;
             -webkit-transform: none;
@@ -150,11 +151,14 @@
     <!-- Import Google Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+          rel="stylesheet"
           id="google-font">
     <!-- Vendor styles-->
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
+    <!-- 機器人驗證 -->
+   <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <!-- Body-->
 
@@ -171,7 +175,8 @@
     <div class="d-lg-flex position-relative h-100">
         <!-- Home button--><a
             class="text-nav btn btn-icon bg-light border rounded-circle position-absolute top-0 end-0 p-0 mt-3 me-3 mt-sm-4 me-sm-4"
-            href="ezdomindex.html" data-bs-toggle="tooltip" data-bs-placement="left" title="回首頁"><i class="ai-home"></i></a>
+            href="../ezdomindex.html" data-bs-toggle="tooltip" data-bs-placement="left" title="回首頁"><i
+            class="ai-home"></i></a>
         <!-- Sign in form-->
         <div class="d-flex flex-column align-items-center w-lg-50 h-100 px-3 px-lg-5 pt-5">
             <div class="w-100 mt-auto" style="max-width: 526px;">
@@ -181,8 +186,9 @@
                     <div class="pb-3 mb-3">
                         <div class="position-relative"><i
                                 class="fs-lg position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-                            <input id="accountName" name="account" class="form-control form-control-lg" type="text" placeholder="帳號"
-                                   required onblur="validateAccount(this.value)">
+                            <input id="account" name="account" class="form-control form-control-lg" type="text"
+                                   placeholder="帳號"
+                                   required onblur="validateAccount()">
                             <p id="accountnameError" style="color: red;"></p>
                         </div>
                     </div>
@@ -190,28 +196,33 @@
                         <div class="position-relative"><i
                                 class="fs-lg position-absolute top-50 start-0 translate-middle-y ms-3"></i>
                             <div class="password-toggle">
-                                <input id="pw" name="password" class="form-control form-control-lg" type="password" placeholder="密碼"
-                                       required onblur="validatePassword(this.value)">
-                                <p id="passwordError" style="color: red;"></p>
+                                <input id="password" name="password" class="form-control form-control-lg"
+                                       type="password"
+                                       placeholder="密碼" required onblur="validatePassword()">
                                 <label class="password-toggle-btn" aria-label="Show/hide password">
-                                    <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                                    <input class="password-toggle-check" type="checkbox"><span
+                                        class="password-toggle-indicator"></span>
                                 </label>
+                                <p id="passwordError" style="color: red;"></p>
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex flex-wrap align-items-center justify-content-between pb-4">
-                        <form-check class="my-1">
-                            <input class="form-check-input" type="checkbox" id="keep-signedin">
-                            <label class="form-check-label ms-1" for="keep-signedin">記住我</label>
-                        </form-check><a class="fs-sm fw-semibold text-decoration-none my-1"
-                                        href="account-password-recovery.html">忘記密碼 ?</a>
-                    </div>
+                        <div class="d-flex flex-wrap align-items-center justify-content-between pb-4">
+<!--                                           <form-check class="my-1">-->
+<!--                                               <input class="form-check-input" type="checkbox" id="keep-signedin">-->
+<!--                                               <label class="form-check-label ms-1" for="keep-signedin">記住我</label>-->
+<!--                                            </form-check>-->
+                            <a class="fs-sm fw-semibold text-decoration-none my-1" href="account-password-recovery.html">忘記密碼 ?</a>
+                        </div>
+                    <!-- 機器人驗證 -->
+                    <div class="g-recaptcha" data-sitekey="6LfAL_QnAAAAAH4VFZoyFOOX5eAsD5c2Y7fDDU4e"></div>
                     <button id="login" class="btn btn-lg btn-primary w-100 mb-4" type="submit">登入</button>
                     <h2 class="h6 text-center pt-3 pt-lg-4 mb-4">或選擇以下方式</h2>
                     <div class="row row-cols-1 row-cols-sm-2 gy-3">
                         <div class="col"><a class="btn btn-icon btn-outline-secondary btn-google btn-lg w-100" href="#"><i
                                 class="ai-google fs-xl me-2"></i>Google</a></div>
-                        <div class="col"><a class="btn btn-icon btn-outline-secondary btn-facebook btn-lg w-100" href="#"><i
+                        <div class="col"><a class="btn btn-icon btn-outline-secondary btn-facebook btn-lg w-100"
+                                            href="#"><i
                                 class="ai-facebook fs-xl me-2"></i>Facebook</a></div>
                     </div>
                 </form>
@@ -242,9 +253,9 @@
 <!-- 登入 fetch -->
 <!-- <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> // jquery -->
 <script>
-    function validateAccount(accountValue) {
+    function validateAccount() {
       let accountnameError = document.getElementById("accountnameError");
-      if (!accountValue) {
+      if (!account.value.trim()) {
         accountnameError.textContent = "請輸入帳號";
         return false;
       } else {
@@ -253,9 +264,9 @@
       }
     }
 
-    function validatePassword(passwordValue) {
+    function validatePassword() {
       let passwordError = document.getElementById("passwordError");
-      if (!passwordValue) {
+      if (!password.value.trim()) {
         passwordError.textContent = "請輸入密碼";
         return false;
       } else {
@@ -263,13 +274,21 @@
         return true;
       }
     }
+</script>
+<!-- 登入按鈕點擊事件處理 -->
+</body>
+<script>
+    const account = document.getElementById('account');
+    const password = document.getElementById('password');
+    const loginButton = document.getElementById('login');
 
-    document.getElementById('login').addEventListener('click', (event) => {
-      const account = document.getElementById('accountName');
-      const password = document.getElementById('pw');
-      const errMsg = document.getElementById('errMsg');
 
+    loginButton.addEventListener('click', (event) => {
       event.preventDefault();
+
+    // 檢查reCAPTCHA是否已完成驗證
+    const recaptchaResponse = grecaptcha.getResponse();
+
 
       if (!account.value || !password.value) {
         // 使用者帳號和密碼都未輸入的處理，加入相應的 Swal 提示
@@ -280,49 +299,74 @@
           confirmButtonText: '確定',
           focusConfirm: false
         });
-      } else if (validateAccount(account.value) && validatePassword(password.value)) {
-        const data = {
-          account: account.value,
-          password: password.value
-        };
+        return;
+      }
 
-        fetch('http://localhost:8080/ezdom/member/login', {
+      if (!recaptchaResponse) {
+        // 如果reCAPTCHA未完成，顯示錯誤消息並阻止登入
+        Swal.fire({
+            icon: 'error',
+            title: '機器人驗證',
+            text: '請完成機器人驗證！',
+            confirmButtonText: '確定',
+            focusConfirm: false
+        });
+        return;
+    }
+      if (validateAccount() && validatePassword()) {
+        fetch('/ezdom/member/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
+          body: JSON.stringify({
+            account: account.value,
+            password: password.value
+          })
         })
-          .then(resp => resp.text())
-          .then(body => {
+          .then(response => {
+            // 獲取 HTTP 狀態碼
+            const statusCode = response.status;
+
+            // 判斷狀態碼並進行相應處理
+            if (statusCode === 200) {
+              // 登入成功的處理
+              Swal.fire({
+                icon: 'success',
+                title: '成功',
+                text: '登入成功！',
+                confirmButtonText: '確定',
+                focusConfirm: true
+              }).then((result) => {
+                window.location.replace("../ezdomindex.html");
+                return;
+              });
+            } else if (statusCode === 400) {
+              // 驗證失敗的處理
+              return response.json(); // 將回應轉換為 JSON
+            } else {
+              // 其他狀態碼處理
+              throw new Error("HTTP Error: " + statusCode);
+            }
+          })
+          .then(data => {
+            // 在這裡處理 JSON 回應的資料
+            // 例如顯示後端返回的錯誤訊息
             Swal.fire({
-              icon: 'success',
-              title: '成功',
-              text: '登入成功！',
+              icon: 'error',
+              title: '失敗',
+              text: data.message, // 假設後端返回的錯誤訊息放在 data.message 中
               confirmButtonText: '確定',
-              focusConfirm: true
-            }).then((result) => {
-              var redirectUrl = "ezdomindex.html";
-              // 使用 window.location.replace 進行跳轉
-              window.location.replace(redirectUrl);
+              focusConfirm: false
             });
-          }).catch(error => {
+          })
+          .catch(error => {
             // 處理 fetch 發生的錯誤
             console.error("Fetch Error:", error);
           });
-      } else {
-        // 驗證失敗的處理，加入失敗的 Swal 提示
-        Swal.fire({
-          icon: 'error',
-          title: '失敗',
-          text: '查無此帳號！',
-          confirmButtonText: '確定',
-          focusConfirm: false
-        }).then((result) => {
-          var redirectUrl = "account-signin.html";
-          window.location.replace(redirectUrl);
-        });
       }
     });
+
+
 </script>
-</body>
 
 </html>
+</span>

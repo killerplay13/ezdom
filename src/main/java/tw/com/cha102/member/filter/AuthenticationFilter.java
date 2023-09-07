@@ -20,10 +20,11 @@ public class AuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         String contextPath = request.getContextPath();
-        String requestUrl = request.getRequestURI().replace(contextPath, "");
+        String requestUrl = request.getRequestURI();
 
-        // 允許特定 URL 通過Filter
-        if ("/frontendmember/empSignin.html".equals(requestUrl) || "/frontendmember/account-signup.html".equals(requestUrl)) {
+
+        if ("/frontendmember/account-signin.html".equals(requestUrl) || "/frontendmember/account-signup.html".equals(requestUrl)) {
+
             filterChain.doFilter(request, response);
             return;
         }
@@ -34,7 +35,5 @@ public class AuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        // 若已登入，則繼續處理請求
-        filterChain.doFilter(request, response);
     }
 }

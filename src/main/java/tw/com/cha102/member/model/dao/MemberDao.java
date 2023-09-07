@@ -9,6 +9,7 @@ public interface MemberDao {
     public int update(Member memberVO);
     public int deleteById(Integer memberId);
     public Member selectById(Integer memberId);
+    public Member selectByAccount(String memberAccount);
     List<Member> selectAll();
 
 }
