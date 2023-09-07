@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/carts")
+@RequestMapping("/frontend/carts")
 public class CartController {
     @Autowired
     private CartService cartService;

@@ -559,7 +559,7 @@
 
     function orderRenew() {
         let statusValue = parseInt(orderStatus.value);
-        fetch(`http://localhost:8080/ezdom/oredr/get/${statusValue}`)
+        fetch(`http://localhost:8080/ezdom/backend/oredr/get/${statusValue}`)
             .then(resp => resp.json())
             .then(body => {
                 // 清除现有数据
@@ -643,7 +643,7 @@
 
     //商品明細跳框
     function productDetail(orderId) {
-    fetch(`http://localhost:8080/ezdom/oredr/product?orderId=${orderId}`)
+    fetch(`http://localhost:8080/ezdom/backend/oredr/product?orderId=${orderId}`)
     .then(resp => resp.json())
     .then(body => {
         let { note, orderDetailVOs } = body;
@@ -671,7 +671,7 @@
 
     //退貨按鈕
     function ship(orderId){
-        fetch(`http://localhost:8080/ezdom/oredr/return/${orderId}`,{
+        fetch(`http://localhost:8080/ezdom/backend/oredr/return/${orderId}`,{
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' }
         }).then(resp => resp.json())

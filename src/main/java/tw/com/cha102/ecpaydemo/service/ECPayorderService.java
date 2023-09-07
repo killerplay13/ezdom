@@ -42,9 +42,9 @@ public class ECPayorderService {
         SimpleDateFormat sdf= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String orderDate=sdf.format(new Date());
         AllInOne all = new AllInOne("");
-
+        String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 10);
         AioCheckOutALL obj = new AioCheckOutALL();
-        obj.setMerchantTradeNo(orderId+"EzDom");
+        obj.setMerchantTradeNo(orderId+"EzDom"+uuId);
         obj.setMerchantTradeDate(orderDate);
         obj.setTotalAmount(orderVO.getActualAmount().toString());
         obj.setTradeDesc("test Description");
