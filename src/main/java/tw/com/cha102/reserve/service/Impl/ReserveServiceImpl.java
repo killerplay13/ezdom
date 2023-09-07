@@ -99,4 +99,10 @@ public class ReserveServiceImpl implements ReserveService {
         return reserveTimeRepository.save(reserveTimeVO);
     }
 
+    @Override
+    public boolean deleteReserveTime(Integer reserveTimeId){
+        reserveTimeRepository.deleteById(reserveTimeId);
+        return true;
+    }
+
 }

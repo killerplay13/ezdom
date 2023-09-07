@@ -28,7 +28,8 @@ public interface CoachMemberRepository extends JpaRepository<CoachMemberVO, Inte
 
     // coach-List
     @Query(value = "SELECT CM.COACH_ID as coachId, CM.MEMBER_ID as memberId, M.MEMBER_NAME as memberName, " +
-            "CM.INTRODUCTION as introduction, CM.PICTURE as picture, CM.STATUS as status, CM.NICKNAME as nickname " +
+            "CM.INTRODUCTION as introduction, CM.PICTURE as picture, CM.STATUS as status, " +
+            "CM.NICKNAME as nickname, CM.SKILLS as skills " +
             "FROM coach_member CM LEFT JOIN `MEMBER` M ON CM.MEMBER_ID = M.MEMBER_ID " +
             "WHERE status = 2 ORDER BY CM.COACH_ID", nativeQuery = true)
     public List<CoachList> getCoachList();
