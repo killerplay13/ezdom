@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/frontend/member")
 @CrossOrigin("*")
 public class FrontendMember {
     @Autowired
@@ -98,6 +98,19 @@ public class FrontendMember {
     @GetMapping("/member")
     public List<Member> getMembers() {
         return memberService.getMembers();
+    }
+
+    @GetMapping
+    public ResponseEntity<Member> getMember(HttpSession session){
+        // TODO: 用來獲取已登入的member訊息
+        // Member member = (Member) session.getAttribute("member");
+        // Integer memberId = member.getMemberId();
+
+        //目前預設為1
+        Integer memberId = 1;
+        Member member = memberService.findById(memberId);
+
+        return new ResponseEntity<>(member, HttpStatus.OK);
     }
 
 

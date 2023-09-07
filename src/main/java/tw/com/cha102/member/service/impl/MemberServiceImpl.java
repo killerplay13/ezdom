@@ -273,5 +273,10 @@ public class MemberServiceImpl implements MemberService {
         return response;
     }
 
+    @Override
+    public Member findById(Integer memberId) {
+        return memberRepository.findById(memberId).get();
+    }
+
 
 }

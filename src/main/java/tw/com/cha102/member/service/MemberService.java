@@ -22,4 +22,5 @@ public interface MemberService {
     MemberPhotoResponse getMebmerPhoto(String memberAccount);
 
     MemberStateResponse getMemberState(String memberAccount);
+    Member findById(Integer memberId);
 }

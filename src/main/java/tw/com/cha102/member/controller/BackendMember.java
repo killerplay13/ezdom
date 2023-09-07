@@ -9,7 +9,7 @@ import tw.com.cha102.member.dto.MemberStateResponse;
 import tw.com.cha102.member.service.MemberService;
 
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/beckend/member")
 @CrossOrigin("*")
 public class BackendMember {
 
