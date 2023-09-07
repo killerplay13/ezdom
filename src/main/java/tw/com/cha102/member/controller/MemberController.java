@@ -1,7 +1,6 @@
 package tw.com.cha102.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -66,18 +65,5 @@ public class MemberController {
     @GetMapping("/member")
     public List<Member> getMembers() {
         return memberService.getMembers();
-    }
-
-    @GetMapping //我的揪團 映射會員資料需要
-    public ResponseEntity<Member> getMember(HttpSession session){
-        // TODO: 用來獲取已登入的member訊息
-        // Member member = (Member) session.getAttribute("member");
-        // Integer memberId = member.getMemberId();
-
-        //目前預設為1
-        Integer memberId = 1;
-        Member member = memberService.findById(memberId);
-
-        return new ResponseEntity<>(member, HttpStatus.OK);
     }
 }
