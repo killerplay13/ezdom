@@ -464,7 +464,7 @@
 
                             async function fetchNews() {
                                 try {
-                                    const response = await fetch('http://localhost:8080/ezdom/news/list');
+                                    const response = await fetch('http://localhost:8080/ezdom/backend/news/list');
                                     const newsData = await response.json();
 
                                     // 對 newsData 按照發布時間排序
@@ -537,7 +537,7 @@
                             }
 
                             try {
-                                const response = await fetch(`http://localhost:8080/ezdom/news/${newsId}`, {
+                                const response = await fetch(`http://localhost:8080/ezdom/backend/news/${newsId}`, {
                                     method: 'DELETE'
                                 });
 

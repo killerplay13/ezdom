@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*")
 @Controller
-@RequestMapping("/frontend/group")
-public class GroupAdminController {
+@RequestMapping("/backend/group")
+public class GroupBackAdminController {
 
     private final GroupAdminService groupAdminService;
 
@@ -35,7 +35,7 @@ public class GroupAdminController {
 
 
     @Autowired
-    public GroupAdminController(GroupAdminService groupAdminService) {
+    public GroupBackAdminController(GroupAdminService groupAdminService) {
         this.groupAdminService = groupAdminService;
     }
 
