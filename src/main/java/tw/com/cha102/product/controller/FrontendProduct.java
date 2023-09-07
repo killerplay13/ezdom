@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/frontend/product")
 public class FrontendProduct {
     @Autowired
     private ProductService service;
