@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+import tw.com.cha102.core.service.MailService;
 import tw.com.cha102.member.dto.*;
 import tw.com.cha102.member.model.entity.Member;
 import tw.com.cha102.member.service.MemberService;
@@ -16,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/frontend/member")
 @CrossOrigin("*")
 public class FrontendMember {
     @Autowired
@@ -46,9 +47,16 @@ public class FrontendMember {
        return memberService.checkEmailPassword(checkEmailPasswordRequest, request, response);
     }
 
-    @PostMapping("/sendCheckCode")
-    public CommonResponse<String> sendCheckCode(@RequestParam String memberEmail){
+    @PostMapping("/sendAuthenticationCode")
+    public CommonResponse<String> sendAuthenticationCode(@RequestBody @Valid CheckEmailPasswordRequest checkEmailPasswordRequest, HttpServletRequest request){
+        memberService.sendAuthenticationCode(checkEmailPasswordRequest, request); // 調用 sendCheckCode 方法發送
         return new CommonResponse("傳送成功");
+    }
+
+    @PostMapping("/checkAuthCode")
+    public CommonResponse<String> checkAuthCode(@RequestParam String authCode, HttpSession httpSession){
+        memberService.checkAuthCode(authCode, httpSession);
+        return  new CommonResponse("驗證成功");
     }
 
     @GetMapping("/logout")
@@ -98,6 +106,19 @@ public class FrontendMember {
     @GetMapping("/member")
     public List<Member> getMembers() {
         return memberService.getMembers();
+    }
+
+    @GetMapping
+    public ResponseEntity<Member> getMember(HttpSession session){
+        // TODO: 用來獲取已登入的member訊息
+        // Member member = (Member) session.getAttribute("member");
+        // Integer memberId = member.getMemberId();
+
+        //目前預設為1
+        Integer memberId = 1;
+        Member member = memberService.findById(memberId);
+
+        return new ResponseEntity<>(member, HttpStatus.OK);
     }
 
 
