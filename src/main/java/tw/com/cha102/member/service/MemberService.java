@@ -22,11 +22,17 @@ public interface MemberService {
     AccountEmailResponse checkEmailPassword(CheckEmailPasswordRequest checkEmailPasswordRequest, HttpServletRequest request, HttpServletResponse response);
 
     List<Member> getMembers();
+
+
+
+
     MemberProfileResponse getMemberProfile(String memberAccount);
 
     MemberPhotoResponse getMebmerPhoto(String memberAccount);
 
     MemberStateResponse getMemberState(String memberAccount);
 
+
     Member findById(Integer memberId);
+
 }

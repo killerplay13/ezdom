@@ -472,6 +472,7 @@
             </div>
           </div>
         </div>
+        <div id="ecpay-form"></div>
         <!-- end row -->
 
       </div> <!-- container-fluid -->
@@ -508,6 +509,8 @@
   let points = document.getElementById("points");
   let usePoint = document.getElementById("usePoint");
   let pointBtn = document.getElementById("pointBtn");
+  //綠界
+  let ecpayFormContainer = document.getElementById("ecpay-form");
   //錯誤驗證
   function validateRecipientName() {
     if (!recipientName.value) {
@@ -583,40 +586,71 @@
     }
     let isValid = recipientNameValidate && cellPhoneValidate && addressValidate;
     if (isValid) {
-
-      fetch(`http://localhost:8080/ezdom/carts/list/${memberId}`)
-        .then(resp => resp.json())
-        .then(body => {
-          let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
-          fetch(`http://localhost:8080/ezdom/oredr/add`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              memberId: memberId,
-              recipientName: recipientName.value,
-              totalPrice: cartTotalPrice,
-              pointApplied: usePointValue,
-              actualAmount: `${cartTotalPrice - usePointValue}`,
-              backPoints: `${Math.floor((cartTotalPrice - usePointValue) / 10)}`,
-              phoneNumber: homePhone.value,
-              telphoneNumber: cellPhone.value,
-              shippingAddress: address.value,
-              note: note.value,
-              paymentMethod: paymentValue,
-              orderDetailVOs: cartProductVoList
-            }),
-          }).then(resp => resp.json())
-            .then(body => {
-              let { successful, message } = body;
-              if (successful) {
-                reducePoints(usePointValue);
-                deleteRedis();
-                window.location.replace("shop-account-orders.html");
-              } else {
-                alert(message);
-              }
-            })
-        })
+      if (paymentValue == 1) {
+        fetch(`http://localhost:8080/ezdom/frontend/carts/list/${memberId}`)
+          .then(resp => resp.json())
+          .then(body => {
+            let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
+            fetch(`http://localhost:8080/ezdom/frontend/oredr/add`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                memberId: memberId,
+                recipientName: recipientName.value,
+                totalPrice: cartTotalPrice,
+                pointApplied: usePointValue,
+                actualAmount: `${cartTotalPrice - usePointValue}`,
+                backPoints: `${Math.floor((cartTotalPrice - usePointValue) / 10)}`,
+                phoneNumber: homePhone.value,
+                telphoneNumber: cellPhone.value,
+                shippingAddress: address.value,
+                note: note.value,
+                paymentMethod: paymentValue,
+                orderDetailVOs: cartProductVoList
+              }),
+            }).then(resp => resp.json())
+              .then(body => {
+                let { successful, message } = body;
+                if (successful) {
+                  reducePoints(usePointValue);
+                  deleteRedis();
+                  window.location.replace("shop-account-orders.html");
+                } else {
+                  alert(message);
+                }
+              })
+          })
+      } else if (paymentValue == 0) {
+        fetch(`http://localhost:8080/ezdom/frontend/carts/list/${memberId}`)
+          .then(resp => resp.json())
+          .then(body => {
+            let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
+        fetch(`http://localhost:8080/ezdom/frontend/ecpayCheckout`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+                memberId: memberId,
+                recipientName: recipientName.value,
+                totalPrice: cartTotalPrice,
+                pointApplied: usePointValue,
+                actualAmount: `${cartTotalPrice - usePointValue}`,
+                backPoints: `${Math.floor((cartTotalPrice - usePointValue) / 10)}`,
+                phoneNumber: homePhone.value,
+                telphoneNumber: cellPhone.value,
+                shippingAddress: address.value,
+                note: note.value,
+                paymentMethod: paymentValue,
+                orderDetailVOs: cartProductVoList
+              }),
+        }).then(resp => resp.text())
+          .then(body => {
+            // 插入ECPay表單內容到<div>中
+            ecpayFormContainer.innerHTML = body;
+            allPayAPIForm.submit();
+            reducePoints(usePointValue);
+            deleteRedis();
+          })})
+      }
     } else {
       Swal.fire({
         icon: 'error',
@@ -630,7 +664,7 @@
 
   //刪除redis
   function deleteRedis() {
-    fetch(`http://localhost:8080/ezdom/carts/deleteAll/${memberId}`, {
+    fetch(`http://localhost:8080/ezdom/frontend/carts/deleteAll/${memberId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -639,11 +673,11 @@
   }
 
   //會員使用積分 扣除
-  function reducePoints(usePointValue){
-    fetch(`http://localhost:8080/ezdom/oredr/point/${memberId}/${usePointValue}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' }
-  })
+  function reducePoints(usePointValue) {
+    fetch(`http://localhost:8080/ezdom/frontend/oredr/point/${memberId}/${usePointValue}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' }
+    })
   }
 
   pointBtn.addEventListener('click', function (e) {
@@ -664,7 +698,7 @@
   //取得會員訊息 mail跟姓名跟積分
   let memberId = 1;
   function getMemberProfile() {
-    fetch(`http://localhost:8080/ezdom/oredr/profile/${memberId}`)
+    fetch(`http://localhost:8080/ezdom/frontend/oredr/profile/${memberId}`)
       .then(resp => resp.json())
       .then(body => {
         let { memberName, memberEmail, point } = body;
@@ -677,7 +711,7 @@
   //取得訂單明細
   let orderDetails = document.getElementById("orderDetails");
   function orderDetail() {
-    fetch(`http://localhost:8080/ezdom/carts/list/${memberId}`)
+    fetch(`http://localhost:8080/ezdom/frontend/carts/list/${memberId}`)
       .then(resp => resp.json())
       .then(body => {
         let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
@@ -685,53 +719,53 @@
         for (let cartProductVo of cartProductVoList) {
           let { productId, quantity, productName, productMainImage, productPrice, productStatus } = cartProductVo;
           html += `
-        <tr>
-          <th scope="row"><img src="data:image/jpeg;base64,${productMainImage}" alt="product-img"
-              title="product-img" class="avatar-md"></th>
-          <td>
-            <h5 class="font-size-14 text-truncate"><div
-                class="text-dark">${productName}
-              </div></h5>
-            <p class="text-muted mb-0">$ ${productPrice} x ${quantity}</p>
-          </td>
-          <td>$${productPrice * quantity}</td>
-        </tr>
-        `;
+          <tr>
+            <th scope="row"><img src="data:image/jpeg;base64,${productMainImage}" alt="product-img"
+                title="product-img" class="avatar-md"></th>
+            <td>
+              <h5 class="font-size-14 text-truncate"><div
+                  class="text-dark">${productName}
+                </div></h5>
+              <p class="text-muted mb-0">$ ${productPrice} x ${quantity}</p>
+            </td>
+            <td>$${productPrice * quantity}</td>
+          </tr>
+          `;
         }
         html += `
-      <tr>
-        <td colspan="2">
-          <h6 class="m-0 text-end">總額:</h6>
-        </td>
-        <td>
-          $ ${cartTotalPrice}
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <h6 class="m-0 text-end">積分折抵:</h6>
-        </td>
-        <td id="pointsDiscount">$ -0</td>
-      </tr>
-      <tr>
-        <td colspan="3">
-          <div class="bg-soft-primary p-3 rounded">
-            <h5 class="font-size-14 text-primary mb-0">
-              <i class="fas fa-shipping-fast me-2"></i>
-              Shipping <span class="float-end">Free</span>
-            </h5>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <h6 class="m-0 text-end">結帳金額:</h6>
-        </td>
-        <td id="cartTotalPrice">
-          ${cartTotalPrice}
-        </td>
-      </tr>
-      `;
+        <tr>
+          <td colspan="2">
+            <h6 class="m-0 text-end">總額:</h6>
+          </td>
+          <td>
+            $ ${cartTotalPrice}
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <h6 class="m-0 text-end">積分折抵:</h6>
+          </td>
+          <td id="pointsDiscount">$ -0</td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <div class="bg-soft-primary p-3 rounded">
+              <h5 class="font-size-14 text-primary mb-0">
+                <i class="fas fa-shipping-fast me-2"></i>
+                Shipping <span class="float-end">Free</span>
+              </h5>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <h6 class="m-0 text-end">結帳金額:</h6>
+          </td>
+          <td id="cartTotalPrice">
+            ${cartTotalPrice}
+          </td>
+        </tr>
+        `;
         orderDetails.innerHTML = html;
       })
   }

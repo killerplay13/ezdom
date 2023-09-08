@@ -504,8 +504,6 @@
 
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-<!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
@@ -560,7 +558,7 @@
 
     function orderRenew() {
         let statusValue = parseInt(orderStatus.value);
-        fetch(`http://localhost:8080/ezdom/oredr/get/${statusValue}`)
+        fetch(`http://localhost:8080/ezdom/backend/oredr/get/${statusValue}`)
             .then(resp => resp.json())
             .then(body => {
                 // 清除现有数据
@@ -680,7 +678,7 @@
 
     //商品明細跳框
     function productDetail(orderId) {
-    fetch(`http://localhost:8080/ezdom/oredr/product?orderId=${orderId}`)
+    fetch(`http://localhost:8080/ezdom/backend/oredr/product?orderId=${orderId}`)
     .then(resp => resp.json())
     .then(body => {
         let { note, orderDetailVOs } = body;
@@ -708,7 +706,7 @@
 
     //出貨按鈕
     function ship(orderId){
-        fetch(`http://localhost:8080/ezdom/oredr/ship/${orderId}`,{
+        fetch(`http://localhost:8080/ezdom/backend/oredr/ship/${orderId}`,{
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' }
         }).then(resp => resp.json())

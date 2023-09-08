@@ -12,7 +12,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/oredr")
+@RequestMapping("/frontend/oredr")
 public class FrontendOrder {
 
     @Autowired

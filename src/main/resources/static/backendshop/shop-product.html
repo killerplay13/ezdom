@@ -532,7 +532,7 @@
         let statusValue = parseInt(orderStatus.value);
         let upordown = "下架";
         if (statusValue == 2) { upordown = "上架" }
-        fetch(`http://localhost:8080/ezdom/product/get/${statusValue}`)
+        fetch(`http://localhost:8080/ezdom/backend/product/get/${statusValue}`)
             .then(resp => resp.json())
             .then(body => {
                 // 清除现有数据
@@ -576,7 +576,7 @@
     };
     //上下架
     function setUpOrDown(productId) {
-        fetch(`http://localhost:8080/ezdom/product/updown/${productId}`, {
+        fetch(`http://localhost:8080/ezdom/backend/product/updown/${productId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' }
         }).then(resp => resp.json())

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/oredr")
+@RequestMapping("/backend/oredr")
 public class BackendOrder {
     @Autowired
     OrderService service;
