@@ -34,7 +34,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public boolean add(EmployeeVO employeeVO) {
-
+        String employeePassword = employeeVO.getEmployeePassword();
+        String hashPwd = sha256Hash(employeePassword);//把傳遞的密碼加密
+        employeeVO.setEmployeePassword(hashPwd);
         return dao.insert(employeeVO)>0;
     }
 
@@ -75,15 +77,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employeeVO == null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "無此使用者");
 
-        // 比較帳號密碼
-        if (!employeeVO.getEmployeePassword().equals(loginRequest.getPassword()))
+        // 對使用者提供的密碼進行雜湊處理，然後與資料庫中儲存的雜湊密碼進行比較
+        String hashReqPwd = sha256Hash(loginRequest.getPassword());
+        if (!employeeVO.getEmployeePassword().equals(hashReqPwd))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "帳號密碼錯誤");
 
         HttpSession httpSession = request.getSession();
         // 添加 Cookie 到回應中
-        Cookie sessionCookie = new Cookie("JSESSIONID", httpSession.getId());
-        sessionCookie.setMaxAge(30 * 60); // 30 分鐘的過期時間
-        sessionCookie.setPath("/"); // 設置 Cookie 的路徑
+        Cookie sessionCookie = new Cookie("EMPLOYEEID", httpSession.getId());
+        sessionCookie.setMaxAge(60 * 60); // 60 分鐘的過期時間
+        sessionCookie.setPath("/");
         response.addCookie(sessionCookie);
         httpSession.setAttribute("employeeId", employeeVO.getEmployeeId()); // 保存目前登入的會員id，供後續使用
     }
