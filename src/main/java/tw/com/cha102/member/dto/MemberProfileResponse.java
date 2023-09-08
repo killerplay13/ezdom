@@ -13,4 +13,5 @@ public class MemberProfileResponse {
     private Timestamp birth;
     private Byte gender;
     private String introduction;
+    private Integer point;
 }
