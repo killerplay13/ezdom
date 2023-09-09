@@ -10,10 +10,6 @@ public interface ForumMsgService {
 
     boolean deleteMessage(Integer forumMsgId);
 
-
-    ForumMsgVO getMessageById(Integer forumMsgId);
-
-    List<ForumMsgVO> getAllMessages();
-
     List<ForumMsgVO> getMessagesByForumPostId(Integer forumPostId);
+
 }

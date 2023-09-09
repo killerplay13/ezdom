@@ -19,10 +19,10 @@ public interface ForumPostService {
     List<ForumPostVO> findPostsByMemberId(Integer memberId);
     boolean togglePostStatus(Integer postId);
 
-    // 增加文章點擊次數
+    //增加文章點擊次數
     boolean incrementClickCount(Integer postId);
 
-    // 查詢熱門文章
+    //查詢熱門文章
     List<ForumPostVO> findPopularPosts();
 
 }
