@@ -586,8 +586,18 @@
     let productContent = document.getElementById("productContent");
     let html = "";
     fetch(`http://localhost:8080/ezdom/frontend/product/content/${productId}`)
-      .then(resp => resp.json())
-      .then(body => {
+      .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
         let { productId, productName, productDescription, productOriginPrice, productDiscountPrice, productImage } = body;
         html = `
         <section class="container py-5 mt-5 mb-sm-2 mb-lg-3 mb-xl-4 mb-xxl-5">
@@ -732,8 +742,18 @@
     fetch(`http://localhost:8080/ezdom/frontend/carts/add?memberId=${memberId}&productId=${productId}&quantity=${quantity}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-    }).then(resp => resp.text())
-      .then(body => {
+    }).then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.text();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
         Swal.fire({
           icon: 'success',
           title: '新增成功',
@@ -750,8 +770,18 @@
     fetch(`http://localhost:8080/ezdom/frontend/carts/add?memberId=${memberId}&productId=${productId}&quantity=${quantity}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-    }).then(resp => resp.text())
-      .then(body => {
+    }).then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.text();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
         Swal.fire({
           icon: 'success',
           title: '新增成功',
@@ -767,8 +797,18 @@
     fetch(`http://localhost:8080/ezdom/frontend/carts/reduce?memberId=${memberId}&productId=${productId}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-    }).then(resp => resp.json())
-      .then(body => {
+    }).then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
         let { message } = body;
         Swal.fire({
           icon: 'success',
@@ -788,8 +828,18 @@
   const badgeElement = document.getElementById("badgeElement");
   function showCart() {
     fetch(`http://localhost:8080/ezdom/frontend/carts/list/${memberId}`)
-      .then(resp => resp.json())
-      .then(body => {
+      .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
         let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
         let html = "";
         let canvashtml = "";
@@ -861,9 +911,18 @@
             'Content-Type': 'application/json'
             // Add other headers if needed
           }
-        })
-          .then(resp => resp.json())
-          .then(body => {
+        }).then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
             let { successful, message } = body;
             if (successful) {
               showCart();
@@ -883,8 +942,18 @@
   let productRecommend = document.getElementById("productRecommend");
   function recommend() {
     fetch(`http://localhost:8080/ezdom/frontend/product/rand`)
-      .then(resp => resp.json())
-      .then(body => {
+      .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
         let html = "";
         let i = 0;
         for (let list of body) {
@@ -950,8 +1019,11 @@
   function triggerClick() {
     fetch(`http://localhost:8080/ezdom/frontend/product/get`)
       .then(response => {
-      })
-      .catch(error => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          }
+        }).catch(error => {
         console.error('發生錯誤：', error);
       });
   }
@@ -959,8 +1031,18 @@
   //依照文字去抓取相對應的商品
   function triggerInquire(inputValue) {
     fetch(`http://localhost:8080/ezdom/frontend/product/find?name=${inputValue}`)
-    .then(resp=>resp.json())
-    .then(body=>{
+    .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body=>{
       let html="";
       for (let list of body){
         let{productId,productName,productOriginPrice,productDiscountPrice,productImage}=list;
