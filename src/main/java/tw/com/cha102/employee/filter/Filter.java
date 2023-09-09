@@ -18,10 +18,8 @@ public class Filter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         String requestUrl = request.getRequestURI();
-        if (allowedUrls.contains(requestUrl)){
-            filterChain.doFilter(request, response);
-        } else {
 
-        }
+
+
     }
 }

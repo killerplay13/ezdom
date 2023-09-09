@@ -166,7 +166,7 @@
       <div class="page-spinner"></div><span>Loading...</span>
     </div>
   </div>
-  <!-- 頁首--> 
+  <!-- 頁首-->
   <main class="page-wrapper">
     <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
     <header class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode">
@@ -280,7 +280,7 @@
                   <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">Profile</h4>
                   <a class="nav-link fw-semibold py-2 px-0 " href="mygroup.html"><svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"/></svg>
                       <span class="ms-2"></span>個人檔案</a>
-                     
+
               </nav>
                 <nav class="nav flex-column pb-2 pb-lg-4 mb-1">
                   <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">Dashboard</h4>
@@ -292,7 +292,7 @@
                     </svg><span class="ms-2">過往揪團</span></a>
                     <a class="nav-link fw-semibold py-2 px-0 " href="mycomminggroup.html"><svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z"/></svg>
                       <span class="ms-2">即將到來</span></a>
-                      
+
                       <a class="nav-link fw-semibold py-2 px-0 active"
                     href="myfavoritegroup.html"><svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/></svg>
                     <span class="ms-2">收藏揪團</span></a>
@@ -309,7 +309,7 @@
           </div>
           <div class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4">
             <div class="card-body pb-4">
-              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="groupList">
                 <!-- 第一個卡片 -->
                 <div class="col-md-4 mb-4">
                   <div class="card h-100 border rounded-4 pb-3">
@@ -436,5 +436,56 @@
     <!-- Main theme script-->
     <script src="../frontendshop/assets/js/theme.min.js"></script>
 </body>
+
+<script>
+  function getFavoriteGroup(){
+
+    // 获取卡片容器
+    const groupListContainer = document.getElementById("groupList");
+
+    // 使用 Fetch API 获取数据
+    fetch("http://localhost:8080/ezdom/frontend/group/collect/list")
+            .then(response => response.json())
+            .then(data => {
+              // 清空卡片容器内容
+              groupListContainer.innerHTML = "";
+
+              // 循环遍历数据并生成卡片
+              data.forEach(group => {
+                const card = document.createElement("div");
+                card.className = "col-md-4 mb-4";
+
+                // 处理日期格式
+                const groupDate = new Date(group.groupDate);
+                const formattedDate = `${groupDate.getFullYear()}/${groupDate.getMonth() + 1}/${groupDate.getDate()}`;
+
+                card.innerHTML = `
+              <a href="groupdetail.html?groupId=${group.groupId}" class="card h-100 border rounded-4 pb-3">
+              <div class="position-relative ignore-dark-mode">
+              <img class="card-img-top rounded-4" src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Group Image">
+              </div>
+              <div class="card-body py-4">
+              <h3 class="h3">${group.groupName}</h3>
+
+              <h3 class="h3">${group.groupTitle}</h3>
+              <ul class="fs-sm ps-4 mb-0">
+              <li class="mb-2">${group.groupLocation}</li>
+              <li class="mb-2">${formattedDate}</li>
+              <li class="mb-2">${group.groupNotice}</li>
+              </ul>
+              </div>
+              </a>
+              `;
+                groupListContainer.appendChild(card);
+              });
+            })
+            .catch(error => {
+              console.error("Error fetching data:", error);
+            });
+  }
+
+
+  getFavoriteGroup();
+</script>
 
 </html>

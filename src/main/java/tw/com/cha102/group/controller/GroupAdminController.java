@@ -7,8 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tw.com.cha102.group.model.AdminGroup;
 import tw.com.cha102.group.model.Group;
+import tw.com.cha102.group.model.GroupMember;
 import tw.com.cha102.group.service.GroupAdminService;
 import tw.com.cha102.group.service.GroupMemberService;
+import tw.com.cha102.member.model.entity.Member;
+import tw.com.cha102.member.service.MemberService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -18,13 +21,16 @@ import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*")
 @Controller
-@RequestMapping("/group")
+@RequestMapping("/frontend/group")
 public class GroupAdminController {
 
     private final GroupAdminService groupAdminService;
 
     @Resource
     GroupMemberService groupMemberService;
+
+    @Resource
+    MemberService memberService;
 
 
 
@@ -99,6 +105,22 @@ public class GroupAdminController {
         return ResponseEntity.ok(list);
     }
 
+
+    @GetMapping("/applied/list/{groupId}")
+    public ResponseEntity<List<Member>> getAppliedGroup(@PathVariable Integer groupId,HttpSession session){
+
+
+        List<GroupMember> groupMembers = groupMemberService.findByGroupId(groupId);
+
+        List<Integer> memberIds = groupMembers.stream().filter(groupMember -> groupMember.getGroupApplyStatus() != 2 && groupMember.getGroupApplyStatus() != 3).map(GroupMember::getMemberId).collect(Collectors.toList());
+
+        List<Member> members = memberService.getMembers();
+
+        List<Member> collect = members.stream().filter(member -> memberIds.contains(member.getMemberId())).collect(Collectors.toList());
+
+
+        return ResponseEntity.ok(collect);
+    }
 
 }
 

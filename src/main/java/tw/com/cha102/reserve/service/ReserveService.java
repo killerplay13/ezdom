@@ -36,5 +36,7 @@ public interface ReserveService {
     ReserveDTO getCoachReservationFormByCoachId(Integer coachId, String reserveDate, byte reserveTime);
 
     ReserveTimeVO insetReserveTime(ReserveTimeVO reserveTimeVO);
+    boolean deleteReserveTime(Integer reserveTimeId);
+
 }
 

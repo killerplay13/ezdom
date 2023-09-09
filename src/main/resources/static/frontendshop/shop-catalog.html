@@ -597,7 +597,7 @@
   function sortProduct(value, categoryId) {
     let showProduct = document.getElementById("showProduct");
     let html = "";
-    fetch(`http://localhost:8080/ezdom/product/sort?value=${value}&categoryId=${categoryId}`)
+    fetch(`http://localhost:8080/ezdom/frontend/product/sort?value=${value}&categoryId=${categoryId}`)
       .then(resp => resp.json())
       .then(body => {
         for (let list of body) {
@@ -642,7 +642,7 @@
   function showProduct(value) {
     let showProduct = document.getElementById("showProduct");
     let html = "";
-    fetch(`http://localhost:8080/ezdom/product/show/${value}`)
+    fetch(`http://localhost:8080/ezdom/frontend/product/show/${value}`)
       .then(resp => resp.json())
       .then(body => {
         for (let list of body) {
@@ -683,7 +683,7 @@
   //全部商品前台分頁1234
   let productPage = document.getElementById("productPage");
   function page() {
-    fetch(`http://localhost:8080/ezdom/product/total`)
+    fetch(`http://localhost:8080/ezdom/frontend/product/total`)
       .then(resp => resp.json())
       .then(body => {
         let count = Math.ceil(body / 12);
@@ -699,7 +699,7 @@
 
   //分類得分頁
   function sortPage(categoryId) {
-    fetch(`http://localhost:8080/ezdom/product/sortPage?categoryId=${categoryId}`)
+    fetch(`http://localhost:8080/ezdom/frontend/product/sortPage?categoryId=${categoryId}`)
       .then(resp => resp.json())
       .then(body => {
         let count = Math.ceil(body / 12);
@@ -718,7 +718,7 @@
 
   function addCart(productId) {
     let quantity = 1;
-    fetch(`http://localhost:8080/ezdom/carts/add?memberId=${memberId}&productId=${productId}&quantity=${quantity}`, {
+    fetch(`http://localhost:8080/ezdom/frontend/carts/add?memberId=${memberId}&productId=${productId}&quantity=${quantity}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
     }).then(resp => resp.text())
@@ -735,7 +735,7 @@
   }
   //商品刪除
   function reduceCart(productId, quantity) {
-    fetch(`http://localhost:8080/ezdom/carts/reduce?memberId=${memberId}&productId=${productId}&quantity=${quantity}`, {
+    fetch(`http://localhost:8080/ezdom/frontend/carts/reduce?memberId=${memberId}&productId=${productId}&quantity=${quantity}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
     }).then(resp => resp.json())
@@ -759,7 +759,7 @@
   let totalPrice = document.getElementById("totalPrice");
   const badgeElement = document.getElementById("badgeElement");
   function showCart() {
-    fetch(`http://localhost:8080/ezdom/carts/list/${memberId}`)
+    fetch(`http://localhost:8080/ezdom/frontend/carts/list/${memberId}`)
       .then(resp => resp.json())
       .then(body => {
         let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
@@ -827,7 +827,7 @@
       cancelButtonText: '取消'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:8080/ezdom/carts/delete/${memberId}/${productId}`, {
+        fetch(`http://localhost:8080/ezdom/frontend/carts/delete/${memberId}/${productId}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json'
@@ -853,13 +853,13 @@
   }
   //幻燈片
   $.ajax({
-    url: "http://localhost:8080/ezdom/ads/getTodaysAds",
+    url: "http://localhost:8080/ezdom/frontend/ads/getTodaysAds",
     type: "GET",
     dataType: "json",
     success: function (adIds) {
       //
       adIds.forEach(adId => {
-        const imageSrc = `http://localhost:8080/ezdom/ads/getAdImage/${adId}`;
+        const imageSrc = `http://localhost:8080/ezdom/frontend/ads/getAdImage/${adId}`;
         const slideHtml = `
               <div class="swiper-slide bg-light">
                   <div class="ratio ratio-16x9 bg-faded-info">
@@ -881,7 +881,7 @@
 
   //點搜尋介面 蒐集全部上架商品
   function triggerClick() {
-    fetch(`http://localhost:8080/ezdom/product/get`)
+    fetch(`http://localhost:8080/ezdom/frontend/product/get`)
       .then(response => {
       })
       .catch(error => {
@@ -891,7 +891,7 @@
   let productInquery=document.getElementById("productInquery");
   //依照文字去抓取相對應的商品
   function triggerInquire(inputValue) {
-    fetch(`http://localhost:8080/ezdom/product/find?name=${inputValue}`)
+    fetch(`http://localhost:8080/ezdom/frontend/product/find?name=${inputValue}`)
     .then(resp=>resp.json())
     .then(body=>{
       let html="";

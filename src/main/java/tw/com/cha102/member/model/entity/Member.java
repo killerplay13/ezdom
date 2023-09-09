@@ -2,6 +2,7 @@ package tw.com.cha102.member.model.entity;
 
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import tw.com.cha102.core.vo.Core;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Setter
@@ -41,14 +43,18 @@ public class Member extends Core {
     @Column(name = "MEMBER_EMAIL")
     private String memberEmail;
     @Column(name = "MEMBER_BIRTHDAY")
-    private java.util.Date memberBirthday;
+    @JsonFormat(pattern = "yyyy/MM/dd", timezone = "GMT+8")
+    private Timestamp memberBirthday;
     @Column(name = "MEMBER_PHOTO")
     private byte[] memberPhoto;
     @Column(columnDefinition = "INT NOT NULL DEFAULT 0")
     private Integer point;
-    @Column(name = "checkIN",columnDefinition = "TINYINT NOT NULL DEFAULT 0")
-    private Integer checkIn;
+    @Column(name = "MEMBER_GENDER")
+    private Byte memberGender;
+    @Column(name = "INTRODUCTION")
+    private String introduction;
+    @Column(name = "CHECKIN",columnDefinition = "TINYINT NOT NULL DEFAULT 0")
+    private Byte checkIn;
     @Column(name = "MEMBER_STATUS",columnDefinition = "TINYINT NOT NULL DEFAULT 0")
     private Byte memberStatus;
-
 }

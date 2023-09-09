@@ -25,7 +25,7 @@ public class ReserveTimeVO  extends Core {
     private Timestamp date;
 
     @Column(name = "CLASS_TIME", nullable = false)
-    private byte classTime;
+    private Integer classTime;
 
     @Column(name = "APPOINTMENT_STATUS", insertable = false)
     private Integer appointmentStatus;

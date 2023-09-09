@@ -7,37 +7,43 @@ const picture = document.getElementById('picture');
 const ok = document.getElementById('terms');
 let reader = new FileReader();
 let formData = [];
-let memberId = 3; // 模擬登入中的會員
+let memberId = 1; // 模擬登入中的會員
 
 function check() {
     let text = "";
     
     if (formData.nickname === "") {
-        text += "教練暱稱不能為空\n";
+        text += "教練暱稱不能為空<br>";
       }
       
       if (formData.gender != "男" && gender.value != "女") {
-        text += "請選擇性別\n";
+        text += "請選擇性別<br>";
       }
 
       if (formData.skills.length === 0) {
-        text += "請至少選擇一項專業項目\n";
+        text += "請至少選擇一項專業項目<br>";
       }
       
       if (formData.introduction === "") {
-        text += "自我介紹不能為空\n";
+        text += "自我介紹不能為空<br>";
       }
       
       if (picture.files.length === 0) {
-        text += "請選擇教練圖片\n";
+        text += "請選擇教練圖片<br>";
       }
 
-      if(!ok.checked){
-        text += "請先詳讀並同意教練條款";
-      }
+    //   if(!ok.checked){
+    //     text += "請先詳讀並同意教練條款";
+    //   }
 
       if(text != ""){
-        alert(text);
+        Swal.fire({
+            icon: 'error',
+            title: '資料尚未完善',
+            html: text,
+            confirmButtonText: '確定'
+          });
+          console.log(text);
         return false;
       }
 
@@ -78,7 +84,7 @@ function collectFormData() {
 
             formData.picture = imageBase64;  // 將圖片的 base64數據存入 formData
             console.log(formData);
-            const req = "http://localhost:8080/ezdom/coach/register";
+            const req = "http://localhost:8080/ezdom/frontend/coach/register";
             fetch(req, {
                 method: "POST",
                 headers: {
@@ -90,15 +96,27 @@ function collectFormData() {
             .then(body => {
                 // const { successful } = body;
                 if (body.successful) {
-                    location.reload();
-                    alert(body.message);
+                    Swal.fire({
+                        icon: 'success',
+                        title: '註冊成功',
+                        text: body.message,
+                        confirmButtonText: '確定'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          window.location.replace(`../frontendmember/account-signin.html`);
+                        }
+                      })
                 } else {
-                    alert(body.message);
+                    Swal.fire({
+                        icon: 'error',
+                        title: '註冊失敗',
+                        text: body.message,
+                        confirmButtonText: '確定'
+                      })
                 }
             });
-        };
+        }
         reader.readAsBinaryString(picture.files[0]); // 讀取上傳的圖片
-        
     }
 
 }

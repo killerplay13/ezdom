@@ -17,6 +17,9 @@
     <link rel="mask-icon" color="#6366f1" href="../frontendshop/assets/favicon/safari-pinned-tab.svg">
     <script>document.getElementsByTagName("html")[0].className += " js";</script>
 
+    <!-- 引入JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <meta name="msapplication-TileColor" content="#080032">
     <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
     <meta name="theme-color" content="white">
@@ -34,26 +37,6 @@
     </script>
     <!-- Page loading styles-->
     <style>
-      .faq{
-        display: none;
-      }
-
-      .feng{
-        background-color: #3fca90;
-      }
-
-      .feng:hover{
-        background-color: #31b07b;
-      }
-
-      .cd-faq__category-selected{
-        background-color: #31b07b;
-      }
-
-
-      a.cd-faq__category.truncate:hover{
-        color: white;
-      }
       .page-loading {
         position: fixed;
         top: 0;
@@ -162,10 +145,12 @@
     <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/swiper/swiper-bundle.min.css"/>
     <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/lightgallery/css/lightgallery-bundle.min.css"/>
     <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/fullcalendar/main.min.css"/>
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/simplebar/dist/simplebar.min.css"/>
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
   </head>
   <!-- Body-->
+  <!-- onload="connect();" onunload="disconnect();" -->
   <body>
     <!-- Page loading spinner-->
     <div class="page-loading active">
@@ -269,7 +254,7 @@
     <!-- 頁首結束-->
 
         <!-- Success solid icon button -->
-    <button type="button" id="sup" class="btn btn-success btn-icon feng" style="position: fixed; bottom: 0;">
+    <button onclick="sendMessage();" type="button" id="sup" class="btn btn-success btn-icon feng" style="position: fixed; bottom: 0; display:block;">
       <i class="ai-circle-help"></i>
     </button>
 
@@ -287,11 +272,45 @@
           <div class="col-md-8 col-lg-7 offset-lg-1">
             <div class="accordion" id="faq">
                 <!-- FAQ內容 -->
+                
             </div>
           </div>
         </div>
       </div>
+
+      <!-- 即時客服 -->
+          <!-- Chat window-->
+          <div class="col-xl-8" id="supm"  style="display: none; position: fixed; bottom: 0; width: 500px; height: 600px;">
+            <div class="card h-100 border-0">
+              <!-- Hader-->
+              <div class="navbar card-header w-100 mx-0 px-4" style="padding: 20px;" id="window">
+                <div class="d-flex align-items-center w-100 px-sm-3">
+                  <button class="navbar-toggler d-xl-none me-3 me-sm-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#contactsList" aria-controls="contactsList" aria-label="Toggle contacts list"><span class="navbar-toggler-icon"></span></button>
+                  <div class="position-relative flex-shrink-0"></div>
+                  <div class="h6 ps-2 ms-1 mb-0">即時客服</div>
+                  <div class="dropdown ms-auto">
+                  </div>
+                </div>
+              </div>
+
+              <div id="messagesArea" class="panel message-area" ></div>
+              
+              <!-- Footer (Textarea)-->
+              <div class="card-footer w-100 border-0 mx-0 px-4" style="margin: 0px; padding:15px; opacity: 1;">
+                <div class="d-flex align-items-end border rounded-3 pb-3 pe-3 mx-sm-3">
+                  <textarea id="message" onkeydown="if (event.keyCode == 13) sendMessage();" class="form-control border-0" rows="3" placeholder="Type a message" style="resize: none;"></textarea>
+                  <button id="sendMessage" onclick="sendMessage();" class="btn btn-sm btn-secondary ms-3" style="position: relative; bottom:18px" type="button">Send</button>
+                </div>
+                <div class="nav flex-nowrap align-items-center">
+                </div>
+              </div>
+            </div>
+          </div>
+      <!-- 即時客服結束 -->
     </section>
+  
+</div>
+
 
     <!-- 頁尾-->
   <footer class="footer bg-secondary py-5">
@@ -318,7 +337,7 @@
             href="#"><i class="ai-facebook"></i></a><a
             class="btn btn-icon btn-sm btn-secondary btn-youtube rounded-circle" href="#"><i class="ai-youtube"></i></a>
         </div>
-        <p class="fs-sm order-sm-1 text-center mb-0"><span class="opacity-70">&copy; All rights reserved. Made by
+        <p class="fs-sm order-sm-1 text-center mb-0"><span>&copy; All rights reserved. Made by
           </span><a class="nav-link d-inline fw-normal p-0" href="https://createx.studio/" target="_blank"
             rel="noopener">Createx Studio</a></p>
       </div>
@@ -340,23 +359,6 @@
     <script src="../frontendshop/assets/js/theme.min.js"></script>
 
     <!-- faqList -->
-    <script src="../frontendshop/assets/js/frank/faq.js"></script>
-
-    <script>
-
-      let support = document.getElementById("sup")
-
-      support.addEventListener("click", function() {
-        let supmes = document.getElementById("supm");
-        let display = supmes.style.display;
-        if(display === "none"){
-          supmes.style.display = "block";
-        }
-        if(display === "block"){
-          supmes.style.display = "none";
-        }
-      })
-
-    </script>
+    <script src="../frontendshop/assets/js/frank/support.js"></script>
   </body>
 </html>

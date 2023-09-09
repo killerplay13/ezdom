@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tw.com.cha102.group.model.AdminGroup;
 import tw.com.cha102.group.model.Group;
+import tw.com.cha102.group.model.GroupMember;
+import tw.com.cha102.group.model.dao.GroupMemberRepository;
 import tw.com.cha102.group.model.dao.GroupRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +43,10 @@ public class GroupAdminService {
         return groupRepository.findById(groupId);
     }
 
+    public List<Group> getGroupsInIds(List<Integer> groupIds) {
+        return groupRepository.findByGroupIdIn(groupIds);
+    }
+
     public Group updateGroup(Integer groupId, AdminGroup updateGroup) {
         Optional<Group> existingGroupOptional = groupRepository.findById(groupId);
         if (existingGroupOptional.isPresent()) {
@@ -50,6 +57,29 @@ public class GroupAdminService {
             return groupRepository.save(existingGroup);
         } else {
             return null; // 返回 null 表示找不到要修改的揪團
+        }
+    }
+
+    @Autowired  //當揪團審核成功 會將團主資料插入groupmember
+    private GroupMemberRepository groupMemberRepository; // 自行定義GroupMemberRepository
+
+    public void updateMembersOnSuccessfulApproval() {
+        // 查找GROUP_STATUS為1的揪團活動
+        List<Group> approvedGroups = groupRepository.findByGroupStatus(1);
+
+        for (Group group : approvedGroups) {
+            // 獲取CREATE_MEMBER_ID
+            int memberId = group.getCreateMemberId();
+
+            // 創建新的揪團成員記錄
+            GroupMember newMember = new GroupMember();
+            newMember.setMemberId(memberId);
+            newMember.setGroupId(group.getGroupId());
+            newMember.setGroupApplyStatus((byte) 1);;
+            newMember.setGroupApplyDate(LocalDateTime.now());
+
+            // 將新的揪團成員記錄存入資料庫
+            groupMemberRepository.save(newMember);
         }
     }
 }
