@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-@ServerEndpoint("/FriendWS/{username}")
+@ServerEndpoint("/frontend/FriendWS/{username}")
 @Component
 public class FriendWS {
     private static Map<String, Session> sessionsMap = new ConcurrentHashMap<>();
@@ -70,6 +70,12 @@ public class FriendWS {
                 return;
             }
         }
+        //還不會動的已讀訊息
+//        if ("markAsRead".equals(chatMessage.getType())){
+//            JedisHandleMessage.updateMessageStatus(sender,receiver);
+//            System.out.println("messageStatus have Update");
+//            return;
+//        }
     Session receiverSession = sessionsMap.get(receiver);
 
         if (receiverSession != null && receiverSession.isOpen()){

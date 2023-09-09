@@ -533,7 +533,18 @@
         let upordown = "下架";
         if (statusValue == 2) { upordown = "上架" }
         fetch(`http://localhost:8080/ezdom/backend/product/get/${statusValue}`)
-            .then(resp => resp.json())
+            .then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登录页面 登入失敗
+                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                    }else if(response.ok){
+                        //登入成功
+                        return response.json();
+                    }else{
+                        alert("錯誤狀態" + response.status);
+                        return;
+                    }
+                })
             .then(body => {
                 // 清除现有数据
                 $('#example').DataTable().clear().draw();
@@ -579,8 +590,18 @@
         fetch(`http://localhost:8080/ezdom/backend/product/updown/${productId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' }
-        }).then(resp => resp.json())
-        .then(body => {
+        }).then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登录页面 登入失敗
+                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                    }else if(response.ok){
+                        //登入成功
+                        return response.json();
+                    }else{
+                        alert("錯誤狀態" + response.status);
+                        return;
+                    }
+                }).then(body => {
             const { successful, message } = body;
             if (successful) {
                 Swal.fire({

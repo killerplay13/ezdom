@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/frontend/member")
+@RequestMapping("/member")
 @CrossOrigin("*")
 public class FrontendMember {
     @Autowired
@@ -39,24 +39,30 @@ public class FrontendMember {
         return new CommonResponse("登入成功");
     }
 
-    @PostMapping("/checkEmailPassword")
-    public AccountEmailResponse checkEmailPassword(@RequestBody @Valid CheckEmailPasswordRequest checkEmailPasswordRequest,
+    @PostMapping("/checkEmailAccount")
+    public AccountEmailResponse checkEmailAccount(@RequestBody @Valid CheckEmailAccountRequest checkEmailAccountRequest,
                                                    HttpServletRequest request,
                                                    HttpServletResponse response
                                                      ){
-       return memberService.checkEmailPassword(checkEmailPasswordRequest, request, response);
+       return memberService.checkEmailAccount(checkEmailAccountRequest, request, response);
     }
 
     @PostMapping("/sendAuthenticationCode")
-    public CommonResponse<String> sendAuthenticationCode(@RequestBody @Valid CheckEmailPasswordRequest checkEmailPasswordRequest, HttpServletRequest request){
-        memberService.sendAuthenticationCode(checkEmailPasswordRequest, request); // 調用 sendCheckCode 方法發送
+    public CommonResponse<String> sendAuthenticationCode(@RequestBody @Valid CheckEmailAccountRequest checkEmailAccountRequest, HttpServletRequest request){
+        memberService.sendAuthenticationCode(checkEmailAccountRequest, request); // 調用 sendCheckCode 方法發送
         return new CommonResponse("傳送成功");
     }
 
     @PostMapping("/checkAuthCode")
     public CommonResponse<String> checkAuthCode(@RequestParam String authCode, HttpSession httpSession){
         memberService.checkAuthCode(authCode, httpSession);
-        return  new CommonResponse("驗證成功");
+        return new CommonResponse("驗證成功");
+    }
+
+    @PostMapping("/resetPassword")
+    public CommonResponse<String> resetPassword(@RequestParam String newPassword, HttpServletRequest request, HttpServletResponse response){
+        memberService.resetPassword(newPassword, request, response);
+        return new CommonResponse("密碼更新成功");
     }
 
     @GetMapping("/logout")
