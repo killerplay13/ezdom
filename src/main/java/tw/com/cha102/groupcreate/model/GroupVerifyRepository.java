@@ -19,4 +19,10 @@ public interface GroupVerifyRepository extends JpaRepository<GroupVerifyVO,Integ
             nativeQuery = true
     )
     List<GroupVerifyVO> findGroupJoined(@Param("memberId") Integer memberId);
+
+    @Query(
+            value = "select * from cha102g4_test.group_member where GROUP_APPLY_STATUS = 4 and GROUP_ID = :groupId",
+            nativeQuery = true
+    )
+    List<GroupVerifyVO> findGroupMember(@Param("groupId") Integer groupId);
 }

@@ -37,6 +37,34 @@ public class GroupCreateServiceImpl implements GroupCreateService{
         return groupCreateRepository.save(groupCreateVO);
     }
 
+    @Override
+    public GroupCreateVO updateRegisterNumber(Integer groupId) {
+        GroupCreateVO existingGroupCreate = groupCreateRepository.findById(groupId).orElse(null);
+        if (existingGroupCreate != null){
+            if (existingGroupCreate.getRegisteredNumber() < existingGroupCreate.getLimitNumber()){
+                existingGroupCreate.setRegisteredNumber(existingGroupCreate.getRegisteredNumber()+1);
+            }
+            return groupCreateRepository.save(existingGroupCreate);
+        }else {
+            return null;
+        }
+    }
+
+    @Override
+    public List<GroupCreateVO> showLatestGroupCreate() {
+        return groupCreateRepository.showLatestGroupCreate();
+    }
+
+    @Override
+    public List<GroupCreateVO> showUpcomingGroupCreate() {
+        return groupCreateRepository.showUpcomingGroupCreate();
+    }
+
+    @Override
+    public List findGroupId(Integer memberId) {
+        return groupCreateRepository.findGroupId(memberId);
+    }
+
 //    @Override
 //    public List<GroupCreateVO> findOneGroupCreateByMemberIdAndStatus() {
 //        return null;
@@ -46,10 +74,8 @@ public class GroupCreateServiceImpl implements GroupCreateService{
     @Override
     public GroupCreateVO create(GroupCreateVO groupCreateVO) {
 
-
-
             groupCreateVO.setGroupStatus(0);
-            groupCreateVO.setCreateMemberId(1);
+            groupCreateVO.setCreateMemberId(1);//這個要改掉
             groupCreateVO.setRegisteredNumber(0);
             final GroupCreateVO groupCreateResult = groupCreateRepository.save(groupCreateVO);
             groupCreateVO.setMessage("揪團申請已送出，我們將盡速審核");

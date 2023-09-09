@@ -11,7 +11,7 @@ import tw.com.cha102.member.model.entity.Member;
 import java.util.List;
 
 @RestController
-@RequestMapping("/groupVerify")
+@RequestMapping("/frontend/groupVerify")
 public class GroupVerifyController {
 
     @Autowired
@@ -38,6 +38,12 @@ GroupVerifyVO result = groupVerifyService.updateGroupApplyStatus(groupMemberId, 
     public List<GroupVerifyVO> findGroupJoined(@PathVariable Integer memberId){
         List<GroupVerifyVO> groupJoinedList = groupVerifyService.findGroupJoined(memberId);
         return groupJoinedList;
+    }
+
+    @GetMapping("/findGroupMember/{groupId}")
+    public List<GroupVerifyVO> findGroupMember(@PathVariable Integer groupId){
+        List<GroupVerifyVO> groupMemberList = groupVerifyService.findGroupMember(groupId);
+        return groupMemberList;
     }
 
 }
