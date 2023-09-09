@@ -12,13 +12,13 @@
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon and Touch Icons-->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicon/site.webmanifest">
-    <link rel="mask-icon" color="#6366f1" href="assets/favicon/safari-pinned-tab.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="../frontendshop/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../frontendshop/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../frontendshop/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../frontendshop/assets/favicon/site.webmanifest">
+    <link rel="mask-icon" color="#6366f1" href="../frontendshop/assets/favicon/safari-pinned-tab.svg">
     <meta name="msapplication-TileColor" content="#080032">
-    <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+    <meta name="msapplication-config" content="../frontendshop/assets/favicon/browserconfig.xml">
     <meta name="theme-color" content="white">
     <!-- Theme mode-->
     <script>
@@ -49,16 +49,16 @@
           visibility: hidden;
           z-index: 9999;
         }
-
+    
         .dark-mode .page-loading {
           background-color: #121519;
         }
-
+    
         .page-loading.active {
           opacity: 1;
           visibility: visible;
         }
-
+    
         .page-loading-inner {
           position: absolute;
           top: 50%;
@@ -71,11 +71,11 @@
           transition: opacity .2s ease-in-out;
           opacity: 0;
         }
-
+    
         .page-loading.active>.page-loading-inner {
           opacity: 1;
         }
-
+    
         .page-loading-inner>span {
           display: block;
           font-family: 'Inter', sans-serif;
@@ -83,12 +83,12 @@
           font-weight: normal;
           color: #6f788b;
         }
-
+    
         .dark-mode .page-loading-inner>span {
           color: #fff;
           opacity: .6;
         }
-
+    
         .page-spinner {
           display: inline-block;
           width: 2.75rem;
@@ -101,30 +101,30 @@
           -webkit-animation: spinner .75s linear infinite;
           animation: spinner .75s linear infinite;
         }
-
+    
         .dark-mode .page-spinner {
           background-color: rgba(255, 255, 255, .25);
         }
-
+    
         @-webkit-keyframes spinner {
           0% {
             -webkit-transform: scale(0);
             transform: scale(0);
           }
-
+    
           50% {
             opacity: 1;
             -webkit-transform: none;
             transform: none;
           }
         }
-
+    
         @keyframes spinner {
           0% {
             -webkit-transform: scale(0);
             transform: scale(0);
           }
-
+    
           50% {
             opacity: 1;
             -webkit-transform: none;
@@ -135,11 +135,12 @@
     <!-- Import Google Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+          rel="stylesheet"
           id="google-font">
     <!-- Vendor styles-->
     <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="assets/css/theme.min.css">
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
     <!-- Swal -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
 </head>
@@ -161,67 +162,85 @@
                 <input class="form-check-input" type="checkbox" id="theme-mode">
                 <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
                 <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
-            </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex" href="account-signinup.html"
-                     style="font-size: 16px; padding: 5px 10px;">登入/註冊</a>
-            <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
+            </div>
+            <a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex" href="account-signinup.html"
+               style="font-size: 16px; padding: 5px 10px;">登入/註冊</a>
+            <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"><span
                     class="navbar-toggler-icon"></span></button>
             <nav class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                                      data-bs-auto-close="outside" aria-expanded="false">揪團 Group</a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false">揪團列表</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false">My揪團</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false">開團管理</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                                      data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false">瀏覽商品</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false">購物車</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false">管理我的訂單</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                                      data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false">瀏覽論壇</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false">論壇管理</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                                      data-bs-auto-close="outside" aria-expanded="false">預約 Reserve</a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false">預約管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false">瀏覽教練</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false">時段管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false">項目管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false">自我介紹管理</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                                     data-bs-auto-close="outside" aria-expanded="false">會員中心 Member</a>
+                                                     data-bs-auto-close="outside" aria-expanded="false">會員中心
+                        Member</a>
                         <ul class="dropdown-menu">
                             <li class="dropdown"><a class="dropdown-item" href="account-overview.html"
                                                     aria-expanded="false">我的頁面</a></li>
                             <li class="dropdown"><a class="dropdown-item" href="friend-management.html"
                                                     aria-expanded="false">好友管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item" href="#" aria-expanded="false">收藏文章</a></li>
-                            <li class="dropdown"><a class="dropdown-item" href="#" aria-expanded="false">收藏商品</a></li>
+                            <li class="dropdown"><a class="dropdown-item" href="#" aria-expanded="false">收藏文章</a>
+                            </li>
+                            <li class="dropdown"><a class="dropdown-item" href="#" aria-expanded="false">收藏商品</a>
+                            </li>
                             <li class="dropdown"><a class="dropdown-item" href="account-settings.html"
                                                     aria-expanded="false">個人設定</a></li>
                             <li class="dropdown"><a class="dropdown-item" href="#" aria-expanded="false">聊天室</a>
@@ -229,7 +248,8 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                                     data-bs-auto-close="outside" aria-expanded="false">聯絡客服 Help</a>
+                                                     data-bs-auto-close="outside" aria-expanded="false">聯絡客服
+                        Help</a>
                     </li>
                 </ul>
             </nav>
@@ -248,28 +268,35 @@
                                 data-bs-dismiss="offcanvas" data-bs-target="#sidebarAccount"></button>
                         <div class="offcanvas-body">
                             <div class="pb-2 pb-lg-0 mb-4 mb-lg-5"><img class="d-block rounded-circle mb-2"
-                                                                        src="assets/img/avatar/02.jpg" width="80" alt="Isabella Bocouse">
+                                                                        src="../frontendshop/assets/img/avatar/02.jpg" width="80"
+                                                                        alt="Isabella Bocouse">
                                 <h3 class="h5 mb-1">Isabella Bocouse</h3>
                                 <p class="fs-sm text-muted mb-0">bocouse@example.com</p>
                             </div>
                             <nav class="nav flex-column pb-2 pb-lg-4 mb-3">
                                 <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">會員</h4><a
                                     class="nav-link fw-semibold py-2 px-0" href="account-overview.html"><i
-                                    class="ai-user-check fs-5 opacity-60 me-2"></i>基本資訊</a><a class="nav-link fw-semibold py-2 px-0"
-                                                                                                  href="friend-management.html"><i class="ai-user-group fs-5 opacity-60 me-2"></i>好友管理</a><a
+                                    class="ai-user-check fs-5 opacity-60 me-2"></i>基本資訊</a><a
+                                    class="nav-link fw-semibold py-2 px-0"
+                                    href="friend-management.html"><i class="ai-user-group fs-5 opacity-60 me-2"></i>好友管理</a><a
                                     class="nav-link fw-semibold py-2 px-0 active" href="account-settings.html"><i
-                                    class="ai-settings fs-5 opacity-60 me-2"></i>設定</a><a class="nav-link fw-semibold py-2 px-0"
-                                                                                            href="account-billing.html"><i class="ai-wallet fs-5 opacity-60 me-2"></i>付款方式</a>
+                                    class="ai-settings fs-5 opacity-60 me-2"></i>設定</a><a
+                                    class="nav-link fw-semibold py-2 px-0"
+                                    href="account-billing.html"><i
+                                    class="ai-wallet fs-5 opacity-60 me-2"></i>付款方式</a>
                             </nav>
                             <nav class="nav flex-column pb-2 pb-lg-4 mb-1">
                                 <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">功能專區</h4><a
                                     class="nav-link fw-semibold py-2 px-0" href="account-orders.html"><i
-                                    class="ai-cart fs-5 opacity-60 me-2"></i>訂單</a><a class="nav-link fw-semibold py-2 px-0"
-                                                                                        href="account-chat.html"><i class="ai-messages fs-5 opacity-60 me-2"></i>聊天室<span
-                                    class="badge bg-danger ms-auto">4</span></a><a class="nav-link fw-semibold py-2 px-0"
-                                                                                   href="account-favorites.html"><i class="ai-heart fs-5 opacity-60 me-2"></i>我的最愛</a>
+                                    class="ai-cart fs-5 opacity-60 me-2"></i>訂單</a><a
+                                    class="nav-link fw-semibold py-2 px-0"
+                                    href="account-chat.html"><i class="ai-messages fs-5 opacity-60 me-2"></i>聊天室<span
+                                    class="badge bg-danger ms-auto">4</span></a><a
+                                    class="nav-link fw-semibold py-2 px-0"
+                                    href="account-favorites.html"><i class="ai-heart fs-5 opacity-60 me-2"></i>我的最愛</a>
                             </nav>
-                            <nav class="nav flex-column"><a class="nav-link fw-semibold py-2 px-0" href="account-signin.html"><i
+                            <nav class="nav flex-column"><a class="nav-link fw-semibold py-2 px-0"
+                                                            href="account-signin.html"><i
                                     class="ai-logout fs-5 opacity-60 me-2"></i>登出</a></nav>
                         </div>
                     </div>
@@ -287,21 +314,20 @@
                         </div>
                         <div class="d-flex justify-content-end">
                         </div>
+                        <!-- 照片 -->
                         <div class="d-flex align-items-center">
                             <div class="dropdown">
                                 <a class="d-flex flex-column justify-content-end position-relative overflow-hidden rounded-circle bg-size-cover bg-position-center flex-shrink-0"
                                    href="#" data-bs-toggle="dropdown" aria-expanded="false"
-                                   style="width: 80px; height: 80px; background-image: url(assets/img/avatar/02.jpg);">
+                                   style="width: 80px; height: 80px; background-image: url(../frontendshop/assets/img/avatar/user.png);"
+                                   id="prePhoto">
                     <span class="d-block text-light text-center lh-1 pb-1" style="background-color: rgba(0,0,0,.5)">
-                      <i class="ai-camera"></i>
+                      <i class="ai-camera" id="newPhoto"></i>
                     </span>
                                 </a>
                                 <div class="dropdown-menu my-1">
-                                    <a class="dropdown-item fw-normal">
-                                        <i class="ai-camera fs-base opacity-70 me-2" id="newPhoto" accept="image/*"></i>Upl
-                                    </a>
-                                    <a class="dropdown-item text-danger fw-normal" id="delPhoto">
-                                        <i class="ai-trash fs-base me-2"></i>Delete photo
+                                    <a class="dropdown-item fw-normal" id="uploadButton" style="cursor: pointer;">
+                                        <i class="ai-camera fs-base opacity-70 me-2"></i>上傳照片
                                     </a>
                                 </div>
                             </div>
@@ -311,29 +337,30 @@
                         </div>
 
                         <!-- 文件输入元素 -->
-                        <input type="file" id="photoInput" style="display: none;">
-
                         <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
                             <div class="col-sm-6">
                                 <label class="form-label" for="fn">姓名</label>
-                                <input class="form-control" type="text" id="name" disabled>
+                                <input class="form-control" type="text" id="name" placeholder="姓名 ( or 暱稱 )">
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-label" for="ln">身分證</label>
-                                <input class="form-control" type="text" id="memberId" placeholder="請輸入正確身分證格式" required
+                                <input class="form-control" type="text" id="memberId" placeholder="請輸入正確身分證格式"
+                                       required
                                        oninput="ValidateId()">
                                 <p id="idError" style="color: red;"></p>
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-label" for="email">信箱</label>
-                                <input class="form-control" type="email" id="email" placeholder="格式 : test@example.com" required
+                                <input class="form-control" type="email" id="email"
+                                       placeholder="格式 : test@example.com" required
                                        oninput="ValidateMail()">
                                 <a class="ai-circle-info btn btn-link float-end" id="sendVerificationCodeLink"
                                    onclick="sendVerificationCode()">傳送驗證碼</a>
                                 <p id="mailError" style="color: red;"></p>
                             </div>
                             <div class="col-sm-6">
-                                <label class="form-label" for="phone">手機 <span class='text-muted'>(*選填)</span></label>
+                                <label class="form-label" for="phone">手機 <span
+                                        class='text-muted'>(*選填)</span></label>
                                 <input class="form-control" type="tel" id="phone" placeholder="請輸入10碼" required
                                        oninput="ValidatePhone()">
                                 <p id="phoneError" style="color: red;"></p>
@@ -349,7 +376,7 @@
                                     <label class="form-check-label" for="male">男</label>
                                 </div>
                                 <div class="form-check form-check-inline mb-0">
-                                    <input class="form-check-input" type="radio" name="gender" checked id="female">
+                                    <input class="form-check-input" type="radio" name="gender" id="female">
                                     <label class="form-check-label" for="female">女</label>
                                 </div>
                                 <div class="form-check form-check-inline mb-0">
@@ -387,6 +414,7 @@
                                 <button class="btn btn-primary ms-3" id="saveIntro">儲存</button>
                             </div>
                         </div>
+                    </div>
                 </section>
                 <!-- Password-->
                 <section class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
@@ -399,15 +427,17 @@
                             <div class="col-sm-6">
                                 <label class="form-label" for="current-pass">當前密碼</label>
                                 <div class="password-toggle">
-                                    <input class="form-control" type="password" value="hidden@password" id="current-pass">
+                                    <input class="form-control" type="password" value="hidden@password"
+                                           id="current-pass">
                                     <label class="password-toggle-btn" aria-label="Show/hide password">
                                         <input class="password-toggle-check" type="checkbox"><span
                                             class="password-toggle-indicator"></span>
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-sm-6"><a class="d-inline-block fs-sm fw-semibold text-decoration-none mt-sm-4"
-                                                     href="account-password-recovery.html">忘記密碼?</a></div>
+                            <div class="col-sm-6"><a
+                                    class="d-inline-block fs-sm fw-semibold text-decoration-none mt-sm-4"
+                                    href="account-password-recovery.html">忘記密碼?</a></div>
                             <div class="col-sm-6">
                                 <label class="form-label" for="new-pass">更新密碼</label>
                                 <div class="password-toggle">
@@ -438,26 +468,6 @@
                         </div>
                     </div>
                 </section>
-                <!-- Delete account-->
-                <section class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center pb-4 mt-sm-n1 mb-0 mb-lg-1 mb-xl-3"><i
-                                class="ai-trash text-primary lead pe-1 me-2"></i>
-                            <h2 class="h4 mb-0">刪除帳號</h2>
-                        </div>
-                        <div class="alert alert-warning d-flex mb-4"><i class="ai-triangle-alert fs-xl me-2"></i>
-                            <p class="mb-0">
-                                刪除您的帳戶後，您的公開個人資料將立即停用。如果您在14天內改變主意，請使用您的電子郵件和密碼登錄，我們將傳送一個連結以重新啟用帳戶。</p>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="confirm">
-                            <label class="form-check-label text-dark fw-medium" for="confirm">是的，我確定刪除我的帳戶</label>
-                        </div>
-                        <div class="d-flex flex-column flex-sm-row justify-content-end pt-4 mt-sm-2 mt-md-3">
-                            <button class="btn btn-danger" type="button"><i class="ai-trash ms-n1 me-2"></i>確認刪除</button>
-                        </div>
-                    </div>
-                </section>
             </div>
         </div>
     </div>
@@ -465,7 +475,8 @@
     <hr class="d-none d-dark-mode-block">
     <!-- Sidebar toggle button-->
     <button class="d-lg-none btn btn-sm fs-sm btn-primary w-100 rounded-0 fixed-bottom" data-bs-toggle="offcanvas"
-            data-bs-target="#sidebarAccount"><i class="ai-menu me-2"></i>Account menu</button>
+            data-bs-target="#sidebarAccount"><i class="ai-menu me-2"></i>Account menu
+    </button>
 </main>
 <!-- Footer-->
 <footer class="footer bg-dark position-relative pb-4 pt-md-3 py-lg-4 py-xl-5">
@@ -486,7 +497,8 @@
                         <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">About us</a></li>
                         <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Blog</a></li>
                         <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Shipping &amp; Returns</a></li>
+                        <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Shipping &amp; Returns</a>
+                        </li>
                         <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">Delivery info</a></li>
                     </ul>
                 </div>
@@ -511,7 +523,8 @@
             <div class="col-md-3 col-xl-2 pb-2 pb-md-0">
                 <h3 class="h6 text-uppercase d-none d-md-block">Categories</h3><a
                     class="btn-more h6 mb-1 text-uppercase text-decoration-none d-flex align-items-center collapsed d-md-none"
-                    href="#categories" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="categories"
+                    href="#categories" data-bs-toggle="collapse" role="button" aria-expanded="false"
+                    aria-controls="categories"
                     data-show-label="Categories" data-hide-label="Categories"></a>
                 <div class="collapse d-md-block" id="categories" data-bs-parent="#links">
                     <ul class="nav flex-column pb-2 pb-md-0">
@@ -525,15 +538,18 @@
             <div class="col-md-3 pb-2 pb-md-0">
                 <h3 class="h6 text-uppercase d-none d-md-block">Showroom</h3><a
                     class="btn-more h6 mb-1 text-uppercase text-decoration-none d-flex align-items-center collapsed d-md-none"
-                    href="#showroom" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="showroom"
+                    href="#showroom" data-bs-toggle="collapse" role="button" aria-expanded="false"
+                    aria-controls="showroom"
                     data-show-label="Showroom" data-hide-label="Showroom"></a>
                 <div class="collapse d-md-block" id="showroom" data-bs-parent="#links">
                     <ul class="nav flex-column pb-3">
-                        <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">1501 Main St, Ste 50<br>Tewksbury MA
+                        <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="#">1501 Main St, Ste 50<br>Tewksbury
+                            MA
                             01876</a></li>
                         <li class="nav-item"><a class="nav-link fw-normal px-0 py-1"
                                                 href="mailto:email@example.com">email@example.com</a></li>
-                        <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="+15262200459">+1 526 220 0459</a></li>
+                        <li class="nav-item"><a class="nav-link fw-normal px-0 py-1" href="+15262200459">+1 526 220
+                            0459</a></li>
                     </ul>
                     <ul class="list-unstyled mb-0 pb-3 pb-md-0">
                         <li class="text-nav mb-2">Mon-Fri: 8:00 - 21:00</li>
@@ -545,23 +561,28 @@
             <div class="col-12 col-xl-3 mt-md-2 mt-xl-0 pt-2 pt-md-4 pt-xl-0">
                 <h3 class="h6 text-uppercase mb-1 pb-1">Download our app</h3>
                 <div class="d-flex d-xl-block d-xxl-flex"><a class="btn btn-secondary px-3 py-2 mt-3 me-3" href="#"><img
-                        class="mx-1" src="assets/img/market/appstore-light.svg" width="120" alt="App Store"></a><a
+                        class="mx-1" src="../frontendshop/assets/img/market/appstore-light.svg" width="120" alt="App Store"></a><a
                         class="btn btn-secondary px-3 py-2 mt-3" href="#"><img class="mx-1"
-                                                                               src="assets/img/market/googleplay-light.svg" width="119" alt="Google Play"></a></div>
+                                                                               src="../frontendshop/assets/img/market/googleplay-light.svg"
+                                                                               width="119" alt="Google Play"></a></div>
             </div>
         </div>
         <!-- Nav + Switcher-->
         <div class="d-sm-flex align-items-end justify-content-between border-bottom mt-2 mt-sm-1 pt-4 pt-sm-5">
             <!-- Nav-->
             <nav class="d-flex mb-3 mb-sm-4"><a class="nav-link text-muted fs-sm fw-normal ps-0 pe-2 py-2 me-4"
-                                                href="#">Support</a><a class="nav-link text-muted fs-sm fw-normal ps-0 pe-2 py-2 me-4"
-                                                                       href="#">Privacy</a><a class="nav-link text-muted fs-sm fw-normal ps-0 pe-2 py-2 me-sm-4" href="#">Terms of
+                                                href="#">Support</a><a
+                    class="nav-link text-muted fs-sm fw-normal ps-0 pe-2 py-2 me-4"
+                    href="#">Privacy</a><a class="nav-link text-muted fs-sm fw-normal ps-0 pe-2 py-2 me-sm-4" href="#">Terms
+                of
                 use</a></nav>
             <!-- Language / currency switcher-->
             <div class="dropdown mb-4">
                 <button class="btn btn-outline-secondary dropdown-toggle px-4" type="button" data-bs-toggle="dropdown"
-                        data-bs-auto-close="outside" aria-expanded="false"><img class="me-2" src="assets/img/flags/en.png"
-                                                                                width="18" alt="English / USD">Eng / USD</button>
+                        data-bs-auto-close="outside" aria-expanded="false"><img class="me-2"
+                                                                                src="../frontendshop/assets/img/flags/en.png"
+                                                                                width="18" alt="English / USD">Eng / USD
+                </button>
                 <div class="dropdown-menu dropdown-menu-end my-1">
                     <div class="dropdown-item">
                         <select class="form-select form-select-sm">
@@ -570,10 +591,15 @@
                             <option value="ukp">£ UKP</option>
                             <option value="jpy">¥ JPY</option>
                         </select>
-                    </div><a class="dropdown-item pb-1" href="#"><img class="me-2" src="assets/img/flags/fr.png" width="18"
-                                                                      alt="Français">Français</a><a class="dropdown-item pb-1" href="#"><img class="me-2"
-                                                                                                                                             src="assets/img/flags/de.png" width="18" alt="Deutsch">Deutsch</a><a class="dropdown-item" href="#"><img
-                        class="me-2" src="assets/img/flags/it.png" width="18" alt="Italiano">Italiano</a>
+                    </div>
+                    <a class="dropdown-item pb-1" href="#"><img class="me-2" src="../frontendshop/assets/img/flags/fr.png" width="18"
+                                                                alt="Français">Français</a><a class="dropdown-item pb-1"
+                                                                                              href="#"><img class="me-2"
+                                                                                                            src="../frontendshop/assets/img/flags/de.png"
+                                                                                                            width="18"
+                                                                                                            alt="Deutsch">Deutsch</a><a
+                        class="dropdown-item" href="#"><img
+                        class="me-2" src="../frontendshop/assets/img/flags/it.png" width="18" alt="Italiano">Italiano</a>
                 </div>
             </div>
         </div>
@@ -588,15 +614,20 @@
                 </path>
               </svg></span><span class="text-nav">EZ-DOM</span></a>
                 <div class="text-nowrap mb-4 mb-sm-0"><a
-                        class="btn btn-icon btn-sm btn-secondary btn-telegram rounded-circle mx-2 ms-sm-0 me-sm-3" href="#"><i
+                        class="btn btn-icon btn-sm btn-secondary btn-telegram rounded-circle mx-2 ms-sm-0 me-sm-3"
+                        href="#"><i
                         class="ai-telegram"></i></a><a
-                        class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle mx-2 ms-sm-0 me-sm-3" href="#"><i
+                        class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle mx-2 ms-sm-0 me-sm-3"
+                        href="#"><i
                         class="ai-instagram"></i></a><a
-                        class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle mx-2 ms-sm-0 me-sm-3" href="#"><i
+                        class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle mx-2 ms-sm-0 me-sm-3"
+                        href="#"><i
                         class="ai-facebook"></i></a><a
-                        class="btn btn-icon btn-sm btn-secondary btn-pinterest rounded-circle mx-2 ms-sm-0 me-sm-3" href="#"><i
+                        class="btn btn-icon btn-sm btn-secondary btn-pinterest rounded-circle mx-2 ms-sm-0 me-sm-3"
+                        href="#"><i
                         class="ai-pinterest"></i></a></div>
-            </div><img class="ms-sm-auto" src="assets/img/shop/footer-cards.png" width="187" alt="Accepted cards">
+            </div>
+            <img class="ms-sm-auto" src="../frontendshop/assets/img/shop/footer-cards.png" width="187" alt="Accepted cards">
         </div>
     </div>
     <div class="pt-5 pt-lg-0"></div>
@@ -605,7 +636,8 @@
     <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10">
         </circle>
-    </svg><i class="ai-arrow-up"></i></a>
+    </svg>
+    <i class="ai-arrow-up"></i></a>
 
 <!-- Page loading scripts-->
 <script>
@@ -620,15 +652,15 @@
     })();
 </script>
 <!-- Vendor scripts: js libraries and plugins-->
-<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-<script src="assets/vendor/cleave.js/dist/cleave.min.js"></script>
+<script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="../frontendshop/assets/vendor/cleave.js/dist/cleave.min.js"></script>
 <!-- Main theme script-->
-<script src="assets/js/theme.min.js"></script>
+<script src="../frontendshop/assets/js/theme.min.js"></script>
 <!-- Swal -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
 
-<!-- 驗證輸入格式函式 -->
+<!-- 驗證格式函式 -->
 <script>
 
     // 身分證
@@ -676,6 +708,7 @@
       }
     }
 
+
 </script>
 
 <!-- 解除 oninput -->
@@ -710,7 +743,6 @@
 </script>
 
 <!-- 性別值轉換 -->
-
 <script>
 
     // 獲取選中的性別
@@ -718,6 +750,8 @@
     const femaleRadioButton = document.getElementById('female');
     const otherRadioButton = document.getElementById('other');
 
+
+    let selectedGender;
 
     // 設置事件監聽器來監聽選項的變化
     maleRadioButton.addEventListener('change', function () {
@@ -743,7 +777,6 @@
     const email = document.getElementById('email');
     const phone = document.getElementById('phone');
     const birthInput = document.getElementById('birth');
-    const contact = document.getElementById('contact');
     const intro = document.getElementById('intro');
     const address = document.getElementById('address');
 
@@ -783,10 +816,6 @@
         requestData.gender = selectedGender;
       }
 
-      if (contact.value) {
-        requestData.contact = contact.value;
-      }
-
       if (intro.value) {
         requestData.introduction = intro.value;
       }
@@ -797,7 +826,7 @@
 
       console.log("Selected gender: " + selectedGender);
 
-      fetch('http://localhost:8080/ezdom/member/profile', {
+      fetch('http://localhost:8080/ezdom/frontend/member/profile', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestData)
@@ -827,13 +856,97 @@
     });
 </script>
 
-<!-- 上傳照片函式 -->
+<!-- 上傳照片處理 -->
 <script>
+
+    const prePhoto = document.getElementById('prePhoto');
     const newPhoto = document.getElementById('newPhoto');
+    const uploadButton = document.getElementById('uploadButton');
+
+    // 創建一個 input 元素
+    const fileInput = document.createElement('input');
+
+    // 設定 input 元素的屬性
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.style.display = 'none';
+
+    // 監聽上傳照片的點擊事件，觸發文件選擇對話框
+    uploadButton.addEventListener('click', function () {
+      fileInput.click(); // 觸發文件選擇對話框
+    });
+
+    // 監聽文件選擇對話框的變化事件
+    fileInput.addEventListener('change', function (e) {
+
+      const selectedPhoto = e.target.files[0];
+
+      if (selectedPhoto) {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+          prePhoto.style.backgroundImage = `url(${e.target.result})`;
+
+          // 將圖片轉換為Base64字符串
+          const base64Image = e.target.result.split(',')[1]; // 去掉data:image/jpeg;base64,中的前綴部分
+
+          // 將Base64字符串包裝在JSON數據中並上傳到伺服器
+          uploadImageToServer(base64Image);
+        };
+        reader.readAsDataURL(selectedPhoto);
+      }
+    });
+
+    // 函數：上傳圖片到伺服器
+    function uploadImageToServer(base64Image) {
+      // 將Base64字符串放入一個JSON對象中
+      const data = { memberPhoto: base64Image };
+
+      // 使用fetch將JSON數據上傳到伺服器
+      fetch('http://localhost:8080/ezdom/frontend/member/uploadPhoto', {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(data),
+      }).then(response => {
+        // 獲取 HTTP 狀態碼
+        const statusCode = response.status;
+
+        // 判斷狀態碼並進行相應處理
+        if (statusCode === 200) {
+          // 登入成功的處理
+          Swal.fire({
+            icon: 'success',
+            title: '成功',
+            text: '照片更新成功！',
+            confirmButtonText: '確定',
+            focusConfirm: true
+          })
+          // 把上傳的圖社為預設
+          prePhoto.style.backgroundImage = `url(data:image/jpeg;base64,${base64Image})`;
+        } else if (statusCode === 400) {
+          // 驗證失敗的處理
+          return response.json(); // 將回應轉換為 JSON
+        } else {
+          // 其他狀態碼處理
+          throw new Error("HTTP Error: " + statusCode);
+        }
+      }).then(data => {
+        // 在這裡處理 JSON 回應的資料
+        // 例如顯示後端返回的錯誤訊息
+        Swal.fire({
+          icon: 'error',
+          title: '失敗',
+          text: data.message, // 假設後端返回的錯誤訊息放在 data.message 中
+          confirmButtonText: '確定',
+          focusConfirm: false
+        });
+      })
+        .catch(error => {
+          // 處理 fetch 發生的錯誤
+          console.error("Fetch Error:", error);
+        });
+    }
 
 </script>
-
-
 
 </body>
 
