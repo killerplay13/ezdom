@@ -131,8 +131,8 @@
             </a>
             <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar5">
                 <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="shop-product.html">商品列表</a>
-                    <a class="collapse-item" href="shop-addProduct.html">商品新增</a>
+                    <a class="collapse-item" href="/ezdom/backendshop/shop-product.html">商品列表</a>
+                    <a class="collapse-item" href="/ezdom/backendshop/shop-addProduct.html">商品新增</a>
                 </div>
             </div>
         </li>
@@ -144,8 +144,8 @@
             </a>
             <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar6">
                 <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="shop-orders.html">訂單列表</a>
-                    <a class="collapse-item" href="shop-return.html">退貨管理</a>
+                    <a class="collapse-item" href="/ezdom/backendshop/shop-orders.html">訂單列表</a>
+                    <a class="collapse-item" href="/ezdom/backendshop/shop-return.html">退貨管理</a>
                 </div>
             </div>
         </li>
@@ -341,7 +341,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">員工姓名</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empName">員工姓名</span>
                             <img class="img-profile rounded-circle"
                                  src="img/undraw_profile.svg">
                         </a>
@@ -445,19 +445,20 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">是否登出?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">你真的要登出嗎?</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+                <a class="btn btn-primary" onclick="logout()" style="cursor: pointer;">登出</a>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="backendshop/vendor/jquery/jquery.min.js"></script>
@@ -477,7 +478,39 @@
 <script src="backendshop/js/demo/chart-pie-demo.js"></script>
 <!-- 初始化折疊功能 -->
 <script src="backendshop/js/aside.js"></script>
+<script>
+    let empName=document.getElementById("empName");
+         function logout(){
+             fetch('http://localhost:8080/ezdom/employee/logout')
+             .then(resp=>resp.json())
+             .then(body=>{
+                 let {successful}=body;
+                 if(successful){
+                     window.location.href = '/ezdom/backendemp/empSignin.html';
+                 }
+             })
+         }
+         function getEmp(){
+             fetch('http://localhost:8080/ezdom/backend/employee/getById')
+             .then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登录页面 登入失敗
+                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                    }else if(response.ok){
+                        //登入成功
+                        return response.json();
+                    }else{
+                        alert("錯誤狀態" + response.status);
+                        return;
+                    }
+                }).then(body=>{
+                 let {employeeName}=body;
+                 empName.textContent =employeeName;
+             })
+         }
 
+         getEmp();
+</script>
 </body>
 
 </html>

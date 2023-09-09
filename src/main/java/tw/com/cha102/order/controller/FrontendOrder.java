@@ -17,7 +17,7 @@ public class FrontendOrder {
 
     @Autowired
     OrderService service;
-
+    //取得結帳客人資料
     @GetMapping("/profile/{memberId}")
     public Member getMemberProfile(@PathVariable Integer memberId){
         return service.getGuestInformation(memberId);

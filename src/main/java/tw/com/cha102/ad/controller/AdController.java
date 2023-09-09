@@ -68,16 +68,16 @@ public class AdController {
 
     @GetMapping("/getMaxAdId")
     public ResponseEntity<Integer> getMaxAdId() {
-        int maxAdId = adService.getMaxAdId(); // 使用 AdService 来获取最大的 ADID 值
+        int maxAdId = adService.getMaxAdId(); // 使用 取最大的 ADID 值
         return new ResponseEntity<>(maxAdId, HttpStatus.OK);
     }
 
     @GetMapping("/images/{adId}")
     public ResponseEntity<String> getAdImageBase64(@PathVariable int adId) {
-        // 根据广告ID从数据库中获取广告图片数据并将其转换为Base64格式
+        // 依廣告ID取圖轉base64
         String base64Image = adService.getAdImageBase64ById(adId);
 
-        // 返回Base64格式的图片数据
+        // 回傳Base64格式的圖片
         return ResponseEntity.ok(base64Image);
     }
 
@@ -94,7 +94,7 @@ public class AdController {
     @GetMapping("/getTodaysAds")
     public List<Integer> getTodaysAds() {
         Date today = new Date();
-        // 查询在今天日期范围内的广告ID
+        // 查詢再日期範圍的ID
         List<Integer> adIds = adRepository.findAdIdsForToday(today);
         return adIds;
     }
@@ -102,13 +102,12 @@ public class AdController {
 
     @GetMapping("/getAdImage/{adId}")
     public ResponseEntity<byte[]> getAdImage(@PathVariable int adId) {
-        // 根据adId从数据库中检索广告图像数据
+        // 根據adId取圖
         byte[] imageBytes = adRepository.getAdImage(adId);
 
-        // 创建HTTP响应实体并设置图像数据
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_JPEG); // 设置图像类型
-        headers.setContentLength(imageBytes.length); // 设置图像数据长度
+        headers.setContentType(MediaType.IMAGE_JPEG); // 設置圖像類型
+        headers.setContentLength(imageBytes.length);  // 設置圖像長度
         return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
     }
 

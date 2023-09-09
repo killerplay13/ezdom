@@ -560,7 +560,7 @@
             // 清空表格内容
             adTable.clear().draw();
 
-            // 使用 jQuery 构建 HTML 并添加到表格中
+
             data.forEach(ad => {
                 // 將日期時間字符串轉換為 Date 對象
                 const startDate = new Date(ad.startTime);
@@ -570,10 +570,10 @@
                 const startDateStr = startDate.toISOString().split('T')[0];
                 const endDateStr = endDate.toISOString().split('T')[0];
 
-                // 创建唯一的图像元素的ID
+
                 const imageId = `adImage_${ad.adId}`;
 
-                // 在每行中使用唯一的图像元素ID
+
                 let rowHtml = `<tr id="row_${ad.adId}">
                                 <th>${ad.adId}</th>
                                 <th>${ad.productId}</th>
@@ -585,11 +585,11 @@
                             </tr>`;
                 adTable.row.add($(rowHtml));
 
-                // 调用获取广告图片的函数，传入唯一的图像元素ID和广告ID
+                // 調用，传入唯一的图像元素ID和广告ID
                 getAdImageBase64(imageId, ad.adId);
             });
 
-            // 重新绘制表格
+
             adTable.draw();
         })
         .catch(error => {
@@ -604,19 +604,19 @@ function editAd(adId) {
 
 
 
-// 获取Base64格式的广告图片
+// 取Base64格式的廣告圖
 function getAdImageBase64(imageId, adId) {
-    const imageUrl = `http://localhost:8080/ezdom/ads/images/${adId}`; // 使用模板字符串构建完整的 URL
+    const imageUrl = `http://localhost:8080/ezdom/ads/images/${adId}`;
     fetch(imageUrl)
         .then(resp => {
             if (resp.status === 200) {
-                return resp.text(); // 将响应转换为文本
+                return resp.text(); // 轉text
             } else {
                 throw new Error('Failed to fetch ad image');
             }
         })
         .then(base64Image => {
-            // 将Base64格式的图片数据设置为img元素的src
+            // 將Base64格式的的圖片設為img元素的src
             const imageElement = document.getElementById(imageId);
             imageElement.src = `data:image/jpeg;base64, ${base64Image}`;
         })
@@ -625,7 +625,6 @@ function getAdImageBase64(imageId, adId) {
         });
 }
 
-// 在页面加载时调用getAllAds以获取广告数据
     getAllAds();
 
     function deleteRow(adId) {
@@ -640,13 +639,13 @@ function getAdImageBase64(imageId, adId) {
         cancelButtonText: '取消'
     }).then((result) => {
         if (result.isConfirmed) {
-            // 发送DELETE请求删除广告
+            // 請求刪除
             fetch(`http://localhost:8080/ezdom/ads/delete/${adId}`, {
                 method: 'DELETE'
             })
                 .then(response => {
                     if (response.status === 204) {
-                        // 成功删除，移除对应行
+
                         const rowToDelete = document.getElementById(`row_${adId}`);
                         if (rowToDelete) {
                             rowToDelete.remove();

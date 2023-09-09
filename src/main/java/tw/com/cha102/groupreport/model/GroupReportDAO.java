@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface GroupReportDAO {
-    void insert(GroupReportVO groupReportVO);
+    void insert(GroupReportCreate groupReportCreate);
 
     void update(GroupReportVO groupReportVO);
 
