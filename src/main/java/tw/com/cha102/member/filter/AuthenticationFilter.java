@@ -22,7 +22,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
         HttpSession session = request.getSession();
         if (session.getAttribute("memberId") == null) {
-            System.out.println("LonginFilter:使用者不為登入狀態，sessionid未被授權");
+            System.out.println("LonginFilter:使用者不為登入狀態，sessionid未被授權!");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         } else {
             filterChain.doFilter(request, response);

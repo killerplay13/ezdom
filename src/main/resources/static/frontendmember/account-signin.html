@@ -315,7 +315,7 @@
         return;
     }
       if (validateAccount() && validatePassword()) {
-        fetch('/ezdom/frontend/member/login', {
+        fetch('/ezdom/member/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

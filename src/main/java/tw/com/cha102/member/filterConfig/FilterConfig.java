@@ -17,7 +17,7 @@ public class FilterConfig {
     public FilterRegistrationBean filterRegistration(){
         FilterRegistrationBean<AuthenticationFilter> bean =new FilterRegistrationBean<>();
         bean.setFilter(authenticationFilter);
-        bean.addUrlPatterns("*.html");
+        bean.addUrlPatterns("/frontend/*");
         bean.setOrder(10);
         bean.setName("authenticationFilter");
         bean.setEnabled(false);

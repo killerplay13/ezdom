@@ -384,8 +384,18 @@
     let statusValue = parseInt(orderStatus.value);
     let orders = document.getElementById("orders");
     fetch(`http://localhost:8080/ezdom/frontend/oredr/limit3/${value}/${statusValue}`)
-      .then(resp => resp.json())
-      .then(body => {
+      .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
         if (statusValue == 0) {
           let html = "";
           for (let list of body) {
@@ -904,6 +914,7 @@
             </div>
             `;
           }
+
           orders.innerHTML = html;
           sortPage(statusValue);
         }
@@ -914,8 +925,18 @@
   let orderPage = document.getElementById("orderPage")
   function sortPage(statusValue) {
     fetch(`http://localhost:8080/ezdom/frontend/oredr/sortPage?orderStatus=${statusValue}`)
-      .then(resp => resp.json())
-      .then(body => {
+      .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
         let count = Math.ceil(body / 3);
         let html = "";
         for (let i = 1; i <= count; i++) {
@@ -932,8 +953,18 @@
     fetch(`http://localhost:8080/ezdom/frontend/oredr/return/${orderId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' }
-    }).then(resp => resp.json())
-      .then(body => {
+    }).then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
         const { successful, message } = body;
         if (successful) {
           Swal.fire({
@@ -961,8 +992,18 @@
     fetch(`http://localhost:8080/ezdom/frontend/oredr/confirm/${orderId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' }
-    }).then(resp => resp.json())
-      .then(body => {
+    }).then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
         const { successful, message } = body;
         if (successful) {
           Swal.fire({
@@ -987,11 +1028,21 @@
   }
     //會員完成訂單 新增積分
     function addPoints(orderId){
-      let memberId=1;
-      fetch(`http://localhost:8080/ezdom/frontend/oredr/addpoint/${memberId}/${orderId}`, {
+      fetch(`http://localhost:8080/ezdom/frontend/oredr/addpoint/${orderId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' }
-    })
+    }).then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        })
     }
 
 

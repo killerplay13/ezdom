@@ -826,7 +826,7 @@
 
       console.log("Selected gender: " + selectedGender);
 
-      fetch('http://localhost:8080/ezdom/frontend/member/profile', {
+      fetch('http://localhost:8080/ezdom/member/profile', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestData)
@@ -902,7 +902,7 @@
       const data = { memberPhoto: base64Image };
 
       // 使用fetch將JSON數據上傳到伺服器
-      fetch('http://localhost:8080/ezdom/frontend/member/uploadPhoto', {
+      fetch('http://localhost:8080/ezdom/member/uploadPhoto', {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(data),

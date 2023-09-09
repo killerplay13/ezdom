@@ -43,7 +43,7 @@ public class BackendOrder {
         }
         return orderVO;
     }
-    //後台確認退貨按鈕 或買家退貨按鈕
+    //後台確認退貨按鈕
     @PutMapping("/return/{orderId}")
     public  OrderVO orderToReturn(@PathVariable Integer orderId){
         OrderVO orderVO=new OrderVO();
