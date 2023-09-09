@@ -393,9 +393,9 @@
             .then(response => {
                 if (response.ok) {
                 // 请求成功，显示提示信息
-                alert('报名成功！');
+                alert('報名成功！');
                 // 跳转
-                window.location.href = '/grouplist.html';
+                window.location.href = '/ezdom/group/grouplist.html';
                 } else {
                 // 请求失败，获取错误信息
                     return response.json().then(errorData => {
@@ -406,7 +406,7 @@
                 }
             })
             .catch(error => {
-                console.error('发生错误:', error);
+                console.error('發生錯誤:', error);
                 alert(error);
             });
             });
