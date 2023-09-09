@@ -13,7 +13,6 @@ import java.util.HashSet;
 import java.util.Set;
 @Component
 public class EmpAuthenticationFilter extends OncePerRequestFilter {
-    private final Set<String> allowedUrls = new HashSet<>();
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
