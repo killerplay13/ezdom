@@ -19,21 +19,13 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-        String contextPath = request.getContextPath();
-        String requestUrl = request.getRequestURI();
-
-
-        if ("/frontendmember/account-signin.html".equals(requestUrl) || "/frontendmember/account-signup.html".equals(requestUrl)) {
-
-            filterChain.doFilter(request, response);
-            return;
-        }
 
         HttpSession session = request.getSession();
-        if (session.getAttribute("account") == null) {
-            response.sendRedirect(request.getContextPath() + "/frontendmember/empSignin.html");
-            return;
+        if (session.getAttribute("memberId") == null) {
+            System.out.println("LonginFilter:使用者不為登入狀態，sessionid未被授權");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        } else {
+            filterChain.doFilter(request, response);
         }
-
     }
 }
