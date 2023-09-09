@@ -13,13 +13,13 @@ import java.util.Base64;
 import java.util.List;
 
 @RestController
-@RequestMapping("/groupcreate")
+@RequestMapping("/frontend/groupcreate")
 public class GroupCreateServlet {
 
     @Autowired
     private GroupCreateService groupCreateService;
 
-    @PostMapping("/create")
+    @PostMapping("/create") //建立揪團
     public ResponseEntity<String> createGroup(@RequestBody GroupCreateVO groupCreateVO) {
         if(groupCreateVO.getGroupDate()==null){
             groupCreateVO.setMessage("揪團時間未輸入");
@@ -99,13 +99,13 @@ public class GroupCreateServlet {
             }
     }
 
-    @GetMapping("/listAllGroupCreate")
+    @GetMapping("/listAllGroupCreate") //查全部自己創建的揪團
     public List<GroupCreateVO> listAllGroupCreate(@RequestParam Integer createMemberId) {
         List<GroupCreateVO> groupCreateList = groupCreateService.findAllGroupCreateByMemberId(createMemberId);
         return groupCreateList;
     }
 
-    @PutMapping("/updateGroup/{groupId}")
+    @PutMapping("/updateGroup/{groupId}") //修改揪團資訊用
     public ResponseEntity<String> updateGroup(@RequestBody GroupCreateVO groupCreateVO){
         if(groupCreateVO.getGroupName()==null){
             groupCreateVO.setMessage("揪團名稱未輸入");
@@ -129,7 +129,34 @@ public class GroupCreateServlet {
             groupCreateVO.setSuccessful(false);
             return ResponseEntity.badRequest().body(groupCreateVO.getMessage());
         }
+        if(groupCreateVO.getRegisteredNumber()>=groupCreateVO.getLimitNumber()){
+            return ResponseEntity.badRequest().body("超過人數上限");
+        }
         GroupCreateVO result = groupCreateService.update(groupCreateVO);
         return ResponseEntity.ok("修改成功");
+    }
+
+    @PutMapping("/updateRegisterNumber/{groupId}")
+    public ResponseEntity<String> updateRegisterNumber(@PathVariable Integer groupId){
+        GroupCreateVO result = groupCreateService.updateRegisterNumber(groupId);
+        return ResponseEntity.ok("新增成功");
+}
+
+    @GetMapping("/findGroupId/{memberId}") //查會員建立且審核過的揪團
+    public List findGroupId(@PathVariable Integer memberId){
+        List groupCreateList = groupCreateService.findGroupId(memberId);
+        return groupCreateList;
+    }
+
+    @GetMapping("/showLatestGroupCreate")
+    public List<GroupCreateVO> showLatestGroupCreate(){
+        List<GroupCreateVO> LatestGroupCreateList = groupCreateService.showLatestGroupCreate();
+        return LatestGroupCreateList;
+    }
+
+    @GetMapping("/showUpcomingGroupCreate")
+    public List<GroupCreateVO> showUpcomingGroupCreate(){
+        List<GroupCreateVO> UpcomingGroupCreateList = groupCreateService.showUpcomingGroupCreate();
+        return UpcomingGroupCreateList;
     }
 }

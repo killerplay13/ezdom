@@ -14,6 +14,14 @@ public interface GroupCreateService {
  List<GroupCreateVO> findAllGroupCreateByMemberId(Integer createMemberId);
  GroupCreateVO update(GroupCreateVO groupCreateVO);
 
+ GroupCreateVO updateRegisterNumber(Integer groupId);
+
+ List<GroupCreateVO> showLatestGroupCreate();
+
+ List<GroupCreateVO> showUpcomingGroupCreate();
+
+ List findGroupId(Integer memberId);
+
 // List<GroupCreateVO> findOneGroupCreateByMemberIdAndStatus();
 }
 

@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>預約訂單列表</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="EZDOM - Multipurpose Bootstrap HTML Template">
+    <meta name="keywords"
+        content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, dark mode, html5, css3, javascript, gallery, slider, touch, creative">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="icon" type="image/png" sizes="16x16" href="../frontendshop/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../frontendshop/assets/favicon/site.webmanifest">
+    <link rel="mask-icon" color="#6366f1" href="../frontendshop/assets/favicon/safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+    <meta name="theme-color" content="white">
+    <!-- datatable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.jqueryui.min.css" />
+    <!-- Vendor scripts: js libraries and plugins-->
+    <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="../assets/vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="../assets/vendor/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="../assets/vendor/flatpickr/dist/plugins/rangePlugin.js"></script>
+    <script src="../assets/vendor/prismjs/components/prism-core.min.js"></script>
+    <script src="../assets/vendor/prismjs/components/prism-markup.min.js"></script>
+    <script src="../assets/vendor/prismjs/components/prism-clike.min.js"></script>
+    <script src="../assets/vendor/prismjs/components/prism-javascript.min.js"></script>
+    <script src="../assets/vendor/prismjs/components/prism-pug.min.js"></script>
+    <script src="../assets/vendor/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="../assets/vendor/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+    <script src="../assets/vendor/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <!-- Main theme script-->
+    <script src="../assets/js/theme.min.js"></script>
+
+    <script>
+        let mode = window.localStorage.getItem('mode'),
+            root = document.getElementsByTagName('html')[0];
+        if (mode !== undefined && mode === 'dark') {
+            root.classList.add('dark-mode');
+        } else {
+            root.classList.remove('dark-mode');
+        }
+    </script>
+    <!-- 引入 SweetAlert2 的 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+    <!-- Page loading styles-->
+    <style>
+        .page-loading {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all .4s .2s ease-in-out;
+            transition: all .4s .2s ease-in-out;
+            background-color: #fff;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 9999;
+        }
+
+        .dark-mode .page-loading {
+            background-color: #121519;
+        }
+
+        .page-loading.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .page-loading-inner {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            -webkit-transition: opacity .2s ease-in-out;
+            transition: opacity .2s ease-in-out;
+            opacity: 0;
+        }
+
+        .page-loading.active>.page-loading-inner {
+            opacity: 1;
+        }
+
+        .page-loading-inner>span {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: normal;
+            color: #6f788b;
+        }
+
+        .dark-mode .page-loading-inner>span {
+            color: #fff;
+            opacity: .6;
+        }
+
+        .page-spinner {
+            display: inline-block;
+            width: 2.75rem;
+            height: 2.75rem;
+            margin-bottom: .75rem;
+            vertical-align: text-bottom;
+            background-color: #d7dde2;
+            border-radius: 50%;
+            opacity: 0;
+            -webkit-animation: spinner .75s linear infinite;
+            animation: spinner .75s linear infinite;
+        }
+
+        .dark-mode .page-spinner {
+            background-color: rgba(255, 255, 255, .25);
+        }
+
+        @-webkit-keyframes spinner {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            50% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        @keyframes spinner {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            50% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+        (function () {
+            window.onload = function () {
+                const preloader = document.querySelector('.page-loading');
+                preloader.classList.remove('active');
+                setTimeout(function () {
+                    preloader.remove();
+                }, 1500);
+            };
+        })();
+
+    </script>
+    <!-- Import Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" id="google-font">
+    <!-- Vendor styles-->
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
+</head>
+<!-- Body-->
+
+<body class="bg-secondary">
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+        <div class="page-loading-inner">
+            <div class="page-spinner"></div><span>Loading...</span>
+        </div>
+    </div>
+    <!-- 頁首-->
+    <main class="page-wrapper">
+        <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
+        <header class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode">
+            <div class="container"><a class="navbar-brand pe-sm-3" href="index.html"><span
+                        class="text-primary flex-shrink-0 me-2">
+                        <svg version="1.1" width="35" height="32" viewBox="0 0 36 33"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill="currentColor"
+                                d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                            </path>
+                        </svg></span>EZ-DOM</a>
+                <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+                    <input class="form-check-input" type="checkbox" id="theme-mode">
+                    <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
+                    <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
+                </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+                    href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
+                    rel="noopener">登入/註冊</a>
+                <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+                <nav class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">揪團
+                                Group</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">揪團列表</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">My揪團</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">開團管理</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">瀏覽商品</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">購物車</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">管理我的訂單</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">論壇
+                                Forum</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">瀏覽論壇</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">論壇管理</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">預約
+                                Reserve</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">預約管理</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">瀏覽教練</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">時段管理</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">項目管理</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">自我介紹管理</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">會員中心
+                                Member</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">我的頁面</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">好友管理</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">收藏文章</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">收藏商品</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">個人設定</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                                        data-bs-toggle="dropdown" aria-expanded="false">聊天室</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">聯絡客服
+                                Help</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!-- 頁首結束-->
+        <!-- Add payment card modal-->
+        <div class="modal fade" id="addCard" data-bs-backdrop="static" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <h4 class="modal-title">Add new card</h4>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form class="modal-body needs-validation pt-0" novalidate>
+                        <div class="mb-4">
+                            <label class="form-label" for="card-name">Name on card</label>
+                            <input class="form-control" type="text" placeholder="John Doe" required id="card-name">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label" for="card-number">Card number</label>
+                            <div class="input-group">
+                                <input class="form-control" type="text" data-format="{&quot;creditCard&quot;: true}"
+                                    placeholder="XXXX XXXX XXXX XXXX" required id="card-number">
+                                <div class="input-group-text py-0">
+                                    <div class="credit-card-icon"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-cols-2 g-4 pb-2 pb-sm-3 mb-4">
+                            <div class="col">
+                                <label class="form-label" for="card-expiration">Expiration date</label>
+                                <input class="form-control" type="text"
+                                    data-format="{&quot;date&quot;: true, &quot;datePattern&quot;: [&quot;m&quot;, &quot;y&quot;]}"
+                                    placeholder="MM/YY" required id="card-expiration">
+                            </div>
+                            <div class="col">
+                                <label class="form-label" for="card-cvv">CVV Code</label>
+                                <input class="form-control" type="text"
+                                    data-format="{&quot;numericOnly&quot;: true, &quot;blocks&quot;: [3]}"
+                                    placeholder="XXX" required id="card-cvv">
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column flex-sm-row">
+                            <button class="btn btn-secondary mb-3 mb-sm-0" type="reset"
+                                data-bs-dismiss="modal">Cancel</button>
+                            <button class="btn btn-primary ms-sm-3" type="submit">Save new card</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Add new address modal-->
+        <div class="modal fade" id="addAddress" data-bs-backdrop="static" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <h4 class="modal-title">新增項目</h4>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form class="modal-body needs-validation pt-0" novalidate>
+                        <div class="alert alert-warning d-flex mb-4"><i class="ai-triangle-alert fs-xl me-2"></i>
+                            <p class="mb-0">新增項目時，請留意地點的設定和項目介紹<a href='#' class='alert-link'>#常見問題</a></p>
+                        </div>
+                        <div class="row row-cols-1 row-cols-lg-2 g-4 pb-2 pb-sm-3 mb-4">
+                            <div class="col">
+                                <label class="form-label" for="address1">項目名稱</label>
+                                <input class="form-control" type="text" required id="address1">
+                            </div>
+                            <div class="col">
+                                <label class="form-label" for="address2">項目介紹</label>
+                                <input class="form-control" type="text" id="address2">
+                            </div>
+                            <div class="col">
+                                <label class="form-label" for="country">地點</label>
+                                <select class="form-select" required id="country">
+                                    <option value="" disabled selected>選擇地點</option>
+                                    <option value="Taipei">台北</option>
+                                    <option value="Taoyuan">桃園</option>
+                                    <option value="NewTaipeHsinchui">新北</option>
+                                    <option value="Hsinchu">新竹</option>
+                                    <option value="Support">提供場地</option>
+                                </select>
+                            </div>
+
+
+
+                        </div>
+                        <div class="d-flex flex-column flex-sm-row">
+                            <button class="btn btn-secondary mb-3 mb-sm-0" type="reset"
+                                data-bs-dismiss="modal">取消</button>
+                            <button class="btn btn-primary ms-sm-3" type="submit">儲存項目</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
+            <div class="row pt-sm-2 pt-lg-0">
+                <!-- Sidebar (offcanvas on sreens < 992px)-->
+                <aside class="col-lg-3 pe-lg-4 pe-xl-5 mt-n3">
+                    <div class="position-lg-sticky top-0">
+                        <div class="d-none d-lg-block" style="padding-top: 105px;"></div>
+                        <div class="offcanvas-lg offcanvas-start" id="sidebarAccount">
+                            <button class="btn-close position-absolute top-0 end-0 mt-3 me-3 d-lg-none" type="button"
+                                data-bs-dismiss="offcanvas" data-bs-target="#sidebarAccount"></button>
+                            <div class="offcanvas-body">
+                                <div class="pb-2 pb-lg-0 mb-4 mb-lg-5"><img class="d-block rounded-circle mb-2"
+                                        src="../frontendshop/assets/img/avatar/02.jpg" width="80" alt="Isabella Bocouse">
+                                    <h3 class="h5 mb-1">Isabella Bocouse</h3>
+                                    <p class="fs-sm text-muted mb-0">bocouse@example.com</p>
+                                </div>
+                                <nav class="nav flex-column pb-2 pb-lg-4 mb-3">
+                                    <a class="nav-link fw-semibold py-2 px-0 active" href="coach-bio.html"><i
+                                            class="ai-user-check fs-5 opacity-60 me-2"></i>個人資訊</a>
+                                    <a class="nav-link fw-semibold py-2 px-0" href="reserve-appointmentArea.html"><i
+                                            class="ai-menu fs-5 opacity-60 me-2"></i>預約專區</a>
+                                    <a class="nav-link fw-semibold py-2 px-0" href="#"><i
+                                            class="ai-calendar-check fs-5 opacity-60 me-2"></i>檢舉</a>
+                                    <a class="nav-link fw-semibold py-2 px-0" href="coach-message.html"><i
+                                            class="ai-file-text fs-5 opacity-60 me-2"></i>留言板</a>
+                                </nav>
+                </aside>
+                <!-- Page content-->
+                <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
+                    <h1 class="h2 mb-4">預約訂單列表</h1>
+
+                    <!-- Table with contextual rows -->
+                    <div class="table-responsive">
+                        <table id="example" class="table">
+                            <thead style="background-color: #93d4be;">
+                                <tr>
+                                    <th>#</th>
+                                    <th style="text-align: center;">教練名稱</th>
+                                    <th style="text-align: center;">預約項目</th>
+                                    <th style="text-align: center;">預約金額</th>
+                                    <th style="text-align: center;">預約內容</th>
+                                    <th style="text-align: center;">時間地點</th>
+                                    <th style="text-align: center;">操作按鈕</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-faded-secondary">
+                                    <th scope="row" style="text-align: center;"><strong>1</strong></th>
+                                    <td style="text-align: center;"><strong>嘉文</strong></td>
+                                    <td style="text-align: center;"><strong>籃球</strong></td>
+                                    <td style="text-align: center;"><strong>1000</strong></td>
+                                    <td style="text-align: center;"><strong>棒打老虎棒打老虎</strong></td>
+                                    <td style="text-align: center;">
+                                        <button type="button" class="btn btn-primary btn-sm btn-rounded"
+                                            data-bs-toggle="modal" data-bs-target=".orderdetailsModal">點我</button>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <button type="button" class="btn btn-primary btn-sm btn-rounded"
+                                            data-bs-toggle="modal" data-bs-target=".orderdetailsModal">完成訂單</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <footer class="footer bg-secondary py-5">
+                    <div class="container pt-1 pt-sm-2 pt-md-3 pt-lg-4 pt-xl-5">
+                        <div class="border-bottom text-center pb-4"><a
+                                class="navbar-brand d-inline-flex text-nav py-0 mb-3 mb-md-4" href="index.html"><span
+                                    class="text-primary flex-shrink-0 me-2">
+                                    <svg version="1.1" width="35" height="32" viewBox="0 0 36 33"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill="currentColor"
+                                            d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                                        </path>
+                                    </svg></span><span>EZ-DOM</span></a>
+                            <ul class="nav justify-content-center py-1 pb-sm-2">
+                                <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Classes</a></li>
+                                <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Trainers</a></li>
+                                <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Schedule</a></li>
+                                <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Pricing</a></li>
+                                <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="d-sm-flex align-items-center justify-content-between pt-4 mt-2 mt-sm-0">
+                            <div class="d-flex justify-content-center order-sm-2 mb-4 mb-sm-0"><a
+                                    class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle me-3"
+                                    href="#"><i class="ai-instagram"></i></a><a
+                                    class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle me-3"
+                                    href="#"><i class="ai-facebook"></i></a><a
+                                    class="btn btn-icon btn-sm btn-secondary btn-youtube rounded-circle" href="#"><i
+                                        class="ai-youtube"></i></a>
+                            </div>
+                            <p class="fs-sm order-sm-1 text-center mb-0"><span class="opacity-70">&copy; All rights
+                                    reserved. Made by
+                                </span><a class="nav-link d-inline fw-normal p-0" href="https://createx.studio/"
+                                    target="_blank" rel="noopener">Createx Studio</a></p>
+                        </div>
+                    </div>
+                </footer>
+                <!-- 引入 SweetAlert2 的 JavaScript 文件 -->
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+                <script src="https://code.jquery.com/jquery-3.5.1.js"></script> <!-- ●●js  for jquery datatables 用 -->
+                <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        $('#example').DataTable({
+                            "lengthMenu": [5, 10, 20],
+                            "searching": true,  //搜尋功能, 預設是開啟
+                            "paging": true,     //分頁功能, 預設是開啟
+                            "ordering": true,   //排序功能, 預設是開啟
+                            "language": {
+                                "processing": "處理中...",
+                                "loadingRecords": "載入中...",
+                                "lengthMenu": "顯示 _MENU_ 筆結果",
+                                "zeroRecords": "沒有符合的結果",
+                                "info": "顯示第 _START_ 至 _END_ 筆結果，共<font color=red> _TOTAL_ </font>筆",
+                                "infoEmpty": "顯示第 0 至 0 筆結果，共 0 筆",
+                                "infoFiltered": "(從 _MAX_ 筆結果中過濾)",
+                                "infoPostFix": "",
+                                "search": "搜尋:",
+                                "paginate": {
+                                    "first": "第一頁",
+                                    "previous": "上一頁",
+                                    "next": "下一頁",
+                                    "last": "最後一頁"
+                                },
+                                "aria": {
+                                    "sortAscending": ": 升冪排列",
+                                    "sortDescending": ": 降冪排列"
+                                }
+                            }
+                        });
+                    });
+
+                    function flushPage() {
+                        fetch(`http://localhost:8080/ezdom/frontend/reserve/member/list`)
+                            .then(resp => resp.json())
+                            .then(body => {
+                                $('#example').DataTable().clear().draw();
+                                for (let list of body) {
+                                    let { content, place, amounts, reserveItem, reserveDate, reserveId, reserveTime, nickname, orderStatus,coachId} = list;
+                                    if (orderStatus == 0) {
+                                        let rowData = `
+                                    <tr class="bg-faded-secondary">
+                                        <th scope="row" style="text-align: center;"><strong>20230920${reserveId}</strong></th>
+                                        <td style="text-align: center;"><strong>${nickname}</strong></td>
+                                        <td style="text-align: center;"><strong>${reserveItem}</strong></td>
+                                        <td style="text-align: center;"><strong>$${amounts}</strong></td>
+                                        <td style="text-align: center;"><strong>${content}</strong></td>
+                                        <td style="text-align: center;">
+                                            <button type="button" class="btn btn-primary btn-sm btn-rounded"
+                                                data-bs-toggle="modal" data-bs-target=".orderdetailsModal" onclick="reserveDetail(${reserveTime},'${reserveDate}','${place}')">點我</button>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <button type="button" class="btn btn-primary btn-sm btn-rounded"
+                                                data-bs-toggle="modal" data-bs-target=".orderdetailsModal" onclick="completeReserve(${reserveId},${coachId},'${reserveDate}',${reserveTime})">完成訂單</button>
+                                        </td>   
+                                    </tr>
+                                        `;
+                                        // 将rowData包装成jQuery对象并添加到DataTables中
+                                        $('#example').DataTable().row.add($(rowData));
+                                    } else if (orderStatus == 1) {
+                                        let rowData = `
+                                    <tr class="bg-faded-secondary">
+                                        <th scope="row" style="text-align: center;"><strong>20230920${reserveId}</strong></th>
+                                        <td style="text-align: center;"><strong>${nickname}</strong></td>
+                                        <td style="text-align: center;"><strong>${reserveItem}</strong></td>
+                                        <td style="text-align: center;"><strong>$${amounts}</strong></td>
+                                        <td style="text-align: center;"><strong>${content}</strong></td>
+                                        <td style="text-align: center;">
+                                            <button type="button" class="btn btn-primary btn-sm btn-rounded"
+                                                data-bs-toggle="modal" data-bs-target=".orderdetailsModal" onclick="reserveDetail(${reserveTime},'${reserveDate}','${place}')">點我</button>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <button type="button" class="btn btn-primary btn-sm btn-rounded"
+                                                data-bs-toggle="modal" data-bs-target=".orderdetailsModal" disabled>訂單已完成</button>
+                                        </td>   
+                                    </tr>
+                                        `;
+                                        // 将rowData包装成jQuery对象并添加到DataTables中
+                                        $('#example').DataTable().row.add($(rowData));
+                                    }
+                                }
+                                // 绘制表格
+                                $('#example').DataTable().draw();
+                            })
+                    }
+
+
+                    function reserveDetail(reserveTime, reserveDateStr, placeStr) {
+                        let timeSlot;
+                        switch (reserveTime) {
+                            case 0:
+                                timeSlot = "8:00-10:00";
+                                break;
+                            case 1:
+                                timeSlot = "10:00-12:00";
+                                break;
+                            case 2:
+                                timeSlot = "13:00-15:00";
+                                break;
+                            case 3:
+                                timeSlot = "15:00-17:00";
+                                break;
+                            case 4:
+                                timeSlot = "17:00-19:00";
+                                break;
+                            case 5:
+                                timeSlot = "19:00-21:00";
+                                break;
+                            default:
+                                timeSlot = "未知时段";
+                                break;
+                        };
+
+                        let tableContent = `
+                        <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="bg-faded-primary">
+                                <th scope="row">日期</th>
+                                <td colspan=3>${reserveDateStr}</td>
+                            </tr>
+                            <tr class="bg-faded-info">
+                                <th scope="row">時間</th>
+                                <td colspan=3>${timeSlot}</td>
+                            </tr>
+                            <tr class="bg-faded-success">
+                                <th scope="row">地址</th>
+                                <td colspan=3>${placeStr}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        `;
+                        Swal.fire({
+                            title: `訂單`, // 將 note 放入標題
+                            html: tableContent,
+                            showCloseButton: true,
+                            showCancelButton: false,
+                            focusConfirm: false,
+                            confirmButtonText: '關閉'
+                        });
+                    }
+
+                    function completeReserve(reserveId,coachId,reserveDate,reserveTime) {
+                        reserveDate += " 00:00:00";
+                        fetch(`http://localhost:8080/ezdom/frontend/reserve/member/compelete/${reserveId}`, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body:JSON.stringify({
+                                dateStr:reserveDate,
+                                classTime:reserveTime,
+                                coachId:coachId
+                            }),
+                        }).then(resp => resp.json())
+                            .then(body => {
+                                const { successful, message } = body;
+                                if (successful) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: '成功',
+                                        text: '資料已成功提交！',
+                                        confirmButtonText: '確定',
+                                        focusConfirm: true
+                                    }).then(result=>{
+                                        if (result.isConfirmed){
+                                            flushPage();
+                                        }
+                                    })
+                                    
+                                }
+                            })
+                    }
+                    flushPage();
+                </script>
+</body>
+
+</html>

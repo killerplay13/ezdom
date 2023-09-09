@@ -5,15 +5,15 @@ import java.util.Set;
 public class State {
 	private String type;
 	// the user changing the state
-	private String memeberId;
+	private String memberId;
 	// total users
-	private Set<String> memeberIds;
+	private Set<String> memberIds;
 
-	public State(String type, String memeberId, Set<String> memeberIds) {
+	public State(String type, String memberId, Set<String> memberIds) {
 		super();
 		this.type = type;
-		this.memeberId = memeberId;
-		this.memeberIds = memeberIds;
+		this.memberId = memberId;
+		this.memberIds = memberIds;
 	}
 
 	public String getType() {
@@ -24,19 +24,19 @@ public class State {
 		this.type = type;
 	}
 
-	public String getMemeberId() {
-		return memeberId;
+	public String getMemberId() {
+		return memberId;
 	}
 
-	public void setMemeberId(String memeberId) {
-		this.memeberId = memeberId;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
-	public Set<String> getMemeberIds() {
-		return memeberIds;
+	public Set<String> getMemberIds() {
+		return memberIds;
 	}
 
-	public void setMemeberIds(Set<String> memeberIds) {
-		this.memeberIds = memeberIds;
+	public void setMemberIds(Set<String> memberIds) {
+		this.memberIds = memberIds;
 	}
 }

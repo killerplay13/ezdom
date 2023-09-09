@@ -622,7 +622,7 @@
     let renew = document.getElementById("renew");
     //依id抓商品資料回來修改
     window.addEventListener('load', function () {
-        fetch(`http://localhost:8080/ezdom/product/getById/${productId}`)
+        fetch(`http://localhost:8080/ezdom/backend/product/getById/${productId}`)
             .then(resp => resp.json())
             .then(body => {
                 let { categoryId, productName, productDescription, productOriginPrice, productDiscountPrice, productImage, category } = body;
@@ -692,7 +692,7 @@
         confirmButtonText: '確定'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.replace("/shop-product.html");
+            window.location.replace("shop-product.html");
         }
     })})
 
@@ -795,7 +795,7 @@ function validateImageUpload() {
                 // 在確認後進行頁面跳轉
                 fileReader.addEventListener("load", function (e) {
                     const imageBase64 = btoa(e.target.result);
-                    fetch(`http://localhost:8080/ezdom/product/edit/${productId}`, {
+                    fetch(`http://localhost:8080/ezdom/backend/product/edit/${productId}`, {
                         method: 'PUT',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -806,8 +806,18 @@ function validateImageUpload() {
                             productDiscountPrice: discountPrice.value,
                             productImage: imageBase64
                         }),
-                    }).then(resp => resp.json())
-                        .then(body => {
+                    }).then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登录页面 登入失敗
+                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                    }else if(response.ok){
+                        //登入成功
+                        return response.json();
+                    }else{
+                        alert("錯誤狀態" + response.status);
+                        return;
+                    }
+                }).then(body => {
                             const { successful, message } = body;
                             if (successful) {
                                 window.location.replace("shop-product.html");

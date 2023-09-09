@@ -22,6 +22,9 @@ public class OrderDetailVO extends Core {
     @Column(name = "PRODUCT_ID")
     private Integer productId;
 
+    @Column(name="PRODUCT_NAME")
+    private String productName;
+
     @Column(name = "PRODUCT_PRICE")
     private Integer productPrice;
 
@@ -101,14 +104,22 @@ public class OrderDetailVO extends Core {
         this.productTotalPrice = totalAmount;
     }
 
-    public OrderDetailVO(Integer orderId, Integer productId, Integer productPrice, Integer quantity, Integer productTotalPrice,ProductVO productVO,OrderVO orderVO) {
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public OrderDetailVO(Integer orderId, Integer productId, String productName, Integer productPrice, Integer quantity, Integer productTotalPrice, ProductVO productVO, OrderVO orderVO) {
         this.orderId = orderId;
         this.productId = productId;
+        this.productName=productName;
         this.productPrice = productPrice;
         this.quantity = quantity;
         this.productTotalPrice = productTotalPrice;
         this.productVO=productVO;
         this.orderVO=orderVO;
-
     }
 }

@@ -3,6 +3,7 @@ package tw.com.cha102.order.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tw.com.cha102.core.service.MailService;
 import tw.com.cha102.member.model.entity.Member;
 import tw.com.cha102.order.model.dao.OrderDao;
 import tw.com.cha102.order.model.dao.OrderDetailDao;
@@ -10,6 +11,8 @@ import tw.com.cha102.order.model.entity.OrderDetailVO;
 import tw.com.cha102.order.model.entity.OrderVO;
 import tw.com.cha102.order.service.OrderService;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -33,8 +36,27 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean toShipOrder(Integer orderId) {
         OrderVO orderVO = dao.selectById(orderId);
+        String recipientName = orderVO.getRecipientName();
+        Integer memberId = orderVO.getMemberId();
+        Member member = dao.selecMembertById(memberId);
+        String memberEmail = member.getMemberEmail();
+        SimpleDateFormat sdf= new SimpleDateFormat("yyyy/MM/dd");
+        String orderDate=sdf.format(new Date());
         if(orderVO.getOrderStatus()==((byte) 0)){
             orderVO.setOrderStatus((byte) 1);
+            String to = memberEmail;
+            String subject = "您的訂單已出貨";
+            String messageText = "親愛的客戶" + recipientName +"，\n\n";
+            messageText += "我們很高興通知您，您的訂單已經出貨。\n";
+            messageText += "收件人: " + recipientName + "\n";
+            messageText += "出貨日期: " + orderDate + "\n";
+            messageText += "訂單編號: EzDomOrder" + orderId + "\n";
+            messageText += "如果您有任何問題或需要進一步協助，請隨時聯繫我們。\n";
+            messageText += "感謝您的訂購！\n\n";
+            messageText += "祝您有一個愉快的購物體驗。\n";
+            MailService mailService = new MailService();
+            mailService.sendMail(to, subject, messageText);
+
         }else if(orderVO.getOrderStatus()==((byte) 1)){
             orderVO.setOrderStatus((byte) 2);
         }

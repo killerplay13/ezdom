@@ -18,4 +18,5 @@ public interface CoachList {
     Timestamp getCreateTime();
 
     String getNickname();
+    String getSkills();
 }

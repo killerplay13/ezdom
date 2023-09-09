@@ -12,13 +12,13 @@
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon and Touch Icons-->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicon/site.webmanifest">
-    <link rel="mask-icon" color="#6366f1" href="assets/favicon/safari-pinned-tab.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="../frontendshop/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../frontendshop/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../frontendshop/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../frontendshop/assets/favicon/site.webmanifest">
+    <link rel="mask-icon" color="#6366f1" href="../frontendshop/assets/favicon/safari-pinned-tab.svg">
     <meta name="msapplication-TileColor" content="#080032">
-    <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+    <meta name="msapplication-config" content="../frontendshop/assets/favicon/browserconfig.xml">
     <meta name="theme-color" content="white">
     <!-- Theme mode-->
     <script>
@@ -151,11 +151,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet" id="google-font">
     <!-- Vendor styles-->
-    <link rel="stylesheet" media="screen" href="assets/vendor/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" media="screen" href="assets/vendor/lightgallery/css/lightgallery-bundle.min.css" />
-    <link rel="stylesheet" media="screen" href="assets/vendor/fullcalendar/main.min.css" />
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/lightgallery/css/lightgallery-bundle.min.css" />
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/fullcalendar/main.min.css" />
     <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="assets/css/theme.min.css">
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
 </head>
 <!-- Body-->
 
@@ -264,7 +264,7 @@
                 </nav>
             </div>
         </header>
-        <!-- 頁首結束--> 
+        <!-- 頁首結束-->
         <!-- Page content-->
         <section class="container py-5 mt-5 mb-sm-2 mb-lg-3 mb-xl-4 mb-xxl-5">
             <!-- 小連結-->
@@ -286,8 +286,8 @@
                             <div class="col-md-6 mb-5 mb-md-0">
                                 <div class="card dark-mode border-0 bg-primary py-md-3 py-lg-4 px-lg-4 px-xl-5">
                                     <div class="card-body">
-                                        <h1 class="d-none d-md-inline-block pb-1 mb-2">走啊打球阿</h1>
-                                        <p class="fs-5 mb-4 mt-3">
+                                        <h1 class="d-none d-md-inline-block pb-1 mb-2" id="groupName">走啊打球阿</h1>
+                                        <p class="fs-5 mb-4 mt-3" id="groupContent">
                                             來參加我們的籃球賽吧！無論你是籃球新手還是老手，我們都歡迎你加入。我們將在陽光明媚的公園進行比賽，這將是一個享受運動、交朋友的絕佳機會。一起在球場上挥洒汗水，共同創造難忘的籃球時光吧！
                                         </p>
                                         <div class="d-none d-md-flex align-items-center pb-3 mb-3">
@@ -296,14 +296,14 @@
                                                 <path
                                                     d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z" />
                                             </svg>
-                                            <span class="ps-2">星期六,八月 12日 10:00(最後審核星期五,八月 11日 23:20)</span>
+                                            <span class="ps-2" id="groupDate">星期六,八月 12日 10:00(最後審核星期五,八月 11日 23:20)</span>
                                         </div>
                                         <div class="d-none d-md-flex align-items-center pb-3 mb-3">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 384 512">
                                                 <path
                                                     d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
                                             </svg>
-                                            <span class="ps-2">位置資訊</span>
+                                            <span class="ps-2" id="groupLocation">位置資訊</span>
                                         </div>
                                         <div class="d-none d-md-flex align-items-center pb-3 mb-3">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="2em"
@@ -311,7 +311,7 @@
                                                 <path
                                                     d="M320 96H192L144.6 24.9C137.5 14.2 145.1 0 157.9 0H354.1c12.8 0 20.4 14.2 13.3 24.9L320 96zM192 128H320c3.8 2.5 8.1 5.3 13 8.4C389.7 172.7 512 250.9 512 416c0 53-43 96-96 96H96c-53 0-96-43-96-96C0 250.9 122.3 172.7 179 136.4l0 0 0 0c4.8-3.1 9.2-5.9 13-8.4zm84 88c0-11-9-20-20-20s-20 9-20 20v14c-7.6 1.7-15.2 4.4-22.2 8.5c-13.9 8.3-25.9 22.8-25.8 43.9c.1 20.3 12 33.1 24.7 40.7c11 6.6 24.7 10.8 35.6 14l1.7 .5c12.6 3.8 21.8 6.8 28 10.7c5.1 3.2 5.8 5.4 5.9 8.2c.1 5-1.8 8-5.9 10.5c-5 3.1-12.9 5-21.4 4.7c-11.1-.4-21.5-3.9-35.1-8.5c-2.3-.8-4.7-1.6-7.2-2.4c-10.5-3.5-21.8 2.2-25.3 12.6s2.2 21.8 12.6 25.3c1.9 .6 4 1.3 6.1 2.1l0 0 0 0c8.3 2.9 17.9 6.2 28.2 8.4V424c0 11 9 20 20 20s20-9 20-20V410.2c8-1.7 16-4.5 23.2-9c14.3-8.9 25.1-24.1 24.8-45c-.3-20.3-11.7-33.4-24.6-41.6c-11.5-7.2-25.9-11.6-37.1-15l0 0-.7-.2c-12.8-3.9-21.9-6.7-28.3-10.5c-5.2-3.1-5.3-4.9-5.3-6.7c0-3.7 1.4-6.5 6.2-9.3c5.4-3.2 13.6-5.1 21.5-5c9.6 .1 20.2 2.2 31.2 5.2c10.7 2.8 21.6-3.5 24.5-14.2s-3.5-21.6-14.2-24.5c-6.5-1.7-13.7-3.4-21.1-4.7V216z" />
                                             </svg>
-                                            <span class="ps-2">女生我請、男生請我</span>
+                                            <span class="ps-2" id="groupDeposit">女生我請、男生請我</span>
                                         </div>
 
                                     </div>
@@ -357,21 +357,21 @@
 
 
         <!-- Vendor scripts: js libraries and plugins-->
-        <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-        <script src="assets/vendor/lightgallery/lightgallery.min.js"></script>
-        <script src="assets/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
-        <script src="assets/vendor/fullcalendar/main.min.js"></script>
+        <script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+        <script src="../frontendshop/assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="../frontendshop/assets/vendor/lightgallery/lightgallery.min.js"></script>
+        <script src="../frontendshop/assets/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+        <script src="../frontendshop/assets/vendor/fullcalendar/main.min.js"></script>
         <!-- Main theme script-->
-        <script src="assets/js/theme.min.js"></script>
+        <script src="../frontendshop/assets/js/theme.min.js"></script>
 
         <script>
             // 假设您从URL参数中获取groupId
             const urlParams = new URLSearchParams(window.location.search);
             const groupId = parseInt(urlParams.get("groupId"));
 
-            const g = document.getElementById("groupId");    
+            const g = document.getElementById("groupId");
             g.value = groupId;
 
 
@@ -386,16 +386,16 @@
             const formData = new FormData(form);
 
             // 发起异步请求
-            fetch('http://localhost:8080/ezdom/group/member', {
+            fetch('http://localhost:8080/ezdom/frontend/group/member', {
                 method: 'POST',
                 body: formData
             })
             .then(response => {
                 if (response.ok) {
                 // 请求成功，显示提示信息
-                alert('报名成功！');
+                alert('報名成功！');
                 // 跳转
-                window.location.href = '/grouplist.html';
+                window.location.href = '/ezdom/group/grouplist.html';
                 } else {
                 // 请求失败，获取错误信息
                     return response.json().then(errorData => {
@@ -406,10 +406,49 @@
                 }
             })
             .catch(error => {
-                console.error('发生错误:', error);
+                console.error('發生錯誤:', error);
                 alert(error);
             });
             });
+
+
+            function formatDateTime(dateTimeString) {
+                const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                return new Date(dateTimeString).toLocaleString('en-US', options);
+            }
+            function displayGroupInfo(groupData) {
+                // document.getElementById("groupPhoto").querySelector("img").src = groupData.groupPhoto || "default-photo.jpg";
+                // document.querySelector(".group-leader img").src = groupData.leaderImageUrl || "default-leader.jpg";
+                // document.querySelector(".group-leader .ps-2").textContent = groupData.leaderName || "團主名稱";
+                document.getElementById("groupName").textContent = groupData.groupName || "走啊打球阿";
+                document.getElementById("groupContent").textContent = groupData.groupContent || "";
+                document.getElementById("groupDate").textContent = formatDateTime(groupData.groupDate) || "" + ( `【最後截止日期: ${formatDateTime(groupData.endDate)}】` || "");
+                // document.getElementById("endDate").textContent =
+                // document.getElementById("groupTitle").textContent = groupData.groupTitle || "";
+                 document.getElementById("groupLocation").textContent = groupData.groupLocation || "位置資訊";
+                // document.getElementById("registeredNumber").textContent = `${groupData.registeredNumber}人/`;
+                // document.getElementById("limitNumber").textContent = groupData.limitNumber || "";
+                document.getElementById("groupDeposit").textContent = groupData.groupDeposit
+                    ? `預付訂金$${groupData.groupDeposit}`
+                    : "";
+                // document.getElementById("groupNotice").textContent = groupData.groupNotice || "揪團注意事項:";
+            }
+
+            function fetchGroupInfo(groupId) {
+                const apiUrl = `http://localhost:8080/ezdom/frontend/group/admin/${groupId}`; // 请替换成实际的API URL
+
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(groupData => {
+                        displayGroupInfo(groupData);
+                    })
+                    .catch(error => {
+                        console.error("Error fetching group data:", error);
+                    });
+            }
+
+            // 获取并显示对应groupId的组信息
+            fetchGroupInfo(groupId);
 
         </script>
 </body>

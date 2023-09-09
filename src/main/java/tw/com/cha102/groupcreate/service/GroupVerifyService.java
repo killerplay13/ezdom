@@ -15,4 +15,6 @@ public interface GroupVerifyService {
     GroupVerifyVO updateGroupApplyStatus(Integer groupMemberId, Integer newGroupApplyStatus);
 
     List<GroupVerifyVO> findGroupJoined(Integer memberId);
+
+    List<GroupVerifyVO> findGroupMember(Integer groupId);
 }

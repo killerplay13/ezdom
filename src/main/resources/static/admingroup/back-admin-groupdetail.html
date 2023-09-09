@@ -503,7 +503,7 @@
                 // 使用 fetch API 發送請求，獲取單筆揪團的詳細資訊
                 async function fetchGroupDetail() {
                     try {
-                        const response = await fetch(`http://localhost:8080/ezdom/group/admin/${groupId}`);
+                        const response = await fetch(`http://localhost:8080/ezdom/backend/group/admin/${groupId}`);
                         const groupDetail = await response.json();
 
                         // 將揪團詳細資訊填充到輸入框中
@@ -563,7 +563,7 @@
                     };
 
                     try {
-                        const response = await fetch(`http://localhost:8080/ezdom/group/admin/${groupId}`, {
+                        const response = await fetch(`http://localhost:8080/ezdom/backend/group/admin/${groupId}`, {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json'

@@ -1,10 +1,9 @@
 package tw.com.cha102.message.service;
 
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.Tuple;
+import redis.clients.jedis.*;
 
-import java.sql.Timestamp;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -22,7 +21,6 @@ public class JedisHandleMessage {
     }
 
     public static void saveChatMessage(String memberIdA, String memberIdB, String message){
-
         String senderKey = new StringBuilder(memberIdA).append(":").append(memberIdB).toString();
         String receiverKey = new StringBuilder(memberIdB).append(":").append(memberIdA).toString();
        Jedis jedis = pool.getResource();
@@ -31,6 +29,38 @@ public class JedisHandleMessage {
             logger.info("Chat message saved successfully.");
             jedis.close();
     }
+//      還不會動的已讀訊息
+//    public static void updateMessageStatus(String memberIdA, String memberIdB) {
+//        String senderKey = new StringBuilder(memberIdA).append(":").append(memberIdB).toString();
+//        String receiverKey = new StringBuilder(memberIdB).append(":").append(memberIdA).toString();
+//        try (Jedis jedis = pool.getResource()) {
+//
+//            Pipeline pipeline = jedis.pipelined();
+//            Response<String> senderValue = pipeline.get(senderKey);
+//            Response<String> receiverValue = pipeline.get(receiverKey);
+//            pipeline.sync();
+//
+//            String senderJsonValue = senderValue.get();
+//            String receiverJsonValue = receiverValue.get();
+//
+//            if (senderJsonValue != null) {
+//                JsonObject senderJsonObject = new JsonObject();
+//                senderJsonObject.addProperty("messageStatus", true);
+//                jedis.set(senderKey, senderJsonObject.toString());
+//            }
+//
+//            if (receiverJsonValue != null) {
+//                JsonObject receiverJsonObject = new JsonObject();
+//                receiverJsonObject.addProperty("messageStatus", true);
+//                jedis.set(receiverKey, receiverJsonObject.toString());
+//            }
+//            System.out.println("Updated messageStatus for both keys.");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+
     public static void saveGroupMessage(String groupId, String memberId, String message) {
         String zsetName = "groupId:memberId";
         Jedis jedis = pool.getResource();

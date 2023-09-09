@@ -2,9 +2,11 @@ package tw.com.cha102.product.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import tw.com.cha102.core.vo.Core;
+import tw.com.cha102.order.model.entity.OrderDetailVO;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "product",catalog ="cha102g4_test")
@@ -53,6 +55,9 @@ public class ProductVO extends Core {
     @ManyToOne // 指定多对一关系
     @JoinColumn(name = "CATEGORY_ID",insertable=false ,updatable = false) // 指定外键列
     private CategoryVO category;
+
+    @OneToMany(mappedBy = "productVO")
+    private List<OrderDetailVO> orderDetailVOS;
 
     public ProductVO() {
 

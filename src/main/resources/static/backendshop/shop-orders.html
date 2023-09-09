@@ -504,8 +504,6 @@
 
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-<!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
@@ -560,8 +558,19 @@
 
     function orderRenew() {
         let statusValue = parseInt(orderStatus.value);
-        fetch(`http://localhost:8080/ezdom/oredr/get/${statusValue}`)
-            .then(resp => resp.json())
+        fetch(`http://localhost:8080/ezdom/backend/oredr/get/${statusValue}`)
+            .then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登录页面 登入失敗
+                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                    }else if(response.ok){
+                        //登入成功
+                        return response.json();
+                    }else{
+                        alert("錯誤狀態" + response.status);
+                        return;
+                    }
+                })
             .then(body => {
                 // 清除现有数据
                 $('#example').DataTable().clear().draw();
@@ -680,8 +689,19 @@
 
     //商品明細跳框
     function productDetail(orderId) {
-    fetch(`http://localhost:8080/ezdom/oredr/product?orderId=${orderId}`)
-    .then(resp => resp.json())
+    fetch(`http://localhost:8080/ezdom/backend/oredr/product?orderId=${orderId}`)
+    .then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登录页面 登入失敗
+                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                    }else if(response.ok){
+                        //登入成功
+                        return response.json();
+                    }else{
+                        alert("錯誤狀態" + response.status);
+                        return;
+                    }
+                })
     .then(body => {
         let { note, orderDetailVOs } = body;
         let tableContent = '<table class="custom-table"><tr><th>項目</th><th>單入價格</th><th>購買數量</th></tr>';
@@ -708,10 +728,21 @@
 
     //出貨按鈕
     function ship(orderId){
-        fetch(`http://localhost:8080/ezdom/oredr/ship/${orderId}`,{
+        fetch(`http://localhost:8080/ezdom/backend/oredr/ship/${orderId}`,{
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' }
-        }).then(resp => resp.json())
+        }).then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登录页面 登入失敗
+                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                    }else if(response.ok){
+                        //登入成功
+                        return response.json();
+                    }else{
+                        alert("錯誤狀態" + response.status);
+                        return;
+                    }
+                })
         .then(body => {
             const { successful, message } = body;
             if (successful) {
@@ -734,6 +765,8 @@
             }
         })
     }
+
+
     //進入刷新
     window.onload = orderRenew;
     //狀態改變刷新

@@ -374,17 +374,19 @@
               </svg>
               <span id="groupLocation" class="ps-2">位置資訊</span>
             </div>
-            <div class="d-none d-md-flex align-items-center pb-3 mb-3">
+            <div class="d-none d-md-flex align-items-center pb-3 mb-3" id="member-avatar">
               <svg xmlns="http://www.w3.org/2000/svg" height="2em"
                 viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                 <path
                   d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
               </svg>
               <span id="registeredNumber" class="ps-2">0人/</span>
-              <div id="limitNumber" class="capacity-value">50</div>
-              <div class="member-avatar">
-                <img src="https://pic4.zhimg.com/80/v2-33211227f196223db1ad4bd7585993c7_1440w.webp" alt="Member Avatar">
-              </div>
+              <div id="limitNumber"  class="capacity-value">50</div>
+
+
+              <!--<div class="member-avatar" >-->
+              <!--  <img src="https://pic4.zhimg.com/80/v2-33211227f196223db1ad4bd7585993c7_1440w.webp" alt="Member Avatar">-->
+              <!--</div>-->
             </div>
             <div class="d-none d-md-flex align-items-center pb-3 mb-3">
               <svg xmlns="http://www.w3.org/2000/svg" height="2em"
@@ -424,26 +426,57 @@
         const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
         return new Date(dateTimeString).toLocaleString('en-US', options);
       }
+
       function displayGroupInfo(groupData) {
-        document.getElementById("groupPhoto").querySelector("img").src = groupData.groupPhoto || "default-photo.jpg";
-        document.querySelector(".group-leader img").src = groupData.leaderImageUrl || "default-leader.jpg";
-        document.querySelector(".group-leader .ps-2").textContent = groupData.leaderName || "團主名稱";
-        document.getElementById("groupName").textContent = groupData.groupName || "走啊打球阿";
-        document.getElementById("groupContent").textContent = groupData.groupContent || "";
-        document.getElementById("groupDate").textContent = formatDateTime(groupData.groupDate) || "";
-        document.getElementById("endDate").textContent = `【最後截止日期: ${formatDateTime(groupData.endDate)}】` || "";
-        document.getElementById("groupTitle").textContent = groupData.groupTitle || "";
-        document.getElementById("groupLocation").textContent = groupData.groupLocation || "位置資訊";
-        document.getElementById("registeredNumber").textContent = `${groupData.registeredNumber}人/`;
-        document.getElementById("limitNumber").textContent = groupData.limitNumber || "";
-        document.getElementById("groupDeposit").textContent = groupData.groupDeposit
-          ? `預付訂金$${groupData.groupDeposit}`
-          : "";
-        document.getElementById("groupNotice").textContent = groupData.groupNotice || "揪團注意事項:";
+        // 获取图片元素
+        const groupPhotoElement = document.querySelector("#groupPhoto img");
+
+// 根据后端返回的 groupPhoto 属性来设置图片的 src
+        if (groupData.groupPhoto) {
+          groupPhotoElement.src = `data:image/jpg;base64,${groupData.groupPhoto}`;
+        } else {
+          // 如果 groupPhoto 属性不存在或为空，使用默认图片URL
+          groupPhotoElement.src = "default-photo.jpg";
+        }
+
+        // 获取其他元素并设置内容
+        const groupLeaderImage = document.querySelector(".group-leader img");
+        const groupLeaderName = document.querySelector(".group-leader .ps-2");
+        const groupName = document.getElementById("groupName");
+        const groupContent = document.getElementById("groupContent");
+        const groupDate = document.getElementById("groupDate");
+        const endDate = document.getElementById("endDate");
+        const groupTitle = document.getElementById("groupTitle");
+        const groupLocation = document.getElementById("groupLocation");
+        const registeredNumber = document.getElementById("registeredNumber");
+        const limitNumber = document.getElementById("limitNumber");
+        const groupDeposit = document.getElementById("groupDeposit");
+        const groupNotice = document.getElementById("groupNotice");
+
+        // 设置其他元素的内容
+        groupLeaderImage.src = groupData.leaderImageUrl || "default-leader.jpg";
+        groupLeaderName.textContent = groupData.leaderName || "團主名稱";
+        groupName.textContent = groupData.groupName || "走啊打球阿";
+        groupContent.textContent = groupData.groupContent || "";
+        groupDate.textContent = formatDateTime(groupData.groupDate) || "";
+        endDate.textContent = `【最後截止日期: ${formatDateTime(groupData.endDate)}】` || "";
+        groupTitle.textContent = groupData.groupTitle || "";
+        groupLocation.textContent = groupData.groupLocation || "位置資訊";
+        registeredNumber.textContent = `${groupData.registeredNumber}人/`;
+        limitNumber.textContent = groupData.limitNumber || "";
+        groupDeposit.textContent = groupData.groupDeposit
+                ? `預付訂金$${groupData.groupDeposit}`
+                : "";
+        groupNotice.textContent = groupData.groupNotice || "揪團注意事項:";
+
+        // 将图像元素添加到适当位置
+        const groupPhotoContainer = document.getElementById("groupPhoto");
+        groupPhotoContainer.innerHTML = ''; // 清空容器
+        groupPhotoContainer.appendChild(groupPhotoElement);
       }
- 
+
       function fetchGroupInfo(groupId) {
-        const apiUrl = `http://localhost:8080/ezdom/group/admin/${groupId}`; // 请替换成实际的API URL
+        const apiUrl = `http://localhost:8080/ezdom/frontend/group/admin/${groupId}`;
 
         fetch(apiUrl)
           .then(response => response.json())
@@ -465,8 +498,10 @@
       // 获取并显示对应groupCollect
       getGroupCollect(groupId);
 
+      getMembers();
+
       function getGroupCollect() {
-        const apiUrl = `http://localhost:8080/ezdom/group/collect/${groupId}`; // 请替换成实际的API URL
+        const apiUrl = `http://localhost:8080/ezdom/frontend/group/collect/${groupId}`;
 
 
 
@@ -489,11 +524,39 @@
           });
       }
 
+      function getMembers() {
+        const apiUrl = `http://localhost:8080/ezdom/frontend/group/applied/list/${groupId}`;
+        const memberAvatar = document.getElementById("member-avatar");
+
+        fetch(apiUrl)
+                .then(response => response.json())
+                .then((members) => {
+                  console.log(members);
+
+                  let html = "";
+                  for (let i = 0; i < members.length; i++) {
+                    html += '<div class="member-avatar" >'
+                    html +=   '<img src="' + 'data:image/jpeg;base64,' + members[i].memberPhoto + '" alt="Member Avatar">'
+                    html += '</div>'
+
+                    let newDiv = document.createElement("div");
+                    let newImg = document.createElement("img");
+                    newImg.src = 'data:image/jpeg;base64,' + members[i].memberPhoto;
+                    newImg.alt = "Image " + (i);
+                    newDiv.appendChild(newImg);
+                    memberAvatar.appendChild(newDiv);
+                  }
+                })
+                .catch(error => {
+                  console.error("Error fetching group collect:", error);
+                });
+      }
+
       function addFavorites() {
-        const apiUrl = `http://localhost:8080/ezdom/group/collect/${groupId}`; // 请替换成实际的API URL
+        const apiUrl = `http://localhost:8080/ezdom/frontend/group/collect/${groupId}`;
 
         const options = {
-          method: 'POST', // 设置请求方法，默认为 'GET'
+          method: 'POST',
         };
 
         const heart = document.getElementById("heart");
@@ -510,7 +573,7 @@
       }
 
       function delFavorites() {
-        const apiUrl = `http://localhost:8080/ezdom/group/collect/${groupId}`; // 请替换成实际的API URL
+        const apiUrl = `http://localhost:8080/ezdom/frontend/group/collect/${groupId}`; // 请替换成实际的API URL
 
         const options = {
           method: 'DELETE'

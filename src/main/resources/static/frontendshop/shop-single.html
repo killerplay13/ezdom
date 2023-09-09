@@ -189,42 +189,12 @@
             <button class="btn-close position-absolute top-50 end-0 translate-middle-y m-0 me-n1" type="reset"
                     data-bs-dismiss="modal"></button><i
                   class="ai-search fs-xl position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-            <input class="form-control form-control-lg px-5" type="search" placeholder="Type to search"
-                   data-focus-on-open="[&quot;modal&quot;, &quot;#searchModal&quot;]">
+            <input onchange="triggerInquire(this.value)" class="form-control form-control-lg px-5" type="text"
+                   placeholder="輸入搜尋" data-focus-on-open="[&quot;modal&quot;, &quot;#searchModal&quot;]">
           </form>
-          <div class="fs-xs fw-medium text-muted text-uppercase">Suggestions</div>
+          <div class="fs-xs fw-medium text-muted text-uppercase">搜尋</div>
         </div>
-        <div class="modal-body pt-3">
-          <div class="d-flex align-items-center border-bottom pb-4 mb-4"><a
-                  class="position-relative d-inline-block flex-shrink-0 bg-secondary rounded-1"
-                  href="shop-single.html"><span
-                  class="badge bg-success position-absolute top-0 start-100 translate-middle ms-n1">Shop</span><img
-                  src="assets/img/shop/cart/01.png" width="90" alt="Product"></a>
-            <div class="ps-3">
-              <h4 class="h6 mb-2"><a href="shop-single.html">Candle in concrete bowl</a></h4><span
-                    class="mb-0 me-2">$11.00</span>
-              <del class="fs-sm text-muted ms-auto">$15.00</del>
-            </div>
-          </div>
-          <div class="d-flex align-items-center border-bottom pb-4 mb-4"><a
-                  class="position-relative d-inline-block flex-shrink-0" href="#"><span
-                  class="badge bg-info position-absolute top-0 start-100 translate-middle ms-n1">Blog</span><img
-                  class="rounded-1" src="assets/img/landing/shop/instagram/02.jpg" width="90" alt="Post"></a>
-            <div class="ps-3">
-              <h4 class="h6 mb-0"><a href="#">Bedroom decoration explained. Tips &amp; tricks from the field
-                experts.</a></h4>
-            </div>
-          </div>
-          <div class="d-flex align-items-center"><a
-                  class="position-relative d-inline-block flex-shrink-0 bg-secondary rounded-1"
-                  href="shop-single.html"><span
-                  class="badge bg-success position-absolute top-0 start-100 translate-middle ms-n1">Shop</span><img
-                  src="assets/img/shop/cart/02.png" width="90" alt="Product"></a>
-            <div class="ps-3">
-              <h4 class="h6 mb-2"><a href="shop-single.html">Exquisite glass vase</a></h4><span
-                    class="mb-0 me-2">$23.00</span>
-            </div>
-          </div>
+        <div id="productInquery" class="modal-body pt-3">
         </div>
       </div>
     </div>
@@ -266,12 +236,13 @@
                     d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
               </path>
             </svg></span><span class="d-none d-sm-inline">Around</span></a>
-      <div class="nav align-items-center order-lg-3 ms-n1 me-3 me-sm-0"><a class="nav-link fs-4 p-2 mx-sm-1"
-                                                                           href="#searchModal" data-bs-toggle="modal"><i class="ai-search"></i></a><a
+      <div class="nav align-items-center order-lg-3 ms-n1 me-3 me-sm-0"><a onclick="triggerClick()"
+                                                                           class="nav-link fs-4 p-2 mx-sm-1" href="#searchModal" data-bs-toggle="modal"><i class="ai-search"></i></a><a
               class="nav-link fs-4 p-2 mx-sm-1 d-none d-sm-flex" href="account-signin.html"><i class="ai-user"></i></a><a
-              class="nav-link position-relative fs-4 p-2" href="#cartOffcanvas" onclick="showCart()" data-bs-toggle="offcanvas"><i
-              class="ai-cart"></i><span id="badgeElement" class="badge bg-primary fs-xs position-absolute end-0 top-0 me-n1"
-                                        style="padding: .25rem .375rem;">3</span></a>
+              class="nav-link position-relative fs-4 p-2" href="#cartOffcanvas" onclick="showCart()"
+              data-bs-toggle="offcanvas"><i class="ai-cart"></i><span id="badgeElement"
+                                                                      class="badge bg-primary fs-xs position-absolute end-0 top-0 me-n1"
+                                                                      style="padding: .25rem .375rem;">3</span></a>
       </div>
       <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
               class="navbar-toggler-icon"></span></button>
@@ -426,7 +397,7 @@
     <!-- Dscription section #1-->
     <section class="container pb-4 pb-md-5 mb-lg-4">
       <div class="bg-size-cover bg-repeat-0 bg-position-center rounded-1 mb-md-2 py-xl-4 py-xxl-5"
-           style="background-image: url(dom.jpg);">
+           style="background-image: url('./image/dom.jpg');">
         <div class="row py-lg-5">
           <div class="col-md-8 offset-md-3 col-lg-6 offset-lg-5 col-xl-5 offset-xl-6 py-5">
             <div class="bg-light rounded-1 mx-4 p-4 p-md-5">
@@ -448,7 +419,7 @@
   <!-- Relevant products carousel-->
   <section class="container pb-5 mb-lg-3 mb-xl-4 mb-xxl-5">
     <div class="d-flex align-items-center justify-content-between pb-4 mb-2 mb-md-3">
-      <h2 class="h1 pt-1 mb-0">曾經瀏覽</h2>
+      <h2 class="h1 pt-1 mb-0">你可能會喜歡~~</h2>
       <!-- Slider prev/next buttons-->
       <div class="d-flex">
         <button class="btn btn-prev btn-icon btn-sm btn-outline-primary rounded-circle ms-3" type="button"
@@ -461,7 +432,7 @@
     <div class="swiper pb-sm-2 pb-md-3" data-swiper-options="{
       &quot;slidesPerView&quot;: 1,
       &quot;spaceBetween&quot;: 24,
-      &quot;loop&quot;: true,
+      &quot;loop&quot;: false,
       &quot;navigation&quot;: {
         &quot;prevEl&quot;: &quot;#relevant-prev&quot;,
         &quot;nextEl&quot;: &quot;#relevant-next&quot;
@@ -477,70 +448,8 @@
           &quot;slidesPerView&quot;: 4
         }
       }
-    }">
-      <div class="swiper-wrapper">
-        <!-- Item-->
-        <div class="swiper-slide">
-          <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4"><span
-                  class="badge bg-faded-danger text-danger position-absolute top-0 start-0 mt-3 ms-3">Sale</span>
-            <button
-                    class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
-                    type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
-                    class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button><a class="d-block p-2 p-xl-4"
-                                                                                             href="shop-single.html"><img class="d-block mx-auto" src="assets/img/shop/products/01.png" width="226"
-                                                                                                                          alt="Product"></a>
-          </div>
-          <div class="d-flex mb-1">
-            <h3 class="h6 mb-0"><a href="shop-single.html">Loft style lamp</a></h3>
-            <div class="d-flex ps-2 mt-n1 ms-auto">
-              <div class="ms-1">
-                <input class="btn-check" type="radio" name="color1" value="Dark gray" checked id="color1-1">
-                <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle" for="color1-1"><span
-                        class="d-block rounded-circle"
-                        style="width: .625rem; height: .625rem; background-color: #576071;"></span></label>
-              </div>
-              <div class="ms-1">
-                <input class="btn-check" type="radio" name="color1" value="Light gray" id="color1-2">
-                <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle" for="color1-2"><span
-                        class="d-block rounded-circle"
-                        style="width: .625rem; height: .625rem; background-color: #d5d4d3;"></span></label>
-              </div>
-              <div class="ms-1">
-                <input class="btn-check" type="radio" name="color1" value="Blue" id="color1-3">
-                <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle" for="color1-3"><span
-                        class="d-block rounded-circle"
-                        style="width: .625rem; height: .625rem; background-color: #a1b7d9;"></span></label>
-              </div>
-            </div>
-          </div>
-          <div class="d-flex align-items-center"><span class="me-2">$21.00</span>
-            <del class="fs-sm text-muted">$35.00</del>
-            <div class="nav ms-auto" data-bs-toggle="tooltip"
-                 data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
-                 data-bs-placement="left" title="Add to cart"><a class="nav-link fs-lg py-2 px-1" href="#"><i
-                    class="ai-cart"></i></a></div>
-          </div>
-        </div>
-        <!-- Item-->
-        <div class="swiper-slide">
-          <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4">
-            <button
-                    class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
-                    type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
-                    class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button><a class="d-block p-2 p-xl-4"
-                                                                                             href="shop-single.html"><img class="d-block mx-auto" src="assets/img/shop/products/02.png" width="226"
-                                                                                                                          alt="Product"></a>
-          </div>
-          <div class="d-flex mb-1">
-            <h3 class="h6 mb-0"><a href="shop-single.html">Dispenser for soap</a></h3>
-          </div>
-          <div class="d-flex align-items-center"><span class="me-2">$16.00</span>
-            <div class="nav ms-auto" data-bs-toggle="tooltip"
-                 data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
-                 data-bs-placement="left" title="Add to cart"><a class="nav-link fs-lg py-2 px-1" href="#"><i
-                    class="ai-cart"></i></a></div>
-          </div>
-        </div>
+      }">
+      <div id="productRecommend" class="swiper-wrapper">
         <!-- Item-->
         <div class="swiper-slide">
           <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4"><span
@@ -555,24 +464,6 @@
           <div class="d-flex mb-1">
             <h3 class="h6 mb-0"><a href="shop-single.html">Glossy round vase</a></h3>
             <div class="d-flex ps-2 mt-n1 ms-auto">
-              <div class="ms-1">
-                <input class="btn-check" type="radio" name="color2" value="Light gray" checked id="color2-1">
-                <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle" for="color2-1"><span
-                        class="d-block rounded-circle"
-                        style="width: .625rem; height: .625rem; background-color: #d5d4d3;"></span></label>
-              </div>
-              <div class="ms-1">
-                <input class="btn-check" type="radio" name="color2" value="Dark gray" id="color2-2">
-                <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle" for="color2-2"><span
-                        class="d-block rounded-circle"
-                        style="width: .625rem; height: .625rem; background-color: #576071;"></span></label>
-              </div>
-              <div class="ms-1">
-                <input class="btn-check" type="radio" name="color2" value="Blue" id="color2-3">
-                <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle" for="color2-3"><span
-                        class="d-block rounded-circle"
-                        style="width: .625rem; height: .625rem; background-color: #a1b7d9;"></span></label>
-              </div>
             </div>
           </div>
           <div class="d-flex align-items-center"><span class="me-2">$11.00</span>
@@ -598,26 +489,6 @@
             <h3 class="h6 mb-0"><a href="shop-single.html">Scented candle</a></h3>
           </div>
           <div class="d-flex align-items-center"><span class="me-2">$13.00</span>
-            <div class="nav ms-auto" data-bs-toggle="tooltip"
-                 data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
-                 data-bs-placement="left" title="Add to cart"><a class="nav-link fs-lg py-2 px-1" href="#"><i
-                    class="ai-cart"></i></a></div>
-          </div>
-        </div>
-        <!-- Item-->
-        <div class="swiper-slide">
-          <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4">
-            <button
-                    class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
-                    type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
-                    class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button><a class="d-block p-2 p-xl-4"
-                                                                                             href="shop-single.html"><img class="d-block mx-auto" src="assets/img/shop/products/06.png" width="226"
-                                                                                                                          alt="Product"></a>
-          </div>
-          <div class="d-flex mb-1">
-            <h3 class="h6 mb-0"><a href="shop-single.html">Living room table</a></h3>
-          </div>
-          <div class="d-flex align-items-center"><span class="me-2">$46.00</span>
             <div class="nav ms-auto" data-bs-toggle="tooltip"
                  data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
                  data-bs-placement="left" title="Add to cart"><a class="nav-link fs-lg py-2 px-1" href="#"><i
@@ -714,9 +585,19 @@
   function findProductContent() {
     let productContent = document.getElementById("productContent");
     let html = "";
-    fetch(`http://localhost:8080/ezdom/product/content/${productId}`)
-      .then(resp => resp.json())
-      .then(body => {
+    fetch(`http://localhost:8080/ezdom/frontend/product/content/${productId}`)
+      .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
         let { productId, productName, productDescription, productOriginPrice, productDiscountPrice, productImage } = body;
         html = `
         <section class="container py-5 mt-5 mb-sm-2 mb-lg-3 mb-xl-4 mb-xxl-5">
@@ -854,51 +735,81 @@
   }
 
 
-     let memberId = 1;
-//加入購物車  單一數量
-function addCart(productId) {
-let quantity =1;
-fetch(`http://localhost:8080/ezdom/carts/add?memberId=${memberId}&productId=${productId}&quantity=${quantity}`,{
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-}).then(resp => resp.text())
-  .then(body => {
-    Swal.fire({
-        icon: 'success',
-        title: '新增成功',
-        text: '商品已加入購物車！',
-        confirmButtonText: '確定',
-        focusConfirm: true
-      });
-    showCart();
-  })
-}
-//加入複數個商品 購物車
-function addCarts(productId) {
-let quantity = $("input#productValue").val();
-fetch(`http://localhost:8080/ezdom/carts/add?memberId=${memberId}&productId=${productId}&quantity=${quantity}`,{
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-}).then(resp => resp.text())
-  .then(body => {
-    Swal.fire({
-        icon: 'success',
-        title: '新增成功',
-        text: '商品已加入購物車！',
-        confirmButtonText: '確定',
-        focusConfirm: true
-      });
-    showCart();
-  })
-}
-//商品刪除
-function reduceCart(productId) {
-    fetch(`http://localhost:8080/ezdom/carts/reduce?memberId=${memberId}&productId=${productId}`, {
+
+  //加入購物車  單一數量
+  function addCart(productId) {
+    let quantity = 1;
+    fetch(`http://localhost:8080/ezdom/frontend/carts/add?productId=${productId}&quantity=${quantity}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-    }).then(resp => resp.json())
-      .then(body => {
-        let {message}=body;
+    }).then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.text();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
+        Swal.fire({
+          icon: 'success',
+          title: '新增成功',
+          text: '商品已加入購物車！',
+          confirmButtonText: '確定',
+          focusConfirm: true
+        });
+        showCart();
+      })
+  }
+  //加入複數個商品 購物車
+  function addCarts(productId) {
+    let quantity = $("input#productValue").val();
+    fetch(`http://localhost:8080/ezdom/frontend/carts/add?productId=${productId}&quantity=${quantity}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    }).then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.text();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
+        Swal.fire({
+          icon: 'success',
+          title: '新增成功',
+          text: '商品已加入購物車！',
+          confirmButtonText: '確定',
+          focusConfirm: true
+        });
+        showCart();
+      })
+  }
+  //商品刪除
+  function reduceCart(productId) {
+    fetch(`http://localhost:8080/ezdom/frontend/carts/reduce?productId=${productId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    }).then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
+        let { message } = body;
         Swal.fire({
           icon: 'success',
           title: '操作成功',
@@ -910,26 +821,36 @@ function reduceCart(productId) {
       })
   }
 
-//購物車列表
-let cartBody=document.getElementById("cartBody");
-let canvas=document.getElementById("canvas");
-let totalPrice=document.getElementById("totalPrice");
-const badgeElement = document.getElementById("badgeElement");
-function showCart(){
-fetch(`http://localhost:8080/ezdom/carts/list/${memberId}`)
-.then(resp=> resp.json())
-.then(body=>{
-  let{cartTotalPrice,cartTotalQuantity,cartProductVoList}=body;
-  let html="";
-  let canvashtml="";
-  let totalPricehtml="";
-  totalPricehtml=`
+  //購物車列表
+  let cartBody = document.getElementById("cartBody");
+  let canvas = document.getElementById("canvas");
+  let totalPrice = document.getElementById("totalPrice");
+  const badgeElement = document.getElementById("badgeElement");
+  function showCart() {
+    fetch(`http://localhost:8080/ezdom/frontend/carts/list`)
+      .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
+        let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
+        let html = "";
+        let canvashtml = "";
+        let totalPricehtml = "";
+        totalPricehtml = `
   <div class="d-sm-flex align-items-center border-top pt-4">
         <div style="padding-left: 60%;" class="d-flex align-items-center justify-content-center"><span
             style="width: 80px;" class="fs-xl me-3">總計:</span><span class="h3 mb-0">$${cartTotalPrice}</span></div>
   </div>
   `;
-  canvashtml=`
+        canvashtml = `
   <div class="d-flex justify-content-between align-items-center border-bottom pb-3 pb-sm-4">
         <h2 class="offcanvas-title d-flex align-items-center mb-1">購物車 <span
             class="fs-base fw-normal text-muted ms-3">(購物車商品總數:${cartTotalQuantity}個)</span></h2>
@@ -937,9 +858,9 @@ fetch(`http://localhost:8080/ezdom/carts/list/${memberId}`)
           data-bs-target="#cartOffcanvas"></button>
       </div>
   `;
-  for(let cartProductVo of cartProductVoList){
-    let{productId,quantity,productName,productMainImage,productPrice,productStatus}=cartProductVo;
-    html+=`
+        for (let cartProductVo of cartProductVoList) {
+          let { productId, quantity, productName, productMainImage, productPrice, productStatus } = cartProductVo;
+          html += `
     <div class="d-sm-flex align-items-center border-top py-4"><a
           class="d-inline-block flex-shrink-0 bg-secondary rounded-1 p-sm-2 p-md-3 mb-2 mb-sm-0"
           href="shop-single.html?productId=${productId}"><img src="data:image/jpeg;base64,${productMainImage}" width="110" alt="Product"></a>
@@ -958,23 +879,23 @@ fetch(`http://localhost:8080/ezdom/carts/list/${memberId}`)
             <button class="btn btn-icon fs-xl" type="button" data-increment onclick="addCart(${productId})">+</button>
           </div>
           <div class="nav justify-content-end mt-n5 mt-sm-n3"><a class="nav-link fs-xl p-2" href="#"
-              data-bs-toggle="tooltip" title="Remove" onclick="deleteCartProduct(${productId},1)"><i class="ai-trash"></i></a></div>
+              data-bs-toggle="tooltip" title="Remove" onclick="deleteCartProduct(${productId})"><i class="ai-trash"></i></a></div>
         </div>
       </div>
     `;
+        }
+        //商品內容
+        cartBody.innerHTML = html;
+        //購物車title
+        canvas.innerHTML = canvashtml;
+        //購物車總價
+        totalPrice.innerHTML = totalPricehtml;
+        //購物車外部數量
+        badgeElement.textContent = cartTotalQuantity;
+      })
   }
-  //商品內容
-  cartBody.innerHTML=html;
-  //購物車title
-  canvas.innerHTML=canvashtml;
-  //購物車總價
-  totalPrice.innerHTML=totalPricehtml;
-  //購物車外部數量
-  badgeElement.textContent =cartTotalQuantity;
-})
-}
 
-function deleteCartProduct(productId, memberId) {
+  function deleteCartProduct(productId) {
     Swal.fire({
       icon: 'question',
       title: '確認',
@@ -984,15 +905,24 @@ function deleteCartProduct(productId, memberId) {
       cancelButtonText: '取消'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:8080/ezdom/carts/delete/${memberId}/${productId}`, {
+        fetch(`http://localhost:8080/ezdom/frontend/carts/delete/${productId}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json'
             // Add other headers if needed
           }
-        })
-          .then(resp => resp.json())
-          .then(body => {
+        }).then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
             let { successful, message } = body;
             if (successful) {
               showCart();
@@ -1008,7 +938,133 @@ function deleteCartProduct(productId, memberId) {
       }
     })
   }
-  showCart()
+
+  let productRecommend = document.getElementById("productRecommend");
+  function recommend() {
+    fetch(`http://localhost:8080/ezdom/frontend/product/rand`)
+      .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
+        let html = "";
+        let i = 0;
+        for (let list of body) {
+          let { productId, productName, productOriginPrice, productDiscountPrice, productImage } = list;
+          if (i % 2 == 0) {
+            html += `
+          <div class="swiper-slide">
+            <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4" ><span
+                class="badge bg-faded-danger text-danger position-absolute top-0 start-0 mt-3 ms-3">特價</span>
+              <button
+                class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
+                type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
+                  class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button><a style="min-height:250px;" class="d-block p-2 p-xl-4"
+                href="shop-single.html?productId=${productId}"><img style="max-height:180px" class="d-block mx-auto" src="data:image/jpeg;base64,${productImage}" width="226"
+                  alt="Product"></a>
+            </div>
+            <div class="d-flex mb-1">
+              <h3 class="h6 mb-0"><a href="shop-single.html?productId=${productId}">${productName}</a></h3>
+              <div class="d-flex ps-2 mt-n1 ms-auto">
+              </div>
+            </div>
+            <div class="d-flex align-items-center"><span class="me-2">$${productDiscountPrice}</span>
+              <del class="fs-sm text-muted">$${productOriginPrice}</del>
+              <div class="nav ms-auto" data-bs-toggle="tooltip"
+                data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
+                data-bs-placement="left" title="Add to cart"><a onclick="addCart(${productId})" class="nav-link fs-lg py-2 px-1" style="cursor:pointer"><i
+                    class="ai-cart"></i></a></div>
+            </div>
+          </div>
+            `;
+            i++;
+          }else {
+            html+=`
+            <div class="swiper-slide">
+              <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4" ><span
+                  class="badge bg-faded-primary text-primary position-absolute top-0 start-0 mt-3 ms-3">${Math.random() < 0.5 ? '熱賣' : '新品'}</span>
+                <button
+                  class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
+                  type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
+                    class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button><a style="min-height:250px;" class="d-block p-2 p-xl-4"
+                  href="shop-single.html?productId=${productId}"><img style="max-height:180px" class="d-block mx-auto" src="data:image/jpeg;base64,${productImage}" width="226"
+                    alt="Product"></a>
+              </div>
+              <div class="d-flex mb-1">
+                <h3 class="h6 mb-0"><a href="shop-single.html?productId=${productId}">${productName}</a></h3>
+              </div>
+              <div class="d-flex align-items-center"><span class="me-2">$${productDiscountPrice}</span>
+                <div class="nav ms-auto" data-bs-toggle="tooltip"
+                  data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
+                  data-bs-placement="left" title="Add to cart"><a onclick="addCart(${productId})" class="nav-link fs-lg py-2 px-1"style="cursor:pointer"><i
+                      class="ai-cart"></i></a></div>
+              </div>
+            </div>
+            `;
+            i++
+          }
+        }
+        productRecommend.innerHTML=html;
+      })
+  }
+
+  //點搜尋介面 蒐集全部上架商品
+  function triggerClick() {
+    fetch(`http://localhost:8080/ezdom/frontend/product/get`)
+      .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          }
+        }).catch(error => {
+        console.error('發生錯誤：', error);
+      });
+  }
+  let productInquery=document.getElementById("productInquery");
+  //依照文字去抓取相對應的商品
+  function triggerInquire(inputValue) {
+    fetch(`http://localhost:8080/ezdom/frontend/product/find?name=${inputValue}`)
+    .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body=>{
+      let html="";
+      for (let list of body){
+        let{productId,productName,productOriginPrice,productDiscountPrice,productImage}=list;
+        html+=`
+        <div class="d-flex align-items-center border-bottom pb-4 mb-4"><a
+              class="position-relative d-inline-block flex-shrink-0 bg-secondary rounded-1"
+              href="shop-single.html?productId=${productId}"><span
+                class="badge bg-success position-absolute top-0 start-100 translate-middle ms-n1">Shop</span><img
+                src="data:image/jpeg;base64,${productImage}" width="90" alt="Product"></a>
+            <div class="ps-3">
+              <h4 class="h6 mb-2"><a href="shop-single.html?productId=${productId}">${productName}</a></h4><span
+                class="mb-0 me-2">$${productDiscountPrice}</span>
+              <del class="fs-sm text-muted ms-auto">$${productOriginPrice}</del>
+            </div>
+          </div>
+        `;
+      }
+      productInquery.innerHTML=html;
+    })
+  }
+  recommend();
+  showCart();
   findProductContent();
 </script>
 </body>

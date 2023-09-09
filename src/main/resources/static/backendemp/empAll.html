@@ -516,13 +516,7 @@
                         .then(data => {
                             // 清空表格内容
                             employeeTable.clear().draw();
-                            // console.log(data);
-                            // for(var i = 0; i <=data.length; i++ ){
-                            //     var employee = data[i];
-                            //     console.log(employee.employeeId);
-                            // }
 
-                            // 使用 jQuery 构建 HTML 并添加到表格中
                             data.forEach(employee => {
                                 let status;
                                 if(employee.employeeStatus = 1){
@@ -558,99 +552,7 @@
                 getAllEmployees();
 
 
-                // ====送資料去編輯====
-                // $('#dataTable1').on('click', '.btn-outline-info', function() {
-                //     fetch('http://localhost:8080/ezdom/employee/all')
-                //         .then(resp => resp.json())
-                //         .then(data => {
-                //             // console.log(data);
-                //             var row = $(this).closest('tr');
-                //             var employeeId = row.find('td:eq(0)').text();
-                //             var targetEmployeeId = employeeId;
-                //             for(var i = 0; i <=data.length; i++ ){
-                //                 var employee = data[i];
-                //                 // console.log(employee);
-                //                 if (employee.employeeId === targetEmployeeId) {
-                //                     var position = employee.employeePosition;
-                //                     // console.log("Employee Position: " + position);
-                //                     break; // 找到匹配的员工后，退出循环
 
-
-
-
-                //             }}
-                //             console.log("Employee Position: " + position);
-                //             // console.log(employee);
-                            
-                //             // var row = $(this).closest('tr');
-                //             var employeeId = row.find('td:eq(0)').text();
-                //             // var targetEmployeeId = employeeId;
-                //             // console.log(targetEmployeeId);
-
-                //             var employeeName = row.find('td:eq(3)').text();
-                //             var employeePassword = row.find('td:eq(1)').text();
-                //             var employeeStatus = row.find('td:eq(2)').text();
-                //             var hiredate = row.find('td:eq(4)').text() ? new Date(row.find('td:eq(4)').text()) : null;
-                //             var employeeEmail = row.find('td:eq(5)').text();
-                //             var employeePhone = row.find('td:eq(6)').text();
-                //             var employeePosition = position;
-                            
-                //             // var employeePosition = 
-                //             var queryParams = {
-                //             employeeId: employeeId,
-                //             employeeName: employeeName,
-                //             employeePassword: employeePassword,
-                //             employeeStatus: employeeStatus,
-                //             hiredate: hiredate,
-                //             employeeEmail: employeeEmail,
-                //             employeePhone: employeePhone,
-                //             employeePosition: employeePosition
-                //         };
-
-                //         // 將參數轉換為查詢字符串
-                //         var queryString = $.param(queryParams);
-
-                //         // 導航至 empEdit.html 頁面並攜帶參數
-                //         window.location.href = 'empEdit.html?' + queryString;
-
-                //         })
-
-                //         // 將需要的員工資料轉換為 URL 參數
-                        
-                // });
-
-
-                // // ====送資料去編輯====
-                // $('#dataTable1').on('click', '.btn-outline-info', function() {
-                //     var row = $(this).closest('tr');
-                //     var employeeId = row.find('td:eq(0)').text();
-                //     employeeId = employeeId.toString();
-                //     // 发起AJAX请求，获取员工详细信息
-                //     $.ajax({
-                //         url: 'empEdit.html', // 替换为获取员工详细信息的后端接口URL
-                //         type: 'GET',
-                //         data: { employeeId: employeeId },
-                //         success: function(response) {
-                //             // 将从后端获取的员工详细信息填充到表单字段中
-                //             $('#employeeId').val(response.employeeId);
-                //             $('#employeeName').val(response.employeeName);
-                //             $('#employeePassword').val(response.employeePassword);
-                //             $('#employeeStatus').val(response.employeeStatus);
-                //             $('#hiredate').val(response.hiredate);
-                //             $('#employeeEmail').val(response.employeeEmail);
-                //             $('#employeePhone').val(response.employeePhone);
-
-                //             // 可以在这里执行其他需要的操作
-                //             // ...
-
-                //             // 跳转到编辑页面
-                //             window.location.href = 'empEdit.html?employeeId=' + employeeId;
-                //         },
-                //         error: function(error) {
-                //             console.log('Error:', error);
-                //         }
-                //     });
-                // });
 
 
             

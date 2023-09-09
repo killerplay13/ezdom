@@ -14,15 +14,17 @@ const itemURL = document.querySelector("#item_href");
 const timeURL = document.querySelector("#time_href");
 // 側邊欄留言板的連結
 const messageURL = document.querySelector("#message_href");
+// 側邊欄設置的連結
+const settingURL = document.querySelector("#setting_href");
 // 側邊欄檢舉教練的連結
 const reportURL = document.querySelector("#report_href");
 // 設定資訊div
 const bord = document.querySelector("#set_bord");
 let reader = new FileReader();
 // 模擬登入的會員ID
-const memberId = 2;
+const memberId = 1;
 // 模擬登入的 coachId
-const coachId = 2;
+const coachId = 1;
 
 // ====================== 網頁載入完成後執行 ====================== //
 window.addEventListener("load", function() {
@@ -37,7 +39,7 @@ window.addEventListener("load", function() {
 // ====================== 側邊欄資訊 ====================== //
 const url = new URLSearchParams(window.location.search);
 const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值
-const d_req = 'http://localhost:8080/ezdom/browse/list/' + url_coachId;
+const d_req = 'http://localhost:8080/ezdom/frontend/browse/list/' + url_coachId;
 
 async function getCoachDetails(){
 	let response = await fetch(d_req);
@@ -55,7 +57,10 @@ function showCoachDetails(){
     coachName.innerHTML = `${coachDetails.nickname}`;
     coachEmail.innerHTML = `${coachDetails.email}`;
     detailsURL.href = `coach-details.html?coachId=${coachDetails.coachId}`;
+    itemURL.href = `../frontendreserve/reserve-appointmentArea.html?coachId=${coachDetails.coachId}`;
+    timeURL.href = `../frontendreserve/reserve-memberDate.html?coachId=${coachDetails.coachId}`;
     messageURL.href = `coach-message.html?coachId=${coachDetails.coachId}`;
+    settingURL.href = `coach-settings.html?coachId=${coachDetails.coachId}`;
 
     /*
         1. 判斷登入中的會員是否為教練
@@ -63,10 +68,11 @@ function showCoachDetails(){
         3. 若是，則讓設置的選項 show出
     */
     if(coachId === coachDetails.coachId){
+        settingURL.style = "";
         reportURL.style = "display:none";
     }
 
-
+    
     // ====================== 設定資訊 ====================== //
     bord.innerHTML = `
         <h1 class="h2 mb-4">設置</h1>
@@ -91,11 +97,11 @@ function showCoachDetails(){
             </div>
             <div class="col-sm-9">
                 <label class="form-label" for="email">電子郵件地址</label>
-                <input class="form-control" type="email" value="${coachDetails.email}" id="email">
+                <input disabled class="form-control" type="email" value="${coachDetails.email}" id="email">
             </div>
             <div class="col-sm-9">
                 <label class="form-label" for="phone">手機</label>
-                <input class="form-control" type="tel" data-format="{&quot;numericOnly&quot;: true, &quot;delimiters&quot;: [&quot;+1 &quot;, &quot; &quot;, &quot; &quot;], &quot;blocks&quot;: [0, 3, 3, 2]}" value="${coachDetails.phone}" id="phone">
+                <input disabled class="form-control" type="tel" data-format="{&quot;numericOnly&quot;: true, &quot;delimiters&quot;: [&quot;+1 &quot;, &quot; &quot;, &quot; &quot;], &quot;blocks&quot;: [0, 3, 3, 2]}" value="${coachDetails.phone}" id="phone">
             </div>
 
             <div>
@@ -130,7 +136,7 @@ function showCoachDetails(){
                 </div>
             </div>
             <div>
-                <div class="form-check form-check-inline">
+                <div class="form-check form-check-inline">  
                 <input class="form-check-input" type="checkbox" id="ex-check-8">
                 <label class="form-check-label" for="ex-check-8">攀岩</label>
                 </div>
@@ -198,41 +204,48 @@ async function skillsChecked(){
 
 // 按下Save changes的按鈕時
 $(bord).on("click", "#save", function() {
-    // let req = "http://localhost:8080/ezdom/coach/details/update" + url_coachId;
-    // console.log("ok");
-    collectFormData();
-    // fetch(req, {
-    //     method: 'PUT',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({
-    //         coachId: url_coachId, // 此資料為哪個教練的留言板
-    //         memberId: memberId,
-    //         content: content
-    //     })
-    // })
+    // collectFormData();
+
+    Swal.fire({
+        icon: 'warning',
+        title: '編輯',
+        text: `是否確定編輯?`,
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        showCancelButton: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            collectFormData();
+        }
+      })
 })
 
 function check() {
     let text = "";
-
+    
     if (formData.nickname === "") {
-        text += "教練暱稱不能為空\n";
+        text += "教練暱稱不能為空<br>";
       }
-
+      
       if (formData.skills.length === 0) {
-        text += "請至少選擇一項專業項目\n";
+        text += "請至少選擇一項專業項目<br>";
       }
-
+      
       if (formData.introduction === "") {
-        text += "自我介紹不能為空\n";
+        text += "自我介紹不能為空<br>";
       }
-
-    //   if (picture.files.length === 0) {
-    //     text += "請選擇教練圖片\n";
-    //   }
+      
+      if (formData.introduction.length > 200) {
+        text += "自我介紹長度不得超過200字";
+      }
 
       if(text != ""){
-        alert(text);
+        Swal.fire({
+            icon: 'error',
+            title: '資料尚未完善',
+            html: text,
+            confirmButtonText: '確定'
+          });
         return false;
       }
 
@@ -246,7 +259,7 @@ function collectFormData() {
     const phone = document.getElementById('phone');
     const checkboxes = document.querySelectorAll('.form-check-input[type="checkbox"]');
     const introduction = document.getElementById('introduction');
-    const req = "http://localhost:8080/ezdom/coach/details/update/" + url_coachId;
+    const req = "http://localhost:8080/ezdom/frontend/browse/list/update/" + url_coachId;
 
     formData = {
         picture: img.getAttribute("data-value"),
@@ -286,11 +299,26 @@ function collectFormData() {
         .then(response => response.json())
         .then(body => {
             if (body.successful) {
-                alert(body.message);
-                location.reload();
-                // window.location.replace(window.location.href);
+                Swal.fire({
+                    icon: 'success',
+                    title: '編輯成功',
+                    text: body.message,
+                    confirmButtonText: '確定'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.replace("coach-details.html?coachId=" + url_coachId);
+                    }
+                  })
+
+                // alert(body.message);
+                // window.location.replace("coach-details.html?coachId=" + url_coachId);
             } else {
-                alert(body.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: '編輯失敗',
+                    text: body.message,
+                    confirmButtonText: '確定'
+                  })
             }
         });
     }
@@ -327,7 +355,21 @@ if(this.files.length > 0){
 $(bord).on("click", "#cancel", function() {
     // console.log("ok");
     let href = `coach-details.html?coachId=${coachDetails.coachId}`;
-    if(confirm("要放棄修改嗎??")){
-        window.location.replace(href);
-    }
+    // if(confirm("要放棄修改嗎??")){
+    //     window.location.replace(href);
+    // }
+
+    Swal.fire({
+        icon: 'warning',
+        title: '取消',
+        text: `是否取消編輯?`,
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        showCancelButton: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.replace(href);
+        }
+      })
+
 })

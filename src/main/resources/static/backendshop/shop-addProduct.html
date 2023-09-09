@@ -713,7 +713,7 @@
                 // 在確認後進行頁面跳轉
                 fileReader.addEventListener("load", function (e) {
                     const imageBase64 = btoa(e.target.result);
-                    fetch('http://localhost:8080/ezdom/product/create', {
+                    fetch('http://localhost:8080/ezdom/backend/product/create', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -724,8 +724,18 @@
                             productDiscountPrice: discountPrice.value,
                             productImage: imageBase64
                         }),
-                    }).then(resp => resp.json())
-                        .then(body => {
+                    }) .then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登录页面 登入失敗
+                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                    }else if(response.ok){
+                        //登入成功
+                        return response.json();
+                    }else{
+                        alert("錯誤狀態" + response.status);
+                        return;
+                    }
+                }).then(body => {
                             const { successful, message } = body;
                             if (successful) {
                                 window.location.replace("shop-product.html");
@@ -758,7 +768,7 @@
             focusConfirm: true
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.replace("/shop-product.html");
+                window.location.replace("shop-product.html");
             }
         })})
 </script>
