@@ -23,6 +23,10 @@ public class GroupMemberService {
         this.groupMemberRepository = groupMemberRepository;
     }
 
+    public GroupMember save(GroupMember groupMember) {
+        return groupMemberRepository.save(groupMember);
+    }
+
     public GroupMember addGroupMember(GroupMember groupMember) {
         return groupMemberRepository.save(groupMember);
     }
@@ -33,6 +37,10 @@ public class GroupMemberService {
 
     public List<Integer> findGroupIdsByMemberIdAndStatus(Integer memberId,Byte groupApplyStatus) {
         return groupMemberRepository.findGroupIdsByMemberIdAndStatus(memberId, groupApplyStatus);
+    }
+
+    public GroupMember findByGroupIdAndMemberIdAndGroupApplyStatus(Integer groupId,Integer memberId,byte groupApplyStatus) {
+        return groupMemberRepository.findByGroupIdAndMemberIdAndGroupApplyStatus(groupId, memberId, groupApplyStatus);
     }
 
     public void deleteByGroupId(Integer groupId) {
