@@ -64,8 +64,8 @@ public class MemberServiceImpl implements MemberService {
         HttpSession httpSession = request.getSession();
 
         // 添加 Cookie 到回應中，以維護會話
-        Cookie sessionCookie = new Cookie("JSESSIONID1", httpSession.getId());
-        sessionCookie.setMaxAge(30 * 60); // 30 分鐘的過期時間
+        Cookie sessionCookie = new Cookie("ROYEZDOM", httpSession.getId());
+        sessionCookie.setMaxAge(60 * 60); // 60 分鐘的過期時間
         sessionCookie.setPath("/"); // 設置 Cookie 的路徑
         response.addCookie(sessionCookie);
 
