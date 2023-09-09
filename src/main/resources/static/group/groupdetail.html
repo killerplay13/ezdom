@@ -426,22 +426,53 @@
         const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
         return new Date(dateTimeString).toLocaleString('en-US', options);
       }
+
       function displayGroupInfo(groupData) {
-        document.getElementById("groupPhoto").querySelector("img").src = groupData.groupPhoto || "default-photo.jpg";
-        document.querySelector(".group-leader img").src = groupData.leaderImageUrl || "default-leader.jpg";
-        document.querySelector(".group-leader .ps-2").textContent = groupData.leaderName || "團主名稱";
-        document.getElementById("groupName").textContent = groupData.groupName || "走啊打球阿";
-        document.getElementById("groupContent").textContent = groupData.groupContent || "";
-        document.getElementById("groupDate").textContent = formatDateTime(groupData.groupDate) || "";
-        document.getElementById("endDate").textContent = `【最後截止日期: ${formatDateTime(groupData.endDate)}】` || "";
-        document.getElementById("groupTitle").textContent = groupData.groupTitle || "";
-        document.getElementById("groupLocation").textContent = groupData.groupLocation || "位置資訊";
-        document.getElementById("registeredNumber").textContent = `${groupData.registeredNumber}人/`;
-        document.getElementById("limitNumber").textContent = groupData.limitNumber || "";
-        document.getElementById("groupDeposit").textContent = groupData.groupDeposit
-          ? `預付訂金$${groupData.groupDeposit}`
-          : "";
-        document.getElementById("groupNotice").textContent = groupData.groupNotice || "揪團注意事項:";
+        // 获取图片元素
+        const groupPhotoElement = document.querySelector("#groupPhoto img");
+
+// 根据后端返回的 groupPhoto 属性来设置图片的 src
+        if (groupData.groupPhoto) {
+          groupPhotoElement.src = `data:image/jpg;base64,${groupData.groupPhoto}`;
+        } else {
+          // 如果 groupPhoto 属性不存在或为空，使用默认图片URL
+          groupPhotoElement.src = "default-photo.jpg";
+        }
+
+        // 获取其他元素并设置内容
+        const groupLeaderImage = document.querySelector(".group-leader img");
+        const groupLeaderName = document.querySelector(".group-leader .ps-2");
+        const groupName = document.getElementById("groupName");
+        const groupContent = document.getElementById("groupContent");
+        const groupDate = document.getElementById("groupDate");
+        const endDate = document.getElementById("endDate");
+        const groupTitle = document.getElementById("groupTitle");
+        const groupLocation = document.getElementById("groupLocation");
+        const registeredNumber = document.getElementById("registeredNumber");
+        const limitNumber = document.getElementById("limitNumber");
+        const groupDeposit = document.getElementById("groupDeposit");
+        const groupNotice = document.getElementById("groupNotice");
+
+        // 设置其他元素的内容
+        groupLeaderImage.src = groupData.leaderImageUrl || "default-leader.jpg";
+        groupLeaderName.textContent = groupData.leaderName || "團主名稱";
+        groupName.textContent = groupData.groupName || "走啊打球阿";
+        groupContent.textContent = groupData.groupContent || "";
+        groupDate.textContent = formatDateTime(groupData.groupDate) || "";
+        endDate.textContent = `【最後截止日期: ${formatDateTime(groupData.endDate)}】` || "";
+        groupTitle.textContent = groupData.groupTitle || "";
+        groupLocation.textContent = groupData.groupLocation || "位置資訊";
+        registeredNumber.textContent = `${groupData.registeredNumber}人/`;
+        limitNumber.textContent = groupData.limitNumber || "";
+        groupDeposit.textContent = groupData.groupDeposit
+                ? `預付訂金$${groupData.groupDeposit}`
+                : "";
+        groupNotice.textContent = groupData.groupNotice || "揪團注意事項:";
+
+        // 将图像元素添加到适当位置
+        const groupPhotoContainer = document.getElementById("groupPhoto");
+        groupPhotoContainer.innerHTML = ''; // 清空容器
+        groupPhotoContainer.appendChild(groupPhotoElement);
       }
 
       function fetchGroupInfo(groupId) {
