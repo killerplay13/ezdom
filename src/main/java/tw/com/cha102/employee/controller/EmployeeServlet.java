@@ -96,15 +96,17 @@ public class EmployeeServlet {
     }
 
     @GetMapping("/logout")
-    public RedirectView logout(HttpServletRequest request, HttpServletResponse response) {
+    public EmployeeVO logout(HttpServletRequest request, HttpServletResponse response) {
         // 清除會話數據
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
         }
+        EmployeeVO employeeVO=new EmployeeVO();
+        employeeVO.setSuccessful(true);
+        return employeeVO;
 
-        // 重導到登入頁面
-        return new RedirectView("/backendemp/empSignin.html");
+
     }
 
 
