@@ -11,7 +11,7 @@ import tw.com.cha102.groupreport.service.GroupReportService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/groupReport")
+@RequestMapping("/backend/groupReport")
 public class GroupReportController {
     @Autowired
     private GroupReportService groupReportService;
