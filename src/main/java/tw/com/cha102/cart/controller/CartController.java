@@ -7,6 +7,7 @@ import tw.com.cha102.cart.model.entity.CartVO;
 import tw.com.cha102.cart.service.CartService;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 @CrossOrigin(origins = "*")
@@ -18,28 +19,38 @@ public class CartController {
 
     //購物車添加商品
     @PostMapping("/add")
-    public ResponseEntity<String> addToCart(@RequestParam Integer memberId, @RequestParam Integer productId,@RequestParam Integer quantity) {
+    public ResponseEntity<String> addToCart(HttpServletRequest request,@RequestParam Integer productId, @RequestParam Integer quantity) {
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         cartService.addToCart(memberId, productId,quantity);
         return ResponseEntity.ok("新增成功");
     }
 
-    @GetMapping("/list/{memberId}")
-    public CartVO list(@PathVariable Integer memberId) {
+    @GetMapping("/list")
+    public CartVO list(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         return cartService.list(memberId);
     }
 
-    @DeleteMapping("/delete/{memberId}/{productId}")
-    public CartVO delete(@PathVariable Integer memberId,@PathVariable Integer productId){
+    @DeleteMapping("/delete/{productId}")
+    public CartVO delete(HttpServletRequest request,@PathVariable Integer productId){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         return cartService.delete(memberId,productId);
     }
 
     @PostMapping("/reduce")
-    public CartVO reduceToCart(@RequestParam Integer memberId, @RequestParam Integer productId){
+    public CartVO reduceToCart(HttpServletRequest request, @RequestParam Integer productId){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         return cartService.reduce(memberId,productId);
     }
 
-    @DeleteMapping("/deleteAll/{memberId}")
-    public CartVO checkout (@PathVariable Integer memberId){
+    @DeleteMapping("/deleteAll")
+    public CartVO checkout (HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         return cartService.deleteAll(memberId);
     }
 

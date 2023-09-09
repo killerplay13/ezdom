@@ -914,6 +914,7 @@
             </div>
             `;
           }
+
           orders.innerHTML = html;
           sortPage(statusValue);
         }
@@ -1027,8 +1028,7 @@
   }
     //會員完成訂單 新增積分
     function addPoints(orderId){
-      let memberId=1;
-      fetch(`http://localhost:8080/ezdom/frontend/oredr/addpoint/${memberId}/${orderId}`, {
+      fetch(`http://localhost:8080/ezdom/frontend/oredr/addpoint/${orderId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' }
     }).then(response => {
