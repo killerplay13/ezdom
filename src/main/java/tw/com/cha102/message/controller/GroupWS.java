@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@ServerEndpoint("/GroupWS/{groupId}")
+@ServerEndpoint("/frontend/GroupWS/{groupId}")
 @Component
 public class GroupWS {
     private static final Set<Session> connectedSessions = Collections.synchronizedSet(new HashSet<>());

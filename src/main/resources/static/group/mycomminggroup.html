@@ -456,6 +456,11 @@
               const card = document.createElement("div");
               card.className = "col-md-4 mb-4";
 
+                // 創建圖片元素
+                const imageElement = document.createElement("img");
+                imageElement.className = "card-img-top rounded-4";
+                imageElement.src = `data:image/jpg;base64,${group.groupPhoto}`; // 假設圖片格式為PNG
+
               // 处理日期格式
               const groupDate = new Date(group.groupDate);
               const formattedDate = `${groupDate.getFullYear()}/${groupDate.getMonth() + 1}/${groupDate.getDate()}`;
@@ -463,8 +468,8 @@
               card.innerHTML = `
               <a href="groupcommingdetail.html?groupId=${group.groupId}" class="card h-100 border rounded-4 pb-3">
               <div class="position-relative ignore-dark-mode">
-              <img class="card-img-top rounded-4" src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Group Image">
-              </div>
+            ${imageElement.outerHTML}
+          </div>
               <div class="card-body py-4">
               <h3 class="h3">${group.groupName}</h3>
               

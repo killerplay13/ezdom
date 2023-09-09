@@ -3,10 +3,7 @@ package tw.com.cha102.groupreport.service;
 
 import org.springframework.stereotype.Service;
 import tw.com.cha102.core.service.MailService;
-import tw.com.cha102.groupreport.model.GroupReportDAO;
-import tw.com.cha102.groupreport.model.GroupReportDAOImpl;
-import tw.com.cha102.groupreport.model.GroupReportJoin;
-import tw.com.cha102.groupreport.model.GroupReportVO;
+import tw.com.cha102.groupreport.model.*;
 
 import java.util.List;
 
@@ -16,26 +13,26 @@ public class GroupReportService {
 
     public GroupReportService() {
         dao = new GroupReportDAOImpl() {
-            public GroupReportVO addGroupReport(Integer groupReportId,
-                                       Integer reportMemberId,
-                                       Integer reportedMemberId,
-                                       Integer groupId,
-                                       String reportReason,
-                                       Integer employeeId,
-                                       Integer groupReportStatus,
-                                       String rejectReason) {
-                GroupReportVO groupReportVO = new GroupReportVO();
-                groupReportVO.setGroupReportId(groupReportId);
-                groupReportVO.setReportMemberId(reportMemberId);
-                groupReportVO.setReportedMemberId(reportedMemberId);
-                groupReportVO.setGroupId(groupId);
-                groupReportVO.setReportReason(reportReason);
-                groupReportVO.setEmployeeId(employeeId);
-                groupReportVO.setGroupReportStatus(groupReportStatus);
-                groupReportVO.setRejectReason(rejectReason);
-                dao.insert(groupReportVO);
-                return groupReportVO;
-            }
+//            public GroupReportVO addGroupReport(Integer groupReportId,
+//                                       Integer reportMemberId,
+//                                       Integer reportedMemberId,
+//                                       Integer groupId,
+//                                       String reportReason,
+//                                       Integer employeeId,
+//                                       Integer groupReportStatus,
+//                                       String rejectReason) {
+//                GroupReportVO groupReportVO = new GroupReportVO();
+//                groupReportVO.setGroupReportId(groupReportId);
+//                groupReportVO.setReportMemberId(reportMemberId);
+//                groupReportVO.setReportedMemberId(reportedMemberId);
+//                groupReportVO.setGroupId(groupId);
+//                groupReportVO.setReportReason(reportReason);
+//                groupReportVO.setEmployeeId(employeeId);
+//                groupReportVO.setGroupReportStatus(groupReportStatus);
+//                groupReportVO.setRejectReason(rejectReason);
+//                dao.insert(groupReportVO);
+//                return groupReportVO;
+//            }
 
             public GroupReportVO updateGroupReport(Integer groupReportId,
                                           Integer reportMemberId,
@@ -116,5 +113,18 @@ public class GroupReportService {
 
     public GroupReportVO findById(Integer groupReportId) {
         return dao.findById(groupReportId);
+    }
+
+    public GroupReportCreate addGroupReport(
+            GroupReportCreate groupReportCreate
+    ) {
+        GroupReportCreate result = new GroupReportCreate();
+        groupReportCreate.setReportMemberId(groupReportCreate.getReportMemberId());
+        groupReportCreate.setReportedMemberId(groupReportCreate.getReportedMemberId());
+        groupReportCreate.setGroupId(groupReportCreate.getGroupId());
+        groupReportCreate.setReportReason(groupReportCreate.getReportReason());
+        groupReportCreate.setGroupReportStatus(groupReportCreate.getGroupReportStatus());
+        dao.insert(groupReportCreate);
+        return result;
     }
 }

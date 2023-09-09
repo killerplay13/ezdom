@@ -16,21 +16,18 @@ public class GroupReportDAOImpl implements GroupReportDAO{
     }
 
     @Override
-    public void insert(GroupReportVO groupReportVO) {
+    public void insert(GroupReportCreate groupReportCreate) {
         Connection con = null;
         PreparedStatement pstmt = null;
         try {
             con = DriverManager.getConnection(Util.URL, Util.USER,Util.PASSWORD);
-            pstmt = con.prepareStatement("INSERT INTO GROUP_REPORT VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
-
-            pstmt.setInt(1,groupReportVO.getGroupId());
-            pstmt.setInt(2,groupReportVO.getGroupReportId());
-            pstmt.setInt(3,groupReportVO.getReportedMemberId());
-            pstmt.setInt(4,groupReportVO.getGroupId());
-            pstmt.setString(5,groupReportVO.getReportReason());
-            pstmt.setInt(6,groupReportVO.getEmployeeId());
-            pstmt.setInt(7,groupReportVO.getGroupReportStatus());
-            pstmt.setString(8,groupReportVO.getRejectReason());
+            pstmt = con.prepareStatement("INSERT INTO GROUP_REPORT (REPORT_MEMBER_ID, REPORTED_MEMBER_ID, GROUP_ID, REPORT_REASON, GROUP_REPORT_STATUS)\n" +
+                    "VALUES (?, ?, ?, ?, ?)\n");
+            pstmt.setInt(1,groupReportCreate.getReportMemberId());
+            pstmt.setInt(2,groupReportCreate.getReportedMemberId());
+            pstmt.setInt(3,groupReportCreate.getGroupId());
+            pstmt.setString(4,groupReportCreate.getReportReason());
+            pstmt.setInt(5,groupReportCreate.getGroupReportStatus());
             pstmt.executeUpdate();
         }catch(SQLException se) {
             se.printStackTrace();

@@ -586,30 +586,49 @@
     }
     let isValid = recipientNameValidate && cellPhoneValidate && addressValidate;
     if (isValid) {
-      fetch(`http://localhost:8080/ezdom/carts/list/${memberId}`)
-        .then(resp => resp.json())
-        .then(body => {
-          let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
-          fetch(`http://localhost:8080/ezdom/oredr/add`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              memberId: memberId,
-              recipientName: recipientName.value,
-              totalPrice: cartTotalPrice,
-              pointApplied: usePointValue,
-              actualAmount: `${cartTotalPrice - usePointValue}`,
-              backPoints: `${Math.floor((cartTotalPrice - usePointValue) / 10)}`,
-              phoneNumber: homePhone.value,
-              telphoneNumber: cellPhone.value,
-              shippingAddress: address.value,
-              note: note.value,
-              paymentMethod: paymentValue,
-              orderDetailVOs: cartProductVoList
-            }),
-          }).then(resp => resp.json())
-            .then(body => {
-              if (paymentValue == 1) {
+      if (paymentValue == 1) {
+        fetch(`http://localhost:8080/ezdom/frontend/carts/list`)
+          .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
+            let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
+            fetch(`http://localhost:8080/ezdom/frontend/oredr/add`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                recipientName: recipientName.value,
+                totalPrice: cartTotalPrice,
+                pointApplied: usePointValue,
+                actualAmount: `${cartTotalPrice - usePointValue}`,
+                backPoints: `${Math.floor((cartTotalPrice - usePointValue) / 10)}`,
+                phoneNumber: homePhone.value,
+                telphoneNumber: cellPhone.value,
+                shippingAddress: address.value,
+                note: note.value,
+                paymentMethod: paymentValue,
+                orderDetailVOs: cartProductVoList
+              }),
+            }).then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
                 let { successful, message } = body;
                 if (successful) {
                   reducePoints(usePointValue);
@@ -618,25 +637,58 @@
                 } else {
                   alert(message);
                 }
-              } else if (paymentValue == 0) {
-                fetch(`http://localhost:8080/ezdom/ecpayCheckout`, {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  }
-                }).then(resp => resp.text())
-                  .then(body => {
-                    // 插入ECPay表單內容到<div>中
-                    ecpayFormContainer.innerHTML = body;
-                    allPayAPIForm.submit();
-                    reducePoints(usePointValue);
-                    deleteRedis();
-
-                  })
-              }
-
-            })
-        })
+              })
+          })
+      } else if (paymentValue == 0) {
+        fetch(`http://localhost:8080/ezdom/frontend/carts/list`)
+          .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
+            let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
+        fetch(`http://localhost:8080/ezdom/frontend/ecpayCheckout`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+                recipientName: recipientName.value,
+                totalPrice: cartTotalPrice,
+                pointApplied: usePointValue,
+                actualAmount: `${cartTotalPrice - usePointValue}`,
+                backPoints: `${Math.floor((cartTotalPrice - usePointValue) / 10)}`,
+                phoneNumber: homePhone.value,
+                telphoneNumber: cellPhone.value,
+                shippingAddress: address.value,
+                note: note.value,
+                paymentMethod: paymentValue,
+                orderDetailVOs: cartProductVoList
+              }),
+        }).then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.text();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
+            // 插入ECPay表單內容到<div>中
+            ecpayFormContainer.innerHTML = body;
+            allPayAPIForm.submit();
+            reducePoints(usePointValue);
+            deleteRedis();
+          })})
+      }
     } else {
       Swal.fire({
         icon: 'error',
@@ -650,20 +702,42 @@
 
   //刪除redis
   function deleteRedis() {
-    fetch(`http://localhost:8080/ezdom/carts/deleteAll/${memberId}`, {
+    fetch(`http://localhost:8080/ezdom/frontend/carts/deleteAll`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       }
-    })
+    }).then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        })
   }
 
   //會員使用積分 扣除
   function reducePoints(usePointValue) {
-    fetch(`http://localhost:8080/ezdom/oredr/point/${memberId}/${usePointValue}`, {
+    fetch(`http://localhost:8080/ezdom/frontend/oredr/point/${usePointValue}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' }
-    })
+    }).then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        })
   }
 
   pointBtn.addEventListener('click', function (e) {
@@ -682,11 +756,20 @@
 
 
   //取得會員訊息 mail跟姓名跟積分
-  let memberId = 1;
   function getMemberProfile() {
-    fetch(`http://localhost:8080/ezdom/oredr/profile/${memberId}`)
-      .then(resp => resp.json())
-      .then(body => {
+    fetch(`http://localhost:8080/ezdom/frontend/oredr/profile`)
+      .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
         let { memberName, memberEmail, point } = body;
         orderName.value = memberName;
         emailAddress.value = memberEmail;
@@ -697,9 +780,19 @@
   //取得訂單明細
   let orderDetails = document.getElementById("orderDetails");
   function orderDetail() {
-    fetch(`http://localhost:8080/ezdom/carts/list/${memberId}`)
-      .then(resp => resp.json())
-      .then(body => {
+    fetch(`http://localhost:8080/ezdom/frontend/carts/list`)
+      .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(body => {
         let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
         let html = "";
         for (let cartProductVo of cartProductVoList) {

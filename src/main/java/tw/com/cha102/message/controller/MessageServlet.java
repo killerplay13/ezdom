@@ -18,7 +18,7 @@ public class MessageServlet extends HttpServlet {
 
         req.setAttribute("userName", userName);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/chat.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/message/messagePrivate.html");
         dispatcher.forward(req,resp);
     }
 

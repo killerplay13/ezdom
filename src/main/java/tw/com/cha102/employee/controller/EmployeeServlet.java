@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.view.RedirectView;
 import tw.com.cha102.ad.model.entity.AdVO;
 import tw.com.cha102.employee.model.dao.EmployeeRepository;
 import tw.com.cha102.employee.model.entity.EmployeeVO;
@@ -15,6 +16,7 @@ import tw.com.cha102.product.model.entity.ProductVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -93,8 +95,21 @@ public class EmployeeServlet {
         return employee;
     }
 
+    @GetMapping("/logout")
+    public EmployeeVO logout(HttpServletRequest request, HttpServletResponse response) {
+        // 清除會話數據
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        EmployeeVO employeeVO=new EmployeeVO();
+        employeeVO.setSuccessful(true);
+        return employeeVO;
 
-//
+
+    }
+
+
 
 
 }

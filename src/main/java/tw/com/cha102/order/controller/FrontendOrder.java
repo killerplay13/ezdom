@@ -7,26 +7,33 @@ import tw.com.cha102.order.model.entity.OrderVO;
 import tw.com.cha102.order.service.OrderService;
 import tw.com.cha102.product.model.entity.ProductVO;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/oredr")
+@RequestMapping("/frontend/oredr")
 public class FrontendOrder {
 
     @Autowired
     OrderService service;
-
-    @GetMapping("/profile/{memberId}")
-    public Member getMemberProfile(@PathVariable Integer memberId){
+    //取得結帳客人資料
+    @GetMapping("/profile")
+    public Member getMemberProfile(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         return service.getGuestInformation(memberId);
     }
 
     //訂單新增
     @PostMapping("/add")
-    public OrderVO addToOredr(@RequestBody OrderVO orderVO){
+    public OrderVO addToOredr(@RequestBody OrderVO orderVO,HttpServletRequest request){
+        HttpSession session = request.getSession();
         OrderVO vo=new OrderVO();
+        Integer memberId = (Integer)session.getAttribute("memberId");
+        orderVO.setMemberId(memberId);
         if(service.addToOrder(orderVO) ==true){
             vo.setSuccessful(true);
             vo.setMessage("結帳成功");
@@ -65,8 +72,10 @@ public class FrontendOrder {
         return orderVO;
     }
 
-    @PutMapping("/point/{memberId}/{usePoints}")
-    public Member memberUsePoints(@PathVariable Integer memberId, @PathVariable Integer usePoints){
+    @PutMapping("/point/{usePoints}")
+    public Member memberUsePoints(HttpServletRequest request, @PathVariable Integer usePoints){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         Member member=new Member();
         if(service.reduceMemberPoint(memberId,usePoints)==true){
             member.setMessage("操作成功");
@@ -78,8 +87,10 @@ public class FrontendOrder {
         return member;
     }
 
-    @PutMapping("/addpoint/{memberId}/{orderId}")
-    public Member memberAddPoints(@PathVariable Integer memberId, @PathVariable Integer orderId){
+    @PutMapping("/addpoint/{orderId}")
+    public Member memberAddPoints(HttpServletRequest request, @PathVariable Integer orderId){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         Member member=new Member();
         if(service.addMemberPoint(memberId,orderId)==true){
             member.setMessage("操作成功");
@@ -89,5 +100,19 @@ public class FrontendOrder {
             member.setSuccessful(false);
         }
         return member;
+    }
+
+    //買家退貨按鈕
+    @PutMapping("/return/{orderId}")
+    public  OrderVO orderToReturnfront(@PathVariable Integer orderId){
+        OrderVO orderVO=new OrderVO();
+        if(service.toRetrunOrder(orderId)==true){
+            orderVO.setMessage("操作成功");
+            orderVO.setSuccessful(true);
+        }else{
+            orderVO.setMessage("操作失敗");
+            orderVO.setSuccessful(false);
+        }
+        return orderVO;
     }
 }

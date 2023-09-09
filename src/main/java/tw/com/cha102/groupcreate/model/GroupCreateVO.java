@@ -10,8 +10,10 @@ import tw.com.cha102.core.vo.Core;
 import tw.com.cha102.member.model.entity.Member;
 
 import javax.persistence.*;
-import java.sql.Date;
+
+
 import java.sql.Timestamp;
+import java.util.Date;
 
 
 @Entity
@@ -31,6 +33,7 @@ public class GroupCreateVO extends Core {
 @Column(name = "CREATE_MEMBER_ID")
     private Integer createMemberId;
     @Column(name = "GROUP_DATE")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm", timezone = "GMT+8")
     private Date groupDate;
     @Column(name = "GROUP_LOCATION")
     private String groupLocation;

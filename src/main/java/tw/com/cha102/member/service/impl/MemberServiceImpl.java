@@ -9,11 +9,13 @@ import tw.com.cha102.member.dto.*;
 import tw.com.cha102.member.model.dao.MemberRepository;
 import tw.com.cha102.member.model.entity.Member;
 import tw.com.cha102.member.service.MemberService;
+import tw.com.cha102.core.service.MailService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -44,50 +46,154 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void login(LoginRequest loginRequest, HttpServletRequest request, HttpServletResponse response) {
-
+        // 從資料庫中查找使用者
         Member member = memberRepository.findByMemberAccount(loginRequest.getAccount());
-        if (member == null)
+        if (member == null) {
+            // 如果使用者不存在，返回 400 Bad Request
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "無此使用者");
-        String hashReqPwd = sha256Hash(loginRequest.getPassword());//傳入密碼加密
-        //比較帳號密碼
-        if (!member.getMemberAccount().equals(loginRequest.getAccount()) || !member.getMemberPassword().equals(sha256Hash(loginRequest.getPassword())))
+        }
+
+        // 對使用者提供的密碼進行雜湊處理，然後與資料庫中儲存的雜湊密碼進行比較
+        String hashReqPwd = sha256Hash(loginRequest.getPassword());
+        if (!member.getMemberPassword().equals(hashReqPwd)) {
+            // 如果密碼不匹配，返回 400 Bad Request
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "帳號密碼錯誤");
+        }
+
+        // 獲取 HttpSession
         HttpSession httpSession = request.getSession();
-//        httpSession.setAttribute("loggedInMember", member.getMemberId());
-        // 添加 Cookie 到回應中
-        Cookie sessionCookie = new Cookie("JSESSIONID", httpSession.getId());
-        sessionCookie.setMaxAge(30 * 60); // 30 分鐘的過期時間
+
+        // 添加 Cookie 到回應中，以維護會話
+        Cookie sessionCookie = new Cookie("ROYEZDOM", httpSession.getId());
+        sessionCookie.setMaxAge(60 * 60); // 60 分鐘的過期時間
         sessionCookie.setPath("/"); // 設置 Cookie 的路徑
         response.addCookie(sessionCookie);
-        httpSession.setAttribute("memberId", member.getMemberId()); // 保存目前登入的會員id，供後續使用
 
+        // 將使用者的會員 ID 儲存在會話中，以供後續使用
+        httpSession.setAttribute("memberId", member.getMemberId());
     }
 
-    @Override
-    public AccountEmailResponse checkEmailPassword(CheckEmailPasswordRequest checkEmailPasswordRequest, HttpServletRequest request, HttpServletResponse response) {
 
-        String account = "7014";
-        Member member = memberRepository.findByMemberAccount(account);
-        // Member member = memberRepository.findByMemberAccount(checkEmailPasswordRequest.getAccount());
+    @Override
+    public AccountEmailResponse checkEmailAccount(CheckEmailAccountRequest checkEmailAccountRequest, HttpServletRequest request, HttpServletResponse response) {
+
+
+        HttpSession httpSession = request.getSession();
+//        String account = (String) httpSession.getAttribute("account");
+        Member member = memberRepository.findByMemberAccount(checkEmailAccountRequest.getAccount());
+
 
         if (member == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "無此使用者");
         }
 
-        if (!member.getMemberAccount().equals(checkEmailPasswordRequest.getAccount()) || !member.getMemberEmail().equals(checkEmailPasswordRequest.getEmail())) {
+        if (!member.getMemberAccount().equals(checkEmailAccountRequest.getAccount()) || !member.getMemberEmail().equals(checkEmailAccountRequest.getEmail())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "帳號信箱錯誤");
         }
+
+        // 儲存帳號到 Session 中
+        httpSession.setAttribute("account", member.getMemberAccount());
 
         // 創建並返回包含 account 和 email 的 Response 對象
         AccountEmailResponse accountEmailResponse = new AccountEmailResponse();
         accountEmailResponse.setAccount(member.getMemberAccount());
         accountEmailResponse.setEmail(member.getMemberEmail());
 
-        System.out.println("Account: " + accountEmailResponse.getAccount());
-        System.out.println("Email: " + accountEmailResponse.getEmail());
         return accountEmailResponse;
     }
 
+    public void sendAuthenticationCode(@Valid CheckEmailAccountRequest checkEmailAccountRequest, HttpServletRequest request) {
+        // 根據會員帳號查詢會員信息
+        Member member = memberRepository.findByMemberAccount(checkEmailAccountRequest.getAccount());
+
+
+        if (member != null) {
+            // 生成驗證碼
+            String verificationCode = generateVerificationCode();
+
+            // 郵件主題
+            String subject = "驗證碼";
+
+            // 郵件內容，包含驗證碼
+            String messageText = "您的驗證碼是：" + verificationCode;
+
+            MailService mailService = new MailService();
+
+            // 發送郵件，使用 mailService 的 sendMail 方法
+            mailService.sendMail(checkEmailAccountRequest.getEmail(), subject, messageText);
+
+            // 將驗證碼存入Session
+            HttpSession httpSession = request.getSession();
+            httpSession.setAttribute("verificationCode", verificationCode);
+            System.out.println(verificationCode);
+
+        } else {
+            // 如果未找到會員信息，您可以處理相應的錯誤或返回提示
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "未找到相應的會員信息。");
+        }
+    }
+
+
+    @Override
+    public CommonResponse<String> checkAuthCode(String authCode, HttpSession httpSession) {
+        // 從 HttpSession 中獲取後端存储的驗證碼
+        String verificationCode = (String) httpSession.getAttribute("verificationCode");
+
+        // 比較前端的驗證碼和後端儲存的驗證碼
+        if (verificationCode != null && verificationCode.equals(authCode)) {
+            // 驗證碼匹配
+            return new CommonResponse<>("驗證碼匹配");
+        } else {
+            // 驗證碼不匹配
+            return new CommonResponse<>("驗證碼不匹配。");
+        }
+    }
+
+    private String generateVerificationCode() {
+
+        int length = 8; // 驗證碼長度
+        StringBuilder authCode = new StringBuilder();
+
+        for (int i = 0; i < length; i++) {
+            // 0 ~ 61 的隨機數字
+            int randIndex = (int) (Math.random() * 62);
+            char randChar;
+            if (randIndex < 26) {
+                // 英文大寫字母
+                randChar = (char) ('A' + randIndex);
+            } else if (randIndex < 52) {
+                // 英文小寫字母
+                randChar = (char) ('a' + randIndex - 26);
+            } else {
+                // 數字
+                randChar = (char) ('0' + randIndex - 52);
+            }
+            authCode.append(randChar);
+        }
+        return authCode.toString();
+    }
+
+    @Override
+    public void resetPassword(String newPassword, HttpServletRequest request, HttpServletResponse response) {
+        // 從 HttpSession 中獲取帳號
+        HttpSession httpSession = request.getSession();
+        String account = (String) httpSession.getAttribute("account");
+
+        // 根據帳號查詢會員信息
+        Member member = memberRepository.findByMemberAccount(account);
+
+        if (member != null) {
+            // 如果找到會員，將新密碼加密並設置為會員的密碼
+            String hashPwd = sha256Hash(newPassword); // 假設有一個 sha256Hash 方法用於密碼加密
+            member.setMemberPassword(hashPwd);
+
+            // 保存更新後的會員信息
+            memberRepository.save(member);
+        } else {
+            // 如果找不到會員，你可以根據情況執行錯誤處理邏輯
+            throw new RuntimeException("找不到相應的會員");
+        }
+    }
 
     public void uploadProfile(ProfileRequest profileRequest, HttpServletRequest request, HttpServletResponse response) {
         // 從會話中獲取會員的帳戶
@@ -135,6 +241,7 @@ public class MemberServiceImpl implements MemberService {
             member.setMemberAddress(profileRequest.getAddress());
         }
 
+
         // 保存會員信息到資料庫
         memberRepository.save(member);
     }
@@ -154,6 +261,7 @@ public class MemberServiceImpl implements MemberService {
         response.setGender(member.getMemberGender());
         response.setBirth(member.getMemberBirthday());
         response.setIntroduction(member.getIntroduction());
+        response.setPoint(member.getPoint());
 
         return response;
     }
@@ -218,13 +326,6 @@ public class MemberServiceImpl implements MemberService {
 
     }
 
-//    public void rewardPointForLogin(Integer memberId) {
-//        Member member = memberRepository.findById(memberId).orElse(null);
-//        if (member != null) {
-//            member.setPoint(member.getPoint() + 1); // 每次登入給予一點
-//            memberRepository.save(member);
-//        }
-//    }
 
     @Override
     public List<Member> getMembers() {
@@ -271,6 +372,11 @@ public class MemberServiceImpl implements MemberService {
         response.setStatus(member.getMemberStatus());
 
         return response;
+    }
+
+    @Override
+    public Member findById(Integer memberId) {
+        return memberRepository.findById(memberId).get();
     }
 
 
