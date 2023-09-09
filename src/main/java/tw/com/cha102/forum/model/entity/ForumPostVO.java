@@ -45,7 +45,6 @@ public class ForumPostVO extends Core {
     @Column(name = "FORUMPOST_CLICK_COUNT")
     private Integer forumPostClickCount;
 
-
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
     private Member member;
@@ -66,8 +65,13 @@ public class ForumPostVO extends Core {
     @JsonIgnore
     private List<ForumHistoryVO> forumHistorys;
 
-    @Transient // 使用 @Transient 標註，以防止該屬性映射到數據庫表格
-    private String memberName;
+    //獲取memberName
+    public String getMemberName() {
+        return member != null ? member.getMemberName() : null;
+    }
+
+    //獲取memberPhoto
+    public byte[] getMemberPhoto() {return member != null ? member.getMemberPhoto() : null;}
 }
 
 

@@ -11,15 +11,11 @@ import javax.servlet.http.HttpSession;
 @RestController
 @RequestMapping("/Frontend/forum")
 public class ForumReportFrontend {
-
+    @Autowired
     private ForumReportService forumReportService;
 
-    @Autowired
-    public ForumReportFrontend(ForumReportService forumReportService) {
 
-        this.forumReportService = forumReportService;
-    }
-
+    //進行文章檢舉
     @PostMapping("/report")
     public ForumReportVO createReport(@RequestBody ForumReportVO forumReportVO, HttpSession session) {
         // Integer memberId = (Integer) session.getAttribute("memberId");

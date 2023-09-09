@@ -9,26 +9,18 @@ import tw.com.cha102.forumhistory.service.ForumHistoryService;
 import java.util.List;
 @Service
 public class ForumHistoryServiceImpl implements ForumHistoryService {
-    private final ForumHistoryDao  forumHistoryDao;
-
     @Autowired
-    public ForumHistoryServiceImpl(ForumHistoryDao forumHistoryDao) {
+    private ForumHistoryDao  forumHistoryDao;
 
-        this.forumHistoryDao = forumHistoryDao;
-    }
     @Override
     public boolean history(ForumHistoryVO forumHistoryVO) {
         Integer forumPostId = forumHistoryVO.getForumPostId();
         Integer memberId = forumHistoryVO.getMemberId();
 
-        // 檢查是否已經紀錄過該文章
-        if (isPostAlreadyHistory(forumPostId, memberId)) {
-            return false; // 已經紀錄過該文章，返回false
+        if (isPostAlreadyHistory(forumPostId, memberId)) {//檢查是否已經紀錄過該文章
+            return false;
         }
-
         ForumHistoryVO savedHistory = forumHistoryDao.save(forumHistoryVO);
-
-        // 如果保存成功，返回true
         return savedHistory != null;
     }
 
@@ -46,7 +38,7 @@ public class ForumHistoryServiceImpl implements ForumHistoryService {
         }
         return false;
     }
-    @Override
+
     public boolean isPostAlreadyHistory(Integer forumPostId, Integer memberId) {
         return forumHistoryDao.existsByForumPostIdAndMemberId(forumPostId, memberId);
     }
