@@ -6,6 +6,7 @@ import tw.com.cha102.member.model.entity.Member;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -15,16 +16,15 @@ public interface MemberService {
     void uploadProfile(ProfileRequest profileRequest, HttpServletRequest request, HttpServletResponse response);
     void uploadPhoto(UploadPhotoRequest uploadPhotoRequest, HttpServletRequest request, HttpServletResponse response);
 
-    void sendAuthenticationCode(CheckEmailPasswordRequest checkEmailPasswordRequest, HttpServletRequest request);
+    void sendAuthenticationCode(@Valid CheckEmailAccountRequest checkEmailPasswordRequest, HttpServletRequest request);
+
+    void resetPassword(String newPassword, HttpServletRequest rquest, HttpServletResponse response);
 
     CommonResponse<String> checkAuthCode(String authCode, HttpSession httpSession);
 
-    AccountEmailResponse checkEmailPassword(CheckEmailPasswordRequest checkEmailPasswordRequest, HttpServletRequest request, HttpServletResponse response);
+    AccountEmailResponse checkEmailAccount(CheckEmailAccountRequest checkEmailAccountRequest, HttpServletRequest request, HttpServletResponse response);
 
     List<Member> getMembers();
-
-
-
 
     MemberProfileResponse getMemberProfile(String memberAccount);
 
@@ -34,5 +34,4 @@ public interface MemberService {
 
 
     Member findById(Integer memberId);
-
 }
