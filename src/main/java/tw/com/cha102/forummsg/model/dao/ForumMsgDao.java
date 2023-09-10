@@ -10,4 +10,5 @@ import java.util.List;
 public interface ForumMsgDao extends JpaRepository<ForumMsgVO, Integer> {
 
     List<ForumMsgVO> findByForumPostId(Integer forumPostId);
+    List<ForumMsgVO> findByMemberId(Integer memberId);
 }

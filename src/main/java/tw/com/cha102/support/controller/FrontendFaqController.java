@@ -2,6 +2,7 @@ package tw.com.cha102.support.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tw.com.cha102.member.model.entity.Member;
 import tw.com.cha102.support.model.entity.FaqVO;
 import tw.com.cha102.support.service.FaqService;
 
@@ -22,4 +23,9 @@ public class FrontendFaqController {
         return faqService.getFaqList(faqTag);
     }
 
+    // ==================== 瀏覽常見問題 ==================== //
+    @GetMapping("/member")
+    public Member getMember(@RequestParam(required = false) Integer memberId){
+        return faqService.getMember(memberId);
+    }
 }

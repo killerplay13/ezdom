@@ -336,18 +336,16 @@
                         </div>
                         <div class="d-md-flex align-items-center">
                             <div class="d-sm-flex align-items-center">
-                                <div class="rounded-circle bg-size-cover bg-position-center flex-shrink-0"
-                                     style="width: 80px; height: 80px; background-image: url(http://pic.imeitou.com/uploads/allimg/220619/6-220619100112.jpg);">
-                                </div>
+
                                 <div class="pt-3 pt-sm-0 ps-sm-3">
-                                    <h3 class="h5 mb-2" ><span class="memberName"></span> <i
+                                    <h3 class="h5 mb-2"><span class="memberName"></span> <i
                                             class="ai-circle-check-filled fs-base text-success ms-2"></i></h3>
                                     <div
                                             class="text-muted fw-medium d-flex flex-wrap flex-sm-nowrap align-iteems-center">
                                         <div class="d-flex align-items-center me-3"><i
                                                 class="ai-mail me-1"></i><span class="memberEmail"></span></div>
                                         <div class="d-flex align-items-center text-nowrap"><i
-                                                class="ai-map-pin me-1" ></i><span id="memberAddress"></span></div>
+                                                class="ai-map-pin me-1"></i><span id="memberAddress"></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -362,7 +360,8 @@
                                     </tr>
                                     <tr>
                                         <td class="border-0 text-muted py-1 px-0">會員帳號</td>
-                                        <td class="border-0 text-dark fw-medium py-1 ps-3" id="memberAccount">繁體中文</td>
+                                        <td class="border-0 text-dark fw-medium py-1 ps-3" id="memberAccount">繁體中文
+                                        </td>
                                     </tr>
                                     <!--<tr>-->
                                     <!--    <td class="border-0 text-muted py-1 px-0">Gender</td>-->
@@ -385,42 +384,57 @@
             <script src="../frontendshop/assets/vendor/fullcalendar/main.min.js"></script>
             <!-- Main theme script-->
             <script src="../frontendshop/assets/js/theme.min.js"></script>
+
+            <script>
+                function fetchMemberInfo() {
+
+                    const apiUrl = `http://localhost:8080/ezdom/member`;
+
+                    fetch(apiUrl)
+                        .then(response => response.json())
+                        .then(memberData => {
+                            displayMemberInfo(memberData);
+                        })
+                        .catch(error => {
+                            console.error("Error fetching group data:", error);
+                        });
+                }
+
+                function displayMemberInfo(memberData) {
+                    // 設定成員圖片
+                    const memberPhotoElement = document.querySelector(".rounded-circle");
+
+                    // 檢查 memberData 中是否有 base64 圖片資料
+                    if (memberData.memberPhoto) {
+                        // 如果有 base64 圖片資料，將其設定為 background-image
+                        memberPhotoElement.src = `data:image/jpg;base64, ${memberData.memberPhoto}`;
+                    } else {
+                        // 如果沒有 base64 圖片資料，可以設定一個預設的背景圖片或採取其他處理方式
+                        memberPhotoElement.style.backgroundImage = 'url(預設圖片URL)';
+                    }
+
+
+                    // document.getElementById("groupPhoto").querySelector("img").src = memberData.groupPhoto || "https://pic4.zhimg.com/80/v2-33211227f196223db1ad4bd7585993c7_1440w.webp";
+                    // document.querySelector(".group-leader img").src = memberData.leaderImageUrl || "default-leader.jpg";
+                    // document.querySelector(".group-leader .ps-2").textContent = memberData.leaderName || "團主名稱";
+                    let elemements = document.getElementsByClassName("memberName");
+                    elemements[0].innerHTML = memberData.memberName;
+                    elemements[1].innerHTML = memberData.memberName;
+
+                    document.getElementById("memberAddress").textContent = memberData.memberAddress || "";
+                    document.getElementById("memberPhone").textContent = memberData.memberPhone || "";
+                    document.getElementById("memberAccount").textContent = memberData.memberAccount || "";
+                    let memberEmails = document.getElementsByClassName("memberEmail")
+                    memberEmails[0].innerHTML = memberData.memberEmail;
+                    memberEmails[1].innerHTML = memberData.memberEmail;
+                }
+
+                fetchMemberInfo();
+
+
+            </script>
 </body>
 
-<script>
-    function fetchMemberInfo() {
 
-        const apiUrl = `http://localhost:8080/ezdom/frontend/member`;
-
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(memberData => {
-                displayMemberInfo(memberData);
-            })
-            .catch(error => {
-                console.error("Error fetching group data:", error);
-            });
-    }
-
-    function displayMemberInfo(memberData) {
-        // document.getElementById("groupPhoto").querySelector("img").src = memberData.groupPhoto || "https://pic4.zhimg.com/80/v2-33211227f196223db1ad4bd7585993c7_1440w.webp";
-        // document.querySelector(".group-leader img").src = memberData.leaderImageUrl || "default-leader.jpg";
-        // document.querySelector(".group-leader .ps-2").textContent = memberData.leaderName || "團主名稱";
-        let elemements = document.getElementsByClassName("memberName");
-        elemements[0].innerHTML = memberData.memberName;
-        elemements[1].innerHTML = memberData.memberName;
-
-        document.getElementById("memberAddress").textContent = memberData.memberAddress || "";
-        document.getElementById("memberPhone").textContent = memberData.memberPhone || "";
-        document.getElementById("memberAccount").textContent = memberData.memberAccount || "";
-        let memberEmails = document.getElementsByClassName("memberEmail")
-        memberEmails[0].innerHTML = memberData.memberEmail;
-        memberEmails[1].innerHTML = memberData.memberEmail;
-    }
-
-    fetchMemberInfo();
-
-
-</script>
 
 </html>

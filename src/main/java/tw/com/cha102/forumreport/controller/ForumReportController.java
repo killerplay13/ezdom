@@ -1,8 +1,6 @@
 package tw.com.cha102.forumreport.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tw.com.cha102.forum.service.ForumPostService;
 import tw.com.cha102.forumreport.model.entity.ForumReportVO;
@@ -14,44 +12,21 @@ import java.util.List;
 @RestController
 @RequestMapping("/backend/forum")
 public class ForumReportController {
-
+    @Autowired
     private ForumReportService forumReportService;
+    @Autowired
     private ForumPostService forumPostService;
 
-    @Autowired
-    public ForumReportController(ForumReportService forumReportService, ForumPostService forumPostService) {
-        this.forumReportService = forumReportService;
-        this.forumPostService = forumPostService;
 
-    }
-
-
-//    @PostMapping("/report")
-//    public ForumReportVO createReport(@RequestBody ForumReportVO forumReportVO) {
-//        ForumReportVO vo = new ForumReportVO();
-//        if (forumReportService.createReport(forumReportVO) == true) {
-//            vo.setSuccessful(true);
-//            vo.setMessage("檢舉成功");
-//        } else {
-//            vo.setSuccessful(false);
-//            vo.setMessage("您已經檢舉過了");
-//        }
-//        return vo;
-//    }
-
+    //查看所有檢舉
     @GetMapping("/report/list")
     public List<ForumReportVO> listAllReports() {
 
         return forumReportService.getAllReports();
     }
 
-    @GetMapping("/report/{reportId}")
-    public ForumReportVO getReportById(@PathVariable Integer reportId) {
-        return forumReportService.getReportById(reportId);
 
-    }
-
-
+    //刪除檢舉
     @DeleteMapping("/report/delete/{reportId}")
     public ForumReportVO deleteReport(@PathVariable Integer reportId) {
         ForumReportVO vo = new ForumReportVO();
@@ -66,6 +41,7 @@ public class ForumReportController {
     }
 
 
+    //更新檢舉狀態
     @PutMapping("/updateStatusAndToggle/{reportId}/{postId}")
     public ForumReportVO updateStatusAndToggle(@PathVariable Integer reportId, @PathVariable Integer postId) {
         ForumReportVO vo=new ForumReportVO();

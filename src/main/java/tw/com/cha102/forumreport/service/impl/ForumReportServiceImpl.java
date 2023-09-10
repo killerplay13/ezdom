@@ -9,28 +9,22 @@ import tw.com.cha102.forumreport.model.dao.ForumReportDao;
 import tw.com.cha102.forumreport.service.ForumReportService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ForumReportServiceImpl implements ForumReportService {
-
-    private final ForumReportDao forumReportDao;
-
     @Autowired
-    public ForumReportServiceImpl(ForumReportDao forumReportDao) {
+    private ForumReportDao forumReportDao;
 
-        this.forumReportDao = forumReportDao;
-    }
 
     @Override
     public boolean createReport(ForumReportVO forumReportVO) {
         Integer forumPostId = forumReportVO.getForumPostId();
         Integer memberId = forumReportVO.getMemberId();
-        // 檢查是否已經檢舉過該文章
-        if (hasReportedSamePost(forumPostId, memberId)) {
-            return false; // 已經檢舉過該文章，返回false
+        if (hasReportedSamePost(forumPostId, memberId)) {//檢查是否已經檢舉過該文章
+            return false;
         }
         ForumReportVO savedReport = forumReportDao.save(forumReportVO);
-        // 如果保存成功，返回true
         return savedReport != null;
     }
     @Override
@@ -39,11 +33,6 @@ public class ForumReportServiceImpl implements ForumReportService {
         return forumReportDao.findAll();
     }
 
-    @Override
-    public ForumReportVO getReportById(Integer forumReportId) {
-
-        return forumReportDao.findById(forumReportId).orElse(null);
-    }
 
     @Override
     public boolean deleteReport(Integer forumReportId) {
@@ -54,23 +43,26 @@ public class ForumReportServiceImpl implements ForumReportService {
         return false;
     }
 
-    // 檢查是否已經檢舉過相同的文章
-    public boolean hasReportedSamePost(Integer forumPostId, Integer memberId) {
-        return forumReportDao.existsByForumPostIdAndMemberId(forumPostId, memberId);
-    }
 
     @Override
     public boolean updateReportStatus(Integer reportId) {
-        ForumReportVO report = forumReportDao.findById(reportId).orElse(null);
+        Optional<ForumReportVO> optionalReport = forumReportDao.findById(reportId);
 
-        if (report != null && report.getForumReportStatus() == 0) {
-            // 更新檢舉狀態為 1
-            report.setForumReportStatus(1);
-            forumReportDao.save(report);
-            return true;
+        if (optionalReport.isPresent()) {
+            ForumReportVO report = optionalReport.get();
+
+            if (report.getForumReportStatus() == 0) {
+                report.setForumReportStatus(1);//更新檢舉狀態為 1
+                forumReportDao.save(report);
+                return true;
+            }
         }
-
         return false;
+    }
+
+
+    public boolean hasReportedSamePost(Integer forumPostId, Integer memberId) {
+        return forumReportDao.existsByForumPostIdAndMemberId(forumPostId, memberId);
     }
 
 

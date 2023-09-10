@@ -3,6 +3,7 @@ package tw.com.cha102.forumhistory.model.entity;
 import lombok.Data;
 import tw.com.cha102.core.vo.Core;
 import tw.com.cha102.forum.model.entity.ForumPostVO;
+import tw.com.cha102.member.model.entity.Member;
 
 import javax.persistence.*;
 
@@ -24,4 +25,14 @@ public class ForumHistoryVO extends Core {
     @ManyToOne
     @JoinColumn(name = "FORUMPOST_ID", insertable = false, updatable = false)
     private ForumPostVO forumPost;
+
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
+    private Member member;
+
+    public String getMemberName() {
+        return member != null ? member.getMemberName() : null;
+    }
+
+    public byte[] getMemberPhoto() {return member != null ? member.getMemberPhoto() : null;}
 }

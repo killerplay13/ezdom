@@ -385,40 +385,42 @@
                 <div class="container position-relative zindex-2 py-5 mt-xl-2 mb-lg-2 mb-xl-3 mb-xxl-5 mt-xxl-4">
                     <h2 class="h1 pt-xxl-1 pb-4 mb-2 mb-lg-3">揪團列表 | Group List</h2>
                     <div class="row" id="groupList">
-                        <!-- 卡片通过 JavaScript 動態生成 -->
+                        <!-- 卡片将通过 JavaScript 动态生成 -->
                     </div>
                 </div>
             </section>
             <script>
-                // 獲取卡片容器
+                // 获取卡片容器
                 const groupListContainer = document.getElementById("groupList");
 
-
+                // 使用 Fetch API 获取数据
                 fetch("http://localhost:8080/ezdom/frontend/group/list")
                     .then(response => response.json())
                     .then(data => {
-                        // 清空卡片內容
+                        // 清空卡片容器内容
                         groupListContainer.innerHTML = "";
 
-                        // 遍歷生成卡片
+                        // 循环遍历数据并生成卡片
                         data.forEach(group => {
                             const card = document.createElement("div");
                             card.className = "col-md-6 col-lg-3 mb-4";
 
-                            // 處理日期格式
+                            // 創建圖片元素
+                            const imageElement = document.createElement("img");
+                            imageElement.className = "card-img-top rounded-4";
+                            imageElement.src = `data:image/jpg;base64,${group.groupPhoto}`; // 假設圖片格式為PNG
+
+                            // 处理日期格式
                             const groupDate = new Date(group.groupDate);
                             const formattedDate = `${groupDate.getFullYear()}/${groupDate.getMonth() + 1}/${groupDate.getDate()}`;
 
                             card.innerHTML = `
         <a href="groupdetail.html?groupId=${group.groupId}" class="card h-100 border rounded-4 pb-3">
           <div class="position-relative ignore-dark-mode">
-            <img class="card-img-top rounded-4" src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Group Image">
+            ${imageElement.outerHTML}
           </div>
           <div class="card-body py-4">
             <h3 class="h3">${group.groupName}</h3>
-            <div class="group-leader">
-              <img src="https://pic4.zhimg.com/80/v2-33211227f196223db1ad4bd7585993c7_1440w.webp" alt="Group Leader">
-            </div>
             <ul class="fs-sm ps-4 mb-0">
               <li class="mb-2">${group.groupLocation}</li>
               <li class="mb-2">${formattedDate}</li>
@@ -435,37 +437,40 @@
                     });
 
 
-                    function getHot(){
+                function getHot() {
 
-                                            // 獲取卡片容器
+                    // 获取卡片容器
                     const groupListContainer = document.getElementById("groupList");
 
-
+                    // 使用 Fetch API 获取数据
                     fetch("http://localhost:8080/ezdom/frontend/group/hot/list")
                         .then(response => response.json())
                         .then(data => {
-                            // 清空卡片內容
+                            // 清空卡片容器内容
                             groupListContainer.innerHTML = "";
 
-                            // 遍歷生成卡片
+                            // 循环遍历数据并生成卡片
                             data.forEach(group => {
                                 const card = document.createElement("div");
                                 card.className = "col-md-6 col-lg-3 mb-4";
 
-                                // 處理日期格式
+                                // 創建圖片元素
+                                const imageElement = document.createElement("img");
+                                imageElement.className = "card-img-top rounded-4";
+                                imageElement.src = `data:image/jpg;base64,${group.groupPhoto}`; // 假設圖片格式為PNG
+
+                                // 处理日期格式
                                 const groupDate = new Date(group.groupDate);
                                 const formattedDate = `${groupDate.getFullYear()}/${groupDate.getMonth() + 1}/${groupDate.getDate()}`;
 
                                 card.innerHTML = `
                     <a href="groupdetail.html?groupId=${group.groupId}" class="card h-100 border rounded-4 pb-3">
                     <div class="position-relative ignore-dark-mode">
-                    <img class="card-img-top rounded-4" src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Group Image">
-                    </div>
+            ${imageElement.outerHTML}
+          </div>
                     <div class="card-body py-4">
                     <h3 class="h3">${group.groupName}</h3>
-                    <div class="group-leader">
-                    <img src="https://pic4.zhimg.com/80/v2-33211227f196223db1ad4bd7585993c7_1440w.webp" alt="Group Leader">
-                    </div>
+
                     <ul class="fs-sm ps-4 mb-0">
                     <li class="mb-2">${group.groupLocation}</li>
                     <li class="mb-2">${formattedDate}</li>
@@ -480,43 +485,46 @@
                         .catch(error => {
                             console.error("Error fetching data:", error);
                         });
-                    }
-
-                    
-                    function conditionSearch(){
-
-                        let inputField = document.getElementById("groupName");
-                        let inputValue = inputField.value;
-
-                        // 取得卡片容器
-                        const groupListContainer = document.getElementById("groupList");
+                }
 
 
-                        fetch("http://localhost:8080/ezdom/frontend/group/condition/list?groupName=" + inputValue)
+                function conditionSearch() {
+
+                    let inputField = document.getElementById("groupName");
+                    let inputValue = inputField.value;
+
+                    // 获取卡片容器
+                    const groupListContainer = document.getElementById("groupList");
+
+                    // 使用 Fetch API 获取数据
+                    fetch("http://localhost:8080/ezdom/frontend/group/condition/list?groupName=" + inputValue)
                         .then(response => response.json())
                         .then(data => {
-                        // 清空卡片容器内容
-                        groupListContainer.innerHTML = "";
+                            // 清空卡片容器内容
+                            groupListContainer.innerHTML = "";
 
-                        // 遍歷生成卡片
-                        data.forEach(group => {
-                        const card = document.createElement("div");
-                        card.className = "col-md-6 col-lg-3 mb-4";
+                            // 循环遍历数据并生成卡片
+                            data.forEach(group => {
+                                const card = document.createElement("div");
+                                card.className = "col-md-6 col-lg-3 mb-4";
 
-                            // 處理日期格式
-                        const groupDate = new Date(group.groupDate);
-                        const formattedDate = `${groupDate.getFullYear()}/${groupDate.getMonth() + 1}/${groupDate.getDate()}`;
+                                // 創建圖片元素
+                                const imageElement = document.createElement("img");
+                                imageElement.className = "card-img-top rounded-4";
+                                imageElement.src = `data:image/jpg;base64,${group.groupPhoto}`; // 假設圖片格式為PNG
 
-                        card.innerHTML = `
+                                // 处理日期格式
+                                const groupDate = new Date(group.groupDate);
+                                const formattedDate = `${groupDate.getFullYear()}/${groupDate.getMonth() + 1}/${groupDate.getDate()}`;
+
+                                card.innerHTML = `
                         <a href="groupdetail.html?groupId=${group.groupId}" class="card h-100 border rounded-4 pb-3">
-                        <div class="position-relative ignore-dark-mode">
-                        <img class="card-img-top rounded-4" src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Group Image">
-                        </div>
+                            <div class="position-relative ignore-dark-mode">
+                                ${imageElement.outerHTML}
+                            </div>
                         <div class="card-body py-4">
                         <h3 class="h3">${group.groupName}</h3>
-                        <div class="group-leader">
-                        <img src="https://pic4.zhimg.com/80/v2-33211227f196223db1ad4bd7585993c7_1440w.webp" alt="Group Leader">
-                        </div>
+
                         <ul class="fs-sm ps-4 mb-0">
                         <li class="mb-2">${group.groupLocation}</li>
                         <li class="mb-2">${formattedDate}</li>
@@ -525,13 +533,13 @@
                         </div>
                         </a>
                         `;
-                        groupListContainer.appendChild(card);
-                        });
+                                groupListContainer.appendChild(card);
+                            });
                         })
                         .catch(error => {
-                        console.error("Error fetching data:", error);
+                            console.error("Error fetching data:", error);
                         });
-                    }
+                }
 
 
             </script>
