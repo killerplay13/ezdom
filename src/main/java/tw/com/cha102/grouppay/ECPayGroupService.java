@@ -44,7 +44,7 @@ public class ECPayGroupService {
         //目前預設為1
         Integer memberId = 1;
 
-        List<Integer> grouIds = groupMemberService.findGroupIdsByMemberIdAndStatus(memberId, (byte) 5);
+        List<Integer> grouIds = groupMemberService.findGroupIdsByMemberIdAndStatus(memberId, (byte) 1);
         if (grouIds.contains(groupId)) {
 
         }
