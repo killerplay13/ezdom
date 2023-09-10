@@ -259,6 +259,7 @@
     <!-- Page content-->
     <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
         <div class="row pt-sm-2 pt-lg-0">
+
             <!-- Sidebar (offcanvas on sreens < 992px)-->
             <aside class="col-lg-3 pe-lg-4 pe-xl-5 mt-n3">
                 <div class="position-lg-sticky top-0">
@@ -267,41 +268,74 @@
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3 d-lg-none" type="button"
                                 data-bs-dismiss="offcanvas" data-bs-target="#sidebarAccount"></button>
                         <div class="offcanvas-body">
-                            <div class="pb-2 pb-lg-0 mb-4 mb-lg-5"><img class="d-block rounded-circle mb-2"
-                                                                        src="../frontendshop/assets/img/avatar/02.jpg" width="80"
-                                                                        alt="Isabella Bocouse">
-                                <h3 class="h5 mb-1">Isabella Bocouse</h3>
-                                <p class="fs-sm text-muted mb-0">bocouse@example.com</p>
+                            <!-- 加 class -->
+                            <div class="rounded-circle bg-size-cover bg-position-center flex-shrink-0 photoDisplay1"
+                                 style="width: 80px; height: 80px; background-image: url(../frontendshop/../frontendshop/assets/img/avatar/user.png);">
                             </div>
-                            <nav class="nav flex-column pb-2 pb-lg-4 mb-3">
-                                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">會員</h4><a
-                                    class="nav-link fw-semibold py-2 px-0" href="account-overview.html"><i
-                                    class="ai-user-check fs-5 opacity-60 me-2"></i>基本資訊</a><a
-                                    class="nav-link fw-semibold py-2 px-0"
-                                    href="friend-management.html"><i class="ai-user-group fs-5 opacity-60 me-2"></i>好友管理</a><a
-                                    class="nav-link fw-semibold py-2 px-0 active" href="account-settings.html"><i
-                                    class="ai-settings fs-5 opacity-60 me-2"></i>設定</a><a
-                                    class="nav-link fw-semibold py-2 px-0"
-                                    href="account-billing.html"><i
-                                    class="ai-wallet fs-5 opacity-60 me-2"></i>付款方式</a>
+                            <br>
+                            <div class="nameDisplay1">
+                                <!-- 加 class -->
+                                <h3 class="h5 mb-1"></h3>
+                            </div>
+                            <div class="mailDisplay1">
+                                <!-- 加 class -->
+                                <p class="fs-sm text-muted mb-0"></p>
+                            </div>
+                            <br>
+                            <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
+                                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">會員</h4>
+                                <a class="nav-link fw-semibold py-2 px-0 active" href="account-overview.html">
+                                    <i class="ai-user fs-5 opacity-60 me-2"></i>我的頁面
+                                </a>
+                                <a class="nav-link fw-semibold py-2 px-0" href="#">
+                                    <i class="ai-settings fs-5 opacity-60 me-2"></i>個人設定
+                                </a>
                             </nav>
-                            <nav class="nav flex-column pb-2 pb-lg-4 mb-1">
-                                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">功能專區</h4><a
-                                    class="nav-link fw-semibold py-2 px-0" href="account-orders.html"><i
-                                    class="ai-cart fs-5 opacity-60 me-2"></i>訂單</a><a
-                                    class="nav-link fw-semibold py-2 px-0"
-                                    href="account-chat.html"><i class="ai-messages fs-5 opacity-60 me-2"></i>聊天室<span
-                                    class="badge bg-danger ms-auto">4</span></a><a
-                                    class="nav-link fw-semibold py-2 px-0"
-                                    href="account-favorites.html"><i class="ai-heart fs-5 opacity-60 me-2"></i>我的最愛</a>
+                            <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
+                                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">揪團</h4>
+                                <a class="nav-link fw-semibold py-2 px-0 active" href="#">
+                                    <i class="ai-user-group fs-5 opacity-60 me-2"></i>我的揪團
+                                </a>
+                                <a class="nav-link fw-semibold py-2 px-0" href="#">
+                                    <i class="ai-user-plus fs-5 opacity-60 me-2"></i>揪團管理
+                                </a>
                             </nav>
-                            <nav class="nav flex-column"><a class="nav-link fw-semibold py-2 px-0"
-                                                            href="account-signin.html"><i
-                                    class="ai-logout fs-5 opacity-60 me-2"></i>登出</a></nav>
+                            <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
+                                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">論壇</h4>
+                                <a class="nav-link fw-semibold py-2 px-0 active" href="#">
+                                    <i class="ai-note fs-5 opacity-60 me-2"></i>我的文章
+                                </a>
+                            </nav>
+                            <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
+                                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">商城</h4>
+                                <a class="nav-link fw-semibold py-2 px-0 active" href="#">
+                                    <i class="ai-edit-alt fs-5 opacity-60 me-2"></i>我的訂單
+                                </a>
+                                <a class="nav-link fw-semibold py-2 px-0" href="#">
+                                    <i class="ai-heart fs-5 opacity-60 me-2"></i>我的收藏
+                                </a>
+                            </nav>
+                            <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
+                                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">預約</h4>
+                                <a class="nav-link fw-semibold py-2 px-0 active" href="#">
+                                    <i class="ai-user-check fs-5 opacity-60 me-2"></i>我的預約
+                                </a>
+                            </nav>
+                            <nav class="nav flex-column pb-1 pb-lg-2 mb-1">
+                                <a class="nav-link fw-semibold py-2 px-0" href="#">
+                                    <i class="ai-messages fs-5 opacity-60 me-2"></i>聊天室
+                                    <span class="badge bg-danger ms-auto"></span>
+                                </a>
+                                <a class="nav flex-column"><a class="nav-link fw-semibold py-2 px-0"
+                                                              href="account-signin.html"><i
+                                        class="ai-logout fs-5 opacity-60 me-2"></i>登出</a>
+                                </a>
+                            </nav>
                         </div>
                     </div>
                 </div>
             </aside>
+
             <!-- Page content-->
             <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
                 <h1 class="h2 mb-4">設定</h1>
@@ -354,8 +388,6 @@
                                 <input class="form-control" type="email" id="email"
                                        placeholder="格式 : test@example.com" required
                                        oninput="ValidateMail()">
-                                <a class="ai-circle-info btn btn-link float-end" id="sendVerificationCodeLink"
-                                   onclick="sendVerificationCode()">傳送驗證碼</a>
                                 <p id="mailError" style="color: red;"></p>
                             </div>
                             <div class="col-sm-6">
@@ -384,17 +416,6 @@
                                     <label class="form-check-label" for="Other">其他</label>
                                 </div>
                             </div>
-                            <!-- <div class="col-12 d-sm-flex align-items-center" id="contact">
-                              <div class="form-label text-muted mb-2 mb-sm-0 me-sm-4">聯絡方式:</div>
-                              <div class="form-check form-check-inline mb-0">
-                                <input class="form-check-input" type="checkbox" name="communication" value="信箱" checked id="email">
-                                <label class="form-check-label" for="c-email">信箱</label>
-                              </div>
-                              <div class="form-check form-check-inline mb-0">
-                                <input class="form-check-input" type="checkbox" name="communication" value="手機" id="phone">
-                                <label class="form-check-label" for="c-phone">手機</label>
-                              </div>
-                            </div> -->
                             <div class="col-sm-7">
                                 <label class="form-label" for="intro">自我介紹</label>
                                 <textarea class="form-control" id="intro" rows="4"></textarea>
@@ -425,47 +446,32 @@
                         </div>
                         <div class="row align-items-center g-3 g-sm-4 pb-3">
                             <div class="col-sm-6">
-                                <label class="form-label" for="current-pass">當前密碼</label>
+                                <label class="form-label" for="newPw">更新密碼</label>
                                 <div class="password-toggle">
-                                    <input class="form-control" type="password" value="hidden@password"
-                                           id="current-pass">
+                                    <input class="form-control" type="password" id="newPw">
                                     <label class="password-toggle-btn" aria-label="Show/hide password">
                                         <input class="password-toggle-check" type="checkbox"><span
                                             class="password-toggle-indicator"></span>
                                     </label>
                                 </div>
+                                <p id="passwordError" style="color: red;"></p>
                             </div>
-                            <div class="col-sm-6"><a
-                                    class="d-inline-block fs-sm fw-semibold text-decoration-none mt-sm-4"
-                                    href="account-password-recovery.html">忘記密碼?</a></div>
+
+                            <div class="col-sm-6"></div>
+
                             <div class="col-sm-6">
-                                <label class="form-label" for="new-pass">更新密碼</label>
+                                <label class="form-label" for="confirmPw">再次確認密碼</label>
                                 <div class="password-toggle">
-                                    <input class="form-control" type="password" id="new-pass">
+                                    <input class="form-control" type="password" id="confirmPw">
                                     <label class="password-toggle-btn" aria-label="Show/hide password">
                                         <input class="password-toggle-check" type="checkbox"><span
                                             class="password-toggle-indicator"></span>
                                     </label>
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="form-label" for="confirm-pass">再次確認密碼</label>
-                                <div class="password-toggle">
-                                    <input class="form-control" type="password" id="confirm-pass">
-                                    <label class="password-toggle-btn" aria-label="Show/hide password">
-                                        <input class="password-toggle-check" type="checkbox"><span
-                                            class="password-toggle-indicator"></span>
-                                    </label>
-                                </div>
+                                <p id="checkpasswordError" style="color: red;"></p>
                             </div>
                         </div>
-                        <div class="alert alert-info d-flex my-3 my-sm-4"><i class="ai-circle-info fs-xl me-2"></i>
-                            <p class="mb-0">密碼至少 8 個字元。</p>
-                        </div>
-                        <div class="d-flex justify-content-end pt-3">
-                            <button class="btn btn-secondary" type="button">取消</button>
-                            <button class="btn btn-primary ms-3" type="button">儲存</button>
-                        </div>
+                        <button id="pwButton" class="btn btn-primary">確定修改</button>
                     </div>
                 </section>
             </div>
@@ -561,7 +567,8 @@
             <div class="col-12 col-xl-3 mt-md-2 mt-xl-0 pt-2 pt-md-4 pt-xl-0">
                 <h3 class="h6 text-uppercase mb-1 pb-1">Download our app</h3>
                 <div class="d-flex d-xl-block d-xxl-flex"><a class="btn btn-secondary px-3 py-2 mt-3 me-3" href="#"><img
-                        class="mx-1" src="../frontendshop/assets/img/market/appstore-light.svg" width="120" alt="App Store"></a><a
+                        class="mx-1" src="../frontendshop/assets/img/market/appstore-light.svg" width="120"
+                        alt="App Store"></a><a
                         class="btn btn-secondary px-3 py-2 mt-3" href="#"><img class="mx-1"
                                                                                src="../frontendshop/assets/img/market/googleplay-light.svg"
                                                                                width="119" alt="Google Play"></a></div>
@@ -592,14 +599,16 @@
                             <option value="jpy">¥ JPY</option>
                         </select>
                     </div>
-                    <a class="dropdown-item pb-1" href="#"><img class="me-2" src="../frontendshop/assets/img/flags/fr.png" width="18"
+                    <a class="dropdown-item pb-1" href="#"><img class="me-2"
+                                                                src="../frontendshop/assets/img/flags/fr.png" width="18"
                                                                 alt="Français">Français</a><a class="dropdown-item pb-1"
                                                                                               href="#"><img class="me-2"
                                                                                                             src="../frontendshop/assets/img/flags/de.png"
                                                                                                             width="18"
                                                                                                             alt="Deutsch">Deutsch</a><a
                         class="dropdown-item" href="#"><img
-                        class="me-2" src="../frontendshop/assets/img/flags/it.png" width="18" alt="Italiano">Italiano</a>
+                        class="me-2" src="../frontendshop/assets/img/flags/it.png" width="18"
+                        alt="Italiano">Italiano</a>
                 </div>
             </div>
         </div>
@@ -627,7 +636,8 @@
                         href="#"><i
                         class="ai-pinterest"></i></a></div>
             </div>
-            <img class="ms-sm-auto" src="../frontendshop/assets/img/shop/footer-cards.png" width="187" alt="Accepted cards">
+            <img class="ms-sm-auto" src="../frontendshop/assets/img/shop/footer-cards.png" width="187"
+                 alt="Accepted cards">
         </div>
     </div>
     <div class="pt-5 pt-lg-0"></div>
@@ -660,6 +670,8 @@
 <!-- Swal -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
 
+
+<!---------------------------------- 個資部分 ------------------------------------------>
 <!-- 驗證格式函式 -->
 <script>
 
@@ -946,6 +958,165 @@
         });
     }
 
+</script>
+
+<!---------------------------------- 更改密碼 ------------------------------------------>
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const newPw = document.getElementById('newPw');
+    const confirmPw = document.getElementById('confirmPw');
+    const pwButton = document.getElementById('pwButton');
+
+    // 帳號
+    const memberAccount = '7014';
+
+    newPw.addEventListener('blur', validatePassword);
+    confirmPw.addEventListener('blur', validateConfirmPassword);
+
+    // 驗證密碼格式的函數
+    function validatePassword() {
+        let passwordError = document.getElementById("passwordError");
+        var passwordRegex = /^[A-Za-z\d!@#$%^&*()]{8,12}$/;
+        if (!newPw.value.trim()) {
+            passwordError.textContent = "密碼不可為空";
+            return false;
+        } else if (!passwordRegex.test(newPw.value)) {
+            passwordError.textContent = "請輸入正確格式";
+            return false;
+        } else {
+            passwordError.textContent = "";
+            return true;
+        }
+    }
+
+    // 驗證確認密碼的函數
+    function validateConfirmPassword() {
+        let checkpasswordError = document.getElementById("checkpasswordError");
+
+        if (!confirmPw.value.trim()) {
+            checkpasswordError.textContent = "請輸入密碼";
+            return false;
+        } else if (confirmPw.value === newPw.value) {
+            checkpasswordError.textContent = "";
+            return true;
+        } else {
+            checkpasswordError.textContent = "請輸入相同密碼";
+            return false;
+        }
+    }
+
+    pwButton.addEventListener('click', function () {
+        if (validatePassword() && validateConfirmPassword()) {
+
+            // 創建請求數據
+            const requestData = {
+                modifyPw: newPw.value,
+            };
+
+            // 執行修改密碼的邏輯
+            fetch('http://localhost:8080/ezdom/member/modifyPw', {
+                method: 'POST',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify(requestData)
+            }).then(response => {
+                // 處理修改密碼的回應
+                const statusCode = response.status;
+
+                // 在控制台中打印 requestData 的 modifyPw 值
+                console.log(requestData.modifyPw);
+
+                if (statusCode === 200) {
+                    // 修改成功的處理
+                    Swal.fire({
+                        icon: 'success',
+                        title: '成功',
+                        text: '密碼修改成功！',
+                        confirmButtonText: '確定',
+                        focusConfirm: true
+                    }).then((result) => {
+                        window.location.replace("account-signin.html");
+                        return;
+                    });
+                } else if (statusCode === 400) {
+                    // 驗證失敗的處理
+                    return response.json(); // 轉換回應為 JSON 格式
+                } else {
+                    // 其他狀態碼處理
+                    throw new Error("HTTP 錯誤: " + statusCode);
+                }
+            });
+        }
+    });
+});
+
+
+</script>
+<!---------------------------------- 側邊攔部分 ------------------------------------------>
+
+<!-- 名字、信箱 -->
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+      const memberAccount = '7014';
+
+      displayMemberSidebarProfile();
+    });
+
+
+        function displayMemberSidebarProfile(memberAccount){
+          const nameDisplay1 = document.querySelectorAll(".nameDisplay1");
+          const mailDisplay1 = document.querySelectorAll(".mailDisplay1");
+
+          fetch(`http://localhost:8080/ezdom/member/getProfile?memberAccount=7014`)
+            .then(resp => resp.json())
+            .then(body => {
+              const { name, email } = body;
+
+              // 將會員信息顯示在相應的元素中
+              nameDisplay1.forEach(element => {
+                element.textContent = name;
+              });
+
+              mailDisplay1.forEach(element => {
+                element.textContent = email;
+              });
+              })
+            .catch(error => {
+              console.error("Error:", error);
+            });
+        }
+
+</script>
+
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- 照片 -->
+<script>
+    $(document).ready(function () {
+      const memberAccount = '7014';
+      displayMemberPhoto();
+    });
+
+    function displayMemberPhoto() {
+      const photoDisplay1 = $(".photoDisplay1");
+
+      $.ajax({
+        url: 'http://localhost:8080/ezdom/member/getPhoto',
+        type: 'GET',
+        data: { memberAccount: '7014' },
+        dataType: 'json',
+        success: function (data) {
+          photoDisplay1.empty();
+          photoDisplay1.append(`<img class="rounded-circle bg-size-cover bg-position-center flex-shrink-0" src="data:image/jpeg;base64,${data.photoToBase64}" style="width: 80px; height: 80px;" />`);
+        },
+        error: function (error) {
+          console.error("錯誤：", error);
+        }
+      });
+    }
 </script>
 
 </body>

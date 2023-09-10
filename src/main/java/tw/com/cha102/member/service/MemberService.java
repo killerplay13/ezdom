@@ -20,18 +20,23 @@ public interface MemberService {
 
     void resetPassword(String newPassword, HttpServletRequest rquest, HttpServletResponse response);
 
-    CommonResponse<String> checkAuthCode(String authCode, HttpSession httpSession);
+    void modifyPw(String modifyPw, HttpServletRequest request);
+
+    CommonResponse<String> checkAuthCode(String authCode, HttpSession httpSession,HttpServletResponse response);
 
     AccountEmailResponse checkEmailAccount(CheckEmailAccountRequest checkEmailAccountRequest, HttpServletRequest request, HttpServletResponse response);
 
     List<Member> getMembers();
 
-    MemberProfileResponse getMemberProfile(String memberAccount);
+    MemberProfileResponse getMemberProfile(Integer memberId);
 
-    MemberPhotoResponse getMebmerPhoto(String memberAccount);
+    MemberPhotoResponse getMebmerPhoto(Integer memberId);
 
-    MemberStateResponse getMemberState(String memberAccount);
+    List<Member> getMemberState();
 
 
     Member findById(Integer memberId);
+
+    boolean updateMemberStatus(Integer memberId);
+
 }
