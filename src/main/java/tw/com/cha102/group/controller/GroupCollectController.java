@@ -41,11 +41,11 @@ public class GroupCollectController {
     @GetMapping("/list")
     public ResponseEntity<List<Group>> getCollectGroup(HttpSession session) {
         // TODO: 用來獲取已登入的member訊息
-        // Member member = (Member) session.getAttribute("member");
-        // Integer memberId = member.getMemberId();
+        Integer memberId = (Integer) session.getAttribute("memberId");
+
 
         //目前預設為1
-        Integer memberId = 1;
+        //Integer memberId = 1;
         List<GroupCollect> list = groupCollectService.findByMemberId(memberId);
 
         List<Integer> collect = list.stream().map(GroupCollect::getGroupId).collect(Collectors.toList());
@@ -64,11 +64,11 @@ public class GroupCollectController {
     @GetMapping("/{groupId}")
     public ResponseEntity<GroupCollect> getCollect(@PathVariable Integer groupId, HttpSession session) {
         // TODO: 用來獲取已登入的member訊息
-        // Member member = (Member) session.getAttribute("member");
-        // Integer memberId = member.getMemberId();
+        Integer memberId = (Integer) session.getAttribute("memberId");
+
 
         //目前預設為1
-        Integer memberId = 1;
+        //Integer memberId = 1;
         GroupCollect groupCollect = groupCollectService.findByGroupIdAndMemberId(groupId, memberId);
         if (Objects.isNull(groupCollect)) {
             groupCollect = new GroupCollect();
@@ -86,11 +86,11 @@ public class GroupCollectController {
     @PostMapping("/{groupId}")
     public ResponseEntity addCollect(@PathVariable Integer groupId, HttpSession session) {
         // TODO: 用來獲取已登入的member訊息
-        // Member member = (Member) session.getAttribute("member");
-        // Integer memberId = member.getMemberId();
+        Integer memberId = (Integer) session.getAttribute("memberId");
+
 
         //目前預設為1
-        Integer memberId = 1;
+        //Integer memberId = 1;
         groupCollectService.addCollect(groupId,memberId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -104,11 +104,11 @@ public class GroupCollectController {
     @DeleteMapping("/{groupId}")
     public ResponseEntity deleteCollect(@PathVariable(name = "groupId")Integer groupId, HttpSession session) {
         // TODO: 用來獲取已登入的member訊息
-        // Member member = (Member) session.getAttribute("member");
-        // Integer memberId = member.getMemberId();
+        Integer memberId = (Integer) session.getAttribute("memberId");
+
 
         //目前預設為1
-        Integer memberId = 1;
+        //Integer memberId = 1;
         groupCollectService.deleteCollect(groupId,memberId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
