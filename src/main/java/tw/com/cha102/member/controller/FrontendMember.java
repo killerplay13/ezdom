@@ -41,26 +41,26 @@ public class FrontendMember {
 
     @PostMapping("/checkEmailAccount")
     public AccountEmailResponse checkEmailAccount(@RequestBody @Valid CheckEmailAccountRequest checkEmailAccountRequest,
-                                                   HttpServletRequest request,
-                                                   HttpServletResponse response
-                                                     ){
-       return memberService.checkEmailAccount(checkEmailAccountRequest, request, response);
+                                                  HttpServletRequest request,
+                                                  HttpServletResponse response
+    ) {
+        return memberService.checkEmailAccount(checkEmailAccountRequest, request, response);
     }
 
     @PostMapping("/sendAuthenticationCode")
-    public CommonResponse<String> sendAuthenticationCode(@RequestBody @Valid CheckEmailAccountRequest checkEmailAccountRequest, HttpServletRequest request){
+    public CommonResponse<String> sendAuthenticationCode(@RequestBody @Valid CheckEmailAccountRequest checkEmailAccountRequest, HttpServletRequest request) {
         memberService.sendAuthenticationCode(checkEmailAccountRequest, request); // 調用 sendCheckCode 方法發送
         return new CommonResponse<>("傳送成功");
     }
 
     @PostMapping("/checkAuthCode")
-    public CommonResponse<String> checkAuthCode(@RequestParam String authCode, HttpSession httpSession,HttpServletResponse response){
-        memberService.checkAuthCode(authCode, httpSession,response);
+    public CommonResponse<String> checkAuthCode(@RequestParam String authCode, HttpSession httpSession, HttpServletResponse response) {
+        memberService.checkAuthCode(authCode, httpSession, response);
         return new CommonResponse<>("驗證成功");
     }
 
     @PostMapping("/resetPassword")
-    public CommonResponse<String> resetPassword(@RequestParam String newPassword, HttpServletRequest request, HttpServletResponse response){
+    public CommonResponse<String> resetPassword(@RequestParam String newPassword, HttpServletRequest request, HttpServletResponse response) {
         memberService.resetPassword(newPassword, request, response);
         return new CommonResponse<>("密碼更新成功");
     }
@@ -88,9 +88,9 @@ public class FrontendMember {
     }
 
     @GetMapping("/getPhoto")
-    public ResponseEntity<MemberPhotoResponse> getMemberPhoto(HttpServletRequest request){
+    public ResponseEntity<MemberPhotoResponse> getMemberPhoto(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        Integer memberId = (Integer)session.getAttribute("memberId");
+        Integer memberId = (Integer) session.getAttribute("memberId");
         MemberPhotoResponse response = memberService.getMebmerPhoto(memberId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -98,23 +98,22 @@ public class FrontendMember {
     @PostMapping("/profile")
     public CommonResponse<String> uploadProfile(@RequestBody ProfileRequest profileRequest,
                                                 HttpServletRequest request,
-                                                HttpServletResponse response)
-    {
+                                                HttpServletResponse response) {
         memberService.uploadProfile(profileRequest, request, response);
         return new CommonResponse<>("個資上傳成功");
 
     }
 
     @GetMapping("/getProfile")
-    public ResponseEntity<MemberProfileResponse> getMemberProfile(HttpServletRequest request){
+    public ResponseEntity<MemberProfileResponse> getMemberProfile(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        Integer memberId = (Integer)session.getAttribute("memberId");
+        Integer memberId = (Integer) session.getAttribute("memberId");
         MemberProfileResponse response = memberService.getMemberProfile(memberId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("/modifyPw")
-    public CommonResponse<String> modifyPw(@RequestBody String modifyPw, HttpServletRequest request){
+    public CommonResponse<String> modifyPw(@RequestBody String modifyPw, HttpServletRequest request) {
         memberService.modifyPw(modifyPw, request);
         return new CommonResponse<>("密碼更改成功");
     }
@@ -125,13 +124,13 @@ public class FrontendMember {
     }
 
     @GetMapping
-    public ResponseEntity<Member> getMember(HttpSession session){
+    public ResponseEntity<Member> getMember(HttpSession session) {
         // TODO: 用來獲取已登入的member訊息
-        // Member member = (Member) session.getAttribute("member");
-        // Integer memberId = member.getMemberId();
+        Integer memberId = (Integer) session.getAttribute("memberId");
+
 
         //目前預設為1
-        Integer memberId = 1;
+        //Integer memberId = 1;
         Member member = memberService.findById(memberId);
 
         return new ResponseEntity<>(member, HttpStatus.OK);

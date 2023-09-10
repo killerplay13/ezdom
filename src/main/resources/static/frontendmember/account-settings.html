@@ -373,11 +373,11 @@
                         <!-- 文件输入元素 -->
                         <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
                             <div class="col-sm-6">
-                                <label class="form-label" for="fn">姓名</label>
+                                <label class="form-label" for="name">姓名</label>
                                 <input class="form-control" type="text" id="name" placeholder="姓名 ( or 暱稱 )">
                             </div>
                             <div class="col-sm-6">
-                                <label class="form-label" for="ln">身分證</label>
+                                <label class="form-label" for="memberId">身分證</label>
                                 <input class="form-control" type="text" id="memberId" placeholder="請輸入正確身分證格式"
                                        required
                                        oninput="ValidateId()">
@@ -398,7 +398,7 @@
                                 <p id="phoneError" style="color: red;"></p>
                             </div>
                             <div class="col-sm-6">
-                                <label class="form-label" for="birth-year">生日</label>
+                                <label class="form-label" for="birth">生日</label>
                                 <input class="form-control" type="date" id="birth">
                             </div>
                             <div class="col-12 d-sm-flex align-items-center pt-sm-2 pt-md-3">
@@ -968,8 +968,6 @@
     const confirmPw = document.getElementById('confirmPw');
     const pwButton = document.getElementById('pwButton');
 
-    // 帳號
-    const memberAccount = '7014';
 
     newPw.addEventListener('blur', validatePassword);
     confirmPw.addEventListener('blur', validateConfirmPassword);
@@ -1059,17 +1057,15 @@
 
     document.addEventListener('DOMContentLoaded', function () {
 
-      const memberAccount = '7014';
-
       displayMemberSidebarProfile();
     });
 
 
-        function displayMemberSidebarProfile(memberAccount){
+        function displayMemberSidebarProfile(){
           const nameDisplay1 = document.querySelectorAll(".nameDisplay1");
           const mailDisplay1 = document.querySelectorAll(".mailDisplay1");
 
-          fetch(`http://localhost:8080/ezdom/member/getProfile?memberAccount=7014`)
+          fetch(`http://localhost:8080/ezdom/member/getProfile`)
             .then(resp => resp.json())
             .then(body => {
               const { name, email } = body;
@@ -1096,7 +1092,6 @@
 <!-- 照片 -->
 <script>
     $(document).ready(function () {
-      const memberAccount = '7014';
       displayMemberPhoto();
     });
 
