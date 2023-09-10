@@ -20,7 +20,7 @@ public class FilterConfig {
         bean.addUrlPatterns("/frontend/*");
         bean.setOrder(10);
         bean.setName("authenticationFilter");
-        bean.setEnabled(false);
+        bean.setEnabled(true);
         return bean;
     }
 }
