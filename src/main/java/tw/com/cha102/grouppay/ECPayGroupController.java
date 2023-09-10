@@ -43,7 +43,7 @@ public class ECPayGroupController {
         Integer memberId = 1;
         // rtnCode == 1 表示交易成功
         if ("1".equals(rtnCode)) {
-            GroupMember groupMember = groupMemberService.findByGroupIdAndMemberIdAndGroupApplyStatus(Integer.parseInt(groupId), memberId, (byte) 5);
+            GroupMember groupMember = groupMemberService.findByGroupIdAndMemberIdAndGroupApplyStatus(Integer.parseInt(groupId), memberId, (byte) 4);
             if (!ObjectUtils.isEmpty(groupMember)) {
                 groupMember.setGroupApplyStatus((byte) 4);
                 groupMemberService.save(groupMember);
