@@ -92,7 +92,18 @@ function collectFormData() {
                 },
                 body: JSON.stringify(formData)
             })
-            .then(response => response.json())
+            .then(response => {
+              if (response.status === 401) {
+                // 重定向到登录页面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
             .then(body => {
                 // const { successful } = body;
                 if (body.successful) {

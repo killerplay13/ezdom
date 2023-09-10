@@ -1,7 +1,7 @@
 // ====================== 宣告變數 ====================== //
 let faqList;
 const div_faq = document.querySelector("#faq");
-const req = 'http://localhost:8080/ezdom/frontend/faq/list';
+const req = 'http://localhost:8080/ezdom/faq/list';
 
 // ====================== 網頁載入完成後執行 ====================== //
 window.addEventListener("load", function() {
@@ -27,7 +27,7 @@ window.addEventListener("load", function() {
 async function getFaqList() {
     let response = await fetch(req);
     faqList = await response.json();
-    console.log(faqList);
+    // console.log(faqList);
     // 顯示faq列表
     showFaqList();
 }
@@ -46,7 +46,7 @@ function showFaqList() {
                 <div class="accordion-body fs-sm">${faq.faqAns}</div>
             </div>
         `;
-    
+
         div_faq.appendChild(div);
     }
 
@@ -58,10 +58,10 @@ function showFaqList() {
 
 // 註冊網頁所有元素的點擊事件
 document.addEventListener('click', function(event) {
-    // 問號按鈕 
+    // 問號按鈕
     let support = document.getElementById("sup");
     let btn_sup = support.style.display;
-    
+
     // 訊息視窗
     let supmes = document.getElementById("supm");
     let mes_sup = supmes.style.display;
@@ -77,7 +77,7 @@ document.addEventListener('click', function(event) {
             supmes.style.display = "none";
         }
 
-    
+
     }
 
     // 檢查點擊的元素是否位於問號按鈕的範圍內，如果是就顯示視窗並隱藏按鈕
@@ -94,18 +94,18 @@ document.addEventListener('click', function(event) {
 
 // 當即時客服的視窗被點擊時，隱藏視窗並顯示按鈕
 $("#window").on("click", function() {
-    // 問號按鈕 
+    // 問號按鈕
     let support = document.getElementById("sup");
     let btn_sup = support.style.display;
-    
+
     // 訊息視窗
     let supmes = document.getElementById("supm");
     let mes_sup = supmes.style.display;
-  
+
     if(mes_sup === "block"){
       supmes.style.display = "none";
     }
-    
+
     if(btn_sup === "none"){
         support.style.display = "block";
     }
@@ -113,84 +113,85 @@ $("#window").on("click", function() {
 
 
 
+// const url = new URLSearchParams(window.location.search);
+// const url_memberId = url.get('memberId'); // 取得URL中查詢字串coachId的值
+// // 创建 WebSocket 连接，将 WebSocket 地址替换为你的服务器地址
+// const socket = new WebSocket("ws://localhost:8080/ezdom/frontend/SupportWS/" + url_memberId);
+
+// // 当连接打开时
+// socket.addEventListener("open", (event) => {
+//   console.log("WebSocket 连接已打开");
+// });
+
+// // 当接收到消息时
+// socket.addEventListener("message", (event) => {
+//   const message = JSON.parse(event.data);
+//   console.log("收到消息：", message);
+// });
+
+// // 当连接关闭时
+// socket.addEventListener("close", (event) => {
+//   if (event.wasClean) {
+//     console.log(`连接已关闭，状态码：${event.code}，原因：${event.reason}`);
+//   } else {
+//     console.error("连接意外关闭");
+//   }
+// });
+
+// // 当发生错误时
+// socket.addEventListener("error", (error) => {
+//   console.error("WebSocket 错误：", error);
+// });
+
+// // 向服务器发送消息
+// function sendMessage() {
+//     var message = {
+//         "type" : "chat",
+//         "sender" : "aaa",
+//         "receiver" : "bbb",
+//         "message" : "test",
+//         "messageTime" : "2023-09-05"
+//     };
+//     console.log(message);
+//   socket.send(JSON.stringify(message));
+// }
+
+// // 关闭连接
+// function closeWebSocket() {
+//   socket.close();
+// }
+
+
+
+// ====================== WebSocket ====================== //
+window.addEventListener("load", function() {
+    connect();
+    getMember();
+})
+
+
+var messagesArea = document.getElementById("messagesArea");
+var webSocket;
 const url = new URLSearchParams(window.location.search);
 const url_memberId = url.get('memberId'); // 取得URL中查詢字串coachId的值
-// 创建 WebSocket 连接，将 WebSocket 地址替换为你的服务器地址
-const socket = new WebSocket("ws://localhost:8080/ezdom/frontend/SupportWS/" + url_memberId);
+var self = url_memberId;
+let receiver = 99;
+// if(url_memberId === "2"){receiver = 1;}
 
-// 当连接打开时
-socket.addEventListener("open", (event) => {
-  console.log("WebSocket 连接已打开");
-});
-
-// 当接收到消息时
-socket.addEventListener("message", (event) => {
-  const message = JSON.parse(event.data);
-  console.log("收到消息：", message);
-});
-
-// 当连接关闭时
-socket.addEventListener("close", (event) => {
-  if (event.wasClean) {
-    console.log(`连接已关闭，状态码：${event.code}，原因：${event.reason}`);
-  } else {
-    console.error("连接意外关闭");
-  }
-});
-
-// 当发生错误时
-socket.addEventListener("error", (error) => {
-  console.error("WebSocket 错误：", error);
-});
-
-// 向服务器发送消息
-function sendMessage() {
-    var message = {
-        "type" : "chat",
-        "sender" : "aaa",
-        "receiver" : "bbb",
-        "message" : "test",
-        "messageTime" : "2023-09-05"
-    };
-    console.log(message);
-  socket.send(JSON.stringify(message));
+let memberDetails;
+async function getMember(){
+	let response = await fetch("http://localhost:8080/ezdom/faq/member?memberId=" + url_memberId);
+    memberDetails = await response.json();
+    console.log(memberDetails);
 }
-
-// 关闭连接
-function closeWebSocket() {
-  socket.close();
-}
-
-
-/*
-// ====================== WebSocket ====================== //
-// 模擬登入中的memberId
-let memberId = 2;
-
-var MyPoint = "/SupportWS/" + memberId;
-var host = window.location.host;
-var path = window.location.pathname;
-var webCtx = path.substring(0, path.indexOf('/', 1));
-// var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
-var endPointURL = "ws://localhost:8080/ezdom" + MyPoint;
-ws://localhost:8081/WebSocketChatWeb/FriendWS/gggggggggg
-
-// var statusOutput = document.getElementById("statusOutput");
-// var messagesBody = document.getElementById("messagesBody");
-var messagesArea = document.getElementById("messagesArea");
-var self = memberId;
-var webSocket;
 
 function connect() {
+
     // create a websocket
-    console.log(endPointURL);
-    webSocket = new WebSocket(endPointURL);
+    webSocket = new WebSocket("ws://localhost:8080/ezdom/SupportWS/" + url_memberId);
 
     webSocket.onopen = function(event) {
         console.log("Connect Success!");
-        // document.getElementById('sendMessage').disabled = false;
-        // document.getElementById('connect').disabled = true;
-        // document.getElementById('disconnect').disabled = false;
     };
 
     webSocket.onmessage = function(event) {
@@ -200,32 +201,70 @@ function connect() {
             console.log("is open!!")
         } else if ("history" === jsonObj.type) {
             messagesArea.innerHTML = '';
-            var ul = document.createElement('ul');
-            ul.id = "area";
-            messagesArea.appendChild(ul);
             // 這行的jsonObj.message是從redis撈出跟好友的歷史訊息，再parse成JSON格式處理
             var messages = JSON.parse(jsonObj.message);
-            for (var i = 0; i < messages.length; i++) {
-                var historyData = JSON.parse(messages[i]);
-                var showMsg = historyData.message;
-                var li = document.createElement('li');
+            // console.log(messages);
+            // console.log("==========================");
+            for (let i = 0; i < messages.length; i++) {
+                let historyData = JSON.parse(messages[i]);
+                let div = document.createElement('div');
+                div.setAttribute("style", "max-width: 392px;");
+                let showMsg = historyData.message;
+                let time = historyData.messageTime;
+                // var li = document.createElement('li');
                 // 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
-                historyData.sender === self ? li.className += 'me' : li.className += 'friend';
-                li.innerHTML = showMsg;
-                ul.appendChild(li);
+                historyData.sender === self ? div.className += 'ms-auto mb-3' : div.className += 'mb-3';
+                if(historyData.sender === url_memberId){
+                    div.innerHTML = `
+                        <div class="d-flex align-items-end mb-2">
+                        <div class="message-box-end bg-primary text-white">${showMsg}</div>
+                        <div class="flex-shrink-0 ps-2 ms-1"><img class="rounded-circle" src="data:image/jpeg;base64,${memberDetails.memberPhoto}" width="48" alt="Avatar"></div>
+                        </div>
+                        <div class="fs-xs text-muted">${time}</div>
+                    `;
+                    console.log(div);
+                    messagesArea.appendChild(div);
+                }else{
+                    div.innerHTML = `
+                        <div class="d-flex align-items-end mb-2">
+                            <div class="flex-shrink-0 pe-2 me-1"><img class="rounded-circle" src="../frontendshop/image/FBI.png" width="48" alt="Avatar"></div>
+                            <div class="message-box-start text-dark">${showMsg}</div>
+                        </div>
+                        <div class="fs-xs text-muted text-end">${time}</div>
+                    `;
+                    messagesArea.appendChild(div);
+                }
             }
             messagesArea.scrollTop = messagesArea.scrollHeight;
         } else if ("chat" === jsonObj.type) {
-            var li = document.createElement('li');
-            jsonObj.sender === self ? li.className += 'me' : li.className += 'friend';
-            li.innerHTML = jsonObj.message;
-            console.log(li);
-            document.getElementById("area").appendChild(li);
+            console.log(jsonObj);
+            let div = document.createElement('div');
+            jsonObj.sender === self ? div.className += 'ms-auto mb-3' : div.className += 'mb-3';
+            div.setAttribute("style", "max-width: 392px;");
+            // let img = "assets/img/avatar/19.jpg";
+            if(jsonObj.sender === url_memberId){
+                div.innerHTML = `
+                    <div class="d-flex align-items-end mb-2">
+                    <div class="message-box-end bg-primary text-white">${jsonObj.message}</div>
+                    <div class="flex-shrink-0 ps-2 ms-1"><img class="rounded-circle" src="data:image/jpeg;base64,${memberDetails.memberPhoto}" width="48" alt="Avatar"></div>
+                    </div>
+                    <div class="fs-xs text-muted">${jsonObj.messageTime}</div>
+                `;
+            }else{
+                div.innerHTML = `
+                    <div class="d-flex align-items-end mb-2">
+                        <div class="flex-shrink-0 pe-2 me-1"><img class="rounded-circle" src="../frontendshop/image/FBI.png" width="48" alt="Avatar"></div>
+                        <div class="message-box-start text-dark">${jsonObj.message}</div>
+                    </div>
+                    <div class="fs-xs text-muted text-end">${jsonObj.messageTime}</div>
+                `;
+            }
+            console.log(jsonObj.message);
+            messagesArea.appendChild(div);
             messagesArea.scrollTop = messagesArea.scrollHeight;
         } else if ("close" === jsonObj.type) {
-            refreshFriendList(jsonObj);
         }
-        
+
     };
 
     webSocket.onclose = function(event) {
@@ -234,26 +273,29 @@ function connect() {
 }
 
 function sendMessage() {
+    // var moment = require('moment');
+    let messageTime = moment(new Date()).format('YYYY-MM-DD HH:mm');
     var inputMessage = document.getElementById("message");
     // var friend = statusOutput.textContent;
-    var system = "xxx";
     var message = inputMessage.value.trim();
 
     if (message === "") {
-        alert("Input a message");
+        // alert("Input a message");
         inputMessage.focus();
     // } else if (friend === "") {
     //     alert("Choose a friend");
     } else {
         var jsonObj = {
             "type" : "chat",
-            "sender" : memberId,
-            "receiver" : 2,
-            "message" : message
+            "sender" : url_memberId,
+            "receiver" : receiver,
+            "message" : message,
+            "messageTime" : messageTime
         };
         webSocket.send(JSON.stringify(jsonObj));
         inputMessage.value = "";
         inputMessage.focus();
+        console.log(JSON.stringify(jsonObj));
     }
 }
 
@@ -270,18 +312,19 @@ function sendMessage() {
 // }
 // 註冊列表點擊事件並抓取好友名字以取得歷史訊息
 // function addListener() {
-//     var container = document.getElementById("row");
-//     container.addEventListener("click", function(e) {
-//         var friend = e.srcElement.textContent;
-//         updateFriendName(friend);
-//         var jsonObj = {
-//                 "type" : "history",
-//                 "sender" : self,
-//                 "receiver" : friend,
-//                 "message" : ""
-//             };
-//         webSocket.send(JSON.stringify(jsonObj));
-//     });
+
+
+    let ws_btn = document.getElementById("sup");
+    ws_btn.addEventListener("click", function(e) {
+        var jsonObj = {
+                "type" : "history",
+                "sender" : url_memberId,
+                "receiver" : receiver,
+                "message" : ""
+            };
+        webSocket.send(JSON.stringify(jsonObj));
+        console.log(JSON.stringify(jsonObj));
+    });
 // }
 
 function disconnect() {
@@ -294,4 +337,11 @@ function disconnect() {
 // function updateFriendName(name) {
 //     statusOutput.innerHTML = name;
 // }
-*/
+
+$("#message").on("keydown", function(event) {
+
+    if (event.keyCode == 13){
+        event.preventDefault();
+        sendMessage();
+    }
+})

@@ -9,9 +9,24 @@ window.addEventListener("load", function() {
 })
 
 async function getCoachList(){
-	let response = await fetch("http://localhost:8080/ezdom/frontend/browse/list");
-    coachList = await response.json();
-    console.log(coachList);
+    try {
+        let response = await fetch("http://localhost:8080/ezdom/frontend/browse/list");
+
+        if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+        } else if (response.ok) {
+            // 登入成功
+            coachList = await response.json();
+        } else {
+            alert("錯誤狀態 " + response.status);
+        }
+    } catch (error) {
+        console.error("出现错误: " + error);
+    }
+
+//	let response = await fetch("http://localhost:8080/ezdom/frontend/browse/list");
+//    coachList = await response.json();
     showCoachList();
 }
 

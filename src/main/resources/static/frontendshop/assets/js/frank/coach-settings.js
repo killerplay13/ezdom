@@ -42,8 +42,25 @@ const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值
 const d_req = 'http://localhost:8080/ezdom/frontend/browse/list/' + url_coachId;
 
 async function getCoachDetails(){
-	let response = await fetch(d_req);
-    coachDetails = await response.json();
+
+    try {
+        let response = await fetch(d_req);
+
+        if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+        } else if (response.ok) {
+            // 登入成功
+            coachDetails = await response.json();
+        } else {
+            alert("錯誤狀態 " + response.status);
+        }
+    } catch (error) {
+        console.error("出现错误: " + error);
+    }
+
+//	let response = await fetch(d_req);
+//    coachDetails = await response.json();
     console.log(coachDetails);
     // SHOW出側邊欄
     showCoachDetails();
@@ -296,7 +313,18 @@ function collectFormData() {
             },
             body: JSON.stringify(formData)
         })
-        .then(response => response.json())
+        .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        })
         .then(body => {
             if (body.successful) {
                 Swal.fire({
