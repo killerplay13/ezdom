@@ -12,6 +12,7 @@ public interface ForumPostDao extends  JpaRepository<ForumPostVO,Integer>{
 
     List<ForumPostVO> findAllByForumPostStatus(Integer status);
 
-    List<ForumPostVO> findByOrderByForumPostClickCountAsc();
+    List<ForumPostVO> findByForumPostStatusOrderByForumPostClickCountAsc(Integer status);
+
 }
 
