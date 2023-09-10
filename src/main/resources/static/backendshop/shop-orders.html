@@ -558,7 +558,7 @@
 
     function orderRenew() {
         let statusValue = parseInt(orderStatus.value);
-        fetch(`http://localhost:8080/ezdom/backend/oredr/get/${statusValue}`)
+        fetch(`/ezdom/backend/oredr/get/${statusValue}`)
             .then(response => {
                     if (response.status === 401) {
                         // 重定向到登录页面 登入失敗
@@ -689,7 +689,7 @@
 
     //商品明細跳框
     function productDetail(orderId) {
-    fetch(`http://localhost:8080/ezdom/backend/oredr/product?orderId=${orderId}`)
+    fetch(`/ezdom/backend/oredr/product?orderId=${orderId}`)
     .then(response => {
                     if (response.status === 401) {
                         // 重定向到登录页面 登入失敗
@@ -728,7 +728,7 @@
 
     //出貨按鈕
     function ship(orderId){
-        fetch(`http://localhost:8080/ezdom/backend/oredr/ship/${orderId}`,{
+        fetch(`/ezdom/backend/oredr/ship/${orderId}`,{
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' }
         }).then(response => {

@@ -216,7 +216,7 @@
                                         aria-expanded="false">瀏覽論壇</a>
                 </li>
                 <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="forum-mypost.html"
-                                        aria-expanded="false">論壇管理</a>
+                                        aria-expanded="false">我的論壇</a>
                 </li>
                 <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="forum-post.html"
                                         aria-expanded="false">發文</a>
@@ -268,7 +268,7 @@
       <nav aria-label="breadcrumb">
         <ol class="pt-lg-3 pb-lg-4 pb-2 breadcrumb">
           <li class="breadcrumb-item"><a href="forum.html">論壇</a></li>
-          <li class="breadcrumb-item active" aria-current="page">論壇管理</li>
+          <li class="breadcrumb-item active" aria-current="page">我的論壇</li>
         </ol>
       </nav>
 
@@ -283,7 +283,7 @@
               <div class="offcanvas-body">
 
                 <nav class="nav flex-column pb-2 pb-lg-4 mb-3">
-                  <h4 class="h1 mb-5">論壇管理</h4>
+                  <h4 class="h1 mb-5">我的論壇</h4>
                   <a class="nav-link fw-semibold py-2 px-0 " style="cursor: pointer" onclick="fetchMyPosts()">
                     <i class="ai-pen fs-5  me-2">我的文章</i>
                   </a>
@@ -359,527 +359,537 @@
   <script src="../frontendshop/assets/js/theme.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
   <script>
-
-    //頁面加載時自動顯示"我的文章"列表
-    document.addEventListener('DOMContentLoaded', function () {
-      const selectedTab = localStorage.getItem('selectedTab');
-
-      if (selectedTab === 'myPosts') {
-        fetchMyPosts();
-      } else if (selectedTab === 'myFavorites') {
-        fetchMyFavorites();
-      } else {
-        fetchMyHistory();
-      }
-    });
-
-    // ====================== 獲取登入會員發過的文章列表 ====================== //
-    function fetchMyPosts() {
-
-      const articleListContainer = document.getElementById('article-list-container');
-      articleListContainer.innerHTML = '';//進行清空
-      fetch(`/ezdom/frontend/forum/my-posts`)
-        .then(response => {
-          if (response.status === 401) {
-            //重定向到登入頁面 登入失敗
-            window.location.href = '/ezdom/frontendmember/account-signin.html';
-          } else if (response.ok) {
-            //登入成功
-            return response.json();
+        //根據選擇顯示不同的列表
+        document.addEventListener('DOMContentLoaded', function () {
+          const selectedTab = localStorage.getItem('selectedTab');
+          if (selectedTab === 'myPosts') {
+            fetchMyPosts();
+          } else if (selectedTab === 'myFavorites') {
+            fetchMyFavorites();
           } else {
-            alert("錯誤狀態" + response.status);
-            return;
+            fetchMyHistory();
           }
-        })
-        .then(body => {
-          for (let post of body) {
-            const {
-              forumPostId,
-              forumPostTitle,
-              forumPostContent,
-              forumPostTime,
-              forumPostType,
-              forumPostClickCount,
-              memberName,
-              memberPhoto,
-            } = post;
-            let imgUrl = "data:image/jpeg;base64," + memberPhoto;
-            const postTime = new Date(forumPostTime);
-            const formattedDate = `${postTime.getMonth() + 1}/${postTime.getDate()}`;
+        });
 
-            //創建一個card 
-            const card = document.createElement('div');
-            card.className = 'col-sm-7 col-lg-11 ';
-            const excerpt = forumPostContent.substring(0, 100) + "...";
+        // ====================== 獲取登入會員發過的文章列表 ====================== //
+        function fetchMyPosts() {
+          const articleListContainer = document.getElementById('article-list-container');
+          articleListContainer.innerHTML = '';//進行清空
+          fetch(`/ezdom/frontend/forum/my-posts`)
+            .then(response => {
+              if (response.status === 401) {
+                //重定向到登入頁面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
+            .then(body => {
+              for (let post of body) {
+                const {
+                  forumPostId,
+                  forumPostTitle,
+                  forumPostContent,
+                  forumPostTime,
+                  forumPostType,
+                  forumPostClickCount,
+                  memberName,
+                  memberPhoto,
+                } = post;
+                let imgUrl = "data:image/jpeg;base64," + memberPhoto;
+                const postTime = new Date(forumPostTime);
+                const formattedDate = `${postTime.getMonth() + 1}/${postTime.getDate()}`;
 
-            //card的內容
-            card.innerHTML = `
-            <div class="card mb-4 special-card" style="border: 2px solid #000; border-radius: 10px; padding: 20px; box-shadow: 3px 3px 5px #888888;">
-              <div class="card-body">     
-                <div class="pt-4 pb-sm-4 ps-sm-4 pe-lg-4">
-                    <h3><a href="forum-article.html?postId=${forumPostId}" onclick="addView(${forumPostId}); history(${forumPostId});">『${forumPostTitle}』</a></h3>
-                    <p class="d-sm-none d-md-block">${excerpt}</p>
-                    <div class="d-flex flex-wrap align-items-center mt-n2">
-                      <img class="rounded-circle" src="${imgUrl}" width="48" alt="Comment author">
-                      <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">✍️${memberName}</span>
-                      <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
-                      <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">📅${formattedDate}</span>
-                      <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
-                      <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">${getPostStatusText(forumPostType)}</span>
-                      <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
-                      <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">🖱️${forumPostClickCount}</span>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 d-flex justify-content-end">
-                            <button type="button" class="btn btn-outline-success publish-button" onclick="editPost(${forumPostId})">修改</button>
-                            <div class="mx-2"></div>
-                            <button type="button" class="btn btn-outline-danger publish-button" onclick="deletePost(${forumPostId})">刪除</button>
+                //創建一個card
+                const card = document.createElement('div');
+                card.className = 'col-sm-7 col-lg-11 ';
+                const excerpt = forumPostContent.substring(0, 100) + "...";
+
+                //card的內容
+                card.innerHTML = `
+                <div class="card mb-4 special-card" style="border: 2px solid #000; border-radius: 10px; padding: 20px; box-shadow: 3px 3px 5px #888888;">
+                  <div class="card-body">
+                    <div class="pt-4 pb-sm-4 ps-sm-4 pe-lg-4">
+                        <h3><a href="forum-article.html?postId=${forumPostId}" onclick="addView(${forumPostId}); history(${forumPostId});">『${forumPostTitle}』</a></h3>
+                        <p class="d-sm-none d-md-block">${excerpt}</p>
+                        <div class="d-flex flex-wrap align-items-center mt-n2">
+                          <img class="rounded-circle" src="${imgUrl}" width="48" alt="Comment author">
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">✍️${memberName}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">📅${formattedDate}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">${getPostStatusText(forumPostType)}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">🖱️${forumPostClickCount}</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 d-flex justify-content-end">
+                                <button type="button" class="btn btn-outline-success publish-button" onclick="editPost(${forumPostId})">修改</button>
+                                <div class="mx-2"></div>
+                                <button type="button" class="btn btn-outline-danger publish-button" onclick="deletePost(${forumPostId})">刪除</button>
+                            </div>
                         </div>
                     </div>
-                </div>         
-              </div>
-           </div>`;
-
-            //將card添加到文章列表中
-            articleListContainer.insertBefore(card, articleListContainer.firstChild);
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching posts:', error);
-        });
-        localStorage.setItem('selectedTab', 'myPosts');
-    }
-
-
-    // ====================== 獲取登入會員的收藏文章列表 ====================== //
-    function fetchMyFavorites() {
-      const articleListContainer = document.getElementById('article-list-container');
-      articleListContainer.innerHTML = '';
-
-      fetch(`/ezdom/frontend/forum/my-collects`)
-        .then(response => {
-          if (response.status === 401) {
-            //重定向到登入頁面 登入失敗
-            window.location.href = '/ezdom/frontendmember/account-signin.html';
-          } else if (response.ok) {
-            //登入成功
-            return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
-          }
-        })
-        .then(body => {
-          body.forEach(collectedPost => {
-            const {
-              forumPost,
-              forumCollectId
-            } = collectedPost;
-
-            //判斷文章狀態是否為0
-            if (forumPost.forumPostStatus === 0) {
-              const {
-                forumPostId,
-                forumPostTitle,
-                forumPostContent,
-                forumPostTime,
-                forumPostType,
-                forumPostClickCount,
-                memberName,
-                memberPhoto,
-              } = forumPost;
-              let imgUrl = "data:image/jpeg;base64," + memberPhoto;
-              const postTime = new Date(forumPostTime);
-              const formattedDate = `${postTime.getMonth() + 1}/${postTime.getDate()}`;
-
-              const card = document.createElement('div');
-              card.className = 'col-sm-7 col-lg-11';
-              const excerpt = forumPostContent.substring(0, 100) + "...";
-
-              card.innerHTML = `
-              <div class="card mb-4 special-card" style="border: 2px solid #000; border-radius: 10px; padding: 20px; box-shadow: 3px 3px 5px #888888;">           
-                <div class="card-body"> 
-                  <div class="pt-4 pb-sm-4 ps-sm-4 pe-lg-4">
-                    <h3><a href="forum-article.html?postId=${forumPostId}"onclick="addView(${forumPostId}); history(${forumPostId});">『${forumPostTitle}』</a></h3>
-                    <p class="d-sm-none d-md-block">${excerpt}</p>
-                    <div class="d-flex flex-wrap align-items-center mt-n2">
-                      <img class="rounded-circle" src="${imgUrl}" width="48" alt="Comment author">
-                      <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">✍️${memberName}</span>
-                      <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
-                      <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">📅${formattedDate}</span>
-                      <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
-                      <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">${getPostStatusText(forumPostType)}</span>
-                      <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
-                      <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">🖱️${forumPostClickCount}</span>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12 d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-warning publish-button" onclick="reportPost(${forumPostId})">檢舉</button>
-                        <div class="mx-2"></div>
-                        <button type="button" class="btn btn-outline-danger publish-button" onclick="deleteCollectedPost(${forumCollectId})">刪除</button>
-                      </div>
-                    </div>
-                  </div> 
-                </div>
-              </div>`;
-
-              articleListContainer.insertBefore(card, articleListContainer.firstChild);
-            }
-          });
-        })
-        .catch(error => {
-          console.error('Error fetching favorites:', error);
-        });
-         localStorage.setItem('selectedTab', 'myFavorites');
-    }
-
-
-    // ====================== 獲取登入會員的文章瀏覽紀錄列表 ====================== //
-    function fetchMyHistory() {
-      const articleListContainer = document.getElementById('article-list-container');
-      articleListContainer.innerHTML = '';
-
-      fetch(`/ezdom/frontend/forum/my-history`)
-        .then(response => {
-          if (response.status === 401) {
-            //重定向到登入頁面 登入失敗
-            window.location.href = '/ezdom/frontendmember/account-signin.html';
-          } else if (response.ok) {
-            //登入成功
-            return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
-          }
-        })
-        .then(body => {
-          body.forEach(historyPost => {
-            const {
-              forumPost,
-              forumHistoryId
-            } = historyPost;
-
-            //判斷文章狀態是否為0
-            if (forumPost.forumPostStatus === 0) {
-              const {
-                forumPostId,
-                forumPostTitle,
-                forumPostContent,
-                forumPostTime,
-                forumPostType,
-                forumPostClickCount,
-                memberName,
-                memberPhoto,
-              } = forumPost;
-              let imgUrl = "data:image/jpeg;base64," + memberPhoto;
-              const postTime = new Date(forumPostTime);
-              const formattedDate = `${postTime.getMonth() + 1}/${postTime.getDate()}`;
-
-
-              const card = document.createElement('div');
-              card.className = 'col-sm-7 col-lg-11';
-              const excerpt = forumPostContent.substring(0, 100) + "...";
-
-
-              card.innerHTML = `
-              <div class="card mb-4 special-card" style="border: 2px solid #000; border-radius: 10px; padding: 20px; box-shadow: 3px 3px 5px #888888;">
-                <div class="card-body">   
-                  <div class="pt-4 pb-sm-4 ps-sm-4 pe-lg-4">
-                    <h3><a href="forum-article.html?postId=${forumPostId}"onclick="addView(${forumPostId}); history(${forumPostId});">『${forumPostTitle}』</a></h3>
-                    <p class="d-sm-none d-md-block">${excerpt}</p>
-                    <div class="d-flex flex-wrap align-items-center mt-n2">
-                      <img class="rounded-circle" src="${imgUrl}" width="48" alt="Comment author">
-                      <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">✍️${memberName}</span>
-                      <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
-                      <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">📅${formattedDate}</span>
-                      <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
-                      <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">${getPostStatusText(forumPostType)}</span>
-                      <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
-                      <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">🖱️${forumPostClickCount}</span>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12 d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-warning publish-button" onclick="reportPost(${forumPostId})">檢舉</button>
-                        <div class="mx-2"></div>
-                        <button type="button" class="btn btn-outline-danger publish-button" onclick="deleteHistoryPost(${forumHistoryId})">刪除</button>
-                      </div>
-                    </div>
                   </div>
-                </div>
-              </div>`;
+               </div>`;
 
-              articleListContainer.insertBefore(card, articleListContainer.firstChild);
+                //將card添加到文章列表中
+                articleListContainer.insertBefore(card, articleListContainer.firstChild);
+              }
+            })
+            .catch(error => {
+              console.error('Error fetching posts:', error);
+            });
+            //清除之前標籤的亮度再將active添加進去
+            clearSelectedTab();
+            document.querySelector('.nav-link[onclick="fetchMyPosts()"]').classList.add('active');
+            localStorage.setItem('selectedTab', 'myPosts');
+        }
+
+
+        // ====================== 獲取登入會員的收藏文章列表 ====================== //
+        function fetchMyFavorites() {
+          const articleListContainer = document.getElementById('article-list-container');
+          articleListContainer.innerHTML = '';
+
+          fetch(`/ezdom/frontend/forum/my-collects`)
+            .then(response => {
+              if (response.status === 401) {
+                //重定向到登入頁面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
+            .then(body => {
+              body.forEach(collectedPost => {
+                const {
+                  forumPost,
+                  forumCollectId
+                } = collectedPost;
+
+                //判斷文章狀態是否為0
+                if (forumPost.forumPostStatus === 0) {
+                  const {
+                    forumPostId,
+                    forumPostTitle,
+                    forumPostContent,
+                    forumPostTime,
+                    forumPostType,
+                    forumPostClickCount,
+                    memberName,
+                    memberPhoto,
+                  } = forumPost;
+                  let imgUrl = "data:image/jpeg;base64," + memberPhoto;
+                  const postTime = new Date(forumPostTime);
+                  const formattedDate = `${postTime.getMonth() + 1}/${postTime.getDate()}`;
+
+                  const card = document.createElement('div');
+                  card.className = 'col-sm-7 col-lg-11';
+                  const excerpt = forumPostContent.substring(0, 100) + "...";
+
+                  card.innerHTML = `
+                  <div class="card mb-4 special-card" style="border: 2px solid #000; border-radius: 10px; padding: 20px; box-shadow: 3px 3px 5px #888888;">
+                    <div class="card-body">
+                      <div class="pt-4 pb-sm-4 ps-sm-4 pe-lg-4">
+                        <h3><a href="forum-article.html?postId=${forumPostId}"onclick="addView(${forumPostId}); history(${forumPostId});">『${forumPostTitle}』</a></h3>
+                        <p class="d-sm-none d-md-block">${excerpt}</p>
+                        <div class="d-flex flex-wrap align-items-center mt-n2">
+                          <img class="rounded-circle" src="${imgUrl}" width="48" alt="Comment author">
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">✍️${memberName}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">📅${formattedDate}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">${getPostStatusText(forumPostType)}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">🖱️${forumPostClickCount}</span>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12 d-flex justify-content-end">
+                            <button type="button" class="btn btn-outline-warning publish-button" onclick="reportPost(${forumPostId})">檢舉</button>
+                            <div class="mx-2"></div>
+                            <button type="button" class="btn btn-outline-danger publish-button" onclick="deleteCollectedPost(${forumCollectId})">刪除</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>`;
+
+                  articleListContainer.insertBefore(card, articleListContainer.firstChild);
+                }
+              });
+            })
+            .catch(error => {
+              console.error('Error fetching favorites:', error);
+            });
+             clearSelectedTab();
+             document.querySelector('.nav-link[onclick="fetchMyFavorites()"]').classList.add('active');
+             localStorage.setItem('selectedTab', 'myFavorites');
+        }
+
+
+        // ====================== 獲取登入會員的文章瀏覽紀錄列表 ====================== //
+        function fetchMyHistory() {
+          const articleListContainer = document.getElementById('article-list-container');
+          articleListContainer.innerHTML = '';
+
+          fetch(`/ezdom/frontend/forum/my-history`)
+            .then(response => {
+              if (response.status === 401) {
+                //重定向到登入頁面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
+            .then(body => {
+              body.forEach(historyPost => {
+                const {
+                  forumPost,
+                  forumHistoryId
+                } = historyPost;
+
+                //判斷文章狀態是否為0
+                if (forumPost.forumPostStatus === 0) {
+                  const {
+                    forumPostId,
+                    forumPostTitle,
+                    forumPostContent,
+                    forumPostTime,
+                    forumPostType,
+                    forumPostClickCount,
+                    memberName,
+                    memberPhoto,
+                  } = forumPost;
+                  let imgUrl = "data:image/jpeg;base64," + memberPhoto;
+                  const postTime = new Date(forumPostTime);
+                  const formattedDate = `${postTime.getMonth() + 1}/${postTime.getDate()}`;
+
+
+                  const card = document.createElement('div');
+                  card.className = 'col-sm-7 col-lg-11';
+                  const excerpt = forumPostContent.substring(0, 100) + "...";
+
+
+                  card.innerHTML = `
+                  <div class="card mb-4 special-card" style="border: 2px solid #000; border-radius: 10px; padding: 20px; box-shadow: 3px 3px 5px #888888;">
+                    <div class="card-body">
+                      <div class="pt-4 pb-sm-4 ps-sm-4 pe-lg-4">
+                        <h3><a href="forum-article.html?postId=${forumPostId}"onclick="addView(${forumPostId}); history(${forumPostId});">『${forumPostTitle}』</a></h3>
+                        <p class="d-sm-none d-md-block">${excerpt}</p>
+                        <div class="d-flex flex-wrap align-items-center mt-n2">
+                          <img class="rounded-circle" src="${imgUrl}" width="48" alt="Comment author">
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">✍️${memberName}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">📅${formattedDate}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">${getPostStatusText(forumPostType)}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">🖱️${forumPostClickCount}</span>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12 d-flex justify-content-end">
+                            <button type="button" class="btn btn-outline-warning publish-button" onclick="reportPost(${forumPostId})">檢舉</button>
+                            <div class="mx-2"></div>
+                            <button type="button" class="btn btn-outline-danger publish-button" onclick="deleteHistoryPost(${forumHistoryId})">刪除</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>`;
+
+                  articleListContainer.insertBefore(card, articleListContainer.firstChild);
+                }
+              });
+            })
+            .catch(error => {
+              console.error('Error fetching history:', error);
+            });
+            clearSelectedTab();
+            document.querySelector('.nav-link[onclick="fetchMyHistory()"]').classList.add('active');
+            localStorage.setItem('selectedTab', 'myHistory');
+        }
+
+
+        // ====================== 增加文章點擊數 ====================== //
+        function addView(forumPostId) {
+          const viewRecord = {
+            forumPostId: forumPostId,
+          };
+
+          fetch(`/ezdom/frontend/forum/click/${forumPostId}`, {
+            method: 'POST',
+          })
+            .then(response => {
+              if (response.status === 401) {
+                //重定向到登入頁面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //fetchAndDisplay();
+                 return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
+            .catch(error => {
+              console.error('發生錯誤，無法執行瀏覽文章操作:', error);
+            });
+        }
+
+
+        // ====================== 將點擊過的文章加入瀏覽紀錄列表中 ====================== //
+        function history(forumPostId) {
+          const historyData = {
+            forumPostId: forumPostId,
+          };
+          fetch('/ezdom/frontend/forum/history', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(historyData)
+          })
+            .then(response => {
+              if (response.status === 401) {
+                //重定向到登入頁面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
+            .then(data => {
+              fetchAndDisplay();
+
+            })
+            .catch(error => {
+              console.error('發生錯誤，無法新增瀏覽紀錄操作:', error);
+
+            });
+
+        }
+
+
+        //導向編輯頁面
+        function editPost(postId) {
+          window.location.href = `forum-edit.html?postId=${postId}`;
+        }
+
+        //導向檢舉頁面
+        function reportPost(forumPostId) {
+          window.location.href = `forum-report.html?forumPostId=${forumPostId}`;
+        }
+
+
+        // ====================== 對我的文章進行刪除 ====================== //
+        function deletePost(postId) {
+          Swal.fire({
+            title: '確定要刪除這篇文章嗎？',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '確定',
+            cancelButtonText: '取消'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              fetch(`/ezdom/frontend/forum/delete/post/${postId}`, {
+                method: 'DELETE'
+              })
+                .then(response => {
+                  if (response.status === 401) {
+                    //重定向到登入頁面 登入失敗
+                    window.location.href = '/ezdom/frontendmember/account-signin.html';
+                  } else if (response.ok) {
+                    //登入成功
+                    return response.json();
+                  } else {
+                    alert("錯誤狀態" + response.status);
+                    return;
+                  }
+                })
+                .then(data => {
+                  if (data.successful) {
+                    Swal.fire({
+                      title: '成功',
+                      text: data.message,
+                      icon: 'success'
+                    }).then(() => {
+                      fetchMyPosts();
+                    });
+                  } else {
+                    Swal.fire({
+                      title: '錯誤',
+                      text: data.message,
+                      icon: 'error'
+                    });
+                    console.error('Delete failed:', data);
+                  }
+                })
+                .catch(error => {
+                  console.error('Error deleting post:', error);
+                  Swal.fire({
+                    title: '發生錯誤',
+                    text: '請稍後再試',
+                    icon: 'error'
+                  });
+                });
             }
           });
-        })
-        .catch(error => {
-          console.error('Error fetching history:', error);
-        });
-        localStorage.setItem('selectedTab', 'myHistory');
-    }
+        }
 
 
-    // ====================== 增加文章點擊數 ====================== //
-    function addView(forumPostId) {
-      const viewRecord = {
-        forumPostId: forumPostId,
-      };
+        // ====================== 對我的收藏進行刪除 ====================== //
+        function deleteCollectedPost(collectId) {
+          Swal.fire({
+            title: '確定要刪除這篇收藏的文章嗎？',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '確定',
+            cancelButtonText: '取消'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              fetch(`/ezdom/frontend/forum/delete/collect/${collectId}`, {
+                method: 'DELETE'
+              })
+                .then(response => {
+                  if (response.status === 401) {
+                    //重定向到登入頁面 登入失敗
+                    window.location.href = '/ezdom/frontendmember/account-signin.html';
+                  } else if (response.ok) {
+                    //登入成功
+                    return response.json();
+                  } else {
+                    alert("錯誤狀態" + response.status);
+                    return;
+                  }
+                })
+                .then(data => {
+                  if (data.successful !== undefined && data.successful === true) {
+                    Swal.fire({
+                      title: data.message,
+                      icon: 'success'
+                    }).then(() => {
+                      fetchMyFavorites();
+                    });
+                  } else {
+                    Swal.fire({
+                      title: '刪除失敗',
+                      text: data.message || '刪除失敗，請重試',
+                      icon: 'error'
+                    });
+                    console.error('Delete failed:', data);
+                  }
+                })
+                .catch(error => {
+                  console.error('Error deleting collected post:', error);
+                  Swal.fire({
+                    title: '發生錯誤',
+                    text: '請稍後再試',
+                    icon: 'error'
+                  });
+                });
+            }
+          });
+        }
 
-      fetch(`/ezdom/frontend/forum/click/${forumPostId}`, {
-        method: 'POST',
-      })
-        .then(response => {
-          if (response.status === 401) {
-            //重定向到登入頁面 登入失敗
-            window.location.href = '/ezdom/frontendmember/account-signin.html';
-          } else if (response.ok) {
-            //fetchAndDisplay();
-             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
+
+        // ====================== 對我的文章瀏覽紀錄進行刪除 ====================== //
+        function deleteHistoryPost(historyId) {
+          Swal.fire({
+            title: '確定要刪除這個瀏覽紀錄嗎？',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '確定',
+            cancelButtonText: '取消'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              fetch(`/ezdom/frontend/forum/delete/history/${historyId}`, {
+                method: 'DELETE'
+              })
+                .then(response => {
+                  if (response.status === 401) {
+                    //重定向到登入頁面 登入失敗
+                    window.location.href = '/ezdom/frontendmember/account-signin.html';
+                  } else if (response.ok) {
+                    //登入成功
+                    return response.json();
+                  } else {
+                    alert("錯誤狀態" + response.status);
+                    return;
+                  }
+                })
+                .then(data => {
+                  if (data.successful !== undefined && data.successful === true) {
+                    Swal.fire({
+                      title: data.message,
+                      icon: 'success'
+                    }).then(() => {
+                      fetchMyHistory();
+                    });
+                  } else {
+                    Swal.fire({
+                      title: '刪除失敗',
+                      text: data.message || '刪除失敗，請重試',
+                      icon: 'error'
+                    });
+                    console.error('Delete failed:', data);
+                  }
+                })
+                .catch(error => {
+                  console.error('Error deleting collected post:', error);
+                  Swal.fire({
+                    title: '發生錯誤',
+                    text: '請稍後再試',
+                    icon: 'error'
+                  });
+                });
+            }
+          });
+        }
+
+        //將active狀態取消以確保在切換標籤時先前選中的標籤不再保持亮度
+        function clearSelectedTab() {
+          const tabs = document.querySelectorAll('.nav-link');
+          tabs.forEach(tab => {
+            tab.classList.remove('active');//移除active
+          });
+        }
+
+        function getPostStatusText(forumPostType) {
+          switch (forumPostType) {
+            case 0:
+              return '全部';
+            case 1:
+              return '🏃戶外運動';
+            case 2:
+              return '🏋️‍♂️室內健身';
+            case 3:
+              return '🧗‍♂️極限運動';
+            case 4:
+              return '🏊水上運動';
+            case 5:
+              return '🥊格鬥';
+            case 6:
+              return '🍔飲食';
+            default:
+              return '其他狀態';
           }
-        })
-
-
-        .catch(error => {
-          console.error('發生錯誤，無法執行瀏覽文章操作:', error);
-        });
-    }
-
-
-    // ====================== 將點擊過的文章加入瀏覽紀錄列表中 ====================== //
-    function history(forumPostId) {
-      const historyData = {
-        forumPostId: forumPostId,
-      };
-      fetch('/ezdom/frontend/forum/history', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(historyData)
-      })
-        .then(response => {
-          if (response.status === 401) {
-            //重定向到登入頁面 登入失敗
-            window.location.href = '/ezdom/frontendmember/account-signin.html';
-          } else if (response.ok) {
-            //登入成功
-            return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
-          }
-        })
-        .then(data => {
-          fetchAndDisplay();
-
-        })
-        .catch(error => {
-          console.error('發生錯誤，無法新增瀏覽紀錄操作:', error);
-
-        });
-
-    }
-
-
-    //導向編輯頁面
-    function editPost(postId) {
-      window.location.href = `forum-edit.html?postId=${postId}`;
-    }
-
-    //導向檢舉頁面
-    function reportPost(forumPostId) {
-      window.location.href = `forum-report.html?forumPostId=${forumPostId}`;
-    }
-
-
-    // ====================== 對我的文章進行刪除 ====================== //
-    function deletePost(postId) {
-      Swal.fire({
-        title: '確定要刪除這篇文章嗎？',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: '確定',
-        cancelButtonText: '取消'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          fetch(`/ezdom/frontend/forum/delete/post/${postId}`, {
-            method: 'DELETE'
-          })
-            .then(response => {
-              if (response.status === 401) {
-                //重定向到登入頁面 登入失敗
-                window.location.href = '/ezdom/frontendmember/account-signin.html';
-              } else if (response.ok) {
-                //登入成功
-                return response.json();
-              } else {
-                alert("錯誤狀態" + response.status);
-                return;
-              }
-            })
-            .then(data => {
-              if (data.successful) {
-                Swal.fire({
-                  title: '成功',
-                  text: data.message,
-                  icon: 'success'
-                }).then(() => {
-                  fetchMyPosts();
-                });
-              } else {
-                Swal.fire({
-                  title: '錯誤',
-                  text: data.message,
-                  icon: 'error'
-                });
-                console.error('Delete failed:', data);
-              }
-            })
-            .catch(error => {
-              console.error('Error deleting post:', error);
-              Swal.fire({
-                title: '發生錯誤',
-                text: '請稍後再試',
-                icon: 'error'
-              });
-            });
         }
-      });
-    }
-
-
-    // ====================== 對我的收藏進行刪除 ====================== //
-    function deleteCollectedPost(collectId) {
-      Swal.fire({
-        title: '確定要刪除這篇收藏的文章嗎？',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: '確定',
-        cancelButtonText: '取消'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          fetch(`/ezdom/frontend/forum/delete/collect/${collectId}`, {
-            method: 'DELETE'
-          })
-            .then(response => {
-              if (response.status === 401) {
-                //重定向到登入頁面 登入失敗
-                window.location.href = '/ezdom/frontendmember/account-signin.html';
-              } else if (response.ok) {
-                //登入成功
-                return response.json();
-              } else {
-                alert("錯誤狀態" + response.status);
-                return;
-              }
-            })
-            .then(data => {
-              if (data.successful !== undefined && data.successful === true) {
-                Swal.fire({
-                  title: data.message,
-                  icon: 'success'
-                }).then(() => {
-                  fetchMyFavorites();
-                });
-              } else {
-                Swal.fire({
-                  title: '刪除失敗',
-                  text: data.message || '刪除失敗，請重試',
-                  icon: 'error'
-                });
-                console.error('Delete failed:', data);
-              }
-            })
-            .catch(error => {
-              console.error('Error deleting collected post:', error);
-              Swal.fire({
-                title: '發生錯誤',
-                text: '請稍後再試',
-                icon: 'error'
-              });
-            });
-        }
-      });
-    }
-
-
-    // ====================== 對我的文章瀏覽紀錄進行刪除 ====================== //
-    function deleteHistoryPost(historyId) {
-      Swal.fire({
-        title: '確定要刪除這個瀏覽紀錄嗎？',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: '確定',
-        cancelButtonText: '取消'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          fetch(`/ezdom/frontend/forum/delete/history/${historyId}`, {
-            method: 'DELETE'
-          })
-            .then(response => {
-              if (response.status === 401) {
-                //重定向到登入頁面 登入失敗
-                window.location.href = '/ezdom/frontendmember/account-signin.html';
-              } else if (response.ok) {
-                //登入成功
-                return response.json();
-              } else {
-                alert("錯誤狀態" + response.status);
-                return;
-              }
-            })
-            .then(data => {
-              if (data.successful !== undefined && data.successful === true) {
-                Swal.fire({
-                  title: data.message,
-                  icon: 'success'
-                }).then(() => {
-                  fetchMyHistory();
-                });
-              } else {
-                Swal.fire({
-                  title: '刪除失敗',
-                  text: data.message || '刪除失敗，請重試',
-                  icon: 'error'
-                });
-                console.error('Delete failed:', data);
-              }
-            })
-            .catch(error => {
-              console.error('Error deleting collected post:', error);
-              Swal.fire({
-                title: '發生錯誤',
-                text: '請稍後再試',
-                icon: 'error'
-              });
-            });
-        }
-      });
-    }
-
-    function getPostStatusText(forumPostType) {
-      switch (forumPostType) {
-        case 0:
-          return '全部';
-        case 1:
-          return '🏃戶外運動';
-        case 2:
-          return '🏋️‍♂️室內健身';
-        case 3:
-          return '🧗‍♂️極限運動';
-        case 4:
-          return '🏊水上運動';
-        case 5:
-          return '🥊格鬥';
-        case 6:
-          return '🍔飲食';
-        default:
-          return '其他狀態';
-      }
-    }
 
   </script>
 </body>
