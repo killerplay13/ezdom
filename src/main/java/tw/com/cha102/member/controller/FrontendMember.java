@@ -27,7 +27,7 @@ public class FrontendMember {
     @PostMapping("/signUp")
     public CommonResponse<String> signUp(@RequestBody @Valid SignUpRequest signUpRequest) {
         memberService.signUp(signUpRequest);
-        return new CommonResponse("註冊成功");
+        return new CommonResponse<>("註冊成功");
     }
 
     @PostMapping("/login")
@@ -36,7 +36,7 @@ public class FrontendMember {
                                         HttpServletResponse response
     ) {
         memberService.login(loginRequest, request, response);
-        return new CommonResponse("登入成功");
+        return new CommonResponse<>("登入成功");
     }
 
     @PostMapping("/checkEmailAccount")
@@ -50,31 +50,32 @@ public class FrontendMember {
     @PostMapping("/sendAuthenticationCode")
     public CommonResponse<String> sendAuthenticationCode(@RequestBody @Valid CheckEmailAccountRequest checkEmailAccountRequest, HttpServletRequest request){
         memberService.sendAuthenticationCode(checkEmailAccountRequest, request); // 調用 sendCheckCode 方法發送
-        return new CommonResponse("傳送成功");
+        return new CommonResponse<>("傳送成功");
     }
 
     @PostMapping("/checkAuthCode")
-    public CommonResponse<String> checkAuthCode(@RequestParam String authCode, HttpSession httpSession){
-        memberService.checkAuthCode(authCode, httpSession);
-        return new CommonResponse("驗證成功");
+    public CommonResponse<String> checkAuthCode(@RequestParam String authCode, HttpSession httpSession,HttpServletResponse response){
+        memberService.checkAuthCode(authCode, httpSession,response);
+        return new CommonResponse<>("驗證成功");
     }
 
     @PostMapping("/resetPassword")
     public CommonResponse<String> resetPassword(@RequestParam String newPassword, HttpServletRequest request, HttpServletResponse response){
         memberService.resetPassword(newPassword, request, response);
-        return new CommonResponse("密碼更新成功");
+        return new CommonResponse<>("密碼更新成功");
     }
 
     @GetMapping("/logout")
-    public RedirectView logout(HttpServletRequest request, HttpServletResponse response) {
+    public Member logout(HttpServletRequest request, HttpServletResponse response) {
         // 清除會話數據
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
         }
+        Member member = new Member();
+        member.setSuccessful(true);
 
-        // 重導到登入頁面
-        return new RedirectView("/frontendmember/account-signin.html");
+        return member;
     }
 
 
@@ -83,7 +84,7 @@ public class FrontendMember {
                                               HttpServletRequest request, HttpServletResponse response) {
         // 處理上傳的圖片，將 photo 儲存到你的資料庫
         memberService.uploadPhoto(uploadPhotoRequest, request, response);
-        return new CommonResponse("圖片上傳成功");
+        return new CommonResponse<>("圖片上傳成功");
     }
 
     @GetMapping("/getPhoto")
@@ -98,7 +99,7 @@ public class FrontendMember {
                                                 HttpServletResponse response)
     {
         memberService.uploadProfile(profileRequest, request, response);
-        return new CommonResponse("個資上傳成功");
+        return new CommonResponse<>("個資上傳成功");
 
     }
 
@@ -108,6 +109,11 @@ public class FrontendMember {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PostMapping("/modifyPw")
+    public CommonResponse<String> modifyPw(@RequestBody String modifyPw, HttpServletRequest request){
+        memberService.modifyPw(modifyPw, request);
+        return new CommonResponse<>("密碼更改成功");
+    }
 
     @GetMapping("/member")
     public List<Member> getMembers() {
