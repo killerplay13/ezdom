@@ -6,6 +6,7 @@ import tw.com.cha102.forum.model.entity.ForumPostVO;
 import tw.com.cha102.forum.service.ForumPostService;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -19,9 +20,9 @@ public class ForumPostController {
 
     //發布新文章
     @PostMapping("/post")
-    public ForumPostVO createPost(@RequestBody ForumPostVO forumPostVO, HttpSession session) {
-        //Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別
-        Integer memberId = 3;
+    public ForumPostVO createPost(@RequestBody ForumPostVO forumPostVO, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         forumPostVO.setMemberId(memberId);
         forumPostVO.setForumPostStatus(0);
         ForumPostVO vo = new ForumPostVO();
@@ -38,9 +39,9 @@ public class ForumPostController {
 
     //編輯指定文章
     @PutMapping("/edit/{postId}")
-    public ForumPostVO editPost(@PathVariable Integer postId, @RequestBody ForumPostVO forumPostVO,HttpSession session) {
-        //Integer memberId = (Integer) session.getAttribute("memberId");
-        Integer memberId = 3;
+    public ForumPostVO editPost(@PathVariable Integer postId, @RequestBody ForumPostVO forumPostVO,HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         forumPostVO.setMemberId(memberId);
         ForumPostVO vo = new ForumPostVO();
         if (forumPostService.edit(postId, forumPostVO) == true) {
@@ -81,15 +82,16 @@ public class ForumPostController {
     //取得指定ID的文章
     @GetMapping("/get/{postId}")
     public ForumPostVO getPostById(@PathVariable Integer postId) {
+
         return forumPostService.getPostById(postId);
     }
 
 
     //列出指定會員ID的文章
     @GetMapping("/my-posts")
-    public List<ForumPostVO> listMyPosts(HttpSession session) {
-//        Integer memberId = (Integer) session.getAttribute("memberId");
-        Integer memberId=3;
+    public List<ForumPostVO> listMyPosts(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         return forumPostService.findPostsByMemberId(memberId);
     }
 

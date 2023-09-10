@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import tw.com.cha102.forumhistory.model.entity.ForumHistoryVO;
 import tw.com.cha102.forumhistory.service.ForumHistoryService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -18,9 +19,9 @@ public class ForumHistoryController {
 
     //點擊文章時自動新增瀏覽紀錄
     @PostMapping("/history")
-    public ForumHistoryVO collectPost(@RequestBody ForumHistoryVO forumHistoryVO, HttpSession session) {
-        //Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別
-        Integer memberId = 3;
+    public ForumHistoryVO collectPost(@RequestBody ForumHistoryVO forumHistoryVO, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         forumHistoryVO.setMemberId(memberId);
         ForumHistoryVO vo = new ForumHistoryVO();
         if (forumHistoryService.history(forumHistoryVO)==true) {
@@ -51,9 +52,9 @@ public class ForumHistoryController {
 
     //列出我的文章瀏覽紀錄
     @GetMapping("/my-history")
-    public List<ForumHistoryVO> listHistoryPostsByMember(HttpSession session) {
-        //Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別
-        Integer memberId = 3;
+    public List<ForumHistoryVO> listHistoryPostsByMember(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         return forumHistoryService.findByMemberId(memberId);
     }
 }
