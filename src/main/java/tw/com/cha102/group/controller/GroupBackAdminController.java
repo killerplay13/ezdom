@@ -87,23 +87,7 @@ public class GroupBackAdminController {
         }
     }
 
-    @GetMapping("/mycomming/list")//即將到來揪團列表
-    public ResponseEntity<List<Group>> getMycomingGroup(HttpSession session){
-        // TODO: 用來獲取已登入的member訊息
-        // Member member = (Member) session.getAttribute("member");
-        // Integer memberId = member.getMemberId();
 
-        //目前預設為1
-        Integer memberId = 1;
-
-        List<Integer> groupIds = groupMemberService.findGroupIdsByMemberIdAndStatus(memberId, (byte) 1);
-
-        List<Group> allGroups = groupAdminService.getAllGroups();
-
-        List<Group> list = allGroups.stream().filter(group -> groupIds.contains(group.getGroupId())).collect(Collectors.toList());
-
-        return ResponseEntity.ok(list);
-    }
 
 
     @GetMapping("/applied/list/{groupId}")

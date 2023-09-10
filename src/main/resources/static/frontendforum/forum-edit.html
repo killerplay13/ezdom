@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>EZDOM | Join Togather</title>
+    <title>Around | post</title>
     <!-- SEO Meta Tags-->
     <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
     <meta name="keywords"
@@ -20,6 +20,7 @@
     <meta name="msapplication-TileColor" content="#080032">
     <meta name="msapplication-config" content="../frontendshop/assets/favicon/browserconfig.xml">
     <meta name="theme-color" content="white">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
     <!-- Theme mode-->
     <script>
         let mode = window.localStorage.getItem('mode'),
@@ -34,6 +35,12 @@
     </script>
     <!-- Page loading styles-->
     <style>
+        /* footer {
+      
+      bottom: 0;
+      width: 100%;
+    } */
+
         .page-loading {
             position: fixed;
             top: 0;
@@ -151,9 +158,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet" id="google-font">
     <!-- Vendor styles-->
-    <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/lightgallery/css/lightgallery-bundle.min.css" />
-    <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/fullcalendar/main.min.css" />
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
 </head>
@@ -166,7 +170,7 @@
             <div class="page-spinner"></div><span>Loading...</span>
         </div>
     </div>
-    <!-- 頁首-->
+    <!-- Page wrapper-->
     <main class="page-wrapper">
         <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
         <header class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode">
@@ -184,7 +188,7 @@
                     <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
                 </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
                     href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
-                    rel="noopener">登入/註冊</a>
+                    rel="noopener" style="padding: 5px 10px">登入/註冊</a>
                 <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
                 <nav class="collapse navbar-collapse" id="navbarNav">
@@ -216,11 +220,17 @@
                                 data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">論壇
                                 Forum</a>
                             <ul class="dropdown-menu">
-                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                        data-bs-toggle="dropdown" aria-expanded="false">瀏覽論壇</a></li>
-                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                        data-bs-toggle="dropdown" aria-expanded="false">論壇管理</a></li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="forum.html"
+                                                        aria-expanded="false">瀏覽論壇</a>
+                                </li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="forum-mypost.html"
+                                                        aria-expanded="false">論壇管理</a>
+                                </li>
+                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="forum-post.html"
+                                                        aria-expanded="false">發文</a>
+                                </li>
                             </ul>
+
                         </li>
                         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
                                 data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">預約
@@ -264,193 +274,244 @@
                 </nav>
             </div>
         </header>
-        <!-- 頁首結束-->
-        <!-- Page content-->
-        <section class="container py-5 mt-5 mb-sm-2 mb-lg-3 mb-xl-4 mb-xxl-5">
-            <!-- 小連結-->
+
+
+        <!-- Page title + contact form-->
+        <section class="container pt-5 pb-lg-2 pb-xl-4 py-xxl-5 my-5">
+            <!-- Breadcrumb-->
             <nav aria-label="breadcrumb">
-                <ol class="pt-lg-3 pb-2 pb-md-4 breadcrumb">
-                    <li class="breadcrumb-item"><a href="ezdomindex.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="grouplist.html">揪團列表</a></li>
-                    <li class="breadcrumb-item"><a href="groupdetail.html">揪團內容</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">揪團報名</li>
+                <ol class="pt-lg-3 pb-lg-4 pb-2 breadcrumb">
+                    <li class="breadcrumb-item"><a href="forum.html">論壇</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">修改</li>
                 </ol>
             </nav>
-            <!-- Page wrapper-->
-            <main class="page-wrapper">
-                <!-- Page content-->
-                <div class="d-flex flex-column position-relative h-100 pt-5">
-                    <div class="container mt-auto">
-                        <div class="row align-items-center">
-                            <!-- Sign in form-->
-                            <div class="col-md-6 mb-5 mb-md-0">
-                                <div class="card dark-mode border-0 bg-primary py-md-3 py-lg-4 px-lg-4 px-xl-5">
-                                    <div class="card-body">
-                                        <h1 class="d-none d-md-inline-block pb-1 mb-2" id="groupName">走啊打球阿</h1>
-                                        <p class="fs-5 mb-4 mt-3" id="groupContent">
-                                            來參加我們的籃球賽吧！無論你是籃球新手還是老手，我們都歡迎你加入。我們將在陽光明媚的公園進行比賽，這將是一個享受運動、交朋友的絕佳機會。一起在球場上挥洒汗水，共同創造難忘的籃球時光吧！
-                                        </p>
-                                        <div class="d-none d-md-flex align-items-center pb-3 mb-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="2em"
-                                                viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                                <path
-                                                    d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z" />
-                                            </svg>
-                                            <span class="ps-2" id="groupDate">星期六,八月 12日 10:00(最後審核星期五,八月 11日 23:20)</span>
-                                        </div>
-                                        <div class="d-none d-md-flex align-items-center pb-3 mb-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 384 512">
-                                                <path
-                                                    d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
-                                            </svg>
-                                            <span class="ps-2" id="groupLocation">位置資訊</span>
-                                        </div>
-                                        <div class="d-none d-md-flex align-items-center pb-3 mb-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="2em"
-                                                viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                                <path
-                                                    d="M320 96H192L144.6 24.9C137.5 14.2 145.1 0 157.9 0H354.1c12.8 0 20.4 14.2 13.3 24.9L320 96zM192 128H320c3.8 2.5 8.1 5.3 13 8.4C389.7 172.7 512 250.9 512 416c0 53-43 96-96 96H96c-53 0-96-43-96-96C0 250.9 122.3 172.7 179 136.4l0 0 0 0c4.8-3.1 9.2-5.9 13-8.4zm84 88c0-11-9-20-20-20s-20 9-20 20v14c-7.6 1.7-15.2 4.4-22.2 8.5c-13.9 8.3-25.9 22.8-25.8 43.9c.1 20.3 12 33.1 24.7 40.7c11 6.6 24.7 10.8 35.6 14l1.7 .5c12.6 3.8 21.8 6.8 28 10.7c5.1 3.2 5.8 5.4 5.9 8.2c.1 5-1.8 8-5.9 10.5c-5 3.1-12.9 5-21.4 4.7c-11.1-.4-21.5-3.9-35.1-8.5c-2.3-.8-4.7-1.6-7.2-2.4c-10.5-3.5-21.8 2.2-25.3 12.6s2.2 21.8 12.6 25.3c1.9 .6 4 1.3 6.1 2.1l0 0 0 0c8.3 2.9 17.9 6.2 28.2 8.4V424c0 11 9 20 20 20s20-9 20-20V410.2c8-1.7 16-4.5 23.2-9c14.3-8.9 25.1-24.1 24.8-45c-.3-20.3-11.7-33.4-24.6-41.6c-11.5-7.2-25.9-11.6-37.1-15l0 0-.7-.2c-12.8-3.9-21.9-6.7-28.3-10.5c-5.2-3.1-5.3-4.9-5.3-6.7c0-3.7 1.4-6.5 6.2-9.3c5.4-3.2 13.6-5.1 21.5-5c9.6 .1 20.2 2.2 31.2 5.2c10.7 2.8 21.6-3.5 24.5-14.2s-3.5-21.6-14.2-24.5c-6.5-1.7-13.7-3.4-21.1-4.7V216z" />
-                                            </svg>
-                                            <span class="ps-2" id="groupDeposit">女生我請、男生請我</span>
-                                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-xl-5 offset-xl-1">
-                                <div class="ps-md-3 ps-lg-5 ps-xl-0">
-                                    <h2 class="h1 pb-2 pb-lg-3">報名資訊填寫</h2>
-                                    <form id="myForm" action="http://localhost:8080/ezdom/group/member" method="post" class="needs-validation" novalidate>
-                                        <!-- <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 row-cols-lg-2">
-                                            <div class="col mb-4">
-                                                <input class="form-control form-control-lg" type="text"
-                                                    placeholder="Your name" required>
-                                            </div>
-                                            <div class="col mb-4">
-                                                <input class="form-control form-control-lg" type="text"
-                                                    placeholder="Phone number" required>
-                                            </div>
-                                        </div>
-                                        <div class="password-toggle mb-4">
-                                            <input class="form-control form-control-lg" type="email"
-                                                placeholder="E-mail" required>
-                                        </div> -->
-                                        <input type="hidden" name="groupId" id="groupId" value="">
-                                        <div class="password-toggle mb-4">
-                                            <input class="form-control form-control-lg" type="text" name="groupSignIntro"
-                                                placeholder="introduce yourself" required style="height: 200px;">
-                                        </div>
-                                        <button class="btn btn-lg btn-primary w-100 mb-4" type="submit">送出</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+            <!-- Page title-->
+
+            <div class="col-lg-8 col-xl-8 offset-xl-2">
+                <form class="row g-4 needs-validation" novalidate>
+                    <input type="hidden" id="edit-post-id" value="">
+
+                    <div class="col-sm-6">
+                        <label class="form-label fs-base" for="name">標題</label>
+                        <input class="form-control form-control-lg " type="text" placeholder="撰寫您的標題" required
+                            id="name">
+                        <div class="invalid-feedback">請撰寫標題!</div>
                     </div>
-                    <!-- Copyright-->
-                    <div class="container fs-sm pt-5 mt-auto mb-5"><span class="text-muted">&copy; All rights reserved.
-                            Made by</span><a class="nav-link d-inline-block p-0 ms-1" href="https://createx.studio/"
-                            target="_blank" rel="noopener">Createx Studio</a></div>
-                </div>
-            </main>
+
+                    <div class="col-sm-6">
+                        <label class="form-label fs-base" for="location">看板主題</label>
+                        <select class="form-select form-select-lg" id="location">
+                            <option value="1">戶外運動</option>
+                            <option value="2">室內健身</option>
+                            <option value="3">極限運動</option>
+                            <option value="4">水上運動</option>
+                            <option value="5">格鬥</option>
+                            <option value="6">飲食</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <label class="form-label fs-base" for="message">詳細內容</label>
+                        <textarea class="form-control form-control-lg " rows="5" placeholder="撰寫您的內容" required
+                            id="message"></textarea>
+                        <div class="invalid-feedback">請撰寫內容!</div>
+                    </div>
+
+                    <div class="col-sm-12 pt-2">
+                        <button class="btn btn-lg btn-primary" type="button" id="submit-button">送出</button>
+                    </div>
+                </form>
+            </div>
+
         </section>
+        <!-- Contact details-->
+        <footer class="footer bg-secondary py-5">
+            <div class="container pt-1 pt-sm-2 pt-md-3 pt-lg-4 pt-xl-5">
+                <div class="border-bottom text-center pb-4"><a
+                        class="navbar-brand d-inline-flex text-nav py-0 mb-3 mb-md-4" href="index.html"><span
+                            class="text-primary flex-shrink-0 me-2">
+                            <svg version="1.1" width="35" height="32" viewBox="0 0 36 33"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill="currentColor"
+                                    d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                                </path>
+                            </svg></span><span>EZ-DOM</span></a>
+                    <ul class="nav justify-content-center py-1 pb-sm-2">
+                        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Classes</a></li>
+                        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Trainers</a></li>
+                        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Schedule</a></li>
+                        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Pricing</a></li>
+                        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="d-sm-flex align-items-center justify-content-between pt-4 mt-2 mt-sm-0">
+                    <div class="d-flex justify-content-center order-sm-2 mb-4 mb-sm-0"><a
+                            class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle me-3" href="#"><i
+                                class="ai-instagram"></i></a><a
+                            class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle me-3" href="#"><i
+                                class="ai-facebook"></i></a><a
+                            class="btn btn-icon btn-sm btn-secondary btn-youtube rounded-circle" href="#"><i
+                                class="ai-youtube"></i></a>
+                    </div>
+                    <p class="fs-sm order-sm-1 text-center mb-0"><span class="opacity-70">&copy; All rights reserved.
+                            Made by
+                        </span><a class="nav-link d-inline fw-normal p-0" href="https://createx.studio/" target="_blank"
+                            rel="noopener">Createx Studio</a></p>
+                </div>
+            </div>
+        </footer>
 
-
-
+        <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll>
+            <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-miterlimit="10">
+                </circle>
+            </svg><i class="ai-arrow-up"></i></a>
         <!-- Vendor scripts: js libraries and plugins-->
         <script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-        <script src="../frontendshop/assets/vendor/swiper/swiper-bundle.min.js"></script>
-        <script src="../frontendshop/assets/vendor/lightgallery/lightgallery.min.js"></script>
-        <script src="../frontendshop/assets/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
-        <script src="../frontendshop/assets/vendor/fullcalendar/main.min.js"></script>
         <!-- Main theme script-->
         <script src="../frontendshop/assets/js/theme.min.js"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
         <script>
-            // 假设您从URL参数中获取groupId
-            const urlParams = new URLSearchParams(window.location.search);
-            const groupId = parseInt(urlParams.get("groupId"));
+            // ====================== 文章修改頁面 ====================== // 
+            document.addEventListener('DOMContentLoaded', function () {
+                const submitButton = document.getElementById('submit-button');
+                const nameInput = document.getElementById('name');
+                const messageTextarea = document.getElementById('message');
 
-            const g = document.getElementById("groupId");
-            g.value = groupId;
+                submitButton.addEventListener('click', function () {
+                    //檢查標題是否為空
+                    if (!nameInput.value.trim()) {
+                        nameInput.classList.add('is-invalid');
+                    } else {
+                        nameInput.classList.remove('is-invalid');
+                    }
 
+                    //檢查詳細內容是否為空
+                    if (!messageTextarea.value.trim()) {
+                        messageTextarea.classList.add('is-invalid');
+                    } else {
+                        messageTextarea.classList.remove('is-invalid');
+                    }
+                });
+            });
 
-
-            const form = document.querySelector('#myForm'); // 根据实际情况选择表单的选择器
-
-
-            form.addEventListener('submit', function(event) {
-            event.preventDefault(); // 取消表单默认的自动提交行为
-
-            // 获取表单数据
-            const formData = new FormData(form);
-
-            // 发起异步请求
-            fetch('/ezdom/frontend/group/member', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                // 请求成功，显示提示信息
-                alert('報名成功！');
-                // 跳转
-                window.location.href = '/ezdom/group/grouplist.html';
-                } else {
-                // 请求失败，获取错误信息
-                    return response.json().then(errorData => {
-                        console.log(errorData)
-                        throw new Error(errorData.message);
-                    });
-
+            //在頁面載入時檢查是否有編輯文章的ID如果有則取得原文章內容
+            window.addEventListener('load', () => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const postId = urlParams.get('postId');
+                if (postId) {
+                    //設定要編輯的文章ID
+                    document.getElementById('edit-post-id').value = postId;
+                    fetch(`/ezdom/frontend/forum/get/${postId}`)
+                        .then(response => {
+                            if (response.status === 401) {
+                                //重定向到登入頁面 登入失敗
+                                window.location.href = '/ezdom/frontendmember/account-signin.html';
+                            } else if (response.ok) {
+                                //登入成功
+                                return response.json();
+                            } else {
+                                alert("錯誤狀態" + response.status);
+                                return;
+                            }
+                        })
+                        .then(data => {
+                            if (data) {
+                                //將文章內容標題和狀態填充到表單中
+                                document.getElementById('name').value = data.forumPostTitle;
+                                document.getElementById('message').value = data.forumPostContent;
+                                document.getElementById('location').value = data.forumPostType;
+                            } else {
+                                Swal.fire({
+                                    title: '找不到文章',
+                                    icon: 'error'
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching post:', error);
+                            Swal.fire({
+                                title: '發生錯誤',
+                                text: '請稍後再試',
+                                icon: 'error'
+                            });
+                        });
                 }
-            })
-            .catch(error => {
-                console.error('發生錯誤:', error);
-                alert(error);
-            });
             });
 
 
-            function formatDateTime(dateTimeString) {
-                const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-                return new Date(dateTimeString).toLocaleString('en-US', options);
-            }
-            function displayGroupInfo(groupData) {
-                // document.getElementById("groupPhoto").querySelector("img").src = groupData.groupPhoto || "default-photo.jpg";
-                // document.querySelector(".group-leader img").src = groupData.leaderImageUrl || "default-leader.jpg";
-                // document.querySelector(".group-leader .ps-2").textContent = groupData.leaderName || "團主名稱";
-                document.getElementById("groupName").textContent = groupData.groupName || "走啊打球阿";
-                document.getElementById("groupContent").textContent = groupData.groupContent || "";
-                document.getElementById("groupDate").textContent = formatDateTime(groupData.groupDate) || "" + ( `【最後截止日期: ${formatDateTime(groupData.endDate)}】` || "");
-                // document.getElementById("endDate").textContent =
-                // document.getElementById("groupTitle").textContent = groupData.groupTitle || "";
-                 document.getElementById("groupLocation").textContent = groupData.groupLocation || "位置資訊";
-                // document.getElementById("registeredNumber").textContent = `${groupData.registeredNumber}人/`;
-                // document.getElementById("limitNumber").textContent = groupData.limitNumber || "";
-                document.getElementById("groupDeposit").textContent = groupData.groupDeposit
-                    ? `預付訂金$${groupData.groupDeposit}`
-                    : "";
-                // document.getElementById("groupNotice").textContent = groupData.groupNotice || "揪團注意事項:";
-            }
+            const submitButton = document.getElementById('submit-button');
 
-            function fetchGroupInfo(groupId) {
-                const apiUrl = `/ezdom/frontend/group/admin/${groupId}`; // 请替换成实际的API URL
 
-                fetch(apiUrl)
-                    .then(response => response.json())
-                    .then(groupData => {
-                        displayGroupInfo(groupData);
+            submitButton.addEventListener('click', () => {
+                //獲取編輯文章的ID標題內容和狀態
+                const postId = document.getElementById('edit-post-id').value;
+                const title = document.getElementById('name').value;
+                const content = document.getElementById('message').value;
+                const status = parseInt(document.getElementById('location').value, 10);
+
+                //檢查標題和內容是否輸入
+                if (!title || !content) {
+                    Swal.fire({
+                        title: '標題或內容未輸入',
+                        icon: 'error'
+                    });
+                    return;
+                }
+                const formData = {
+                    forumPostTitle: title,
+                    forumPostContent: content,
+                    forumPostType: status
+                };
+                editPost(postId, formData);
+            });
+
+            function editPost(postId, formData) {
+                fetch(`/ezdom/frontend/forum/edit/${postId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                    .then(response => {
+                        if (response.status === 401) {
+                            //重定向到登入頁面 登入失敗
+                            window.location.href = '/ezdom/frontendmember/account-signin.html';
+                        } else if (response.ok) {
+                            //登入成功
+                            return response.json();
+                        } else {
+                            alert("錯誤狀態" + response.status);
+                            return;
+                        }
+                    })
+                    .then(data => {
+                        Swal.fire({
+                            title: data.message,
+                            icon: data.successful ? 'success' : 'error'
+                        }).then(() => {
+                            if (data.successful) {
+                                //修改成功後導向我的文章
+                                window.location.href = 'forum-mypost.html';
+                            }
+                        });
                     })
                     .catch(error => {
-                        console.error("Error fetching group data:", error);
+                        console.error('Error editing post:', error);
+                        Swal.fire({
+                            title: '發生錯誤',
+                            text: '請稍後再試',
+                            icon: 'error'
+                        });
                     });
             }
-
-            // 获取并显示对应groupId的组信息
-            fetchGroupInfo(groupId);
-
         </script>
+
+    </main>
 </body>
 
 </html>
