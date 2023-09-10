@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.server.ResponseStatusException;
+import tw.com.cha102.coachmember.model.dao.CoachMemberRepository;
+import tw.com.cha102.coachmember.model.entity.CoachMemberVO;
 import tw.com.cha102.member.dto.*;
 import tw.com.cha102.member.model.dao.MemberRepository;
 import tw.com.cha102.member.model.entity.Member;
@@ -29,6 +31,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private MemberRepository memberRepository;
+    @Autowired
+    private CoachMemberRepository coachMemberRepository;
 
 
     @Override
@@ -64,6 +68,9 @@ public class MemberServiceImpl implements MemberService {
             // 如果密碼不匹配，返回 400 Bad Request
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "帳號密碼錯誤");
         }
+        Integer memberId = member.getMemberId();
+        CoachMemberVO coachMemberVO = coachMemberRepository.findByMemberId(memberId);
+
 
         // 獲取 HttpSession
         HttpSession httpSession = request.getSession();
@@ -73,6 +80,10 @@ public class MemberServiceImpl implements MemberService {
         sessionCookie.setMaxAge(60 * 60); // 60 分鐘的過期時間
         sessionCookie.setPath("/"); // 設置 Cookie 的路徑
         response.addCookie(sessionCookie);
+
+        if(coachMemberVO!=null){
+            httpSession.setAttribute("coachId", coachMemberVO.getCoachId());
+        }
 
         // 將使用者的會員 ID 儲存在會話中，以供後續使用
         httpSession.setAttribute("memberId", member.getMemberId());
@@ -84,8 +95,9 @@ public class MemberServiceImpl implements MemberService {
 
 
         HttpSession httpSession = request.getSession();
-//        String account = (String) httpSession.getAttribute("account");
-        Member member = memberRepository.findByMemberAccount(checkEmailAccountRequest.getAccount());
+        Integer memberId = (Integer) httpSession.getAttribute("memberId");
+
+        Member member = memberRepository.findByMemberId(memberId);
 
 
         if (member == null) {
@@ -108,8 +120,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     public void sendAuthenticationCode(@Valid CheckEmailAccountRequest checkEmailAccountRequest, HttpServletRequest request) {
+        // 從 HttpSession 中獲取帳號
+        HttpSession httpSession = request.getSession();
+        Integer memberId = (Integer) httpSession.getAttribute("memberId");
+
         // 根據會員帳號查詢會員信息
-        Member member = memberRepository.findByMemberAccount(checkEmailAccountRequest.getAccount());
+        Member member = memberRepository.findByMemberId(memberId);
 
 
         if (member != null) {
@@ -128,8 +144,8 @@ public class MemberServiceImpl implements MemberService {
             mailService.sendMail(checkEmailAccountRequest.getEmail(), subject, messageText);
 
             // 將驗證碼存入Session
-            HttpSession httpSession = request.getSession();
-            httpSession.setAttribute("verificationCode", verificationCode);
+            HttpSession session = request.getSession();
+            session.setAttribute("verificationCode", verificationCode);
             System.out.println(verificationCode);
 
         } else {
@@ -183,10 +199,10 @@ public class MemberServiceImpl implements MemberService {
     public void resetPassword(String newPassword, HttpServletRequest request, HttpServletResponse response) {
         // 從 HttpSession 中獲取帳號
         HttpSession httpSession = request.getSession();
-        String account = (String) httpSession.getAttribute("account");
+        Integer memberId = (Integer) httpSession.getAttribute("memberId");
 
         // 根據帳號查詢會員信息
-        Member member = memberRepository.findByMemberAccount(account);
+        Member member = memberRepository.findByMemberId(memberId);
 
         if (member != null) {
             // 如果找到會員，將新密碼加密並設置為會員的密碼
@@ -203,12 +219,11 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void modifyPw(String modifyPw, HttpServletRequest request) {
-//        HttpSession httpSession = request.getSession();
-//        String account = (String) httpSession.getAttribute("account");
+        HttpSession httpSession = request.getSession();
+        Integer memberId = (Integer) httpSession.getAttribute("memberId");
 
-        String account = "7014";
         // 根据會員的帳戶從數據庫中獲取會員實體
-        Member member = memberRepository.findByMemberAccount(account);
+        Member member = memberRepository.findByMemberId(memberId);
 
         if (member != null) {
             // 如果找到會員，將新密碼加密並設置為會員的密碼
@@ -240,12 +255,11 @@ public class MemberServiceImpl implements MemberService {
 
     public void uploadProfile(ProfileRequest profileRequest, HttpServletRequest request, HttpServletResponse response) {
         // 從會話中獲取會員的帳戶
-//        HttpSession httpSession = request.getSession();
-//        String account = (String) httpSession.getAttribute("account");
+        HttpSession httpSession = request.getSession();
+        Integer memberId = (Integer) httpSession.getAttribute("memberId");
 
-        String account = "7014";
         // 根据會員的帳戶從數據庫中獲取會員實體
-        Member member = memberRepository.findByMemberAccount(account);
+        Member member = memberRepository.findByMemberId(memberId);
 
         if (member == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "找不到该會員");
@@ -289,10 +303,9 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.save(member);
     }
 
-    public MemberProfileResponse getMemberProfile(String memberAccount) {
+    public MemberProfileResponse getMemberProfile(Integer memberId) {
 
-//        String account = "7014";
-        Member member = memberRepository.findByMemberAccount(memberAccount);
+        Member member = memberRepository.findByMemberId(memberId);
 
         if (member == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "找不到該會員");
@@ -312,13 +325,12 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void uploadPhoto(UploadPhotoRequest uploadPhotoRequest, HttpServletRequest request, HttpServletResponse response) {
         // 獲取會員的 ID，從 session 中獲取
-//        HttpSession httpSession = request.getSession();
-//        String account = (String) httpSession.getAttribute("account");
+        HttpSession httpSession = request.getSession();
+        Integer memberId = (Integer) httpSession.getAttribute("memberId");
 
-        // 先寫死
-        String account = "7014";
+
         // 根據會員的 ID 從資料庫中獲取會員實體
-        Member member = memberRepository.findByMemberAccount(account);
+        Member member = memberRepository.findByMemberId(memberId);
 
         if (member == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "找不到該會員");
@@ -344,10 +356,9 @@ public class MemberServiceImpl implements MemberService {
 
 
     @Override
-    public MemberPhotoResponse getMebmerPhoto(String memberAccount) {
+    public MemberPhotoResponse getMebmerPhoto(Integer memberId) {
 
-
-        Member member = memberRepository.findByMemberAccount(memberAccount);
+        Member member = memberRepository.findByMemberId(memberId);
 
         if (member == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "找不到該會員");
@@ -362,7 +373,6 @@ public class MemberServiceImpl implements MemberService {
 
         // 創建一個 MemberPhotoResponse 物件並設定照片資料
         MemberPhotoResponse response = new MemberPhotoResponse();
-//        response.setPhoto(base64Photo.getBytes());
         response.setPhotoToBase64(base64Photo);
 
         return response;

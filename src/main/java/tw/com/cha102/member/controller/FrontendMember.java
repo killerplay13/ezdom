@@ -88,8 +88,10 @@ public class FrontendMember {
     }
 
     @GetMapping("/getPhoto")
-    public ResponseEntity<MemberPhotoResponse> getMemberPhoto(@RequestParam("memberAccount") String memberAccount){
-        MemberPhotoResponse response = memberService.getMebmerPhoto(memberAccount);
+    public ResponseEntity<MemberPhotoResponse> getMemberPhoto(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
+        MemberPhotoResponse response = memberService.getMebmerPhoto(memberId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -104,8 +106,10 @@ public class FrontendMember {
     }
 
     @GetMapping("/getProfile")
-    public ResponseEntity<MemberProfileResponse> getMemberProfile(@RequestParam("memberAccount") String memberAccount){
-        MemberProfileResponse response = memberService.getMemberProfile(memberAccount);
+    public ResponseEntity<MemberProfileResponse> getMemberProfile(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
+        MemberProfileResponse response = memberService.getMemberProfile(memberId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
