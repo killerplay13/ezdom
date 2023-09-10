@@ -1,6 +1,5 @@
 package tw.com.cha102.forumhistory.service;
 
-
 import tw.com.cha102.forumhistory.model.entity.ForumHistoryVO;
 
 

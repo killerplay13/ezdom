@@ -1,8 +1,6 @@
 package tw.com.cha102.forumcollect.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tw.com.cha102.forumcollect.model.entity.ForumCollectVO;
 import tw.com.cha102.forumcollect.service.ForumCollectService;
@@ -14,14 +12,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/frontend/forum")
 public class ForumCollectController {
-
+	@Autowired
 	private ForumCollectService forumCollectService;
 
-	@Autowired
-	public ForumCollectController(ForumCollectService forumCollectService) {
-		this.forumCollectService = forumCollectService;
-	}
 
+	//進行文章收藏
 	@PostMapping("/collect")
 	public ForumCollectVO collectPost(@RequestBody ForumCollectVO forumCollectVO, HttpSession session) {
 		//Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別
@@ -38,17 +33,8 @@ public class ForumCollectController {
 			return vo;
 	}
 
-	@GetMapping("/collect/list")
-	public List<ForumCollectVO> listAllCollectedPosts() {
 
-		return  forumCollectService.findAll();
-	}
-
-	@GetMapping("/collect/{collectId}")
-	public ForumCollectVO getCollectedPostById(@PathVariable Integer collectId) {
-		return forumCollectService.getCollectById(collectId);
-	}
-
+    //刪除收藏
 	@DeleteMapping("/delete/collect/{collectId}")
 	public ForumCollectVO deleteCollectedPost(@PathVariable Integer collectId) {
 		ForumCollectVO vo=new ForumCollectVO();
@@ -62,7 +48,7 @@ public class ForumCollectController {
 		return vo;
 	}
 
-
+	//列出我的收藏列表
 	@GetMapping("/my-collects")
 	public List<ForumCollectVO> listCollectedPostsByMember(HttpSession session) {
 		//Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別

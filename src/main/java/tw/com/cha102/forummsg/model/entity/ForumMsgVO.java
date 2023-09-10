@@ -6,7 +6,6 @@ import tw.com.cha102.core.vo.Core;
 import tw.com.cha102.forum.model.entity.ForumPostVO;
 import tw.com.cha102.member.model.entity.Member;
 
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -32,6 +31,7 @@ public class ForumMsgVO extends Core {
     @Column(name = "FORUMMSG_TIME",insertable = false)
     private Timestamp forumMsgTime;
 
+
     @ManyToOne
     @JoinColumn(name = "FORUMPOST_ID", insertable = false, updatable = false)
     private ForumPostVO forumPost;
@@ -40,11 +40,11 @@ public class ForumMsgVO extends Core {
     @JoinColumn(name = "MEMBER_ID", referencedColumnName = "MEMBER_ID", insertable = false, updatable = false)
     private Member member;
 
-    // 新增一個屬性以包含 memberName
-    @Transient // 使用 @Transient 標註，以防止該屬性映射到數據庫表格
-    private String memberName;
 
-//    @Transient
-//    private byte[] memberPhoto;
+    public String getMemberName() {
+        return member != null ? member.getMemberName() : null;
+    }
+
+    public byte[] getMemberPhoto() {return member != null ? member.getMemberPhoto() : null;}
 }
 

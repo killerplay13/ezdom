@@ -13,17 +13,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/frontend/forum")
 public class ForumPostController {
-
+    @Autowired
     private ForumPostService forumPostService;
 
-    @Autowired
-    public ForumPostController(ForumPostService forumPostService) {
-        this.forumPostService = forumPostService;
 
-    }
-
-
-    @PostMapping("/post")//發布新文章
+    //發布新文章
+    @PostMapping("/post")
     public ForumPostVO createPost(@RequestBody ForumPostVO forumPostVO, HttpSession session) {
         //Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別
         Integer memberId = 3;
@@ -40,7 +35,9 @@ public class ForumPostController {
         return vo;
     }
 
-    @PutMapping("/edit/{postId}")//編輯指定文章
+
+    //編輯指定文章
+    @PutMapping("/edit/{postId}")
     public ForumPostVO editPost(@PathVariable Integer postId, @RequestBody ForumPostVO forumPostVO,HttpSession session) {
         //Integer memberId = (Integer) session.getAttribute("memberId");
         Integer memberId = 3;
@@ -58,13 +55,16 @@ public class ForumPostController {
     }
 
 
-    @GetMapping("/list")//列出所有文章
+    //列出所有文章
+    @GetMapping("/list")
     public List<ForumPostVO> listPosts() {
 
         return forumPostService.findAll();
     }
 
-    @DeleteMapping("/delete/post/{postId}")//刪除指定文章
+
+    //刪除指定文章
+    @DeleteMapping("/delete/post/{postId}")
     public ForumPostVO deletePost(@PathVariable Integer postId) {
         ForumPostVO vo = new ForumPostVO();
         if (forumPostService.delete(postId)==true) {
@@ -78,14 +78,15 @@ public class ForumPostController {
     }
 
 
-
-    @GetMapping("/get/{postId}")//取得指定ID的文章
+    //取得指定ID的文章
+    @GetMapping("/get/{postId}")
     public ForumPostVO getPostById(@PathVariable Integer postId) {
         return forumPostService.getPostById(postId);
-
     }
 
-    @GetMapping("/my-posts") //列出指定會員ID的文章
+
+    //列出指定會員ID的文章
+    @GetMapping("/my-posts")
     public List<ForumPostVO> listMyPosts(HttpSession session) {
 //        Integer memberId = (Integer) session.getAttribute("memberId");
         Integer memberId=3;
@@ -93,7 +94,8 @@ public class ForumPostController {
     }
 
 
-    @PostMapping("/click/{postId}") // 增加點擊次數
+    //增加文章點擊次數
+    @PostMapping("/click/{postId}")
     public ForumPostVO incrementClick(@PathVariable Integer postId) {
         ForumPostVO vo = new ForumPostVO();
         if (forumPostService.incrementClickCount(postId)) {
@@ -107,8 +109,10 @@ public class ForumPostController {
     }
 
 
-    @GetMapping("/popular")// 查詢熱門文章
+    //列出熱門文章
+    @GetMapping("/popular")
     public List<ForumPostVO> listPopularPosts() {
+
         return forumPostService.findPopularPosts();
     }
 }

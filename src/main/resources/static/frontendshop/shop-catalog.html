@@ -757,11 +757,10 @@
 
   }
   //加入購物車
-  let memberId = 1;
 
   function addCart(productId) {
     let quantity = 1;
-    fetch(`http://localhost:8080/ezdom/frontend/carts/add?memberId=${memberId}&productId=${productId}&quantity=${quantity}`, {
+    fetch(`http://localhost:8080/ezdom/frontend/carts/add?productId=${productId}&quantity=${quantity}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
     }).then(response => {
@@ -788,7 +787,7 @@
   }
   //商品刪除
   function reduceCart(productId, quantity) {
-    fetch(`http://localhost:8080/ezdom/frontend/carts/reduce?memberId=${memberId}&productId=${productId}&quantity=${quantity}`, {
+    fetch(`http://localhost:8080/ezdom/frontend/carts/reduce?productId=${productId}&quantity=${quantity}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
     }).then(response => {
@@ -822,7 +821,7 @@
   let totalPrice = document.getElementById("totalPrice");
   const badgeElement = document.getElementById("badgeElement");
   function showCart() {
-    fetch(`http://localhost:8080/ezdom/frontend/carts/list/${memberId}`)
+    fetch(`http://localhost:8080/ezdom/frontend/carts/list`)
           .then(response => {
           if (response.status === 401) {
             // 重定向到登录页面 登入失敗
@@ -875,7 +874,7 @@
           <button class="btn btn-icon fs-xl" type="button" data-increment onclick="addCart(${productId})">+</button>
         </div>
         <div class="nav justify-content-end mt-n5 mt-sm-n3"><a class="nav-link fs-xl p-2" href="#"
-            data-bs-toggle="tooltip" title="Remove" onclick="deleteCartProduct(${productId},1)"><i class="ai-trash"></i></a></div>
+            data-bs-toggle="tooltip" title="Remove" onclick="deleteCartProduct(${productId})"><i class="ai-trash"></i></a></div>
       </div>
     </div>
   `;
@@ -891,7 +890,7 @@
       })
   }
 
-  function deleteCartProduct(productId, memberId) {
+  function deleteCartProduct(productId) {
     Swal.fire({
       icon: 'question',
       title: '確認',
@@ -901,7 +900,7 @@
       cancelButtonText: '取消'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:8080/ezdom/frontend/carts/delete/${memberId}/${productId}`, {
+        fetch(`http://localhost:8080/ezdom/frontend/carts/delete/${productId}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json'
@@ -970,12 +969,6 @@
           if (response.status === 401) {
             // 重定向到登录页面 登入失敗
             window.location.href = '/ezdom/frontendmember/account-signin.html';
-          } else if (response.ok) {
-            //登入成功
-            return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).catch(error => {
         console.error('發生錯誤：', error);
