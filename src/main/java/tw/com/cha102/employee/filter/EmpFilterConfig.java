@@ -17,7 +17,7 @@ public class EmpFilterConfig {
         bean.addUrlPatterns("/backend/*");
         bean.setOrder(10);
         bean.setName("empAuthenticationFilter");
-        bean.setEnabled(false);
+        bean.setEnabled(true);
         return bean;
     }
 }
