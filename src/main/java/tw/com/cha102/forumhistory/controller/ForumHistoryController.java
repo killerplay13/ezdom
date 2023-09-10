@@ -12,13 +12,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/frontend/forum")
 public class ForumHistoryController {
+    @Autowired
     private ForumHistoryService forumHistoryService;
 
-    @Autowired
-    public ForumHistoryController(ForumHistoryService forumHistoryService) {
-        this.forumHistoryService = forumHistoryService;
-    }
 
+    //點擊文章時自動新增瀏覽紀錄
     @PostMapping("/history")
     public ForumHistoryVO collectPost(@RequestBody ForumHistoryVO forumHistoryVO, HttpSession session) {
         //Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別
@@ -35,6 +33,8 @@ public class ForumHistoryController {
         return vo;
     }
 
+
+    //刪除瀏覽紀錄
     @DeleteMapping("/delete/history/{historyId}")
     public ForumHistoryVO deleteHistoryPost(@PathVariable Integer historyId) {
         ForumHistoryVO vo=new ForumHistoryVO();
@@ -47,6 +47,9 @@ public class ForumHistoryController {
         }
         return vo;
     }
+
+
+    //列出我的文章瀏覽紀錄
     @GetMapping("/my-history")
     public List<ForumHistoryVO> listHistoryPostsByMember(HttpSession session) {
         //Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別

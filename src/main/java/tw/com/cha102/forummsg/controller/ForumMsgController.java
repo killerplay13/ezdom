@@ -1,10 +1,7 @@
 package tw.com.cha102.forummsg.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tw.com.cha102.forum.model.entity.ForumPostVO;
 import tw.com.cha102.forummsg.model.entity.ForumMsgVO;
 import tw.com.cha102.forummsg.service.ForumMsgService;
 
@@ -15,15 +12,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/frontend/forum")
 public class ForumMsgController {
-
+	@Autowired
 	private ForumMsgService forumMsgService;
 
-	@Autowired
-	public ForumMsgController(ForumMsgService forumMsgService) {
 
-		this.forumMsgService = forumMsgService;
-	}
-
+	//進行文章留言
 	@PostMapping("/msg")
 	public ForumMsgVO createMessage(@RequestBody ForumMsgVO forumMsgVO, HttpSession session) {
 		//Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別
@@ -40,6 +33,8 @@ public class ForumMsgController {
 		return vo;
 	}
 
+
+	//刪除文章留言
 	@DeleteMapping("/delete/msg/{msgId}")
 	public ForumMsgVO deleteMessage(@PathVariable Integer msgId) {
 		ForumMsgVO vo=new ForumMsgVO();
@@ -53,21 +48,21 @@ public class ForumMsgController {
 		return vo;
 	}
 
-	@GetMapping("/msg/{msgId}")
-	public ForumMsgVO getMessageById(@PathVariable Integer msgId) {
 
-		return forumMsgService.getMessageById(msgId);
-	}
-
-	@GetMapping("/msg1")
-	public List<ForumMsgVO> getAllMessages() {
-
-		return forumMsgService.getAllMessages();
-	}
-
+    //列出文章內的所有留言
 	@GetMapping("/msg/forumPost/{forumPostId}")
-	public List<ForumMsgVO> getMessagesByForumPostId(@PathVariable Integer forumPostId) {
-
+	public List<ForumMsgVO> getMessagesByForumPostId(@PathVariable Integer forumPostId, HttpSession session) {
+//		Integer currentUserId = (Integer) session.getAttribute("memberId");
+		Integer memberId = 3;
 		return forumMsgService.getMessagesByForumPostId(forumPostId);
+	}
+
+
+	//判斷目前登入的memberId
+	@GetMapping("/current-member-id")
+	public Integer getCurrentMemberId(HttpSession session) {
+//		Integer memberId = (Integer) session.getAttribute("memberId");
+		Integer memberId=3;
+		return memberId;
 	}
 }
