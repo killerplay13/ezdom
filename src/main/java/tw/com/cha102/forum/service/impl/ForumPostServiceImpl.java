@@ -122,7 +122,7 @@ public class ForumPostServiceImpl implements ForumPostService {
     @Override
     public List<ForumPostVO> findPopularPosts() {
 
-        return forumPostDao.findByOrderByForumPostClickCountAsc();
+        return forumPostDao.findByForumPostStatusOrderByForumPostClickCountAsc(0);
     }
 
 }
