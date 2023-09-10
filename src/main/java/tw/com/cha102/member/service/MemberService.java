@@ -28,9 +28,9 @@ public interface MemberService {
 
     List<Member> getMembers();
 
-    MemberProfileResponse getMemberProfile(String memberAccount);
+    MemberProfileResponse getMemberProfile(Integer memberId);
 
-    MemberPhotoResponse getMebmerPhoto(String memberAccount);
+    MemberPhotoResponse getMebmerPhoto(Integer memberId);
 
     List<Member> getMemberState();
 
@@ -38,4 +38,5 @@ public interface MemberService {
     Member findById(Integer memberId);
 
     boolean updateMemberStatus(Integer memberId);
+
 }
