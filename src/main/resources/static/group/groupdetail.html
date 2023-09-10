@@ -476,7 +476,7 @@
       }
 
       function fetchGroupInfo(groupId) {
-        const apiUrl = `http://localhost:8080/ezdom/frontend/group/admin/${groupId}`;
+        const apiUrl = `/ezdom/frontend/group/admin/${groupId}`;
 
         fetch(apiUrl)
           .then(response => response.json())
@@ -501,7 +501,7 @@
       getMembers();
 
       function getGroupCollect() {
-        const apiUrl = `http://localhost:8080/ezdom/frontend/group/collect/${groupId}`;
+        const apiUrl = `/ezdom/frontend/group/collect/${groupId}`;
 
 
 
@@ -524,36 +524,9 @@
           });
       }
 
-      function getMembers() {
-        const apiUrl = `http://localhost:8080/ezdom/frontend/group/applied/list/${groupId}`;
-        const memberAvatar = document.getElementById("member-avatar");
-
-        fetch(apiUrl)
-                .then(response => response.json())
-                .then((members) => {
-                  console.log(members);
-
-                  let html = "";
-                  for (let i = 0; i < members.length; i++) {
-                    html += '<div class="member-avatar" >'
-                    html +=   '<img src="' + 'data:image/jpeg;base64,' + members[i].memberPhoto + '" alt="Member Avatar">'
-                    html += '</div>'
-
-                    let newDiv = document.createElement("div");
-                    let newImg = document.createElement("img");
-                    newImg.src = 'data:image/jpeg;base64,' + members[i].memberPhoto;
-                    newImg.alt = "Image " + (i);
-                    newDiv.appendChild(newImg);
-                    memberAvatar.appendChild(newDiv);
-                  }
-                })
-                .catch(error => {
-                  console.error("Error fetching group collect:", error);
-                });
-      }
 
       function addFavorites() {
-        const apiUrl = `http://localhost:8080/ezdom/frontend/group/collect/${groupId}`;
+        const apiUrl = `/ezdom/frontend/group/collect/${groupId}`;
 
         const options = {
           method: 'POST',
@@ -573,7 +546,7 @@
       }
 
       function delFavorites() {
-        const apiUrl = `http://localhost:8080/ezdom/frontend/group/collect/${groupId}`; // 请替换成实际的API URL
+        const apiUrl = `/ezdom/frontend/group/collect/${groupId}`; // 请替换成实际的API URL
 
         const options = {
           method: 'DELETE'

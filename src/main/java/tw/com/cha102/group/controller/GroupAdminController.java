@@ -90,11 +90,11 @@ public class GroupAdminController {
     @GetMapping("/mycomming/list")//即將到來揪團列表
     public ResponseEntity<List<Group>> getMycomingGroup(HttpSession session){
         // TODO: 用來獲取已登入的member訊息
-        // Member member = (Member) session.getAttribute("member");
-        // Integer memberId = member.getMemberId();
+        Integer memberId = (Integer) session.getAttribute("memberId");
+
 
         //目前預設為1
-        Integer memberId = 1;
+        //Integer memberId = 1;
 
         List<Integer> groupIds = groupMemberService.findGroupIdsByMemberIdAndStatus(memberId, (byte) 1);
 

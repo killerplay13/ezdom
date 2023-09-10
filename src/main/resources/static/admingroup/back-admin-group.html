@@ -447,7 +447,7 @@
 
                     async function fetchGroupList() {
                         try {
-                            const response = await fetch('http://localhost:8080/ezdom/backend/group/admin/list'); // 瀏覽揪團審核列表
+                            const response = await fetch('/ezdom/backend/group/admin/list'); // 瀏覽揪團審核列表
                             if (response.status === 401) {
                                 // 重定向到登录页面 登入失敗
                                 window.location.href = '/ezdom/backendemp/empSignin.html';
@@ -484,7 +484,7 @@
 
                     //下面是按detail按鈕會根據groupId跳轉到詳細內容頁面，並將資料映射到相關欄位上
                         function redirectToDetailPage(groupId) {
-                            var newPageUrl = `http://localhost:8080/ezdom/admingroup/back-admin-groupdetail.html?groupId=${groupId}`;
+                            var newPageUrl = `/ezdom/admingroup/back-admin-groupdetail.html?groupId=${groupId}`;
                             window.location.href = newPageUrl;
                         }
 

@@ -386,7 +386,7 @@
             const formData = new FormData(form);
 
             // 发起异步请求
-            fetch('http://localhost:8080/ezdom/frontend/group/member', {
+            fetch('/ezdom/frontend/group/member', {
                 method: 'POST',
                 body: formData
             })
@@ -435,7 +435,7 @@
             }
 
             function fetchGroupInfo(groupId) {
-                const apiUrl = `http://localhost:8080/ezdom/frontend/group/admin/${groupId}`; // 请替换成实际的API URL
+                const apiUrl = `/ezdom/frontend/group/admin/${groupId}`; // 请替换成实际的API URL
 
                 fetch(apiUrl)
                     .then(response => response.json())
