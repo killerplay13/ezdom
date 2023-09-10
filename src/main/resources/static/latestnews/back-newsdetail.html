@@ -519,18 +519,25 @@
                                         'Content-Type': 'application/json'
                                     },
                                     body: JSON.stringify(updatedNews)
-                                });
-                    
-                                if (response.ok) {
-                                    // 更新成功的處理
-                                    console.log('更新成功');
-                                    window.location.href = 'back-news.html'
-                                } else {
-                                    // 更新失敗的處理
-                                    console.error('更新失敗');
-                                }
+                                }).then(response => {
+                                    if (response.status === 401) {
+                                        // 重定向到登录页面 登入失敗
+                                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                                    } else if (response.ok) {
+                                        //登入成功
+                                        // 更新成功的處理
+                                        console.log('更新成功');
+                                        window.location.href = 'back-news.html'
+                                        return response.json();
+                                    } else {
+                                        // 更新失敗的處理
+                                        console.error('更新失敗');
+                                        alert("錯誤狀態" + response.status);
+                                        return;
+                                    }
+                                })
                             } catch (error) {
-                                console.error('Error:', error);
+                                console.error("Error:", error);
                             }
                         });
                     

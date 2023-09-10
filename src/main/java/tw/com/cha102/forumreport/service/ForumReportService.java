@@ -10,15 +10,10 @@ public interface ForumReportService {
 
     List<ForumReportVO> getAllReports();
 
-    ForumReportVO getReportById(Integer forumReportId);
-
     boolean deleteReport(Integer forumReportId);
 
     boolean hasReportedSamePost(Integer forumPostId, Integer memberId);
+
     boolean updateReportStatus(Integer reportId);
-
-//    boolean updateReportStatus(Integer reportId, Integer newStatus);
-
-
 
 }

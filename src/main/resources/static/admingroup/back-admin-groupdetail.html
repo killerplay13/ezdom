@@ -504,25 +504,34 @@
                 async function fetchGroupDetail() {
                     try {
                         const response = await fetch(`http://localhost:8080/ezdom/backend/group/admin/${groupId}`);
-                        const groupDetail = await response.json();
+                        if (response.status === 401) {
+                            // 重定向到登录页面 登入失敗
+                            window.location.href = '/ezdom/backendemp/empSignin.html';
+                        } else if (response.ok) {
+                            //登入成功
+                            const groupDetail = await response.json();
 
-                        // 將揪團詳細資訊填充到輸入框中
-                        groupIdInput.value = groupDetail.groupId;
-                        groupPhotoImage.src = groupDetail.groupPhoto || '';
-                        groupNameInput.value = groupDetail.groupName;
-                        groupMemberInput.value = groupDetail.createMemberId;
-                        groupDateInput.value = formatDate(groupDetail.groupDate);
-                        groupTitleInput.value = groupDetail.groupTitle;
-                        groupLocationInput.value = groupDetail.groupLocation;
-                        limitNumberInput.value = groupDetail.limitNumber;
-                        groupDepositInput.value = groupDetail.groupDeposit;
-                        groupContentTextarea.value = groupDetail.groupContent;
-                        groupStatusSelect.value = groupDetail.groupStatus;
-                        groupfailReason.value = groupDetail.createFailReason;
+                            // 將揪團詳細資訊填充到輸入框中
+                            groupIdInput.value = groupDetail.groupId;
+                            groupPhotoImage.src = groupDetail.groupPhoto || '';
+                            groupNameInput.value = groupDetail.groupName;
+                            groupMemberInput.value = groupDetail.createMemberId;
+                            groupDateInput.value = formatDate(groupDetail.groupDate);
+                            groupTitleInput.value = groupDetail.groupTitle;
+                            groupLocationInput.value = groupDetail.groupLocation;
+                            limitNumberInput.value = groupDetail.limitNumber;
+                            groupDepositInput.value = groupDetail.groupDeposit;
+                            groupContentTextarea.value = groupDetail.groupContent;
+                            groupStatusSelect.value = groupDetail.groupStatus;
+                            groupfailReason.value = groupDetail.createFailReason;
+                        } else {
+                            alert("錯誤狀態" + response.status);
+                        }
                     } catch (error) {
                         console.error('Error fetching group detail:', error);
                     }
                 }
+
 
                 // 格式化日期
                 function formatDate(dateString) {

@@ -22,7 +22,7 @@ import tw.com.cha102.support.model.dto.ChatMessage;
 import tw.com.cha102.support.model.dto.State;
 import tw.com.cha102.message.service.JedisHandleMessage;
 
-@ServerEndpoint("/SupportWS/{userId}")
+@ServerEndpoint("/frontend/SupportWS/{userId}")
 @Component
 public class SupportWS {
 	private static Map<String, Session> sessionsMap = new ConcurrentHashMap<>();
@@ -75,6 +75,19 @@ public class SupportWS {
 				return;
 			}
 		}
+		// 測試
+		if ("refresh".equals(chatMessage.getType())){
+			List<String> histroyData = tw.com.cha102.message.service.JedisHandleMessage.getHistoryMsg(sender,receiver);
+			String historyMsg = gson.toJson(histroyData);
+//			ChatMessage cmHistory = new ChatMessage("history",sender,receiver,historyMsg,read,time);
+			ChatMessage cmHistory = new ChatMessage("refresh", sender, receiver, historyMsg, time);
+			if (userSession != null && userSession.isOpen()){
+				userSession.getAsyncRemote().sendText(gson.toJson(cmHistory));
+				System.out.println("history="+gson.toJson(cmHistory));
+				return;
+			}
+		}
+
 		Session receiverSession = sessionsMap.get(receiver);
 
 		if (receiverSession != null && receiverSession.isOpen()){

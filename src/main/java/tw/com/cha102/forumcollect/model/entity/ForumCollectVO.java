@@ -24,12 +24,18 @@ public class ForumCollectVO extends Core {
     @Column(name = "MEMBER_ID")
     private Integer memberId;
 
-     @ManyToOne
-     @JoinColumn(name = "FORUMPOST_ID", insertable = false, updatable = false)
-     private ForumPostVO forumPost;
+    @ManyToOne
+    @JoinColumn(name = "FORUMPOST_ID", insertable = false, updatable = false)
+    private ForumPostVO forumPost;
 
-//     @ManyToOne
-//     @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
-//     private Member member;
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID", insertable = false, updatable = false)
+    private Member member;
+
+    public String getMemberName() {
+        return member != null ? member.getMemberName() : null;
+    }
+
+    public byte[] getMemberPhoto() {return member != null ? member.getMemberPhoto() : null;}
 }
 
