@@ -223,7 +223,8 @@
     <!-- Import Google Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+          rel="stylesheet"
           id="google-font">
     <!-- Vendor styles-->
     <!-- Main Theme Styles + Bootstrap-->
@@ -235,7 +236,8 @@
 <!-- Page loading spinner-->
 <div class="page-loading active">
     <div class="page-loading-inner">
-        <div class="page-spinner"></div><span>Loading...</span>
+        <div class="page-spinner"></div>
+        <span>Loading...</span>
     </div>
 </div>
 <!-- Page wrapper-->
@@ -254,29 +256,35 @@
                 <form class="needs-validation" novalidate>
                     <div class="row row-cols-1 row-cols-sm-2">
                         <div class="col mb-4">
-                            <input id="accountName" class="form-control form-control-lg" type="text" placeholder="帳號" required
+                            <input id="accountName" class="form-control form-control-lg" type="text" placeholder="帳號"
+                                   required
                                    onblur="validateAccount()">
                             <p id="accountnameError" style="color: red;"></p>
                         </div>
                         <div class="col mb-4">
-                            <input id="mail" class="form-control form-control-lg" type="email" placeholder="信箱" required
+                            <input id="mail" class="form-control form-control-lg" type="email" placeholder="信箱"
+                                   required
                                    onblur="validateMail()">
                             <p id="mailError" style="color: red;"></p>
                         </div>
                     </div>
                     <div class="password-toggle mb-4">
                         <input id="password" class="form-control form-control-lg" type="password"
-                               placeholder="密碼 (8 ~ 12個英文字母、數字不限大小寫)" required onblur="validatePassword()">
+                               placeholder="密碼 ( 8 ~ 12個字元 )" required
+                               onblur="validatePassword()">
                         <label class="password-toggle-btn" aria-label="Show/hide password">
-                            <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                            <input class="password-toggle-check" type="checkbox"><span
+                                class="password-toggle-indicator"></span>
                         </label>
                         <p id="passwordError" style="color: red;"></p>
                     </div>
                     <div class="password-toggle mb-4">
-                        <input id="confirmPassword" class="form-control form-control-lg" type="password" placeholder="確認密碼"
+                        <input id="confirmPassword" class="form-control form-control-lg" type="password"
+                               placeholder="確認密碼"
                                required onblur="validateConfirmPassword()">
                         <label class="password-toggle-btn" aria-label="Show/hide password">
-                            <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                            <input class="password-toggle-check" type="checkbox"><span
+                                class="password-toggle-indicator"></span>
                         </label>
                         <p id="checkpasswordError" style="color: red;"></p>
                     </div>
@@ -343,19 +351,8 @@
                         </div>
                     </div>
                     <div class="pb-4">
-                        <!-- <div class="form-check my-2">
-                                      <input class="form-check-input" type="checkbox" id="terms">
-                                      <label class="form-check-label ms-1" for="terms">I agree to <a href="#">Terms &amp; Conditions</a></label>
-                                    </div> -->
                     </div>
                     <button id="register" class="btn btn-lg btn-primary w-100 mb-4" type="button">註冊</button>
-                    <h2 class="h6 text-center pt-3 pt-lg-4 mb-4">或選則以下方式</h2>
-                    <div class="row row-cols-1 row-cols-sm-2 gy-3">
-                        <div class="col"><a class="btn btn-icon btn-outline-secondary btn-google btn-lg w-100" href="#"><i
-                                class="ai-google fs-xl me-2"></i>Google</a></div>
-                        <div class="col"><a class="btn btn-icon btn-outline-secondary btn-facebook btn-lg w-100" href="#"><i
-                                class="ai-facebook fs-xl me-2"></i>Facebook</a></div>
-                    </div>
                 </form>
             </div>
             <!-- Copyright-->
@@ -372,7 +369,8 @@
     <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10">
         </circle>
-    </svg><i class="ai-arrow-up"></i></a>
+    </svg>
+    <i class="ai-arrow-up"></i></a>
 <!-- Vendor scripts: js libraries and plugins-->
 <script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
@@ -416,7 +414,7 @@
 
     function validatePassword() {
       let passwordError = document.getElementById("passwordError");
-      var passwordRegex = /^[A-Za-z\d]{8,12}$/;
+      var passwordRegex = /^[A-Za-z\d!@#$%^&*()]{8,12}$/;
       if (!password.value.trim()) {
         passwordError.textContent = "密碼不可為空";
         return false;
@@ -467,7 +465,7 @@
       event.preventDefault(); // 防止表單提交預設行為
 
       if (validateAccount() && validateMail() && validatePassword() && validateConfirmPassword()) {
-        fetch('http://localhost:8080/ezdom/member/signUp', {
+        fetch('/ezdom/member/signUp', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -502,7 +500,7 @@
             Swal.fire({
               icon: 'error',
               title: '錯誤',
-              text: '註冊失敗：' + error.message, // 顯示錯誤訊息
+              text: '請重新註冊！', // 顯示錯誤訊息
               confirmButtonText: '確定',
               focusConfirm: false
             });

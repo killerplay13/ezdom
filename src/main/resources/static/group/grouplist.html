@@ -394,8 +394,19 @@
                 const groupListContainer = document.getElementById("groupList");
 
                 // 使用 Fetch API 获取数据
-                fetch("http://localhost:8080/ezdom/frontend/group/list")
-                    .then(response => response.json())
+                fetch("/ezdom/frontend/group/list")
+                    .then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登录页面 登入失敗
+                        window.location.href = '/ezdom/frontendmember/account-signin.html';
+                    } else if (response.ok) {
+                        //登入成功
+                        return response.json();
+                    } else {
+                        alert("錯誤狀態" + response.status);
+                        return;
+                    }
+                })
                     .then(data => {
                         // 清空卡片容器内容
                         groupListContainer.innerHTML = "";
@@ -443,7 +454,7 @@
                     const groupListContainer = document.getElementById("groupList");
 
                     // 使用 Fetch API 获取数据
-                    fetch("http://localhost:8080/ezdom/frontend/group/hot/list")
+                    fetch("/ezdom/frontend/group/hot/list")
                         .then(response => response.json())
                         .then(data => {
                             // 清空卡片容器内容
@@ -497,7 +508,7 @@
                     const groupListContainer = document.getElementById("groupList");
 
                     // 使用 Fetch API 获取数据
-                    fetch("http://localhost:8080/ezdom/frontend/group/condition/list?groupName=" + inputValue)
+                    fetch("/ezdom/frontend/group/condition/list?groupName=" + inputValue)
                         .then(response => response.json())
                         .then(data => {
                             // 清空卡片容器内容

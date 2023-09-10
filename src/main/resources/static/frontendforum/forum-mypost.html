@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Around | Account - Overview</title>
+  <!-- SEO Meta Tags-->
+  <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
+  <meta name="keywords"
+    content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, dark mode, html5, css3, javascript, gallery, slider, touch, creative">
+  <meta name="author" content="Createx Studio">
+  <!-- Viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Favicon and Touch Icons-->
+  <link rel="apple-touch-icon" sizes="180x180" href="../frontendshop/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../frontendshop/assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../frontendshop/assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="../frontendshop/assets/favicon/site.webmanifest">
+  <link rel="mask-icon" color="#6366f1" href="../frontendshop/assets/favicon/safari-pinned-tab.svg">
+  <meta name="msapplication-TileColor" content="#080032">
+  <meta name="msapplication-config" content="../frontendshop/assets/favicon/browserconfig.xml">
+  <meta name="theme-color" content="white">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+
+  <!-- Theme mode-->
+  <script>
+    let mode = window.localStorage.getItem('mode'),
+      root = document.getElementsByTagName('html')[0];
+    if (mode !== undefined && mode === 'dark') {
+      root.classList.add('dark-mode');
+    } else {
+      root.classList.remove('dark-mode');
+    }
+
+
+  </script>
+  <!-- Page loading styles-->
+  <style>
+    .page-loading {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: all .4s .2s ease-in-out;
+      transition: all .4s .2s ease-in-out;
+      background-color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9999;
+    }
+
+    .dark-mode .page-loading {
+      background-color: #121519;
+    }
+
+    .page-loading.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-loading-inner {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: opacity .2s ease-in-out;
+      transition: opacity .2s ease-in-out;
+      opacity: 0;
+    }
+
+    .page-loading.active>.page-loading-inner {
+      opacity: 1;
+    }
+
+    .page-loading-inner>span {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #6f788b;
+    }
+
+    .dark-mode .page-loading-inner>span {
+      color: #fff;
+      opacity: .6;
+    }
+
+    .page-spinner {
+      display: inline-block;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: .75rem;
+      vertical-align: text-bottom;
+      background-color: #d7dde2;
+      border-radius: 50%;
+      opacity: 0;
+      -webkit-animation: spinner .75s linear infinite;
+      animation: spinner .75s linear infinite;
+    }
+
+    .dark-mode .page-spinner {
+      background-color: rgba(255, 255, 255, .25);
+    }
+
+    @-webkit-keyframes spinner {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+
+      50% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+
+    @keyframes spinner {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+
+      50% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+  </style>
+  <!-- Page loading scripts-->
+  <script>
+    (function () {
+      window.onload = function () {
+        const preloader = document.querySelector('.page-loading');
+        preloader.classList.remove('active');
+        setTimeout(function () {
+          preloader.remove();
+        }, 1500);
+      };
+    })();
+
+  </script>
+  <!-- Import Google Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"
+    id="google-font">
+  <!-- Vendor styles-->
+  <!-- Main Theme Styles + Bootstrap-->
+  <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
+</head>
+<!-- Body-->
+
+<body class="bg-secondary">
+  <!-- Page loading spinner-->
+  <div class="page-loading active">
+    <div class="page-loading-inner">
+      <div class="page-spinner"></div><span>Loading...</span>
+    </div>
+  </div>
+  <!-- Page wrapper-->
+  <main class="page-wrapper">
+    <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
+    <header class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode">
+      <div class="container"><a class="navbar-brand pe-sm-3" href="index.html"><span
+            class="text-primary flex-shrink-0 me-2">
+            <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor"
+                d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+              </path>
+            </svg></span>EZ-DOM</a>
+        <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+          <input class="form-check-input" type="checkbox" id="theme-mode">
+          <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
+          <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
+        </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+          href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
+          rel="noopener" style="padding: 5px 10px">登入/註冊</a>
+        <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
+            class="navbar-toggler-icon"></span></button>
+        <nav class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">揪團 Group</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">揪團列表</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">My揪團</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">開團管理</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">瀏覽商品</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">購物車</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">管理我的訂單</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="forum.html"
+                                        aria-expanded="false">瀏覽論壇</a>
+                </li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="forum-mypost.html"
+                                        aria-expanded="false">論壇管理</a>
+                </li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="forum-post.html"
+                                        aria-expanded="false">發文</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">預約 Reserve</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">預約管理</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">瀏覽教練</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">時段管理</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">項目管理</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">自我介紹管理</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">會員中心 Member</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">我的頁面</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">好友管理</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">收藏文章</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">收藏商品</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">個人設定</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    aria-expanded="false">聊天室</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                data-bs-auto-close="outside" aria-expanded="false">聯絡客服 Help</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- Page content-->
+
+    <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
+      <nav aria-label="breadcrumb">
+        <ol class="pt-lg-3 pb-lg-4 pb-2 breadcrumb">
+          <li class="breadcrumb-item"><a href="forum.html">論壇</a></li>
+          <li class="breadcrumb-item active" aria-current="page">論壇管理</li>
+        </ol>
+      </nav>
+
+      <div class="row pt-sm-2 pt-lg-0">
+        <!-- Sidebar (offcanvas on sreens < 992px)-->
+        <aside class="col-lg-3 pe-lg-4 pe-xl-5 mt-n3">
+          <div class="position-lg-sticky top-0">
+            <div class="d-none d-lg-block" style="padding-top: 105px;"></div>
+            <div class="offcanvas-lg offcanvas-start" id="sidebarAccount">
+              <button class="btn-close position-absolute top-0 end-0 mt-3 me-3 d-lg-none" type="button"
+                data-bs-dismiss="offcanvas" data-bs-target="#sidebarAccount"></button>
+              <div class="offcanvas-body">
+
+                <nav class="nav flex-column pb-2 pb-lg-4 mb-3">
+                  <h4 class="h1 mb-5">論壇管理</h4>
+                  <a class="nav-link fw-semibold py-2 px-0 " style="cursor: pointer" onclick="fetchMyPosts()">
+                    <i class="ai-pen fs-5  me-2">我的文章</i>
+                  </a>
+                  <a class="nav-link fw-semibold py-2 px-0" style="cursor: pointer" onclick="fetchMyFavorites()">
+                    <i class="ai-bookmark fs-5  me-2">我的收藏</i>
+                  </a>
+                  <a class="nav-link fw-semibold py-2 px-0 " style="cursor: pointer" onclick="fetchMyHistory()">
+                    <i class="ai-show fs-5  me-2">瀏覽紀錄</i>
+                  </a>
+                </nav>
+
+              </div>
+
+            </div>
+          </div>
+        </aside>
+        <!-- Page content-->
+        <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
+
+          <div id="article-list-container">
+            <!-- 將每篇文章的資訊填入這裡 -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- Divider for dark mode only-->
+    <hr class="d-none d-dark-mode-block">
+    <!-- Sidebar toggle button-->
+    <button class="d-lg-none btn btn-sm fs-sm btn-primary w-100 rounded-0 fixed-bottom" data-bs-toggle="offcanvas"
+      data-bs-target="#sidebarAccount"><i class="ai-menu me-2"></i>Account menu</button>
+  </main>
+  <!-- Footer-->
+  <footer class="footer bg-secondary py-5">
+    <div class="container pt-1 pt-sm-2 pt-md-3 pt-lg-4 pt-xl-5">
+      <div class="border-bottom text-center pb-4"><a class="navbar-brand d-inline-flex text-nav py-0 mb-3 mb-md-4"
+          href="index.html"><span class="text-primary flex-shrink-0 me-2">
+            <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor"
+                d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+              </path>
+            </svg></span><span>EZ-DOM</span></a>
+        <ul class="nav justify-content-center py-1 pb-sm-2">
+          <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Classes</a></li>
+          <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Trainers</a></li>
+          <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Schedule</a></li>
+          <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="d-sm-flex align-items-center justify-content-between pt-4 mt-2 mt-sm-0">
+        <div class="d-flex justify-content-center order-sm-2 mb-4 mb-sm-0"><a
+            class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle me-3" href="#"><i
+              class="ai-instagram"></i></a><a class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle me-3"
+            href="#"><i class="ai-facebook"></i></a><a
+            class="btn btn-icon btn-sm btn-secondary btn-youtube rounded-circle" href="#"><i class="ai-youtube"></i></a>
+        </div>
+        <p class="fs-sm order-sm-1 text-center mb-0"><span class="opacity-70">&copy; All rights reserved. Made by
+          </span><a class="nav-link d-inline fw-normal p-0" href="https://createx.studio/" target="_blank"
+            rel="noopener">Createx Studio</a></p>
+      </div>
+    </div>
+  </footer>
+  <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll>
+    <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10">
+      </circle>
+    </svg><i class="ai-arrow-up"></i></a>
+  <!-- Vendor scripts: js libraries and plugins-->
+  <script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <!-- Main theme script-->
+  <script src="../frontendshop/assets/js/theme.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+  <script>
+        //根據選擇顯示不同的列表
+        document.addEventListener('DOMContentLoaded', function () {
+          const selectedTab = localStorage.getItem('selectedTab');
+          if (selectedTab === 'myPosts') {
+            fetchMyPosts();
+          } else if (selectedTab === 'myFavorites') {
+            fetchMyFavorites();
+          } else {
+            fetchMyHistory();
+          }
+        });
+
+        // ====================== 獲取登入會員發過的文章列表 ====================== //
+        function fetchMyPosts() {
+          const articleListContainer = document.getElementById('article-list-container');
+          articleListContainer.innerHTML = '';//進行清空
+          fetch(`/ezdom/frontend/forum/my-posts`)
+            .then(response => {
+              if (response.status === 401) {
+                //重定向到登入頁面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
+            .then(body => {
+              for (let post of body) {
+                const {
+                  forumPostId,
+                  forumPostTitle,
+                  forumPostContent,
+                  forumPostTime,
+                  forumPostType,
+                  forumPostClickCount,
+                  memberName,
+                  memberPhoto,
+                } = post;
+                let imgUrl = "data:image/jpeg;base64," + memberPhoto;
+                const postTime = new Date(forumPostTime);
+                const formattedDate = `${postTime.getMonth() + 1}/${postTime.getDate()}`;
+
+                //創建一個card
+                const card = document.createElement('div');
+                card.className = 'col-sm-7 col-lg-11 ';
+                const excerpt = forumPostContent.substring(0, 100) + "...";
+
+                //card的內容
+                card.innerHTML = `
+                <div class="card mb-4 special-card" style="border: 2px solid #000; border-radius: 10px; padding: 20px; box-shadow: 3px 3px 5px #888888;">
+                  <div class="card-body">
+                    <div class="pt-4 pb-sm-4 ps-sm-4 pe-lg-4">
+                        <h3><a href="forum-article.html?postId=${forumPostId}" onclick="addView(${forumPostId}); history(${forumPostId});">『${forumPostTitle}』</a></h3>
+                        <p class="d-sm-none d-md-block">${excerpt}</p>
+                        <div class="d-flex flex-wrap align-items-center mt-n2">
+                          <img class="rounded-circle" src="${imgUrl}" width="48" alt="Comment author">
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">✍️${memberName}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">📅${formattedDate}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">${getPostStatusText(forumPostType)}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">🖱️${forumPostClickCount}</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 d-flex justify-content-end">
+                                <button type="button" class="btn btn-outline-success publish-button" onclick="editPost(${forumPostId})">修改</button>
+                                <div class="mx-2"></div>
+                                <button type="button" class="btn btn-outline-danger publish-button" onclick="deletePost(${forumPostId})">刪除</button>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+               </div>`;
+
+                //將card添加到文章列表中
+                articleListContainer.insertBefore(card, articleListContainer.firstChild);
+              }
+            })
+            .catch(error => {
+              console.error('Error fetching posts:', error);
+            });
+            //清除之前標籤的亮度再將active添加進去
+            clearSelectedTab();
+            document.querySelector('.nav-link[onclick="fetchMyPosts()"]').classList.add('active');
+            localStorage.setItem('selectedTab', 'myPosts');
+        }
+
+
+        // ====================== 獲取登入會員的收藏文章列表 ====================== //
+        function fetchMyFavorites() {
+          const articleListContainer = document.getElementById('article-list-container');
+          articleListContainer.innerHTML = '';
+
+          fetch(`/ezdom/frontend/forum/my-collects`)
+            .then(response => {
+              if (response.status === 401) {
+                //重定向到登入頁面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
+            .then(body => {
+              body.forEach(collectedPost => {
+                const {
+                  forumPost,
+                  forumCollectId
+                } = collectedPost;
+
+                //判斷文章狀態是否為0
+                if (forumPost.forumPostStatus === 0) {
+                  const {
+                    forumPostId,
+                    forumPostTitle,
+                    forumPostContent,
+                    forumPostTime,
+                    forumPostType,
+                    forumPostClickCount,
+                    memberName,
+                    memberPhoto,
+                  } = forumPost;
+                  let imgUrl = "data:image/jpeg;base64," + memberPhoto;
+                  const postTime = new Date(forumPostTime);
+                  const formattedDate = `${postTime.getMonth() + 1}/${postTime.getDate()}`;
+
+                  const card = document.createElement('div');
+                  card.className = 'col-sm-7 col-lg-11';
+                  const excerpt = forumPostContent.substring(0, 100) + "...";
+
+                  card.innerHTML = `
+                  <div class="card mb-4 special-card" style="border: 2px solid #000; border-radius: 10px; padding: 20px; box-shadow: 3px 3px 5px #888888;">
+                    <div class="card-body">
+                      <div class="pt-4 pb-sm-4 ps-sm-4 pe-lg-4">
+                        <h3><a href="forum-article.html?postId=${forumPostId}"onclick="addView(${forumPostId}); history(${forumPostId});">『${forumPostTitle}』</a></h3>
+                        <p class="d-sm-none d-md-block">${excerpt}</p>
+                        <div class="d-flex flex-wrap align-items-center mt-n2">
+                          <img class="rounded-circle" src="${imgUrl}" width="48" alt="Comment author">
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">✍️${memberName}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">📅${formattedDate}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">${getPostStatusText(forumPostType)}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">🖱️${forumPostClickCount}</span>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12 d-flex justify-content-end">
+                            <button type="button" class="btn btn-outline-warning publish-button" onclick="reportPost(${forumPostId})">檢舉</button>
+                            <div class="mx-2"></div>
+                            <button type="button" class="btn btn-outline-danger publish-button" onclick="deleteCollectedPost(${forumCollectId})">刪除</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>`;
+
+                  articleListContainer.insertBefore(card, articleListContainer.firstChild);
+                }
+              });
+            })
+            .catch(error => {
+              console.error('Error fetching favorites:', error);
+            });
+             clearSelectedTab();
+             document.querySelector('.nav-link[onclick="fetchMyFavorites()"]').classList.add('active');
+             localStorage.setItem('selectedTab', 'myFavorites');
+        }
+
+
+        // ====================== 獲取登入會員的文章瀏覽紀錄列表 ====================== //
+        function fetchMyHistory() {
+          const articleListContainer = document.getElementById('article-list-container');
+          articleListContainer.innerHTML = '';
+
+          fetch(`/ezdom/frontend/forum/my-history`)
+            .then(response => {
+              if (response.status === 401) {
+                //重定向到登入頁面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
+            .then(body => {
+              body.forEach(historyPost => {
+                const {
+                  forumPost,
+                  forumHistoryId
+                } = historyPost;
+
+                //判斷文章狀態是否為0
+                if (forumPost.forumPostStatus === 0) {
+                  const {
+                    forumPostId,
+                    forumPostTitle,
+                    forumPostContent,
+                    forumPostTime,
+                    forumPostType,
+                    forumPostClickCount,
+                    memberName,
+                    memberPhoto,
+                  } = forumPost;
+                  let imgUrl = "data:image/jpeg;base64," + memberPhoto;
+                  const postTime = new Date(forumPostTime);
+                  const formattedDate = `${postTime.getMonth() + 1}/${postTime.getDate()}`;
+
+
+                  const card = document.createElement('div');
+                  card.className = 'col-sm-7 col-lg-11';
+                  const excerpt = forumPostContent.substring(0, 100) + "...";
+
+
+                  card.innerHTML = `
+                  <div class="card mb-4 special-card" style="border: 2px solid #000; border-radius: 10px; padding: 20px; box-shadow: 3px 3px 5px #888888;">
+                    <div class="card-body">
+                      <div class="pt-4 pb-sm-4 ps-sm-4 pe-lg-4">
+                        <h3><a href="forum-article.html?postId=${forumPostId}"onclick="addView(${forumPostId}); history(${forumPostId});">『${forumPostTitle}』</a></h3>
+                        <p class="d-sm-none d-md-block">${excerpt}</p>
+                        <div class="d-flex flex-wrap align-items-center mt-n2">
+                          <img class="rounded-circle" src="${imgUrl}" width="48" alt="Comment author">
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">✍️${memberName}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">📅${formattedDate}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">${getPostStatusText(forumPostType)}</span>
+                          <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+                          <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">🖱️${forumPostClickCount}</span>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12 d-flex justify-content-end">
+                            <button type="button" class="btn btn-outline-warning publish-button" onclick="reportPost(${forumPostId})">檢舉</button>
+                            <div class="mx-2"></div>
+                            <button type="button" class="btn btn-outline-danger publish-button" onclick="deleteHistoryPost(${forumHistoryId})">刪除</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>`;
+
+                  articleListContainer.insertBefore(card, articleListContainer.firstChild);
+                }
+              });
+            })
+            .catch(error => {
+              console.error('Error fetching history:', error);
+            });
+            clearSelectedTab();
+            document.querySelector('.nav-link[onclick="fetchMyHistory()"]').classList.add('active');
+            localStorage.setItem('selectedTab', 'myHistory');
+        }
+
+
+        // ====================== 增加文章點擊數 ====================== //
+        function addView(forumPostId) {
+          const viewRecord = {
+            forumPostId: forumPostId,
+          };
+
+          fetch(`/ezdom/frontend/forum/click/${forumPostId}`, {
+            method: 'POST',
+          })
+            .then(response => {
+              if (response.status === 401) {
+                //重定向到登入頁面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //fetchAndDisplay();
+                 return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
+            .catch(error => {
+              console.error('發生錯誤，無法執行瀏覽文章操作:', error);
+            });
+        }
+
+
+        // ====================== 將點擊過的文章加入瀏覽紀錄列表中 ====================== //
+        function history(forumPostId) {
+          const historyData = {
+            forumPostId: forumPostId,
+          };
+          fetch('/ezdom/frontend/forum/history', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(historyData)
+          })
+            .then(response => {
+              if (response.status === 401) {
+                //重定向到登入頁面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
+            .then(data => {
+              fetchAndDisplay();
+
+            })
+            .catch(error => {
+              console.error('發生錯誤，無法新增瀏覽紀錄操作:', error);
+
+            });
+
+        }
+
+
+        //導向編輯頁面
+        function editPost(postId) {
+          window.location.href = `forum-edit.html?postId=${postId}`;
+        }
+
+        //導向檢舉頁面
+        function reportPost(forumPostId) {
+          window.location.href = `forum-report.html?forumPostId=${forumPostId}`;
+        }
+
+
+        // ====================== 對我的文章進行刪除 ====================== //
+        function deletePost(postId) {
+          Swal.fire({
+            title: '確定要刪除這篇文章嗎？',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '確定',
+            cancelButtonText: '取消'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              fetch(`/ezdom/frontend/forum/delete/post/${postId}`, {
+                method: 'DELETE'
+              })
+                .then(response => {
+                  if (response.status === 401) {
+                    //重定向到登入頁面 登入失敗
+                    window.location.href = '/ezdom/frontendmember/account-signin.html';
+                  } else if (response.ok) {
+                    //登入成功
+                    return response.json();
+                  } else {
+                    alert("錯誤狀態" + response.status);
+                    return;
+                  }
+                })
+                .then(data => {
+                  if (data.successful) {
+                    Swal.fire({
+                      title: '成功',
+                      text: data.message,
+                      icon: 'success'
+                    }).then(() => {
+                      fetchMyPosts();
+                    });
+                  } else {
+                    Swal.fire({
+                      title: '錯誤',
+                      text: data.message,
+                      icon: 'error'
+                    });
+                    console.error('Delete failed:', data);
+                  }
+                })
+                .catch(error => {
+                  console.error('Error deleting post:', error);
+                  Swal.fire({
+                    title: '發生錯誤',
+                    text: '請稍後再試',
+                    icon: 'error'
+                  });
+                });
+            }
+          });
+        }
+
+
+        // ====================== 對我的收藏進行刪除 ====================== //
+        function deleteCollectedPost(collectId) {
+          Swal.fire({
+            title: '確定要刪除這篇收藏的文章嗎？',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '確定',
+            cancelButtonText: '取消'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              fetch(`/ezdom/frontend/forum/delete/collect/${collectId}`, {
+                method: 'DELETE'
+              })
+                .then(response => {
+                  if (response.status === 401) {
+                    //重定向到登入頁面 登入失敗
+                    window.location.href = '/ezdom/frontendmember/account-signin.html';
+                  } else if (response.ok) {
+                    //登入成功
+                    return response.json();
+                  } else {
+                    alert("錯誤狀態" + response.status);
+                    return;
+                  }
+                })
+                .then(data => {
+                  if (data.successful !== undefined && data.successful === true) {
+                    Swal.fire({
+                      title: data.message,
+                      icon: 'success'
+                    }).then(() => {
+                      fetchMyFavorites();
+                    });
+                  } else {
+                    Swal.fire({
+                      title: '刪除失敗',
+                      text: data.message || '刪除失敗，請重試',
+                      icon: 'error'
+                    });
+                    console.error('Delete failed:', data);
+                  }
+                })
+                .catch(error => {
+                  console.error('Error deleting collected post:', error);
+                  Swal.fire({
+                    title: '發生錯誤',
+                    text: '請稍後再試',
+                    icon: 'error'
+                  });
+                });
+            }
+          });
+        }
+
+
+        // ====================== 對我的文章瀏覽紀錄進行刪除 ====================== //
+        function deleteHistoryPost(historyId) {
+          Swal.fire({
+            title: '確定要刪除這個瀏覽紀錄嗎？',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '確定',
+            cancelButtonText: '取消'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              fetch(`/ezdom/frontend/forum/delete/history/${historyId}`, {
+                method: 'DELETE'
+              })
+                .then(response => {
+                  if (response.status === 401) {
+                    //重定向到登入頁面 登入失敗
+                    window.location.href = '/ezdom/frontendmember/account-signin.html';
+                  } else if (response.ok) {
+                    //登入成功
+                    return response.json();
+                  } else {
+                    alert("錯誤狀態" + response.status);
+                    return;
+                  }
+                })
+                .then(data => {
+                  if (data.successful !== undefined && data.successful === true) {
+                    Swal.fire({
+                      title: data.message,
+                      icon: 'success'
+                    }).then(() => {
+                      fetchMyHistory();
+                    });
+                  } else {
+                    Swal.fire({
+                      title: '刪除失敗',
+                      text: data.message || '刪除失敗，請重試',
+                      icon: 'error'
+                    });
+                    console.error('Delete failed:', data);
+                  }
+                })
+                .catch(error => {
+                  console.error('Error deleting collected post:', error);
+                  Swal.fire({
+                    title: '發生錯誤',
+                    text: '請稍後再試',
+                    icon: 'error'
+                  });
+                });
+            }
+          });
+        }
+
+        //將active狀態取消以確保在切換標籤時先前選中的標籤不再保持亮度
+        function clearSelectedTab() {
+          const tabs = document.querySelectorAll('.nav-link');
+          tabs.forEach(tab => {
+            tab.classList.remove('active');//移除active
+          });
+        }
+
+        function getPostStatusText(forumPostType) {
+          switch (forumPostType) {
+            case 0:
+              return '全部';
+            case 1:
+              return '🏃戶外運動';
+            case 2:
+              return '🏋️‍♂️室內健身';
+            case 3:
+              return '🧗‍♂️極限運動';
+            case 4:
+              return '🏊水上運動';
+            case 5:
+              return '🥊格鬥';
+            case 6:
+              return '🍔飲食';
+            default:
+              return '其他狀態';
+          }
+        }
+
+  </script>
+</body>
+
+</html>

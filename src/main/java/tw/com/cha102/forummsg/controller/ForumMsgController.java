@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import tw.com.cha102.forummsg.model.entity.ForumMsgVO;
 import tw.com.cha102.forummsg.service.ForumMsgService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -18,9 +19,9 @@ public class ForumMsgController {
 
 	//進行文章留言
 	@PostMapping("/msg")
-	public ForumMsgVO createMessage(@RequestBody ForumMsgVO forumMsgVO, HttpSession session) {
-		//Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別
-		Integer memberId = 3;
+	public ForumMsgVO createMessage(@RequestBody ForumMsgVO forumMsgVO, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Integer memberId = (Integer)session.getAttribute("memberId");
 		forumMsgVO.setMemberId(memberId);
 		ForumMsgVO vo=new ForumMsgVO();
 		if (forumMsgService.createMessage(forumMsgVO)==true) {
@@ -51,18 +52,18 @@ public class ForumMsgController {
 
     //列出文章內的所有留言
 	@GetMapping("/msg/forumPost/{forumPostId}")
-	public List<ForumMsgVO> getMessagesByForumPostId(@PathVariable Integer forumPostId, HttpSession session) {
-//		Integer currentUserId = (Integer) session.getAttribute("memberId");
-		Integer memberId = 3;
+	public List<ForumMsgVO> getMessagesByForumPostId(@PathVariable Integer forumPostId, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Integer memberId = (Integer)session.getAttribute("memberId");
 		return forumMsgService.getMessagesByForumPostId(forumPostId);
 	}
 
 
 	//判斷目前登入的memberId
 	@GetMapping("/current-member-id")
-	public Integer getCurrentMemberId(HttpSession session) {
-//		Integer memberId = (Integer) session.getAttribute("memberId");
-		Integer memberId=3;
+	public Integer getCurrentMemberId(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Integer memberId = (Integer)session.getAttribute("memberId");
 		return memberId;
 	}
 }

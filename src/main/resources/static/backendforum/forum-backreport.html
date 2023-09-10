@@ -9,28 +9,21 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="../backendshop/assets/images/favicon.ico">
+    <title>SB Admin 2 - Tables</title>
 
-    <!-- preloader css -->
-    <link rel="stylesheet" href="../backendshop/assets/css/preloader.min.css" type="text/css" />
-
-    <!-- Bootstrap Css -->
-    <link href="../backendshop/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="../backendshop/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="../backendshop/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-
-    <!-- Custom fonts for this template-->
+    <!-- Custom fonts for this template -->
     <link href="../backendshop/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
+    <!-- Custom styles for this template -->
     <link href="../backendshop/css/sb-admin-2.min.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this page -->
+    <link href="../backendshop/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
 
 </head>
 
@@ -39,13 +32,13 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- 左側欄位 -->
+        <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div style="transform: rotate(-5deg)">
-                    <img width="40px" src="../backendshop/img/FBI.png">
+                    <img width="40px" src="img/FBI.png">
                 </div>
                 <div class="sidebar-brand-text mx-3">EZDOM</div>
             </a>
@@ -143,8 +136,8 @@
                 </a>
                 <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar5">
                     <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">上架中商品</a>
-                        <a class="collapse-item" href="cards.html">下架中商品</a>
+                        <a class="collapse-item" href="addProduct.html">商品編輯</a>
+                        <a class="collapse-item" href="addProduct.html">商品新增</a>
                     </div>
                 </div>
             </li>
@@ -259,19 +252,26 @@
                 </div>
             </li>
         </ul>
-        <!-- 上面是左側欄位 -->
+        <!-- End of Sidebar -->
 
-
-        <!--  -->
+        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
             <div id="content">
 
-                <!-- header -->
+                <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+
+                    <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
+
+
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
@@ -356,242 +356,61 @@
                         </li>
                     </ul>
                 </nav>
-                <!-- header -->
-
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <!-- ============================================================== -->
-                    <!-- Start right Content here -->
-                    <!-- ============================================================== -->
-                    <div class="page-content" style="padding: 30px;">
-                        <div class="container-fluid">
 
-                            <!-- 消息詳情 -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                        <h4 class="mb-sm-0 font-size-30">消息詳情</h4>
-
-                                        <div class="page-title-right">
-                                            <ol class="breadcrumb m-0">
-                                                <li class="breadcrumb-item"><a href="back-news.html">最新消息管理</a>
-                                                </li>
-                                                <li class="breadcrumb-item active">查看消息詳情</li>
-                                            </ol>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 最新消息編輯 結束 -->
-                            <div class="row">
-                                <div class="col-15">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row mb-2">
-                                                <div class="col-sm-4">
-                                                    <div class="search-box me-2 mb-2 d-inline-block">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <div class="text-sm-end">
-                                                        <button type="button" class="btn btn-primary" id="editBtn">
-                                                            編輯消息詳情
-                                                        </button>
-                                                        <button type="button" class="btn btn-primary" id="submitBtn">
-                                                            確定送出
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade show active" id="v-pills-shipping" role="tabpanel"
-                                                aria-labelledby="v-pills-shipping-tab">
-                                                <div>
-                                                    <form>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group mb-3">
-                                                                    <label for="billing-name" class="col-form-label"
-                                                                        style="font-size: 15px;">消息編號</label>
-                                                                    <input type="text" class="form-control"
-                                                                        id="billing-name" placeholder="" disabled>
-                                                                </div>
-
-                                                                <div class="form-group mb-3">
-                                                                    <label for="billing-phone" class="col-form-label"
-                                                                        style="font-size: 15px;">消息標題</label>
-                                                                    <input type="text" class="form-control"
-                                                                        id="billing-phone" placeholder="" disabled>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group mb-3">
-                                                                    <label for="billing-email-address"
-                                                                        class="col-form-label"
-                                                                        style="font-size: 15px;">員工編號</label>
-                                                                    <input type="email" class="form-control"
-                                                                        id="billing-email-address" placeholder=""
-                                                                        disabled>
-                                                                </div>
-                                                                <div class="form-group mb-3">
-                                                                    <label class="col-form-label"
-                                                                        style="font-size: 15px;">重要性</label>
-                                                                    <select class="form-control select2" title="Country"
-                                                                        style="font-size: 15px;" disabled>
-                                                                        <option value="0">低</option>
-                                                                        <option value="1">中</option>
-                                                                        <option value="2">高</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group mb-0">
-                                                                <label for="example-textarea"
-                                                                    class="col-form-label">消息詳情</label>
-                                                                <textarea class="form-control" id="example-textarea"
-                                                                    rows="3" placeholder="" style="height: 250px;"
-                                                                    disabled></textarea>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> 
-                            </div>
-                            <!-- end row -->
-
-                        </div> <!-- container-fluid -->
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">後臺檢舉管理</h1>
                     </div>
-                    <!-- 從前一頁取得資訊填入文字框內 -->
-                    <script>
-                        // 取得查詢參數 newsId 的值
-                        const urlParams = new URLSearchParams(window.location.search);
-                        const newsId = urlParams.get('newsId');
-                    
-                        // 找到表單中的各個輸入框元素
-                        const newsIdInput = document.getElementById('billing-name');
-                        const newsTitleInput = document.getElementById('billing-phone');
-                        const employeeIdInput = document.getElementById('billing-email-address');
-                        const importanceSelect = document.querySelector('.form-control.select2');
-                        const newsContentTextarea = document.getElementById('example-textarea');
-                        const editBtn = document.getElementById('editBtn'); // 編輯按鈕
-                        const submitBtn = document.getElementById('submitBtn'); // 送出按鈕
-                    
-                        // 使用 fetch API 發送請求，獲取單筆消息的詳細資訊
-                        async function fetchNewsDetail() {
-                            try {
-                                const response = await fetch(`http://localhost:8080/ezdom/backend/news/${newsId}`);
-                                const newsDetail = await response.json();
-                    
-                                // 將消息詳細資訊填充到輸入框中
-                                newsIdInput.value = newsDetail.newsId;
-                                newsTitleInput.value = newsDetail.newsTitle;
-                                employeeIdInput.value = newsDetail.employeeId || '';
-                                importanceSelect.value = newsDetail.importance;
-                                newsContentTextarea.value = newsDetail.newsContent;
-                            } catch (error) {
-                                console.error('Error fetching news detail:', error);
-                            }
-                        }
-                    
-                        // 設置編輯按鈕的點擊事件處理程序
-                        editBtn.addEventListener('click', () => {
-                            newsTitleInput.removeAttribute('disabled');
-                            importanceSelect.removeAttribute('disabled');
-                            newsContentTextarea.removeAttribute('disabled');
-                        });
-                    
-                        // 設置確定送出按鈕的點擊事件處理程序
-                        submitBtn.addEventListener('click', async () => {
-                            const updatedNews = {
-                                newsTitle: newsTitleInput.value,
-                                importance: importanceSelect.value,
-                                newsContent: newsContentTextarea.value
-                            };
-                    
-                            try {
-                                const response = await fetch(`http://localhost:8080/ezdom/backend/news/${newsId}`, {
-                                    method: 'PUT',
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify(updatedNews)
-                                }).then(response => {
-                                    if (response.status === 401) {
-                                        // 重定向到登录页面 登入失敗
-                                        window.location.href = '/ezdom/backendemp/empSignin.html';
-                                    } else if (response.ok) {
-                                        //登入成功
-                                        // 更新成功的處理
-                                        console.log('更新成功');
-                                        window.location.href = 'back-news.html'
-                                        return response.json();
-                                    } else {
-                                        // 更新失敗的處理
-                                        console.error('更新失敗');
-                                        alert("錯誤狀態" + response.status);
-                                        return;
-                                    }
-                                })
-                            } catch (error) {
-                                console.error("Error:", error);
-                            }
-                        });
-                    
-                        // 呼叫 fetchNewsDetail 函數來獲取並填充消息詳細資訊到輸入框中
-                        fetchNewsDetail();
-                    </script>
-                    
-                    
 
 
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>檢舉人會員編號</th>
+                                            <th>文章編號</th>
+                                            <th>檢舉原因</th>
+                                            <th>處理狀態</th>
+                                            <th>檢舉時間</th>
+                                            <th>更改/刪除</th>
+                                        </tr>
+                                    </thead>
 
-                    <footer class="footer">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <script>document.write(new Date().getFullYear())</script> © Dason.
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="text-sm-end d-none d-sm-block">
-                                        Design & Develop by <a href="#!"
-                                            class="text-decoration-underline">Themesbrand</a>
-                                    </div>
-                                </div>
+                                    <tbody>
+
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                    </footer>
+                    </div>
                 </div>
-                <!-- end main content-->
 
 
-
-
+                <!-- /.container-fluid -->
 
             </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>EZDOM &copy; 後台管理系統</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
         </div>
-
-    </div>
-    <!-- /.container-fluid -->
-
-    </div>
-    <!-- End of Main Content -->
-
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>EZDOM &copy; 後台管理系統</span>
-            </div>
-        </div>
-    </footer>
-    <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
+        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -622,49 +441,243 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../backendshop/vendor/jquery/jquery.min.js"></script>
+    <script src="../backendshop/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../backendshop/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="/js/sb-admin-2.min.js"></script>
+    <script src="../backendshop/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="/vendor/chart.js/Chart.min.js"></script>
+    <script src="../backendshop/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../backendshop/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="/js/demo/chart-area-demo.js"></script>
-    <script src="/js/demo/chart-pie-demo.js"></script>
-    <script>
-        // 初始化折疊功能
-        var collapseElements = document.querySelectorAll('[data-toggle="collapse"]');
-        collapseElements.forEach(function (element) {
-            var targetSelector = element.getAttribute('data-target');
-            var targetElement = document.querySelector(targetSelector);
+    <script src="../backendshop/js/demo/datatables-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
 
-            element.addEventListener('click', function () {
-                if (targetElement.classList.contains('show')) {
-                    targetElement.classList.remove('show');
-                } else {
-                    targetElement.classList.add('show');
+    <script>
+        //將狀態改為文字顯示
+        function getStatusText(status) {
+            switch (status) {
+                case 0:
+                    return "未處理";
+                case 1:
+                    return "處理完成";
+                default:
+                    console.error("未知狀態:", status);
+                    return "未知狀態";
+            }
+        }
+
+
+        // ====================== 列出檢舉列表 ====================== //  
+        function loadData() {
+            fetch('/ezdom/backend/forum/report/list', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登入頁面 登入失敗
+                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                    } else if (response.ok) {
+                        //登入成功
+                        return response.json();
+                    } else {
+                        alert("錯誤狀態" + response.status);
+                        return;
+                    }
+                }).
+                then(data => {
+                    const dataTable = $('#myTable').DataTable();
+                    const tableBody = dataTable.rows().nodes();
+
+                    //清空表格內容
+                    dataTable.clear();
+
+                    for (let report of data) {
+                        const {
+                            memberId,
+                            forumPostId,
+                            forumReportWhy,
+                            forumReportStatus,
+                            forumReportTime,
+                            forumReportId
+                        } = report;
+
+                        dataTable.row.add([
+                            memberId,
+                            `<a href="../frontendforum/forum-article.html?postId=${forumPostId}">${forumPostId}</a>`,
+                            forumReportWhy,
+                            getStatusText(forumReportStatus),
+                            formatDate(forumReportTime),
+                            `<button type="button" class="btn btn-outline-info" onclick="updateStatusAndToggle(${forumReportId},${forumPostId})">修改</button>&nbsp;&nbsp;` +
+                            `<button type="button" class="btn btn-outline-danger" onclick="deleteReport(${forumReportId})">刪除</button>` // 使用反引號
+                        ]);
+                    }
+
+                    //重繪Datatable
+                    dataTable.draw();
+                })
+                .catch(error => {
+                    console.error('獲取資料失敗:', error);
+                });
+        }
+        function formatDate(dateTime) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false };
+            return new Date(dateTime).toLocaleDateString('en-US', options);
+        }
+
+
+        // ====================== 檢舉狀態更新 ====================== //  
+        function updateStatusAndToggle(reportId, postId) {
+            Swal.fire({
+                title: '確認操作',
+                text: '確定要更新狀態嗎？',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '確認',
+                cancelButtonText: '取消'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/ezdom/backend/forum/updateStatusAndToggle/${reportId}/${postId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response => {
+                            if (response.status === 401) {
+                                // 重定向到登入頁面 登入失敗
+                                window.location.href = '/ezdom/backendemp/empSignin.html';
+                            } else if (response.ok) {
+                                //登入成功
+                                return response.json();
+                            } else {
+                                alert("錯誤狀態" + response.status);
+                                return;
+                            }
+                        }).
+                        then(data => {
+                            if (data.successful) {
+                                Swal.fire({
+                                    title: '成功',
+                                    text: data.message,
+                                    icon: 'success'
+                                }).then(() => {
+                                    loadData(); //重新載入數據
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: '操作失敗',
+                                    text: data.message,
+                                    icon: 'error'
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('操作失敗:', error);
+                        });
                 }
             });
+        }
+
+
+        // ====================== 檢舉刪除 ====================== //   
+        function deleteReport(reportId) {
+            Swal.fire({
+                title: '確認刪除',
+                text: '確定要刪除檢舉嗎？',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '確認',
+                cancelButtonText: '取消'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/ezdom/backend/forum/report/delete/${reportId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response => {
+                            if (response.status === 401) {
+                                //重定向到登入頁面 登入失敗
+                                window.location.href = '/ezdom/backendemp/empSignin.html';
+                            } else if (response.ok) {
+                                //登入成功
+                                return response.json();
+                            } else {
+                                alert("錯誤狀態" + response.status);
+                                return;
+                            }
+                        }).
+                        then(data => {
+                            if (data.successful) {
+                                Swal.fire({
+                                    title: '成功',
+                                    text: data.message,
+                                    icon: 'success'
+                                }).then(() => {
+                                    loadData(); //重新載入數據
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: '失敗',
+                                    text: data.message,
+                                    icon: 'error'
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('刪除檢舉失敗:', error);
+                        });
+                }
+
+
+            });
+        }
+
+
+        $(document).ready(function () {
+            //初始化Datatable
+            var dataTable = $('#myTable').DataTable({
+                "lengthMenu": [5, 10, 20],
+                "searching": true,
+                "paging": true,
+                "ordering": true,
+                "language": {
+                    "processing": "處理中...",
+                    "loadingRecords": "載入中...",
+                    "lengthMenu": "顯示 _MENU_ 筆結果",
+                    "zeroRecords": "沒有符合的結果",
+                    "info": "顯示第 _START_ 至 _END_ 筆結果，共<font color=red> _TOTAL_ </font>筆",
+                    "infoEmpty": "顯示第 0 至 0 筆結果，共 0 筆",
+                    "infoFiltered": "(從 _MAX_ 筆結果中過濾)",
+                    "infoPostFix": "",
+                    "search": "搜尋:",
+                    "paginate": {
+                        "first": "第一頁",
+                        "previous": "上一頁",
+                        "next": "下一頁",
+                        "last": "最後一頁"
+                    },
+                    "aria": {
+                        "sortAscending": ": 升冪排列",
+                        "sortDescending": ": 降冪排列"
+                    }
+                }
+            });
+            //初始化表格
+            loadData();
         });
 
     </script>
-    <!-- JAVASCRIPT -->
-    <script src="/assets/libs/jquery/jquery.min.js"></script>
-    <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="/assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="/assets/libs/node-waves/waves.min.js"></script>
-    <script src="/assets/libs/feather-icons/feather.min.js"></script>
-    <!-- pace js -->
-    <script src="/assets/libs/pace-js/pace.min.js"></script>
-
-    <script src="/assets/js/app.js"></script>
 
 </body>
 
