@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import tw.com.cha102.forumreport.model.entity.ForumReportVO;
 import tw.com.cha102.forumreport.service.ForumReportService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @CrossOrigin(origins = "*")
@@ -17,9 +18,9 @@ public class ForumReportFrontend {
 
     //進行文章檢舉
     @PostMapping("/report")
-    public ForumReportVO createReport(@RequestBody ForumReportVO forumReportVO, HttpSession session) {
-        // Integer memberId = (Integer) session.getAttribute("memberId");
-        Integer memberId=3;
+    public ForumReportVO createReport(@RequestBody ForumReportVO forumReportVO, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         forumReportVO.setMemberId(memberId);
         ForumReportVO vo = new ForumReportVO();
         if (forumReportService.createReport(forumReportVO) == true) {

@@ -33,17 +33,43 @@ window.addEventListener("load", function () {
 })
 
 async function getCoachList() {
-    let response = await fetch(req);
-    coachList = await response.json();
-    // console.log(coachList);
+    try {
+        let response = await fetch(req);
+
+        if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/backendemp/empSignin.html';
+        } else if (response.ok) {
+            // 登入成功
+            coachList = await response.json();
+        } else {
+            alert("錯誤狀態 " + response.status);
+        }
+    } catch (error) {
+        console.error("出现错误: " + error);
+    }
+
     showCoachDetails();
 }
 
 
 async function getListPage() {
-    let response = await fetch(page_req);
-    page = await response.json();
-    console.log(page);
+    try {
+        const response = await fetch(page_req);
+
+        if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/backendemp/empSignin.html';
+        } else if (response.ok) {
+            // 登入成功
+            page = await response.json();
+        } else {
+            alert("錯誤狀態 " + response.status);
+        }
+    } catch (error) {
+        console.error("出现错误: " + error);
+    }
+
 
     for (let i = 0; i < page; i++) {
         let html = '';
@@ -177,8 +203,18 @@ $(tbody_el).on("click", ".btn_ok", function () {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: status
-                })
-                location.reload();
+                }).then(response => {
+                      if (response.status === 401) {
+                          // 重定向到登录页面 登入失敗
+                          window.location.href = '/ezdom/backendemp/empSignin.html';
+                      }else if(response.ok){
+                          //登入成功
+                          location.reload();
+                      }else{
+                          alert("錯誤狀態" + response.status);
+                          return;
+                      }
+                  })
             })
         }
     })
@@ -208,8 +244,18 @@ $(tbody_el).on("click", ".btn_no", function () {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: status
-                })
-                location.reload();
+                }).then(response => {
+                      if (response.status === 401) {
+                          // 重定向到登录页面 登入失敗
+                          window.location.href = '/ezdom/backendemp/empSignin.html';
+                      }else if(response.ok){
+                          //登入成功
+                          location.reload();
+                      }else{
+                          alert("錯誤狀態" + response.status);
+                          return;
+                      }
+                  })
             })
         }
     })

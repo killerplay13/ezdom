@@ -21,14 +21,33 @@ const reportURL = document.querySelector("#report_href");
 // 設定資訊div
 const bord = document.querySelector("#set_bord");
 let reader = new FileReader();
-// 模擬登入的會員ID
-const memberId = 1;
-// 模擬登入的 coachId
-const coachId = 1;
+
+// ====================== 取得登入的session資訊 ====================== //
+const s_req = 'http://localhost:8080/ezdom/frontend/session';
+let session;
+let memberId = null;
+let coachId = null;
+async function getSession(){
+	let response = await fetch(s_req);
+    session = await response.json();
+    console.log(session);
+    memberId = session.memberId;
+    if(null !== session.coachId){
+        coachId = session.coachId;
+    }
+
+    let link = document.querySelector("#link");
+    if(null !== coachId){
+      link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
+    } else if (null === coachId){
+      link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
+      link.textContent = "註冊教練";
+    }
+}
 
 // ====================== 網頁載入完成後執行 ====================== //
 window.addEventListener("load", function() {
-
+    getSession();
     (async () => {
         await getCoachDetails(); // 等待第一个函数完成
         skillsChecked(); // 在第一个函数完成后，调用第二个函数
@@ -42,8 +61,25 @@ const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值
 const d_req = 'http://localhost:8080/ezdom/frontend/browse/list/' + url_coachId;
 
 async function getCoachDetails(){
-	let response = await fetch(d_req);
-    coachDetails = await response.json();
+
+    try {
+        let response = await fetch(d_req);
+
+        if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+        } else if (response.ok) {
+            // 登入成功
+            coachDetails = await response.json();
+        } else {
+            alert("錯誤狀態 " + response.status);
+        }
+    } catch (error) {
+        console.error("出现错误: " + error);
+    }
+
+//	let response = await fetch(d_req);
+//    coachDetails = await response.json();
     console.log(coachDetails);
     // SHOW出側邊欄
     showCoachDetails();
@@ -296,7 +332,18 @@ function collectFormData() {
             },
             body: JSON.stringify(formData)
         })
-        .then(response => response.json())
+        .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        })
         .then(body => {
             if (body.successful) {
                 Swal.fire({

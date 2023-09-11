@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>預約項目</title>
+  <title>Around | Single Post v.1</title>
   <!-- SEO Meta Tags-->
   <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
   <meta name="keywords"
@@ -18,11 +18,10 @@
   <link rel="manifest" href="../frontendshop/assets/favicon/site.webmanifest">
   <link rel="mask-icon" color="#6366f1" href="../frontendshop/assets/favicon/safari-pinned-tab.svg">
   <meta name="msapplication-TileColor" content="#080032">
-  <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+  <meta name="msapplication-config" content="../frontendshop/assets/favicon/browserconfig.xml">
   <meta name="theme-color" content="white">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
   <!-- Theme mode-->
-  <!-- 引入 SweetAlert2 的 CSS 文件 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
   <script>
     let mode = window.localStorage.getItem('mode'),
       root = document.getElementsByTagName('html')[0];
@@ -36,13 +35,6 @@
   </script>
   <!-- Page loading styles-->
   <style>
-    .custom-link {
-      color: inherit;
-      /* 继承父元素的文本颜色 */
-      text-decoration: none;
-      /* 去除下划线 */
-    }
-
     .page-loading {
       position: fixed;
       top: 0;
@@ -140,10 +132,6 @@
         transform: none;
       }
     }
-
-    .link-cursor:hover {
-      cursor: pointer;
-    }
   </style>
   <!-- Page loading scripts-->
   <script>
@@ -157,6 +145,7 @@
       };
     })();
 
+
   </script>
   <!-- Import Google Font-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -164,7 +153,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"
     id="google-font">
   <!-- Vendor styles-->
-  <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/aos/dist/aos.css" />
+  <link rel="stylesheet" media="screen" href="../frontendshop/assets/vendor/swiper/swiper-bundle.min.css" />
   <!-- Main Theme Styles + Bootstrap-->
   <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
 </head>
@@ -177,7 +166,7 @@
       <div class="page-spinner"></div><span>Loading...</span>
     </div>
   </div>
-  <!-- 頁首-->
+  <!-- Page wrapper-->
   <main class="page-wrapper">
     <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
     <header class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode">
@@ -192,9 +181,9 @@
           <input class="form-check-input" type="checkbox" id="theme-mode">
           <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
           <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
-        </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+        </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex "
           href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
-          rel="noopener">登入/註冊</a>
+          rel="noopener" style="padding: 5px 10px">登入/註冊</a>
         <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
             class="navbar-toggler-icon"></span></button>
         <nav class="collapse navbar-collapse" id="navbarNav">
@@ -224,10 +213,15 @@
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                 data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
               <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">瀏覽論壇</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">論壇管理</a></li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="forum.html"
+                                        aria-expanded="false">瀏覽論壇</a>
+                </li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="forum-mypost.html"
+                                        aria-expanded="false">我的論壇</a>
+                </li>
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="forum-post.html"
+                                        aria-expanded="false">發文</a>
+                </li>
               </ul>
             </li>
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
@@ -270,62 +264,77 @@
       </div>
     </header>
     <!-- Page content-->
-    <!-- Pricing plans-->
-    <section class="container py-5 mt-5 mb-lg-3 mb-xl-4 mb-xxl-5">
-      <!-- Page title-->
-      <div class="text-center pb-3 pt-lg-2 pt-xl-4 my-1 my-sm-3 my-lg-4">
-        <button id="btn_add" type="button" class="btn btn-primary btn-lg"
-          style="position: relative; left: 550px; top: 45px; display: none;">新增項目</button>
-        <h1 class="">預約項目</h1>
+    <!-- Page header-->
+    <section class="container py-5 mt-5 mb-md-2 mb-lg-3 mb-xl-4">
+      <!-- Breadcrumb-->
+      <nav aria-label="breadcrumb">
+        <ol class="pt-lg-3 pb-lg-4 pb-2 breadcrumb">
+          <li class="breadcrumb-item"><a href="../ezdomindex.html">主頁</a></li>
+          <li class="breadcrumb-item"><a href="forum.html">論壇</a></li>
+          <li class="breadcrumb-item active" aria-current="page">文章</li>
+        </ol>
+      </nav>
+
+      <div id="article-info">
+        <!-- 其他文章資訊 -->
       </div>
-      <!-- Plans-->
-      <div id="appointment" class="row row-cols-3 flex-nowrap pb-4 overflow-auto">
-        <!-- Plan-->
-        <div class="col" style="min-width: 19rem;">
-          <div class="card h-100 py-lg-4">
-            <div class="card-body w-100 mx-auto text-center" style="max-width: 23rem;">
-              <h3>籃球</h3>
-              <div class="display-2 text-primary">$800</div>
-              <div class="mb-4">每堂課</div>
-              <p class="mb-4 pb-4">課程內容</p>
-              <button class="btn btn-primary w-100" type="button">立即預約~</button>
-              <p class="mb-4 pb-4" style="margin-top: 20px;">地址:新北市 新店區 五湖路326號</p>
-            </div>
-          </div>
-        </div>
-        <!-- Plan-->
-        <div class="col" style="min-width: 19rem;">
-          <div class="card border-success bg-success h-100 py-lg-4">
-            <div class="card-body w-100 mx-auto text-center" style="max-width: 23rem;">
-              <h3 class="text-light">自由搏擊</h3>
-              <div class="display-2 text-light">$1000</div>
-              <div class="text-light opacity-70 mb-4">每堂課</div>
-              <p class="text-light  mb-4 pb-4">心肺鍛鍊 技巧提升!</p>
-              <button class="btn btn-light w-100" type="button">立即預約~</button>
-              <div class="text-light mb-4" style="margin-top: 20px;">地址:新北市 新店區 五湖路326號</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div style="margin-top: 20px;" class="card border-0 bg-secondary">
-        <div style="padding: 0;" class="tab-content card-body px-lg-0 py-lg-5">
-          <div id="coachPage" class="tab-pane fade show active" id="foster" role="tabpanel">
-            <div class="row py-2 py-sm-1 py-md-3 py-lg-4 py-xl-5">
-              <div class="col-md-4 col-lg-3 offset-lg-1 mb-3 mb-md-0"><img class="d-block rounded-circle mb-3"
-                  src="../frontendshop/assets/img/avatar/13.jpg" width="86" alt="Lilianna Bocouse">
-                <h4 class="mb-0">李鎔羽教練</h4>
-              </div>
-              <div class="col-md-8 col-lg-7">
-                <p class="text-dark lead mb-0">
-                  大家好，我是您的私人教練，我專注於多種運動的教學，並致力於協助您達成健康和體能方面的目標！我叫李鎔羽，擁有廣泛的運動背景和多年的教練經驗，非常期待與您一起開展這個運動之旅。</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Comparison table-->
     </section>
+
+    <!-- Post content-->
+    <section class="container py-5 my-md-2 my-lg-3 my-xl-4">
+      <div class="row pt-xxl-2">
+        <div class="col-lg-9 col-xl-8 pe-lg-4 pe-xl-0 mx-auto w-75">
+          <div class="card border-0 bg-secondary mb-3 ">
+            <div class="card-body" id="article-content">
+              <!-- 文章內容將在這裡生成 -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- Comments-->
+    <section class="container pt-xl-2 pb-5 mb-md-2 mb-lg-4 mb-xl-5" id="comments">
+      <div class="border-top border-bottom">
+        <!-- Comments collapse-->
+        <div class="collapse" id="commentsCollapse" style="max-width: 54rem;">
+
+
+          <div id="comment-section" class="border-bottom py-4 mt-2 mb-4">
+            <!-- 這裡將添加留言內容 -->
+          </div>
+
+
+        </div>
+
+        <div class="nav" id="commentNav">
+          <!-- 留言數-->
+        </div>
+
+
+        <div class="card border-0 bg-secondary pt-2 p-md-2 p-xl-3 p-xxl-4 mt-n3 mt-md-0">
+          <div class="card-body">
+            <h2 class="pb-2 pb-lg-3 pb-xl-4">留言</h2>
+            <form id="comment-form" class="row needs-validation g-4" novalidate>
+              <div class="col-12">
+                <textarea class="form-control" rows="4" placeholder="留言輸入" required id="message"></textarea>
+                <div class="invalid-feedback">請輸入留言!</div>
+              </div>
+
+              <div class="col-12">
+                <button class="btn btn-primary" type="submit">發送</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
   </main>
+  <!-- Subscription-->
+
   <!-- Footer-->
   <footer class="footer bg-secondary py-5">
     <div class="container pt-1 pt-sm-2 pt-md-3 pt-lg-4 pt-xl-5">
@@ -365,212 +374,240 @@
   <!-- Vendor scripts: js libraries and plugins-->
   <script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-  <script src="../frontendshop/assets/vendor/aos/dist/aos.js"></script>
+  <script src="../frontendshop/assets/vendor/jarallax/dist/jarallax.min.js"></script>
+  <script src="../frontendshop/assets/vendor/swiper/swiper-bundle.min.js"></script>
   <!-- Main theme script-->
   <script src="../frontendshop/assets/js/theme.min.js"></script>
-  <!-- 引入 SweetAlert2 的 JavaScript 文件 -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
 
   <script>
-    let appointment = document.getElementById("appointment");
-    let coachPage = document.getElementById("coachPage");
-    // 下方教練資訊
-    function coachContent(coachId) {
-      fetch(`http://localhost:8080/ezdom/frontend/reserve/coach/name/${coachId}`)
-        .then(response => {
-              if (response.status === 401) {
-                // 重定向到登录页面 登入失敗
-                window.location.href = '/ezdom/frontendmember/account-signin.html';
-              } else if (response.ok) {
-                //登入成功
-                return response.json();
-              } else {
-                alert("錯誤狀態" + response.status);
-                return;
-              }
-            })
-        .then(body => {
-          let { nickname, introduction, picture } = body;
-          let html = "";
-          html = `
-            <div  class="row py-2 py-sm-1 py-md-3 py-lg-4 py-xl-5">
-                <div onclick = "coachdetails()"
-                class="col-md-4 col-lg-3 offset-lg-1 mb-3 mb-md-0"><img class="rounded-circle mb-3 link-cursor" src="data:image/jpeg;base64,${picture}" width="86" alt="Lilianna Bocouse">
-                  <h4 class="mb-0">${nickname}教練</h4>
-                </div>
-                <div class="col-md-8 col-lg-7">
-                  <p class="text-dark lead mb-0">${introduction}</p>
-                </div>
-              </div>
-            `;
-          coachPage.innerHTML = html;
-        })
-    }
-    // 會員視角
-    function appointmentArea(coachId) {
-      fetch(`http://localhost:8080/ezdom/frontend/reserve/coach/item/${url_coachId}`)
-        .then(response => {
-              if (response.status === 401) {
-                // 重定向到登录页面 登入失敗
-                window.location.href = '/ezdom/frontendmember/account-signin.html';
-              } else if (response.ok) {
-                //登入成功
-                return response.json();
-              } else {
-                alert("錯誤狀態" + response.status);
-                return;
-              }
-            })
-        .then(body => {
-          let html = "";
-          let i = 1;
-          for (let list of body) {
-            let { reserveItemId, reserveItem, place, content, amounts } = list;
-            if (i % 2 == 1) {
-              html += `
-            <div class="col" style="min-width: 19rem;">
-              <div class="card h-100 py-lg-4">
-                <div class="card-body w-100 mx-auto text-center" style="max-width: 23rem;">
-                  <h3>${reserveItem}</h3>
-                  <div class="display-2 text-primary">$${amounts}</div>
-                  <div class="mb-4">每堂課</div>
-                  <p class="mb-4 pb-4">${content}</p>
-                  <button class="btn btn-primary w-100" type="button" onclick="redirectToLink('reserve-memberDate.html?coachId=${coachId}&reserveItemId=${reserveItemId}')">立即預約~</button>
-                  <p class="mb-4 pb-4" style="margin-top: 20px;">地址:${place}</p>
-                </div>
-              </div>
-            </div>
-            `;
-            } else if ((i % 2 == 0)) {
-              html += `
-              <div class="col" style="min-width: 19rem;">
-                <div class="card border-success bg-success h-100 py-lg-4">
-                  <div class="card-body w-100 mx-auto text-center" style="max-width: 23rem;">
-                    <h3 class="text-light">${reserveItem}</h3>
-                    <div class="display-2 text-light">$${amounts}</div>
-                    <div class="text-light opacity-70 mb-4">每堂課</div>
-                    <p class="text-light  mb-4 pb-4">${content}</p>
-                    <button class="btn btn-light w-100" type="button" onclick="redirectToLink('reserve-memberDate.html?coachId=${coachId}&reserveItemId=${reserveItemId}')">立即預約~</button>
-                    <div class="text-light mb-4" style="margin-top: 20px;">地址:${place}</div>
-                  </div>
-                </div>
-              </div>
-              `;
+    document.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get('postId');
+
+      // ====================== 顯示文章內容 ====================== // 
+      if (postId) {
+        //使用postId來獲取文章內容
+        fetch(`/ezdom/frontend/forum/get/${postId}`)
+          .then(response => {
+            if (response.status === 401) {
+              //重定向到登入頁面 登入失敗
+              window.location.href = '/ezdom/frontendmember/account-signin.html';
+            } else if (response.ok) {
+              //登入成功
+              return response.json();
+            } else {
+              alert("錯誤狀態" + response.status);
+              return;
             }
-            i++;
-          }
-          appointment.innerHTML = html;
-        })
-    }
+          })
+          .then(article => {
+            const {
+              forumPostTitle,
+              forumPostContent,
+              forumPostTime,
+              forumPostType,
+              memberName,
+              memberPhoto,
+            } = article;
 
-    //跳轉預約頁面
-    function redirectToLink(url) {
-      window.location.href = url;
-    }
+            let imgUrl = "data:image/jpeg;base64," + memberPhoto;
+            const articleInfo = document.getElementById('article-info');
+            const articleContent = document.getElementById('article-content');
+            articleInfo.innerHTML = `           
+            <h1 class="display-4 pb-2 pb-lg-3 mx-auto w-75" id="article-title style="overflow-wrap: break-word;" >${forumPostTitle}</h1>
+            <div class="d-flex flex-wrap align-items-center mt-n2 mx-auto w-75">             
+              <a class="nav-link position-relative text-muted fs-sm fw-normal d-flex align-items-end p-0 mt-2" href="#comments" data-scroll data-scroll-offset="60"></a>
+              <img class="rounded-circle" src="${imgUrl}" width="48" alt="Comment author">      
+              <a class="badge text-nav fs-xs border mt-2" id="post-status">✍️${memberName}</a>             
+              <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+              <a class="badge text-nav fs-xs border mt-2 " id="post-status">${getPostStatusText(forumPostType)}</a>
+              <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+              <a class="badge text-nav fs-xs border mt-2" id="post-status">📅${formatDate(forumPostTime)}</a>
+            </div>`;
 
-    //跳轉教練個人頁面
-    function coachdetails() {
-      window.location.href = `../frontendcoach/coach-details.html?coachId=${url_coachId}`;
-    }
+            articleContent.innerHTML = `<div class="article-content" style=" color: #000;">
+              ${UrlS(forumPostContent)}</div>`;
 
+            function UrlS(text) {
+              //將網址轉換為超連結
+              const urlPattern = /(https?:\/\/[^\s]+)/g;
+              const textWithLinks = text.replace(urlPattern, '<a href="$1" target="_blank">$1</a>');
 
-    const url = new URLSearchParams(window.location.search);
-    const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值
-    // appointmentArea(url_coachId);
-    coachContent(url_coachId);
-
-    // 判斷登入的教練ID是否與URL的教練ID相同
-    const coachId = 1;
-
-    if (coachId === parseInt(url_coachId)) {
-      document.querySelector("#btn_add").style.display = "";
-
-      document.querySelector("#btn_add").addEventListener("click", function () {
-        window.location.href = "reserve-addItem.html?coachId=" + url_coachId;
-      })
-      coachArea(url_coachId);
-    } else {
-      appointmentArea(url_coachId);
-    }
-
-    // 教練視角
-    function coachArea(coachId) {
-      fetch(`http://localhost:8080/ezdom/frontend/reserve/coach/item/${url_coachId}`)
-        .then(response => {
-              if (response.status === 401) {
-                // 重定向到登录页面 登入失敗
-                window.location.href = '/ezdom/frontendmember/account-signin.html';
-              } else if (response.ok) {
-                //登入成功
-                return response.json();
-              } else {
-                alert("錯誤狀態" + response.status);
-                return;
-              }
-            })
-        .then(body => {
-          let html = "";
-          let i = 1;
-          for (let list of body) {
-            let { reserveItemId, reserveItem, place, content, amounts } = list;
-            if (i % 2 == 1) {
-              html += `
-            <div class="col" style="min-width: 19rem;">
-              <div class="card h-100 py-lg-4">
-                <div class="card-body w-100 mx-auto text-center" style="max-width: 23rem;">
-                  <h3>${reserveItem}</h3>
-                  <div class="display-2 text-primary">$${amounts}</div>
-                  <div class="mb-4">每堂課</div>
-                  <p class="mb-4 pb-4">${content}</p>
-                  <button class="btn btn-primary w-100" type="button" onclick="deleteItem('${reserveItemId}')">刪除項目</button>
-                  <p class="mb-4 pb-4" style="margin-top: 20px;">地址:${place}</p>
-                </div>
-              </div>
-            </div>
-            `;
-            } else if ((i % 2 == 0)) {
-              html += `
-              <div class="col" style="min-width: 19rem;">
-                <div class="card border-success bg-success h-100 py-lg-4">
-                  <div class="card-body w-100 mx-auto text-center" style="max-width: 23rem;">
-                    <h3 class="text-light">${reserveItem}</h3>
-                    <div class="display-2 text-light">$${amounts}</div>
-                    <div class="text-light opacity-70 mb-4">每堂課</div>
-                    <p class="text-light  mb-4 pb-4">${content}</p>
-                    <button class="btn btn-light w-100" type="button" onclick="deleteItem('${reserveItemId}')">刪除項目</button>
-                    <div class="text-light mb-4" style="margin-top: 20px;">地址:${place}</div>
-                  </div>
-                </div>
-              </div>
-              `;
+              //使用正則表達式/\n/g來查找並替換forumPostContent中的換行符（\n）為<br>標籤
+              return textWithLinks.replace(/\n/g, '<br>');
             }
-            i++;
-          }
-          appointment.innerHTML = html;
-        })
-    }
 
-    // 刪除預約項目
-    function deleteItem(reserveItemId) {
+          })
+          .catch(error => {
+            console.error('Error fetching article content:', error);
+          });
+
+
+        // ====================== 顯示文章留言 ====================== // 
+        fetch(`/ezdom/frontend/forum/current-member-id`)
+          .then(response => response.json())
+          .then(currentMemberId => {//判斷當前登入id跟留言者的id是否相同
+            fetch(`/ezdom/frontend/forum/msg/forumPost/${postId}`)
+              .then(response => {
+                if (response.status === 401) {
+                  //重定向到登入頁面 登入失敗
+                  window.location.href = '/ezdom/frontendmember/account-signin.html';
+                } else if (response.ok) {
+                  //登入成功
+                  return response.json();
+                } else {
+                  alert("錯誤狀態" + response.status);
+                  return;
+                }
+              })
+              .then(messages => {
+                const commentSection = document.getElementById('comment-section');
+                const commentNav = document.getElementById('commentNav');
+                const commentCount = messages.length;
+
+                for (let message of messages) {
+                  const {
+                    forumMsgId,
+                    memberId,
+                    memberName,
+                    forumMsgTime,
+                    forumMsgContent,
+                    forumPostStatus,
+                    memberPhoto
+                  } = message;
+
+                  let imgUrl = "data:image/jpeg;base64," + memberPhoto;
+
+                  const commentContainer = document.createElement('div');
+                  let deleteButtonHtml = '';
+                  if (currentMemberId === memberId) {
+                    deleteButtonHtml = `<button type="button" class="btn btn-outline-danger"  onclick="deleteMessage(${forumMsgId})">刪除</button>`
+                  }
+                  commentContainer.innerHTML = `
+                    <div class="border-bottom py-4 mt-2 mb-4">  
+                      <div class="d-flex align-items-center pb-1 mb-3">
+                        <img class="rounded-circle" src="${imgUrl}" width="48" alt="Comment author">
+                        <div class="ps-3">
+                          <h6 class="mb-0">${memberName}</h6>                        
+                          <span class="fs-sm text-muted">📅${formatDate(forumMsgTime)}</span>
+                        </div>                       
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <p class="pb-2 mb-0">${forumMsgContent}</p>                    
+                        ${deleteButtonHtml}                        
+                      </div>
+                    </div>`;
+
+                  commentNav.innerHTML = `                 
+                  <button class="btn-more nav-link collapsed w-100 justify-content-center p-3" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#commentsCollapse" aria-expanded="false"
+                    aria-controls="commentsCollapse" data-show-label="顯示" data-hide-label="隱藏">
+                    <span class="fw-normal ms-1">${commentCount} 則留言</span>
+                  </button>`;
+
+                  commentSection.appendChild(commentContainer);
+                }
+              })
+              .catch(error => {
+                console.error('Error fetching comments:', error);
+              });
+          })
+          .catch(error => {
+            console.error('Error fetching current member ID:', error);
+          });
+      }
+
+
+      // ====================== 進行留言 ====================== //   
+      const form = document.getElementById('comment-form');
+      form.addEventListener('submit', function (event) {
+        event.preventDefault(); //阻止表單的默認提交行為
+
+        const messageElement = document.getElementById('message');
+        if (messageElement) {
+          const content = messageElement.value;
+
+          //檢查留言內容是否為空
+          if (!content) {
+            Swal.fire({
+              icon: 'error',
+              title: '錯誤',
+              text: '請輸入留言內容',
+            });
+          } else {
+            const commentData = {
+              forumPostId: postId,
+              forumMsgContent: content,
+            };
+            fetch('/ezdom/frontend/forum/msg', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(commentData),
+            })
+              .then(response => {
+                if (response.status === 401) {
+                  //重定向到登入頁面 登入失敗
+                  window.location.href = '/ezdom/frontendmember/account-signin.html';
+                } else if (response.ok) {
+                  //登入成功
+                  return response.json();
+                } else {
+                  alert("錯誤狀態" + response.status);
+                  return;
+                }
+              })
+              .then((data) => {
+                if (data.successful) {
+                  Swal.fire({
+                    icon: 'success',
+                    title: '成功',
+                    text: data.message,
+                  }).then(() => {
+                    location.reload();//刷新當前頁面
+                  });
+                } else {
+                  Swal.fire({
+                    icon: 'error',
+                    title: '錯誤',
+                    text: data.message,
+                  });
+                }
+              })
+              .catch((error) => {
+                console.error('發送留言時出錯:', error);
+                Swal.fire({
+                  icon: 'error',
+                  title: '錯誤',
+                  text: '發送留言時出錯，請稍後再試。',
+                });
+              });
+          }
+        } else {
+          console.error('Element with id "message" not found.');
+        }
+      });
+    });
+
+
+    // ====================== 留言刪除 ====================== //      
+    function deleteMessage(msgId) {
       Swal.fire({
+        title: '確定要刪除這則留言嗎？',
         icon: 'warning',
-        title: '刪除',
-        text: `是否確定刪除?`,
+        showCancelButton: true,
         confirmButtonText: '確定',
-        cancelButtonText: '取消',
-        showCancelButton: true
+        cancelButtonText: '取消'
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:8080/ezdom/frontend/reserve/coach/delete`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              reserveItemId: reserveItemId,
-              reserveItemStatus: 1
-            }),
-          }).then(response => {
+          fetch(`/ezdom/frontend/forum/delete/msg/${msgId}`, {
+            method: 'DELETE'
+          })
+            .then(response => {
               if (response.status === 401) {
-                // 重定向到登录页面 登入失敗
+                //重定向到登入頁面 登入失敗
                 window.location.href = '/ezdom/frontendmember/account-signin.html';
               } else if (response.ok) {
                 //登入成功
@@ -580,19 +617,65 @@
                 return;
               }
             })
-            .then(body => {
-              let { message, successful } = body;
-              if (successful) {
-                window.location.reload();
+            .then(data => {
+              if (data.successful !== undefined && data.successful === true) {
+                Swal.fire({
+                  title: data.message,
+                  icon: 'success'
+                }).then(() => {
+                  window.location.reload();
+                });
+              } else {
+                Swal.fire({
+                  title: '刪除失敗',
+                  text: data.message || '刪除失敗，請重試',
+                  icon: 'error'
+                });
+                console.error('Delete failed:', data);
               }
             })
+            .catch(error => {
+              console.error('Error deleting collected post:', error);
+              Swal.fire({
+                title: '發生錯誤',
+                text: '請稍後再試',
+                icon: 'error'
+              });
+            });
         }
-      })
-
+      });
     }
+
+    //更換日期時間顯示格式
+    function formatDate(dateTime) {
+      const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false };
+      return new Date(dateTime).toLocaleDateString('en-US', options);
+    }
+
+    //將狀態轉換為文字顯示
+    function getPostStatusText(forumPostType) {
+      switch (forumPostType) {
+        case 0:
+          return '全部';
+        case 1:
+          return '🏃戶外運動';
+        case 2:
+          return '🏋️‍♂️室內健身';
+        case 3:
+          return '🧗‍♂️極限運動';
+        case 4:
+          return '🏊水上運動';
+        case 5:
+          return '🥊格鬥';
+        case 6:
+          return '🍔飲食';
+        default:
+          return '其他狀態';
+      }
+    }
+
+
   </script>
-
-
 </body>
 
 </html>

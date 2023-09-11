@@ -458,25 +458,32 @@
                                 importance: importance,
                                 newsContent: newsContent
                             };
-                    
-                            try { 
+
+
+                            try {
                                 const response = await fetch("http://localhost:8080/ezdom/backend/news/add", {
                                     method: "POST",
                                     headers: {
                                         "Content-Type": "application/json"
                                     },
                                     body: JSON.stringify(formData)
-                                });
-                    
-                                if (response.ok) {
-                                    window.location.href = "back-news.html"; // 導向回 back-news.html 頁面
-                                } else {
-                                    alert("新增消息失敗！");
-                                }
+                                }).then(response => {
+                                    if (response.status === 401) {
+                                        // 重定向到登录页面 登入失敗
+                                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                                    } else if (response.ok) {
+                                        //登入成功
+                                        return response.json();
+                                    } else {
+                                        alert("錯誤狀態" + response.status);
+                                        return;
+                                    }
+                                })
                             } catch (error) {
                                 console.error("Error:", error);
                             }
                         });
+
                     </script>
 
 

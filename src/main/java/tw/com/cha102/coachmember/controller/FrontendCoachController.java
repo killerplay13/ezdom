@@ -10,6 +10,8 @@ import tw.com.cha102.coachmember.model.entity.CoachMemberVO;
 import tw.com.cha102.coachmember.service.CoachService;
 import tw.com.cha102.member.service.MemberService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -21,6 +23,20 @@ public class FrontendCoachController {
     private CoachService coachService;
     @Autowired
     private MemberService memberService;
+
+    // ==================== 取得session ==================== //
+    @GetMapping("/session")
+    public CoachMemberVO session(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
+        Integer coachId = (Integer)session.getAttribute("coachId");
+        CoachMemberVO coachMember = new CoachMemberVO();
+        if(coachId != null){
+            coachMember.setCoachId(coachId);
+        }
+        coachMember.setMemberId(memberId);
+        return coachMember;
+    }
 
     // ==================== 教練註冊 ==================== //
     @PostMapping("/coach/register")

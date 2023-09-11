@@ -622,7 +622,7 @@
     let renew = document.getElementById("renew");
     //依id抓商品資料回來修改
     window.addEventListener('load', function () {
-        fetch(`http://localhost:8080/ezdom/backend/product/getById/${productId}`)
+        fetch(`/ezdom/backend/product/getById/${productId}`)
             .then(resp => resp.json())
             .then(body => {
                 let { categoryId, productName, productDescription, productOriginPrice, productDiscountPrice, productImage, category } = body;
@@ -795,7 +795,7 @@ function validateImageUpload() {
                 // 在確認後進行頁面跳轉
                 fileReader.addEventListener("load", function (e) {
                     const imageBase64 = btoa(e.target.result);
-                    fetch(`http://localhost:8080/ezdom/backend/product/edit/${productId}`, {
+                    fetch(`/ezdom/backend/product/edit/${productId}`, {
                         method: 'PUT',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({

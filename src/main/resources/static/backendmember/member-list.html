@@ -9,54 +9,24 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ezdom</title>
+    <title>EZDOM - Authority</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom fonts for this template -->
+    <link href="../backendshop/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!--下面三筆新增 -->
-    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-
+    <!-- Custom styles for this template -->
+    <link href="../backendshop/css/sb-admin-2.min.css" rel="stylesheet">
     <!-- datatable -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.jqueryui.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.jqueryui.min.css"/>
+    <!-- Custom styles for this page -->
+    <link href="../backendshop/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
 
-    <!-- 引入 SweetAlert2 的 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
-
-    <style>
-        /* 自訂樣式：美化表格 */
-        .custom-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        .custom-table th,
-        .custom-table td {
-            padding: 8px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-
-        .custom-table th {
-            background-color: #f2f2f2;
-        }
-
-        .custom-table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-    </style>
-
+    <!-- 加 Swal-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
 </head>
 
 <body id="page-top">
@@ -68,7 +38,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="shop-index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
             <div style="transform: rotate(-5deg)">
                 <img width="40px" src="img/FBI.png">
             </div>
@@ -102,8 +72,7 @@
             </a>
             <div id="collapseOne" class="collapse" data-parent="#accordionSidebar1">
                 <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="buttons.html">Buttons</a>
-                    <a class="collapse-item" href="cards.html">Cards</a>
+                    <a class="collapse-item" href="authority.html">會員列表</a>
                 </div>
             </div>
         </li>
@@ -168,8 +137,8 @@
             </a>
             <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar5">
                 <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="shop-product.html">商品列表</a>
-                    <a class="collapse-item" href="shop-addProduct.html">商品新增</a>
+                    <a class="collapse-item" href="addProduct.html">商品編輯</a>
+                    <a class="collapse-item" href="addProduct.html">商品新增</a>
                 </div>
             </div>
         </li>
@@ -181,8 +150,8 @@
             </a>
             <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar6">
                 <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="shop-orders.html">訂單列表</a>
-                    <a class="collapse-item" href="shop-return.html">退貨管理</a>
+                    <a class="collapse-item" href="buttons.html">未出貨訂單</a>
+                    <a class="collapse-item" href="cards.html">已出貨訂單</a>
                 </div>
             </div>
         </li>
@@ -284,8 +253,6 @@
             </div>
         </li>
     </ul>
-    <!-- 上面是左側欄位 -->
-
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -298,14 +265,34 @@
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                 <!-- Sidebar Toggle (Topbar) -->
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                </button>
+                <form class="form-inline">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </form>
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
-
+                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                    <li class="nav-item dropdown no-arrow d-sm-none">
+                        <!-- Dropdown - Messages -->
+                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                             aria-labelledby="searchDropdown">
+                            <form class="form-inline mr-auto w-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-0 small"
+                                           placeholder="Search for..." aria-label="Search"
+                                           aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
                     <!-- Nav Item - Messages -->
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
@@ -327,7 +314,8 @@
                                 </div>
                                 <div class="font-weight-bold">
                                     <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                        problem I've been having.</div>
+                                        problem I've been having.
+                                    </div>
                                     <div class="small text-gray-500">Emily Fowler · 58m</div>
                                 </div>
                             </a>
@@ -338,7 +326,8 @@
                                 </div>
                                 <div>
                                     <div class="text-truncate">I have the photos that you ordered last month, how
-                                        would you like them sent to you?</div>
+                                        would you like them sent to you?
+                                    </div>
                                     <div class="small text-gray-500">Jae Chun · 1d</div>
                                 </div>
                             </a>
@@ -349,7 +338,8 @@
                                 </div>
                                 <div>
                                     <div class="text-truncate">Last month's report looks great, I am very happy with
-                                        the progress so far, keep up the good work!</div>
+                                        the progress so far, keep up the good work!
+                                    </div>
                                     <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                                 </div>
                             </a>
@@ -361,7 +351,8 @@
                                 </div>
                                 <div>
                                     <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...</div>
+                                        told me that people say this to all dogs, even if they aren't good...
+                                    </div>
                                     <div class="small text-gray-500">Chicken the Dog · 2w</div>
                                 </div>
                             </a>
@@ -371,7 +362,7 @@
 
                     <div class="topbar-divider d-none d-sm-block"></div>
 
-                    <!-- Nav Item - User Information 111-->
+                    <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -388,71 +379,47 @@
                             </a>
                         </div>
                     </li>
+
                 </ul>
+
             </nav>
-            <!-- 上方員工姓名欄位 -->
-            <div style="margin:0;" class="main-content">
+            <!-- End of Topbar -->
 
-                <div style="padding-top: 10px;" class="page-content">
-                    <div class="container-fluid">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
 
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">商城退貨訂單</h4>
-                                </div>
-                            </div>
+                <!-- Page Heading -->
+                <h1 class="h3 mb-2 text-gray-800">會員列表</h1>
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr class="text-center">
+                                    <th class="text-center">Account</th>
+                                    <th class="text-center">姓名</th>
+                                    <th class="text-center">累積積分</th>
+                                    <th class="text-center">狀態</th>
+                                    <th class="text-center">修改狀態</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <!-- end page title -->
-
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row mb-2">
-                                            <div class="d-flex justify-content-between align-items-center">
-
-                                                <div class="col-sm-4">
-                                                    <label for="orderStatus"
-                                                           class="form-label"><strong>訂單狀態</strong></label>
-                                                    <select class="form-select" id="orderStatus">
-                                                        <option value="3">退貨中</option>
-                                                        <option value="4">退貨完成</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="table-responsive">
-                                            <table id="example" class="display" style="width: 100%">
-                                                <thead>
-                                                <tr style="background-color:lightskyblue">
-                                                    <th class="align-middle">訂單編號</th>
-                                                    <th class="align-middle">退件人姓名</th>
-                                                    <th class="align-middle">住家電話</th>
-                                                    <th class="align-middle">電話</th>
-                                                    <th class="align-middle">金額</th>
-                                                    <th class="align-middle">收退地址</th>
-                                                    <th class="align-middle">訂購日期</th>
-                                                    <th class="align-middle">商品明細</th>
-                                                    <th class="align-middle">操作按鈕</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end row -->
-
-                    </div> <!-- container-fluid -->
+                    </div>
                 </div>
             </div>
+            <!-- /.container-fluid -->
+
         </div>
         <!-- End of Main Content -->
 
@@ -460,7 +427,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>EZDOM &copy; 後台管理系統</span>
+                    <span>Copyright &copy; Your Website 2020</span>
                 </div>
             </div>
         </footer>
@@ -498,38 +465,40 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../backendshop/vendor/jquery/jquery.min.js"></script>
+<script src="../backendshop/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-<!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../backendshop/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="vendor/chart.js/Chart.min.js"></script>
+<script src="../backendshop/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="../backendshop/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>
-<!-- 初始化折疊功能 -->
-<script src="js/aside.js"></script>
+<script src="js/demo/datatables-demo.js"></script>
+<!-- 引入 SweetAlert2 的 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script> <!-- ●●js  for jquery datatables 用 -->
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 
-<!-- 引入 SweetAlert2 的 JavaScript 文件 -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+<!-- Swal -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+<!-- 初始化折疊功能 -->
+<script src="js/aside.js"></script>
 
+<!-- 會員列表 -->
 <script>
     $(document).ready(function () {
-        $('#example').DataTable({
+        // 初始化Datatable
+        var dataTable = $('#dTable').DataTable({
             "lengthMenu": [5, 10, 20],
-            "searching": true,  //搜尋功能, 預設是開啟
-            "paging": true,     //分頁功能, 預設是開啟
-            "ordering": true,   //排序功能, 預設是開啟
+            "searching": true,
+            "paging": true,
+            "ordering": true,
             "language": {
                 "processing": "處理中...",
                 "loadingRecords": "載入中...",
@@ -553,13 +522,8 @@
             }
         });
     });
-
-    //進頁面刷新訂單(未退貨確認)
-    let orderStatus = document.getElementById("orderStatus");
-
-    function orderRenew() {
-        let statusValue = parseInt(orderStatus.value);
-        fetch(`/ezdom/backend/oredr/get/${statusValue}`)
+    function flushPage() {
+        fetch(`http://localhost:8080/ezdom/beckend/member/memberState`)
             .then(response => {
                     if (response.status === 401) {
                         // 重定向到登录页面 登入失敗
@@ -572,168 +536,49 @@
                         return;
                     }
                 }).then(body => {
-                // 清除现有数据
-                $('#example').DataTable().clear().draw();
-                if (statusValue == 3) {
-                    for (let list of body) {
-                        let { orderId, orderDate, recipientName, actualAmount, phoneNumber, telphoneNumber, shippingAddress } = list;
-                        let rowData = `
-                <tr>
-                    <td><a href="javascript: void(0);"
-                            class="text-body fw-bold">#${orderId}</a>
-                    </td>
-                    <td>${recipientName}</td>
-                    <td>${phoneNumber}</td>
-                    <td>${telphoneNumber}</td>
-
-                    <td>$${actualAmount}</td>
-                    <td class="address-cell">
-                        ${shippingAddress}
-                    </td>
-                    <td>${orderDate}</td>
-                    <td><button type="button"
-                        class="btn btn-primary btn-sm btn-rounded"
-                        data-bs-toggle="modal"
-                        data-bs-target=".orderdetailsModal" onclick="productDetail(${orderId})">
-                        商品明細
-                    </button></td>
-                    <td>
-                        <button type="button"
-                            class="btn btn-primary btn-sm btn-rounded"
-                            data-bs-toggle="modal"
-                            data-bs-target=".orderdetailsModal" onclick="ship(${orderId})">
-                            確認退貨
-                        </button>
-                    </td>
-                </tr>
-                `;
-                        // 将rowData包装成jQuery对象并添加到DataTables中
-                        $('#example').DataTable().row.add($(rowData));
-                    }
-                }
-
-                if (statusValue == 4) {
-                    for (let list of body) {
-                        let { orderId, orderDate, recipientName, actualAmount, phoneNumber, telphoneNumber, shippingAddress } = list;
-                        let rowData = `
-                <tr>
-                    <td><a href="javascript: void(0);"
-                            class="text-body fw-bold">#${orderId}</a>
-                    </td>
-                    <td>${recipientName}</td>
-                    <td>${phoneNumber}</td>
-                    <td>${telphoneNumber}</td>
-
-                    <td>$${actualAmount}</td>
-                    <td class="address-cell">
-                        ${shippingAddress}
-                    </td>
-                    <td>${orderDate}</td>
-                    <td><button type="button"
-                        class="btn btn-primary btn-sm btn-rounded"
-                        data-bs-toggle="modal"
-                        data-bs-target=".orderdetailsModal" onclick="productDetail(${orderId})">
-                        商品明細
-                    </button></td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm btn-rounded" disabled>
-                            商品已退貨
-                        </button>
-                    </td>
-                </tr>
-                `;
-                        // 将rowData包装成jQuery对象并添加到DataTables中
-                        $('#example').DataTable().row.add($(rowData));
-                    }
+                $('#dTable').DataTable().clear().draw();
+                for (let list of body) {
+                    let { memberAccount, memberName, point, memberStatus, memberId } = list;
+                    let rowData = `
+                    <tr>
+                        <td class="text-center">${memberAccount}</td>
+                        <td class="text-center">${memberName}</td>
+                        <td class="text-center">${point}</td>
+                        <td class="text-center">${memberStatus}</td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-rounded ${memberStatus == 0 ? 'btn-outline-success' : 'btn-outline-danger'}" onclick="revese(${memberId})">${memberStatus == 0 ? "復權" : "停權"}</button>
+                        </td>
+                    </tr>`;
+                    $('#dTable').DataTable().row.add($(rowData));
                 }
                 // 绘制表格
-                $('#example').DataTable().draw();
+                $('#dTable').DataTable().draw();
+
+
             })
     }
 
-    //商品明細跳框
-    function productDetail(orderId) {
-    fetch(`/ezdom/backend/oredr/product?orderId=${orderId}`)
-    .then(response => {
-                    if (response.status === 401) {
-                        // 重定向到登录页面 登入失敗
-                        window.location.href = '/ezdom/backendemp/empSignin.html';
-                    }else if(response.ok){
-                        //登入成功
-                        return response.json();
-                    }else{
-                        alert("錯誤狀態" + response.status);
-                        return;
-                    }
-                }).then(body => {
-        let { note, orderDetailVOs } = body;
-        let tableContent = '<table class="custom-table"><tr><th>項目</th><th>單入價格</th><th>購買數量</th></tr>';
-
-        for (let orderDetailVO of orderDetailVOs) {
-            let { productPrice, quantity, productVO } = orderDetailVO;
-            let { productName } = productVO;
-
-            tableContent += `<tr><td>${productName}</td><td>${productPrice}</td><td>${quantity}</td></tr>`;
-        }
-
-        tableContent += '</table>';
-
-        Swal.fire({
-            title: `訂單備註: ${note}`, // 將 note 放入標題
-            html: tableContent,
-            showCloseButton: true,
-            showCancelButton: false,
-            focusConfirm: false,
-            confirmButtonText: '關閉'
-        });
-    });
-}
-
-    //退貨按鈕
-    function ship(orderId){
-        fetch(`/ezdom/backend/oredr/return/${orderId}`,{
+    function revese(memberId) {
+        fetch(`http://localhost:8080/ezdom/beckend/member/status/${memberId}`, {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' }
-        }).then(response => {
-                    if (response.status === 401) {
-                        // 重定向到登录页面 登入失敗
-                        window.location.href = '/ezdom/backendemp/empSignin.html';
-                    }else if(response.ok){
-                        //登入成功
-                        return response.json();
-                    }else{
-                        alert("錯誤狀態" + response.status);
-                        return;
-                    }
-                })
-        .then(body => {
-            const { successful, message } = body;
-            if (successful) {
-                Swal.fire({
-                icon: 'success',
-                title: '操作成功',
-                text: '已將商品退款給客人',
-                confirmButtonText: '確定',
-                focusConfirm: true
-                })
-                orderRenew();
-            } else {
-                Swal.fire({
-                icon: 'error',
-                title: '操作失敗',
-                text: '請再次確認有無錯誤',
-                confirmButtonText: '確定',
-                focusConfirm: true
-        });
-            }
-        })
+            headers: { 'Content-Type': 'application/json' },
+        }).then(response => response.json())
+            .then(body => {
+                let { successful, message } = body;
+                if (successful) {
+                    Swal.fire({
+                        icon: 'success',
+                        text: message,
+                        confirmButtonText: '確定',
+                        focusConfirm: false
+                    });
+                    flushPage();
+                }
+            })
     }
-    //進入刷新
-    window.onload = orderRenew;
-    //狀態改變刷新
-    orderStatus.onchange = orderRenew;
-
+    flushPage();
 </script>
+
 </body>
 
 </html>
