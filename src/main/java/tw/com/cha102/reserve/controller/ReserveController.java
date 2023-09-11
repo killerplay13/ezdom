@@ -13,6 +13,8 @@ import tw.com.cha102.reserve.model.entity.ReserveTimeVO;
 import tw.com.cha102.reserve.model.entity.ReserveVO;
 import tw.com.cha102.reserve.service.ReserveService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.Timestamp;
 import java.util.List;
@@ -30,8 +32,10 @@ public class ReserveController {
 
     // 教練新增預約項目 V
     @PostMapping("/addItem")
-    public ReserveItemVO addReserveItem(@RequestBody ReserveItemVO reserveItemVO){
-        Integer coachId=1;
+    public ReserveItemVO addReserveItem(@RequestBody ReserveItemVO reserveItemVO, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Integer coachId = (Integer)session.getAttribute("coachId");
+
         reserveItemVO.setCoachId(coachId);
         ReserveItemVO reserveItemVO1 = reserveService.insertReserveItem(reserveItemVO);
         reserveItemVO1.setMessage("新增項目成功");
@@ -74,9 +78,12 @@ public class ReserveController {
 
     // 新增預約訂單 V
     @PostMapping("/order")
-    public ReserveVO addReserveOrder(@RequestBody ReserveVO reserveVO){
+    public ReserveVO addReserveOrder(@RequestBody ReserveVO reserveVO, HttpServletRequest request){
         //後面從session拿
-        Integer memberId=1;
+//        Integer memberId=1;
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
+
         reserveVO.setMemberId(memberId);
         ReserveVO reserveVO1 = reserveService.insertReserve(reserveVO);
         reserveVO1.setMessage("新增成功");
@@ -111,9 +118,12 @@ public class ReserveController {
 
     // 會員預約訂單列表 V
     @GetMapping("/member/list")
-    public List<ReserveItemDTO> memberReservationForm(){
-        //之後從session抓
-        Integer memberId = 1;
+    public List<ReserveItemDTO> memberReservationForm(HttpServletRequest request){
+//        //之後從session抓
+//        Integer memberId = 1;
+
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         return reserveService.findMemberReservationFormByMemberId(memberId);
     }
     // 會員完成預約訂單，修改訂單狀態 V
@@ -140,18 +150,28 @@ public class ReserveController {
 //    }
     // 教練排班表查看訂單詳情 V
     @GetMapping("/coach/details")
-    public ReserveDTO getCoachReservationFormByCoachId(@RequestParam String reserveDate,@RequestParam byte reserveTime){
-        //session抓coachId
-        Integer coachId=1;
+    public ReserveDTO getCoachReservationFormByCoachId(@RequestParam String reserveDate,
+                                                       @RequestParam byte reserveTime,
+                                                       HttpServletRequest request){
+//        //session抓coachId
+//        Integer coachId=1;
+        HttpSession session = request.getSession();
+        Integer coachId = (Integer)session.getAttribute("coachId");
+
         return reserveService.getCoachReservationFormByCoachId(coachId,reserveDate,reserveTime);
     }
 
     // 教練排班，新增可預約時段 V
     @PostMapping("/coach/time")
-    public ReserveTimeVO insetReserveTime(@RequestBody ReserveTimeVO reserveTimeVO,@RequestParam String dateStr){
-        //後面從session抓
+    public ReserveTimeVO insetReserveTime(@RequestBody ReserveTimeVO reserveTimeVO,
+                                          @RequestParam String dateStr,
+                                          HttpServletRequest request){
+//        //後面從session抓
+//        Integer coachId=1;
+        HttpSession session = request.getSession();
+        Integer coachId = (Integer)session.getAttribute("coachId");
+
         java.sql.Timestamp date = java.sql.Timestamp.valueOf(dateStr);
-        Integer coachId=1;
         reserveTimeVO.setCoachId(coachId);
         reserveTimeVO.setDate(date);
         ReserveTimeVO reserveTimeVO1 = reserveService.insetReserveTime(reserveTimeVO);

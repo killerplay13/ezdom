@@ -23,7 +23,7 @@ const bord = document.querySelector("#set_bord");
 let reader = new FileReader();
 
 // ====================== 取得登入的session資訊 ====================== //
-const s_req = 'http://localhost:8080/ezdom/frontend/session';
+const s_req = '/ezdom/frontend/session';
 let session;
 let memberId = null;
 let coachId = null;
@@ -58,7 +58,7 @@ window.addEventListener("load", function() {
 // ====================== 側邊欄資訊 ====================== //
 const url = new URLSearchParams(window.location.search);
 const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值
-const d_req = 'http://localhost:8080/ezdom/frontend/browse/list/' + url_coachId;
+const d_req = '/ezdom/frontend/browse/list/' + url_coachId;
 
 async function getCoachDetails(){
 
@@ -295,7 +295,7 @@ function collectFormData() {
     const phone = document.getElementById('phone');
     const checkboxes = document.querySelectorAll('.form-check-input[type="checkbox"]');
     const introduction = document.getElementById('introduction');
-    const req = "http://localhost:8080/ezdom/frontend/browse/list/update/" + url_coachId;
+    const req = "/ezdom/frontend/browse/list/update/" + url_coachId;
 
     formData = {
         picture: img.getAttribute("data-value"),
