@@ -9,6 +9,8 @@ import tw.com.cha102.groupcreate.model.GroupCreateVO;
 import tw.com.cha102.groupcreate.service.GroupCreateService;
 import tw.com.cha102.groupcreate.service.GroupCreateServiceImpl;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Base64;
 import java.util.List;
 
@@ -20,7 +22,9 @@ public class GroupCreateServlet {
     private GroupCreateService groupCreateService;
 
     @PostMapping("/create") //建立揪團
-    public ResponseEntity<String> createGroup(@RequestBody GroupCreateVO groupCreateVO) {
+    public ResponseEntity<String> createGroup(HttpServletRequest request ,@RequestBody GroupCreateVO groupCreateVO) {
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         if(groupCreateVO.getGroupDate()==null){
             groupCreateVO.setMessage("揪團時間未輸入");
             groupCreateVO.setSuccessful(false);
@@ -90,7 +94,7 @@ public class GroupCreateServlet {
                 groupCreateVO.setGroupPhoto(photoBytes);
             }
 
-            GroupCreateVO result = groupCreateService.create(groupCreateVO);
+            GroupCreateVO result = groupCreateService.create(memberId,groupCreateVO);
 
             if (result.isSuccessful()) {
                 return ResponseEntity.ok("新增揪團成功");
@@ -100,8 +104,10 @@ public class GroupCreateServlet {
     }
 
     @GetMapping("/listAllGroupCreate") //查全部自己創建的揪團
-    public List<GroupCreateVO> listAllGroupCreate(@RequestParam Integer createMemberId) {
-        List<GroupCreateVO> groupCreateList = groupCreateService.findAllGroupCreateByMemberId(createMemberId);
+    public List<GroupCreateVO> listAllGroupCreate(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
+        List<GroupCreateVO> groupCreateList = groupCreateService.findAllGroupCreateByMemberId(memberId);
         return groupCreateList;
     }
 
@@ -142,8 +148,10 @@ public class GroupCreateServlet {
         return ResponseEntity.ok("新增成功");
 }
 
-    @GetMapping("/findGroupId/{memberId}") //查會員建立且審核過的揪團
-    public List findGroupId(@PathVariable Integer memberId){
+    @GetMapping("/findGroupId") //查會員建立且審核過的揪團
+    public List findGroupId(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         List groupCreateList = groupCreateService.findGroupId(memberId);
         return groupCreateList;
     }
