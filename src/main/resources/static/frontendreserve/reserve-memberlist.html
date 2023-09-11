@@ -504,7 +504,7 @@
                     });
 
                     function flushPage() {
-                        fetch(`http://localhost:8080/ezdom/frontend/reserve/member/list`)
+                        fetch(`/ezdom/frontend/reserve/member/list`)
                             .then(response => {
                               if (response.status === 401) {
                                 // 重定向到登录页面 登入失敗
@@ -635,7 +635,7 @@
 
                     function completeReserve(reserveId,coachId,reserveDate,reserveTime) {
                         reserveDate += " 00:00:00";
-                        fetch(`http://localhost:8080/ezdom/frontend/reserve/member/compelete/${reserveId}`, {
+                        fetch(`/ezdom/frontend/reserve/member/compelete/${reserveId}`, {
                             method: 'PUT',
                             headers: { 'Content-Type': 'application/json' },
                             body:JSON.stringify({
