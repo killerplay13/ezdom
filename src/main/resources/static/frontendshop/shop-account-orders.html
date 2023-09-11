@@ -219,8 +219,8 @@
           <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                            data-bs-auto-close="outside" aria-expanded="false">預約</a>
             <ul class="dropdown-menu">
-              <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendreserve/reserve-addItem.html">預約管理</a></li>
               <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendcoach/coach-list.html">瀏覽教練</a></li>
+              <li class="dropdown"><a id="link" class="dropdown-item" href="/ezdom/frontendcoach/coach-details.html?coachId=">教練專區</a></li>
 
             </ul>
           </li>
@@ -1029,8 +1029,31 @@
         })
     }
 
+// ====================== 取得登入的session資訊 ====================== //
+    const s_req = 'http://localhost:8080/ezdom/frontend/session';
+    let session;
+    let memberId = null;
+    let coachId = null;
+    async function getSession(){
+        let response = await fetch(s_req);
+        session = await response.json();
+        console.log(session);
+        memberId = session.memberId;
+        if(null !== session.coachId){
+            coachId = session.coachId;
+        }
 
-
+        let link = document.querySelector("#link");
+        if(null !== coachId){
+        console.log("1:" + coachId);
+          link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
+        } else if (null === coachId){
+        console.log("2:" + coachId);
+          link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
+          link.textContent = "註冊教練";
+        }
+    }
+  getSession();
   orderRenew(1);
 </script>
 </body>

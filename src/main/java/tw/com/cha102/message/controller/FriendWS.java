@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-@ServerEndpoint("/frontend/FriendWS/{username}")
+@ServerEndpoint("/FriendWS/{username}")
 @Component
 public class FriendWS {
     private static Map<String, Session> sessionsMap = new ConcurrentHashMap<>();

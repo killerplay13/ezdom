@@ -3,15 +3,55 @@
 let coachList;
 const list_div = document.querySelector("#list_div");
 
+// ====================== 取得登入的session資訊 ====================== //
+const s_req = '/ezdom/frontend/session';
+let session;
+let memberId = null;
+let coachId = null;
+async function getSession(){
+	let response = await fetch(s_req);
+    session = await response.json();
+    console.log(session);
+    memberId = session.memberId;
+    if(null !== session.coachId){
+        coachId = session.coachId;
+    }
+
+    let link = document.querySelector("#link");
+    if(null !== coachId){
+      link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
+    } else if (null === coachId){
+      link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
+      link.textContent = "註冊教練";
+    }
+}
+
 // ====================== 瀏覽教練列表 ====================== //
 window.addEventListener("load", function() {
     getCoachList();
+    getSession();
+
 })
 
 async function getCoachList(){
-	let response = await fetch("http://localhost:8080/ezdom/frontend/browse/list");
-    coachList = await response.json();
-    console.log(coachList);
+    try {
+        let response = await fetch("/ezdom/frontend/browse/list");
+
+        if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+        } else if (response.ok) {
+            // 登入成功
+            coachList = await response.json();
+        } else {
+            alert("錯誤狀態 " + response.status);
+        }
+    } catch (error) {
+        console.error("出现错误: " + error);
+    }
+
+//	let response = await fetch("/ezdom/frontend/browse/list");
+//    coachList = await response.json();
     showCoachList();
 }
 

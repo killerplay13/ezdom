@@ -105,6 +105,24 @@ public class GroupAdminController {
         return ResponseEntity.ok(list);
     }
 
+    @GetMapping("/pay/list")//待付款揪團列表
+    public ResponseEntity<List<Group>> getPayGroup(HttpSession session){
+        // TODO: 用來獲取已登入的member訊息
+        Integer memberId = (Integer) session.getAttribute("memberId");
+
+
+        //目前預設為1
+        //Integer memberId = 1;
+        //揪團成員狀態要變成4 審核通過已付款 才會顯示在即將到來揪團
+        List<Integer> groupIds = groupMemberService.findGroupIdsByMemberIdAndStatus(memberId, (byte) 1);
+
+        List<Group> allGroups = groupAdminService.getAllGroups();
+
+        List<Group> list = allGroups.stream().filter(group -> groupIds.contains(group.getGroupId())).collect(Collectors.toList());
+
+        return ResponseEntity.ok(list);
+    }
+
 
     @GetMapping("/applied/list/{groupId}")
     public ResponseEntity<List<Member>> getAppliedGroup(@PathVariable Integer groupId,HttpSession session){

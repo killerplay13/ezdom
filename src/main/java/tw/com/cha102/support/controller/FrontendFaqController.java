@@ -11,7 +11,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/frontend/faq")
+@RequestMapping("/faq")
 public class FrontendFaqController {
 
     @Autowired

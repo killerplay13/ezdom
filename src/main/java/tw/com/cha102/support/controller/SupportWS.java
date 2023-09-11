@@ -22,7 +22,7 @@ import tw.com.cha102.support.model.dto.ChatMessage;
 import tw.com.cha102.support.model.dto.State;
 import tw.com.cha102.message.service.JedisHandleMessage;
 
-@ServerEndpoint("/frontend/SupportWS/{userId}")
+@ServerEndpoint("/SupportWS/{userId}")
 @Component
 public class SupportWS {
 	private static Map<String, Session> sessionsMap = new ConcurrentHashMap<>();
