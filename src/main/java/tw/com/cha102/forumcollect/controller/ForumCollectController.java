@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import tw.com.cha102.forumcollect.model.entity.ForumCollectVO;
 import tw.com.cha102.forumcollect.service.ForumCollectService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -18,9 +19,9 @@ public class ForumCollectController {
 
 	//進行文章收藏
 	@PostMapping("/collect")
-	public ForumCollectVO collectPost(@RequestBody ForumCollectVO forumCollectVO, HttpSession session) {
-		//Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別
-		Integer memberId = 3;
+	public ForumCollectVO collectPost(@RequestBody ForumCollectVO forumCollectVO, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Integer memberId = (Integer)session.getAttribute("memberId");
 		forumCollectVO.setMemberId(memberId);
 		ForumCollectVO vo = new ForumCollectVO();
 		if (forumCollectService.collect(forumCollectVO)==true) {
@@ -50,9 +51,9 @@ public class ForumCollectController {
 
 	//列出我的收藏列表
 	@GetMapping("/my-collects")
-	public List<ForumCollectVO> listCollectedPostsByMember(HttpSession session) {
-		//Integer memberId = (Integer) session.getAttribute("memberId");//要注意型別
-		Integer memberId = 3;
+	public List<ForumCollectVO> listCollectedPostsByMember(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Integer memberId = (Integer)session.getAttribute("memberId");
 		return forumCollectService.findByMemberId(memberId);
 
 	}

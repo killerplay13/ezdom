@@ -713,7 +713,7 @@
                 // 在確認後進行頁面跳轉
                 fileReader.addEventListener("load", function (e) {
                     const imageBase64 = btoa(e.target.result);
-                    fetch('http://localhost:8080/ezdom/backend/product/create', {
+                    fetch('/ezdom/backend/product/create', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({

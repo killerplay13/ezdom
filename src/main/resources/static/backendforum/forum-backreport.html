@@ -9,70 +9,21 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
-    <!-- logo圖 未放 -->
-    <link rel="shortcut icon" href="">
+    <title>SB Admin 2 - Tables</title>
 
-    <!-- preloader css -->
-    <link rel="stylesheet" href="../backendshop/assets/css/preloader.min.css" type="text/css" />
-
-    <!-- Bootstrap Css -->
-    <link href="../backendshop/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="../backendshop/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="../backendshop/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-
-    <!-- Custom fonts for this template-->
+    <!-- Custom fonts for this template -->
     <link href="../backendshop/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
+    <!-- Custom styles for this template -->
     <link href="../backendshop/css/sb-admin-2.min.css" rel="stylesheet">
-    <!-- 自訂css -->
-    <style>
-        .product-image {
-            max-width: 100px;
-            height: 100px;
-        }
 
-        .table-bordered th,
-        .table-bordered td {
-            text-align: center;
-            vertical-align: middle;
-        }
 
-        /* 設置表格容器的最大高度，超過該高度時出現滾動條 */
-        .table-container {
-            max-height: 1px;
-            /* 調整為適當的值 */
-            overflow-y: scroll;
-            /* 顯示縱向滾動條 */
-        }
-
-        /* 設置表格的最小寬度 */
-        .custom-datatable {
-            min-width: 800px;
-            /* 調整為適當的值 */
-        }
-
-        /* 設置表格每列的最小寬度 */
-        .custom-datatable th,
-        .custom-datatable td {
-            min-width: 100px;
-            /* 調整為適當的值 */
-            max-width: 150px;
-            /* 設置最大寬度，調整為適當的值 */
-            white-space: nowrap;
-            /* 防止內容換行 */
-            overflow: hidden;
-            /* 隱藏溢出內容 */
-            text-overflow: ellipsis;
-            /* 在溢出時顯示省略號 */
-        }
-    </style>
+    <!-- Custom styles for this page -->
+    <link href="../backendshop/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
 
 </head>
 
@@ -81,13 +32,13 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- 左側欄位 -->
+        <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div style="transform: rotate(-5deg)">
-                    <img width="40px" src="../backendshop/img/FBI.png">
+                    <img width="40px" src="img/FBI.png">
                 </div>
                 <div class="sidebar-brand-text mx-3">EZDOM</div>
             </a>
@@ -185,8 +136,8 @@
                 </a>
                 <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar5">
                     <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">上架中商品</a>
-                        <a class="collapse-item" href="cards.html">下架中商品</a>
+                        <a class="collapse-item" href="addProduct.html">商品編輯</a>
+                        <a class="collapse-item" href="addProduct.html">商品新增</a>
                     </div>
                 </div>
             </li>
@@ -301,19 +252,26 @@
                 </div>
             </li>
         </ul>
-        <!-- 上面是左側欄位 -->
+        <!-- End of Sidebar -->
 
-
-        <!--  -->
+        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
             <div id="content">
 
-                <!-- header -->
+                <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+
+                    <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
+
+
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
@@ -398,32 +356,36 @@
                         </li>
                     </ul>
                 </nav>
-                <!-- header -->
+                <!-- End of Topbar -->
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">後臺檢舉管理</h1>
+                    </div>
+
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h3 class="m-0 font-weight-bold text-primary">揪團審核管理</h3>
-                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>揪團活動編號</th>
-                                            <th>揪團主題</th>
-                                            <th>團主</th>
-                                            <th>揪團日期</th>
-                                            <th>揪團地點</th>
-                                            <th>揪團狀態</th>
-                                            <th>開團時間</th>
-                                            <th>活動詳情</th>
-
+                                            <th>檢舉人會員編號</th>
+                                            <th>文章編號</th>
+                                            <th>檢舉原因</th>
+                                            <th>處理狀態</th>
+                                            <th>檢舉時間</th>
+                                            <th>更改/刪除</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="dataTableBody">
-                                        <!-- 揪團審核列表將在這裡動態插入 -->
+
+                                    <tbody>
+
+
                                     </tbody>
                                 </table>
                             </div>
@@ -431,208 +393,291 @@
                     </div>
                 </div>
 
-                <script>
-                    const statusMapping = new Map([
-                        [0, '未處理'],
-                        [1, '審核成功'],
-                        [2, '審核失敗'],
-                        [3, '取消揪團'],
-                        [4, '延期揪團']
-                    ]);
 
-                    // 當網頁載入完成後執行
-                    document.addEventListener("DOMContentLoaded", function () {
-                        fetchGroupList();
-                    });
+                <!-- /.container-fluid -->
 
-                    async function fetchGroupList() {
-                        try {
-                            const response = await fetch('/ezdom/backend/group/admin/list'); // 瀏覽揪團審核列表
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>EZDOM &copy; 後台管理系統</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../backendshop/vendor/jquery/jquery.min.js"></script>
+    <script src="../backendshop/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../backendshop/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../backendshop/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="../backendshop/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../backendshop/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="../backendshop/js/demo/datatables-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        //將狀態改為文字顯示
+        function getStatusText(status) {
+            switch (status) {
+                case 0:
+                    return "未處理";
+                case 1:
+                    return "處理完成";
+                default:
+                    console.error("未知狀態:", status);
+                    return "未知狀態";
+            }
+        }
+
+
+        // ====================== 列出檢舉列表 ====================== //  
+        function loadData() {
+            fetch('/ezdom/backend/forum/report/list', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登入頁面 登入失敗
+                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                    } else if (response.ok) {
+                        //登入成功
+                        return response.json();
+                    } else {
+                        alert("錯誤狀態" + response.status);
+                        return;
+                    }
+                }).
+                then(data => {
+                    const dataTable = $('#myTable').DataTable();
+                    const tableBody = dataTable.rows().nodes();
+
+                    //清空表格內容
+                    dataTable.clear();
+
+                    for (let report of data) {
+                        const {
+                            memberId,
+                            forumPostId,
+                            forumReportWhy,
+                            forumReportStatus,
+                            forumReportTime,
+                            forumReportId
+                        } = report;
+
+                        dataTable.row.add([
+                            memberId,
+                            `<a href="../frontendforum/forum-article.html?postId=${forumPostId}">${forumPostId}</a>`,
+                            forumReportWhy,
+                            getStatusText(forumReportStatus),
+                            formatDate(forumReportTime),
+                            `<button type="button" class="btn btn-outline-info" onclick="updateStatusAndToggle(${forumReportId},${forumPostId})">修改</button>&nbsp;&nbsp;` +
+                            `<button type="button" class="btn btn-outline-danger" onclick="deleteReport(${forumReportId})">刪除</button>` // 使用反引號
+                        ]);
+                    }
+
+                    //重繪Datatable
+                    dataTable.draw();
+                })
+                .catch(error => {
+                    console.error('獲取資料失敗:', error);
+                });
+        }
+        function formatDate(dateTime) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false };
+            return new Date(dateTime).toLocaleDateString('en-US', options);
+        }
+
+
+        // ====================== 檢舉狀態更新 ====================== //  
+        function updateStatusAndToggle(reportId, postId) {
+            Swal.fire({
+                title: '確認操作',
+                text: '確定要更新狀態嗎？',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '確認',
+                cancelButtonText: '取消'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/ezdom/backend/forum/updateStatusAndToggle/${reportId}/${postId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response => {
                             if (response.status === 401) {
-                                // 重定向到登录页面 登入失敗
+                                // 重定向到登入頁面 登入失敗
                                 window.location.href = '/ezdom/backendemp/empSignin.html';
                             } else if (response.ok) {
-                                const groupList = await response.json();
-
-                                const dataTableBody = document.getElementById("dataTableBody");
-                                dataTableBody.innerHTML = ""; // 清空表格內容
-
-                                groupList.forEach(group => {
-                                    const row = document.createElement("tr");
-                                    row.innerHTML = `
-                <td>${group.groupId}</td>
-                <td>${group.groupTitle}</td>
-                <td>${group.createMemberId}</td>
-                <td>${formatDate(group.groupDate)}</td>
-                <td>${group.groupLocation}</td>
-                <td>${statusMapping.get(group.groupStatus)}</td>
-                <td>${formatDate(group.groupCreate)}</td>
-                <td><button class="btn btn-outline-info" onclick="redirectToDetailPage(${group.groupId})">detail</button></td>
-            `;
-                                    dataTableBody.appendChild(row);
-                                });
-                                // 在這裡處理登入成功後的數據，不需要再次調用 response.json()
+                                //登入成功
+                                return response.json();
                             } else {
                                 alert("錯誤狀態" + response.status);
                                 return;
                             }
-                        } catch (error) {
-                            console.error("發生錯誤:", error);
-                        }
-                    }
-
-
-                    //下面是按detail按鈕會根據groupId跳轉到詳細內容頁面，並將資料映射到相關欄位上
-                        function redirectToDetailPage(groupId) {
-                            var newPageUrl = `/ezdom/admingroup/back-admin-groupdetail.html?groupId=${groupId}`;
-                            window.location.href = newPageUrl;
-                        }
-
-                    function formatDate(dateString) {
-                        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-                        return new Date(dateString).toLocaleDateString('zh-TW', options);
-                    }
-
-                    async function deleteNews(groupId) {
-                        // 這裡可以寫一個Fetch API調用，向後端發送刪除揪團的請求
-                    }
-                </script>
-
-
-
-
-
-
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>EZDOM &copy; 後台管理系統</span>
-                        </div>
-                    </div>
-                </footer>
-                <!-- End of Footer -->
-
-            </div>
-            <!-- End of Content Wrapper -->
-
-        </div>
-        <!-- End of Page Wrapper -->
-
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bootstrap core JavaScript-->
-        <script src="/vendor/jquery/jquery.min.js"></script>
-        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Core plugin JavaScript-->
-        <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Custom scripts for all pages-->
-        <script src="/js/sb-admin-2.min.js"></script>
-
-        <!-- Page level plugins -->
-        <script src="/vendor/chart.js/Chart.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="/js/demo/chart-area-demo.js"></script>
-        <script src="/js/demo/chart-pie-demo.js"></script>
-        <script>
-            // 初始化折疊功能
-            var collapseElements = document.querySelectorAll('[data-toggle="collapse"]');
-            collapseElements.forEach(function (element) {
-                var targetSelector = element.getAttribute('data-target');
-                var targetElement = document.querySelector(targetSelector);
-
-                element.addEventListener('click', function () {
-                    if (targetElement.classList.contains('show')) {
-                        targetElement.classList.remove('show');
-                    } else {
-                        targetElement.classList.add('show');
-                    }
-                });
+                        }).
+                        then(data => {
+                            if (data.successful) {
+                                Swal.fire({
+                                    title: '成功',
+                                    text: data.message,
+                                    icon: 'success'
+                                }).then(() => {
+                                    loadData(); //重新載入數據
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: '操作失敗',
+                                    text: data.message,
+                                    icon: 'error'
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('操作失敗:', error);
+                        });
+                }
             });
+        }
 
-        </script>
-        <!-- JAVASCRIPT -->
-        <script src="../backendshop/assets/libs/jquery/jquery.min.js"></script>
-        <script src="../backendshop/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="../backendshop/assets/libs/metismenu/metisMenu.min.js"></script>
-        <script src="../backendshop/assets/libs/simplebar/simplebar.min.js"></script>
-        <script src="../backendshop/assets/libs/node-waves/waves.min.js"></script>
-        <script src="../backendshop/assets/libs/feather-icons/feather.min.js"></script>
-        <!-- pace js -->
-        <script src="../backendshop/assets/libs/pace-js/pace.min.js"></script>
 
-        <script src="../backendshop/assets/js/app.js"></script>
-        <!-- 自訂js -->
-        <script>
-            $(document).ready(function () {
-                $('#dataTable1').DataTable({
-                    scrollY: '400px', // 設置 tbody 的最大高度
-                    scrollCollapse: true,
-                    paging: false, // 禁用分頁
-                    // fixedHeader: {
-                    //     header: true, // 固定表頭
-                    // },
-                    "language": {
-                        "sProcessing": "處理中...",
-                        "sLengthMenu": "顯示 _MENU_ 項結果",
-                        "sZeroRecords": "沒有匹配結果",
-                        "sInfo": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
-                        "sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
-                        "sInfoFiltered": "(從 _MAX_ 項結果過濾)",
-                        "sInfoPostFix": "",
-                        "sSearch": "搜索:",
-                        "sUrl": "",
-                        "sEmptyTable": "表中數據為空",
-                        "sLoadingRecords": "載入中...",
-                        "sInfoThousands": ",",
-                        "oPaginate": {
-                            "sFirst": "首頁",
-                            "sPrevious": "上頁",
-                            "sNext": "下頁",
-                            "sLast": "末頁"
-                        },
-                        "oAria": {
-                            "sSortAscending": ": 以升序排列此列",
-                            "sSortDescending": ": 以降序排列此列"
+        // ====================== 檢舉刪除 ====================== //   
+        function deleteReport(reportId) {
+            Swal.fire({
+                title: '確認刪除',
+                text: '確定要刪除檢舉嗎？',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '確認',
+                cancelButtonText: '取消'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/ezdom/backend/forum/report/delete/${reportId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
                         }
+                    })
+                        .then(response => {
+                            if (response.status === 401) {
+                                //重定向到登入頁面 登入失敗
+                                window.location.href = '/ezdom/backendemp/empSignin.html';
+                            } else if (response.ok) {
+                                //登入成功
+                                return response.json();
+                            } else {
+                                alert("錯誤狀態" + response.status);
+                                return;
+                            }
+                        }).
+                        then(data => {
+                            if (data.successful) {
+                                Swal.fire({
+                                    title: '成功',
+                                    text: data.message,
+                                    icon: 'success'
+                                }).then(() => {
+                                    loadData(); //重新載入數據
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: '失敗',
+                                    text: data.message,
+                                    icon: 'error'
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('刪除檢舉失敗:', error);
+                        });
+                }
+
+
+            });
+        }
+
+
+        $(document).ready(function () {
+            //初始化Datatable
+            var dataTable = $('#myTable').DataTable({
+                "lengthMenu": [5, 10, 20],
+                "searching": true,
+                "paging": true,
+                "ordering": true,
+                "language": {
+                    "processing": "處理中...",
+                    "loadingRecords": "載入中...",
+                    "lengthMenu": "顯示 _MENU_ 筆結果",
+                    "zeroRecords": "沒有符合的結果",
+                    "info": "顯示第 _START_ 至 _END_ 筆結果，共<font color=red> _TOTAL_ </font>筆",
+                    "infoEmpty": "顯示第 0 至 0 筆結果，共 0 筆",
+                    "infoFiltered": "(從 _MAX_ 筆結果中過濾)",
+                    "infoPostFix": "",
+                    "search": "搜尋:",
+                    "paginate": {
+                        "first": "第一頁",
+                        "previous": "上一頁",
+                        "next": "下一頁",
+                        "last": "最後一頁"
                     },
-                });
+                    "aria": {
+                        "sortAscending": ": 升冪排列",
+                        "sortDescending": ": 降冪排列"
+                    }
+                }
             });
+            //初始化表格
+            loadData();
+        });
 
-            function deleteRow(button) {
-                var row = button.closest('tr');
-                row.remove();
-            }
-
-
-
-        </script>
+    </script>
 
 </body>
 
