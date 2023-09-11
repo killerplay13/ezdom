@@ -20,24 +20,60 @@ const settingURL = document.querySelector("#setting_href");
 const reportURL = document.querySelector("#report_href");
 // 個人資訊div
 const card_div = document.querySelector("#card");
-// 模擬登入的會員ID
-const memberId = 1;
-// 模擬登入的 coachId
-const coachId = 1;
+
 
 // ====================== 瀏覽教練個人頁面 ====================== //
 window.addEventListener("load", function() {
+    getSession();
     getCoachDetails();
 })
+
+// ====================== 取得登入的session資訊 ====================== //
+const s_req = '/ezdom/frontend/session';
+let session;
+let memberId = null;
+let coachId = null;
+async function getSession(){
+	let response = await fetch(s_req);
+    session = await response.json();
+    console.log(session);
+    memberId = session.memberId;
+    if(null !== session.coachId){
+        coachId = session.coachId;
+    }
+
+    let link = document.querySelector("#link");
+    if(null !== coachId){
+      link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
+    } else if (null === coachId){
+      link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
+      link.textContent = "註冊教練";
+    }
+}
 
 const url = new URLSearchParams(window.location.search);
 const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值
 const req = 'http://localhost:8080/ezdom/frontend/browse/list/' + url_coachId;
 
 async function getCoachDetails(){
-	let response = await fetch(req);
-    coachDetails = await response.json();
-    console.log(coachDetails);
+    try {
+        let response = await fetch(req);
+
+        if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+        } else if (response.ok) {
+            // 登入成功
+            coachDetails = await response.json();
+        } else {
+            alert("錯誤狀態 " + response.status);
+        }
+    } catch (error) {
+        console.error("出现错误: " + error);
+    }
+
+//	let response = await fetch(req);
+//    coachDetails = await response.json();
     showCoachDetails();
 }
 

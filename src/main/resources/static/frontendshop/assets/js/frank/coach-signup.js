@@ -7,7 +7,20 @@ const picture = document.getElementById('picture');
 const ok = document.getElementById('terms');
 let reader = new FileReader();
 let formData = [];
-let memberId = 1; // 模擬登入中的會員
+let memberId = null; // 模擬登入中的會員
+
+window.addEventListener("load", function() {
+  getSession();
+})
+
+const s_req = '/ezdom/frontend/session';
+let session;
+async function getSession(){
+	let response = await fetch(s_req);
+    session = await response.json();
+    console.log(session);
+    memberId = session.memberId;
+}
 
 function check() {
     let text = "";
@@ -84,7 +97,7 @@ function collectFormData() {
 
             formData.picture = imageBase64;  // 將圖片的 base64數據存入 formData
             console.log(formData);
-            const req = "http://localhost:8080/ezdom/frontend/coach/register";
+            const req = "/ezdom/frontend/coach/register";
             fetch(req, {
                 method: "POST",
                 headers: {
@@ -92,7 +105,18 @@ function collectFormData() {
                 },
                 body: JSON.stringify(formData)
             })
-            .then(response => response.json())
+            .then(response => {
+              if (response.status === 401) {
+                // 重定向到登录页面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
             .then(body => {
                 // const { successful } = body;
                 if (body.successful) {
@@ -103,7 +127,7 @@ function collectFormData() {
                         confirmButtonText: '確定'
                       }).then((result) => {
                         if (result.isConfirmed) {
-                          window.location.replace(`../frontendmember/account-signin.html`);
+                          window.location.replace(`../ezdomindex.html`);
                         }
                       })
                 } else {

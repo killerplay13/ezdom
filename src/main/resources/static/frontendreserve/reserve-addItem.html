@@ -174,95 +174,81 @@
   <!-- 頁首-->
   <main class="page-wrapper">
     <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
-    <header class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode">
-      <div class="container"><a class="navbar-brand pe-sm-3" href="index.html"><span
-            class="text-primary flex-shrink-0 me-2">
-            <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
-              <path fill="currentColor"
-                d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
-              </path>
-            </svg></span>EZ-DOM</a>
+    <header  class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
+      <div class="container"><a class="navbar-brand pe-sm-3" href="/ezdom/ezdomindex.html"><span
+              class="text-primary flex-shrink-0 me-2">
+                    <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor"
+                              d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                        </path>
+                    </svg></span>EZ-DOM</a>
         <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
           <input class="form-check-input" type="checkbox" id="theme-mode">
           <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
           <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
         </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
-          href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
-          rel="noopener">登入/註冊</a>
-        <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
-            class="navbar-toggler-icon"></span></button>
+                 href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
+                 rel="noopener">登入/註冊</a>
+        <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
         <nav class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                data-bs-auto-close="outside" aria-expanded="false">揪團 Group</a>
+                                             data-bs-auto-close="outside" aria-expanded="false">揪團</a>
               <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">揪團列表</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">My揪團</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">開團管理</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/group/grouplist.html">揪團列表</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/group/mygroup.html">My揪團</a></li>
+                <li class="dropdown" style="border-bottom: none;"><a class="dropdown-item dropdown-toggle"
+                                                                     href="#" data-bs-toggle="dropdown" aria-expanded="false">開團管理</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/ezdom/groupcreate/groupcreate.html">建立揪團</a></li>
+                    <li><a class="dropdown-item" href="/ezdom/groupcreate/groupCreateVerify.html">管理開團</a></li>
+                  </ul>
+                </li>
               </ul>
             </li>
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
+                                             data-bs-auto-close="outside" aria-expanded="false">商城</a>
               <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">瀏覽商品</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">購物車</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">管理我的訂單</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-catalog.html">瀏覽商品</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-account-orders.html">管理我的訂單</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
+                                             data-bs-auto-close="outside" aria-expanded="false">論壇</a>
               <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">瀏覽論壇</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">論壇管理</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇管理</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇管理</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                data-bs-auto-close="outside" aria-expanded="false">預約 Reserve</a>
+                                             data-bs-auto-close="outside" aria-expanded="false">預約</a>
               <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">預約管理</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">瀏覽教練</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">時段管理</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">項目管理</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">自我介紹管理</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendreserve/reserve-memberlist.html">預約管理</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendcoach/coach-list.html">瀏覽教練</a></li>
+                <li class="dropdown"><a id="link" class="dropdown-item" href="/ezdom/frontendcoach/coach-details.html?coachId=">教練專區</a></li>
+
               </ul>
             </li>
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                data-bs-auto-close="outside" aria-expanded="false">會員中心 Member</a>
+                                             data-bs-auto-close="outside" aria-expanded="false">會員中心</a>
               <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">我的頁面</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">好友管理</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">收藏文章</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">收藏商品</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">個人設定</a></li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                    aria-expanded="false">聊天室</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendmember/account-overview.html">我的頁面</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">收藏文章</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-checkout.html">收藏商品</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendmember/account-settings.html">個人設定</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/message/messagePrivate.html">聊天室</a></li>
               </ul>
             </li>
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                data-bs-auto-close="outside" aria-expanded="false">聯絡客服 Help</a>
+            <li class="nav-item dropdown"><a class="nav-link " href="/ezdom/frontendsupport/support.html"
+                                             aria-expanded="false">聯絡客服</a>
             </li>
           </ul>
         </nav>
       </div>
     </header>
+
     <!-- 頁首結束-->
     <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
       <div class="row pt-sm-2 pt-lg-0">
@@ -474,7 +460,7 @@
 
       var isValid = projectValid && introductionValid && coachNameValid && placeValid && amountValid;
       if (isValid) {
-        fetch('http://localhost:8080/ezdom/frontend/reserve/addItem', {
+        fetch('/ezdom/frontend/reserve/addItem', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -483,7 +469,18 @@
             content: introduction.value,
             amounts: amount.value
           }),
-        }).then(resp => resp.json())
+        }).then(response => {
+              if (response.status === 401) {
+                // 重定向到登录页面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
           .then(body => {
             let { message, successful } = body;
             if (successful) {
@@ -527,8 +524,19 @@
 
     //找教練名
     function findCoach() {
-      fetch('http://localhost:8080/ezdom/frontend/reserve/coach/name/' + url_coachId)
-        .then(resp => resp.json())
+      fetch('/ezdom/frontend/reserve/coach/name/' + url_coachId)
+        .then(response => {
+              if (response.status === 401) {
+                // 重定向到登录页面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
         .then(body => {
           let { nickname } = body
           coachName.value = nickname;
@@ -560,16 +568,32 @@
     const settingURL = document.querySelector("#setting_href");
     // 側邊欄檢舉教練的連結
     const reportURL = document.querySelector("#report_href");
-    // 模擬登入中的教練ID
-    const coachId = 1;
+
     // ====================== 側邊欄資訊 ====================== //
     const url = new URLSearchParams(window.location.search);
     const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值。哪個教練的留言板
-    const d_req = 'http://localhost:8080/ezdom/frontend/browse/list/' + url_coachId;
+    const d_req = '/ezdom/frontend/browse/list/' + url_coachId;
 
     async function getCoachDetails() {
-      let response = await fetch(d_req);
-      coachDetails = await response.json();
+
+        try {
+          let response = await fetch(d_req);
+
+        if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+        } else if (response.ok) {
+            // 登入成功
+            coachDetails = await response.json();
+        } else {
+            alert("錯誤狀態 " + response.status);
+        }
+    } catch (error) {
+        console.error("出现错误: " + error);
+    }
+
+<!--      let response = await fetch(d_req);-->
+<!--      coachDetails = await response.json();-->
       console.log(coachDetails);
       showCoachDetails();
     }
@@ -586,12 +610,6 @@
       messageURL.href = `../frontendcoach/coach-message.html?coachId=${coachDetails.coachId}`;
       settingURL.href = `../frontendcoach/coach-settings.html?coachId=${coachDetails.coachId}`;
 
-      // 留言板標題
-      // let bord = document.querySelector("#message_bord");
-      // let h1 = document.createElement("h1");
-      // h1.setAttribute("class", "h2 mb-4 display-6");
-      // h1.innerHTML = `${coachDetails.nickname}的留言板`;
-      // bord.appendChild(h1);
 
       /*
           1. 判斷登入中的會員是否為教練
@@ -599,10 +617,10 @@
           3. 若是，則讓設置的選項 show出
       */
      
-      if (coachId === coachDetails.coachId) {
-        settingURL.style = "";
-        reportURL.style = "display:none";
-      }
+<!--      if (coachId === coachDetails.coachId) {-->
+<!--        settingURL.style = "";-->
+<!--        reportURL.style = "display:none";-->
+<!--      }-->
 
     }
 
@@ -611,6 +629,45 @@
       findCoach();
 
     })
+
+
+// ====================== 取得登入的session資訊 ====================== //
+    const s_req = '/ezdom/frontend/session';
+    let session;
+    let memberId = null;
+    let coachId = null;
+
+    async function getSession() {
+      return new Promise(async function (resolve, reject) {
+        try {
+          let response = await fetch(s_req);
+          session = await response.json();
+          console.log(session);
+          memberId = session.memberId;
+          if (session.coachId !== null) {
+            coachId = session.coachId;
+          }
+
+          let link = document.querySelector("#link");
+          if (coachId !== null) {
+            link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
+          } else if (coachId === null) {
+            link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
+            link.textContent = "註冊教練";
+          }
+          resolve();
+        } catch (error) {
+          reject(error);
+        }
+      });
+    }
+
+    getSession().then(function () {
+      if (coachId === parseInt(url_coachId)) {
+        settingURL.style = "";
+        reportURL.style = "display:none";
+      }
+    });
 
 
   </script>

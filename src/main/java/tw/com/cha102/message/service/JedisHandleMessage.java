@@ -62,7 +62,7 @@ public class JedisHandleMessage {
 
 
     public static void saveGroupMessage(String groupId, String memberId, String message) {
-        String zsetName = "groupId:memberId";
+        String zsetName = "groupId:" + groupId + ":messages";
         Jedis jedis = pool.getResource();
         double timestamp = System.currentTimeMillis();
 
@@ -73,13 +73,14 @@ public class JedisHandleMessage {
         jedis.close();
     }
 
-    public static Set<Tuple> getgroupHistoryMsg(String Group_ID) {
-        String zsetName = "group:" + Group_ID + ":messages";
+    public static Set<Tuple> getgroupHistoryMsg(String groupId) {
+        String zsetName = "groupId:" + groupId + ":messages";
         Jedis jedis = pool.getResource();
-        Set<Tuple> historyData = jedis.zrangeWithScores("groupId", 0, -1);
+        Set<Tuple> historyData = jedis.zrangeByScoreWithScores(zsetName, "-inf", "+inf");
         jedis.close();
         return historyData;
     }
+
 
 
 }
