@@ -39,7 +39,7 @@ public class GroupReportService {
                                           Integer reportedMemberId,
                                           Integer groupId,
                                           String reportReason,
-                                          Integer employeeId,
+                                          String employeeId,
                                           Integer groupReportStatus,
                                           String rejectReason) {
                 GroupReportVO groupReportVO = new GroupReportVO();
@@ -72,7 +72,7 @@ public class GroupReportService {
         return dao.getAll();
     }
 
-    public GroupReportVO updateGroupReportStatus(Integer groupReportId, Integer groupReportStatus, String rejectReason, Integer employeeId) {
+    public GroupReportVO updateGroupReportStatus(Integer groupReportId, Integer groupReportStatus, String rejectReason, String employeeId) {
         GroupReportVO existingReport = dao.findById(groupReportId);
         GroupReportJoin infoForMail = dao.findMoreById(groupReportId);
         if (existingReport == null) {

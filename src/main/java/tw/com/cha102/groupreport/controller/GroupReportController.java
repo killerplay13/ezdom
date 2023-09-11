@@ -8,6 +8,8 @@ import tw.com.cha102.groupreport.model.GroupReportVO;
 import tw.com.cha102.groupreport.model.UpdateReportRequest;
 import tw.com.cha102.groupreport.service.GroupReportService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -25,12 +27,13 @@ public class GroupReportController {
 
     @PutMapping("/updateReportStatus/{groupReportId}")
     public GroupReportVO updateReportStatus(
+            HttpServletRequest request,
             @PathVariable Integer groupReportId,
-            @RequestBody UpdateReportRequest request) {
-        Integer groupReportStatus = request.getGroupReportStatus();
-        String rejectReason = request.getRejectReason();
-        Integer employeeId = request.getEmployeeId();
-
+            @RequestBody UpdateReportRequest requestinfo) {
+        Integer groupReportStatus = requestinfo.getGroupReportStatus();
+        String rejectReason = requestinfo.getRejectReason();
+        HttpSession session = request.getSession();
+        String employeeId = (String) session.getAttribute("employeeId");
         GroupReportVO result = groupReportService.updateGroupReportStatus(
                 groupReportId, groupReportStatus, rejectReason, employeeId);
 
