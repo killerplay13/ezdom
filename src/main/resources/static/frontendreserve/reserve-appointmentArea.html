@@ -377,7 +377,18 @@
     // 下方教練資訊
     function coachContent(coachId) {
       fetch(`http://localhost:8080/ezdom/frontend/reserve/coach/name/${coachId}`)
-        .then(resp => resp.json())
+        .then(response => {
+              if (response.status === 401) {
+                // 重定向到登录页面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
         .then(body => {
           let { nickname, introduction, picture } = body;
           let html = "";
@@ -398,7 +409,18 @@
     // 會員視角
     function appointmentArea(coachId) {
       fetch(`http://localhost:8080/ezdom/frontend/reserve/coach/item/${url_coachId}`)
-        .then(resp => resp.json())
+        .then(response => {
+              if (response.status === 401) {
+                // 重定向到登录页面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
         .then(body => {
           let html = "";
           let i = 1;
@@ -474,7 +496,18 @@
     // 教練視角
     function coachArea(coachId) {
       fetch(`http://localhost:8080/ezdom/frontend/reserve/coach/item/${url_coachId}`)
-        .then(resp => resp.json())
+        .then(response => {
+              if (response.status === 401) {
+                // 重定向到登录页面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
         .then(body => {
           let html = "";
           let i = 1;
@@ -535,7 +568,18 @@
               reserveItemId: reserveItemId,
               reserveItemStatus: 1
             }),
-          }).then(resp => resp.json())
+          }).then(response => {
+              if (response.status === 401) {
+                // 重定向到登录页面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
             .then(body => {
               let { message, successful } = body;
               if (successful) {
