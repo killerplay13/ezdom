@@ -1,7 +1,7 @@
 // ====================== 宣告變數 ====================== //
 let faqList;
 const div_faq = document.querySelector("#faq");
-const req = 'http://localhost:8080/ezdom/faq/list';
+const req = '/ezdom/faq/list';
 
 // ====================== 網頁載入完成後執行 ====================== //
 window.addEventListener("load", function() {
@@ -123,7 +123,7 @@ window.addEventListener("load", function() {
 })
 
 // ====================== 取得登入的session資訊 ====================== //
-const s_req = 'http://localhost:8080/ezdom/frontend/session';
+const s_req = '/ezdom/frontend/session';
 let session;
 let memberId = null;
 let coachId = null;
@@ -153,7 +153,7 @@ let receiver = 99;
 
 let memberDetails;
 async function getMember(){
-	let response = await fetch("http://localhost:8080/ezdom/faq/member?memberId=" + memberId);
+	let response = await fetch("/ezdom/faq/member?memberId=" + memberId);
     memberDetails = await response.json();
     console.log(memberDetails);
 }

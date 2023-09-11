@@ -23,7 +23,7 @@ const reportURL = document.querySelector("#report_href");
 const bord = document.querySelector("#message_bord");
 
 // ====================== 取得登入的session資訊 ====================== //
-const s_req = 'http://localhost:8080/ezdom/frontend/session';
+const s_req = '/ezdom/frontend/session';
 let session;
 let memberId = null;
 let coachId = null;
