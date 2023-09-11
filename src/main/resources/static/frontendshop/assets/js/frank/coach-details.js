@@ -20,15 +20,36 @@ const settingURL = document.querySelector("#setting_href");
 const reportURL = document.querySelector("#report_href");
 // 個人資訊div
 const card_div = document.querySelector("#card");
-// 模擬登入的會員ID
-const memberId = 1;
-// 模擬登入的 coachId
-const coachId = 1;
+
 
 // ====================== 瀏覽教練個人頁面 ====================== //
 window.addEventListener("load", function() {
+    getSession();
     getCoachDetails();
 })
+
+// ====================== 取得登入的session資訊 ====================== //
+const s_req = 'http://localhost:8080/ezdom/frontend/session';
+let session;
+let memberId = null;
+let coachId = null;
+async function getSession(){
+	let response = await fetch(s_req);
+    session = await response.json();
+    console.log(session);
+    memberId = session.memberId;
+    if(null !== session.coachId){
+        coachId = session.coachId;
+    }
+
+    let link = document.querySelector("#link");
+    if(null !== coachId){
+      link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
+    } else if (null === coachId){
+      link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
+      link.textContent = "註冊教練";
+    }
+}
 
 const url = new URLSearchParams(window.location.search);
 const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值

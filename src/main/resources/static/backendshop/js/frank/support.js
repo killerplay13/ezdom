@@ -8,8 +8,8 @@ window.addEventListener("load", function() {
 
 var messagesArea = document.getElementById("messagesArea");
 var webSocket;
-const url = new URLSearchParams(window.location.search);
-const url_memberId = url.get('memberId'); // 取得URL中查詢字串coachId的值
+//const url = new URLSearchParams(window.location.search);
+const url_memberId = 99; // 取得URL中查詢字串coachId的值
 var self = url_memberId;
 // let receiver = 1;
 // if(url_memberId === "2"){receiver = 1;}
@@ -59,7 +59,7 @@ function connect() {
                     console.log(onlin);
                     refresh(onlin);
                 }
-            }, 50);
+            }, 200);
 
         } else if ("history" === jsonObj.type) {
             let data = JSON.parse(event.data);

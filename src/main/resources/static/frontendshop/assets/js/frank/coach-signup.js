@@ -7,7 +7,20 @@ const picture = document.getElementById('picture');
 const ok = document.getElementById('terms');
 let reader = new FileReader();
 let formData = [];
-let memberId = 1; // 模擬登入中的會員
+let memberId = null; // 模擬登入中的會員
+
+window.addEventListener("load", function() {
+  getSession();
+})
+
+const s_req = 'http://localhost:8080/ezdom/frontend/session';
+let session;
+async function getSession(){
+	let response = await fetch(s_req);
+    session = await response.json();
+    console.log(session);
+    memberId = session.memberId;
+}
 
 function check() {
     let text = "";
@@ -114,7 +127,7 @@ function collectFormData() {
                         confirmButtonText: '確定'
                       }).then((result) => {
                         if (result.isConfirmed) {
-                          window.location.replace(`../frontendmember/account-signin.html`);
+                          window.location.replace(`../ezdomindex.html`);
                         }
                       })
                 } else {

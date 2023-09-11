@@ -3,9 +3,34 @@
 let coachList;
 const list_div = document.querySelector("#list_div");
 
+// ====================== 取得登入的session資訊 ====================== //
+const s_req = 'http://localhost:8080/ezdom/frontend/session';
+let session;
+let memberId = null;
+let coachId = null;
+async function getSession(){
+	let response = await fetch(s_req);
+    session = await response.json();
+    console.log(session);
+    memberId = session.memberId;
+    if(null !== session.coachId){
+        coachId = session.coachId;
+    }
+
+    let link = document.querySelector("#link");
+    if(null !== coachId){
+      link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
+    } else if (null === coachId){
+      link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
+      link.textContent = "註冊教練";
+    }
+}
+
 // ====================== 瀏覽教練列表 ====================== //
 window.addEventListener("load", function() {
     getCoachList();
+    getSession();
+
 })
 
 async function getCoachList(){

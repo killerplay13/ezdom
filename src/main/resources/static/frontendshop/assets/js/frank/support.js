@@ -112,75 +112,48 @@ $("#window").on("click", function() {
 })
 
 
-
-// const url = new URLSearchParams(window.location.search);
-// const url_memberId = url.get('memberId'); // 取得URL中查詢字串coachId的值
-// // 创建 WebSocket 连接，将 WebSocket 地址替换为你的服务器地址
-// const socket = new WebSocket("ws://localhost:8080/ezdom/frontend/SupportWS/" + url_memberId);
-
-// // 当连接打开时
-// socket.addEventListener("open", (event) => {
-//   console.log("WebSocket 连接已打开");
-// });
-
-// // 当接收到消息时
-// socket.addEventListener("message", (event) => {
-//   const message = JSON.parse(event.data);
-//   console.log("收到消息：", message);
-// });
-
-// // 当连接关闭时
-// socket.addEventListener("close", (event) => {
-//   if (event.wasClean) {
-//     console.log(`连接已关闭，状态码：${event.code}，原因：${event.reason}`);
-//   } else {
-//     console.error("连接意外关闭");
-//   }
-// });
-
-// // 当发生错误时
-// socket.addEventListener("error", (error) => {
-//   console.error("WebSocket 错误：", error);
-// });
-
-// // 向服务器发送消息
-// function sendMessage() {
-//     var message = {
-//         "type" : "chat",
-//         "sender" : "aaa",
-//         "receiver" : "bbb",
-//         "message" : "test",
-//         "messageTime" : "2023-09-05"
-//     };
-//     console.log(message);
-//   socket.send(JSON.stringify(message));
-// }
-
-// // 关闭连接
-// function closeWebSocket() {
-//   socket.close();
-// }
-
-
-
 // ====================== WebSocket ====================== //
 window.addEventListener("load", function() {
-    connect();
-    getMember();
+
+    (async () => {
+        await getSession(); // 等待第一个函数完成
+        await getMember() // 在第一个函数完成后，调用第二个函数
+        connect();
+    })();
 })
 
+// ====================== 取得登入的session資訊 ====================== //
+const s_req = 'http://localhost:8080/ezdom/frontend/session';
+let session;
+let memberId = null;
+let coachId = null;
+async function getSession(){
+	let response = await fetch(s_req);
+    session = await response.json();
+    console.log(session);
+    memberId = session.memberId;
+    if(null !== session.coachId){
+        coachId = session.coachId;
+    }
 
+    let link = document.querySelector("#link");
+    if(null !== coachId){
+      link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
+    } else if (null === coachId){
+      link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
+      link.textContent = "註冊教練";
+    }
+}
 var messagesArea = document.getElementById("messagesArea");
 var webSocket;
-const url = new URLSearchParams(window.location.search);
-const url_memberId = url.get('memberId'); // 取得URL中查詢字串coachId的值
-var self = url_memberId;
+//const url = new URLSearchParams(window.location.search);
+//const url_memberId = url.get('memberId'); // 取得URL中查詢字串coachId的值
+let self = memberId;
 let receiver = 99;
-// if(url_memberId === "2"){receiver = 1;}
 
 let memberDetails;
 async function getMember(){
-	let response = await fetch("http://localhost:8080/ezdom/faq/member?memberId=" + url_memberId);
+	let response = await fetch("http://localhost:8080/ezdom/faq/member?memberId=" + memberId);
     memberDetails = await response.json();
     console.log(memberDetails);
 }
@@ -188,7 +161,7 @@ async function getMember(){
 function connect() {
 
     // create a websocket
-    webSocket = new WebSocket("ws://localhost:8080/ezdom/SupportWS/" + url_memberId);
+    webSocket = new WebSocket("ws://localhost:8080/ezdom/SupportWS/" + memberId);
 
     webSocket.onopen = function(event) {
         console.log("Connect Success!");
@@ -214,7 +187,7 @@ function connect() {
                 // var li = document.createElement('li');
                 // 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
                 historyData.sender === self ? div.className += 'ms-auto mb-3' : div.className += 'mb-3';
-                if(historyData.sender === url_memberId){
+                if(historyData.sender === memberId){
                     div.innerHTML = `
                         <div class="d-flex align-items-end mb-2">
                         <div class="message-box-end bg-primary text-white">${showMsg}</div>
@@ -242,7 +215,7 @@ function connect() {
             jsonObj.sender === self ? div.className += 'ms-auto mb-3' : div.className += 'mb-3';
             div.setAttribute("style", "max-width: 392px;");
             // let img = "assets/img/avatar/19.jpg";
-            if(jsonObj.sender === url_memberId){
+            if(jsonObj.sender === memberId){
                 div.innerHTML = `
                     <div class="d-flex align-items-end mb-2">
                     <div class="message-box-end bg-primary text-white">${jsonObj.message}</div>
@@ -287,7 +260,7 @@ function sendMessage() {
     } else {
         var jsonObj = {
             "type" : "chat",
-            "sender" : url_memberId,
+            "sender" : memberId,
             "receiver" : receiver,
             "message" : message,
             "messageTime" : messageTime
@@ -314,17 +287,17 @@ function sendMessage() {
 // function addListener() {
 
 
-    let ws_btn = document.getElementById("sup");
-    ws_btn.addEventListener("click", function(e) {
-        var jsonObj = {
-                "type" : "history",
-                "sender" : url_memberId,
-                "receiver" : receiver,
-                "message" : ""
-            };
-        webSocket.send(JSON.stringify(jsonObj));
-        console.log(JSON.stringify(jsonObj));
-    });
+let ws_btn = document.getElementById("sup");
+ws_btn.addEventListener("click", function(e) {
+    var jsonObj = {
+            "type" : "history",
+            "sender" : memberId,
+            "receiver" : receiver,
+            "message" : ""
+        };
+    webSocket.send(JSON.stringify(jsonObj));
+    console.log(JSON.stringify(jsonObj));
+});
 // }
 
 function disconnect() {
