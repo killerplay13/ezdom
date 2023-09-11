@@ -436,14 +436,13 @@
                                 return alert("請輸入檢舉原因");
                             }
                             this.reportReason = result.value;
-                            const url = "http://localhost:8080/ezdom/frontend/groupReport/createGroupReport"
+                            const url = "/ezdom/frontend/groupReport/createGroupReport"
                             const res = fetch(url, {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
                                 },
                                 body: JSON.stringify({
-                                    "reportMemberId": this.selfId,
                                     "reportedMemberId": memberId,
                                     "groupId": this.groupId,
                                     "reportReason": this.reportReason,

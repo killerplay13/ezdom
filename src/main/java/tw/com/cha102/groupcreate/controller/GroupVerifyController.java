@@ -8,6 +8,8 @@ import tw.com.cha102.groupcreate.model.GroupVerifyVO;
 import tw.com.cha102.groupcreate.service.GroupVerifyService;
 import tw.com.cha102.member.model.entity.Member;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -34,8 +36,10 @@ GroupVerifyVO result = groupVerifyService.updateGroupApplyStatus(groupMemberId, 
         return ResponseEntity.ok("修改成功");
     }
 
-    @GetMapping("/findGroupJoined/{memberId}")
-    public List<GroupVerifyVO> findGroupJoined(@PathVariable Integer memberId){
+    @GetMapping("/findGroupJoined/")
+    public List<GroupVerifyVO> findGroupJoined(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         List<GroupVerifyVO> groupJoinedList = groupVerifyService.findGroupJoined(memberId);
         return groupJoinedList;
     }
