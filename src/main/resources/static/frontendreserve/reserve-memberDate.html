@@ -412,8 +412,24 @@
     const req = 'http://localhost:8080/ezdom/frontend/browse/list/' + url_coachId;
 
     async function getCoachDetails() {
-      let response = await fetch(req);
-      coachDetails = await response.json();
+
+    try {
+        let response = await fetch(req);
+
+        if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+        } else if (response.ok) {
+            // 登入成功
+            coachDetails = await response.json();
+        } else {
+            alert("錯誤狀態 " + response.status);
+        }
+    } catch (error) {
+        console.error("出现错误: " + error);
+    }
+<!--      let response = await fetch(req);-->
+<!--      coachDetails = await response.json();-->
       console.log(coachDetails);
       showCoachDetails();
     }
@@ -522,7 +538,18 @@
       let classTime = document.getElementById("classTime");
       classTime.textContent = `預約時段表(${currentMonth + 1}月份)`;
       fetch(`http://localhost:8080/ezdom/frontend/reserve/coach/time/${url_coachId}`)
-        .then(resp => resp.json())
+        .then(response => {
+              if (response.status === 401) {
+                // 重定向到登录页面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
         .then(body => {
           if (body != null) {
             for (let list of body) {
@@ -586,7 +613,18 @@
                               reserveDate: date,
                               reserveTime: classTime
                             }),
-                          }).then(resp => resp.json())
+                          }).then(response => {
+                              if (response.status === 401) {
+                                // 重定向到登录页面 登入失敗
+                                window.location.href = '/ezdom/frontendmember/account-signin.html';
+                              } else if (response.ok) {
+                                //登入成功
+                                return response.json();
+                              } else {
+                                alert("錯誤狀態" + response.status);
+                                return;
+                              }
+                            })
                             .then(response => {
                               let { message, successful } = response;
                               if (successful) {
@@ -699,7 +737,18 @@
             body: JSON.stringify({
               classTime: j
             }),
-          }).then(resp => resp.json())
+          }).then(response => {
+              if (response.status === 401) {
+                // 重定向到登录页面 登入失敗
+                window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                //登入成功
+                return response.json();
+              } else {
+                alert("錯誤狀態" + response.status);
+                return;
+              }
+            })
             .then(body => {
               let { message, successful } = body;
               if (successful) {
@@ -725,7 +774,18 @@
       classTime.textContent = `教練排班表(${currentMonth + 1}月份)`;
       // fetch(`http://localhost:8080/ezdom/reserve/coach/time`)    //coachId直接從後端抓
       fetch(`http://localhost:8080/ezdom/frontend/reserve/coach/time/${url_coachId}`)
-        .then(resp => resp.json())
+        .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        })
         .then(body => {
           if (body != null) {
             for (let list of body) {
@@ -758,7 +818,18 @@
                         fetch(`http://localhost:8080/ezdom/frontend/reserve/coach/time/${id}`, {
                           method: 'DELETE',
                           headers: { 'Content-Type': 'application/json' },
-                        }).then(resp => resp.json())
+                        }).then(response => {
+                            if (response.status === 401) {
+                              // 重定向到登录页面 登入失敗
+                              window.location.href = '/ezdom/frontendmember/account-signin.html';
+                            } else if (response.ok) {
+                              //登入成功
+                              return response.json();
+                            } else {
+                              alert("錯誤狀態" + response.status);
+                              return;
+                            }
+                          })
                           .then(body => {
                             let { message, successful } = body;
                             if (successful) {
@@ -795,7 +866,18 @@
                   aElement.removeAttribute('onclick');
                   aElement.onclick = function () {
                     fetch(`http://localhost:8080/ezdom/frontend/reserve/coach/details?reserveDate=${date}&reserveTime=${classTime}`)
-                      .then(resp => resp.json())
+                      .then(response => {
+                        if (response.status === 401) {
+                          // 重定向到登录页面 登入失敗
+                          window.location.href = '/ezdom/frontendmember/account-signin.html';
+                        } else if (response.ok) {
+                          //登入成功
+                          return response.json();
+                        } else {
+                          alert("錯誤狀態" + response.status);
+                          return;
+                        }
+                      })
                       .then(body => {
                         let { place, content, orderStatus, memberName, reserveItem } = body;
                         var timeSlot;
@@ -879,7 +961,18 @@
                   aElement.removeAttribute('onclick');
                   aElement.onclick = function () {
                     fetch(`http://localhost:8080/ezdom/frontend/reserve/coach/details?reserveDate=${date}&reserveTime=${classTime}`)
-                      .then(resp => resp.json())
+                      .then(response => {
+                        if (response.status === 401) {
+                          // 重定向到登录页面 登入失敗
+                          window.location.href = '/ezdom/frontendmember/account-signin.html';
+                        } else if (response.ok) {
+                          //登入成功
+                          return response.json();
+                        } else {
+                          alert("錯誤狀態" + response.status);
+                          return;
+                        }
+                      })
                       .then(body => {
                         let { place, content, orderStatus, memberName, reserveItem } = body;
                         var timeSlot;
