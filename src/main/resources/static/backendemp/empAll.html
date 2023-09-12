@@ -383,7 +383,7 @@
                                     <thead>
                                         <tr>
                                             <th>員工編號</th>
-                                            <th>員工密碼</th>
+<!--                                            <th>員工密碼</th>-->
                                             <th>啟用狀態</th>
                                             <th>姓名</th>
                                             <th>到職日期</th>
@@ -519,7 +519,7 @@
 
                             data.forEach(employee => {
                                 let status;
-                                if(employee.employeeStatus = 1){
+                                if(employee.employeeStatus == 1){
                                     status = "已啟用";
                                 }else{
                                     status = "未啟用";
@@ -527,7 +527,7 @@
                                 let rowHtml = `
                                     <tr>
                                         <td>${employee.employeeId}</td>
-                                        <td>${employee.employeePassword}</td>
+<!--                                        <td>${employee.employeePassword}</td>-->
                                         <td>${status}</td>
                                         <td>${employee.employeeName}</td>
                                         <td>${employee.hiredate}</td>
@@ -550,6 +550,8 @@
                 
                 // 调用函数以获取员工数据并填充表格
                 getAllEmployees();
+
+
 
 
 
