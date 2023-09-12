@@ -13,13 +13,13 @@ public class GroupReportVO implements Serializable {
     private Integer reportedMemberId;
     private Integer groupId;
     private String reportReason;
-    private Integer employeeId;
+    private String employeeId;
     private Integer groupReportStatus;
     private String rejectReason;
 
     public GroupReportVO(){}
 
-    public GroupReportVO(Integer groupReportId, Integer reportMemberId, Integer reportedMemberId, Integer groupId, String reportReason, Integer employeeId, Integer groupReportStatus, String rejectReason) {
+    public GroupReportVO(Integer groupReportId, Integer reportMemberId, Integer reportedMemberId, Integer groupId, String reportReason, String employeeId, Integer groupReportStatus, String rejectReason) {
         this.groupReportId = groupReportId;
         this.reportMemberId = reportMemberId;
         this.reportedMemberId = reportedMemberId;
@@ -66,11 +66,11 @@ public class GroupReportVO implements Serializable {
 
     public void setReportReason(String reportReason) {this.reportReason = reportReason;}
 
-    public Integer getEmployeeId() {
+    public String getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(Integer employeeId) {
+    public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
 

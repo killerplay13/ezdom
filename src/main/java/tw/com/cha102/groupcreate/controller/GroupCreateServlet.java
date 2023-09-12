@@ -156,15 +156,13 @@ public class GroupCreateServlet {
         return groupCreateList;
     }
 
-    @GetMapping("/showLatestGroupCreate")
-    public List<GroupCreateVO> showLatestGroupCreate(){
-        List<GroupCreateVO> LatestGroupCreateList = groupCreateService.showLatestGroupCreate();
-        return LatestGroupCreateList;
-    }
-
-    @GetMapping("/showUpcomingGroupCreate")
-    public List<GroupCreateVO> showUpcomingGroupCreate(){
-        List<GroupCreateVO> UpcomingGroupCreateList = groupCreateService.showUpcomingGroupCreate();
-        return UpcomingGroupCreateList;
+    @GetMapping("/session")
+    public ResponseEntity<String> getsession(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
+        if ( memberId != null){
+            return ResponseEntity.ok("success");
+        }
+        return ResponseEntity.badRequest().body("false");
     }
 }
