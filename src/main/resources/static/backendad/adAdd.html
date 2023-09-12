@@ -701,7 +701,7 @@
             focusConfirm: true
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.assign("adall.html");
+                window.location.assign("/ezdom/backendad/adall.html");
             }
         })})
 
@@ -754,7 +754,7 @@
             const productStatus = 1;
 
             // 使用AJAX得Product ID列表
-            fetch(`http://localhost:8080/ezdom/product/get/${productStatus}`)
+            fetch(`/ezdom/backend/product/get/${productStatus}`)
                 .then(resp => resp.json())
                 .then(data => {
                     // 清空下拉選項
