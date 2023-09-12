@@ -219,6 +219,7 @@
           <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                            data-bs-auto-close="outside" aria-expanded="false">預約</a>
             <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendreserve/reserve-memberlist.html">預約管理</a></li>
               <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendcoach/coach-list.html">瀏覽教練</a></li>
               <li class="dropdown"><a id="link" class="dropdown-item" href="/ezdom/frontendcoach/coach-details.html?coachId=">教練專區</a></li>
 
@@ -252,30 +253,71 @@
             <button class="btn-close position-absolute top-0 end-0 mt-3 me-3 d-lg-none" type="button"
                     data-bs-dismiss="offcanvas" data-bs-target="#sidebarAccount"></button>
             <div class="offcanvas-body">
-              <div class="pb-2 pb-lg-0 mb-4 mb-lg-5"><img class="d-block rounded-circle mb-2"
-                                                          src="assets/img/avatar/02.jpg" width="80" alt="Isabella Bocouse">
-                <h3 class="h5 mb-1">Isabella Bocouse</h3>
-                <p class="fs-sm text-muted mb-0">bocouse@example.com</p>
+              <!-- 加 class -->
+              <div class="rounded-circle bg-size-cover bg-position-center flex-shrink-0 photoDisplay1"
+                   style="width: 80px; height: 80px; background-image: url(../frontendshop/assets/img/avatar/user.png);">
               </div>
-              <nav class="nav flex-column pb-2 pb-lg-4 mb-3">
-                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">會員</h4><a
-                      class="nav-link fw-semibold py-2 px-0 active" href="account-overview.html"><i
-                      class="ai-user-check fs-5 opacity-60 me-2"></i>個人資料</a><a class="nav-link fw-semibold py-2 px-0"
-                                                                                    href="friend-management.html"><i class="ai-user-group fs-5 opacity-60 me-2"></i>好友管理</a><a
-                      class="nav-link fw-semibold py-2 px-0" href="account-settings.html"><i
-                      class="ai-settings fs-5 opacity-60 me-2"></i>設定</a><a class="nav-link fw-semibold py-2 px-0"
-                                                                              href="account-billing.html"><i class="ai-wallet fs-5 opacity-60 me-2"></i>付款方式</a>
+              <br>
+              <div class="nameDisplay1">
+                <!-- 加 class -->
+                <h3 class="h5 mb-1"></h3>
+              </div>
+              <div class="mailDisplay1">
+                <!-- 加 class -->
+                <p class="fs-sm text-muted mb-0"></p>
+              </div>
+              <br>
+              <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
+                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">會員</h4>
+                <a class="nav-link fw-semibold py-2 px-0 " href="/ezdom/frontendmember/account-overview.html">
+                  <i class="ai-user fs-5 opacity-60 me-2"></i>我的頁面
+                </a>
+                <a class="nav-link fw-semibold py-2 px-0" href="/ezdom/frontendmember/account-settings.html">
+                  <i class="ai-settings fs-5 opacity-60 me-2"></i>個人設定
+                </a>
               </nav>
-              <nav class="nav flex-column pb-2 pb-lg-4 mb-1">
-                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">功能專區</h4><a
-                      class="nav-link fw-semibold py-2 px-0" href="account-orders.html"><i
-                      class="ai-cart fs-5 opacity-60 me-2"></i>訂單</a><a class="nav-link fw-semibold py-2 px-0"
-                                                                          href="account-chat.html"><i class="ai-messages fs-5 opacity-60 me-2"></i>聊天室<span
-                      class="badge bg-danger ms-auto">4</span></a><a class="nav-link fw-semibold py-2 px-0"
-                                                                     href="account-favorites.html"><i class="ai-heart fs-5 opacity-60 me-2"></i>我的最愛</a>
+              <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
+                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">揪團</h4>
+                <a class="nav-link fw-semibold py-2 px-0" href="/ezdom/group/mygroup.html">
+                  <i class="ai-user-group fs-5 opacity-60 me-2"></i>我的揪團
+                </a>
+                <a class="nav-link fw-semibold py-2 px-0" href="/ezdom/groupcreate/groupCreateVerify.html">
+                  <i class="ai-user-plus fs-5 opacity-60 me-2"></i>揪團管理
+                </a>
               </nav>
-              <nav class="nav flex-column"><a class="nav-link fw-semibold py-2 px-0" href="account-signin.html"><i
-                      class="ai-logout fs-5 opacity-60 me-2"></i>登出</a></nav>
+              <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
+                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">論壇</h4>
+                <a class="nav-link fw-semibold py-2 px-0" href="/ezdom/frontendforum/forum-mypost.html">
+                  <i class="ai-note fs-5 opacity-60 me-2"></i>我的論壇
+                </a>
+              </nav>
+              <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
+                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">商城</h4>
+                <a class="nav-link fw-semibold py-2 px-0 active" href="/ezdom/frontendshop/shop-account-orders.html">
+                  <i class="ai-edit-alt fs-5 opacity-60 me-2 "></i>我的訂單
+                </a>
+              </nav>
+              <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
+                <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">預約</h4>
+                <a class="nav-link fw-semibold py-2 px-0" href="/ezdom/frontendreserve/reserve-memberlist.html">
+                  <i class="ai-user-check fs-5 opacity-60 me-2"></i>我的預約
+                </a>
+              </nav>
+              <nav class="nav flex-column pb-1 pb-lg-2 mb-1">
+                <a class="nav-link fw-semibold py-2 px-0" href="/ezdom/message/messagePrivate.html">
+                  <i class="ai-message fs-5 opacity-60 me-2"></i>聊天室
+                  <span class="badge bg-danger ms-auto"></span>
+                </a>
+                <a class="nav-link fw-semibold py-2 px-0" href="/ezdom/message/messageGroup.html">
+                  <i class="ai-messages fs-5 opacity-60 me-2"></i>揪團聊天室
+                  <span class="badge bg-danger ms-auto"></span>
+                </a>
+                <br>
+                <a class="nav flex-column"><a class="nav-link fw-semibold py-2 px-0"
+                                              href="/ezdom/frontendshop/account-signin.html" id="logoutBtn"><i
+                        class="ai-logout fs-5 opacity-60 me-2"></i>登出</a>
+                </a>
+              </nav>
             </div>
           </div>
         </div>
@@ -1053,6 +1095,70 @@
           link.textContent = "註冊教練";
         }
     }
+
+document.addEventListener('DOMContentLoaded', function () {
+
+      displayMemberSidebarProfile();
+    });
+
+
+        function displayMemberSidebarProfile(){
+          const nameDisplay1 = document.querySelectorAll(".nameDisplay1");
+          const mailDisplay1 = document.querySelectorAll(".mailDisplay1");
+
+          fetch(`/ezdom/member/getProfile`)
+            .then(resp => resp.json())
+            .then(body => {
+              const { name, email } = body;
+
+              // 將會員信息顯示在相應的元素中
+              nameDisplay1.forEach(element => {
+                element.textContent = name;
+              });
+
+              mailDisplay1.forEach(element => {
+                element.textContent = email;
+              });
+              })
+            .catch(error => {
+              console.error("Error:", error);
+            });
+        }
+
+
+
+//照片
+    document.addEventListener("DOMContentLoaded", function () {
+      displayMemberPhoto();
+    });
+
+    function displayMemberPhoto() {
+      const photoDisplay1 = document.getElementsByClassName("photoDisplay1");
+
+      fetch(`/ezdom/member/getPhoto`, {
+          method: 'GET',
+          headers: { 'Content-type': 'application/json' },
+        })
+          .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          }
+        }).then(data => {
+          if (data) {
+            for (const element of photoDisplay1) {
+              element.innerHTML = `<img class="rounded-circle bg-size-cover bg-position-center flex-shrink-0" src="data:image/jpeg;base64,${data.photoToBase64}" style="width: 80px; height: 80px;" />`;
+            }
+          }
+        })
+          .catch(error => {
+            console.error("錯誤：", error);
+          });
+    }
+
   getSession();
   orderRenew(1);
 </script>
