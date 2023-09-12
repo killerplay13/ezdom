@@ -532,7 +532,7 @@
         let statusValue = parseInt(orderStatus.value);
         let upordown = "下架";
         if (statusValue == 2) { upordown = "上架" }
-        fetch(`http://localhost:8080/ezdom/backend/product/get/${statusValue}`)
+        fetch(`/ezdom/backend/product/get/${statusValue}`)
             .then(response => {
                     if (response.status === 401) {
                         // 重定向到登录页面 登入失敗
@@ -587,7 +587,7 @@
     };
     //上下架
     function setUpOrDown(productId) {
-        fetch(`http://localhost:8080/ezdom/backend/product/updown/${productId}`, {
+        fetch(`/ezdom/backend/product/updown/${productId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' }
         }).then(response => {

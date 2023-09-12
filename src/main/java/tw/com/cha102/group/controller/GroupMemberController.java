@@ -29,14 +29,14 @@ public class GroupMemberController {
 
 
     @PostMapping
-    public ResponseEntity<GroupMember> apply(GroupMember groupMember) {
+    public ResponseEntity<GroupMember> apply(GroupMember groupMember,HttpSession session) {
 
         // TODO: 用來獲取已登入的member訊息
-        // Member member = (Member) session.getAttribute("member");
-        // Integer memberId = member.getMemberId();
+        Integer memberId = (Integer) session.getAttribute("memberId");
+
 
         //目前預設為1
-        Integer memberId = 1;
+        //Integer memberId = 1;
 
         List<GroupMember> list = groupMemberService.findGroupMember(groupMember.getGroupId(), memberId);
 
@@ -54,11 +54,11 @@ public class GroupMemberController {
     public ResponseEntity cance(@PathVariable Integer groupId, HttpSession session) {
 
         // TODO: 用來獲取已登入的member訊息
-        // Member member = (Member) session.getAttribute("member");
-        // Integer memberId = member.getMemberId();
+        Integer memberId = (Integer) session.getAttribute("memberId");
+
 
         //目前預設為1
-        Integer memberId = 1;
+        //Integer memberId = 1;
 
         groupMemberService.cancel(groupId,memberId);
         return new ResponseEntity(HttpStatus.OK);

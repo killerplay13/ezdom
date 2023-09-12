@@ -21,16 +21,34 @@ const settingURL = document.querySelector("#setting_href");
 const reportURL = document.querySelector("#report_href");
 // 留言板div
 const bord = document.querySelector("#message_bord");
-// 模擬登入的會員ID
-const memberId = 1;
-// 模擬登入的 coachId
-const coachId = 1;
 
+// ====================== 取得登入的session資訊 ====================== //
+const s_req = '/ezdom/frontend/session';
+let session;
+let memberId = null;
+let coachId = null;
+async function getSession(){
+	let response = await fetch(s_req);
+    session = await response.json();
+    console.log(session);
+    memberId = session.memberId;
+    if(null !== session.coachId){
+        coachId = session.coachId;
+    }
+
+    let link = document.querySelector("#link");
+    if(null !== coachId){
+      link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
+    } else if (null === coachId){
+      link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
+      link.textContent = "註冊教練";
+    }
+}
 
 // ====================== 網頁載入完成後執行 ====================== //
 window.addEventListener("load", function () {
+    getSession();
     getCoachDetails();
-
     getCoachMessage();
 
 })
@@ -41,9 +59,25 @@ const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值
 const d_req = 'http://localhost:8080/ezdom/frontend/browse/list/' + url_coachId;
 
 async function getCoachDetails() {
-    let response = await fetch(d_req);
-    coachDetails = await response.json();
-    console.log(coachDetails);
+
+    try {
+        let response = await fetch(d_req);
+
+        if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+        } else if (response.ok) {
+            // 登入成功
+            coachDetails = await response.json();
+        } else {
+            alert("錯誤狀態 " + response.status);
+        }
+    } catch (error) {
+        console.error("出现错误: " + error);
+    }
+
+//    let response = await fetch(d_req);
+//    coachDetails = await response.json();
     // SHOW出側邊欄、留言板標題、文字輸入框
     showCoachDetails();
 }
@@ -83,9 +117,24 @@ function showCoachDetails() {
 const req = 'http://localhost:8080/ezdom/frontend/coach/message/' + url_coachId;
 
 async function getCoachMessage() {
-    let response = await fetch(req);
-    coachMessage = await response.json();
-    console.log(coachMessage);
+    try {
+        let response = await fetch(req);
+
+        if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+        } else if (response.ok) {
+            // 登入成功
+            coachMessage = await response.json();
+        } else {
+            alert("錯誤狀態 " + response.status);
+        }
+    } catch (error) {
+        console.error("出现错误: " + error);
+    }
+
+//    let response = await fetch(req);
+//    coachMessage = await response.json();
     showCoachMessage();
 }
 
@@ -228,9 +277,18 @@ function add() {
                         memberId: memberId,
                         content: content
                     })
-                })
-            
-                location.reload();
+                }).then(response => {
+                    if (response.status === 401) {
+                      // 重定向到登录页面 登入失敗
+                      window.location.href = '/ezdom/frontendmember/account-signin.html';
+                    } else if (response.ok) {
+                      //登入成功
+                      location.reload();
+                    } else {
+                      alert("錯誤狀態" + response.status);
+                      return;
+                    }
+                  })
             }
         })
     }
@@ -313,7 +371,18 @@ function update() {
     fetch(req, {
         method: 'put',
         body: updateMessage
-    })
+    }).then(response => {
+        if (response.status === 401) {
+          // 重定向到登录页面 登入失敗
+          window.location.href = '/ezdom/frontendmember/account-signin.html';
+        } else if (response.ok) {
+          //登入成功
+          return response.json();
+        } else {
+          alert("錯誤狀態" + response.status);
+          return;
+        }
+      })
 }
 
 let deleteMessageId;
@@ -347,5 +416,16 @@ function deleteMessage() {
     fetch(req, {
         method: 'delete',
         headers: { 'Content-Type': 'application/json' }
-    })
+    }).then(response => {
+        if (response.status === 401) {
+          // 重定向到登录页面 登入失敗
+          window.location.href = '/ezdom/frontendmember/account-signin.html';
+        } else if (response.ok) {
+          //登入成功
+          return response.json();
+        } else {
+          alert("錯誤狀態" + response.status);
+          return;
+        }
+      })
 }

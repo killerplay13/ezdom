@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 @SpringBootApplication
 public interface GroupCreateService {
- GroupCreateVO create(GroupCreateVO groupCreateVO);
+ GroupCreateVO create(Integer memberId,GroupCreateVO groupCreateVO);
 
  List<GroupCreateVO> findAllGroupCreateByMemberId(Integer createMemberId);
  GroupCreateVO update(GroupCreateVO groupCreateVO);

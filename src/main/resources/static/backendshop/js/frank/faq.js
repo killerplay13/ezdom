@@ -21,8 +21,24 @@ window.addEventListener("load", function() {
 })
 
 async function getFaqList(){
-	let response = await fetch(req);
-    faqList = await response.json();
+    try {
+            let response = await fetch(req);
+
+            if (response.status === 401) {
+                // 重定向到登录页面 登入失敗
+                window.location.href = '/ezdom/backendemp/empSignin.html';
+            } else if (response.ok) {
+                // 登入成功
+                faqList = await response.json();
+            } else {
+                alert("錯誤狀態 " + response.status);
+            }
+        } catch (error) {
+            console.error("出现错误: " + error);
+        }
+
+//	let response = await fetch(req);
+//    faqList = await response.json();
     console.log(faqList);
     showFaqDetails();
 }
@@ -66,8 +82,18 @@ $(tbody_el).on("click", ".btn_no", function() {
             }).then((result) => {
                 fetch(req, {
                     method: 'delete',
-                })
-                location.reload();
+                }).then(response => {
+                      if (response.status === 401) {
+                          // 重定向到登录页面 登入失敗
+                          window.location.href = '/ezdom/backendemp/empSignin.html';
+                      }else if(response.ok){
+                          //登入成功
+                          location.reload();
+                      }else{
+                          alert("錯誤狀態" + response.status);
+                          return;
+                      }
+                  })
             })
         }
     })
@@ -134,9 +160,18 @@ $('#confirmAddBtn').on("click",function() {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
-                })
-                $('#addQuestionModal').modal('hide');
-                location.reload();
+                }).then(response => {
+                      if (response.status === 401) {
+                          // 重定向到登录页面 登入失敗
+                          window.location.href = '/ezdom/backendemp/empSignin.html';
+                      }else if(response.ok){
+                          $('#addQuestionModal').modal('hide');
+                          location.reload();
+                      }else{
+                          alert("錯誤狀態" + response.status);
+                          return;
+                      }
+                  })
             })
         }
     })
@@ -213,9 +248,18 @@ $('#u_confirmAddBtn').on("click",function() {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
+                }).then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登录页面 登入失敗
+                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                    }else if(response.ok){
+                       $('#updateModal').modal('hide');
+                       location.reload();
+                    }else{
+                        alert("錯誤狀態" + response.status);
+                        return;
+                    }
                 })
-                $('#updateModal').modal('hide');
-                location.reload();
             })
         }
     })
