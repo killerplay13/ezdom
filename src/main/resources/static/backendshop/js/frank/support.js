@@ -122,7 +122,7 @@ function connect() {
                         div.innerHTML = `
                             <div class="d-flex align-items-end mb-2">
                             <div class="message-box-end text-white"  style="background-color: #1977d6;">${showMsg}</div>
-                            <div class="flex-shrink-0 ps-2 ms-1"><img class="rounded-circle" src="../frontendshop/image/FBI.png" width="48" alt="Avatar"></div>
+                            <div class="flex-shrink-0 ps-2 ms-1"><img class="rounded-circle" src="../frontendshop/image/red.png" width="48" alt="Avatar"></div>
                             </div>
                             <div class="fs-xs text-muted" >${time}</div>
                         `;
@@ -173,7 +173,7 @@ function connect() {
                 div.innerHTML = `
                     <div class="d-flex align-items-end mb-2">
                     <div class="message-box-end text-white" style="background-color: #1977d6;">${jsonObj.message}</div>
-                    <div class="flex-shrink-0 ps-2 ms-1"><img class="rounded-circle" src="../frontendshop/image/FBI.png" width="48" alt="Avatar"></div>
+                    <div class="flex-shrink-0 ps-2 ms-1"><img class="rounded-circle" src="../frontendshop/image/red.png" width="48" alt="Avatar"></div>
                     </div>
                     <div class="fs-xs text-muted">${jsonObj.messageTime}</div>
                 `;

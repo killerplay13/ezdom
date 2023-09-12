@@ -200,7 +200,7 @@ function connect() {
                 }else{
                     div.innerHTML = `
                         <div class="d-flex align-items-end mb-2">
-                            <div class="flex-shrink-0 pe-2 me-1"><img class="rounded-circle" src="../frontendshop/image/FBI.png" width="48" alt="Avatar"></div>
+                            <div class="flex-shrink-0 pe-2 me-1"><img class="rounded-circle" src="../frontendshop/image/red.png" width="48" alt="Avatar"></div>
                             <div class="message-box-start text-dark">${showMsg}</div>
                         </div>
                         <div class="fs-xs text-muted text-end">${time}</div>
@@ -226,7 +226,7 @@ function connect() {
             }else{
                 div.innerHTML = `
                     <div class="d-flex align-items-end mb-2">
-                        <div class="flex-shrink-0 pe-2 me-1"><img class="rounded-circle" src="../frontendshop/image/FBI.png" width="48" alt="Avatar"></div>
+                        <div class="flex-shrink-0 pe-2 me-1"><img class="rounded-circle" src="../frontendshop/image/red.png" width="48" alt="Avatar"></div>
                         <div class="message-box-start text-dark">${jsonObj.message}</div>
                     </div>
                     <div class="fs-xs text-muted text-end">${jsonObj.messageTime}</div>
