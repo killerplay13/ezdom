@@ -150,106 +150,90 @@
 <body>
 <main class="page-wrapper">
     <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
-    <header class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode">
-        <div class="container"><a class="navbar-brand pe-sm-3" href="index.html"><span
+    <header class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode"
+            style="background-color: white;">
+        <div class="container"><a class="navbar-brand pe-sm-3" href="/ezdom/ezdomindex.html"><span
                 class="text-primary flex-shrink-0 me-2">
-            <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
-              <path fill="currentColor"
-                    d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
-              </path>
-            </svg></span>EZ-DOM</a>
-            <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
-                <input class="form-check-input" type="checkbox" id="theme-mode">
-                <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
-                <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
-            </div>
-            <a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex" href="account-signinup.html"
-               style="font-size: 16px; padding: 5px 10px;">登入/註冊</a>
+                    <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor"
+                              d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                        </path>
+                    </svg></span>EZ-DOM</a>
+            <a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+               href="/ezdom/frontendmember/account-overview.html" target="_blank"
+               rel="noopener"><i class="ai-user"></i></a>
             <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"><span
-                    class="navbar-toggler-icon"></span></button>
+                    data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
             <nav class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                                     data-bs-auto-close="outside" aria-expanded="false">揪團 Group</a>
+                                                     data-bs-auto-close="outside" aria-expanded="false">揪團</a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-expanded="false">揪團列表</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-expanded="false">My揪團</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-expanded="false">開團管理</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                                     data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-expanded="false">瀏覽商品</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-expanded="false">購物車</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-expanded="false">管理我的訂單</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                                     data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-expanded="false">瀏覽論壇</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-expanded="false">論壇管理</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                                     data-bs-auto-close="outside" aria-expanded="false">預約 Reserve</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-expanded="false">預約管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-expanded="false">瀏覽教練</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-expanded="false">時段管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-expanded="false">項目管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-expanded="false">自我介紹管理</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                                     data-bs-auto-close="outside" aria-expanded="false">會員中心
-                        Member</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item" href="account-overview.html"
-                                                    aria-expanded="false">我的頁面</a></li>
-                            <li class="dropdown"><a class="dropdown-item" href="friend-management.html"
-                                                    aria-expanded="false">好友管理</a></li>
-                            <li class="dropdown"><a class="dropdown-item" href="#" aria-expanded="false">收藏文章</a>
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/group/grouplist.html">揪團列表</a></li>
+                            <li class="dropdown"><a class="dropdown-item" href="/ezdom/group/mygroup.html">My揪團</a>
                             </li>
-                            <li class="dropdown"><a class="dropdown-item" href="#" aria-expanded="false">收藏商品</a>
+                            <li class="dropdown" style="border-bottom: none;"><a class="dropdown-item dropdown-toggle"
+                                                                                 href="#" data-bs-toggle="dropdown"
+                                                                                 aria-expanded="false">開團管理</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/ezdom/groupcreate/groupcreate.html">建立揪團</a>
+                                    </li>
+                                    <li><a class="dropdown-item"
+                                           href="/ezdom/groupcreate/groupCreateVerify.html">管理開團</a></li>
+                                </ul>
                             </li>
-                            <li class="dropdown"><a class="dropdown-item" href="account-settings.html"
-                                                    aria-expanded="false">個人設定</a></li>
-                            <li class="dropdown"><a class="dropdown-item" href="#" aria-expanded="false">聊天室</a>
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/message/messageGroup.html">揪團聊天室</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                     data-bs-auto-close="outside" aria-expanded="false">商城</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-catalog.html">瀏覽商品</a>
+                            </li>
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendshop/shop-account-orders.html">管理我的訂單</a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                                     data-bs-auto-close="outside" aria-expanded="false">聯絡客服
-                        Help</a>
+                                                     data-bs-auto-close="outside" aria-expanded="false">論壇</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendforum/forum.html">論壇</a></li>
+                            <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendforum/forum-mypost.html">我的論壇</a>
+                            </li>
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendforum/forum-post.html">發文</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                     data-bs-auto-close="outside" aria-expanded="false">預約</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendcoach/coach-list.html">瀏覽教練</a>
+                            </li>
+                            <li class="dropdown"><a id="link" class="dropdown-item"
+                                                    href="/ezdom/frontendcoach/coach-details.html?coachId=">教練專區</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                     data-bs-auto-close="outside" aria-expanded="false">會員中心</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendmember/account-overview.html">我的頁面</a></li>
+                            <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-checkout.html">收藏商品</a>
+                            </li>
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendmember/account-settings.html">個人設定</a></li>
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/message/messagePrivate.html">聊天室</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown"><a class="nav-link " href="/ezdom/frontendsupport/support.html"
+                                                     aria-expanded="false">聯絡客服</a>
                     </li>
                 </ul>
             </nav>
@@ -308,13 +292,15 @@
                             </nav>
                             <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
                                 <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">商城</h4>
-                                <a class="nav-link fw-semibold py-2 px-0" href="../frontendshop/shop-account-orders.html">
+                                <a class="nav-link fw-semibold py-2 px-0"
+                                   href="../frontendshop/shop-account-orders.html">
                                     <i class="ai-edit-alt fs-5 opacity-60 me-2"></i>我的訂單
                                 </a>
                             </nav>
                             <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
                                 <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">預約</h4>
-                                <a class="nav-link fw-semibold py-2 px-0" href="../frontendreserve/reserve-memberlist.html">
+                                <a class="nav-link fw-semibold py-2 px-0"
+                                   href="../frontendreserve/reserve-memberlist.html">
                                     <i class="ai-user-check fs-5 opacity-60 me-2"></i>我的預約
                                 </a>
                             </nav>
@@ -355,7 +341,7 @@
                             <div class="dropdown">
                                 <a class="d-flex flex-column justify-content-end position-relative overflow-hidden rounded-circle bg-size-cover bg-position-center flex-shrink-0"
                                    href="#" data-bs-toggle="dropdown" aria-expanded="false"
-                                   style="width: 80px; height: 80px; background-image: url(../frontendshop/assets/img/avatar/user.png);"
+                                   style="width: 80px; height: 80px; background-image: url(/ezdom/frontendshop/assets/img/userPhoto.png);"
                                    id="prePhoto">
                     <span class="d-block text-light text-center lh-1 pb-1" style="background-color: rgba(0,0,0,.5)">
                       <i class="ai-camera" id="newPhoto"></i>
@@ -375,12 +361,12 @@
                         <!-- 文件输入元素 -->
                         <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
                             <div class="col-sm-6">
-                                <label class="form-label" for="name">姓名</label>
-                                <input class="form-control" type="text" id="name" placeholder="姓名 ( or 暱稱 )">
+                                <label class="form-label" for="name">暱稱</label>
+                                <input class="form-control" type="text" id="name">
                             </div>
                             <div class="col-sm-6">
-                                <label class="form-label" for="memberId">身分證</label>
-                                <input class="form-control" type="text" id="memberId" placeholder="請輸入正確身分證格式"
+                                <label class="form-label" for="memberUid">身分證</label>
+                                <input class="form-control" type="text" id="memberUid" placeholder="請輸入正確身分證格式"
                                        required
                                        oninput="ValidateId()">
                                 <p id="idError" style="color: red;"></p>
@@ -393,8 +379,7 @@
                                 <p id="mailError" style="color: red;"></p>
                             </div>
                             <div class="col-sm-6">
-                                <label class="form-label" for="phone">手機 <span
-                                        class='text-muted'>(*選填)</span></label>
+                                <label class="form-label" for="phone">手機</label>
                                 <input class="form-control" type="tel" id="phone" placeholder="請輸入10碼" required
                                        oninput="ValidatePhone()">
                                 <p id="phoneError" style="color: red;"></p>
@@ -680,7 +665,7 @@
     // 身分證
     function ValidateId() {
       const idError = document.getElementById("idError");
-      const id = document.getElementById('memberId');
+      const id = document.getElementById('memberUid');
       const idRegex = /^[A-Z][12][0-9]{8}$/;
 
       if (!idRegex.test(id.value)) {
@@ -728,7 +713,7 @@
 <!-- 解除 oninput -->
 <script>
     // 取得輸入框和相關錯誤訊息元素
-    const memberIdInput = document.getElementById('memberId');
+    const memberUidInput = document.getElementById('memberUid');
     const emailInput = document.getElementById('email');
     const phoneInput = document.getElementById('phone');
 
@@ -737,14 +722,14 @@
     const phoneError = document.getElementById('phoneError');
 
     // 設定每個輸入框的 oninput 事件
-    memberIdInput.addEventListener('input', ValidateId);
+    memberUidInput.addEventListener('input', ValidateId);
     emailInput.addEventListener('input', ValidateMail);
     phoneInput.addEventListener('input', ValidatePhone);
 
     // 監聽文檔點擊事件
     document.addEventListener('click', (event) => {
       // 移除每個輸入框的 oninput 事件
-      memberIdInput.removeEventListener('input', ValidateId);
+      memberUidInput.removeEventListener('input', ValidateId);
       emailInput.removeEventListener('input', ValidateMail);
       phoneInput.removeEventListener('input', ValidatePhone);
 
@@ -787,7 +772,7 @@
 
     const saveIntro = document.getElementById('saveIntro');
     const name = document.getElementById('name');
-    const memberId = document.getElementById('memberId');
+    const memberUid = document.getElementById('memberUid');
     const email = document.getElementById('email');
     const phone = document.getElementById('phone');
     const birthInput = document.getElementById('birth');
@@ -810,8 +795,8 @@
         requestData.name = name.value;
       }
 
-      if (memberId.value) {
-        requestData.uid = memberId.value;
+      if (memberUid.value) {
+        requestData.uid = memberUid.value;
       }
 
       if (email.value) {
@@ -872,93 +857,93 @@
 
 <!-- 上傳照片處理 -->
 <script>
+        const prePhoto = document.getElementById('prePhoto');
+        const newPhoto = document.getElementById('newPhoto');
+        const uploadButton = document.getElementById('uploadButton');
 
-    const prePhoto = document.getElementById('prePhoto');
-    const newPhoto = document.getElementById('newPhoto');
-    const uploadButton = document.getElementById('uploadButton');
+        // 創建一個 input 元素
+        const fileInput = document.createElement('input');
 
-    // 創建一個 input 元素
-    const fileInput = document.createElement('input');
+        // 設定 input 元素的屬性
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+        fileInput.style.display = 'none';
 
-    // 設定 input 元素的屬性
-    fileInput.type = 'file';
-    fileInput.accept = 'image/*';
-    fileInput.style.display = 'none';
 
-    // 監聽上傳照片的點擊事件，觸發文件選擇對話框
-    uploadButton.addEventListener('click', function () {
-      fileInput.click(); // 觸發文件選擇對話框
-    });
+        // 監聽上傳照片的點擊事件，觸發文件選擇對話框
+        uploadButton.addEventListener('click', function () {
+          fileInput.click(); // 觸發文件選擇對話框
+        });
 
-    // 監聽文件選擇對話框的變化事件
-    fileInput.addEventListener('change', function (e) {
+        // 監聽文件選擇對話框的變化事件
+        fileInput.addEventListener('change', function (e) {
 
-      const selectedPhoto = e.target.files[0];
+          const selectedPhoto = e.target.files[0];
 
-      if (selectedPhoto) {
-        let reader = new FileReader();
-        reader.onload = function (e) {
-          prePhoto.style.backgroundImage = `url(${e.target.result})`;
+          if (selectedPhoto) {
+            let reader = new FileReader();
+            reader.onload = function (e) {
+              prePhoto.style.backgroundImage = `url(${e.target.result})`;
 
-          // 將圖片轉換為Base64字符串
-          const base64Image = e.target.result.split(',')[1]; // 去掉data:image/jpeg;base64,中的前綴部分
+              // 將圖片轉換為Base64字符串
+              const base64Image = e.target.result.split(',')[1]; // 去掉data:image/jpeg;base64,中的前綴部分
 
-          // 將Base64字符串包裝在JSON數據中並上傳到伺服器
-          uploadImageToServer(base64Image);
-        };
-        reader.readAsDataURL(selectedPhoto);
-      }
-    });
+              // 將Base64字符串包裝在JSON數據中並上傳到伺服器
+              uploadImageToServer(base64Image);
+            };
+            reader.readAsDataURL(selectedPhoto);
+          }
+        });
 
-    // 函數：上傳圖片到伺服器
-    function uploadImageToServer(base64Image) {
-      // 將Base64字符串放入一個JSON對象中
-      const data = { memberPhoto: base64Image };
+        // 函數：上傳圖片到伺服器
+        function uploadImageToServer(base64Image) {
+          // 將Base64字符串放入一個JSON對象中
+          const data = { memberPhoto: base64Image };
 
-      // 使用fetch將JSON數據上傳到伺服器
-      fetch('/ezdom/member/uploadPhoto', {
-        method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify(data),
-      }).then(response => {
-        // 獲取 HTTP 狀態碼
-        const statusCode = response.status;
+          // 使用fetch將JSON數據上傳到伺服器
+          fetch('/ezdom/member/uploadPhoto', {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify(data),
+          }).then(response => {
+            // 獲取 HTTP 狀態碼
+            const statusCode = response.status;
 
-        // 判斷狀態碼並進行相應處理
-        if (statusCode === 200) {
-          // 登入成功的處理
-          Swal.fire({
-            icon: 'success',
-            title: '成功',
-            text: '照片更新成功！',
-            confirmButtonText: '確定',
-            focusConfirm: true
+            // 判斷狀態碼並進行相應處理
+            if (statusCode === 200) {
+              // 登入成功的處理
+              Swal.fire({
+                icon: 'success',
+                title: '成功',
+                text: '照片更新成功！',
+                confirmButtonText: '確定',
+                focusConfirm: true
+              })
+              // 把上傳的圖社為預設
+              prePhoto.style.backgroundImage = `url(data:image/jpeg;base64,${base64Image})`;
+            } else if (statusCode === 400) {
+              // 驗證失敗的處理
+              return response.json(); // 將回應轉換為 JSON
+            } else {
+              // 其他狀態碼處理
+              throw new Error("HTTP Error: " + statusCode);
+            }
+          }).then(data => {
+            // 在這裡處理 JSON 回應的資料
+            // 例如顯示後端返回的錯誤訊息
+            Swal.fire({
+              icon: 'error',
+              title: '失敗',
+              text: data.message, // 假設後端返回的錯誤訊息放在 data.message 中
+              confirmButtonText: '確定',
+              focusConfirm: false
+            });
           })
-          // 把上傳的圖社為預設
-          prePhoto.style.backgroundImage = `url(data:image/jpeg;base64,${base64Image})`;
-        } else if (statusCode === 400) {
-          // 驗證失敗的處理
-          return response.json(); // 將回應轉換為 JSON
-        } else {
-          // 其他狀態碼處理
-          throw new Error("HTTP Error: " + statusCode);
+            .catch(error => {
+              // 處理 fetch 發生的錯誤
+              console.error("Fetch Error:", error);
+            });
         }
-      }).then(data => {
-        // 在這裡處理 JSON 回應的資料
-        // 例如顯示後端返回的錯誤訊息
-        Swal.fire({
-          icon: 'error',
-          title: '失敗',
-          text: data.message, // 假設後端返回的錯誤訊息放在 data.message 中
-          confirmButtonText: '確定',
-          focusConfirm: false
-        });
-      })
-        .catch(error => {
-          // 處理 fetch 發生的錯誤
-          console.error("Fetch Error:", error);
-        });
-    }
 
 </script>
 
@@ -1102,14 +1087,16 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(data => {
           if (data) {
             for (const element of photoDisplay1) {
               element.innerHTML = `<img class="rounded-circle bg-size-cover bg-position-center flex-shrink-0" src="data:image/jpeg;base64,${data.photoToBase64}" style="width: 80px; height: 80px;" />`;
+            }
+          }else {
+            for (const element of photoDisplay1) {
+              // 設置預設圖片的 src 屬性
+              element.innerHTML = `<img class="rounded-circle bg-size-cover bg-position-center flex-shrink-0" src="/ezdom/frontendshop/image/userPhoto.png" style="width: 80px; height: 80px;" />`;
             }
           }
         })
@@ -1118,6 +1105,37 @@
           });
     }
 </script>
+
+// ====================== 取得登入的session資訊 ====================== //
+<script>
+    window.addEventListener("load", function() {
+            getSession();
+        })
+  const s_req = '/ezdom/frontend/session';
+  let session;
+  let memberUid = null;
+  let coachId = null;
+  async function getSession(){
+      let response = await fetch(s_req);
+      session = await response.json();
+      console.log(session);
+      memberUid = session.memberUid;
+      if(null !== session.coachId){
+          coachId = session.coachId;
+      }
+
+      let link = document.querySelector("#link");
+      if(null !== coachId){
+      console.log("1:" + coachId);
+        link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
+      } else if (null === coachId){
+      console.log("2:" + coachId);
+        link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
+        link.textContent = "註冊教練";
+      }
+  }
+</script>
+
 
 </body>
 

@@ -11,10 +11,7 @@ import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @ServerEndpoint("/frontend/GroupWS/{groupId}")
 @Component
@@ -36,16 +33,47 @@ public class GroupWS {
         String groupId = groupMessage.getGroupId();
         Integer readNum = groupMessage.getReadNum();
         String time = groupMessage.getChatTime();
-        if ("history".equals(groupMessage.getType())){
-            Set<Tuple> histroyData = JedisHandleMessage.getgroupHistoryMsg(groupId);
-            String historyMsg = gson.toJson(histroyData);
-            ChatVO cmHistory = new ChatVO("history",sender,groupId,historyMsg,readNum,time);
-            if (userSession != null && userSession.isOpen()){
+        if ("history".equals(groupMessage.getType())) {
+            Set<Tuple> historyData = JedisHandleMessage.getgroupHistoryMsg(groupId);
+//            List<Map<String, Object>> historyMessages = new ArrayList<>();
+//            for (Tuple tuple : historyData) {
+//                Map<String, Object> messageObject = new HashMap<>();
+//                messageObject.put("message", tuple.getElement());
+//                messageObject.put("score", tuple.getScore());
+//                historyMessages.add(messageObject);
+//            }
+//            Map<String, Object> historyMessage = new HashMap<>();
+//            historyMessage.put("type", "history");
+//            historyMessage.put("groupId", groupId);
+//            historyMessage.put("historyMessages", historyMessages);
+//            String historyMessagesStr = gson.toJson(historyMessage);
+//            if (userSession != null && userSession.isOpen()) {
+//                userSession.getAsyncRemote().sendText(historyMessagesStr);
+//                System.out.println("history=" + historyMessagesStr);
+//            }
+//            List<ChatVO> historyMessages = new ArrayList<>();
+//            for (Tuple tuple : historyData) {
+//                String historyMsg = tuple.getElement();
+//                double score = tuple.getScore();
+//                // 从历史消息中提取其他必要的信息（sender, readNum, time等）
+//                ChatVO cmHistory = new ChatVO("history", sender, groupId, historyMsg, readNum, time);
+//                historyMessages.add(cmHistory);
+//            }
+//            String historyMessagesStr = gson.toJson(historyMessages);
+//
+//            if (userSession != null && userSession.isOpen()) {
+//                userSession.getAsyncRemote().sendText(historyMessagesStr);
+//                System.out.println("history=" + historyMessagesStr);
+//            }
+            String historyMsg = gson.toJson(historyData);
+            ChatVO cmHistory = new ChatVO("history", sender, groupId, historyMsg, readNum, time);
+            if (userSession != null && userSession.isOpen()) {
                 userSession.getAsyncRemote().sendText(gson.toJson(cmHistory));
-                System.out.println("history="+gson.toJson(cmHistory));
-                return ;
+                System.out.println("history=" + gson.toJson(cmHistory));
+                return;
             }
         }
+
         JedisHandleMessage.saveGroupMessage(groupId,sender,message);
         for (Session session : connectedSessions) {
             if (session.isOpen())
