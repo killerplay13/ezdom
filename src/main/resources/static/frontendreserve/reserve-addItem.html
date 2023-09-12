@@ -225,6 +225,7 @@
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                              data-bs-auto-close="outside" aria-expanded="false">預約</a>
               <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendreserve/reserve-memberlist.html">預約管理</a></li>
                 <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendcoach/coach-list.html">瀏覽教練</a></li>
                 <li class="dropdown"><a id="link" class="dropdown-item" href="/ezdom/frontendcoach/coach-details.html?coachId=">教練專區</a></li>
 
@@ -247,6 +248,7 @@
         </nav>
       </div>
     </header>
+
     <!-- 頁首結束-->
     <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
       <div class="row pt-sm-2 pt-lg-0">
@@ -458,7 +460,7 @@
 
       var isValid = projectValid && introductionValid && coachNameValid && placeValid && amountValid;
       if (isValid) {
-        fetch('http://localhost:8080/ezdom/frontend/reserve/addItem', {
+        fetch('/ezdom/frontend/reserve/addItem', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -522,7 +524,7 @@
 
     //找教練名
     function findCoach() {
-      fetch('http://localhost:8080/ezdom/frontend/reserve/coach/name/' + url_coachId)
+      fetch('/ezdom/frontend/reserve/coach/name/' + url_coachId)
         .then(response => {
               if (response.status === 401) {
                 // 重定向到登录页面 登入失敗
@@ -566,12 +568,11 @@
     const settingURL = document.querySelector("#setting_href");
     // 側邊欄檢舉教練的連結
     const reportURL = document.querySelector("#report_href");
-    // 模擬登入中的教練ID
-    const coachId = 1;
+
     // ====================== 側邊欄資訊 ====================== //
     const url = new URLSearchParams(window.location.search);
     const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值。哪個教練的留言板
-    const d_req = 'http://localhost:8080/ezdom/frontend/browse/list/' + url_coachId;
+    const d_req = '/ezdom/frontend/browse/list/' + url_coachId;
 
     async function getCoachDetails() {
 
@@ -609,12 +610,6 @@
       messageURL.href = `../frontendcoach/coach-message.html?coachId=${coachDetails.coachId}`;
       settingURL.href = `../frontendcoach/coach-settings.html?coachId=${coachDetails.coachId}`;
 
-      // 留言板標題
-      // let bord = document.querySelector("#message_bord");
-      // let h1 = document.createElement("h1");
-      // h1.setAttribute("class", "h2 mb-4 display-6");
-      // h1.innerHTML = `${coachDetails.nickname}的留言板`;
-      // bord.appendChild(h1);
 
       /*
           1. 判斷登入中的會員是否為教練
@@ -622,10 +617,10 @@
           3. 若是，則讓設置的選項 show出
       */
      
-      if (coachId === coachDetails.coachId) {
-        settingURL.style = "";
-        reportURL.style = "display:none";
-      }
+<!--      if (coachId === coachDetails.coachId) {-->
+<!--        settingURL.style = "";-->
+<!--        reportURL.style = "display:none";-->
+<!--      }-->
 
     }
 
@@ -636,30 +631,43 @@
     })
 
 
-    // ====================== 取得登入的session資訊 ====================== //
-    const s_req = 'http://localhost:8080/ezdom/frontend/session';
+// ====================== 取得登入的session資訊 ====================== //
+    const s_req = '/ezdom/frontend/session';
     let session;
     let memberId = null;
     let coachId = null;
-    async function getSession(){
-        let response = await fetch(s_req);
-        session = await response.json();
-        console.log(session);
-        memberId = session.memberId;
-        if(null !== session.coachId){
-            coachId = session.coachId;
-        }
 
-        let link = document.querySelector("#link");
-        if(null !== coachId){
-        console.log("1:" + coachId);
-          link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
-        } else if (null === coachId){
-        console.log("2:" + coachId);
-          link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
-          link.textContent = "註冊教練";
+    async function getSession() {
+      return new Promise(async function (resolve, reject) {
+        try {
+          let response = await fetch(s_req);
+          session = await response.json();
+          console.log(session);
+          memberId = session.memberId;
+          if (session.coachId !== null) {
+            coachId = session.coachId;
+          }
+
+          let link = document.querySelector("#link");
+          if (coachId !== null) {
+            link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
+          } else if (coachId === null) {
+            link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
+            link.textContent = "註冊教練";
+          }
+          resolve();
+        } catch (error) {
+          reject(error);
         }
+      });
     }
+
+    getSession().then(function () {
+      if (coachId === parseInt(url_coachId)) {
+        settingURL.style = "";
+        reportURL.style = "display:none";
+      }
+    });
 
 
   </script>

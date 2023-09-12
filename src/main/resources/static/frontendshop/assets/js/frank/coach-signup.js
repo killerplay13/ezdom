@@ -13,7 +13,7 @@ window.addEventListener("load", function() {
   getSession();
 })
 
-const s_req = 'http://localhost:8080/ezdom/frontend/session';
+const s_req = '/ezdom/frontend/session';
 let session;
 async function getSession(){
 	let response = await fetch(s_req);
@@ -97,7 +97,7 @@ function collectFormData() {
 
             formData.picture = imageBase64;  // 將圖片的 base64數據存入 formData
             console.log(formData);
-            const req = "http://localhost:8080/ezdom/frontend/coach/register";
+            const req = "/ezdom/frontend/coach/register";
             fetch(req, {
                 method: "POST",
                 headers: {

@@ -4,7 +4,7 @@ let coachList;
 const list_div = document.querySelector("#list_div");
 
 // ====================== 取得登入的session資訊 ====================== //
-const s_req = 'http://localhost:8080/ezdom/frontend/session';
+const s_req = '/ezdom/frontend/session';
 let session;
 let memberId = null;
 let coachId = null;
@@ -35,7 +35,7 @@ window.addEventListener("load", function() {
 
 async function getCoachList(){
     try {
-        let response = await fetch("http://localhost:8080/ezdom/frontend/browse/list");
+        let response = await fetch("/ezdom/frontend/browse/list");
 
         if (response.status === 401) {
             // 重定向到登录页面 登入失敗
@@ -50,7 +50,7 @@ async function getCoachList(){
         console.error("出现错误: " + error);
     }
 
-//	let response = await fetch("http://localhost:8080/ezdom/frontend/browse/list");
+//	let response = await fetch("/ezdom/frontend/browse/list");
 //    coachList = await response.json();
     showCoachList();
 }

@@ -523,7 +523,7 @@
         });
     });
     function flushPage() {
-        fetch(`http://localhost:8080/ezdom/beckend/member/memberState`)
+        fetch(`/ezdom/beckend/member/memberState`)
             .then(response => {
                     if (response.status === 401) {
                         // 重定向到登录页面 登入失敗
@@ -559,11 +559,21 @@
     }
 
     function revese(memberId) {
-        fetch(`http://localhost:8080/ezdom/beckend/member/status/${memberId}`, {
+        fetch(`/ezdom/beckend/member/status/${memberId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-        }).then(response => response.json())
-            .then(body => {
+        }).then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登录页面 登入失敗
+                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                    }else if(response.ok){
+                        //登入成功
+                        return response.json();
+                    }else{
+                        alert("錯誤狀態" + response.status);
+                        return;
+                    }
+                }).then(body => {
                 let { successful, message } = body;
                 if (successful) {
                     Swal.fire({

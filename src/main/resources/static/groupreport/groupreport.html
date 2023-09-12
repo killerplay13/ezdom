@@ -549,14 +549,10 @@
                 });
                 $('#example').DataTable().clear().draw();
                 $.ajax({
-                    url: 'http://localhost:8080/ezdom/groupReport/listAllGroupReport',
+                    url: "/ezdom/backend/groupReport/listAllGroupReport",
                     method: 'GET',
                     dataType: 'json',
                     success: function (response) {
-<!--                      if (response.status === 401) {-->
-<!--                        // 重定向到登录页面 登入失敗-->
-<!--                        window.location.href = '/ezdom/backendemp/empSignin.html';-->
-<!--                    }-->
                         console.log(response);
                         response.forEach(function (item) {
                             $('#example').DataTable().row.add([
@@ -585,10 +581,9 @@
                     var groupReport = {
                         groupReportStatus: 1,
                         rejectReason: "無",
-                        employeeId: 100001
                     };
                     $.ajax({
-                        url: "http://localhost:8080/ezdom/groupReport/updateReportStatus/" + groupReportId,
+                        url: "/ezdom/backend/groupReport/updateReportStatus/" + groupReportId,
                         method: 'PUT',
                         data: JSON.stringify(groupReport),
                         contentType: 'application/json',
@@ -608,10 +603,9 @@
                     var groupReport = {
                         groupReportStatus: 2,
                         rejectReason: "我覺得不行",
-                        employeeId: 100002
                     };
                     $.ajax({
-                        url: "http://localhost:8080/ezdom/groupReport/updateReportStatus/" + groupReportId,
+                        url: "/ezdom/backend/groupReport/updateReportStatus/" + groupReportId,
                         method: 'PUT',
                         data: JSON.stringify(groupReport),
                         contentType: 'application/json',
