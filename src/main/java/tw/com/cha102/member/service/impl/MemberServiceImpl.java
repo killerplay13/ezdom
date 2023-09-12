@@ -43,6 +43,7 @@ public class MemberServiceImpl implements MemberService {
 
 
         Member newMem = new Member();
+        newMem.setMemberName(signUpRequest.getName());
         newMem.setMemberAccount(signUpRequest.getAccount());
         String hashPwd = sha256Hash(signUpRequest.getPassword());//把傳遞的密碼加密
         newMem.setMemberPassword(hashPwd);
@@ -81,7 +82,7 @@ public class MemberServiceImpl implements MemberService {
         sessionCookie.setPath("/"); // 設置 Cookie 的路徑
         response.addCookie(sessionCookie);
 
-        if(coachMemberVO!=null){
+        if(coachMemberVO!=null && coachMemberVO.getStatus() == 2){
             httpSession.setAttribute("coachId", coachMemberVO.getCoachId());
         }
 
@@ -93,11 +94,9 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public AccountEmailResponse checkEmailAccount(CheckEmailAccountRequest checkEmailAccountRequest, HttpServletRequest request, HttpServletResponse response) {
 
-
         HttpSession httpSession = request.getSession();
-        Integer memberId = (Integer) httpSession.getAttribute("memberId");
-
-        Member member = memberRepository.findByMemberId(memberId);
+        //  memberRepository 可以根據帳號來查找會員
+        Member member = memberRepository.findByMemberAccount(checkEmailAccountRequest.getAccount());
 
 
         if (member == null) {
@@ -108,8 +107,8 @@ public class MemberServiceImpl implements MemberService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "帳號信箱錯誤");
         }
 
-        // 儲存帳號到 Session 中
-        httpSession.setAttribute("account", member.getMemberAccount());
+        // memberId儲存到 Session 中
+        httpSession.setAttribute("memberId", member.getMemberId());
 
         // 創建並返回包含 account 和 email 的 Response 對象
         AccountEmailResponse accountEmailResponse = new AccountEmailResponse();
@@ -213,12 +212,12 @@ public class MemberServiceImpl implements MemberService {
             memberRepository.save(member);
         } else {
             // 如果找不到會員，你可以根據情況執行錯誤處理邏輯
-            throw new RuntimeException("找不到相應的會員");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "未找到相應的會員信息。");
         }
     }
 
     @Override
-    public void modifyPw(String modifyPw, HttpServletRequest request) {
+    public void modifyPw(String modifyPw, HttpServletRequest request, HttpServletResponse response) {
         HttpSession httpSession = request.getSession();
         Integer memberId = (Integer) httpSession.getAttribute("memberId");
 
@@ -230,7 +229,6 @@ public class MemberServiceImpl implements MemberService {
             String hashPwd = sha256Hash(modifyPw); // sha256Hash 密碼加密
             member.setMemberPassword(hashPwd);
 
-            System.out.println();
             // 郵件主題
             String subject = "會員更改密碼";
 
@@ -244,12 +242,11 @@ public class MemberServiceImpl implements MemberService {
 
             // 保存更新後的會員信息
             memberRepository.save(member);
+
         } else {
             // 如果找不到會員，你可以根據情況執行錯誤處理邏輯
-            throw new RuntimeException("找不到相應的會員");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "未找到相應的會員信息。");
         }
-
-
 
     }
 

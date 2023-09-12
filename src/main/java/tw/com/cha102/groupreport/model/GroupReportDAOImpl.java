@@ -47,7 +47,7 @@ public class GroupReportDAOImpl implements GroupReportDAO{
                 pstmt.setInt(2, groupReportVO.getReportedMemberId());
                 pstmt.setInt(3, groupReportVO.getGroupId());
                 pstmt.setString(4, groupReportVO.getReportReason());
-                pstmt.setInt(5, groupReportVO.getEmployeeId());
+                pstmt.setString(5, groupReportVO.getEmployeeId());
                 pstmt.setInt(6, groupReportVO.getGroupReportStatus());
                 pstmt.setString(7, groupReportVO.getRejectReason());
                 pstmt.setInt(8, groupReportVO.getGroupReportId());
@@ -78,7 +78,7 @@ public class GroupReportDAOImpl implements GroupReportDAO{
                 groupReportVO.setReportedMemberId(rs.getInt("REPORTED_MEMBER_ID"));
                 groupReportVO.setGroupId(rs.getInt("GROUP_ID"));
                 groupReportVO.setReportReason(rs.getString("REPORT_REASON"));
-                groupReportVO.setEmployeeId(rs.getInt("EMPLOYEE_ID"));
+                groupReportVO.setEmployeeId(rs.getString("EMPLOYEE_ID"));
                 groupReportVO.setGroupReportStatus(rs.getInt("GROUP_REPORT_STATUS"));
                 groupReportVO.setRejectReason(rs.getString("REJECT_REASON"));
             }
@@ -193,7 +193,7 @@ public class GroupReportDAOImpl implements GroupReportDAO{
                 groupReport.setReportedMemberId(rs.getInt("REPORTED_MEMBER_ID"));
                 groupReport.setGroupId(rs.getInt("GROUP_ID"));
                 groupReport.setReportReason(rs.getString("REPORT_REASON"));
-                groupReport.setEmployeeId(rs.getInt("EMPLOYEE_ID"));
+                groupReport.setEmployeeId(rs.getString("EMPLOYEE_ID"));
                 groupReport.setGroupReportStatus(rs.getInt("GROUP_REPORT_STATUS"));
                 groupReport.setRejectReason(rs.getString("REJECT_REASON"));
                 list.add(groupReport);

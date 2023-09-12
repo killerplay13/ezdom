@@ -34,12 +34,12 @@ public class AllInOneBase {
 			Document doc;
 			/* when using web project*/
 //			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-//			String configPath = URLDecoder.decode(classLoader.getResource("/payment_conf.xml").getPath(), "UTF-8");
+//			String configPath = URLDecoder.decode(classLoader.getResource("payment_conf.xml").getPath(), "UTF-8");
 //			doc = EcpayFunction.xmlParser(configPath);
 			/* when using testing code*/
 			String paymentConfPath = "./src/main/resources/payment_conf.xml";
 			doc = EcpayFunction.xmlParser(paymentConfPath);
-			
+
 			doc.getDocumentElement().normalize();
 			//OperatingMode
 			Element ele = (Element)doc.getElementsByTagName("OperatingMode").item(0);

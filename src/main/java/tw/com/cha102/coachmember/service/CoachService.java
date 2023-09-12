@@ -1,5 +1,6 @@
 package tw.com.cha102.coachmember.service;
 
+import ch.qos.logback.core.status.StatusUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +13,7 @@ import tw.com.cha102.coachmember.model.dto.CoachDetails;
 import tw.com.cha102.coachmember.model.dto.CoachList;
 import tw.com.cha102.coachmember.model.dao.CoachMemberRepository;
 import tw.com.cha102.coachmember.model.entity.CoachMemberVO;
+import tw.com.cha102.core.service.MailService;
 import tw.com.cha102.member.model.dao.MemberRepository;
 import tw.com.cha102.member.model.entity.Member;
 
@@ -162,6 +164,42 @@ public class CoachService {
             CoachMemberVO coachMember = check.get();
             coachMember.setStatus(status);
             coachMemberRepository.save(coachMember);
+
+            if (status == 2) {
+                Member member = memberRepository.findByMemberId(coachMember.getMemberId());
+                String to = member.getMemberEmail();
+                String subject = "您申請的教練身分已成功審核";
+                String messageText = "親愛的會員" + member.getMemberName() +"，\n\n";
+                messageText += "感謝您申請成為我們平台的教練！我們很高興通知您，您的申請已經成功審核通過，您現在是我們平台的正式教練。\n\n";
+                messageText += "以下是一些重要的信息和下一步行動項目：\n\n";
+                messageText += "1.登錄您的教練帳戶：使用您的帳戶資訊登錄到我們的平台。\n";
+                messageText += "2.完善您的預約資勳：請在您的教練個人頁面中新增預約項目，並提供詳細信息，包含地點、金額以及課程內容。\n";
+                messageText += "3.開始接受預訂：您可以開始設定您的可預約時間，以接受其他會員的預約。\n\n";
+                messageText += "如果您有任何疑問或需要協助，請使用即時客服的功能聯絡我們或是可以發送郵件到ezdom7372@gmail.com，我們將樂意提供協助。\n\n";
+                messageText += "再次感謝您加入我們的平台，我們期待與您一起提供卓越的教練服務！。\n\n";
+                messageText += "祝您成功！\n\n";
+                messageText += "最好的問候，\n";
+                messageText += "EZ-DOM 一起動";
+                MailService mailService = new MailService();
+                mailService.sendMail(to, subject, messageText);
+            }else if(status == 3) {
+                Member member = memberRepository.findByMemberId(coachMember.getMemberId());
+                String to = member.getMemberEmail();
+                String subject = "您申請的教練身分未通過審核";
+                String messageText = "親愛的會員" + member.getMemberName() +"，\n\n";
+                messageText += "感謝您申請成為我們平台的教練！很抱歉告訴您，我們的審核團隊已經審核了您的申請，但很遺憾，我們無法通過您的申請。\n\n";
+                messageText += "以下是一些可能導致審核未通過的原因：\n\n";
+                messageText += "1.提供的個人資訊不洽當或不清晰。\n";
+                messageText += "2.我們目前已擁有足夠的教練，不需要額外的教練。\n\n";
+                messageText += "如果您認為這是一個誤解或您想要進一步了解為什麼審核未通過，請使用即時客服的功能聯絡我們或是可以發送郵件到ezdom7372@gmail.com，我們將樂意提供協助。\n\n";
+                messageText += "再次感謝您加入我們的平台，我們期待與您一起提供卓越的教練服務！\n\n";
+                messageText += "祝您成功！\n\n";
+                messageText += "最好的問候，\n";
+                messageText += "EZ-DOM 一起動";
+                MailService mailService = new MailService();
+                mailService.sendMail(to, subject, messageText);
+            }
+
             return coachMember;
         }else {
             CoachMemberVO coachMemberVO = new CoachMemberVO();

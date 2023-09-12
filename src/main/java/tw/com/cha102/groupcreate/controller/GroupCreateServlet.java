@@ -156,15 +156,5 @@ public class GroupCreateServlet {
         return groupCreateList;
     }
 
-    @GetMapping("/showLatestGroupCreate")
-    public List<GroupCreateVO> showLatestGroupCreate(){
-        List<GroupCreateVO> LatestGroupCreateList = groupCreateService.showLatestGroupCreate();
-        return LatestGroupCreateList;
-    }
 
-    @GetMapping("/showUpcomingGroupCreate")
-    public List<GroupCreateVO> showUpcomingGroupCreate(){
-        List<GroupCreateVO> UpcomingGroupCreateList = groupCreateService.showUpcomingGroupCreate();
-        return UpcomingGroupCreateList;
-    }
 }

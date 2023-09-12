@@ -7,7 +7,7 @@
   <!-- SEO Meta Tags-->
   <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
   <meta name="keywords"
-    content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, dark mode, html5, css3, javascript, gallery, slider, touch, creative">
+        content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, dark mode, html5, css3, javascript, gallery, slider, touch, creative">
   <meta name="author" content="Createx Studio">
   <!-- Viewport-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,11 +23,11 @@
   <!-- Theme mode-->
   <script>
     let mode = window.localStorage.getItem('mode'),
-      root = document.getElementsByTagName('html')[0];
+        root = document.getElementsByTagName('html')[0];
     if (mode !== undefined && mode === 'dark') {
-      root.classList.add('dark-mode');
+        root.classList.add('dark-mode');
     } else {
-      root.classList.remove('dark-mode');
+        root.classList.remove('dark-mode');
     }
 
 
@@ -35,121 +35,121 @@
   <!-- Page loading styles-->
   <style>
     .page-loading {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      -webkit-transition: all .4s .2s ease-in-out;
-      transition: all .4s .2s ease-in-out;
-      background-color: #fff;
-      opacity: 0;
-      visibility: hidden;
-      z-index: 9999;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
     }
 
     .dark-mode .page-loading {
-      background-color: #121519;
+        background-color: #121519;
     }
 
     .page-loading.active {
-      opacity: 1;
-      visibility: visible;
+        opacity: 1;
+        visibility: visible;
     }
 
     .page-loading-inner {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      -webkit-transform: translateY(-50%);
-      transform: translateY(-50%);
-      -webkit-transition: opacity .2s ease-in-out;
-      transition: opacity .2s ease-in-out;
-      opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
     }
 
     .page-loading.active>.page-loading-inner {
-      opacity: 1;
+        opacity: 1;
     }
 
     .page-loading-inner>span {
-      display: block;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: normal;
-      color: #6f788b;
+        display: block;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #6f788b;
     }
 
     .dark-mode .page-loading-inner>span {
-      color: #fff;
-      opacity: .6;
+        color: #fff;
+        opacity: .6;
     }
 
     .page-spinner {
-      display: inline-block;
-      width: 2.75rem;
-      height: 2.75rem;
-      margin-bottom: .75rem;
-      vertical-align: text-bottom;
-      background-color: #d7dde2;
-      border-radius: 50%;
-      opacity: 0;
-      -webkit-animation: spinner .75s linear infinite;
-      animation: spinner .75s linear infinite;
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        background-color: #d7dde2;
+        border-radius: 50%;
+        opacity: 0;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
     }
 
     .dark-mode .page-spinner {
-      background-color: rgba(255, 255, 255, .25);
+        background-color: rgba(255, 255, 255, .25);
     }
 
     @-webkit-keyframes spinner {
-      0% {
-        -webkit-transform: scale(0);
-        transform: scale(0);
-      }
+        0% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
 
-      50% {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-      }
+        50% {
+            opacity: 1;
+            -webkit-transform: none;
+            transform: none;
+        }
     }
 
     @keyframes spinner {
-      0% {
-        -webkit-transform: scale(0);
-        transform: scale(0);
-      }
+        0% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
 
-      50% {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-      }
+        50% {
+            opacity: 1;
+            -webkit-transform: none;
+            transform: none;
+        }
     }
   </style>
   <!-- Page loading scripts-->
   <script>
     (function () {
-      window.onload = function () {
-        const preloader = document.querySelector('.page-loading');
-        preloader.classList.remove('active');
-        setTimeout(function () {
-          preloader.remove();
-        }, 1500);
-      };
+        window.onload = function () {
+            const preloader = document.querySelector('.page-loading');
+            preloader.classList.remove('active');
+            setTimeout(function () {
+                preloader.remove();
+            }, 1500);
+        };
     })();
 
   </script>
   <!-- Import Google Font-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"
-    id="google-font">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" id="google-font">
   <!-- Vendor styles-->
   <!-- Main Theme Styles + Bootstrap-->
   <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
@@ -159,332 +159,375 @@
 <!-- Body-->
 
 <body class="bg-secondary">
-  <!-- Page loading spinner-->
-  <div class="page-loading active">
-    <div class="page-loading-inner">
-      <div class="page-spinner"></div><span>Loading...</span>
+<!-- Page loading spinner-->
+<div class="page-loading active">
+  <div class="page-loading-inner">
+    <div class="page-spinner"></div><span>Loading...</span>
+  </div>
+</div>
+<!-- Page wrapper-->
+<main class="page-wrapper">
+  <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
+  <header class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
+    <div class="container"><a class="navbar-brand pe-sm-3" href="/ezdom/ezdomindex.html"><span
+            class="text-primary flex-shrink-0 me-2">
+                        <svg version="1.1" width="35" height="32" viewBox="0 0 36 33"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill="currentColor"
+                                  d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                            </path>
+                        </svg></span>EZ-DOM</a>
+      <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+        <input class="form-check-input" type="checkbox" id="theme-mode">
+        <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
+        <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
+      </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+               href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
+               rel="noopener">登入/註冊</a>
+      <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+      <nav class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                           data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">揪團</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item"
+                                      href="/ezdom/group/grouplist.html">揪團列表</a></li>
+              <li class="dropdown"><a class="dropdown-item" href="/ezdom/group/mygroup.html">My揪團</a>
+              </li>
+              <li class="dropdown" style="border-bottom: none;"><a
+                      class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                      aria-expanded="false">開團管理</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/ezdom/groupcreate/groupcreate.html">建立揪團</a>
+                  </li>
+                  <li><a class="dropdown-item"
+                         href="/ezdom/groupcreate/groupCreateVerify.html">管理開團</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                           data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">商城</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item"
+                                      href="/ezdom/frontendshop/shop-catalog.html">瀏覽商品</a></li>
+              <li class="dropdown"><a class="dropdown-item"
+                                      href="/ezdom/frontendshop/shop-account-orders.html">管理我的訂單</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                           data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">論壇</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇</a>
+              </li>
+              <li class="dropdown"><a class="dropdown-item"
+                                      href="/ezdom/frontforum/forum.html">論壇管理</a></li>
+              <li class="dropdown"><a class="dropdown-item"
+                                      href="/ezdom/frontforum/forum.html">論壇管理</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                           data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">預約</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item"
+                                      href="/ezdom/frontendreserve/reserve-memberlist.html">預約管理</a></li>
+              <li class="dropdown"><a class="dropdown-item"
+                                      href="/ezdom/frontendcoach/coach-list.html">瀏覽教練</a></li>
+              <li class="dropdown"><a id="link" class="dropdown-item"
+                                      href="/ezdom/frontendcoach/coach-details.html?coachId=">教練專區</a></li>
+
+            </ul>
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                           data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">會員中心</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item"
+                                      href="/ezdom/frontendmember/account-overview.html">我的頁面</a></li>
+              <li class="dropdown"><a class="dropdown-item"
+                                      href="/ezdom/frontforum/forum.html">收藏文章</a></li>
+              <li class="dropdown"><a class="dropdown-item"
+                                      href="/ezdom/frontendshop/shop-checkout.html">收藏商品</a></li>
+              <li class="dropdown"><a class="dropdown-item"
+                                      href="/ezdom/frontendmember/account-settings.html">個人設定</a></li>
+              <li class="dropdown"><a class="dropdown-item"
+                                      href="/ezdom/message/messagePrivate.html">聊天室</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link " href="/ezdom/frontendsupport/support.html"
+                                           aria-expanded="false">聯絡客服</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page content-->
+  <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
+    <div class="row pt-sm-2 pt-lg-0">
+      <!-- Sidebar (offcanvas on sreens < 992px)-->
+      <aside class="col-lg-3 pe-lg-4 pe-xl-5 mt-n3">
+        <div class="position-lg-sticky top-0">
+          <div class="d-none d-lg-block" style="padding-top: 105px;"></div>
+          <div class="offcanvas-lg offcanvas-start" id="sidebarAccount">
+            <button class="btn-close position-absolute top-0 end-0 mt-3 me-3 d-lg-none" type="button"
+                    data-bs-dismiss="offcanvas" data-bs-target="#sidebarAccount"></button>
+            <div class="offcanvas-body">
+              <div class="pb-2 pb-lg-0 mb-4 mb-lg-5"><img class="d-block rounded-circle mb-2" src=""
+                                                          width="80" alt="coachPicture" id="coachPicture">
+                <h3 class="h5 mb-1" id="name">教練名字</h3>
+                <p class="fs-sm text-muted mb-0" id="email">信箱</p>
+              </div>
+              <nav class="nav flex-column pb-2 pb-lg-4 mb-3">
+                <a class="nav-link fw-semibold py-2 px-0" id="details_href"><i
+                        class="ai-user-check fs-5 opacity-60 me-2"></i>個人資訊</a>
+                <a class="nav-link fw-semibold py-2 px-0" id="item_href"><i
+                        class="ai-menu fs-5 opacity-60 me-2"></i>預約項目</a>
+                <a class="nav-link fw-semibold py-2 px-0 active" id="time_href"><i
+                        class="ai-calendar-check fs-5 opacity-60 me-2"></i>預約時段</a>
+                <a class="nav-link fw-semibold py-2 px-0" id="message_href"><i
+                        class="ai-file-text fs-5 opacity-60 me-2"></i>留言板</a>
+                <a class="nav-link fw-semibold py-2 px-0" id="setting_href"
+                   style="display: none;"><i class="ai-settings fs-5 opacity-60 me-2"></i>設置</a>
+                <a class="nav-link fw-semibold py-2 px-0" id="report_href" style="display: none;"><i
+                        class="ai-dislike fs-5 opacity-60 me-2"></i>檢舉教練</a>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <!-- Page content-->
+      <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
+        <div class="container">
+          <h2 class="mt-4" id="classTime">選擇課程時間</h2>
+          <div style="margin-left: 430px;">
+            <span><i class="ai-circle-slash"></i> : 休息 </span><span style="margin-left: 10px;"><i
+                  class="ai-star"></i>
+                                : 可預約 </span><span style="margin-left: 10px;"><i class="ai-star-filled"></i> : 已被預約
+                            </span> <span style="margin-left: 10px;"><i class="ai-check-alt"></i> : 完成教學 </span>
+          </div>
+          <table class="table table-success table-striped">
+            <thead>
+            <tr>
+              <th>日期\時段</th>
+              <th>8:00-10:00</th>
+              <th>10:00-12:00</th>
+              <th>13:00-15:00</th>
+              <th>15:00-17:00</th>
+              <th>17:00-19:00</th>
+              <th>19:00-21:00</th>
+            </tr>
+            </thead>
+            <tbody id="calendarBody">
+            <!-- JavaScript 將動態生成日期行 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-  <!-- Page wrapper-->
-  <main class="page-wrapper">
-    <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
-    <header  class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
-      <div class="container"><a class="navbar-brand pe-sm-3" href="/ezdom/ezdomindex.html"><span
-              class="text-primary flex-shrink-0 me-2">
-                    <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="currentColor"
-                              d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
-                        </path>
-                    </svg></span>EZ-DOM</a>
-        <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
-          <input class="form-check-input" type="checkbox" id="theme-mode">
-          <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
-          <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
-        </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
-                 href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
-                 rel="noopener">登入/註冊</a>
-        <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
-        <nav class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                             data-bs-auto-close="outside" aria-expanded="false">揪團</a>
-              <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/group/grouplist.html">揪團列表</a></li>
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/group/mygroup.html">My揪團</a></li>
-                <li class="dropdown" style="border-bottom: none;"><a class="dropdown-item dropdown-toggle"
-                                                                     href="#" data-bs-toggle="dropdown" aria-expanded="false">開團管理</a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/ezdom/groupcreate/groupcreate.html">建立揪團</a></li>
-                    <li><a class="dropdown-item" href="/ezdom/groupcreate/groupCreateVerify.html">管理開團</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                             data-bs-auto-close="outside" aria-expanded="false">商城</a>
-              <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-catalog.html">瀏覽商品</a></li>
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-account-orders.html">管理我的訂單</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                             data-bs-auto-close="outside" aria-expanded="false">論壇</a>
-              <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇</a></li>
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇管理</a></li>
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇管理</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                             data-bs-auto-close="outside" aria-expanded="false">預約</a>
-              <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendcoach/coach-list.html">瀏覽教練</a></li>
-                <li class="dropdown"><a id="link" class="dropdown-item" href="/ezdom/frontendcoach/coach-details.html?coachId=">教練專區</a></li>
+  </div>
 
-              </ul>
-            </li>
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                             data-bs-auto-close="outside" aria-expanded="false">會員中心</a>
-              <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendmember/account-overview.html">我的頁面</a></li>
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">收藏文章</a></li>
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-checkout.html">收藏商品</a></li>
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendmember/account-settings.html">個人設定</a></li>
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/message/messagePrivate.html">聊天室</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown"><a class="nav-link " href="/ezdom/frontendsupport/support.html"
-                                             aria-expanded="false">聯絡客服</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-    <!-- Page content-->
-    <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
-      <div class="row pt-sm-2 pt-lg-0">
-        <!-- Sidebar (offcanvas on sreens < 992px)-->
-        <aside class="col-lg-3 pe-lg-4 pe-xl-5 mt-n3">
-          <div class="position-lg-sticky top-0">
-            <div class="d-none d-lg-block" style="padding-top: 105px;"></div>
-            <div class="offcanvas-lg offcanvas-start" id="sidebarAccount">
-              <button class="btn-close position-absolute top-0 end-0 mt-3 me-3 d-lg-none" type="button"
-                data-bs-dismiss="offcanvas" data-bs-target="#sidebarAccount"></button>
-              <div class="offcanvas-body">
-                <div class="pb-2 pb-lg-0 mb-4 mb-lg-5"><img class="d-block rounded-circle mb-2" src="" width="80"
-                    alt="coachPicture" id="coachPicture">
-                  <h3 class="h5 mb-1" id="name">教練名字</h3>
-                  <p class="fs-sm text-muted mb-0" id="email">信箱</p>
-                </div>
-                <nav class="nav flex-column pb-2 pb-lg-4 mb-3">
-                  <a class="nav-link fw-semibold py-2 px-0" id="details_href"><i
-                      class="ai-user-check fs-5 opacity-60 me-2"></i>個人資訊</a>
-                  <a class="nav-link fw-semibold py-2 px-0" id="item_href"><i
-                      class="ai-menu fs-5 opacity-60 me-2"></i>預約項目</a>
-                  <a class="nav-link fw-semibold py-2 px-0 active" id="time_href"><i
-                      class="ai-calendar-check fs-5 opacity-60 me-2"></i>預約時段</a>
-                  <a class="nav-link fw-semibold py-2 px-0" id="message_href"><i
-                      class="ai-file-text fs-5 opacity-60 me-2"></i>留言板</a>
-                  <a class="nav-link fw-semibold py-2 px-0" id="setting_href" style="display: none;"><i
-                      class="ai-settings fs-5 opacity-60 me-2"></i>設置</a>
-                  <a class="nav-link fw-semibold py-2 px-0" id="report_href" style="display: none;"><i
-                      class="ai-dislike fs-5 opacity-60 me-2"></i>檢舉教練</a>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </aside>
-        <!-- Page content-->
-        <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
-          <div class="container">
-            <h2 class="mt-4" id="classTime">選擇課程時間</h2>
-            <div style="margin-left: 430px;">
-              <span><i class="ai-circle-slash"></i> : 休息 </span><span style="margin-left: 10px;"><i class="ai-star"></i>
-                : 可預約 </span><span style="margin-left: 10px;"><i class="ai-star-filled"></i> : 已被預約 </span> <span
-                style="margin-left: 10px;"><i class="ai-check-alt"></i> : 完成教學 </span>
-            </div>
-            <table class="table table-success table-striped">
-              <thead>
-                <tr>
-                  <th>日期\時段</th>
-                  <th>8:00-10:00</th>
-                  <th>10:00-12:00</th>
-                  <th>13:00-15:00</th>
-                  <th>15:00-17:00</th>
-                  <th>17:00-19:00</th>
-                  <th>19:00-21:00</th>
-                </tr>
-              </thead>
-              <tbody id="calendarBody">
-                <!-- JavaScript 將動態生成日期行 -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+  <!-- Divider for dark mode only-->
+  <hr class="d-none d-dark-mode-block">
+  <!-- Sidebar toggle button-->
+  <button class="d-lg-none btn btn-sm fs-sm btn-primary w-100 rounded-0 fixed-bottom" data-bs-toggle="offcanvas"
+          data-bs-target="#sidebarAccount"><i class="ai-menu me-2"></i>Account menu</button>
+</main>
+<!-- Footer-->
+<footer class="footer bg-secondary py-5">
+  <div class="container pt-1 pt-sm-2 pt-md-3 pt-lg-4 pt-xl-5">
+    <div class="border-bottom text-center pb-4"><a class="navbar-brand d-inline-flex text-nav py-0 mb-3 mb-md-4"
+                                                   href="index.html"><span class="text-primary flex-shrink-0 me-2">
+                        <svg version="1.1" width="35" height="32" viewBox="0 0 36 33"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill="currentColor"
+                                  d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                            </path>
+                        </svg></span><span>EZ-DOM</span></a>
+      <ul class="nav justify-content-center py-1 pb-sm-2">
+        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Classes</a></li>
+        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Trainers</a></li>
+        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Schedule</a></li>
+        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Contact</a></li>
+      </ul>
     </div>
-    </div>
-
-    <!-- Divider for dark mode only-->
-    <hr class="d-none d-dark-mode-block">
-    <!-- Sidebar toggle button-->
-    <button class="d-lg-none btn btn-sm fs-sm btn-primary w-100 rounded-0 fixed-bottom" data-bs-toggle="offcanvas"
-      data-bs-target="#sidebarAccount"><i class="ai-menu me-2"></i>Account menu</button>
-  </main>
-  <!-- Footer-->
-  <footer class="footer bg-secondary py-5">
-    <div class="container pt-1 pt-sm-2 pt-md-3 pt-lg-4 pt-xl-5">
-      <div class="border-bottom text-center pb-4"><a class="navbar-brand d-inline-flex text-nav py-0 mb-3 mb-md-4"
-          href="index.html"><span class="text-primary flex-shrink-0 me-2">
-            <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
-              <path fill="currentColor"
-                d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
-              </path>
-            </svg></span><span>EZ-DOM</span></a>
-        <ul class="nav justify-content-center py-1 pb-sm-2">
-          <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Classes</a></li>
-          <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Trainers</a></li>
-          <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Schedule</a></li>
-          <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Pricing</a></li>
-          <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Contact</a></li>
-        </ul>
+    <div class="d-sm-flex align-items-center justify-content-between pt-4 mt-2 mt-sm-0">
+      <div class="d-flex justify-content-center order-sm-2 mb-4 mb-sm-0"><a
+              class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle me-3" href="#"><i
+              class="ai-instagram"></i></a><a
+              class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle me-3" href="#"><i
+              class="ai-facebook"></i></a><a
+              class="btn btn-icon btn-sm btn-secondary btn-youtube rounded-circle" href=""><i
+              class="ai-youtube"></i></a>
       </div>
-      <div class="d-sm-flex align-items-center justify-content-between pt-4 mt-2 mt-sm-0">
-        <div class="d-flex justify-content-center order-sm-2 mb-4 mb-sm-0"><a
-            class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle me-3" href="#"><i
-              class="ai-instagram"></i></a><a class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle me-3"
-            href="#"><i class="ai-facebook"></i></a><a
-            class="btn btn-icon btn-sm btn-secondary btn-youtube rounded-circle" href=""><i class="ai-youtube"></i></a>
-        </div>
-        <p class="fs-sm order-sm-1 text-center mb-0"><span class="opacity-70">&copy; All rights reserved. Made by
-          </span><a class="nav-link d-inline fw-normal p-0" href="https://createx.studio/" target="_blank"
-            rel="noopener">Createx Studio</a></p>
-      </div>
+      <p class="fs-sm order-sm-1 text-center mb-0"><span class="opacity-70">&copy; All rights reserved. Made
+                        by
+                    </span><a class="nav-link d-inline fw-normal p-0" href="https://createx.studio/" target="_blank"
+                              rel="noopener">Createx Studio</a></p>
     </div>
-  </footer>
-  <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll>
-    <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10">
-      </circle>
-    </svg><i class="ai-arrow-up"></i></a>
-  <!-- Vendor scripts: js libraries and plugins-->
-  <script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-  <!-- Main theme script-->
-  <script src="../frontendshop/assets/js/theme.min.js"></script>
-  <!-- 引入 SweetAlert2 的 JavaScript 文件 -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </div>
+</footer>
+<!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll>
+  <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10">
+    </circle>
+  </svg><i class="ai-arrow-up"></i></a>
+<!-- Vendor scripts: js libraries and plugins-->
+<script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<!-- Main theme script-->
+<script src="../frontendshop/assets/js/theme.min.js"></script>
+<!-- 引入 SweetAlert2 的 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <script>
-    // ====================== 宣告變數 ====================== //
-    let coachDetails;
-    // 側邊欄大頭貼
-    const coachPicture = document.querySelector("#coachPicture");
-    // 側邊欄姓名
-    const coachName = document.querySelector("#name");
-    // 側邊欄信箱
-    const coachEmail = document.querySelector("#email");
-    // 側邊欄個人資訊的連結
-    const detailsURL = document.querySelector("#details_href");
-    // 側邊欄預約項目的連結
-    const itemURL = document.querySelector("#item_href");
-    // 側邊欄預約時段的連結
-    const timeURL = document.querySelector("#time_href");
-    // 側邊欄留言板的連結
-    const messageURL = document.querySelector("#message_href");
-    // 側邊欄設置的連結
-    const settingURL = document.querySelector("#setting_href");
-    // 側邊欄檢舉教練的連結
-    const reportURL = document.querySelector("#report_href");
-    // 個人資訊div
-    const card_div = document.querySelector("#card");
-<!--    // 模擬登入的會員ID-->
-<!--    const memberId = 1;-->
-<!--    // 模擬登入的 coachId-->
-<!--    const coachId = 1;-->
-// ====================== 取得登入的session資訊 ====================== //
-const s_req = '/ezdom/frontend/session';
-let session;
-let memberId = null;
-let coachId = null;
-async function getSession(){
-	let response = await fetch(s_req);
-    session = await response.json();
-    console.log(session);
-    memberId = session.memberId;
-    if(null !== session.coachId){
-        coachId = session.coachId;
-    }
+<script>
+  // ====================== 宣告變數 ====================== //
+  let coachDetails;
+  // 側邊欄大頭貼
+  const coachPicture = document.querySelector("#coachPicture");
+  // 側邊欄姓名
+  const coachName = document.querySelector("#name");
+  // 側邊欄信箱
+  const coachEmail = document.querySelector("#email");
+  // 側邊欄個人資訊的連結
+  const detailsURL = document.querySelector("#details_href");
+  // 側邊欄預約項目的連結
+  const itemURL = document.querySelector("#item_href");
+  // 側邊欄預約時段的連結
+  const timeURL = document.querySelector("#time_href");
+  // 側邊欄留言板的連結
+  const messageURL = document.querySelector("#message_href");
+  // 側邊欄設置的連結
+  const settingURL = document.querySelector("#setting_href");
+  // 側邊欄檢舉教練的連結
+  const reportURL = document.querySelector("#report_href");
+  // 個人資訊div
+  const card_div = document.querySelector("#card");
+  // ====================== 取得登入的session資訊 ====================== //
+  const s_req = '/ezdom/frontend/session';
+  let session;
+  let memberId = null;
+  let coachId = null;
+  async function getSession() {
+      let response = await fetch(s_req);
+      session = await response.json();
+      console.log(session);
+      memberId = session.memberId;
+      if (null !== session.coachId) {
+          coachId = session.coachId;
+      }
 
-    let link = document.querySelector("#link");
-    if(null !== coachId){
-      link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
-    } else if (null === coachId){
-      link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
-      link.textContent = "註冊教練";
-    }
-}
+      let link = document.querySelector("#link");
+      if (null !== coachId) {
+          link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
+      } else if (null === coachId) {
+          link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
+          link.textContent = "註冊教練";
+      }
+  }
 
 
-    // ====================== 瀏覽教練個人頁面 ====================== //
-    window.addEventListener("load", function () {
-<!--        getSession();-->
-<!--      getCoachDetails();-->
-        (async () => {
-            await getSession(); // 等待第一个函数完成
-            await getCoachDetails(); // 在第一个函数完成后，调用第二个函数
+  // ====================== 瀏覽教練個人頁面 ====================== //
+  window.addEventListener("load", function () {
+      (async () => {
+          await getSession(); // 等待第一个函数完成
+          await getCoachDetails(); // 在第一个函数完成后，调用第二个函数
 
-            if (coachId === parseInt(url_coachId)) {
+          if (coachId === parseInt(url_coachId)) {
               for (var i = 1; i <= days; i++) {
-                html += `
-                    <tr>
-                    <th date="${i}" style="text-align: center;">${i}</th>
-                    `;
-                for (let j = 0; j < 6; j++) {
                   html += `
-                        <td date="${i}" time="${j}" style="text-align: center;"><div style="cursor:pointer" date="${i}" time="${j}" onclick="coachPage('${i}',${j})"><i class="ai-circle-slash"></i></div></td>
-                        `;
-                }
-                html += `
-                    </tr>
-                    `;
-              }
-              coachFlushPage();
-            } else {
-              for (var i = 1; i <= days; i++) {
-                html += `
-                <tr>
-                  <th date="${i}" style="text-align: center;">${i}</th>
+              <tr>
+              <th date="${i}" style="text-align: center;">${i}</th>
+              `;
+                  for (let j = 0; j < 6; j++) {
+                      html += `
+                  <td date="${i}" time="${j}" style="text-align: center;"><div class="date" style="cursor:pointer" date="${i}" time="${j}" onclick="coachPage('${i}',${j})"><i class="ai-circle-slash"></i></div></td>
                   `;
-                for (let j = 0; j < 6; j++) {
+                  }
                   html += `
-                          <td date="${i}" time="${j}" style="text-align: center;"><div date="${i}" time="${j}"  ><i class="ai-circle-slash"></i></div></td>
-                          `;
-                }
-                html += `
-                        </tr>
-                        `;
+              </tr>
+              `;
+              }
+
+              coachFlushPage();
+          } else {
+              for (var i = 1; i <= days; i++) {
+                  html += `
+          <tr>
+            <th date="${i}" style="text-align: center;">${i}</th>
+            `;
+                  for (let j = 0; j < 6; j++) {
+                      html += `
+                    <td date="${i}" time="${j}" style="text-align: center;"><div class="date" date="${i}" time="${j}"  ><i class="ai-circle-slash"></i></div></td>
+                    `;
+                  }
+                  html += `
+                  </tr>
+                  `;
               }
               flushPage();
-            }
-            // 動態生成表格行
-            calendarBody.innerHTML = html;
-            // 標記當天
-            var todayCell = calendarBody.rows[today.getDate() - 1].cells[currentMonth + 1];
-            })();
-    })
+          }
+          // 動態生成表格行
+          calendarBody.innerHTML = html;
 
-    const url = new URLSearchParams(window.location.search);
-    const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值
-    const reserveItemId = url.get('reserveItemId'); // 取得URL中查詢字串coachId的值
-    const req = '/ezdom/frontend/browse/list/' + url_coachId;
+          // 暂停
+          setTimeout(function () {
+              let today = new Date();
+              let day = today.getDate();
 
-    async function getCoachDetails() {
+              let dateDivs = document.querySelectorAll('div.date');
+              let status;
 
-    try {
-        let response = await fetch(req);
+              dateDivs.forEach(function (dateDiv) {
+                  let dateAttribute = dateDiv.getAttribute('date');
+                  status = dateDiv.getAttribute('status');
 
-        if (response.status === 401) {
-            // 重定向到登录页面 登入失敗
-            window.location.href = '/ezdom/frontendmember/account-signin.html';
-        } else if (response.ok) {
-            // 登入成功
-            coachDetails = await response.json();
-        } else {
-            alert("錯誤狀態 " + response.status);
-        }
-    } catch (error) {
-        console.error("出现错误: " + error);
-    }
-<!--      let response = await fetch(req);-->
-<!--      coachDetails = await response.json();-->
-      console.log(coachDetails);
+
+                  // 檢查是否小于今天的日期
+                  if (dateAttribute < day && status !== "2" && status !== "3") {
+                      // 如果是，将innerHTML设置为<i class="ai-cross-alt"></i>
+                      dateDiv.innerHTML = '<i class="ai-cross-alt"></i>';
+                      dateDiv.setAttribute("onclick", "");
+                      dateDiv.setAttribute("style", "");
+                      dateDiv.removeEventListener('click', function () { });
+                  }
+              });
+          }, 200);
+
+
+      })();
+
+  })
+
+  const url = new URLSearchParams(window.location.search);
+  const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值
+  const reserveItemId = url.get('reserveItemId'); // 取得URL中查詢字串coachId的值
+  const req = '/ezdom/frontend/browse/list/' + url_coachId;
+
+  async function getCoachDetails() {
+
+      try {
+          let response = await fetch(req);
+
+          if (response.status === 401) {
+              // 重定向到登录页面 登入失敗
+              window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+              // 登入成功
+              coachDetails = await response.json();
+          } else {
+              alert("錯誤狀態 " + response.status);
+          }
+      } catch (error) {
+          console.error("出现错误: " + error);
+      }
       showCoachDetails();
-    }
+  }
 
-    function showCoachDetails() {
+  function showCoachDetails() {
       let imgUrl = "data:image/jpeg;base64," + coachDetails.picture;
       let update_btn = "none";
 
@@ -494,8 +537,8 @@ async function getSession(){
         3. 若是，則讓設置的選項 show出
       */
       if (coachId === coachDetails.coachId) {
-        settingURL.style = "";
-        // reportURL.style = "display:none";
+          settingURL.style = "";
+          // reportURL.style = "display:none";
       }
 
       coachPicture.src = imgUrl;
@@ -506,255 +549,205 @@ async function getSession(){
       timeURL.href = `reserve-memberDate.html?coachId=${coachDetails.coachId}`;
       messageURL.href = `../frontendcoach/coach-message.html?coachId=${coachDetails.coachId}`;
       settingURL.href = `../frontendcoach/coach-settings.html?coachId=${coachDetails.coachId}`;
-    }
+  }
 
 
 
 
 
 
-    // 取得今天的日期
-    var today = new Date();
-    var currentMonth = today.getMonth();
-    var currentYear = today.getFullYear();
+  // 取得今天的日期
+  var today = new Date();
+  var currentMonth = today.getMonth();
+  var currentYear = today.getFullYear();
 
-    // 取得當月的天數
-    function daysInMonth(month, year) {
+  // 取得當月的天數
+  function daysInMonth(month, year) {
       return new Date(year, month + 1, 0).getDate();
-    }
+  }
 
-    var days = daysInMonth(currentMonth, currentYear);
+  var days = daysInMonth(currentMonth, currentYear);
 
-    // 取得表格的 tbody 元素
-    var calendarBody = document.getElementById("calendarBody");
-    let html = "";
-
-<!--    if (coachId === parseInt(url_coachId)) {-->
-<!--      for (var i = 1; i <= days; i++) {-->
-<!--        html += `-->
-<!--            <tr>-->
-<!--            <th date="${i}" style="text-align: center;">${i}</th>-->
-<!--            `;-->
-<!--        for (let j = 0; j < 6; j++) {-->
-<!--          html += `-->
-<!--                <td date="${i}" time="${j}" style="text-align: center;"><div style="cursor:pointer" date="${i}" time="${j}" onclick="coachPage('${i}',${j})"><i class="ai-circle-slash"></i></div></td>-->
-<!--                `;-->
-<!--        }-->
-<!--        html += `-->
-<!--            </tr>-->
-<!--            `;-->
-<!--      }-->
-<!--      coachFlushPage();-->
-<!--    } else {-->
-<!--      for (var i = 1; i <= days; i++) {-->
-<!--        html += `-->
-<!--        <tr>-->
-<!--          <th date="${i}" style="text-align: center;">${i}</th>-->
-<!--          `;-->
-<!--        for (let j = 0; j < 6; j++) {-->
-<!--          html += `-->
-<!--                  <td date="${i}" time="${j}" style="text-align: center;"><div date="${i}" time="${j}"  ><i class="ai-circle-slash"></i></div></td>-->
-<!--                  `;-->
-<!--        }-->
-<!--        html += `-->
-<!--                </tr>-->
-<!--                `;-->
-<!--      }-->
-<!--      flushPage();-->
-<!--    }-->
-<!--    // 動態生成表格行-->
-<!--    calendarBody.innerHTML = html;-->
-<!--    // 標記當天-->
-<!--    var todayCell = calendarBody.rows[today.getDate() - 1].cells[currentMonth + 1];-->
+  // 取得表格的 tbody 元素
+  var calendarBody = document.getElementById("calendarBody");
+  let html = "";
 
 
-    // let data = {
-    //   date: 6,
-    //   xxx: 3,
-    //   yyy: 1
-    // };
 
-    // console.log(data.date);
-    // console.log(data.yyy);
-    // if (data.yyy === 1) {
-    //   const td = document.querySelector(`td[date="${data.date}"][time="${data.xxx}"]`)
-    //   console.log(td);
-    //   td.textContent = 1;
-    // }
-
-
-    //會員視角
-    function flushPage() {
+  //會員視角
+  function flushPage() {
       let classTime = document.getElementById("classTime");
       classTime.textContent = `預約時段表(${currentMonth + 1}月份)`;
       fetch(`/ezdom/frontend/reserve/coach/time/${url_coachId}`)
-        .then(response => {
+          .then(response => {
               if (response.status === 401) {
-                // 重定向到登录页面 登入失敗
-                window.location.href = '/ezdom/frontendmember/account-signin.html';
+                  // 重定向到登录页面 登入失敗
+                  window.location.href = '/ezdom/frontendmember/account-signin.html';
               } else if (response.ok) {
-                //登入成功
-                return response.json();
+                  //登入成功
+                  return response.json();
               } else {
-                alert("錯誤狀態" + response.status);
-                return;
+                  alert("錯誤狀態" + response.status);
+                  return;
               }
-            })
-        .then(body => {
-          if (body != null) {
-            for (let list of body) {
-              console.log(list);
-              let { reserveTimeId, date, classTime, appointmentStatus } = list;
-              if (appointmentStatus == 1) {
-                let dateFromDatabase = new Date(date);
-                // 使用getDate()方法取得天數
-                let day = dateFromDatabase.getDate();
-                let iElement = document.querySelector(`div[date="${day}"][time="${classTime}"] i`)
-                if (iElement) {
-                  iElement.classList.remove("ai-circle-slash"); // 移除旧的class
-                  iElement.classList.add("ai-star"); // 添加新的class
-                }
-                let aElement = document.querySelector(`div[date="${day}"][time="${classTime}"]`)
-                if (aElement) {
-                  aElement.removeAttribute('onclick');
-                  if (reserveItemId !== null) {
-                    aElement.setAttribute("style", "cursor:pointer"); // 增加可點擊的鼠標
-                    aElement.onclick = function () {
+          })
+          .then(body => {
+              if (body != null) {
+                  for (let list of body) {
+                      console.log(list);
+                      let { reserveTimeId, date, classTime, appointmentStatus } = list;
+                      if (appointmentStatus == 1) {
+                          let dateFromDatabase = new Date(date);
+                          // 使用getDate()方法取得天數
+                          let day = dateFromDatabase.getDate();
+                          let iElement = document.querySelector(`div[date="${day}"][time="${classTime}"] i`)
+                          if (iElement) {
+                              iElement.classList.remove("ai-circle-slash"); // 移除旧的class
+                              iElement.classList.add("ai-star"); // 添加新的class
+                          }
+                          let aElement = document.querySelector(`div[date="${day}"][time="${classTime}"]`)
+                          if (aElement) {
+                              aElement.removeAttribute('onclick');
+                              if (reserveItemId !== null) {
+                                  aElement.setAttribute("style", "cursor:pointer"); // 增加可點擊的鼠標
+                                  aElement.onclick = function () {
 
-                      var timeSlot;
+                                      var timeSlot;
 
-                      switch (classTime) {
-                        case 0:
-                          timeSlot = "8:00-10:00";
-                          break;
-                        case 1:
-                          timeSlot = "10:00-12:00";
-                          break;
-                        case 2:
-                          timeSlot = "13:00-15:00";
-                          break;
-                        case 3:
-                          timeSlot = "15:00-17:00";
-                          break;
-                        case 4:
-                          timeSlot = "17:00-19:00";
-                          break;
-                        case 5:
-                          timeSlot = "19:00-21:00";
-                          break;
-                        default:
-                          timeSlot = "未知时段";
-                          break;
-                      }
-                      Swal.fire({
-                        icon: 'question',
-                        title: `日期:${date}時間:${timeSlot}`,
-                        text: `是否確定預約此時段?`,
-                        confirmButtonText: '確定',
-                        cancelButtonText: '取消',
-                        showCancelButton: true
-                      }).then((result) => {
-                        if (result.isConfirmed) {
-                          fetch('/ezdom/frontend/reserve/order', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                              reserveItemId: reserveItemId,
-                              reserveDate: date,
-                              reserveTime: classTime
-                            }),
-                          }).then(response => {
-                              if (response.status === 401) {
-                                // 重定向到登录页面 登入失敗
-                                window.location.href = '/ezdom/frontendmember/account-signin.html';
-                              } else if (response.ok) {
-                                //登入成功
-                                return response.json();
-                              } else {
-                                alert("錯誤狀態" + response.status);
-                                return;
-                              }
-                            })
-                            .then(response => {
-                              let { message, successful } = response;
-                              if (successful) {
-                                fetch('/ezdom/frontend/reserve/coach/time', {
-                                  method: 'PUT',
-                                  headers: { 'Content-Type': 'application/json' },
-                                  body: JSON.stringify({
-                                    date: date,
-                                    classTime: classTime,
-                                    appointmentStatus: 2
-                                  }),
-                                }).then(resp => resp.json())
-                                  .then(body => {
-                                    let { message, successful } = body;
-                                    if (successful) {
+                                      switch (classTime) {
+                                          case 0:
+                                              timeSlot = "8:00-10:00";
+                                              break;
+                                          case 1:
+                                              timeSlot = "10:00-12:00";
+                                              break;
+                                          case 2:
+                                              timeSlot = "13:00-15:00";
+                                              break;
+                                          case 3:
+                                              timeSlot = "15:00-17:00";
+                                              break;
+                                          case 4:
+                                              timeSlot = "17:00-19:00";
+                                              break;
+                                          case 5:
+                                              timeSlot = "19:00-21:00";
+                                              break;
+                                          default:
+                                              timeSlot = "未知时段";
+                                              break;
+                                      }
                                       Swal.fire({
-                                        icon: 'success',
-                                        title: '已預約此時段，是否繼續預約?',
-                                        confirmButtonText: '確定',
-                                        focusConfirm: true,
-                                        showCancelButton: true,
-                                        cancelButtonText: '取消'
-                                      }).then(result => {
-                                        if (result.isConfirmed) {
-                                          // flushPage(); 會可以重複點選同一個時間段
-                                          window.location.reload();
-                                        } else {
-                                          window.location.replace("reserve-memberlist.html");
-                                        }
+                                          icon: 'question',
+                                          title: `日期:${date}時間:${timeSlot}`,
+                                          text: `是否確定預約此時段?`,
+                                          confirmButtonText: '確定',
+                                          cancelButtonText: '取消',
+                                          showCancelButton: true
+                                      }).then((result) => {
+                                          if (result.isConfirmed) {
+                                              fetch('/ezdom/frontend/reserve/order', {
+                                                  method: 'POST',
+                                                  headers: { 'Content-Type': 'application/json' },
+                                                  body: JSON.stringify({
+                                                      reserveItemId: reserveItemId,
+                                                      reserveDate: date,
+                                                      reserveTime: classTime
+                                                  }),
+                                              }).then(response => {
+                                                  if (response.status === 401) {
+                                                      // 重定向到登录页面 登入失敗
+                                                      window.location.href = '/ezdom/frontendmember/account-signin.html';
+                                                  } else if (response.ok) {
+                                                      //登入成功
+                                                      return response.json();
+                                                  } else {
+                                                      alert("錯誤狀態" + response.status);
+                                                      return;
+                                                  }
+                                              })
+                                                  .then(response => {
+                                                      let { message, successful } = response;
+                                                      if (successful) {
+                                                          fetch('/ezdom/frontend/reserve/coach/time', {
+                                                              method: 'PUT',
+                                                              headers: { 'Content-Type': 'application/json' },
+                                                              body: JSON.stringify({
+                                                                  date: date,
+                                                                  classTime: classTime,
+                                                                  appointmentStatus: 2
+                                                              }),
+                                                          }).then(resp => resp.json())
+                                                              .then(body => {
+                                                                  let { message, successful } = body;
+                                                                  if (successful) {
+                                                                      Swal.fire({
+                                                                          icon: 'success',
+                                                                          title: '已預約此時段，是否繼續預約?',
+                                                                          confirmButtonText: '確定',
+                                                                          focusConfirm: true,
+                                                                          showCancelButton: true,
+                                                                          cancelButtonText: '取消'
+                                                                      }).then(result => {
+                                                                          if (result.isConfirmed) {
+                                                                              // flushPage(); 會可以重複點選同一個時間段
+                                                                              window.location.reload();
+                                                                          } else {
+                                                                              window.location.replace("reserve-memberlist.html");
+                                                                          }
+                                                                      })
+                                                                  }
+                                                              })
+                                                      }
+                                                  })
+                                          }
                                       })
-                                    }
-                                  })
+                                  }
                               }
-                            })
-                        }
-                      })
-                    }
+
+                          };
+                      } else if (appointmentStatus == 2) {
+                          let dateFromDatabase = new Date(date);
+                          // 使用getDate()方法取得天數
+                          let day = dateFromDatabase.getDate();
+                          let aElement = document.querySelector(`div[date="${day}"][time="${classTime}"]`)
+                          if (aElement) {
+                              aElement.removeAttribute('onclick');
+                              aElement.setAttribute("status", "2");
+                          }
+                          let iElement = document.querySelector(`div[date="${day}"][time="${classTime}"] i`)
+                          if (iElement) {
+                              iElement.classList.remove("ai-circle-slash"); // 移除旧的class
+                              iElement.classList.remove("ai-star"); // 添加新的class
+                              iElement.classList.add("ai-star-filled"); // 添加新的class
+                          }
+                      } else if (appointmentStatus == 3) {
+                          let dateFromDatabase = new Date(date);
+                          let day = dateFromDatabase.getDate();
+                          let aElement = document.querySelector(`div[date="${day}"][time="${classTime}"]`)
+                          if (aElement) {
+                              aElement.removeAttribute('onclick');
+                              aElement.setAttribute("status", "3");
+                          }
+                          let iElement = document.querySelector(`div[date="${day}"][time="${classTime}"] i`)
+                          if (iElement) {
+                              iElement.classList.remove("ai-circle-slash"); // 移除舊的class
+                              iElement.classList.remove("ai-star"); // 移除舊的class
+                              iElement.classList.remove("ai-star-filled"); // 移除舊的class
+                              iElement.classList.add("ai-check-alt"); // 添加新的class
+                          }
+                      }
                   }
-
-                };
-              } else if (appointmentStatus == 2) {
-                let dateFromDatabase = new Date(date);
-                // 使用getDate()方法取得天數
-                let day = dateFromDatabase.getDate();
-                let aElement = document.querySelector(`div[date="${day}"][time="${classTime}"]`)
-                if (aElement) {
-                  aElement.removeAttribute('onclick');
-                }
-                let iElement = document.querySelector(`div[date="${day}"][time="${classTime}"] i`)
-                if (iElement) {
-                  iElement.classList.remove("ai-circle-slash"); // 移除旧的class
-                  iElement.classList.remove("ai-star"); // 添加新的class
-                  iElement.classList.add("ai-star-filled"); // 添加新的class
-                }
-              } else if (appointmentStatus == 3) {
-                let dateFromDatabase = new Date(date);
-                let day = dateFromDatabase.getDate();
-                let aElement = document.querySelector(`div[date="${day}"][time="${classTime}"]`)
-                if (aElement) {
-                  aElement.removeAttribute('onclick');
-                }
-                let iElement = document.querySelector(`div[date="${day}"][time="${classTime}"] i`)
-                if (iElement) {
-                  iElement.classList.remove("ai-circle-slash"); // 移除舊的class
-                  iElement.classList.remove("ai-star"); // 移除舊的class
-                  iElement.classList.remove("ai-star-filled"); // 移除舊的class
-                  iElement.classList.add("ai-check-alt"); // 添加新的class
-                }
               }
-            }
-          }
-        })
-    }
+          })
+  }
 
 
 
-    // ========================== 教練視角 ========================== //
+  // ========================== 教練視角 ========================== //
 
-    // 教練視角
-    function coachPage(i, j) {
+  // 教練視角
+  function coachPage(i, j) {
       let day = parseInt(i, 10); // 將字符串轉換為數字
 
       let today = new Date(); // 獲取當前日期
@@ -773,345 +766,347 @@ async function getSession(){
       formattedDate += " 00:00:00";
 
       Swal.fire({
-        icon: 'warning',
-        title: '編輯',
-        text: `是否確定排班?`,
-        confirmButtonText: '確定',
-        cancelButtonText: '取消',
-        showCancelButton: true
+          icon: 'warning',
+          title: '編輯',
+          text: `是否確定排班?`,
+          confirmButtonText: '確定',
+          cancelButtonText: '取消',
+          showCancelButton: true
       }).then((result) => {
-        if (result.isConfirmed) {
-          fetch(`/ezdom/frontend/reserve/coach/time?dateStr=${formattedDate}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              classTime: j
-            }),
-          }).then(response => {
-              if (response.status === 401) {
-                // 重定向到登录页面 登入失敗
-                window.location.href = '/ezdom/frontendmember/account-signin.html';
-              } else if (response.ok) {
-                //登入成功
-                return response.json();
-              } else {
-                alert("錯誤狀態" + response.status);
-                return;
-              }
-            })
-            .then(body => {
-              let { message, successful } = body;
-              if (successful) {
-                Swal.fire({
-                  icon: 'success',
-                  title: '排班成功',
-                  confirmButtonText: '確定',
-                  focusConfirm: true,
-                }).then(result => {
-                  if (result.isConfirmed) {
-                    coachFlushPage();
+          if (result.isConfirmed) {
+              fetch(`/ezdom/frontend/reserve/coach/time?dateStr=${formattedDate}`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                      classTime: j
+                  }),
+              }).then(response => {
+                  if (response.status === 401) {
+                      // 重定向到登录页面 登入失敗
+                      window.location.href = '/ezdom/frontendmember/account-signin.html';
+                  } else if (response.ok) {
+                      //登入成功
+                      return response.json();
+                  } else {
+                      alert("錯誤狀態" + response.status);
+                      return;
                   }
-                })
-              }
-            })
-        }
+              })
+                  .then(body => {
+                      let { message, successful } = body;
+                      if (successful) {
+                          Swal.fire({
+                              icon: 'success',
+                              title: '排班成功',
+                              confirmButtonText: '確定',
+                              focusConfirm: true,
+                          }).then(result => {
+                              if (result.isConfirmed) {
+                                  coachFlushPage();
+                              }
+                          })
+                      }
+                  })
+          }
       })
 
-    }
+  }
 
-    function coachFlushPage() {
+  function coachFlushPage() {
       let classTime = document.getElementById("classTime");
       classTime.textContent = `教練排班表(${currentMonth + 1}月份)`;
       // fetch(`/ezdom/reserve/coach/time`)    //coachId直接從後端抓
       fetch(`/ezdom/frontend/reserve/coach/time/${url_coachId}`)
-        .then(response => {
-          if (response.status === 401) {
-            // 重定向到登录页面 登入失敗
-            window.location.href = '/ezdom/frontendmember/account-signin.html';
-          } else if (response.ok) {
-            //登入成功
-            return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
-          }
-        })
-        .then(body => {
-          if (body != null) {
-            for (let list of body) {
-              // console.log(body);
-              let { reserveTimeId, date, classTime, appointmentStatus } = list;
-              if (appointmentStatus == 1) {
-                let dateFromDatabase = new Date(date);
-                // 使用getDate()方法取得天數
-                let day = dateFromDatabase.getDate();
-                let iElement = document.querySelector(`div[date="${day}"][time="${classTime}"] i`)
-                if (iElement) {
-                  iElement.classList.remove("ai-circle-slash"); // 移除舊的class
-                  iElement.classList.add("ai-star"); // 添加新的class
-                }
-                let aElement = document.querySelector(`div[date="${day}"][time="${classTime}"]`)
-                if (aElement) {
-                  aElement.removeAttribute('onclick');
-                  aElement.setAttribute("value", reserveTimeId);
-                  let id = aElement.getAttribute("value");
-                  aElement.onclick = function () {
-                    Swal.fire({
-                      icon: 'warning',
-                      title: '編輯',
-                      text: `是否取消排班?`,
-                      confirmButtonText: '確定',
-                      cancelButtonText: '取消',
-                      showCancelButton: true
-                    }).then((result) => {
-                      if (result.isConfirmed) {
-                        fetch(`/ezdom/frontend/reserve/coach/time/${id}`, {
-                          method: 'DELETE',
-                          headers: { 'Content-Type': 'application/json' },
-                        }).then(response => {
-                            if (response.status === 401) {
-                              // 重定向到登录页面 登入失敗
-                              window.location.href = '/ezdom/frontendmember/account-signin.html';
-                            } else if (response.ok) {
-                              //登入成功
-                              return response.json();
-                            } else {
-                              alert("錯誤狀態" + response.status);
-                              return;
-                            }
-                          })
-                          .then(body => {
-                            let { message, successful } = body;
-                            if (successful) {
-                              Swal.fire({
-                                icon: 'success',
-                                title: '取消成功',
-                                confirmButtonText: '確定',
-                                focusConfirm: true,
-                              }).then(result => {
-                                if (result.isConfirmed) {
-                                  // coachFlushPage();
-                                  window.location.reload();
-                                }
-                              })
-                            }
-                          })
-                      }
-                    })
-
-                  }
-                }
-              } else if (appointmentStatus == 2) {
-                let dateFromDatabase = new Date(date);
-                // 使用getDate()方法取得天數
-                let day = dateFromDatabase.getDate();
-                let iElement = document.querySelector(`div[date="${day}"][time="${classTime}"] i`)
-                if (iElement) {
-                  iElement.classList.remove("ai-circle-slash"); // 移除舊的class
-                  iElement.classList.remove("ai-star"); // 移除舊的class
-                  iElement.classList.add("ai-star-filled"); // 添加新的class
-                }
-                let aElement = document.querySelector(`div[date="${day}"][time="${classTime}"]`)
-                if (aElement) {
-                  aElement.removeAttribute('onclick');
-                  aElement.onclick = function () {
-                    fetch(`/ezdom/frontend/reserve/coach/details?reserveDate=${date}&reserveTime=${classTime}`)
-                      .then(response => {
-                        if (response.status === 401) {
-                          // 重定向到登录页面 登入失敗
-                          window.location.href = '/ezdom/frontendmember/account-signin.html';
-                        } else if (response.ok) {
-                          //登入成功
-                          return response.json();
-                        } else {
-                          alert("錯誤狀態" + response.status);
-                          return;
-                        }
-                      })
-                      .then(body => {
-                        let { place, content, orderStatus, memberName, reserveItem } = body;
-                        var timeSlot;
-
-                        switch (classTime) {
-                          case 0:
-                            timeSlot = "8:00-10:00";
-                            break;
-                          case 1:
-                            timeSlot = "10:00-12:00";
-                            break;
-                          case 2:
-                            timeSlot = "13:00-15:00";
-                            break;
-                          case 3:
-                            timeSlot = "15:00-17:00";
-                            break;
-                          case 4:
-                            timeSlot = "17:00-19:00";
-                            break;
-                          case 5:
-                            timeSlot = "19:00-21:00";
-                            break;
-                          default:
-                            timeSlot = "未知时段";
-                            break;
-                        }
-                        let tableContent = `
-                        <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="bg-faded-secondary">
-                                <th scope="row">學生姓名</th>
-                                <td colspan=3>${memberName}</td>
-                            </tr>
-                            <tr class="bg-faded-success">
-                                <th scope="row">課程項目</th>
-                                <td colspan=3>${reserveItem}</td>
-                            </tr>
-                            <tr class="bg-faded-secondary">
-                                <th scope="row">日期</th>
-                                <td colspan=3>${date}</td>
-                            </tr>
-                            <tr class="bg-faded-success">
-                                <th scope="row">時間</th>
-                                <td colspan=3>${timeSlot}</td>
-                            </tr>
-                            <tr class="bg-faded-secondary">
-                                <th scope="row">地址</th>
-                                <td colspan=3>${place}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        </div>
-                        `;
-
-                        Swal.fire({
-                          title: `預約詳情`, // 將 note 放入標題
-                          html: tableContent,
-                          showCloseButton: true,
-                          showCancelButton: false,
-                          focusConfirm: false,
-                          confirmButtonText: '關閉'
-                        });
-                      })
-                  }
-                }
-              } else if (appointmentStatus == 3) {
-                let dateFromDatabase = new Date(date);
-                let day = dateFromDatabase.getDate();
-                let aElement = document.querySelector(`div[date="${day}"][time="${classTime}"]`)
-                if (aElement) {
-                  aElement.removeAttribute('onclick');
-                  aElement.onclick = function () {
-                    fetch(`/ezdom/frontend/reserve/coach/details?reserveDate=${date}&reserveTime=${classTime}`)
-                      .then(response => {
-                        if (response.status === 401) {
-                          // 重定向到登录页面 登入失敗
-                          window.location.href = '/ezdom/frontendmember/account-signin.html';
-                        } else if (response.ok) {
-                          //登入成功
-                          return response.json();
-                        } else {
-                          alert("錯誤狀態" + response.status);
-                          return;
-                        }
-                      })
-                      .then(body => {
-                        let { place, content, orderStatus, memberName, reserveItem } = body;
-                        var timeSlot;
-
-                        switch (classTime) {
-                          case 0:
-                            timeSlot = "8:00-10:00";
-                            break;
-                          case 1:
-                            timeSlot = "10:00-12:00";
-                            break;
-                          case 2:
-                            timeSlot = "13:00-15:00";
-                            break;
-                          case 3:
-                            timeSlot = "15:00-17:00";
-                            break;
-                          case 4:
-                            timeSlot = "17:00-19:00";
-                            break;
-                          case 5:
-                            timeSlot = "19:00-21:00";
-                            break;
-                          default:
-                            timeSlot = "未知时段";
-                            break;
-                        }
-                        let tableContent = `
-                        <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="bg-faded-secondary">
-                                <th scope="row">學生姓名</th>
-                                <td colspan=3>${memberName}</td>
-                            </tr>
-                            <tr class="bg-faded-success">
-                                <th scope="row">課程項目</th>
-                                <td colspan=3>${reserveItem}</td>
-                            </tr>
-                            <tr class="bg-faded-secondary">
-                                <th scope="row">日期</th>
-                                <td colspan=3>${date}</td>
-                            </tr>
-                            <tr class="bg-faded-success">
-                                <th scope="row">時間</th>
-                                <td colspan=3>${timeSlot}</td>
-                            </tr>
-                            <tr class="bg-faded-secondary">
-                                <th scope="row">地址</th>
-                                <td colspan=3>${place}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        </div>
-                        `;
-
-                        Swal.fire({
-                          title: `預約詳情`, // 將 note 放入標題
-                          html: tableContent,
-                          showCloseButton: true,
-                          showCancelButton: false,
-                          focusConfirm: false,
-                          confirmButtonText: '關閉'
-                        });
-                      })
-                  }
-                }
-                let iElement = document.querySelector(`div[date="${day}"][time="${classTime}"] i`)
-                if (iElement) {
-                  iElement.classList.remove("ai-circle-slash"); // 移除舊的class
-                  iElement.classList.remove("ai-star"); // 移除舊的class
-                  iElement.classList.remove("ai-star-filled"); // 移除舊的class
-                  iElement.classList.add("ai-check-alt"); // 添加新的class
-                }
+          .then(response => {
+              if (response.status === 401) {
+                  // 重定向到登录页面 登入失敗
+                  window.location.href = '/ezdom/frontendmember/account-signin.html';
+              } else if (response.ok) {
+                  //登入成功
+                  return response.json();
+              } else {
+                  alert("錯誤狀態" + response.status);
+                  return;
               }
-            }
-          }
-        })
-    }
+          })
+          .then(body => {
+              if (body != null) {
+                  for (let list of body) {
+                      // console.log(body);
+                      let { reserveTimeId, date, classTime, appointmentStatus } = list;
+                      if (appointmentStatus == 1) {
+                          let dateFromDatabase = new Date(date);
+                          // 使用getDate()方法取得天數
+                          let day = dateFromDatabase.getDate();
+                          let iElement = document.querySelector(`div[date="${day}"][time="${classTime}"] i`)
+                          if (iElement) {
+                              iElement.classList.remove("ai-circle-slash"); // 移除舊的class
+                              iElement.classList.add("ai-star"); // 添加新的class
+                          }
+                          let aElement = document.querySelector(`div[date="${day}"][time="${classTime}"]`)
+                          if (aElement) {
+                              aElement.removeAttribute('onclick');
+                              aElement.setAttribute("value", reserveTimeId);
+                              let id = aElement.getAttribute("value");
+                              aElement.onclick = function () {
+                                  Swal.fire({
+                                      icon: 'warning',
+                                      title: '編輯',
+                                      text: `是否取消排班?`,
+                                      confirmButtonText: '確定',
+                                      cancelButtonText: '取消',
+                                      showCancelButton: true
+                                  }).then((result) => {
+                                      if (result.isConfirmed) {
+                                          fetch(`/ezdom/frontend/reserve/coach/time/${id}`, {
+                                              method: 'DELETE',
+                                              headers: { 'Content-Type': 'application/json' },
+                                          }).then(response => {
+                                              if (response.status === 401) {
+                                                  // 重定向到登录页面 登入失敗
+                                                  window.location.href = '/ezdom/frontendmember/account-signin.html';
+                                              } else if (response.ok) {
+                                                  //登入成功
+                                                  return response.json();
+                                              } else {
+                                                  alert("錯誤狀態" + response.status);
+                                                  return;
+                                              }
+                                          })
+                                              .then(body => {
+                                                  let { message, successful } = body;
+                                                  if (successful) {
+                                                      Swal.fire({
+                                                          icon: 'success',
+                                                          title: '取消成功',
+                                                          confirmButtonText: '確定',
+                                                          focusConfirm: true,
+                                                      }).then(result => {
+                                                          if (result.isConfirmed) {
+                                                              // coachFlushPage();
+                                                              window.location.reload();
+                                                          }
+                                                      })
+                                                  }
+                                              })
+                                      }
+                                  })
 
-  </script>
+                              }
+                          }
+                      } else if (appointmentStatus == 2) {
+                          let dateFromDatabase = new Date(date);
+                          // 使用getDate()方法取得天數
+                          let day = dateFromDatabase.getDate();
+                          let iElement = document.querySelector(`div[date="${day}"][time="${classTime}"] i`)
+                          if (iElement) {
+                              iElement.classList.remove("ai-circle-slash"); // 移除舊的class
+                              iElement.classList.remove("ai-star"); // 移除舊的class
+                              iElement.classList.add("ai-star-filled"); // 添加新的class
+                          }
+                          let aElement = document.querySelector(`div[date="${day}"][time="${classTime}"]`)
+                          if (aElement) {
+                              aElement.setAttribute("status", "2");
+                              aElement.removeAttribute('onclick');
+                              aElement.onclick = function () {
+                                  fetch(`/ezdom/frontend/reserve/coach/details?reserveDate=${date}&reserveTime=${classTime}`)
+                                      .then(response => {
+                                          if (response.status === 401) {
+                                              // 重定向到登录页面 登入失敗
+                                              window.location.href = '/ezdom/frontendmember/account-signin.html';
+                                          } else if (response.ok) {
+                                              //登入成功
+                                              return response.json();
+                                          } else {
+                                              alert("錯誤狀態" + response.status);
+                                              return;
+                                          }
+                                      })
+                                      .then(body => {
+                                          let { place, content, orderStatus, memberName, reserveItem } = body;
+                                          var timeSlot;
+
+                                          switch (classTime) {
+                                              case 0:
+                                                  timeSlot = "8:00-10:00";
+                                                  break;
+                                              case 1:
+                                                  timeSlot = "10:00-12:00";
+                                                  break;
+                                              case 2:
+                                                  timeSlot = "13:00-15:00";
+                                                  break;
+                                              case 3:
+                                                  timeSlot = "15:00-17:00";
+                                                  break;
+                                              case 4:
+                                                  timeSlot = "17:00-19:00";
+                                                  break;
+                                              case 5:
+                                                  timeSlot = "19:00-21:00";
+                                                  break;
+                                              default:
+                                                  timeSlot = "未知时段";
+                                                  break;
+                                          }
+                                          let tableContent = `
+                  <div class="table-responsive">
+                  <table class="table">
+                      <thead>
+                      <tr>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr class="bg-faded-secondary">
+                          <th scope="row">學生姓名</th>
+                          <td colspan=3>${memberName}</td>
+                      </tr>
+                      <tr class="bg-faded-success">
+                          <th scope="row">課程項目</th>
+                          <td colspan=3>${reserveItem}</td>
+                      </tr>
+                      <tr class="bg-faded-secondary">
+                          <th scope="row">日期</th>
+                          <td colspan=3>${date}</td>
+                      </tr>
+                      <tr class="bg-faded-success">
+                          <th scope="row">時間</th>
+                          <td colspan=3>${timeSlot}</td>
+                      </tr>
+                      <tr class="bg-faded-secondary">
+                          <th scope="row">地址</th>
+                          <td colspan=3>${place}</td>
+                      </tr>
+                      </tbody>
+                  </table>
+                  </div>
+                  `;
+
+                                          Swal.fire({
+                                              title: `預約詳情`, // 將 note 放入標題
+                                              html: tableContent,
+                                              showCloseButton: true,
+                                              showCancelButton: false,
+                                              focusConfirm: false,
+                                              confirmButtonText: '關閉'
+                                          });
+                                      })
+                              }
+                          }
+                      } else if (appointmentStatus == 3) {
+                          let dateFromDatabase = new Date(date);
+                          let day = dateFromDatabase.getDate();
+                          let aElement = document.querySelector(`div[date="${day}"][time="${classTime}"]`)
+                          if (aElement) {
+                              aElement.setAttribute("status", "3");
+                              aElement.removeAttribute('onclick');
+                              aElement.onclick = function () {
+                                  fetch(`/ezdom/frontend/reserve/coach/details?reserveDate=${date}&reserveTime=${classTime}`)
+                                      .then(response => {
+                                          if (response.status === 401) {
+                                              // 重定向到登录页面 登入失敗
+                                              window.location.href = '/ezdom/frontendmember/account-signin.html';
+                                          } else if (response.ok) {
+                                              //登入成功
+                                              return response.json();
+                                          } else {
+                                              alert("錯誤狀態" + response.status);
+                                              return;
+                                          }
+                                      })
+                                      .then(body => {
+                                          let { place, content, orderStatus, memberName, reserveItem } = body;
+                                          var timeSlot;
+
+                                          switch (classTime) {
+                                              case 0:
+                                                  timeSlot = "8:00-10:00";
+                                                  break;
+                                              case 1:
+                                                  timeSlot = "10:00-12:00";
+                                                  break;
+                                              case 2:
+                                                  timeSlot = "13:00-15:00";
+                                                  break;
+                                              case 3:
+                                                  timeSlot = "15:00-17:00";
+                                                  break;
+                                              case 4:
+                                                  timeSlot = "17:00-19:00";
+                                                  break;
+                                              case 5:
+                                                  timeSlot = "19:00-21:00";
+                                                  break;
+                                              default:
+                                                  timeSlot = "未知时段";
+                                                  break;
+                                          }
+                                          let tableContent = `
+                  <div class="table-responsive">
+                  <table class="table">
+                      <thead>
+                      <tr>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr class="bg-faded-secondary">
+                          <th scope="row">學生姓名</th>
+                          <td colspan=3>${memberName}</td>
+                      </tr>
+                      <tr class="bg-faded-success">
+                          <th scope="row">課程項目</th>
+                          <td colspan=3>${reserveItem}</td>
+                      </tr>
+                      <tr class="bg-faded-secondary">
+                          <th scope="row">日期</th>
+                          <td colspan=3>${date}</td>
+                      </tr>
+                      <tr class="bg-faded-success">
+                          <th scope="row">時間</th>
+                          <td colspan=3>${timeSlot}</td>
+                      </tr>
+                      <tr class="bg-faded-secondary">
+                          <th scope="row">地址</th>
+                          <td colspan=3>${place}</td>
+                      </tr>
+                      </tbody>
+                  </table>
+                  </div>
+                  `;
+
+                                          Swal.fire({
+                                              title: `預約詳情`, // 將 note 放入標題
+                                              html: tableContent,
+                                              showCloseButton: true,
+                                              showCancelButton: false,
+                                              focusConfirm: false,
+                                              confirmButtonText: '關閉'
+                                          });
+                                      })
+                              }
+                          }
+                          let iElement = document.querySelector(`div[date="${day}"][time="${classTime}"] i`)
+                          if (iElement) {
+                              iElement.classList.remove("ai-circle-slash"); // 移除舊的class
+                              iElement.classList.remove("ai-star"); // 移除舊的class
+                              iElement.classList.remove("ai-star-filled"); // 移除舊的class
+                              iElement.classList.add("ai-check-alt"); // 添加新的class
+                          }
+                      }
+                  }
+              }
+          })
+  }
+
+</script>
 </body>
 
 </html>

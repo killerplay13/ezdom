@@ -514,7 +514,7 @@
         const productStatus = 1; // 示例值
 
         // 使用AJAX获取Product ID列表
-        fetch(`http://localhost:8080/ezdom/product/get/${productStatus}`)
+        fetch(`/ezdom/backend/product/get/${productStatus}`)
             .then(resp => resp.json())
             .then(data => {
                 // 清空下拉选项
