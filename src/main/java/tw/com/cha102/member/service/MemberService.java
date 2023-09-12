@@ -20,7 +20,7 @@ public interface MemberService {
 
     void resetPassword(String newPassword, HttpServletRequest rquest, HttpServletResponse response);
 
-    void modifyPw(String modifyPw, HttpServletRequest request);
+    void modifyPw(String modifyPw, HttpServletRequest request, HttpServletResponse response);
 
     CommonResponse<String> checkAuthCode(String authCode, HttpSession httpSession,HttpServletResponse response);
 

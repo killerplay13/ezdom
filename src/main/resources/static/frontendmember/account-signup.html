@@ -256,16 +256,20 @@
                 <form class="needs-validation" novalidate>
                     <div class="row row-cols-1 row-cols-sm-2">
                         <div class="col mb-4">
-                            <input id="accountName" class="form-control form-control-lg" type="text" placeholder="帳號"
-                                   required
-                                   onblur="validateAccount()">
-                            <p id="accountnameError" style="color: red;"></p>
+                            <input id="memberName" class="form-control form-control-lg" type="text" placeholder="姓名"
+                                   required>
                         </div>
                         <div class="col mb-4">
                             <input id="mail" class="form-control form-control-lg" type="email" placeholder="信箱"
                                    required
                                    onblur="validateMail()">
                             <p id="mailError" style="color: red;"></p>
+                        </div>
+                        <div class="mb-4" style="width:100%;">
+                            <input id="accountName" class="form-control form-control-lg" type="text" placeholder="帳號"
+                                   required
+                                   onblur="validateAccount()">
+                            <p id="accountnameError" style="color: red;"></p>
                         </div>
                     </div>
                     <div class="password-toggle mb-4">
@@ -381,6 +385,7 @@
 
 <!-- 註冊驗證 -->
 <script>
+    let memberName = document.getElementById("memberName");
     let account = document.getElementById("accountName");
     let mail = document.getElementById("mail");
     let password = document.getElementById("password");
@@ -469,6 +474,7 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            name: memberName.value,
             account: accountName.value,
             email: mail.value,
             password: password.value

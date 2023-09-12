@@ -270,7 +270,7 @@
                         <div class="offcanvas-body">
                             <!-- 加 class -->
                             <div class="rounded-circle bg-size-cover bg-position-center flex-shrink-0 photoDisplay1"
-                                 style="width: 80px; height: 80px; background-image: url(../frontendshop/../frontendshop/assets/img/avatar/user.png);">
+                                 style="width: 80px; height: 80px; background-image: url(../frontendshop/assets/img/avatar/user.png);">
                             </div>
                             <br>
                             <div class="nameDisplay1">
@@ -284,16 +284,16 @@
                             <br>
                             <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
                                 <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">會員</h4>
-                                <a class="nav-link fw-semibold py-2 px-0 active" href="account-overview.html">
+                                <a class="nav-link fw-semibold py-2 px-0" href="account-overview.html">
                                     <i class="ai-user fs-5 opacity-60 me-2"></i>我的頁面
                                 </a>
-                                <a class="nav-link fw-semibold py-2 px-0" href="#">
+                                <a class="nav-link fw-semibold py-2 px-0 active" href="account-settings.html">
                                     <i class="ai-settings fs-5 opacity-60 me-2"></i>個人設定
                                 </a>
                             </nav>
                             <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
                                 <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">揪團</h4>
-                                <a class="nav-link fw-semibold py-2 px-0 active" href="#">
+                                <a class="nav-link fw-semibold py-2 px-0" href="../group/mygroup.html">
                                     <i class="ai-user-group fs-5 opacity-60 me-2"></i>我的揪團
                                 </a>
                                 <a class="nav-link fw-semibold py-2 px-0" href="#">
@@ -302,32 +302,34 @@
                             </nav>
                             <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
                                 <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">論壇</h4>
-                                <a class="nav-link fw-semibold py-2 px-0 active" href="#">
-                                    <i class="ai-note fs-5 opacity-60 me-2"></i>我的文章
+                                <a class="nav-link fw-semibold py-2 px-0" href="../frontendforum/forum-mypost.html">
+                                    <i class="ai-note fs-5 opacity-60 me-2"></i>我的論壇
                                 </a>
                             </nav>
                             <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
                                 <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">商城</h4>
-                                <a class="nav-link fw-semibold py-2 px-0 active" href="#">
+                                <a class="nav-link fw-semibold py-2 px-0" href="../frontendshop/shop-account-orders.html">
                                     <i class="ai-edit-alt fs-5 opacity-60 me-2"></i>我的訂單
-                                </a>
-                                <a class="nav-link fw-semibold py-2 px-0" href="#">
-                                    <i class="ai-heart fs-5 opacity-60 me-2"></i>我的收藏
                                 </a>
                             </nav>
                             <nav class="nav flex-column pb-1 pb-lg-2 mb-3">
                                 <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">預約</h4>
-                                <a class="nav-link fw-semibold py-2 px-0 active" href="#">
+                                <a class="nav-link fw-semibold py-2 px-0" href="../frontendreserve/reserve-memberlist.html">
                                     <i class="ai-user-check fs-5 opacity-60 me-2"></i>我的預約
                                 </a>
                             </nav>
                             <nav class="nav flex-column pb-1 pb-lg-2 mb-1">
-                                <a class="nav-link fw-semibold py-2 px-0" href="#">
-                                    <i class="ai-messages fs-5 opacity-60 me-2"></i>聊天室
+                                <a class="nav-link fw-semibold py-2 px-0" href="../message/messagePrivate.html">
+                                    <i class="ai-message fs-5 opacity-60 me-2"></i>聊天室
                                     <span class="badge bg-danger ms-auto"></span>
                                 </a>
+                                <a class="nav-link fw-semibold py-2 px-0" href="#">
+                                    <i class="ai-messages fs-5 opacity-60 me-2"></i>揪團聊天室
+                                    <span class="badge bg-danger ms-auto"></span>
+                                </a>
+                                <br>
                                 <a class="nav flex-column"><a class="nav-link fw-semibold py-2 px-0"
-                                                              href="account-signin.html"><i
+                                                              href="account-signin.html" id="logoutBtn"><i
                                         class="ai-logout fs-5 opacity-60 me-2"></i>登出</a>
                                 </a>
                             </nav>
@@ -838,7 +840,7 @@
 
       console.log("Selected gender: " + selectedGender);
 
-      fetch('http://localhost:8080/ezdom/member/profile', {
+      fetch('/ezdom/member/profile', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestData)
@@ -914,7 +916,7 @@
       const data = { memberPhoto: base64Image };
 
       // 使用fetch將JSON數據上傳到伺服器
-      fetch('http://localhost:8080/ezdom/member/uploadPhoto', {
+      fetch('/ezdom/member/uploadPhoto', {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(data),
@@ -1007,22 +1009,15 @@
     pwButton.addEventListener('click', function () {
         if (validatePassword() && validateConfirmPassword()) {
 
-            // 創建請求數據
-            const requestData = {
-                modifyPw: newPw.value,
-            };
+            const modifyPwValue = document.getElementById('newPw').value;
 
             // 執行修改密碼的邏輯
-            fetch('http://localhost:8080/ezdom/member/modifyPw', {
+            fetch(`/ezdom/member/modifyPw?modifyPw=${modifyPwValue}`, {
                 method: 'POST',
-                headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify(requestData)
+                headers: { 'Content-type': 'application/json' }
             }).then(response => {
                 // 處理修改密碼的回應
                 const statusCode = response.status;
-
-                // 在控制台中打印 requestData 的 modifyPw 值
-                console.log(requestData.modifyPw);
 
                 if (statusCode === 200) {
                     // 修改成功的處理
@@ -1065,7 +1060,7 @@
           const nameDisplay1 = document.querySelectorAll(".nameDisplay1");
           const mailDisplay1 = document.querySelectorAll(".mailDisplay1");
 
-          fetch(`http://localhost:8080/ezdom/member/getProfile`)
+          fetch(`/ezdom/member/getProfile`)
             .then(resp => resp.json())
             .then(body => {
               const { name, email } = body;
@@ -1086,31 +1081,41 @@
 
 </script>
 
-<!-- JQuery -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <!-- 照片 -->
 <script>
-    $(document).ready(function () {
+    document.addEventListener("DOMContentLoaded", function () {
       displayMemberPhoto();
     });
 
     function displayMemberPhoto() {
-      const photoDisplay1 = $(".photoDisplay1");
+      const photoDisplay1 = document.getElementsByClassName("photoDisplay1");
 
-      $.ajax({
-        url: 'http://localhost:8080/ezdom/member/getPhoto',
-        type: 'GET',
-        data: { memberAccount: '7014' },
-        dataType: 'json',
-        success: function (data) {
-          photoDisplay1.empty();
-          photoDisplay1.append(`<img class="rounded-circle bg-size-cover bg-position-center flex-shrink-0" src="data:image/jpeg;base64,${data.photoToBase64}" style="width: 80px; height: 80px;" />`);
-        },
-        error: function (error) {
-          console.error("錯誤：", error);
-        }
-      });
+      fetch(`/ezdom/member/getPhoto`, {
+          method: 'GET',
+          headers: { 'Content-type': 'application/json' },
+        })
+          .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/frontendmember/account-signin.html';
+          } else if (response.ok) {
+            //登入成功
+            return response.json();
+          } else {
+            alert("錯誤狀態" + response.status);
+            return;
+          }
+        }).then(data => {
+          if (data) {
+            for (const element of photoDisplay1) {
+              element.innerHTML = `<img class="rounded-circle bg-size-cover bg-position-center flex-shrink-0" src="data:image/jpeg;base64,${data.photoToBase64}" style="width: 80px; height: 80px;" />`;
+            }
+          }
+        })
+          .catch(error => {
+            console.error("錯誤：", error);
+          });
     }
 </script>
 
