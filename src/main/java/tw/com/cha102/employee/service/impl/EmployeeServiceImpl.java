@@ -43,6 +43,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public boolean edit(EmployeeVO employeeVO) {
+
+        String employeePassword = employeeVO.getEmployeePassword();
+        String hashPwd = sha256Hash(employeePassword);//把傳遞的密碼加密
+        employeeVO.setEmployeePassword(hashPwd);
         return dao.update(employeeVO)>0;
     }
 
@@ -74,6 +78,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void login(LoginRequest loginRequest, HttpServletRequest request, HttpServletResponse response) {
 
         EmployeeVO employeeVO = employeeRepository.findByEmployeeId(loginRequest.getAccount());
+        if (employeeVO.getEmployeeStatus() == 0)
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "此帳號未啟用");
         if (employeeVO == null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "無此使用者");
 
