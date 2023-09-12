@@ -1,6 +1,7 @@
 package tw.com.cha102.message.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,5 +28,15 @@ public class ProfileController {
     @GetMapping("/getOther/{memberId}")
     public Optional<Member> getOther(@PathVariable Integer memberId){
         return profileService.getMemberProfile(memberId);
+    }
+
+    @GetMapping("/session")
+    public ResponseEntity<String> getsession(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
+        if ( memberId != null){
+            return ResponseEntity.ok("success");
+        }
+            return ResponseEntity.badRequest().body("false");
     }
 }

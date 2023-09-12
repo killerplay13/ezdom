@@ -255,22 +255,23 @@
                 <p class="pb-3 mb-3 mb-lg-4">已有帳戶 ?&nbsp;&nbsp;<a href='account-signin.html'>按這裡 !</a></p>
                 <form class="needs-validation" novalidate>
                     <div class="row row-cols-1 row-cols-sm-2">
-                        <div class="col mb-4">
-                            <input id="memberName" class="form-control form-control-lg" type="text" placeholder="姓名"
-                                   required>
+                        <div class="mb-4">
+                            <input id="accountName" class="form-control form-control-lg" type="text" placeholder="姓名 (例 : 王小明)"
+                                   required
+                                   onblur="validateAccount()">
+                            <p id="accountnameError" style="color: red;"></p>
                         </div>
                         <div class="col mb-4">
+                            <input id="memberName" class="form-control form-control-lg" type="text" placeholder="暱稱"
+                                   required>
+                        </div>
+                        <div class="col mb-4" style="width:100%;">
                             <input id="mail" class="form-control form-control-lg" type="email" placeholder="信箱"
                                    required
                                    onblur="validateMail()">
                             <p id="mailError" style="color: red;"></p>
                         </div>
-                        <div class="mb-4" style="width:100%;">
-                            <input id="accountName" class="form-control form-control-lg" type="text" placeholder="帳號"
-                                   required
-                                   onblur="validateAccount()">
-                            <p id="accountnameError" style="color: red;"></p>
-                        </div>
+
                     </div>
                     <div class="password-toggle mb-4">
                         <input id="password" class="form-control form-control-lg" type="password"
@@ -394,7 +395,7 @@
     function validateAccount() {
       let accountnameError = document.getElementById("accountnameError");
       if (!account.value) {
-        accountnameError.textContent = "帳號不可為空";
+        accountnameError.textContent = "姓名不可為空";
         return false;
       } else {
         accountnameError.textContent = "";
