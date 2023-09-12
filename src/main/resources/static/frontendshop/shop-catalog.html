@@ -314,7 +314,7 @@
           <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                            data-bs-auto-close="outside" aria-expanded="false">預約</a>
             <ul class="dropdown-menu">
-              <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendreserve/reserve-addItem.html">預約管理</a></li>
+              <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendreserve/reserve-memberlist.html">預約管理</a></li>
               <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendcoach/coach-list.html">瀏覽教練</a></li>
               <li class="dropdown"><a id="link" class="dropdown-item" href="/ezdom/frontendcoach/coach-details.html?coachId=">教練專區</a></li>
 
@@ -349,58 +349,38 @@
 
     <!-- ===========================廣告============================================================================== -->
     <!-- Slider with fade transition between slides -->
-    <div class="swiper" style="height: 300px; border-radius: 15px " data-swiper-options='{
-          "effect": "fade",
-          "loop": true,
-          "navigation": {
-            "prevEl": ".btn-prev",
-            "nextEl": ".btn-next"
-          },
-          "autoplay": {
-            "delay": 3000,
-            "disableOnInteraction": false
-          }
-        }'>
-      <div class="swiper-wrapper">
+    <!-- Slider with fade transition between slides -->
+    <section class="container pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
+      <!-- Slider with fade transition between slides -->
+      <div class="swiper-container" id="mySwiper" style="height: 300px; border-radius: 15px;overflow:hidden;" data-swiper-options='{
+        "effect": "fade",
+        "loop": true,
+        "navigation": {
+          "prevEl": ".btnap",
+          "nextEl": ".btnan"
+        },
+        "autoplay": {
+          "delay": 4000,
+          "disableOnInteraction": false
+        }
+    }'>
+        <div class="swiper-wrapper" id="swiperWrapper">
 
-        <!-- Item -->
-        <!--        <div class="swiper-slide bg-light">-->
-        <!--          <div class="ratio ratio-16x9 bg-faded-info">-->
-        <!--            <div-->
-        <!--                    class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-5">-->
-        <!--              First</div>-->
-        <!--          </div>-->
-        <!--        </div>-->
+          <!-- Item -->
 
-        <!-- Item -->
-        <!--        <div class="swiper-slide bg-light">-->
-        <!--          <div class="ratio ratio-16x9 bg-faded-danger">-->
-        <!--            <div-->
-        <!--                    class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-5">-->
-        <!--              Second</div>-->
-        <!--          </div>-->
-        <!--        </div>-->
+        </div>
 
-        <!-- Item -->
-        <!--        <div class="swiper-slide bg-light">-->
-        <!--          <div class="ratio ratio-16x9 bg-faded-warning">-->
-        <!--            <div-->
-        <!--                    class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-5">-->
-        <!--              Third</div>-->
-        <!--          </div>-->
-        <!--        </div>-->
+        <!-- Prev button -->
+        <button type="button" class="btnap btn btn-prev btn-icon btn-sm btn-outline-primary rounded-circle">
+          <i class="ai-arrow-left"></i>
+        </button>
+
+        <!-- Next button -->
+        <button type="button" class="btnan btn btn-next btn-icon btn-sm btn-outline-primary rounded-circle">
+          <i class="ai-arrow-right"></i>
+        </button>
       </div>
-
-      <!-- Prev button -->
-      <button type="button" class="btn btn-prev btn-icon btn-sm btn-outline-primary rounded-circle">
-        <i class="ai-arrow-left"></i>
-      </button>
-
-      <!-- Next button -->
-      <button type="button" class="btn btn-next btn-icon btn-sm btn-outline-primary rounded-circle">
-        <i class="ai-arrow-right"></i>
-      </button>
-    </div>
+    </section>
 
     <!-- ================================================================================ -->
 
@@ -918,33 +898,117 @@
       }
     })
   }
-  //幻燈片
-  $.ajax({
-    url: "/ezdom/frontend/ads/getTodaysAds",
-    type: "GET",
-    dataType: "json",
-    success: function (adIds) {
-      //
-      adIds.forEach(adId => {
-        const imageSrc = `/ezdom/frontend/ads/getAdImage/${adId}`;
-        const slideHtml = `
-              <div class="swiper-slide bg-light">
-                  <div class="ratio ratio-16x9 bg-faded-info">
-                      <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center display-5">
-                          <img src="${imageSrc}" alt="Ad Image">
-                      </div>
-                  </div>
-              </div>
-          `;
+ //幻燈片
 
-        $(".swiper-wrapper").append(slideHtml);
-      });
+let lastAdId;
+
+  $(document).ready(function () {
+  // 取得圖片的函數
+  function loadImage(adId) {
+    return new Promise(function (resolve, reject) {
+      const imageSrc = `/ezdom/ads/getAdImage/${adId}`;
+      const img = new Image();
+      img.src = imageSrc;
+      img.onload = function () {
+        resolve(img);
+      };
+      img.onerror = function () {
+        reject("載入圖片失敗");
+      };
+    });
+  }
+
+  // 初始化Swiper
+  var mySwiper = new Swiper('.swiper-container', {
+    // 自動播放配置
+    autoplay: {
+      delay: 3000, // 自動播放間隔，單位為毫秒
+      disableOnInteraction: false, // 用戶操作後是否停止自動播放
     },
-    error: function () {
-
-      console.error("錯誤");
+    // 循環播放
+    on: {
+    slideChange: function () {
+      // 获取当前幻灯片的id属性
+      const currentSlideId = $(".swiper-slide-active img").attr("id");
+      // 检查是否需要切回第一张幻灯片
+      if (currentSlideId === lastAdId.toString()) {
+        mySwiper.slideTo(0); // 切换到第一张幻灯片
+      }
     }
+  }
+});
+
+  // 發起Ajax請求並新增廣告項目
+  function loadAds() {
+    $.ajax({
+      url: "/ezdom/ads/getTodaysAds",
+      type: "GET",
+      dataType: "json",
+      success: async function (adIds) {
+        for (const adId of adIds) {
+          try {
+            lastAdId = adIds[adIds.length - 1];
+            const image = await loadImage(adId);
+            // 創建新的幻燈片項目
+            const slide = $("<div>", {
+              "class": "swiper-slide bg-light",
+            });
+            // 創建圖像元素並設置屬性
+            const imgElement = $("<img>", {
+              "src": image.src,
+              "alt": "廣告圖片",
+              "id": adId,
+            });
+
+            // click event
+            imgElement.on("click", function () {
+              // get productId
+              $.ajax({
+                url: `/ezdom/ads/get/${adId}`,
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                  const productId = data.productId;
+                  const productDetailUrl = `/ezdom/frontendshop/shop-single.html?productId=${productId}`;
+
+                  window.location.href = productDetailUrl;
+                },
+                error: function () {
+                  console.error(`fail to get adId ${adId}`);
+                },
+              });
+            });
+
+            // 將圖像新增到幻燈片項目中
+            slide.append(imgElement);
+            // 將幻燈片項目新增到幻燈片容器
+            $(".swiper-wrapper").append(slide);
+            // 更新Swiper，以便它知道新的幻燈片已新增
+            mySwiper.update();
+          } catch (error) {
+            console.error("載入圖片失敗:", error);
+          }
+        }
+      },
+      error: function () {
+        console.error("無法取得今天的廣告ID列表");
+      }
+    });
+  }
+
+  // 載入廣告
+  loadAds();
+
+  // 上一張按鈕點擊事件
+  $(".btn-prev").on("click", function () {
+    mySwiper.slidePrev(); // 切換到上一張幻燈片
   });
+
+  // 下一張按鈕點擊事件
+  $(".btn-next").on("click", function () {
+    mySwiper.slideNext(); // 切換到下一張幻燈片
+  });
+});
 
   //點搜尋介面 蒐集全部上架商品
   function triggerClick() {

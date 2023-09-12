@@ -12,4 +12,5 @@ public class CheckEmailAccountRequest {
     @Email
     @NotBlank
     private String email;
+    private Integer memberId;
 }
