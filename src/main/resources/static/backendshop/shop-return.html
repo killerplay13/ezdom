@@ -471,9 +471,6 @@
                     }else if(response.ok){
                         //登入成功
                         return response.json();
-                    }else{
-                        alert("錯誤狀態" + response.status);
-                        return;
                     }
                 }).then(body => {
                 // 清除现有数据
@@ -565,9 +562,6 @@
                     }else if(response.ok){
                         //登入成功
                         return response.json();
-                    }else{
-                        alert("錯誤狀態" + response.status);
-                        return;
                     }
                 }).then(body => {
         let { note, orderDetailVOs } = body;
@@ -605,9 +599,6 @@
                     }else if(response.ok){
                         //登入成功
                         return response.json();
-                    }else{
-                        alert("錯誤狀態" + response.status);
-                        return;
                     }
                 })
         .then(body => {
@@ -654,9 +645,6 @@
                     }else if(response.ok){
                         //登入成功
                         return response.json();
-                    }else{
-                        alert("錯誤狀態" + response.status);
-                        return;
                     }
                 }).then(body=>{
                  let {employeeName}=body;
