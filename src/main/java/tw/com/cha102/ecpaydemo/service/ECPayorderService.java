@@ -50,10 +50,10 @@ public class ECPayorderService {
         obj.setTradeDesc("test Description");
         obj.setItemName(itemName);
         // 交易結果回傳網址，只接受 https 開頭的網站，可以使用 ngrok
-         obj.setReturnURL("http://localhost:8080/ezdom/frontendshop/shop-account-orders.html");
+         obj.setReturnURL("https://ezdom.ddns.net/ezdom/frontendshop/shop-account-orders.html");
         obj.setNeedExtraPaidInfo("N");
         // 商店轉跳網址 (Optional)
-        obj.setClientBackURL("http://localhost:8080/ezdom/frontendshop/shop-account-orders.html");
+        obj.setClientBackURL("https://ezdom.ddns.net/ezdom/frontendshop/shop-account-orders.html");
         String form = all.aioCheckOut(obj, null);
 
         return form;

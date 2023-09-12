@@ -325,14 +325,14 @@
                         </svg>
                         <span class="ps-2">位置資訊</span>
                     </div>
-                    <div class="d-none d-md-flex align-items-center pb-3 mb-3" id="app">
+                    <div class="d-none d-md-flex align-items-center pb-3 mb-3" >
                         <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 448 512">
                             <!-- Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                             <path
                                     d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
                         </svg>
                         <span class="ps-2">{{memberNum}}人報名</span>
-                        <div class="ps-2 inline-block" v-for="member in memberList" :key="member.memberId">
+                        <div class="ps-2 inline-block" v-for="member in memberList" :key="member.memberId" id="app">
                             <img v-if="member.memberPhotoBase64"
                                  :src="'data:image/jpeg;base64,' + member.memberPhotoBase64" alt="member.memberName"
                                  class="circle-avatar" data-bs-toggle="popover" :data-bs-placement="'top'"

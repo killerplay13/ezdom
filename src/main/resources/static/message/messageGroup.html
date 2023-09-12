@@ -4,12 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>testchat</title>
+    <title>揪團聊天室</title>
     <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
     <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
     <script src="https://unpkg.com/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
-    <script src="https://unpkg.com/vue-emoji-picker/dist/vue-emoji-picker.js"></script>
-
     <script>
         let mode = window.localStorage.getItem('mode'),
           root = document.getElementsByTagName('html')[0];
@@ -135,83 +133,6 @@
           font-size: 0.5em;
         }
     </style>
-    <!-- emoji -->
-    <style>
-        .emoji-invoker {
-          position: relative;
-          width: 1.5rem;
-          height: 1.5rem;
-          border-radius: 50%;
-          cursor: pointer;
-          transition: transform 0.2s;
-          background: transparent;
-          border: none;
-          padding: 0;
-        }
-
-        .emoji-invoker:hover {
-          transform: scale(1.1);
-        }
-
-        .emoji-invoker>svg {
-          fill: #b1c6d0;
-        }
-        .emoji-picker {
-          position: absolute;
-          z-index: 1001;
-          font-family: Montserrat;
-          border: 1px solid #ccc;
-          width: 15rem;
-          max-height: 20rem;
-          overflow-y: scroll;
-          padding: 1rem;
-          box-sizing: border-box;
-          border-radius: 0.5rem;
-          background: #fff;
-          box-shadow: 1px 1px 8px #c7dbe6;
-          bottom: 10px;
-          right: 10px;
-        }
-
-        .emoji-picker__search {
-          display: flex;
-          margin-bottom: 0.5rem;
-          /* 增加一些间距 */
-        }
-
-        .emoji-picker__search>input {
-          flex: 1;
-          border-radius: 10rem;
-          border: 1px solid #ccc;
-          padding: 0.5rem 1rem;
-          outline: none;
-        }
-
-        .emoji-picker h5 {
-          margin-bottom: 0;
-          color: #b1b1b1;
-          text-transform: uppercase;
-          font-size: 0.8rem;
-          cursor: default;
-        }
-
-        .emoji-picker .emojis {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-        }
-
-        .emoji-picker .emojis span {
-          padding: 0.2rem;
-          cursor: pointer;
-          border-radius: 5px;
-        }
-
-        .emoji-picker .emojis span:hover {
-          background: #ececec;
-          cursor: pointer;
-        }
-    </style>
     <!-- Import Google Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -222,94 +143,124 @@
 </head>
 
 <body>
-<header  class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
-    <div class="container"><a class="navbar-brand pe-sm-3" href="/ezdom/ezdomindex.html"><span
+<header class="navbar navbar-expand-lg fixed-top">
+    <div class="container"><a class="navbar-brand pe-sm-3" href="ezdomindex.html"><span
             class="text-primary flex-shrink-0 me-2">
-                    <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="currentColor"
-                              d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
-                        </path>
-                    </svg></span>EZ-DOM</a>
+          <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor"
+                  d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+            </path>
+          </svg></span>EZ-DOM</a>
         <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
             <input class="form-check-input" type="checkbox" id="theme-mode">
             <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
             <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
-        </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
-                 href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
-                 rel="noopener">登入/註冊</a>
-        <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+        </div>
+
+
+        <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
+                class="navbar-toggler-icon"></span></button>
         <nav class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                                 data-bs-auto-close="outside" aria-expanded="false">揪團</a>
+                                                 data-bs-auto-close="outside" aria-expanded="false">揪團 Group</a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown"><a class="dropdown-item" href="/ezdom/group/grouplist.html">揪團列表</a></li>
-                        <li class="dropdown"><a class="dropdown-item" href="/ezdom/group/mygroup.html">My揪團</a></li>
-                        <li class="dropdown" style="border-bottom: none;"><a class="dropdown-item dropdown-toggle"
-                                                                             href="#" data-bs-toggle="dropdown" aria-expanded="false">開團管理</a>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">揪團列表</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">My揪團</a></li>
+                        <li class="dropdown" style="border-bottom: none;"><a class="dropdown-item dropdown-toggle" href="#"
+                                                                             data-bs-toggle="dropdown" aria-expanded="false">開團管理</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/ezdom/groupcreate/groupcreate.html">建立揪團</a></li>
-                                <li><a class="dropdown-item" href="/ezdom/groupcreate/groupCreateVerify.html">管理開團</a></li>
+                                <li><a class="dropdown-item" href="testgroupCreateVerify.html">審核揪團成員</a></li>
                             </ul>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                                 data-bs-auto-close="outside" aria-expanded="false">商城</a>
+                                                 data-bs-auto-close="outside" aria-expanded="false">商城 Shop</a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-catalog.html">瀏覽商品</a></li>
-                        <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-account-orders.html">管理我的訂單</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">瀏覽商品</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">購物車</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">管理我的訂單</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                                 data-bs-auto-close="outside" aria-expanded="false">論壇</a>
+                                                 data-bs-auto-close="outside" aria-expanded="false">論壇 Forum</a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇</a></li>
-                        <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇管理</a></li>
-                        <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">瀏覽論壇</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">論壇管理</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                                 data-bs-auto-close="outside" aria-expanded="false">預約</a>
+                                                 data-bs-auto-close="outside" aria-expanded="false">預約 Reserve</a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendreserve/reserve-addItem.html">預約管理</a></li>
-                        <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendcoach/coach-list.html">瀏覽教練</a></li>
-
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">預約管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">瀏覽教練</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">時段管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">項目管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">自我介紹管理</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                                 data-bs-auto-close="outside" aria-expanded="false">會員中心</a>
+                                                 data-bs-auto-close="outside" aria-expanded="false">會員中心 Member</a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendmember/account-overview.html">我的頁面</a></li>
-                        <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">收藏文章</a></li>
-                        <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-checkout.html">收藏商品</a></li>
-                        <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendmember/account-settings.html">個人設定</a></li>
-                        <li class="dropdown"><a class="dropdown-item" href="/ezdom/message/messagePrivate.html">聊天室</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">我的頁面</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">好友管理</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">收藏文章</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">收藏商品</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">個人設定</a></li>
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                aria-expanded="false">聊天室</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown"><a class="nav-link " href="/ezdom/frontendsupport/support.html"
-                                                 aria-expanded="false">聯絡客服</a>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                 data-bs-auto-close="outside" aria-expanded="false">聯絡客服 Help</a>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link" href="#" data-bs-toggle="dropdown"
+                                                 aria-expanded="false"><img class="border rounded-circle" src="assets/img/avatar/50.png" width="48"
+                                                                            alt="Isabella Bocouse"></a>
                 </li>
             </ul>
         </nav>
     </div>
+
 </header>
 
 <!-- Page content-->
 <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
-    <div id="app" class="row pt-sm-2 pt-lg-0">
+    <div class="row pt-sm-2 pt-lg-0">
 
         <!-- Page content-->
-        <div class="col-lg-12 pt-5 pb-2 pb-sm-4">
-            <h1 class="h2 mb-2">聊天室</h1>
+        <div id="app" class="col-lg-12 pt-5 pb-2 pb-sm-4">
+            <h1 class="h2 mb-2">無聊? 揪吾聊</h1>
 
-            <!-- <a class="text-center"><i class="ai-messages fs-5 opacity-60 me-2"></i>未讀訊息 <span class="badge bg-danger ms-auto">
+            <!-- <a><i class="ai-messages fs-5 opacity-60 me-2"></i>未讀訊息 <span class="badge bg-danger ms-auto">
                 5</span></a> -->
             <!-- ------------------------------------------------------------------------------------------------------------------------------- -->
             <!-- 測試用 -->
-            <!-- <div><input v-model="chatId" type="text" class="form-control" placeholder="輸入聊天ID" style="max-width: 300px;"></div>
-            <button class="btn btn-outline-secondary" type="button" @click="startChat">開始聊天</button> -->
+            <!-- <div><input v-model="groupId" type="text" class="form-control" placeholder="輸入揪團ID"
+                style="display: none; max-width: 300px;">
+              <input v-model="chatId" type="text" class="form-control" placeholder="輸入聊天ID" style="max-width: 300px;">
+            </div>
+            <button class="btn btn-outline-secondary" type="button" @click="startChat">開始聊天</button>
+            <button @click="getGroupJoined">testgetcontact</button> -->
             <!-- ------------------------------------------------------------------------------------------------------------------------------- -->
 
             <div class="position-relative overflow-hidden gx-2 zindex-1 container">
@@ -337,8 +288,8 @@
                                     <a class="d-flex align-items-center text-decoration-none px-4 py-3"
                                        :class="{ 'bg-gray': contact.clicked }" @click="startChatWithContact(contact)">
                                         <div class="position-relative flex-shrink-0 my-1">
-                                            <img class="rounded-circle" :src="'data:image/jpeg;base64,'+contact.otheravatar" width="48"
-                                                 alt="otheravatar">
+                                            <img class="rounded-circle" :src="'data:image/jpeg;base64,'+contact.groupPhoto" width="48"
+                                                 alt="groupPhoto">
                                             <!-- <span class="position-absolute bottom-0 end-0 rounded-circle online-status"
                                               :class="{ 'bg-success': contact.online, 'bg-danger': !contact.online }" ></span> -->
                                             <!-- <div class="position-relative flex-shrink-0 my-1"><img class="rounded-circle"
@@ -372,11 +323,12 @@
                                             data-bs-target="#contactsList" aria-controls="contactsList"
                                             aria-label="Toggle contacts list"><span class="navbar-toggler-icon"></span></button>
                                     <div class="position-relative flex-shrink-0">
-                                        <img class="rounded-circle" :src="'data:image/jpeg;base64,'+otheravatar" width="48" alt="Avatar">
+                                        <img class="rounded-circle" :src="'data:image/jpeg;base64,'+ groupPhoto" width="48"
+                                             alt="groupPhoto">
                                         <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle me-1"
                                               style="width: .625rem; height: .625rem;"></span>
                                     </div>
-                                    <div class="h6 ps-2 ms-1 mb-0" >{{selectedContactName}}</div>
+                                    <div class="h6 ps-2 ms-1 mb-0">{{selectedContactName}}</div>
                                     <div class="dropdown ms-auto">
                                         <button class="btn btn-icon btn-sm btn-outline-secondary border-0 rounded-circle me-n2"
                                                 type="button" data-bs-toggle="dropdown"><i class="ai-dots-vertical fs-4 fw-bold"></i></button>
@@ -429,38 +381,17 @@
             </div>
 
             <!-- Footer (Textarea)-->
+
         </div>
-        <div class="card-footer w-100 border-0 mx-0 px-4" style="position: relative; left: 0%; bottom: 1%;">
+        <div class="card-footer w-100 border-0 mx-0 px-4" style="position: relative; left: 0%;bottom: 1%;">
             <div class="d-flex align-items-end border rounded-3 pb-3 pe-3 mx-sm-3">
           <textarea v-model="newMsg" class="form-control border-0" rows="3" placeholder="Type a message"
                     style="resize: none;" @keyup.enter="sendMSG"></textarea>
-                <div class="nav flex-nowrap align-items-center">
-                    <emoji-picker @emoji="insert" :search="search">
-                        <button class="emoji-invoker" slot="emoji-invoker" slot-scope="{ events: { click: clickEvent } }"
-                                @click.stop="clickEvent">
-                            <a class="nav-link text-muted p-1" href="#" type="button">
-                                <i class="ai-emoji-smile fs-xl"></i>
-                            </a>
-                        </button>
-                        <div slot="emoji-picker" slot-scope="{ emojis, insert, display }">
-                            <div class="emoji-picker" :style="{ bottom: display.y - 'px', right: display.x - 'px' }">
-                                <div class="emoji-picker__search">
-                                    <input type="text" v-model="search" v-focus>
-                                </div>
-                                <div>
-                                    <div v-for="(emojiGroup, category) in emojis" :key="category">
-                                        <h5>{{ category }}</h5>
-                                        <div class="emojis">
-                        <span v-for="(emoji, emojiName) in emojiGroup" :key="emojiName" @click="insert(emoji)"
-                              :title="emojiName">{{ emoji }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </emoji-picker>
+                <div class="nav flex-nowrap align-items-center"><a class="nav-link text-muted p-1 me-1" href="#"><i
+                        class="ai-paperclip fs-xl"></i></a><a class="nav-link text-muted p-1" href="#"><i
+                        class="ai-emoji-smile fs-xl"></i></a>
+                    <button class="btn btn-sm btn-secondary ms-3" type="button" @click="sendMSG">Send</button>
                 </div>
-                <button class="btn btn-sm btn-secondary ms-3" type="button" @click="sendMSG">Send</button>
             </div>
         </div>
     </div>
@@ -476,31 +407,24 @@
     <div class="pt-5 pt-lg-0"></div>
 </footer>
 <script>
-    Vue.use(EmojiPicker);
     new Vue({
       el: '#app',
       data: {
         websock: null,
         message: "",
-        chatId: "",
-        username:"",
+        chatId: 1,
+        groupId: "",
         newMsg: "",
-        memberIdA: this.chatId,
-        memberIdB: "",
         contactlists: [],
-        chatname: "",
+        groupname: "",
+        groupPhoto: "",
+        otheravatar: "",
         avatar: '',
-        newUserId: "",
-        otheravatar: '',
-        messageGroups: [{
-          date: ""
-
-        }],
         selectedContact: null,
         chatMessages: [
 
         ],
-        search: '',
+        userAvatars: {},
       },
       methods: {
         toggleContactClick(clickedContact) {
@@ -511,21 +435,24 @@
           });
           clickedContact.clicked = !clickedContact.clicked;
         },
-        startChatWithContact(contact) {
-
+        async startChatWithContact(contact) {
+          this.closeChat();
           this.selectedContact = contact;
+          this.groupId = contact.id;
           this.memberIdB = contact.id;
-          this.chatname = contact.chatname;
-          this.otheravatar = contact.otheravatar;
+          this.chatname = contact.name;
+          this.groupPhoto = contact.groupPhoto;
           this.toggleContactClick(contact);
-
-
+          await this.startChat();
           this.chatMessages = [];
+          // await this.getCmHistory();
 
+          console.log(this.selectedContact)
+        },
+        getCmHistory(){
           const historyMessageRequest = {
             type: 'history',
-            memberIdA: this.chatId,
-            memberIdB: this.memberIdB
+            groupId: this.groupId,
           };
 
           if (this.websock && this.websock.readyState === WebSocket.OPEN) {
@@ -533,33 +460,25 @@
           } else {
             console.log('WebSocket未連接');
           }
-          // console.log(this.selectedContact)
         },
-
         sendMSG() {
-          const messageContent = this.newMsg.trim();
-          if (!messageContent) {
-            return;
-          }
+          const chatContent = this.newMsg;
           const currentTime = new Date();
           currentTime.setHours(currentTime.getHours() + 8);
           if (this.websock && this.websock.readyState === WebSocket.OPEN) {
             const messageObject = {
               type: 'chat',
-              memberIdA: this.chatId,
-              memberIdB: this.memberIdB,
-              messageContent: messageContent,
-              messageStatus: false,
-              messageTime: currentTime.toISOString()
+              sender: this.chatId,
+              groupId: this.groupId,
+              chatContent: chatContent,
+              readNum: 0,
+              chatTime: currentTime.toISOString()
             };
             this.websock.send(JSON.stringify(messageObject));
             this.newMsg = '';
           } else {
             console.log('WebSocket未连接');
           }
-        },
-        insert(emoji) {
-          this.newMsg += emoji
         },
         scrollToBottom() {
           let chatroom = this.$refs.chatroom;
@@ -568,6 +487,7 @@
         websocketonopen() {
           console.log("websocket連接成功");
           this.getSelfprofile();
+          this.getCmHistory();
         },
         websocketonerror() {
           console.log("websocket連接錯誤");
@@ -575,20 +495,23 @@
         websocketonmessage(e) {
           const receivedMessage = JSON.parse(e.data);
           if ('history' === receivedMessage.type) {
-            const historyMessagesStr = receivedMessage.messageContent;
+            const historyMessagesStr = receivedMessage.chatContent;
+            console.log(historyMessagesStr);
             try {
+
               const historyMessages = JSON.parse(historyMessagesStr);
+
               historyMessages.forEach(historyMessage => {
-                const { memberIdA: id, messageContent: content, messageTime: messageTime } = JSON.parse(historyMessage);
-                const isReceived = id !== this.chatId;
+                const { groupId, sender, chatContent, chatTime } = historyMessage;
+                const isReceived = sender !== this.chatId;
                 const message = {
-                  id,
-                  content,
-                  messageTime,
+                  id: groupId,
+                  content: chatContent,
+                  messageTime: chatTime,
                   avatar: isReceived ? this.otheravatar : this.avatar,
                   isReceived: isReceived,
                 };
-                console.log(message)
+
                 this.chatMessages.push(message);
                 lastMessage = message;
                 if (lastMessage) {
@@ -598,77 +521,104 @@
                 }
               });
             } catch (error) {
-              console.log('解析歷史消息失败', error);
+              console.error('Error parsing history messages:', error);
             }
-          } else if ('chat' === receivedMessage.type) {
-            console.log("接收到chat訊息")
-            const isReceived = receivedMessage.memberIdA !== this.chatId;
-            this.getOtherProfile();
-            const message = {
-              id: receivedMessage.id,
-              content: receivedMessage.messageContent,
-              messageTime: receivedMessage.messageTime,
-              avatar: isReceived ? this.otheravatar : this.avatar,
-              isReceived: isReceived
-            };
-            this.chatMessages.push(message);
-            lastMessage = message;
-            if (lastMessage) {
-              this.selectedContact.latestmsg = lastMessage.content;
-              this.selectedContact.latestmsgtime = lastMessage.messageTime;
-              this.selectedContact.unreadmsg = this.chatMessages.filter(msg => !msg.isReceived && !msg.messageStatus).length;
-            }
+          }
+          else if ('chat' === receivedMessage.type) {
+            this.handleChatMessage(receivedMessage);
           } else if ('open' === receivedMessage.type) {
-            const newUser = receivedMessage.user;
-            const onlineUsers = receivedMessage.users;
-            const avatarPromises = onlineUsers
-              .filter(user => user !== this.chatId && !this.contactlists.some(contact => contact.id === user))
-              .map(user => {
-                const newUserId = parseInt(user);
-                return this.getOtherProfile(newUserId)
-                  .then(() => {
-                    const newUserContact = {
-                      id: user,
-                      name: this.chatname,
-                      otheravatar: this.otheravatar,
-                      online: true,
-                      connected: false
-                    };
-                    this.contactlists.push(newUserContact);
-                  })
-                  .catch(error => {
-                    console.error('獲取大頭貼失敗', error);
-                  });
-              });
-            Promise.all(avatarPromises)
-              .then(() => {
-                for (const user of onlineUsers) {
-                  if (user !== newUser && user !== this.chatId && !this.contactlists.some(contact => contact.id === user)) {
-                    this.newUserId = parseInt(user);
-                    this.getOtherProfile(this.newUserId);
-                    const newUserContact = {
-                      id: user,
-                      name: this.chatname,
-                      otheravatar: this.otheravatar,
-                      online: true,
-                      connected: false
-                    };
-                    this.contactlists.push(newUserContact);
-                  }
-                }
-              });
+            this.handleOpenMessage(receivedMessage);
           }
           console.log("接收到websocket消息", e.data);
         },
         websocketclose() {
           console.log("websocket關閉");
         },
-        close() {
-          this.websock.close();
+        async getGroupJoined() {
+          const url = "/ezdom/frontend/groupVerify/findGroupJoined";
+          try {
+            const res = await fetch(url, {
+              method: "GET",
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+            const data = await res.json();
+            data.forEach(group => {
+              const newContact = {
+                id: group.groupId.groupId,
+                name: group.groupName,
+                groupPhoto: group.groupPhoto,
+                online: true,
+                connected: false,
+                clicked: false,
+                latestmsg: "",
+                latestmsgtime: "",
+                unreadmsg: 0
+              };
+              this.contactlists.push(newContact);
+            });
+            console.log(data);
+          } catch (error) {
+            console.log("Error fetching data:", error);
+          }
+
         },
-        async getOtherProfile(newUserId) {
+        startChat() {
+          this.websock = new WebSocket("wss://localhost/ezdom/frontend/GroupWS/" + this.groupId);
+          this.websock.onopen = this.websocketonopen;
+          this.websock.onerror = this.websocketonerror;
+          this.websock.onmessage = this.websocketonmessage;
+          this.websock.onclose = this.websocketclose;
+        },
+        closeChat() {
+          if (this.websock && this.websock.readyState === WebSocket.OPEN) {
+            this.websock.close();
+          }
+        },
+        handleChatMessage(receivedMessage) { //WSchat用
+          console.log("接收到chat訊息" + receivedMessage)
+          const isReceived = receivedMessage.sender !== this.chatId;
+          this.getUserAvatar(receivedMessage.sender)
+            .then(avatarUrl => {
+              const message = {
+                id: receivedMessage.groupId,
+                content: receivedMessage.chatContent,
+                messageTime: receivedMessage.chatTime,
+                avatar: isReceived ? avatarUrl : this.avatar,
+                isReceived: isReceived,
+              };
+              this.chatMessages.push(message);
+            });
+        },
+        handleOpenMessage(receivedMessage) { //WSopen用
+          console.log("接收到open訊息" + receivedMessage);
+          const newUser = receivedMessage.user;
+          const onlineUsers = receivedMessage.users;
+          const avatarPromises = onlineUsers
+            .filter(user => user !== this.chatId && !this.contactlists.some(contact => contact.id === user))
+            .map(user => {
+              const newUserId = parseInt(user);
+              return this.getUserAvatar(newUserId)
+                .then(avatarUrl => {
+                  const newUserContact = {
+                    id: user,
+                    name: this.chatname,
+                    otheravatar: avatarUrl,
+                    online: true,
+                    connected: false
+                  };
+                  this.contactlists.push(newUserContact);
+                });
+            });
+          Promise.all(avatarPromises)
+            .then(() => {
+              this.isAvatarLoading = false;
+            });
+        },
+        async getOtherProfile(sender) {
           return new Promise(async (resolve, reject) => {
-            const url = "/ezdom/profile/getOther/" + newUserId;
+            const url = "/ezdom/profile/getOther" + sender;
             try {
               const resp = await fetch(url, {
                 method: "GET",
@@ -687,6 +637,21 @@
             }
           });
         },
+        async getUserAvatar(userId) {
+          if (this.userAvatars[userId]) {
+            return this.userAvatars[userId];
+          } else {
+            return this.getOtherProfile(userId)
+              .then(() => {
+                this.userAvatars[userId] = this.otheravatar;
+                return this.otheravatar;
+              })
+              .catch(error => {
+                console.error('獲取大頭貼失敗', error);
+                return 'gym.jpg';
+              });
+          }
+        },
 
         async getSelfprofile() {
           const url = "/ezdom/profile/getSelf";
@@ -697,23 +662,16 @@
                 "content-type": "application/json",
               },
             });
-      const data = await resp.json();
-            this.chatId = data.memberId;
+            const data = await resp.json();
             this.avatar = data.memberPhoto;
-            this.username = data.memberName
             console.log(data);
           } catch (err) {
             console.log(err);
           }
         },
       },
-      async mounted() {
-        await this.getSelfprofile();
-        this.websock = new WebSocket("wss://localhost/ezdom/FriendWS/"+this.chatId);
-        this.websock.onopen = this.websocketonopen;
-        this.websock.onerror = this.websocketonerror;
-        this.websock.onmessage = this.websocketonmessage;
-        this.websock.onclose = this.websocketclose;
+      mounted() {
+        this.getGroupJoined();
         this.scrollToBottom();
       },
       updated() {
@@ -721,7 +679,7 @@
       },
       computed: {
         selectedContactAvatar() {
-          return this.selectedContact ? this.selectedContact.avatar : '';
+          return this.selectedContact ? this.selectedContact.groupPhoto : '';
         },
         selectedContactName() {
           return this.selectedContact ? this.selectedContact.name : '';
