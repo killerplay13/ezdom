@@ -30,8 +30,6 @@ async function getFaqList(){
             } else if (response.ok) {
                 // 登入成功
                 faqList = await response.json();
-            } else {
-                alert("錯誤狀態 " + response.status);
             }
         } catch (error) {
             console.error("出现错误: " + error);
@@ -89,9 +87,6 @@ $(tbody_el).on("click", ".btn_no", function() {
                       }else if(response.ok){
                           //登入成功
                           location.reload();
-                      }else{
-                          alert("錯誤狀態" + response.status);
-                          return;
                       }
                   })
             })
@@ -167,9 +162,6 @@ $('#confirmAddBtn').on("click",function() {
                       }else if(response.ok){
                           $('#addQuestionModal').modal('hide');
                           location.reload();
-                      }else{
-                          alert("錯誤狀態" + response.status);
-                          return;
                       }
                   })
             })
@@ -255,9 +247,6 @@ $('#u_confirmAddBtn').on("click",function() {
                     }else if(response.ok){
                        $('#updateModal').modal('hide');
                        location.reload();
-                    }else{
-                        alert("錯誤狀態" + response.status);
-                        return;
                     }
                 })
             })
