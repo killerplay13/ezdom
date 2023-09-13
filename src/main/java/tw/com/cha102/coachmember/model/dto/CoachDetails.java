@@ -15,7 +15,7 @@ public interface CoachDetails {
 
     String getEmail();
 
-    Integer getPhone();
+    String getPhone();
 
     String getGender();
 
