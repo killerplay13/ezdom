@@ -90,6 +90,8 @@ function showCoachDetails(){
       reportURL.style = "display:none";
     }
 
+    console.log(coachDetails);
+
     card_div.innerHTML = `
     <div class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"><i class="ai-user text-primary lead pe-1 me-2"></i>
                   <h2 class="h4 mb-0">基本資料</h2>
