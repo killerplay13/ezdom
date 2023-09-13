@@ -12,7 +12,7 @@ public interface GroupCreateService {
  GroupCreateVO create(Integer memberId,GroupCreateVO groupCreateVO);
 
  List<GroupCreateVO> findAllGroupCreateByMemberId(Integer createMemberId);
- GroupCreateVO update(GroupCreateVO groupCreateVO);
+ GroupCreateVO update(Integer memberId,GroupCreateVO groupCreateVO);
 
  GroupCreateVO updateRegisterNumber(Integer groupId);
 
