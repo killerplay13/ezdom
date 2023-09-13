@@ -36,7 +36,7 @@ GroupVerifyVO result = groupVerifyService.updateGroupApplyStatus(groupMemberId, 
         return ResponseEntity.ok("修改成功");
     }
 
-    @GetMapping("/findGroupJoined/")
+    @GetMapping("/findGroupJoined")
     public List<GroupVerifyVO> findGroupJoined(HttpServletRequest request){
         HttpSession session = request.getSession();
         Integer memberId = (Integer)session.getAttribute("memberId");
