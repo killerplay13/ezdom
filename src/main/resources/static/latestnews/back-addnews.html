@@ -232,6 +232,7 @@
 
         </ul>
 
+
         <!-- 上面是左側欄位 -->
 
 
@@ -266,6 +267,8 @@
                                 </a>
                             </div>
                         </li>
+
+
 
                     </ul>
                 </nav>
@@ -454,23 +457,98 @@
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">是否登出?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">你真的要登出嗎?</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+                    <a class="btn btn-primary" onclick="logout()" style="cursor: pointer;">登出</a>
                 </div>
             </div>
         </div>
     </div>
+    <!-- 初始化折疊功能 -->
+    <script src="/ezdom/backendshop/js/aside.js"></script>
+    <script>
+
+        let empName=document.getElementById("empName");
+             function logout(){
+                 fetch('/ezdom/employee/logout')
+                 .then(resp=>resp.json())
+                 .then(body=>{
+                     let {successful}=body;
+                     if(successful){
+                         window.location.href = '/ezdom/backendemp/empSignin.html';
+                     }
+                 })
+             }
+             function getEmp(){
+                 fetch('/ezdom/backend/employee/getById')
+                 .then(response => {
+                        if (response.status === 401) {
+                            // 重定向到登录页面 登入失敗
+                            window.location.href = '/ezdom/backendemp/empSignin.html';
+                        }else if(response.ok){
+                            //登入成功
+                            return response.json();
+                        }
+                    }).then(body=>{
+                     let {employeeName}=body;
+                     empName.textContent =employeeName;
+                 })
+             }
+
+             getEmp();
+
+
+        function getPosition() {
+      fetch('/ezdom/backend/employee/getById')
+        .then(response => {
+          if (response.status === 401) {
+            // 重定向到登录页面 登入失敗
+            window.location.href = '/ezdom/backendemp/empSignin.html';
+          } else if (response.ok) {
+            return response.json();
+          }
+        })
+        .then(body => {
+          let { employeePosition } = body;
+          console.log(employeePosition);
+
+          // 找到要删除的元素
+          const elementsToDelete = document.querySelectorAll('.position1, .position3, .position2');
+
+          // 依 employeePosition 的值 刪除不符職位的連結
+          if (employeePosition === 2) {
+            // 删除包含 position1 或 position3
+            elementsToDelete.forEach(element => {
+              if (element.classList.contains('position1') || element.classList.contains('position3')) {
+                element.remove();
+              }
+            });
+          } else if (employeePosition === 3) {
+            // 删除包含 position1 或 position2
+            elementsToDelete.forEach(element => {
+              if (element.classList.contains('position1') || element.classList.contains('position2')) {
+                element.remove();
+              }
+            });
+          }
+        });
+    }
+
+    getPosition();
+
+    </script>
+
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="/vendor/jquery/jquery.min.js"></script>

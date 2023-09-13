@@ -323,7 +323,16 @@
             // body: JSON.stringify({
             //     groupId: 1
             // })
-        }).then(resp => resp.text())
+        })
+         .then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登录页面 登入失敗
+                        window.location.href = '/ezdom/frontendmember/account-signin.html';
+                    } else if (response.ok) {
+                        //登入成功
+                        return response.text();
+                    }
+                })
             .then(body => {
                 // 插入ECPay表單內容到<div>中
                 ecpayFormContainer.innerHTML = body;
