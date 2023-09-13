@@ -2,7 +2,7 @@
 let faqList;
 const url = new URLSearchParams(window.location.search);
 const url_tag = url.get('faqTag'); // 取得URL中查詢字串status的值
-let req = 'http://localhost:8080/ezdom/backend/faq/list'; // 預設為查詢所有常見問題
+let req = '/ezdom/backend/faq/list'; // 預設為查詢所有常見問題
 
 if(url_tag !== null){
     req += '?faqTag=' + url_tag;
@@ -62,7 +62,7 @@ function showFaqDetails(){
 // 按下刪除按鈕
 $(tbody_el).on("click", ".btn_no", function() {
     const id = this.id;
-    const req = "http://localhost:8080/ezdom/backend/faq/delete/" + id;
+    const req = "/ezdom/backend/faq/delete/" + id;
 
     Swal.fire({
         icon: 'warning',
@@ -135,7 +135,7 @@ $('#confirmAddBtn').on("click",function() {
     }
     console.log(data);
 
-    let req = "http://localhost:8080/ezdom/backend/faq/add";
+    let req = "/ezdom/backend/faq/add";
 
     Swal.fire({
         icon: 'warning',
@@ -220,7 +220,7 @@ $('#u_confirmAddBtn').on("click",function() {
     }
     // console.log(data);
 
-    let req = "http://localhost:8080/ezdom/backend/faq/update/" + faqId;
+    let req = "/ezdom/backend/faq/update/" + faqId;
 
     Swal.fire({
         icon: 'warning',
