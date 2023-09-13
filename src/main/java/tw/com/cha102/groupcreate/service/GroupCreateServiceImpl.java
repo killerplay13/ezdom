@@ -7,8 +7,8 @@ import tw.com.cha102.groupcreate.model.GroupCreateRepository;
 import tw.com.cha102.groupcreate.model.GroupCreateVO;
 
 import javax.transaction.Transactional;
-import java.lang.reflect.Member;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -49,6 +49,11 @@ public class GroupCreateServiceImpl implements GroupCreateService{
         }else {
             return null;
         }
+    }
+
+    @Override
+    public Optional<GroupCreateVO> groupInfo(Integer groupId) {
+        return groupCreateRepository.findById(groupId);
     }
 
     @Override
