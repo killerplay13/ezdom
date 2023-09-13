@@ -67,11 +67,11 @@ public class ECPayGroupService {
         obj.setItemName(group.getGroupName());
         obj.setCustomField1(groupId.toString());
         // 交易結果回傳網址，只接受 https 開頭的網站，可以使用 ngrok
-        obj.setReturnURL("http://localhost:8080/ezdom/group/grouppaysuccessful.html");
+        obj.setReturnURL("https://ezdom.ddns.net/ezdom/group/grouppaysuccessful.html");
         obj.setNeedExtraPaidInfo("N");
         // 商店轉跳網址 (Optional)
 //        obj.setOrderResultURL("http://localhost:8080/ezdom/frontend/group/ecpayReturn");
-        obj.setClientBackURL("http://localhost:8080/ezdom/group/grouppaysuccessful.html");
+        obj.setClientBackURL("https://ezdom.ddns.net/ezdom/group/grouppaysuccessful.html");
         String form = all.aioCheckOut(obj, null);
 
         return form;
