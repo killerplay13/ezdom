@@ -53,7 +53,7 @@ async function getSession(){
 
 const url = new URLSearchParams(window.location.search);
 const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值
-const req = 'http://localhost:8080/ezdom/frontend/browse/list/' + url_coachId;
+const req = '/ezdom/frontend/browse/list/' + url_coachId;
 
 async function getCoachDetails(){
     try {
@@ -65,8 +65,6 @@ async function getCoachDetails(){
         } else if (response.ok) {
             // 登入成功
             coachDetails = await response.json();
-        } else {
-            alert("錯誤狀態 " + response.status);
         }
     } catch (error) {
         console.error("出现错误: " + error);

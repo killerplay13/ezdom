@@ -11,14 +11,12 @@ var webSocket;
 //const url = new URLSearchParams(window.location.search);
 const url_memberId = 99; // 取得URL中查詢字串coachId的值
 var self = url_memberId;
-// let receiver = 1;
-// if(url_memberId === "2"){receiver = 1;}
 
 let memberDetails;
 async function getMember(memId){
 
     try {
-        let response = await fetch("http://localhost:8080/ezdom/faq/member?memberId=" + memId);
+        let response = await fetch("/ezdom/faq/member?memberId=" + memId);
 
         if (response.status === 401) {
             // 重定向到登录页面 登入失敗
@@ -26,14 +24,12 @@ async function getMember(memId){
         } else if (response.ok) {
             // 登入成功
             memberDetails = await response.json();
-        } else {
-            alert("錯誤狀態 " + response.status);
         }
     } catch (error) {
         console.error("出现错误: " + error);
     }
 
-//	let response = await fetch("http://localhost:8080/ezdom/frontend/faq/member?memberId=" + memId);
+//	let response = await fetch("/ezdom/frontend/faq/member?memberId=" + memId);
 //    memberDetails = await response.json();
 }
 
@@ -65,7 +61,7 @@ function connect() {
             let data = JSON.parse(event.data);
             messagesArea.innerHTML = '';
 
-            fetch('http://localhost:8080/ezdom/faq/member?memberId=' + data.receiver)
+            fetch('/ezdom/faq/member?memberId=' + data.receiver)
 //            .then(resp => resp.json())
             .then(response => {
                 if (response.status === 401) {
@@ -74,9 +70,6 @@ function connect() {
                 }else if(response.ok){
                     //登入成功
                     return response.json();
-                }else{
-                    alert("錯誤狀態" + response.status);
-                    return;
                 }
             })
             .then(body => {
@@ -154,7 +147,10 @@ function connect() {
             let r_name = document.querySelector("#r_name");
             let id = r_name.getAttribute("value");
 
-            if(jsonObj.sender !== id && jsonObj.receiver !== id){
+            console.log(jsonObj.sender);
+            console.log(id);
+
+            if(parseInt(jsonObj.sender) !== parseInt(id) && parseInt(jsonObj.receiver) !== parseInt(id)){
                 if(jsonObj.sender === url_memberId){
                     refresh(jsonObj.receiver);
                 }else{
@@ -260,7 +256,7 @@ function refreshFriendList(jsonObj) {
         // console.log(num);
         if (friends[i] === self) { continue; }
 
-        fetch('http://localhost:8080/ezdom/faq/member?memberId=' + num)
+        fetch('/ezdom/faq/member?memberId=' + num)
 //            .then(resp => resp.json())
             .then(response => {
                 if (response.status === 401) {
@@ -269,9 +265,6 @@ function refreshFriendList(jsonObj) {
                 }else if(response.ok){
                     //登入成功
                     return response.json();
-                }else{
-                    alert("錯誤狀態" + response.status);
-                    return;
                 }
             })
             .then(body => {
