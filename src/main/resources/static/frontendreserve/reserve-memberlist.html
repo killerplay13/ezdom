@@ -550,16 +550,16 @@
                                     if (orderStatus == 0) {
                                         let rowData = `
                                     <tr class="bg-faded-secondary">
-                                        <th scope="row" style="text-align: center;"><strong>20230920${reserveId}</strong></th>
-                                        <td style="text-align: center;"><strong>${nickname}</strong></td>
-                                        <td style="text-align: center;"><strong>${reserveItem}</strong></td>
-                                        <td style="text-align: center;"><strong>$${amounts}</strong></td>
-                                        <td style="text-align: center;"><strong>${content}</strong></td>
-                                        <td style="text-align: center;">
+                                        <th scope="row" style="text-align: center; vertical-align: middle;"><strong>20230920${reserveId}</strong></th>
+                                        <td style="text-align: center; vertical-align: middle;"><strong>${nickname}</strong></td>
+                                        <td style="text-align: center; vertical-align: middle;"><strong>${reserveItem}</strong></td>
+                                        <td style="text-align: center; vertical-align: middle;"><strong>$${amounts}</strong></td>
+                                        <td style="text-align: center; vertical-align: middle;"><strong>${content}</strong></td>
+                                        <td style="text-align: center; vertical-align: middle;">
                                             <button type="button" class="btn btn-primary btn-sm btn-rounded"
                                                 data-bs-toggle="modal" data-bs-target=".orderdetailsModal" onclick="reserveDetail(${reserveTime},'${reserveDate}','${place}')">點我</button>
                                         </td>
-                                        <td style="text-align: center;">
+                                        <td style="text-align: center; vertical-align: middle;">
                                             <button type="button" class="btn btn-primary btn-sm btn-rounded"
                                                 data-bs-toggle="modal" data-bs-target=".orderdetailsModal" onclick="completeReserve(${reserveId},${coachId},'${reserveDate}',${reserveTime})">完成訂單</button>
                                         </td>   
@@ -570,16 +570,16 @@
                                     } else if (orderStatus == 1) {
                                         let rowData = `
                                     <tr class="bg-faded-secondary">
-                                        <th scope="row" style="text-align: center;"><strong>20230920${reserveId}</strong></th>
-                                        <td style="text-align: center;"><strong>${nickname}</strong></td>
-                                        <td style="text-align: center;"><strong>${reserveItem}</strong></td>
-                                        <td style="text-align: center;"><strong>$${amounts}</strong></td>
-                                        <td style="text-align: center;"><strong>${content}</strong></td>
-                                        <td style="text-align: center;">
+                                        <th scope="row" style="text-align: center; vertical-align: middle;"><strong>20230920${reserveId}</strong></th>
+                                        <td style="text-align: center; vertical-align: middle;"><strong>${nickname}</strong></td>
+                                        <td style="text-align: center; vertical-align: middle;"><strong>${reserveItem}</strong></td>
+                                        <td style="text-align: center; vertical-align: middle;"><strong>$${amounts}</strong></td>
+                                        <td style="text-align: center; vertical-align: middle;"><strong>${content}</strong></td>
+                                        <td style="text-align: center; vertical-align: middle;">
                                             <button type="button" class="btn btn-primary btn-sm btn-rounded"
                                                 data-bs-toggle="modal" data-bs-target=".orderdetailsModal" onclick="reserveDetail(${reserveTime},'${reserveDate}','${place}')">點我</button>
                                         </td>
-                                        <td style="text-align: center;">
+                                        <td style="text-align: center; vertical-align: middle;">
                                             <button type="button" class="btn btn-primary btn-sm btn-rounded"
                                                 data-bs-toggle="modal" data-bs-target=".orderdetailsModal" disabled>訂單已完成</button>
                                         </td>   
