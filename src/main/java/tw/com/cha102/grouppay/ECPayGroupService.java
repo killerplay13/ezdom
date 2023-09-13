@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tw.com.cha102.group.model.Group;
+import tw.com.cha102.group.model.GroupMember;
 import tw.com.cha102.group.service.GroupAdminService;
 import tw.com.cha102.group.service.GroupMemberService;
 import tw.com.cha102.order.model.dao.OrderDao;
@@ -35,19 +36,16 @@ public class ECPayGroupService {
 
 
 
-    public String ecpayCheckout(Integer groupId) {
 
-        // TODO: 用來獲取已登入的member訊息
-        // Member member = (Member) session.getAttribute("member");
-        // Integer memberId = member.getMemberId();
 
-        //目前預設為1
-        Integer memberId = 1;
+    public String ecpayCheckout(Integer groupId,Integer memberId) {
 
         List<Integer> grouIds = groupMemberService.findGroupIdsByMemberIdAndStatus(memberId, (byte) 1);
         if (grouIds.contains(groupId)) {
 
         }
+        GroupMember groupMember = groupMemberService.findByGroupIdAndMemberIdAndGroupApplyStatus(groupId, memberId, (byte) 1);
+        groupMember.setGroupApplyStatus((byte) 4);
 
         Group group = groupAdminService.getGroupById(groupId).get();
 
@@ -69,11 +67,11 @@ public class ECPayGroupService {
         obj.setItemName(group.getGroupName());
         obj.setCustomField1(groupId.toString());
         // 交易結果回傳網址，只接受 https 開頭的網站，可以使用 ngrok
-         obj.setReturnURL("http://localhost:8080/ezdom/frontend/group/ecpayReturn");
+        obj.setReturnURL("https://ezdom.ddns.net/ezdom/group/grouppaysuccessful.html");
         obj.setNeedExtraPaidInfo("N");
         // 商店轉跳網址 (Optional)
-        obj.setOrderResultURL("http://localhost:8080/ezdom/frontend/group/ecpayReturn");
-        obj.setClientBackURL("http://localhost:8080/ezdom/frontend/group/ecpayReturn");
+//        obj.setOrderResultURL("http://localhost:8080/ezdom/frontend/group/ecpayReturn");
+        obj.setClientBackURL("https://ezdom.ddns.net/ezdom/group/grouppaysuccessful.html");
         String form = all.aioCheckOut(obj, null);
 
         return form;

@@ -33,7 +33,8 @@ public class GroupCreateServiceImpl implements GroupCreateService{
     }
 
     @Override
-    public GroupCreateVO update(GroupCreateVO groupCreateVO) {
+    public GroupCreateVO update(Integer memberId, GroupCreateVO groupCreateVO) {
+        groupCreateVO.setCreateMemberId(memberId);
         return groupCreateRepository.save(groupCreateVO);
     }
 
@@ -75,7 +76,7 @@ public class GroupCreateServiceImpl implements GroupCreateService{
     public GroupCreateVO create(Integer memberId,GroupCreateVO groupCreateVO) {
 
             groupCreateVO.setGroupStatus(0);
-            groupCreateVO.setCreateMemberId(memberId);//這個要改掉
+            groupCreateVO.setCreateMemberId(memberId);
             groupCreateVO.setRegisteredNumber(0);
             final GroupCreateVO groupCreateResult = groupCreateRepository.save(groupCreateVO);
             groupCreateVO.setMessage("揪團申請已送出，我們將盡速審核");
