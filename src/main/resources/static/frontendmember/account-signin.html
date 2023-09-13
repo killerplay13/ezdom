@@ -188,7 +188,7 @@
                         <div class="position-relative"><i
                                 class="fs-lg position-absolute top-50 start-0 translate-middle-y ms-3"></i>
                             <input id="account" name="account" class="form-control form-control-lg" type="text"
-                                   placeholder="用戶姓名"
+                                   placeholder="帳號"
                                    required onblur="validateAccount()">
                             <p id="accountnameError" style="color: red;"></p>
                         </div>
@@ -245,7 +245,7 @@
     function validateAccount() {
       let accountnameError = document.getElementById("accountnameError");
       if (!account.value.trim()) {
-        accountnameError.textContent = "請輸入用戶姓名";
+        accountnameError.textContent = "請輸入用戶帳號";
         return false;
       } else {
         accountnameError.textContent = "";
@@ -280,11 +280,11 @@
 
 
       if (!account.value || !password.value) {
-        // 使用者用戶姓名和密碼都未輸入的處理，加入相應的 Swal 提示
+        // 使用者用戶帳號和密碼都未輸入的處理，加入相應的 Swal 提示
         Swal.fire({
           icon: 'error',
           title: '失敗',
-          text: '請輸入用戶姓名及密碼！',
+          text: '請輸入用戶帳號及密碼！',
           confirmButtonText: '確定',
           focusConfirm: false
         });
