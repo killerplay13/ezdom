@@ -112,9 +112,6 @@ function collectFormData() {
               } else if (response.ok) {
                 //登入成功
                 return response.json();
-              } else {
-                alert("錯誤狀態" + response.status);
-                return;
               }
             })
             .then(body => {

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tw.com.cha102.groupcreate.model.GroupCreateVO;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @SpringBootApplication
@@ -15,6 +16,8 @@ public interface GroupCreateService {
  GroupCreateVO update(Integer memberId,GroupCreateVO groupCreateVO);
 
  GroupCreateVO updateRegisterNumber(Integer groupId);
+
+ Optional<GroupCreateVO> groupInfo(Integer groupId);
 
  List<GroupCreateVO> showLatestGroupCreate();
 

@@ -5,8 +5,8 @@ const url = new URLSearchParams(window.location.search);
 const url_status = url.get('status'); // 取得URL中查詢字串status的值
 let url_page = url.get('page');
 $("#statusSelect").val("1"); //教練狀態下拉選單。預設為未審核
-let req = 'http://localhost:8080/ezdom/backend/verify/list'; // 如果查詢字串為空，預設為查詢未審核的教練
-let page_req = 'http://localhost:8080/ezdom/backend/verify/list/page'; // 如果查詢字串為空，預設為查詢未審核的教練
+let req = '/ezdom/backend/verify/list'; // 如果查詢字串為空，預設為查詢未審核的教練
+let page_req = '/ezdom/backend/verify/list/page'; // 如果查詢字串為空，預設為查詢未審核的教練
 
 if (url_status !== null) {
     req += '?status=' + url_status;
@@ -42,8 +42,6 @@ async function getCoachList() {
         } else if (response.ok) {
             // 登入成功
             coachList = await response.json();
-        } else {
-            alert("錯誤狀態 " + response.status);
         }
     } catch (error) {
         console.error("出现错误: " + error);
@@ -63,8 +61,6 @@ async function getListPage() {
         } else if (response.ok) {
             // 登入成功
             page = await response.json();
-        } else {
-            alert("錯誤狀態 " + response.status);
         }
     } catch (error) {
         console.error("出现错误: " + error);
@@ -167,7 +163,7 @@ function showCoachDetails() {
 $(tbody_el).on("click", ".btn_ok", function () {
     const id = this.id;
     const status = this.value;
-    const req = "http://localhost:8080/ezdom/backend/verify/list/update/" + id;
+    const req = "/ezdom/backend/verify/list/update/" + id;
     let text;
 
     switch (url_status) {
@@ -210,9 +206,6 @@ $(tbody_el).on("click", ".btn_ok", function () {
                       }else if(response.ok){
                           //登入成功
                           location.reload();
-                      }else{
-                          alert("錯誤狀態" + response.status);
-                          return;
                       }
                   })
             })
@@ -224,7 +217,7 @@ $(tbody_el).on("click", ".btn_ok", function () {
 $(tbody_el).on("click", ".btn_no", function () {
     const id = this.id;
     const status = this.value;
-    const req = "http://localhost:8080/ezdom/backend/verify/list/update/" + id;
+    const req = "/ezdom/backend/verify/list/update/" + id;
 
     Swal.fire({
         icon: 'warning',
@@ -251,9 +244,6 @@ $(tbody_el).on("click", ".btn_no", function () {
                       }else if(response.ok){
                           //登入成功
                           location.reload();
-                      }else{
-                          alert("錯誤狀態" + response.status);
-                          return;
                       }
                   })
             })
