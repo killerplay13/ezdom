@@ -256,7 +256,7 @@
                 <form class="needs-validation" novalidate>
                     <div class="row row-cols-1 row-cols-sm-2">
                         <div class="mb-4">
-                            <input id="accountName" class="form-control form-control-lg" type="text" placeholder="姓名 (例 : 王小明)"
+                            <input id="accountName" class="form-control form-control-lg" type="text" placeholder="帳號"
                                    required
                                    onblur="validateAccount()">
                             <p id="accountnameError" style="color: red;"></p>
@@ -394,9 +394,12 @@
 
     function validateAccount() {
       let accountnameError = document.getElementById("accountnameError");
-      if (!account.value) {
-        accountnameError.textContent = "姓名不可為空";
+      let accountNameRegex = /^[a-zA-Z0-9!@#$%^&*()-_+=~`[\]{}|;:'",.<>?/\\]*$/;
+      if (!account.value.trim()) {
+        accountnameError.textContent = "帳號不可為空";
         return false;
+      } else if(!accountNameRegex.test(account.value)) {
+        accountnameError.textContent = "請輸入英數字組合"
       } else {
         accountnameError.textContent = "";
         return true;
