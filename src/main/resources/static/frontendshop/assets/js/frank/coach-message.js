@@ -56,7 +56,7 @@ window.addEventListener("load", function () {
 // ====================== 側邊欄資訊 ====================== //
 const url = new URLSearchParams(window.location.search);
 const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值。哪個教練的留言板
-const d_req = 'http://localhost:8080/ezdom/frontend/browse/list/' + url_coachId;
+const d_req = '/ezdom/frontend/browse/list/' + url_coachId;
 
 async function getCoachDetails() {
 
@@ -112,7 +112,7 @@ function showCoachDetails() {
 }
 
 // ====================== 留言板資訊 ====================== //
-const req = 'http://localhost:8080/ezdom/frontend/coach/message/' + url_coachId;
+const req = '/ezdom/frontend/coach/message/' + url_coachId;
 
 async function getCoachMessage() {
     try {
@@ -145,10 +145,10 @@ function showCoachMessage() {
         // 判斷留言者是否與該教練留言板同人，是的話就顯示教練圖片和教練暱稱和修改連結為"教練的個人頁面"
         let img = "data:image/jpeg;base64,";
         let name = data.memberName;
-//        let a_href = "會員的個人資訊網址" + data.memberId;  // 預設為發表留言人的個人資訊
-        let a_href = "";  // 沒有給他人看的會員頁面
-        console.log(data.memberId);
-        console.log(coachDetails.memberId);
+        let a_href = "/ezdom/frontendmember/personalPage.html?memberId=" + data.memberId;  // 預設為發表留言人的個人資訊
+//        let a_href = "";  // 沒有給他人看的會員頁面
+//        console.log(data.memberId);
+//        console.log(coachDetails.memberId);
         if (data.memberId === coachDetails.memberId) {
             img += data.coachPicture;
             name = data.nickname;
@@ -269,7 +269,7 @@ $(bord).on("click", "#enter", function () {
 
 function add() {
     const content = $("#text").val().trim();// 取得訊息框內的文字
-    const req = "http://localhost:8080/ezdom/frontend/coach/message/add";
+    const req = "/ezdom/frontend/coach/message/add";
 
     if (content === "") {
         Swal.fire({
@@ -389,7 +389,7 @@ $(bord).on("click", "button.btn_update", function () {
 })
 
 function update() {
-    const req = "http://localhost:8080/ezdom/frontend/coach/message/update/" + updateMessageId;
+    const req = "/ezdom/frontend/coach/message/update/" + updateMessageId;
     fetch(req, {
         method: 'put',
         body: updateMessage
@@ -431,7 +431,7 @@ $(bord).on("click", "button.btn_delete", function () {
 })
 
 function deleteMessage() {
-    const req = "http://localhost:8080/ezdom/frontend/coach/message/delete/" + deleteMessageId;
+    const req = "/ezdom/frontend/coach/message/delete/" + deleteMessageId;
     fetch(req, {
         method: 'delete',
         headers: { 'Content-Type': 'application/json' }
