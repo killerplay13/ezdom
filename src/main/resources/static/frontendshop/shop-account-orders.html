@@ -216,6 +216,7 @@
           <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                            data-bs-auto-close="outside" aria-expanded="false">預約</a>
             <ul class="dropdown-menu">
+              <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendreserve/reserve-memberlist.html">預約管理</a></li>
               <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendcoach/coach-list.html">瀏覽教練</a></li>
               <li class="dropdown"><a id="link" class="dropdown-item" href="/ezdom/frontendcoach/coach-details.html?coachId=">教練專區</a></li>
 
@@ -413,9 +414,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         if (statusValue == 0) {
@@ -954,9 +952,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         let count = Math.ceil(body / 3);
@@ -982,9 +977,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         const { successful, message } = body;
@@ -1021,9 +1013,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         const { successful, message } = body;
@@ -1060,9 +1049,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         })
     }
@@ -1124,11 +1110,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //照片
-    document.addEventListener("DOMContentLoaded", function () {
-      displayMemberPhoto();
-    });
-
-    function displayMemberPhoto() {
+     function displayMemberPhoto() {
       const photoDisplay1 = document.getElementsByClassName("photoDisplay1");
 
       fetch(`/ezdom/member/getPhoto`, {
@@ -1148,13 +1130,61 @@ document.addEventListener('DOMContentLoaded', function () {
             for (const element of photoDisplay1) {
               element.innerHTML = `<img class="rounded-circle bg-size-cover bg-position-center flex-shrink-0" src="data:image/jpeg;base64,${data.photoToBase64}" style="width: 80px; height: 80px;" />`;
             }
+          }else {
+            for (const element of photoDisplay1) {
+              // 設置預設圖片的 src 屬性
+              element.innerHTML = `<img class="rounded-circle bg-size-cover bg-position-center flex-shrink-0" src="/ezdom/frontendshop/image/userPhoto.png" style="width: 80px; height: 80px;" />`;
+            }
           }
         })
           .catch(error => {
             console.error("錯誤：", error);
           });
     }
+    //登出
+    const logoutBtn = document.getElementById('logoutBtn');
 
+    logoutBtn.addEventListener('click', function (event) {
+      event.preventDefault();
+
+      // 執行登出操作
+      fetch('/ezdom/member/logout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // 登出成功
+            Swal.fire({
+              icon: 'success',
+              title: '登出成功',
+              text: '您已成功登出',
+              confirmButtonText: '確定',
+              focusConfirm: true
+            }).then(() => {
+              location.replace('/ezdom/frontendmember/account-signin.html');
+            });
+          } else {
+            // 登出失敗
+            Swal.fire({
+              icon: 'error',
+              title: '登出失敗',
+              text: '發生了一些問題，請稍後再試。',
+              confirmButtonText: '確定',
+              focusConfirm: true
+            });
+          }
+        })
+        .catch(error => {
+          // 處理錯誤
+          console.error('登出時發生錯誤：', error);
+        });
+    });
+
+
+
+displayMemberPhoto();
   getSession();
   orderRenew(1);
 </script>
