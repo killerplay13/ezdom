@@ -20,6 +20,7 @@
   <meta name="msapplication-TileColor" content="#080032">
   <meta name="msapplication-config" content="frontendshop/assets/favicon/browserconfig.xml">
   <meta name="theme-color" content="white">
+  <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
   <!-- Theme mode-->
   <script>
     let mode = window.localStorage.getItem('mode'),
@@ -171,21 +172,21 @@
 <!-- 頁首-->
 <main class="page-wrapper">
   <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
-    <header  class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
-      <div class="container"><a class="navbar-brand pe-sm-3" href="/ezdom/ezdomindex.html"><span
+    <header  class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode" >
+      <div class="container" id="app"><a class="navbar-brand pe-sm-3" href="/ezdom/ezdomindex.html"><span
               class="text-primary flex-shrink-0 me-2">
                     <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
                         <path fill="currentColor"
                               d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
                         </path>
                     </svg></span>EZ-DOM</a>
-        <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
-          <input class="form-check-input" type="checkbox" id="theme-mode">
-          <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
-          <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
-        </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
-                 href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
-                 rel="noopener">登入/註冊</a>
+        <a v-if="!isLoggedIn" class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+                 href="/ezdom/frontendmember/account-signin.html" target="_blank"
+                 rel="noopener">登入</a>
+        <a class=" fs-sm order-lg-3 d-none d-sm-inline-flex text-center align-middle" v-if="isLoggedIn" href="/ezdom/frontendmember/account-overview.html">
+          <img :src="'data:image/jpeg;base64,'+avatar" alt="會員照片" v-show="isLoggedIn" class="avatar-img rounded-circle" style="height: 50px; weight: 50px;">
+           <a class=" fs-sm order-lg-3 d-none d-sm-inline-flex text-center align-middle" v-if="isLoggedIn"> 哈囉: {{ username }}</a>
+        </a>
         <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
         <nav class="collapse navbar-collapse" id="navbarNav">
@@ -202,6 +203,7 @@
                     <li><a class="dropdown-item" href="/ezdom/groupcreate/groupCreateVerify.html">管理開團</a></li>
                   </ul>
                 </li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/message/messageGroup.html">揪團聊天室</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
@@ -214,9 +216,9 @@
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                              data-bs-auto-close="outside" aria-expanded="false">論壇</a>
               <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇</a></li>
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum-mypost.html">我的論壇</a></li>
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum-post.html">發文</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendforum/forum.html">論壇</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendforum/forum-mypost.html">我的論壇</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendforum/forum-post.html">發文</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
@@ -231,7 +233,6 @@
                                              data-bs-auto-close="outside" aria-expanded="false">會員中心</a>
               <ul class="dropdown-menu">
                 <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendmember/account-overview.html">我的頁面</a></li>
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-checkout.html">收藏商品</a></li>
                 <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendmember/account-settings.html">個人設定</a></li>
                 <li class="dropdown"><a class="dropdown-item" href="/ezdom/message/messagePrivate.html">聊天室</a></li>
               </ul>
@@ -292,133 +293,133 @@
   </section>
   <!-- 首頁輪播圖 結束-->
 
-  <!-- 最新消息 開頭-->
-  <section class="pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
-    <div class="container pt-2 pt-sm-4 pt-lg-5 mt-md-3 mt-lg-0">
-      <div class="row pb-3 mb-3 mb-lg-4">
-        <div class="col-lg-11 d-sm-flex justify-content-between text-center text-sm-start">
-          <h2 class="h1 mb-sm-0 mx-auto me-sm-4" style="max-width: 500px;">最新消息 | What’s NEWS</h2>
-          <p class="pt-2 mb-0 mx-auto" style="max-width: 420px; font-size: 18px;">
-            親愛的用戶們，請注意消息可能包含了重要的更新、通知或活動資訊。感謝您的支持與使用！</p>
-        </div>
-      </div>
-    </div>
-    <div class="container-start pe-0">
-      <div class="swiper" data-swiper-options="{
-  &quot;slidesPerView&quot;: &quot;auto&quot;,
-  &quot;spaceBetween&quot;: 24,
-  &quot;loop&quot;: true,
-  &quot;navigation&quot;: {
-    &quot;prevEl&quot;: &quot;#prev-feature&quot;,
-    &quot;nextEl&quot;: &quot;#next-feature&quot;
-  }
-}">
-        <div class="swiper-container">
-          <div class="swiper-wrapper" id="cardContainer">
-            <!-- 卡片將動態生成並插入到這裡 -->
-          </div>
-          <style>
-            .swiper-slide {
-              margin-right: 20px; /* 設置卡片之間的右側外邊距 */
-            }
-          </style>
-          <script>
-            // 获取卡片容器
-            const cardContainer = document.getElementById("cardContainer");
+<!--  &lt;!&ndash; 最新消息 開頭&ndash;&gt;-->
+<!--  <section class="pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">-->
+<!--    <div class="container pt-2 pt-sm-4 pt-lg-5 mt-md-3 mt-lg-0">-->
+<!--      <div class="row pb-3 mb-3 mb-lg-4">-->
+<!--        <div class="col-lg-11 d-sm-flex justify-content-between text-center text-sm-start">-->
+<!--          <h2 class="h1 mb-sm-0 mx-auto me-sm-4" style="max-width: 500px;">最新消息 | What’s NEWS</h2>-->
+<!--          <p class="pt-2 mb-0 mx-auto" style="max-width: 420px; font-size: 18px;">-->
+<!--            親愛的用戶們，請注意消息可能包含了重要的更新、通知或活動資訊。感謝您的支持與使用！</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="container-start pe-0">-->
+<!--      <div class="swiper" data-swiper-options="{-->
+<!--  &quot;slidesPerView&quot;: &quot;auto&quot;,-->
+<!--  &quot;spaceBetween&quot;: 24,-->
+<!--  &quot;loop&quot;: true,-->
+<!--  &quot;navigation&quot;: {-->
+<!--    &quot;prevEl&quot;: &quot;#prev-feature&quot;,-->
+<!--    &quot;nextEl&quot;: &quot;#next-feature&quot;-->
+<!--  }-->
+<!--}">-->
+<!--        <div class="swiper-container">-->
+<!--          <div class="swiper-wrapper" id="cardContainer">-->
+<!--            &lt;!&ndash; 卡片將動態生成並插入到這裡 &ndash;&gt;-->
+<!--          </div>-->
+<!--          <style>-->
+<!--            .swiper-slide {-->
+<!--              margin-right: 20px; /* 設置卡片之間的右側外邊距 */-->
+<!--            }-->
+<!--          </style>-->
+<!--          <script>-->
+<!--            // 获取卡片容器-->
+<!--            const cardContainer = document.getElementById("cardContainer");-->
 
-            // 使用Fetch API获取后端数据
-            fetch("http://localhost:8080/ezdom/news/list")
-                    .then(response => response.json())
-                    .then(data => {
-                      // 清空卡片容器
-                      cardContainer.innerHTML = "";
+<!--            // 使用Fetch API获取后端数据-->
+<!--            fetch("http://localhost:8080/ezdom/news/list")-->
+<!--                    .then(response => response.json())-->
+<!--                    .then(data => {-->
+<!--                      // 清空卡片容器-->
+<!--                      cardContainer.innerHTML = "";-->
 
-                      // 迭代后端返回的JSON数据并生成卡片
-                      data.forEach(news => {
-                        const card = document.createElement("div");
-                        card.className = "swiper-slide w-auto h-auto";
+<!--                      // 迭代后端返回的JSON数据并生成卡片-->
+<!--                      data.forEach(news => {-->
+<!--                        const card = document.createElement("div");-->
+<!--                        card.className = "swiper-slide w-auto h-auto";-->
 
-                        card.innerHTML = `
-                        <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 540px;">
-                          <div
-                            class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5">
-                          </div>
-                          <div class="card-body text-center"
-                            style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
-                              <path
-                                d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z">
-                              </path>
-                            </svg>
-                            <h3 class="news-title">${news.newsTitle}</h3>
-                            <p class="news-content">${news.newsContent}</p>
-                          </div>
-                        </div>
-                      `;
+<!--                        card.innerHTML = `-->
+<!--                        <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 540px;">-->
+<!--                          <div-->
+<!--                            class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5">-->
+<!--                          </div>-->
+<!--                          <div class="card-body text-center"-->
+<!--                            style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">-->
+<!--                            <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">-->
+<!--                              <path-->
+<!--                                d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z">-->
+<!--                              </path>-->
+<!--                            </svg>-->
+<!--                            <h3 class="news-title">${news.newsTitle}</h3>-->
+<!--                            <p class="news-content">${news.newsContent}</p>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      `;-->
 
-                        // 插入生成的卡片到卡片容器中
-                        cardContainer.appendChild(card);
-                      });
-                    })
-                    .catch(error => {
-                      console.error("Error fetching data:", error);
-                    });
+<!--                        // 插入生成的卡片到卡片容器中-->
+<!--                        cardContainer.appendChild(card);-->
+<!--                      });-->
+<!--                    })-->
+<!--                    .catch(error => {-->
+<!--                      console.error("Error fetching data:", error);-->
+<!--                    });-->
 
-            document.addEventListener('DOMContentLoaded', function () {
-              // 1. 初始化 Swiper
-              new Swiper('.swiper-container', {
-                slidesPerView: 'auto',
-                spaceBetween: 24,
-                loop: true,
-                navigation: {
-                  prevEl: '#prev-feature',
-                  nextEl: '#next-feature'
-                }
-              });
+<!--            document.addEventListener('DOMContentLoaded', function () {-->
+<!--              // 1. 初始化 Swiper-->
+<!--              new Swiper('.swiper-container', {-->
+<!--                slidesPerView: 'auto',-->
+<!--                spaceBetween: 24,-->
+<!--                loop: true,-->
+<!--                navigation: {-->
+<!--                  prevEl: '#prev-feature',-->
+<!--                  nextEl: '#next-feature'-->
+<!--                }-->
+<!--              });-->
 
-              // 2. 獲取數據的代碼
-              // 使用Fetch API或其他方法獲取您的數據
-              fetch("http://localhost:8080/ezdom/news/list")
-                      .then(response => response.json())
-                      .then(data => {
-                        // 清空卡片容器
-                        const cardContainer = document.getElementById("cardContainer");
-                        cardContainer.innerHTML = "";
+<!--              // 2. 獲取數據的代碼-->
+<!--              // 使用Fetch API或其他方法獲取您的數據-->
+<!--              fetch("http://localhost:8080/ezdom/news/list")-->
+<!--                      .then(response => response.json())-->
+<!--                      .then(data => {-->
+<!--                        // 清空卡片容器-->
+<!--                        const cardContainer = document.getElementById("cardContainer");-->
+<!--                        cardContainer.innerHTML = "";-->
 
-                        // 迭代後端返回的JSON數據並生成卡片
-                        data.forEach(news => {
-                          const card = document.createElement("div");
-                          card.className = "swiper-slide w-auto h-auto";
+<!--                        // 迭代後端返回的JSON數據並生成卡片-->
+<!--                        data.forEach(news => {-->
+<!--                          const card = document.createElement("div");-->
+<!--                          card.className = "swiper-slide w-auto h-auto";-->
 
-                          card.innerHTML = `
-                    <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 540px;">
-                      <div class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5">
-                      </div>
-                      <div class="card-body text-center" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
-                          <path d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"></path>
-                        </svg>
-                        <h3 class="news-title">${news.newsTitle}</h3>
-                        <p class="news-content">${news.newsContent}</p>
-                      </div>
-                    </div>
-                `;
+<!--                          card.innerHTML = `-->
+<!--                    <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 540px;">-->
+<!--                      <div class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5">-->
+<!--                      </div>-->
+<!--                      <div class="card-body text-center" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">-->
+<!--                        <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">-->
+<!--                          <path d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"></path>-->
+<!--                        </svg>-->
+<!--                        <h3 class="news-title">${news.newsTitle}</h3>-->
+<!--                        <p class="news-content">${news.newsContent}</p>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                `;-->
 
-                          // 插入生成的卡片到卡片容器中
-                          cardContainer.appendChild(card);
-                        });
-                      })
-                      .catch(error => {
-                        console.error("Error fetching data:", error);
-                      });
-            });
-          </script>
+<!--                          // 插入生成的卡片到卡片容器中-->
+<!--                          cardContainer.appendChild(card);-->
+<!--                        });-->
+<!--                      })-->
+<!--                      .catch(error => {-->
+<!--                        console.error("Error fetching data:", error);-->
+<!--                      });-->
+<!--            });-->
+<!--          </script>-->
 
-        </div>
+<!--        </div>-->
 
 
-      </div>
-  </section>
+<!--      </div>-->
+<!--  </section>-->
 
   <!-- 預約教練 開頭-->
   <section class="container pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
@@ -474,7 +475,7 @@
     <div class="swiper pb-2 pb-sm-3 pb-md-4" data-swiper-options="
             {
               &quot;spaceBetween&quot;: 24,
-              &quot;loop&quot;: false,
+              &quot;loop&quot;: true,
               &quot;autoHeight&quot;: false,
               &quot;navigation&quot;: {
                 &quot;prevEl&quot;: &quot;#prev-post&quot;,
@@ -492,216 +493,77 @@
     </div>
   </section>
   <!-- 熱門文章 結束 -->
-  <!-- 瀏覽廣告-->
-  <section class="container pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
-    <div class="bg-primary rounded-5 overflow-hidden mt-2 mt-sm-4 mt-lg-5"><img
-            class="position-absolute top-50 start-0 translate-middle-y d-none d-md-block"
-            src="assets/img/landing/yoga-studio/cta/bg.svg" width="186" alt="Background flower">
-      <div class="row position-relative zindex-2 align-items-center">
-        <div class="col-md-6 col-lg-5 offset-lg-1">
-          <div class="text-center text-md-start py-5 px-4 px-sm-5 pe-md-0 ps-lg-4 ps-xl-5">
-            <div class="d-flex align-items-center justify-content-center justify-content-md-start mb-2">
-                                <span class="bg-white opacity-70 me-2 d-none d-md-block"
-                                      style="width: 40px; height: 1px; margin-top: -1px;"></span><span
-                    class="fs-xs fw-semibold text-white opacity-70 text-uppercase">Special offer</span>
-            </div>
-            <h2 class="h1 text-white pb-2 pb-sm-3">Get 30% off when you buy an annual pass</h2><a
-                  class="btn btn-outline-light fs-base" href="#">Buy an annual pass</a>
-          </div>
+  <!-- 最新消息 開頭-->
+  <section class="pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
+    <div class="container pt-2 pt-sm-4 pt-lg-5 mt-md-3 mt-lg-0">
+      <div class="row pb-3 mb-3 mb-lg-4">
+        <div class="col-lg-11 d-sm-flex justify-content-between text-center text-sm-start">
+          <h2 class="h1 mb-sm-0 mx-auto me-sm-4" style="max-width: 500px;">最新消息 | What’s NEWS</h2>
+          <p class="pt-2 mb-0 mx-auto" style="max-width: 420px; font-size: 18px;">
+            親愛的用戶們，請注意消息可能包含了重要的更新、通知或活動資訊。感謝您的支持與使用！</p>
         </div>
-        <div class="col-md-6"><img class="d-block mx-auto mx-md-0 mt-n4 mt-md-0"
-                                   src="assets/img/landing/yoga-studio/cta/image.png" width="534" alt="Image"></div>
       </div>
+    </div>
+    <div class="container-start pe-0">
+      <div class="swiper" data-swiper-options="{
+  &quot;slidesPerView&quot;: &quot;auto&quot;,
+  &quot;spaceBetween&quot;: 24,
+  &quot;loop&quot;: true,
+  &quot;navigation&quot;: {
+    &quot;prevEl&quot;: &quot;#prev-feature&quot;,
+    &quot;nextEl&quot;: &quot;#next-feature&quot;
+  }
+}">
+        <div class="swiper-container">
+          <div class="swiper-wrapper" id="cardContainer">
+            <!-- 卡片將動態生成並插入到這裡 -->
+          </div>
+          <style>
+            .swiper-slide {
+              margin-right: 20px; /* 設置卡片之間的右側外邊距 */
+            }
+          </style>
+
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+<!--  廣告-->
+  <section class="container pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
+    <!-- Slider with fade transition between slides -->
+    <div class="swiper-container" id="mySwiper" style="height: 300px; border-radius: 15px;overflow:hidden;" data-swiper-options='{
+        "effect": "fade",
+        "loop": true,
+        "navigation": {
+          "prevEl": ".btnap",
+          "nextEl": ".btnan"
+        },
+        "autoplay": {
+          "delay": 4000,
+          "disableOnInteraction": false
+        }
+    }'>
+      <div class="swiper-wrapper" id="swiperWrapper">
+
+        <!-- Item -->
+
+      </div>
+
+      <!-- Prev button -->
+      <button type="button" class="btnap btn btn-prev btn-icon btn-sm btn-outline-primary rounded-circle">
+        <i class="ai-arrow-left"></i>
+      </button>
+
+      <!-- Next button -->
+      <button type="button" class="btnan btn btn-next btn-icon btn-sm btn-outline-primary rounded-circle">
+        <i class="ai-arrow-right"></i>
+      </button>
     </div>
   </section>
   <!-- 瀏覽廣告 結束-->
-  <div class="container" style="margin-top: 100px;"></div>
-  <!-- 商城開始-->
-  <section class="container pb-5 mb-lg-3 mb-xl-4 mb-xxl-5">
-    <div class="d-flex align-items-center justify-content-between pb-4 mb-2 mb-md-3">
-      <h2 class="h1 pt-1 mb-0">來去逛逛 | Shopping</h2>
-      <!-- Slider prev/next buttons-->
-      <div class="d-flex">
-        <button class="btn btn-prev btn-icon btn-sm btn-outline-primary rounded-circle ms-3" type="button"
-                id="relevant-prev"><i class="ai-arrow-left"></i></button>
-        <button class="btn btn-next btn-icon btn-sm btn-outline-primary rounded-circle ms-3" type="button"
-                id="relevant-next"><i class="ai-arrow-right"></i></button>
-      </div>
-    </div>
-    <!-- Slider (popular items)-->
-    <div class="swiper pb-sm-2 pb-md-3" data-swiper-options="{
-            &quot;slidesPerView&quot;: 1,
-            &quot;spaceBetween&quot;: 24,
-            &quot;loop&quot;: true,
-            &quot;navigation&quot;: {
-              &quot;prevEl&quot;: &quot;#relevant-prev&quot;,
-              &quot;nextEl&quot;: &quot;#relevant-next&quot;
-            },
-            &quot;breakpoints&quot;: {
-              &quot;500&quot;: {
-                &quot;slidesPerView&quot;: 2
-              },
-              &quot;768&quot;: {
-                &quot;slidesPerView&quot;: 3
-              },
-              &quot;1000&quot;: {
-                &quot;slidesPerView&quot;: 4
-              }
-            }
-          }">
-      <div class="swiper-wrapper">
-        <!-- Item-->
-        <div class="swiper-slide">
-          <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4"><span
-                  class="badge bg-faded-danger text-danger position-absolute top-0 start-0 mt-3 ms-3">Sale</span>
-            <button
-                    class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
-                    type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
-                    class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button><a
-                    class="d-block p-2 p-xl-4" href="shop-single.html"><img class="d-block mx-auto"
-                                                                            src="assets/img/shop/products/01.png" width="226" alt="Product"></a>
-          </div>
-          <div class="d-flex mb-1">
-            <h3 class="h6 mb-0"><a href="shop-single.html">Loft style lamp</a></h3>
-            <div class="d-flex ps-2 mt-n1 ms-auto">
-              <div class="ms-1">
-                <input class="btn-check" type="radio" name="color1" value="Dark gray" checked
-                       id="color1-1">
-                <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle"
-                       for="color1-1"><span class="d-block rounded-circle"
-                                            style="width: .625rem; height: .625rem; background-color: #576071;"></span></label>
-              </div>
-              <div class="ms-1">
-                <input class="btn-check" type="radio" name="color1" value="Light gray"
-                       id="color1-2">
-                <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle"
-                       for="color1-2"><span class="d-block rounded-circle"
-                                            style="width: .625rem; height: .625rem; background-color: #d5d4d3;"></span></label>
-              </div>
-              <div class="ms-1">
-                <input class="btn-check" type="radio" name="color1" value="Blue" id="color1-3">
-                <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle"
-                       for="color1-3"><span class="d-block rounded-circle"
-                                            style="width: .625rem; height: .625rem; background-color: #a1b7d9;"></span></label>
-              </div>
-            </div>
-          </div>
-          <div class="d-flex align-items-center"><span class="me-2">$21.00</span>
-            <del class="fs-sm text-muted">$35.00</del>
-            <div class="nav ms-auto" data-bs-toggle="tooltip"
-                 data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
-                 data-bs-placement="left" title="Add to cart"><a class="nav-link fs-lg py-2 px-1"
-                                                                 href="#"><i class="ai-cart"></i></a></div>
-          </div>
-        </div>
-        <!-- Item-->
-        <div class="swiper-slide">
-          <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4">
-            <button
-                    class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
-                    type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
-                    class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button><a
-                  class="d-block p-2 p-xl-4" href="shop-single.html"><img class="d-block mx-auto"
-                                                                          src="assets/img/shop/products/02.png" width="226" alt="Product"></a>
-          </div>
-          <div class="d-flex mb-1">
-            <h3 class="h6 mb-0"><a href="shop-single.html">Dispenser for soap</a></h3>
-          </div>
-          <div class="d-flex align-items-center"><span class="me-2">$16.00</span>
-            <div class="nav ms-auto" data-bs-toggle="tooltip"
-                 data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
-                 data-bs-placement="left" title="Add to cart"><a class="nav-link fs-lg py-2 px-1"
-                                                                 href="#"><i class="ai-cart"></i></a></div>
-          </div>
-        </div>
-        <!-- Item-->
-        <div class="swiper-slide">
-          <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4"><span
-                  class="badge bg-faded-danger text-danger position-absolute top-0 start-0 mt-3 ms-3">Sale</span>
-            <button
-                    class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
-                    type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
-                    class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button><a
-                    class="d-block p-2 p-xl-4" href="shop-single.html"><img class="d-block mx-auto"
-                                                                            src="assets/img/shop/products/03.png" width="226" alt="Product"></a>
-          </div>
-          <div class="d-flex mb-1">
-            <h3 class="h6 mb-0"><a href="shop-single.html">Glossy round vase</a></h3>
-            <div class="d-flex ps-2 mt-n1 ms-auto">
-              <div class="ms-1">
-                <input class="btn-check" type="radio" name="color2" value="Light gray" checked
-                       id="color2-1">
-                <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle"
-                       for="color2-1"><span class="d-block rounded-circle"
-                                            style="width: .625rem; height: .625rem; background-color: #d5d4d3;"></span></label>
-              </div>
-              <div class="ms-1">
-                <input class="btn-check" type="radio" name="color2" value="Dark gray" id="color2-2">
-                <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle"
-                       for="color2-2"><span class="d-block rounded-circle"
-                                            style="width: .625rem; height: .625rem; background-color: #576071;"></span></label>
-              </div>
-              <div class="ms-1">
-                <input class="btn-check" type="radio" name="color2" value="Blue" id="color2-3">
-                <label class="btn btn-icon btn-xs btn-outline-secondary rounded-circle"
-                       for="color2-3"><span class="d-block rounded-circle"
-                                            style="width: .625rem; height: .625rem; background-color: #a1b7d9;"></span></label>
-              </div>
-            </div>
-          </div>
-          <div class="d-flex align-items-center"><span class="me-2">$11.00</span>
-            <del class="fs-sm text-muted">$15.00</del>
-            <div class="nav ms-auto" data-bs-toggle="tooltip"
-                 data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
-                 data-bs-placement="left" title="Add to cart"><a class="nav-link fs-lg py-2 px-1"
-                                                                 href="#"><i class="ai-cart"></i></a></div>
-          </div>
-        </div>
-        <!-- Item-->
-        <div class="swiper-slide">
-          <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4"><span
-                  class="badge bg-faded-primary text-primary position-absolute top-0 start-0 mt-3 ms-3">New</span>
-            <button
-                    class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
-                    type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
-                    class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button><a
-                    class="d-block p-2 p-xl-4" href="shop-single.html"><img class="d-block mx-auto"
-                                                                            src="assets/img/shop/products/09.png" width="226" alt="Product"></a>
-          </div>
-          <div class="d-flex mb-1">
-            <h3 class="h6 mb-0"><a href="shop-single.html">Scented candle</a></h3>
-          </div>
-          <div class="d-flex align-items-center"><span class="me-2">$13.00</span>
-            <div class="nav ms-auto" data-bs-toggle="tooltip"
-                 data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
-                 data-bs-placement="left" title="Add to cart"><a class="nav-link fs-lg py-2 px-1"
-                                                                 href="#"><i class="ai-cart"></i></a></div>
-          </div>
-        </div>
-        <!-- Item-->
-        <div class="swiper-slide">
-          <div class="card-hover position-relative bg-secondary rounded-1 p-3 mb-4">
-            <button
-                    class="btn btn-icon btn-sm btn-light bg-light border-0 rounded-circle position-absolute top-0 end-0 mt-3 me-3 zindex-5 opacity-0"
-                    type="button"><i class="ai-heart fs-xl d-dark-mode-none"></i><i
-                    class="ai-heart text-nav fs-xl d-none d-dark-mode-block"></i></button><a
-                  class="d-block p-2 p-xl-4" href="shop-single.html"><img class="d-block mx-auto"
-                                                                          src="assets/img/shop/products/06.png" width="226" alt="Product"></a>
-          </div>
-          <div class="d-flex mb-1">
-            <h3 class="h6 mb-0"><a href="shop-single.html">Living room table</a></h3>
-          </div>
-          <div class="d-flex align-items-center"><span class="me-2">$46.00</span>
-            <div class="nav ms-auto" data-bs-toggle="tooltip"
-                 data-bs-template="&lt;div class=&quot;tooltip fs-xs&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;tooltip-inner bg-light text-muted p-0&quot;&gt;&lt;/div&gt;&lt;/div&gt;"
-                 data-bs-placement="left" title="Add to cart"><a class="nav-link fs-lg py-2 px-1"
-                                                                 href="#"><i class="ai-cart"></i></a></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- 商城結束-->
+
 </main>
 <!-- 頁尾-->
 <footer class="footer bg-secondary py-5">
@@ -747,6 +609,7 @@
 <script src="frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
 <script src="frontendshop/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="frontendshop/assets/vendor/lightgallery/lightgallery.min.js"></script>
 <script src="frontendshop/assets/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
 <script src="frontendshop/assets/vendor/fullcalendar/main.min.js"></script>
@@ -754,7 +617,56 @@
 <script src="frontendshop/assets/js/theme.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-
+<!--檢查是否為登陸Navbar-->
+<script>
+  new Vue({
+      el: '#app',
+      data: {
+        avatar: "",
+        username: "",
+        isLoggedIn: "false",
+      },
+      methods: {
+        async getSelfprofile() {
+          const url = "/ezdom/profile/getSelf";
+          try {
+            const resp = await fetch(url, {
+              method: "GET",
+              headers: {
+                "content-type": "application/json",
+              },
+            });
+            const data = await resp.json();
+            this.avatar = data.memberPhoto;
+            this.username = data.memberName
+            console.log(data);
+          } catch (err) {
+            console.log(err);
+          }
+        },
+        checkLoginStatus() {
+          const url = "/ezdom/profile/session";
+          const res = fetch(url, {
+            method: "GET",
+          })
+          res.then((response) => {
+            return response.json();
+          }).then((data) => {
+            console.log(data);
+            if (data.status == "success") {
+              this.isLoggedIn = true;
+            } else {
+              this.isLoggedIn = false;
+            }
+          })
+        },
+      },
+      mounted() {
+        this.getSelfprofile();
+        this.checkLoginStatus();
+      }
+    })
+</script>
 <!-- 預約教練 -->
 <script>
   // ====================== 宣告變數 ====================== //
@@ -768,7 +680,7 @@
   })
 
   async function getCoachList(){
-    let response = await fetch("http://localhost:8080/ezdom/frontend/browse/list");
+    let response = await fetch("/ezdom/browse/list");
       coachList = await response.json();
       console.log(coachList);
       showCoachList();
@@ -802,11 +714,8 @@
 </script>
 <!--教練Navbar-->
 <script>
-<!--  window.addEventListener("load", function() {-->
-<!--    getSession();-->
-<!--})-->
   // ====================== 取得登入的session資訊 ====================== //
-const s_req = 'http://localhost:8080/ezdom/frontend/session';
+const s_req = '/ezdom/frontend/session';
 let session;
 let memberId = null;
 let coachId = null;
@@ -855,7 +764,7 @@ async function getSession(){
 
         const cardLink = document.createElement('a');
         cardLink.classList.add('card-hover', 'card-lifted', 'd-inline-block', 'text-decoration-none');
-        cardLink.href = 'ezdom/src/main/resources/static/group/groupdetail.html?groupId=' + groupData.groupId;
+        cardLink.href = '/ezdom/group/groupdetail.html?groupId=' + groupData.groupId;
 
         const imgElement = document.createElement('img');
         imgElement.classList.add('card-lifted', 'd-block', 'rounded-5', 'mb-3');
@@ -913,7 +822,7 @@ async function getSession(){
 
         const cardLink = document.createElement('a');
         cardLink.classList.add('card-hover', 'card-lifted', 'd-inline-block', 'text-decoration-none');
-        cardLink.href = 'ezdom/src/main/resources/static/group/groupdetail.html?groupId=' + groupData.groupId;
+        cardLink.href = '/ezdom/group/groupdetail.html?groupId=' + groupData.groupId;
 
         const imgElement = document.createElement('img');
         imgElement.classList.add('card-lifted', 'd-block', 'rounded-5', 'mb-3');
@@ -982,10 +891,12 @@ async function getSession(){
         .then(response => response.json())
         .then(data => {
           articleList.innerHTML = '';
+
           for (let articles of data) {
             const {
               forumPostId,
               forumPostTitle,
+              forumPostContent,
               forumPostTime,
               forumPostType,
               forumPostClickCount,
@@ -997,6 +908,7 @@ async function getSession(){
             const formattedDate = `${postTime.getMonth() + 1}/${postTime.getDate()}`;
             const articleDiv = document.createElement('article');
             articleDiv.className = 'swiper-slide';
+            const excerpt = forumPostContent.substring(0, 100) + '...';
             articleDiv.innerHTML = `
               <div class="position-relative">
                 <h3 class="h4 mt-4 mb-0">
@@ -1004,6 +916,8 @@ async function getSession(){
                   『${forumPostTitle}』
                   </a>
                 </h3>
+                 <p class="d-sm-none d-md-block">${excerpt}</p>
+                 <div>
                 <div class="d-flex flex-wrap align-items-center mt-n2">
                       <img class="rounded-circle" src="${imgUrl}" width="48" alt="Comment author">
                       <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">✍️${memberName}</span>
@@ -1013,6 +927,7 @@ async function getSession(){
                       <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">${getPostStatusText(forumPostType)}</span>
                       <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
                       <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">🖱️${forumPostClickCount}</span>
+                </div>
                 </div>
               </div>`
               ;
@@ -1024,7 +939,211 @@ async function getSession(){
         });
     }
     // ====================== 熱門文章結束 ====================== //
+</script>
+<!--商城廣告-->
 
+<script>
+  let lastAdId;
+
+   $(document).ready(function () {
+       // 取得圖片的函數
+       function loadImage(adId) {
+           return new Promise(function (resolve, reject) {
+               const imageSrc = `/ezdom/ads/getAdImage/${adId}`;
+               const img = new Image();
+               img.src = imageSrc;
+               img.onload = function () {
+                   resolve(img);
+               };
+               img.onerror = function () {
+                   reject("載入圖片失敗");
+               };
+           });
+       }
+
+       // 初始化Swiper
+       var mySwiper = new Swiper('#mySwiper', {
+           // 自動播放配置
+           autoplay: {
+               delay: 3000, // 自動播放間隔，單位為毫秒
+               disableOnInteraction: false, // 用戶操作後是否停止自動播放
+           },
+           // 循環播放
+           on: {
+               slideChange: function () {
+                   // 获取当前幻灯片的id属性
+                   const currentSlideId = $(".swiper-slide-active img").attr("id");
+                   // 检查是否需要切回第一张幻灯片
+                   if (currentSlideId === lastAdId.toString()) {
+                       mySwiper.slideTo(0); // 切换到第一张幻灯片
+                   }
+               }
+           }
+       });
+
+       // 發起Ajax請求並新增廣告項目
+       function loadAds() {
+           $.ajax({
+               url: "/ezdom/ads/getTodaysAds",
+               type: "GET",
+               dataType: "json",
+               success: async function (adIds) {
+                   for (const adId of adIds) {
+                       try {
+                           lastAdId = adIds[adIds.length - 1];
+                           const image = await loadImage(adId);
+                           // 創建新的幻燈片項目
+                           const slide = $("<div>", {
+                               "class": "swiper-slide bg-light",
+                           });
+                           // 創建圖像元素並設置屬性
+                           const imgElement = $("<img>", {
+                               "src": image.src,
+                               "alt": "廣告圖片",
+                               "id": adId,
+                           });
+
+                           // click event
+                           imgElement.on("click", function () {
+                               // get productId
+                               $.ajax({
+                                   url: `/ezdom/ads/get/${adId}`,
+                                   type: "GET",
+                                   dataType: "json",
+                                   success: function (data) {
+                                       const productId = data.productId;
+                                       const productDetailUrl = `/ezdom/frontendshop/shop-single.html?productId=${productId}`;
+
+                                       window.location.href = productDetailUrl;
+                                   },
+                                   error: function () {
+                                       console.error(`fail to get adId ${adId}`);
+                                   },
+                               });
+                           });
+
+                           // 將圖像新增到幻燈片項目中
+                           slide.append(imgElement);
+                           // 將幻燈片項目新增到幻燈片容器
+                           $("#swiperWrapper").append(slide);
+                           // 更新Swiper，以便它知道新的幻燈片已新增
+                           mySwiper.update();
+                       } catch (error) {
+                           console.error("載入圖片失敗:", error);
+                       }
+                   }
+               },
+               error: function () {
+                   console.error("無法取得今天的廣告ID列表");
+               }
+           });
+       }
+
+       // 載入廣告
+       loadAds();
+
+       // 上一張按鈕點擊事件
+       $(".btnap").on("click", function () {
+           mySwiper.slidePrev(); // 切換到上一張幻燈片
+       });
+
+       // 下一張按鈕點擊事件
+       $(".btnan").on("click", function () {
+           mySwiper.slideNext(); // 切換到下一張幻燈片
+       });
+   });
+
+</script>
+<script>
+  // 获取卡片容器
+  const cardContainer = document.getElementById("cardContainer");
+
+  // 使用Fetch API获取后端数据
+  fetch("/ezdom/news/list")
+          .then(response => response.json())
+          .then(data => {
+            // 清空卡片容器
+            cardContainer.innerHTML = "";
+
+            // 迭代后端返回的JSON数据并生成卡片
+            data.forEach(news => {
+              const card = document.createElement("div");
+              card.className = "swiper-slide w-auto h-auto";
+
+              card.innerHTML = `
+              <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 540px;">
+                <div
+                  class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5">
+                </div>
+                <div class="card-body text-center"
+                  style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                    <path
+                      d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z">
+                    </path>
+                  </svg>
+                  <h3 class="news-title">${news.newsTitle}</h3>
+                  <p class="news-content">${news.newsContent}</p>
+                </div>
+              </div>
+            `;
+
+              // 插入生成的卡片到卡片容器中
+              cardContainer.appendChild(card);
+            });
+          })
+          .catch(error => {
+            console.error("Error fetching data:", error);
+          });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // 1. 初始化 Swiper
+    new Swiper('.swiper-container', {
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+      loop: true,
+      navigation: {
+        prevEl: '#prev-feature',
+        nextEl: '#next-feature'
+      }
+    });
+
+    // 2. 獲取數據的代碼
+    // 使用Fetch API或其他方法獲取您的數據
+    fetch("/ezdom/news/list")
+            .then(response => response.json())
+            .then(data => {
+              // 清空卡片容器
+              const cardContainer = document.getElementById("cardContainer");
+              cardContainer.innerHTML = "";
+
+              // 迭代後端返回的JSON數據並生成卡片
+              data.forEach(news => {
+                const card = document.createElement("div");
+                card.className = "swiper-slide w-auto h-auto";
+
+                card.innerHTML = `
+          <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 540px;">
+            <div class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5">
+            </div>
+            <div class="card-body text-center" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                <path d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"></path>
+              </svg>
+              <h3 class="news-title">${news.newsTitle}</h3>
+              <p class="news-content">${news.newsContent}</p>
+            </div>
+          </div>
+      `;
+
+                // 插入生成的卡片到卡片容器中
+                cardContainer.appendChild(card);
+              });
+            })
+            .catch(error => {
+              console.error("Error fetching data:", error);
+            });
+  });
 </script>
 </body>
 

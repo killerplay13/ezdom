@@ -156,5 +156,13 @@ public class GroupCreateServlet {
         return groupCreateList;
     }
 
-
+    @GetMapping("/session")
+    public ResponseEntity<String> getsession(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
+        if ( memberId != null){
+            return ResponseEntity.ok("success");
+        }
+        return ResponseEntity.badRequest().body("false");
+    }
 }

@@ -272,15 +272,15 @@
           <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                            data-bs-auto-close="outside" aria-expanded="false">論壇</a>
             <ul class="dropdown-menu">
-              <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇</a></li>
-              <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇管理</a></li>
-              <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇管理</a></li>
+              <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendforum/forum.html">論壇</a></li>
+              <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendforum/forum-mypost.html">我的論壇</a></li>
+              <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendforum/forum-post.html">發文</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                            data-bs-auto-close="outside" aria-expanded="false">預約</a>
             <ul class="dropdown-menu">
-              <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendreserve/reserve-addItem.html">預約管理</a></li>
+              <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendreserve/reserve-memberlist.html">預約管理</a></li>
               <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendcoach/coach-list.html">瀏覽教練</a></li>
               <li class="dropdown"><a id="link" class="dropdown-item" href="/ezdom/frontendcoach/coach-details.html?coachId=">教練專區</a></li>
 
@@ -578,9 +578,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         let { productId, productName, productDescription, productOriginPrice, productDiscountPrice, productImage } = body;
@@ -734,9 +731,6 @@
           } else if (response.ok) {
             //登入成功
             return response.text();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         Swal.fire({
@@ -762,9 +756,6 @@
           } else if (response.ok) {
             //登入成功
             return response.text();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         Swal.fire({
@@ -789,9 +780,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         let { message } = body;
@@ -820,9 +808,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
@@ -903,9 +888,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
             let { successful, message } = body;
@@ -934,9 +916,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         let html = "";
@@ -1023,9 +1002,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body=>{
       let html="";

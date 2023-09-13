@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/member")
@@ -65,17 +67,20 @@ public class FrontendMember {
         return new CommonResponse<>("密碼更新成功");
     }
 
-    @GetMapping("/logout")
-    public Member logout(HttpServletRequest request, HttpServletResponse response) {
+    @PostMapping("/logout")
+    public ResponseEntity<Map<String, Object>> logout(HttpServletRequest request, HttpServletResponse response) {
         // 清除會話數據
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
         }
-        Member member = new Member();
-        member.setSuccessful(true);
 
-        return member;
+        // 建立包含成功訊息的 JSON 回應
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("success", true);
+
+        // 返回 JSON 資料和成功的 HTTP 狀態碼
+        return ResponseEntity.ok(responseData);
     }
 
 
@@ -113,8 +118,8 @@ public class FrontendMember {
     }
 
     @PostMapping("/modifyPw")
-    public CommonResponse<String> modifyPw(@RequestBody String modifyPw, HttpServletRequest request) {
-        memberService.modifyPw(modifyPw, request);
+    public CommonResponse<String> modifyPw(@RequestParam String modifyPw, HttpServletRequest request, HttpServletResponse response) {
+        memberService.modifyPw(modifyPw, request, response);
         return new CommonResponse<>("密碼更改成功");
     }
 
