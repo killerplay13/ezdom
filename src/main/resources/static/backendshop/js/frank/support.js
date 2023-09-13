@@ -16,7 +16,7 @@ let memberDetails;
 async function getMember(memId){
 
     try {
-        let response = await fetch("http://localhost:8080/ezdom/faq/member?memberId=" + memId);
+        let response = await fetch("/ezdom/faq/member?memberId=" + memId);
 
         if (response.status === 401) {
             // 重定向到登录页面 登入失敗
@@ -29,7 +29,7 @@ async function getMember(memId){
         console.error("出现错误: " + error);
     }
 
-//	let response = await fetch("http://localhost:8080/ezdom/frontend/faq/member?memberId=" + memId);
+//	let response = await fetch("/ezdom/frontend/faq/member?memberId=" + memId);
 //    memberDetails = await response.json();
 }
 
@@ -61,7 +61,7 @@ function connect() {
             let data = JSON.parse(event.data);
             messagesArea.innerHTML = '';
 
-            fetch('http://localhost:8080/ezdom/faq/member?memberId=' + data.receiver)
+            fetch('/ezdom/faq/member?memberId=' + data.receiver)
 //            .then(resp => resp.json())
             .then(response => {
                 if (response.status === 401) {
@@ -256,7 +256,7 @@ function refreshFriendList(jsonObj) {
         // console.log(num);
         if (friends[i] === self) { continue; }
 
-        fetch('http://localhost:8080/ezdom/faq/member?memberId=' + num)
+        fetch('/ezdom/faq/member?memberId=' + num)
 //            .then(resp => resp.json())
             .then(response => {
                 if (response.status === 401) {
