@@ -217,6 +217,7 @@
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                              data-bs-auto-close="outside" aria-expanded="false">預約</a>
               <ul class="dropdown-menu">
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendreserve/reserve-memberlist.html">預約管理</a></li>
                 <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendcoach/coach-list.html">瀏覽教練</a></li>
                 <li class="dropdown"><a id="link" class="dropdown-item" href="/ezdom/frontendcoach/coach-details.html?coachId=">教練專區</a></li>
 
@@ -401,9 +402,6 @@
             } else if (response.ok) {
               //登入成功
               return response.json();
-            } else {
-              alert("錯誤狀態" + response.status);
-              return;
             }
           })
           .then(article => {
@@ -461,9 +459,6 @@
                 } else if (response.ok) {
                   //登入成功
                   return response.json();
-                } else {
-                  alert("錯誤狀態" + response.status);
-                  return;
                 }
               })
               .then(messages => {
@@ -559,9 +554,6 @@
                 } else if (response.ok) {
                   //登入成功
                   return response.json();
-                } else {
-                  alert("錯誤狀態" + response.status);
-                  return;
                 }
               })
               .then((data) => {
@@ -617,9 +609,6 @@
               } else if (response.ok) {
                 //登入成功
                 return response.json();
-              } else {
-                alert("錯誤狀態" + response.status);
-                return;
               }
             })
             .then(data => {
