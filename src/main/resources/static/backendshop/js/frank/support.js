@@ -11,8 +11,6 @@ var webSocket;
 //const url = new URLSearchParams(window.location.search);
 const url_memberId = 99; // 取得URL中查詢字串coachId的值
 var self = url_memberId;
-// let receiver = 1;
-// if(url_memberId === "2"){receiver = 1;}
 
 let memberDetails;
 async function getMember(memId){
@@ -26,8 +24,6 @@ async function getMember(memId){
         } else if (response.ok) {
             // 登入成功
             memberDetails = await response.json();
-        } else {
-            alert("錯誤狀態 " + response.status);
         }
     } catch (error) {
         console.error("出现错误: " + error);
@@ -74,9 +70,6 @@ function connect() {
                 }else if(response.ok){
                     //登入成功
                     return response.json();
-                }else{
-                    alert("錯誤狀態" + response.status);
-                    return;
                 }
             })
             .then(body => {
@@ -154,7 +147,10 @@ function connect() {
             let r_name = document.querySelector("#r_name");
             let id = r_name.getAttribute("value");
 
-            if(jsonObj.sender !== id && jsonObj.receiver !== id){
+            console.log(jsonObj.sender);
+            console.log(id);
+
+            if(parseInt(jsonObj.sender) !== parseInt(id) && parseInt(jsonObj.receiver) !== parseInt(id)){
                 if(jsonObj.sender === url_memberId){
                     refresh(jsonObj.receiver);
                 }else{
@@ -269,9 +265,6 @@ function refreshFriendList(jsonObj) {
                 }else if(response.ok){
                     //登入成功
                     return response.json();
-                }else{
-                    alert("錯誤狀態" + response.status);
-                    return;
                 }
             })
             .then(body => {

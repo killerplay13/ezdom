@@ -232,6 +232,7 @@
 
     </ul>
 
+
     <!-- 上面是左側欄位 -->
 
 
@@ -266,6 +267,8 @@
                             </a>
                         </div>
                     </li>
+
+
 
                 </ul>
             </nav>
@@ -592,6 +595,7 @@
         </div>
     </div>
 </div>
+
 <!-- 初始化折疊功能 -->
 <script src="/ezdom/backendshop/js/aside.js"></script>
 <script>
@@ -616,9 +620,6 @@
                     }else if(response.ok){
                         //登入成功
                         return response.json();
-                    }else{
-                        alert("錯誤狀態" + response.status);
-                        return;
                     }
                 }).then(body=>{
                  let {employeeName}=body;
@@ -668,6 +669,7 @@
 getPosition();
 
 </script>
+
 
 
 

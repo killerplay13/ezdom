@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>EZdom | 會員-個人頁面</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
+    <meta name="keywords"
+          content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, dark mode, html5, css3, javascript, gallery, slider, touch, creative">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="../frontendshop/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../frontendshop/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../frontendshop/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../frontendshop/assets/favicon/site.webmanifest">
+    <link rel="mask-icon" color="#6366f1" href="../frontendshop/assets/favicon/safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="../frontendshop/assets/favicon/browserconfig.xml">
+    <meta name="theme-color" content="white">
+
+    <!-- 加 Swal-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+    <!-- Theme mode-->
+    <script>
+        let mode = window.localStorage.getItem('mode'),
+            root = document.getElementsByTagName('html')[0];
+        if (mode !== undefined && mode === 'dark') {
+            root.classList.add('dark-mode');
+        } else {
+            root.classList.remove('dark-mode');
+        }
+
+
+    </script>
+    <!-- Page loading styles-->
+    <style>
+        .page-loading {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all .4s .2s ease-in-out;
+            transition: all .4s .2s ease-in-out;
+            background-color: #fff;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 9999;
+        }
+
+        .dark-mode .page-loading {
+            background-color: #121519;
+        }
+
+        .page-loading.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .page-loading-inner {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            -webkit-transition: opacity .2s ease-in-out;
+            transition: opacity .2s ease-in-out;
+            opacity: 0;
+        }
+
+        .page-loading.active>.page-loading-inner {
+            opacity: 1;
+        }
+
+        .page-loading-inner>span {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: normal;
+            color: #6f788b;
+        }
+
+        .dark-mode .page-loading-inner>span {
+            color: #fff;
+            opacity: .6;
+        }
+
+        .page-spinner {
+            display: inline-block;
+            width: 2.75rem;
+            height: 2.75rem;
+            margin-bottom: .75rem;
+            vertical-align: text-bottom;
+            background-color: #d7dde2;
+            border-radius: 50%;
+            opacity: 0;
+            -webkit-animation: spinner .75s linear infinite;
+            animation: spinner .75s linear infinite;
+        }
+
+        .dark-mode .page-spinner {
+            background-color: rgba(255, 255, 255, .25);
+        }
+
+        @-webkit-keyframes spinner {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            50% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        @keyframes spinner {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            50% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        /* 頁尾部分 (要貼)*/
+
+        footer.footer {
+            position: relative;
+            bottom: 20px;
+            /* 調整此值以上移頁尾 */
+            margin-bottom: 50px;
+            /* 留出足夠的底邊距 */
+            background-color: #333;
+            color: #888;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+        (function () {
+            window.onload = function () {
+                const preloader = document.querySelector('.page-loading');
+                preloader.classList.remove('active');
+                setTimeout(function () {
+                    preloader.remove();
+                }, 1500);
+            };
+        })();
+
+    </script>
+    <!-- Import Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+          rel="stylesheet" id="google-font">
+    <!-- Vendor styles-->
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="../frontendshop/assets/css/theme.min.css">
+</head>
+<!-- Body-->
+
+<body class="bg-secondary">
+<!-- Page loading spinner-->
+<div class="page-loading active">
+    <div class="page-loading-inner">
+        <div class="page-spinner"></div>
+        <span>Loading...</span>
+    </div>
+</div>
+<!-- 頁首-->
+<main class="page-wrapper">
+    <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
+    <header class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode"
+            style="background-color: white;">
+        <div class="container"><a class="navbar-brand pe-sm-3" href="/ezdom/ezdomindex.html"><span
+                class="text-primary flex-shrink-0 me-2">
+                        <svg version="1.1" width="35" height="32" viewBox="0 0 36 33"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill="currentColor"
+                                  d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                            </path>
+                        </svg></span>EZ-DOM</a>
+            <a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+               href="/ezdom/frontendmember/account-overview.html" target="_blank" rel="noopener"><i
+                    class="ai-user"></i></a>
+            <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <nav class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                                     data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">揪團</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/group/grouplist.html">揪團列表</a></li>
+                            <li class="dropdown"><a class="dropdown-item" href="/ezdom/group/mygroup.html">My揪團</a>
+                            </li>
+                            <li class="dropdown" style="border-bottom: none;"><a
+                                    class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                    aria-expanded="false">開團管理</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/ezdom/groupcreate/groupcreate.html">建立揪團</a>
+                                    </li>
+                                    <li><a class="dropdown-item"
+                                           href="/ezdom/groupcreate/groupCreateVerify.html">管理開團</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/message/messageGroup.html">揪團聊天室</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                                     data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">商城</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendshop/shop-catalog.html">瀏覽商品</a>
+                            </li>
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendshop/shop-account-orders.html">管理我的訂單</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                                     data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">論壇</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendforum/forum.html">論壇</a></li>
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendforum/forum-mypost.html">我的論壇</a>
+                            </li>
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendforum/forum-post.html">發文</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                                     data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">預約</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendreserve/reserve-memberlist.html">預約管理</a></li>
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendcoach/coach-list.html">瀏覽教練</a>
+                            </li>
+                            <li class="dropdown"><a id="link" class="dropdown-item"
+                                                    href="/ezdom/frontendcoach/coach-details.html?coachId=">教練專區</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                                     data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">會員中心</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendmember/account-overview.html">我的頁面</a></li>
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendshop/shop-checkout.html">收藏商品</a>
+                            </li>
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendmember/account-settings.html">個人設定</a></li>
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/message/messagePrivate.html">聊天室</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown"><a class="nav-link " href="/ezdom/frontendsupport/support.html"
+                                                     aria-expanded="false">聯絡客服</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- 頁首結束-->
+    <!-- Page content-->
+    <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
+        <div class="row pt-sm-2 pt-lg-0">
+
+
+            <!-- Page content-->
+            <div class="col-lg-9 pt-4 pb-2 pb-sm-4" style="position: relative; left:40px;">
+<!--                <h1 class="h2 mb-4">用戶資訊</h1>-->
+                <!-- Basic info-->
+                <section class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4 mb-4" style="width:1100px; height:600px;">
+                    <div class="card-body" id="card">
+                        <div class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"><i
+                                class="ai-user text-primary lead pe-1 me-2"></i>
+                            <h2 class="h4 mb-0">基本資料</h2>
+                        </div>
+                        <div class="d-md-flex align-items-center">
+                            <div class="d-sm-flex align-items-center">
+                                <!-- 加 class -->
+                                <div class="rounded-circle bg-size-cover bg-position-center flex-shrink-0 photoDisplay1"
+                                     style="width: 300px; height: 350px;" id="photoDisplay">
+                                </div>
+                                <div class="pt-3 pt-sm-0 ps-sm-3">
+                                    <!-- 加 class -->
+                                    <h3 class="h1 mb-2 nameDisplay1" id="nameDisplay" style="position: relative;left:28px;"><i
+                                            class="ai-circle-check-filled fs-base text-success ms-2"></i>
+                                    </h3>
+
+                                    <table class="table mb-0">
+                                        <tr>
+                                            <td class="border-0 text-muted"
+                                                style="padding-bottom:20px;padding-top:50px;padding-left:30px; padding-right:0px; font-size: 18px; min-width:130px">信箱</td>
+                                            <td class="border-0 text-dark fw-medium mailDisplay1"
+                                                id="mailDisplay"
+                                                style="padding-bottom:20px;padding-top:50px;padding-left:0px; font-size: 18px;"
+                                            ></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border-0 text-muted" style="padding-bottom:20px;padding-left:30px; padding-right:0px; font-size: 18px; min-width:130px">性別</td>
+                                            <td class="border-0 text-dark fw-medium" style="padding-bottom:20px;padding-left:0px; font-size: 18px;" id="genderDisplay"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border-0 text-muted" style="padding-bottom:20px;padding-left:30px; padding-right:0px; font-size: 18px; min-width:130px">生日</td>
+                                            <td class="border-0 text-dark fw-medium" style="padding-bottom:20px;padding-left:0px; font-size: 18px;" id="birthdateDisplay">
+                                            </td>
+                                        </tr>
+                                        <td class="border-0 text-muted" style="padding-bottom:20px;padding-left:30px; padding-right:0px; min-width:130px">自我介紹</td>
+                                        <td class="border-0 text-dark fw-medium" style="padding-bottom:20px;padding-left:0px; font-size: 18px;" id="introDisplay"></td>
+                                        </tr>
+                                    </table>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row py-4 mb-2 mb-sm-3">
+                            <div class="col-md-6 mb-4 mb-md-0">
+<!--                                <table class="table mb-0">-->
+<!--                                    <tr>-->
+<!--                                        <td class="border-0 text-muted"-->
+<!--                                            style="padding-bottom:20px;padding-top:50px;">信箱</td>-->
+<!--                                        <td class="border-0 text-dark fw-medium mailDisplay1"-->
+<!--                                            id="mailDisplay"-->
+<!--                                            style="padding-bottom:20px;padding-top:50px;"-->
+<!--                                        ></td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td class="border-0 text-muted" style="padding-bottom:20px;">性別</td>-->
+<!--                                        <td class="border-0 text-dark fw-medium" style="padding-bottom:20px;" id="genderDisplay"></td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td class="border-0 text-muted" style="padding-bottom:20px;">生日</td>-->
+<!--                                        <td class="border-0 text-dark fw-medium" style="padding-bottom:20px;" id="birthdateDisplay">-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                    <td class="border-0 text-muted" style="padding-bottom:20px;">自我介紹</td>-->
+<!--                                    <td class="border-0 text-dark fw-medium" style="padding-bottom:20px;" id="introDisplay"></td>-->
+<!--                                    </tr>-->
+<!--                                </table>-->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+                    <!-- Divider for dark mode only-->
+                    <hr class="d-none d-dark-mode-block">
+                    <!-- Sidebar toggle button-->
+                    <button class="d-lg-none btn btn-sm fs-sm btn-primary w-100 rounded-0 fixed-bottom"
+                            data-bs-toggle="offcanvas" data-bs-target="#sidebarAccount"><i
+                            class="ai-menu me-2"></i>Account
+                        menu
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- 頁尾-->
+<footer class="footer bg-secondary py-5">
+    <div class="container pt-1 pt-sm-2 pt-md-3 pt-lg-4 pt-xl-5">
+        <div class="border-bottom text-center pb-4"><a class="navbar-brand d-inline-flex text-nav py-0 mb-3 mb-md-4"
+                                                       href="index.html"><span class="text-primary flex-shrink-0 me-2">
+                        <svg version="1.1" width="35" height="32" viewBox="0 0 36 33"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill="currentColor"
+                                  d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
+                            </path>
+                        </svg></span><span>EZ-DOM</span></a>
+            <ul class="nav justify-content-center py-1 pb-sm-2">
+                <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Classes</a></li>
+                <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Trainers</a></li>
+                <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Schedule</a></li>
+                <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Pricing</a></li>
+                <li class="nav-item"><a class="nav-link py-2 px-3 mx-1" href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="d-sm-flex align-items-center justify-content-between pt-4 mt-2 mt-sm-0">
+            <!--            <div class="d-flex justify-content-center order-sm-2 mb-4 mb-sm-0"><a-->
+            <!--                    class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle me-3" href="#"><i-->
+            <!--                    class="ai-instagram"></i></a><a-->
+            <!--                    class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle me-3"-->
+            <!--                    href="#"><i class="ai-facebook"></i></a><a-->
+            <!--                    class="btn btn-icon btn-sm btn-secondary btn-youtube rounded-circle" href="#"><i-->
+            <!--                    class="ai-youtube"></i></a>-->
+            <!--            </div>-->
+            <p class="fs-sm order-sm-1 text-center mb-0"><span class="opacity-70">&copy; All rights reserved. Made
+                        by
+                    </span><a class="nav-link d-inline fw-normal p-0" href="https://createx.studio/" target="_blank"
+                              rel="noopener">Createx Studio</a></p>
+        </div>
+    </div>
+</footer>
+<!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll>
+    <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10">
+        </circle>
+    </svg>
+    <i class="ai-arrow-up"></i></a>
+<!-- Vendor scripts: js libraries and plugins-->
+<script src="../frontendshop/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../frontendshop/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<!-- Main theme script-->
+<script src="../frontendshop/assets/js/theme.min.js"></script>
+
+<!-- 加 Swal -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- 個資 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+
+        displayMemberProfile();
+    });
+
+
+    function displayMemberProfile() {
+
+        const nameDisplay1 = document.querySelectorAll(".nameDisplay1");
+        const mailDisplay1 = document.querySelectorAll(".mailDisplay1");
+        const genderDisplay = document.getElementById("genderDisplay");
+        const birthdateDisplay = document.getElementById("birthdateDisplay");
+        const introDisplay = document.getElementById("introDisplay");
+        const accumulatedPoints = document.getElementById("accumulatedPoints");
+        const photoDisplay1 = document.getElementsByClassName("photoDisplay1");
+        const url = new URLSearchParams(window.location.search);
+        const url_memberId = url.get('memberId'); // 取得URL中查詢字串memberId的值
+        const req = '/ezdom/profile/getOther/' + url_memberId;
+
+        fetch(req)
+            .then(response => {
+                if (response.status === 401) {
+                    // 重定向到登录页面 登入失敗
+                    window.location.href = '/ezdom/frontendmember/account-signin.html';
+                } else if (response.ok) {
+                    //登入成功
+                    return response.json();
+                } else {
+                    alert("錯誤狀態" + response.status);
+                    return;
+                }
+            }).then(body => {
+                console.log(body);
+                const { memberName, memberEmail, memberGender, memberBirthday, introduction, memberPhoto } = body;
+
+                console.log(memberName);
+                console.log(memberEmail);
+
+                // 將會員信息顯示在相應的元素中
+                nameDisplay1.forEach(element => {
+                    element.textContent = memberName;
+                });
+
+                mailDisplay1.forEach(element => {
+                    element.textContent = memberEmail;
+                });
+                genderDisplay.textContent = memberGender === 0 ? '男' : memberGender === 1 ? '女' : '其他';
+                introDisplay.textContent = introduction;
+
+                // 格式化日期的年、月、日部分
+                const birthDate = new Date(memberBirthday);  // 將 birth 字串轉換為日期物件
+                const year = birthDate.getFullYear();  // 提取年份
+                const month = String(birthDate.getMonth() + 1).padStart(2, '0');  // 提取月份，加 1 因為月份是從 0 開始的，然後確保兩位數
+                const day = String(birthDate.getDate()).padStart(2, '0');  // 提取日期，確保兩位數
+                // 將格式化後的日期部分組合成 "YYYY-MM-DD" 格式的字串
+                birthdateDisplay.textContent = `${year}-${month}-${day}`;
+
+                if (memberPhoto) {
+                    for (const element of photoDisplay1) {
+                        element.innerHTML = `<img class="bg-size-cover bg-position-center flex-shrink-0" src="data:image/jpeg;base64,${memberPhoto}" style="width: 300px; height: 350px;" />`;
+                    }
+                } else {
+                    for (const element of photoDisplay1) {
+                        // 設置預設圖片的 src 屬性
+                        element.innerHTML = `<img class="bg-size-cover bg-position-center flex-shrink-0" src="/ezdom/frontendshop/image/userPhoto.png" style="width: 300px; height: 350px;" />`;
+                    }
+                }
+
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    }
+</script>
+
+
+<script>
+    window.addEventListener("load", function() {
+            getSession();
+        })
+  const s_req = '/ezdom/frontend/session';
+  let session;
+  let memberId = null;
+  let coachId = null;
+  async function getSession(){
+      let response = await fetch(s_req);
+      session = await response.json();
+      console.log(session);
+      memberId = session.memberId;
+      if(null !== session.coachId){
+          coachId = session.coachId;
+      }
+
+      let link = document.querySelector("#link");
+      if(null !== coachId){
+      console.log("1:" + coachId);
+        link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
+      } else if (null === coachId){
+      console.log("2:" + coachId);
+        link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
+        link.textContent = "註冊教練";
+      }
+  }
+</script>
+
+</body>
+
+</html>

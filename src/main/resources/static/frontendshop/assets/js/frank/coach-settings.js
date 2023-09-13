@@ -71,8 +71,6 @@ async function getCoachDetails(){
         } else if (response.ok) {
             // 登入成功
             coachDetails = await response.json();
-        } else {
-            alert("錯誤狀態 " + response.status);
         }
     } catch (error) {
         console.error("出现错误: " + error);
@@ -339,9 +337,6 @@ function collectFormData() {
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         })
         .then(body => {

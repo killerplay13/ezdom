@@ -27,10 +27,10 @@ public class BackendMember {
         return  memberState;
     }
 
-    @PutMapping("/status")
-    public Member updateMemberStatus(HttpServletRequest request ){
-        HttpSession session = request.getSession();
-        Integer memberId = (Integer)session.getAttribute("memberId");
+    @PutMapping("/status/{memberId}")
+    public Member updateMemberStatus(@PathVariable Integer memberId ){
+//        HttpSession session = request.getSession();
+//        Integer memberId = (Integer)session.getAttribute("memberId");
         Member member=new Member();
         if(memberService.updateMemberStatus(memberId)){
             member.setMessage("修改成功");
