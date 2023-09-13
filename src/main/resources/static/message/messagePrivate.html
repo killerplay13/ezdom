@@ -378,7 +378,7 @@
                                         <button class="btn btn-icon btn-sm btn-outline-secondary border-0 rounded-circle me-n2"
                                                 type="button" data-bs-toggle="dropdown"><i class="ai-dots-vertical fs-4 fw-bold"></i></button>
                                         <div class="dropdown-menu dropdown-menu-end my-1">
-                                            <a class="dropdown-item" href="#"><i class="ai-user fs-base opacity-80 me-2"></i>View
+                                            <a class="dropdown-item" :href="'/ezdom/frontendmember/personalPage.html?memberId=' + memberIdB"><i class="ai-user fs-base opacity-80 me-2"></i>View
                                                 profile</a>
                                         </div>
                                     </div>
@@ -636,6 +636,9 @@
               .then(() => {
                 for (const user of onlineUsers) {
                   if (user !== newUser && user !== this.chatId && !this.contactlists.some(contact => contact.id === user)) {
+                    if(newUserId === this.chatId){
+                      return;
+                      }
                     this.newUserId = parseInt(user);
                     this.getOtherProfile(this.newUserId);
                     const newUserContact = {
