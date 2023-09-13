@@ -93,13 +93,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderVO> findByStatusTo3(Integer value, int orderStatus) {
-        return dao.selectByStatusTo3(value,orderStatus);
+    public List<OrderVO> findByStatusTo3(Integer value, int orderStatus,Integer memberId) {
+        return dao.selectByStatusTo3(value,orderStatus,memberId);
     }
 
     @Override
-    public int findOrderCountByOrderStatus(Integer orderStatus) {
-        return dao.selectOrderCountByOrderStatus(orderStatus);
+    public int findOrderCountByOrderStatus(Integer orderStatus,Integer memberId) {
+        return dao.selectOrderCountByOrderStatus(orderStatus,memberId);
     }
     //前台完成訂單
     @Override

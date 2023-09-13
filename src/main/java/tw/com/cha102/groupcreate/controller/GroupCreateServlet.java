@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/frontend/groupcreate")
@@ -166,5 +167,10 @@ public class GroupCreateServlet {
             return ResponseEntity.ok("success");
         }
         return ResponseEntity.badRequest().body("false");
+    }
+
+    @GetMapping("/groupInfo/{groupId}")
+    public Optional<GroupCreateVO> groupInfo(@PathVariable Integer groupId){
+        return groupCreateService.groupInfo(groupId);
     }
 }

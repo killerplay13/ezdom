@@ -53,7 +53,7 @@ async function getSession(){
 
 const url = new URLSearchParams(window.location.search);
 const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值
-const req = 'http://localhost:8080/ezdom/frontend/browse/list/' + url_coachId;
+const req = '/ezdom/frontend/browse/list/' + url_coachId;
 
 async function getCoachDetails(){
     try {
@@ -65,8 +65,6 @@ async function getCoachDetails(){
         } else if (response.ok) {
             // 登入成功
             coachDetails = await response.json();
-        } else {
-            alert("錯誤狀態 " + response.status);
         }
     } catch (error) {
         console.error("出现错误: " + error);
@@ -91,6 +89,8 @@ function showCoachDetails(){
       settingURL.style = "";
       reportURL.style = "display:none";
     }
+
+    console.log(coachDetails);
 
     card_div.innerHTML = `
     <div class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"><i class="ai-user text-primary lead pe-1 me-2"></i>

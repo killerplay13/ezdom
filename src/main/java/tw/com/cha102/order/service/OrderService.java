@@ -20,9 +20,9 @@ public interface OrderService {
 
     boolean addToOrder(OrderVO orderVO);
 
-    List<OrderVO> findByStatusTo3(Integer value,int orderStatus);
+    List<OrderVO> findByStatusTo3(Integer value,int orderStatus,Integer memberId);
 
-    int findOrderCountByOrderStatus(Integer orderStatus);
+    int findOrderCountByOrderStatus(Integer orderStatus,Integer memberId);
 
     boolean confirmOrder(Integer orderId);
 
