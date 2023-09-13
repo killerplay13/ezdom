@@ -35,14 +35,9 @@ public class ECPayGroupService {
 
 
 
-    public String ecpayCheckout(Integer groupId) {
 
-        // TODO: 用來獲取已登入的member訊息
-        // Member member = (Member) session.getAttribute("member");
-        // Integer memberId = member.getMemberId();
 
-        //目前預設為1
-        Integer memberId = 1;
+    public String ecpayCheckout(Integer groupId,Integer memberId) {
 
         List<Integer> grouIds = groupMemberService.findGroupIdsByMemberIdAndStatus(memberId, (byte) 1);
         if (grouIds.contains(groupId)) {
@@ -69,7 +64,7 @@ public class ECPayGroupService {
         obj.setItemName(group.getGroupName());
         obj.setCustomField1(groupId.toString());
         // 交易結果回傳網址，只接受 https 開頭的網站，可以使用 ngrok
-         obj.setReturnURL("http://localhost:8080/ezdom/frontend/group/ecpayReturn");
+        obj.setReturnURL("http://localhost:8080/ezdom/frontend/group/ecpayReturn");
         obj.setNeedExtraPaidInfo("N");
         // 商店轉跳網址 (Optional)
         obj.setOrderResultURL("http://localhost:8080/ezdom/frontend/group/ecpayReturn");
