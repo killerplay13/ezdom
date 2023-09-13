@@ -587,9 +587,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
             let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
@@ -616,9 +613,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
                 let { successful, message } = body;
@@ -640,9 +634,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
             let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
@@ -669,9 +660,6 @@
           } else if (response.ok) {
             //登入成功
             return response.text();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
             // 插入ECPay表單內容到<div>中
@@ -706,9 +694,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         })
   }
@@ -725,9 +710,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         })
   }
@@ -757,9 +739,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         let { memberName, memberEmail, point } = body;
@@ -780,9 +759,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;

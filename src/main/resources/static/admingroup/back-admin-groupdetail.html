@@ -26,8 +26,8 @@
     <!-- Custom fonts for this template-->
     <link href="../backendshop/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="../backendshop/css/sb-admin-2.min.css" rel="stylesheet">
@@ -36,693 +36,685 @@
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
-        <!-- 左側欄位 -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <!-- 左側欄位 -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div style="transform: rotate(-5deg)">
-                    <img width="40px" src="../backendshop/img/FBI.png">
-                </div>
-                <div class="sidebar-brand-text mx-3">EZDOM</div>
+        <!-- Sidebar - Brand -->
+        <a  class="sidebar-brand d-flex align-items-center justify-content-center" href="/ezdom/dashboard.html">
+            <div style="transform: rotate(-5deg)">
+                <img width="40px"  src="/ezdom/backendemp/img/FBI.png" >
+            </div>
+            <div class="sidebar-brand-text mx-3">EZDOM</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active position1">
+            <a class="nav-link" href="/ezdom/backendemp/empAll.html">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>員工管理</span></a>
+
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+
+        <!-- Heading -->
+        <div class="sidebar-heading position2">
+            會員管理
+        </div>
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item position2">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+               aria-expanded="true" aria-controls="collapseOne">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>會員查詢</span>
             </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>員工管理</span></a>
-
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                會員管理
+            <div id="collapseOne" class="collapse" data-parent="#accordionSidebar1">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/ezdom/backendmember/member-list.html">會員列表</a>
+                </div>
             </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>會員查詢</span>
-                </a>
-                <div id="collapseOne" class="collapse" data-parent="#accordionSidebar1">
-                    <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
+        </li>
+        <li class="nav-item position2">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>教練審核</span>
+            </a>
+            <div id="collapseTwo" class="collapse" data-parent="#accordionSidebar2">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/ezdom/backendcoach/coach-verify.html">教練審核</a>
                 </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>教練審核</span>
-                </a>
-                <div id="collapseTwo" class="collapse" data-parent="#accordionSidebar2">
-                    <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Buttons1</a>
-                        <a class="collapse-item" href="cards.html">Cards1</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                預約管理
             </div>
+        </li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>款項管理</span>
-                </a>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar3">
-                    <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
-                    aria-expanded="true" aria-controls="collapseFour">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>預約檢舉管理</span>
-                </a>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar4">
-                    <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                商城管理
+
+
+
+
+
+        <!-- Heading -->
+        <div class="sidebar-heading position3">
+            商城管理
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item position3">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
+               aria-expanded="true" aria-controls="collapseFive">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>商品管理</span>
+            </a>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar5">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/ezdom/backendshop/shop-product.html">商品列表</a>
+                    <a class="collapse-item" href="/ezdom/backendshop/shop-addProduct.html">商品新增</a>
+                </div>
             </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
-                    aria-expanded="true" aria-controls="collapseFive">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>商品管理</span>
-                </a>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar5">
-                    <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">上架中商品</a>
-                        <a class="collapse-item" href="cards.html">下架中商品</a>
-                    </div>
+        </li>
+        <li class="nav-item position3">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
+               aria-expanded="true" aria-controls="collapseSix">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>訂單管理</span>
+            </a>
+            <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar6">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/ezdom/backendshop/shop-orders.html">訂單列表</a>
+                    <a class="collapse-item" href="/ezdom/backendshop/shop-return.html">退貨管理</a>
                 </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
-                    aria-expanded="true" aria-controls="collapseSix">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>訂單管理</span>
-                </a>
-                <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar6">
-                    <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">未出貨訂單</a>
-                        <a class="collapse-item" href="cards.html">已出貨訂單</a>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEle"
-                    aria-expanded="true" aria-controls="collapseEle">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>廣告管理</span>
-                </a>
-                <div id="collapseEle" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar11">
-                    <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">廣告一欄</a>
-                        <a class="collapse-item" href="cards.html">廣告編輯</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                揪團管理
             </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwe"
-                    aria-expanded="true" aria-controls="collapseTwe">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>揪團審核管理</span>
-                </a>
-                <div id="collapseTwe" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar12">
-                    <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">xxx</a>
-                        <a class="collapse-item" href="cards.html">xxx</a>
-                    </div>
+        </li>
+        <li class="nav-item position3">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEle"
+               aria-expanded="true" aria-controls="collapseEle">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>廣告管理</span>
+            </a>
+            <div id="collapseEle" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar11">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/ezdom/backendad/adAll.html">廣告一覽</a>
+                    <a class="collapse-item" href="/ezdom/backendad/adAdd.html">廣告新增</a>
                 </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven"
-                    aria-expanded="true" aria-controls="collapseSeven">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>揪團成員管理</span>
-                </a>
-                <div id="collapseSeven" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar7">
-                    <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Xxx</a>
-                        <a class="collapse-item" href="cards.html">xxx</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                其他功能
             </div>
+        </li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight"
-                    aria-expanded="true" aria-controls="collapseEight">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>論壇管理</span>
-                </a>
-                <div id="collapseEight" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar8">
-                    <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Xxx</a>
-                        <a class="collapse-item" href="cards.html">xxx</a>
-                    </div>
+
+
+        <!-- Heading -->
+        <div class="sidebar-heading position3">
+            揪團管理
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item position3">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwe"
+               aria-expanded="true" aria-controls="collapseTwe">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>揪團審核管理</span>
+            </a>
+            <div id="collapseTwe" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar12">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/ezdom/admingroup/back-admin-group.html">揪團審核清單</a>
+                    <a class="collapse-item" href="/ezdom/admingroup/back-admin-groupdetail.html">揪團審核明細</a>
                 </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNine"
-                    aria-expanded="true" aria-controls="collapseNine">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>QA管理</span>
-                </a>
-                <div id="collapseNine" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar9">
-                    <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Xxx</a>
-                        <a class="collapse-item" href="cards.html">xxx</a>
-                    </div>
+            </div>
+        </li>
+        <li class="nav-item position3">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven"
+               aria-expanded="true" aria-controls="collapseSeven">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>揪團檢舉</span>
+            </a>
+            <div id="collapseSeven" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar7">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/ezdom/groupreport/groupreport.html">揪團檢舉列表</a>
                 </div>
-            </li>
+            </div>
+        </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTen"
-                    aria-expanded="true" aria-controls="collapseTen">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>最新消息管理</span>
-                </a>
-                <div id="collapseTen" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar10">
-                    <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Xxx</a>
-                        <a class="collapse-item" href="cards.html">xxx</a>
-                    </div>
+
+        <!-- Heading -->
+        <div class="sidebar-heading position2">
+            其他功能
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item position2">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight"
+               aria-expanded="true" aria-controls="collapseEight">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>論壇管理</span>
+            </a>
+            <div id="collapseEight" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar8">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/ezdom/backendforum/forum-backreport.html">論壇管理</a>
                 </div>
-            </li>
-        </ul>
-        <!-- 上面是左側欄位 -->
+            </div>
+        </li>
+
+        <li class="nav-item position2">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNine"
+               aria-expanded="true" aria-controls="collapseNine">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>QA管理</span>
+            </a>
+            <div id="collapseNine" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar9">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/ezdom/backendsupport/faq.html">QA管理</a>
+                    <a class="collapse-item" href="/ezdom/backendsupport/support.html">即時客服</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item position2">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTen"
+               aria-expanded="true" aria-controls="collapseTen">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>最新消息管理</span>
+            </a>
+            <div id="collapseTen" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar10">
+                <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/ezdom/latestnews/back-addnews.html">最新消息管理</a>
+                </div>
+            </div>
+        </li>
 
 
-        <!--  -->
-        <div id="content-wrapper" class="d-flex flex-column">
-            <div id="content">
-                <!-- header -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
+    </ul>
+
+    <!-- 上面是左側欄位 -->
+
+
+    <!--  -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <!-- header -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <ul class="navbar-nav ml-auto">
+
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <!-- Nav Item - User Information 111-->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="empName">員工姓名</span>
+                            <img class="img-profile rounded-circle"
+                                 src="/ezdom/backendemp/img/cutieebk.png">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                登出
                             </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
+                        </div>
+                    </li>
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
+                </ul>
+            </nav>
+            <!-- header -->
+            <!-- End of Topbar -->
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content" style="margin-left: 15PX" ;>
+                <div class=" page-content" style="padding-top: 0PX;">
+                    <div class="container-fluid">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">揪團活動審核</h4>
 
-                        <!-- Nav Item - User Information 111-->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">員工姓名</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    登出
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- header -->
-                <!-- End of Topbar -->
-                <!-- ============================================================== -->
-                <!-- Start right Content here -->
-                <!-- ============================================================== -->
-                <div class="main-content" style="margin-left: 15PX" ;>
-                    <div class=" page-content" style="padding-top: 0PX;">
-                        <div class="container-fluid">
-                            <!-- start page title -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                        <h4 class="mb-sm-0 font-size-18">揪團活動審核</h4>
-
-                                        <div class="page-title-right">
-                                            <ol class="breadcrumb m-0">
-                                                <li class="breadcrumb-item"><a href="back-admin-group.html">揪團審核管理</a>
-                                                </li>
-                                                <li class="breadcrumb-item active">揪團活動審核</li>
-                                            </ol>
-                                        </div>
-
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="back-admin-group.html">揪團審核管理</a>
+                                            </li>
+                                            <li class="breadcrumb-item active">揪團活動審核</li>
+                                        </ol>
                                     </div>
+
                                 </div>
                             </div>
-                            <!-- end page title -->
+                        </div>
+                        <!-- end page title -->
 
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="mb-3">
-                                                            <label for="groupId">揪團活動編號</label>
-                                                            <input id="groupId" name="groupId" type="text"
-                                                                class="form-control" readonly>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="mb-3">
+                                                        <label for="groupId">揪團活動編號</label>
+                                                        <input id="groupId" name="groupId" type="text"
+                                                               class="form-control" readonly>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="groupphoto">揪團圖片</label>
+                                                        <div class="image-frame"
+                                                             style="width: 500px; height: 500px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center;">
+                                                            <img id="groupphoto" src="" alt="groupphoto"
+                                                                 style="max-width: 100%; max-height: 100%;">
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label for="groupphoto">揪團圖片</label>
-                                                            <div class="image-frame"
-                                                                style="width: 500px; height: 500px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center;">
-                                                                <img id="groupphoto" src="" alt="groupphoto"
-                                                                    style="max-width: 100%; max-height: 100%;">
-                                                            </div>
-                                                        </div>
-
                                                     </div>
 
-                                                    <div class="col-sm-6">
-                                                        <div class="mb-3">
-                                                            <label for="groupname">揪團名稱</label>
-                                                            <input id="groupname" name="groupname" type="text"
-                                                                class="form-control" readonly>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="groupmember">團主</label>
-                                                            <input id="groupmember" name="groupmember" type="text"
-                                                                class="form-control" readonly>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="groupDate">揪團日期</label>
-                                                            <input id="groupDate" name="groupDate" type="text"
-                                                                class="form-control" readonly>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="groupTitle">揪團主題</label>
-                                                            <input id="groupTitle" name="groupTitle" type="text"
-                                                                class="form-control" readonly>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="groupLocation">揪團地點</label>
-                                                            <input id="groupLocation" name="groupLocation" type="text"
-                                                                class="form-control" readonly>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="limitNumber">揪團人數上限</label>
-                                                            <input id="limitNumber" name="limitNumber" type="text"
-                                                                class="form-control" readonly>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="groupDeposit">揪團押金</label>
-                                                            <input id="groupDeposit" name="groupDeposit" type="text"
-                                                                class="form-control" readonly>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="groupContent">揪團內容</label>
-                                                            <textarea class="form-control" id="groupContent" rows="5"
-                                                                readonly></textarea>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="groupStatus">揪團狀態</label>
-                                                            <select class="form-control select2">
-                                                                <option>Select</option>
-                                                                <option value="0">未處理</option>
-                                                                <option value="1">審核成功</option>
-                                                                <option value="2">審核失敗</option>
-                                                                <option value="1">取消揪團</option>
-                                                                <option value="2">延期揪團</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-3" id="failReasonDiv" style="display: none;">
-                                                            <label for="failReason">揪團失敗原因</label>
-                                                            <textarea class="form-control" id="failReason"
-                                                                rows="3"></textarea>
-                                                        </div>
-                                                    </div>
                                                 </div>
 
-                                                <div class="d-flex flex-wrap gap-2">
-                                                    <button type="submit"
+                                                <div class="col-sm-6">
+                                                    <div class="mb-3">
+                                                        <label for="groupname">揪團名稱</label>
+                                                        <input id="groupname" name="groupname" type="text"
+                                                               class="form-control" readonly>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="groupmember">團主</label>
+                                                        <input id="groupmember" name="groupmember" type="text"
+                                                               class="form-control" readonly>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="groupDate">揪團日期</label>
+                                                        <input id="groupDate" name="groupDate" type="text"
+                                                               class="form-control" readonly>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="groupTitle">揪團主題</label>
+                                                        <input id="groupTitle" name="groupTitle" type="text"
+                                                               class="form-control" readonly>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="groupLocation">揪團地點</label>
+                                                        <input id="groupLocation" name="groupLocation" type="text"
+                                                               class="form-control" readonly>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="limitNumber">揪團人數上限</label>
+                                                        <input id="limitNumber" name="limitNumber" type="text"
+                                                               class="form-control" readonly>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="groupDeposit">揪團押金</label>
+                                                        <input id="groupDeposit" name="groupDeposit" type="text"
+                                                               class="form-control" readonly>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="groupContent">揪團內容</label>
+                                                        <textarea class="form-control" id="groupContent" rows="5"
+                                                                  readonly></textarea>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="groupStatus">揪團狀態</label>
+                                                        <select class="form-control select2">
+                                                            <option>Select</option>
+                                                            <option value="0">未處理</option>
+                                                            <option value="1">審核成功</option>
+                                                            <option value="2">審核失敗</option>
+                                                            <option value="1">取消揪團</option>
+                                                            <option value="2">延期揪團</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3" id="failReasonDiv" style="display: none;">
+                                                        <label for="failReason">揪團失敗原因</label>
+                                                        <textarea class="form-control" id="failReason"
+                                                                  rows="3"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-wrap gap-2">
+                                                <button type="submit"
                                                         class="btn btn-primary waves-effect waves-light">提交審核</button>
-                                                </div>
-                                            </form>
+                                            </div>
+                                        </form>
 
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- end row -->
                         </div>
-                    </div> <!-- container-fluid -->
-                </div>
-            </div>
-            <script>
-                // 取得查詢參數 groupId 的值
-                const urlParams = new URLSearchParams(window.location.search);
-                const groupId = urlParams.get('groupId');
-
-                // 找到表單中的各個輸入框元素
-                const groupIdInput = document.getElementById('groupId');
-                const groupPhotoImage = document.getElementById('groupphoto');
-                const groupNameInput = document.getElementById('groupname');
-                const groupMemberInput = document.getElementById('groupmember');
-                const groupDateInput = document.getElementById('groupDate');
-                const groupTitleInput = document.getElementById('groupTitle');
-                const groupLocationInput = document.getElementById('groupLocation');
-                const limitNumberInput = document.getElementById('limitNumber');
-                const groupDepositInput = document.getElementById('groupDeposit');
-                const groupContentTextarea = document.getElementById('groupContent');
-                const groupStatusSelect = document.querySelector('.form-control.select2');
-                const submitBtn = document.querySelector('button[type="submit"]');
-                const groupfailReason = document.getElementById('failReason');
-
-                // 使用 fetch API 發送請求，獲取單筆揪團的詳細資訊
-                async function fetchGroupDetail() {
-                    try {
-                        const response = await fetch(`/ezdom/backend/group/admin/${groupId}`);
-                        if (response.status === 401) {
-                            // 重定向到登录页面 登入失敗
-                            window.location.href = '/ezdom/backendemp/empSignin.html';
-                        } else if (response.ok) {
-                            //登入成功
-                            const groupDetail = await response.json();
-
-                            // 將揪團詳細資訊填充到輸入框中
-                            groupIdInput.value = groupDetail.groupId;
-                            groupPhotoImage.src = groupDetail.groupPhoto || '';
-                            groupNameInput.value = groupDetail.groupName;
-                            groupMemberInput.value = groupDetail.createMemberId;
-                            groupDateInput.value = formatDate(groupDetail.groupDate);
-                            groupTitleInput.value = groupDetail.groupTitle;
-                            groupLocationInput.value = groupDetail.groupLocation;
-                            limitNumberInput.value = groupDetail.limitNumber;
-                            groupDepositInput.value = groupDetail.groupDeposit;
-                            groupContentTextarea.value = groupDetail.groupContent;
-                            groupStatusSelect.value = groupDetail.groupStatus;
-                            groupfailReason.value = groupDetail.createFailReason;
-                        } else {
-                            alert("錯誤狀態" + response.status);
-                        }
-                    } catch (error) {
-                        console.error('Error fetching group detail:', error);
-                    }
-                }
-
-
-                // 格式化日期
-                function formatDate(dateString) {
-                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-                    return new Date(dateString).toLocaleDateString('zh-TW', options);
-                }
-
-                // 在網頁載入完成後執行
-                document.addEventListener('DOMContentLoaded', function () {
-                    console.log('Page loaded.'); // 檢查是否載入成功
-
-                    // 找到揪團狀態下拉選單元素
-                    const groupStatusSelect = document.querySelector('.form-control.select2');
-                    console.log('groupStatusSelect:', groupStatusSelect); // 檢查是否成功找到元素
-
-                    fetchGroupDetail();
-
-                    // 判斷揪團狀態，顯示失敗原因輸入框
-                    if (groupStatusSelect && groupStatusSelect.value === '2') { // 選擇 "審核失敗"
-                        failReasonDiv.style.display = 'block';
-                    }
-                });
-
-                // 在提交審核按鈕被點擊時執行以下程式碼
-                submitBtn.addEventListener('click', async function (event) {
-                    event.preventDefault(); // 阻止表單的預設提交行為
-
-                    // 取得目前選取的揪團狀態值
-                    const selectedStatus = groupStatusSelect.value;
-
-                    // 取得失敗原因的文字內容
-                    const failReason = failReasonTextarea.value;
-
-                    // 構建要傳遞的資料
-                    const requestData = {
-                        groupStatus: selectedStatus,
-                        createFailReason: selectedStatus === '2' ? failReason : null
-                    };
-
-                    try {
-                        const response = await fetch(`/ezdom/backend/group/admin/${groupId}`, {
-                            method: 'PUT',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(requestData)
-                        });
-
-                        if (response.ok) {
-                            const updatedGroupData = await response.json();
-                            console.log('Group updated successfully:', updatedGroupData);
-
-                            // 導航到 back-admin-group.html 頁面
-                            window.location.href = 'back-admin-group.html';
-                        } else {
-                            console.error('Failed to update group.');
-                        }
-                    } catch (error) {
-                        console.error('Error updating group:', error);
-                    }
-                });
-
-
-            </script>
-            <!--若揪團狀態的下拉選單是審核失敗會自動跳出失敗原因的表格-->
-            <script>
-                // 找到失敗原因相關的元素
-                const failReasonDiv = document.getElementById('failReasonDiv');
-                const failReasonTextarea = document.getElementById('failReason');
-
-                // 監聽選擇框的變化事件
-                groupStatusSelect.addEventListener('change', function () {
-                    if (this.value === '2') { // 選擇 "審核失敗"
-                        failReasonDiv.style.display = 'block';
-                    } else {
-                        failReasonDiv.style.display = 'none';
-                    }
-                });
-            </script>
-
-            <!-- End Page-content -->
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <script>document.write(new Date().getFullYear())</script> © Dason.
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="text-sm-end d-none d-sm-block">
-                                Design & Develop by <a href="#!" class="text-decoration-underline">Themesbrand</a>
-                            </div>
-                        </div>
+                        <!-- end row -->
                     </div>
-                </div>
-            </footer>
-        </div>
-        <!-- end main content-->
-    </div>
-    </div>
-
-    </div>
-    <!-- /.container-fluid -->
-
-    </div>
-    <!-- End of Main Content -->
-
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>EZDOM &copy; 後台管理系統</span>
+                </div> <!-- container-fluid -->
             </div>
         </div>
-    </footer>
-    <!-- End of Footer -->
+        <script>
+            // 取得查詢參數 groupId 的值
+            const urlParams = new URLSearchParams(window.location.search);
+            const groupId = urlParams.get('groupId');
 
-    </div>
-    <!-- End of Content Wrapper -->
+            // 找到表單中的各個輸入框元素
+            const groupIdInput = document.getElementById('groupId');
+            const groupPhotoImage = document.getElementById('groupphoto');
+            const groupNameInput = document.getElementById('groupname');
+            const groupMemberInput = document.getElementById('groupmember');
+            const groupDateInput = document.getElementById('groupDate');
+            const groupTitleInput = document.getElementById('groupTitle');
+            const groupLocationInput = document.getElementById('groupLocation');
+            const limitNumberInput = document.getElementById('limitNumber');
+            const groupDepositInput = document.getElementById('groupDeposit');
+            const groupContentTextarea = document.getElementById('groupContent');
+            const groupStatusSelect = document.querySelector('.form-control.select2');
+            const submitBtn = document.querySelector('button[type="submit"]');
+            const groupfailReason = document.getElementById('failReason');
 
-    </div>
-    <!-- End of Page Wrapper -->
+            // 使用 fetch API 發送請求，獲取單筆揪團的詳細資訊
+            async function fetchGroupDetail() {
+                try {
+                    const response = await fetch(`/ezdom/backend/group/admin/${groupId}`);
+                    if (response.status === 401) {
+                        // 重定向到登录页面 登入失敗
+                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                    } else if (response.ok) {
+                        //登入成功
+                        const groupDetail = await response.json();
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+                        // 將揪團詳細資訊填充到輸入框中
+                        groupIdInput.value = groupDetail.groupId;
+                        groupPhotoImage.src = "data:image/jpg;base64," + groupDetail.groupPhoto || '';
+                        groupNameInput.value = groupDetail.groupName;
+                        groupMemberInput.value = groupDetail.createMemberId;
+                        groupDateInput.value = formatDate(groupDetail.groupDate);
+                        groupTitleInput.value = groupDetail.groupTitle;
+                        groupLocationInput.value = groupDetail.groupLocation;
+                        limitNumberInput.value = groupDetail.limitNumber;
+                        groupDepositInput.value = groupDetail.groupDeposit;
+                        groupContentTextarea.value = groupDetail.groupContent;
+                        groupStatusSelect.value = groupDetail.groupStatus;
+                        groupfailReason.value = groupDetail.createFailReason;
+                    } else {
+                        alert("錯誤狀態" + response.status);
+                    }
+                } catch (error) {
+                    console.error('Error fetching group detail:', error);
+                }
+            }
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            // 格式化日期
+            function formatDate(dateString) {
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                return new Date(dateString).toLocaleDateString('zh-TW', options);
+            }
 
-    <!-- Core plugin JavaScript-->
-    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+            // 在網頁載入完成後執行
+            document.addEventListener('DOMContentLoaded', function () {
+                console.log('Page loaded.'); // 檢查是否載入成功
 
-    <!-- Custom scripts for all pages-->
-    <script src="/js/sb-admin-2.min.js"></script>
+                // 找到揪團狀態下拉選單元素
+                const groupStatusSelect = document.querySelector('.form-control.select2');
+                console.log('groupStatusSelect:', groupStatusSelect); // 檢查是否成功找到元素
 
-    <!-- Page level plugins -->
-    <script src="/vendor/chart.js/Chart.min.js"></script>
+                fetchGroupDetail();
 
-    <!-- Page level custom scripts -->
-    <script src="/js/demo/chart-area-demo.js"></script>
-    <script src="/js/demo/chart-pie-demo.js"></script>
-    <script>
-        // 初始化折疊功能
-        var collapseElements = document.querySelectorAll('[data-toggle="collapse"]');
-        collapseElements.forEach(function (element) {
-            var targetSelector = element.getAttribute('data-target');
-            var targetElement = document.querySelector(targetSelector);
-
-            element.addEventListener('click', function () {
-                if (targetElement.classList.contains('show')) {
-                    targetElement.classList.remove('show');
-                } else {
-                    targetElement.classList.add('show');
+                // 判斷揪團狀態，顯示失敗原因輸入框
+                if (groupStatusSelect && groupStatusSelect.value === '2') { // 選擇 "審核失敗"
+                    failReasonDiv.style.display = 'block';
                 }
             });
+
+            // 在提交審核按鈕被點擊時執行以下程式碼
+            submitBtn.addEventListener('click', async function (event) {
+                event.preventDefault(); // 阻止表單的預設提交行為
+
+                // 取得目前選取的揪團狀態值
+                const selectedStatus = groupStatusSelect.value;
+
+                // 取得失敗原因的文字內容
+                const failReason = failReasonTextarea.value;
+
+                // 構建要傳遞的資料
+                const requestData = {
+                    groupStatus: selectedStatus,
+                    createFailReason: selectedStatus === '2' ? failReason : null
+                };
+
+                try {
+                    const response = await fetch(`/ezdom/backend/group/admin/${groupId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(requestData)
+                    });
+
+                    if (response.ok) {
+                        const updatedGroupData = await response.json();
+                        console.log('Group updated successfully:', updatedGroupData);
+
+                        // 導航到 back-admin-group.html 頁面
+                        window.location.href = 'back-admin-group.html';
+                    } else {
+                        console.error('Failed to update group.');
+                    }
+                } catch (error) {
+                    console.error('Error updating group:', error);
+                }
+            });
+
+
+        </script>
+        <!--若揪團狀態的下拉選單是審核失敗會自動跳出失敗原因的表格-->
+        <script>
+            // 找到失敗原因相關的元素
+            const failReasonDiv = document.getElementById('failReasonDiv');
+            const failReasonTextarea = document.getElementById('failReason');
+
+            // 監聽選擇框的變化事件
+            groupStatusSelect.addEventListener('change', function () {
+                if (this.value === '2') { // 選擇 "審核失敗"
+                    failReasonDiv.style.display = 'block';
+                } else {
+                    failReasonDiv.style.display = 'none';
+                }
+            });
+        </script>
+
+        <!-- End Page-content -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>document.write(new Date().getFullYear())</script> © Dason.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design & Develop by <a href="#!" class="text-decoration-underline">Themesbrand</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- end main content-->
+</div>
+</div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>EZDOM &copy; 後台管理系統</span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">是否登出?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">你真的要登出嗎?</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+                <a class="btn btn-primary" onclick="logout()" style="cursor: pointer;">登出</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 初始化折疊功能 -->
+<script src="/ezdom/backendshop/js/aside.js"></script>
+<script>
+
+    let empName=document.getElementById("empName");
+         function logout(){
+             fetch('/ezdom/employee/logout')
+             .then(resp=>resp.json())
+             .then(body=>{
+                 let {successful}=body;
+                 if(successful){
+                     window.location.href = '/ezdom/backendemp/empSignin.html';
+                 }
+             })
+         }
+         function getEmp(){
+             fetch('/ezdom/backend/employee/getById')
+             .then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登录页面 登入失敗
+                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                    }else if(response.ok){
+                        //登入成功
+                        return response.json();
+                    }else{
+                        alert("錯誤狀態" + response.status);
+                        return;
+                    }
+                }).then(body=>{
+                 let {employeeName}=body;
+                 empName.textContent =employeeName;
+             })
+         }
+
+         getEmp();
+
+
+    function getPosition() {
+  fetch('/ezdom/backend/employee/getById')
+    .then(response => {
+      if (response.status === 401) {
+        // 重定向到登录页面 登入失敗
+        window.location.href = '/ezdom/backendemp/empSignin.html';
+      } else if (response.ok) {
+        return response.json();
+      }
+    })
+    .then(body => {
+      let { employeePosition } = body;
+      console.log(employeePosition);
+
+      // 找到要删除的元素
+      const elementsToDelete = document.querySelectorAll('.position1, .position3, .position2');
+
+      // 依 employeePosition 的值 刪除不符職位的連結
+      if (employeePosition === 2) {
+        // 删除包含 position1 或 position3
+        elementsToDelete.forEach(element => {
+          if (element.classList.contains('position1') || element.classList.contains('position3')) {
+            element.remove();
+          }
         });
+      } else if (employeePosition === 3) {
+        // 删除包含 position1 或 position2
+        elementsToDelete.forEach(element => {
+          if (element.classList.contains('position1') || element.classList.contains('position2')) {
+            element.remove();
+          }
+        });
+      }
+    });
+}
 
-    </script>
-    <!-- JAVASCRIPT -->
-    <script src="../backendshop/assets/libs/jquery/jquery.min.js"></script>
-    <script src="../backendshop/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../backendshop/assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="../backendshop/assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="../backendshop/assets/libs/node-waves/waves.min.js"></script>
-    <script src="../backendshop/assets/libs/feather-icons/feather.min.js"></script>
-    <!-- pace js -->
-    <script src="../backendshop/assets/libs/pace-js/pace.min.js"></script>
+getPosition();
 
-    <script src="../backendshop/assets/js/app.js"></script>
+</script>
+
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="/vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="/js/demo/chart-area-demo.js"></script>
+<script src="/js/demo/chart-pie-demo.js"></script>
+<script>
+    // 初始化折疊功能
+    var collapseElements = document.querySelectorAll('[data-toggle="collapse"]');
+    collapseElements.forEach(function (element) {
+        var targetSelector = element.getAttribute('data-target');
+        var targetElement = document.querySelector(targetSelector);
+
+        element.addEventListener('click', function () {
+            if (targetElement.classList.contains('show')) {
+                targetElement.classList.remove('show');
+            } else {
+                targetElement.classList.add('show');
+            }
+        });
+    });
+
+</script>
+<!-- JAVASCRIPT -->
+<script src="../backendshop/assets/libs/jquery/jquery.min.js"></script>
+<script src="../backendshop/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../backendshop/assets/libs/metismenu/metisMenu.min.js"></script>
+<script src="../backendshop/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="../backendshop/assets/libs/node-waves/waves.min.js"></script>
+<script src="../backendshop/assets/libs/feather-icons/feather.min.js"></script>
+<!-- pace js -->
+<script src="../backendshop/assets/libs/pace-js/pace.min.js"></script>
+
+<script src="../backendshop/assets/js/app.js"></script>
 
 </body>
 

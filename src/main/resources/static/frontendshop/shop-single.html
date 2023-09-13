@@ -578,9 +578,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         let { productId, productName, productDescription, productOriginPrice, productDiscountPrice, productImage } = body;
@@ -734,9 +731,6 @@
           } else if (response.ok) {
             //登入成功
             return response.text();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         Swal.fire({
@@ -762,9 +756,6 @@
           } else if (response.ok) {
             //登入成功
             return response.text();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         Swal.fire({
@@ -789,9 +780,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         let { message } = body;
@@ -820,9 +808,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         let { cartTotalPrice, cartTotalQuantity, cartProductVoList } = body;
@@ -903,9 +888,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
             let { successful, message } = body;
@@ -934,9 +916,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
         let html = "";
@@ -1023,9 +1002,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body=>{
       let html="";

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import tw.com.cha102.group.model.GroupMember;
 import tw.com.cha102.group.service.GroupMemberService;
 
+import javax.servlet.http.HttpSession;
+
 @CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("/frontend/group")
@@ -21,11 +23,12 @@ public class ECPayGroupController {
 
     @GetMapping("/ecpayCheckout")
     @ResponseBody
-    public String ecpayCheckout(@RequestParam(value = "groupId") Integer groupId) {
+    public String ecpayCheckout(@RequestParam(value = "groupId") Integer groupId, HttpSession session) {
+
+        Integer memberId = (Integer) session.getAttribute("memberId");
 
 
-
-        String aioCheckOutALLForm = ecPayGroupService.ecpayCheckout(groupId);
+        String aioCheckOutALLForm = ecPayGroupService.ecpayCheckout(groupId,memberId);
         if(aioCheckOutALLForm == null){
             return "綠界付款失敗";
         }
@@ -33,14 +36,9 @@ public class ECPayGroupController {
     }
 
     @RequestMapping("/ecpayReturn")
-    public String ecpayReturn(Model model, @RequestParam("RtnCode") String rtnCode,@RequestParam("CustomField1") String groupId) {
+    public String ecpayReturn(Model model, @RequestParam("RtnCode") String rtnCode,@RequestParam("CustomField1") String groupId, HttpSession session) {
 
-        // TODO: 用來獲取已登入的member訊息
-        // Member member = (Member) session.getAttribute("member");
-        // Integer memberId = member.getMemberId();
-
-        //目前預設為1
-        Integer memberId = 1;
+        Integer memberId = (Integer) session.getAttribute("memberId");
         // rtnCode == 1 表示交易成功
         if ("1".equals(rtnCode)) {
             GroupMember groupMember = groupMemberService.findByGroupIdAndMemberIdAndGroupApplyStatus(Integer.parseInt(groupId), memberId, (byte) 4);
