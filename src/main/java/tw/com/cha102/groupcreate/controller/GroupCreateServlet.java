@@ -112,7 +112,9 @@ public class GroupCreateServlet {
     }
 
     @PutMapping("/updateGroup/{groupId}") //修改揪團資訊用
-    public ResponseEntity<String> updateGroup(@RequestBody GroupCreateVO groupCreateVO){
+    public ResponseEntity<String> updateGroup(HttpServletRequest request,@RequestBody GroupCreateVO groupCreateVO){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         if(groupCreateVO.getGroupName()==null){
             groupCreateVO.setMessage("揪團名稱未輸入");
             groupCreateVO.setSuccessful(false);
@@ -138,7 +140,7 @@ public class GroupCreateServlet {
         if(groupCreateVO.getRegisteredNumber()>=groupCreateVO.getLimitNumber()){
             return ResponseEntity.badRequest().body("超過人數上限");
         }
-        GroupCreateVO result = groupCreateService.update(groupCreateVO);
+        GroupCreateVO result = groupCreateService.update(memberId,groupCreateVO);
         return ResponseEntity.ok("修改成功");
     }
 
