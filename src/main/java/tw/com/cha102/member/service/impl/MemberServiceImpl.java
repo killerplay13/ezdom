@@ -310,11 +310,14 @@ public class MemberServiceImpl implements MemberService {
 
         MemberProfileResponse response = new MemberProfileResponse();
         response.setName(member.getMemberName());
+        response.setMemberUid(member.getMemberUid());
         response.setEmail(member.getMemberEmail());
+        response.setPhone(member.getMemberPhone());
         response.setGender(member.getMemberGender());
         response.setBirth(member.getMemberBirthday());
         response.setIntroduction(member.getIntroduction());
         response.setPoint(member.getPoint());
+        response.setAddress(member.getMemberAddress());
 
         return response;
     }
