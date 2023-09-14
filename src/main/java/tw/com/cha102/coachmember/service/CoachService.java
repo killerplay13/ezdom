@@ -162,10 +162,11 @@ public class CoachService {
 
         if(check.isPresent()){
             CoachMemberVO coachMember = check.get();
-            coachMember.setStatus(status);
-            coachMemberRepository.save(coachMember);
 
             if (coachMember.getStatus() == 1 && status == 2) {
+                coachMember.setStatus(status);
+                coachMemberRepository.save(coachMember);
+
                 Member member = memberRepository.findByMemberId(coachMember.getMemberId());
                 String to = member.getMemberEmail();
                 String subject = "您申請的教練身分已成功審核";
