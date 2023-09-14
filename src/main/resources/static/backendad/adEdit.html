@@ -215,8 +215,7 @@
                 </a>
                 <div id="collapseTen" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar10">
                     <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/ezdom/latestnews/back-addnews.html">最新消息管理</a>
-                    </div>
+                        <a class="collapse-item" href="/ezdom/latestnews/back-news.html">最新消息管理</a>                    </div>
                 </div>
             </li>
 
@@ -570,20 +569,20 @@
                 const endTime = formatDateToYYYYMMDD(adData.endTime);
                 const productPic = adData. productPic;
 
-                
+
                 //欄位
                 const input_adId = document.getElementById('adId');
                 const input_productId = document.getElementById('productId');
                 const input_startTime = document.getElementById('startTime');
                 const input_endTime = document.getElementById('endTime');
-              
+
                 //帶入值
-                
+
                 input_adId.value = adId;
                 input_productId.value = productId;
                 input_startTime.value = startTime;
                 input_endTime.value = endTime;
-               
+
                 // 找到以下部分，设置图像的 src
                 const imagePreview = document.getElementById('imagePreviewContainer');
 
