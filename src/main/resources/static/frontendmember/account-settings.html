@@ -842,7 +842,12 @@
               text: '個資上傳成功！',
               confirmButtonText: '確定',
               focusConfirm: true
-            });
+            }).then((result) => {
+                if (result.isConfirmed) {
+                  // 刷新頁面
+                  location.reload(); // 在成功處理後刷新頁面
+                }
+        });
           } else if (statusCode === 400) {
             // 驗證失敗的處理
             return response.json(); // 將回應轉換為 JSON
