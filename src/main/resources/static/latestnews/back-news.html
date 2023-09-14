@@ -271,7 +271,7 @@
                     </a>
                     <div id="collapseTen" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar10">
                         <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="/ezdom/latestnews/back-addnews.html">最新消息管理</a>
+                            <a class="collapse-item" href="/ezdom/latestnews/back-news.html">最新消息管理</a>
                         </div>
                     </div>
                 </li>
@@ -445,7 +445,7 @@
 
                         <script>
                             function redirectToNewPage() {
-                                var newPageUrl = "http://localhost:8080/ezdom/latestnews/back-addnews.html";
+                                var newPageUrl = "/ezdom/latestnews/back-addnews.html";
                                 window.location.href = newPageUrl;
                             }
 
@@ -457,7 +457,7 @@
 
                             async function fetchNews() {
                                 try {
-                                    const response = await fetch('http://localhost:8080/ezdom/backend/news/list');
+                                    const response = await fetch('/ezdom/backend/news/list');
                                     if (response.status === 401) {
                                         // 重定向到登录页面 登入失敗
                                         window.location.href = '/ezdom/backendemp/empSignin.html';
@@ -529,7 +529,7 @@
                             }
 
                             function redirectToDetailPage(newsId) {
-                                var newPageUrl = `http://localhost:8080/ezdom/latestnews/back-newsdetail.html?newsId=${newsId}`;
+                                var newPageUrl = `/ezdom/latestnews/back-newsdetail.html?newsId=${newsId}`;
                                 window.location.href = newPageUrl;
                             }
 
@@ -540,7 +540,7 @@
                             }
 
                             try {
-                                const response = await fetch(`http://localhost:8080/ezdom/backend/news/${newsId}`, {
+                                const response = await fetch(`/ezdom/backend/news/${newsId}`, {
                                     method: 'DELETE'
                                 });
 
