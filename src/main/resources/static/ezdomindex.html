@@ -773,7 +773,7 @@ async function getSession(){
           imgElement.src = `data:image/jpeg;base64,${groupData.groupPhoto}`;
           imgElement.style = "max-width: 270px; max-height: 270px; min-width: 270px; min-height: 270px; object-fit: cover;";
         } else {
-          imgElement.src = "assets/img/shop/products/01.png";
+          imgElement.src = "/ezdom/groupcreate/img/logo2.png";
           imgElement.style = "max-width: 270px; max-height: 270px; min-width: 270px; min-height: 270px; object-fit: cover;";
         }
 
@@ -832,7 +832,7 @@ async function getSession(){
           imgElement.style = "max-width: 270px; max-height: 270px; min-width: 270px; min-height: 270px; object-fit: cover;";
         } else {
           const defaultPhotoSrc = "gym.jpg";
-          imgElement.src = defaultPhotoSrc;
+          imgElement.src = "/ezdom/groupcreate/img/logo2.png";
           imgElement.style = "max-width: 270px; max-height: 270px; min-width: 270px; min-height: 270px; object-fit: cover;";
         }
 
@@ -902,7 +902,7 @@ async function getSession(){
               forumPostType,
               forumPostClickCount,
               memberName,
-              memberPhoto
+              memberPhoto,
             } = articles;
             let imgUrl = "data:image/jpeg;base64," + memberPhoto;
             const postTime = new Date(forumPostTime);

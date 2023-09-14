@@ -522,7 +522,15 @@
 
         // 使用AJAX获取Product ID列表
         fetch(`/ezdom/backend/product/get/${productStatus}`)
-            .then(resp => resp.json())
+            .then(response => {
+                    if (response.status === 401) {
+                        // 重定向到登录页面 登入失敗
+                        window.location.href = '/ezdom/backendemp/empSignin.html';
+                    }else if(response.ok){
+                        //登入成功
+                        return response.json();
+                    }
+                })
             .then(data => {
                 // 清空下拉选项
                 productIdSelect.innerHTML = "";
@@ -770,7 +778,7 @@ function validateEndTime() {
                     focusConfirm: true
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.assign("adall.html");
+                        window.location.assign("adAll.html");
                     } else {
                         alert(message);
                     }
@@ -800,7 +808,7 @@ function validateEndTime() {
             focusConfirm: true
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.assign("adall.html");
+                window.location.assign("adAll.html");
             }
         })})
 

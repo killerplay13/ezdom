@@ -226,7 +226,6 @@
                                            data-bs-auto-close="outside" aria-expanded="false">會員中心</a>
             <ul class="dropdown-menu">
               <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendmember/account-overview.html">我的頁面</a></li>
-              <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-checkout.html">收藏商品</a></li>
               <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendmember/account-settings.html">個人設定</a></li>
               <li class="dropdown"><a class="dropdown-item" href="/ezdom/message/messagePrivate.html">聊天室</a></li>
             </ul>
@@ -1054,29 +1053,32 @@
     }
 
 // ====================== 取得登入的session資訊 ====================== //
-    const s_req = 'http://localhost:8080/ezdom/frontend/session';
-    let session;
-    let memberId = null;
-    let coachId = null;
-    async function getSession(){
-        let response = await fetch(s_req);
-        session = await response.json();
-        console.log(session);
-        memberId = session.memberId;
-        if(null !== session.coachId){
-            coachId = session.coachId;
-        }
+    window.addEventListener("load", function() {
+                        getSession();
+                    })
+              const s_req = '/ezdom/frontend/session';
+              let session;
+              let memberId = null;
+              let coachId = null;
+              async function getSession(){
+                  let response = await fetch(s_req);
+                  session = await response.json();
+                  console.log(session);
+                  memberId = session.memberId;
+                  if(null !== session.coachId){
+                      coachId = session.coachId;
+                  }
 
-        let link = document.querySelector("#link");
-        if(null !== coachId){
-        console.log("1:" + coachId);
-          link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
-        } else if (null === coachId){
-        console.log("2:" + coachId);
-          link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
-          link.textContent = "註冊教練";
-        }
-    }
+                  let link = document.querySelector("#link");
+                  if(null !== coachId){
+                  console.log("1:" + coachId);
+                    link.setAttribute("href", `/ezdom/frontendcoach/coach-details.html?coachId=${coachId}`);
+                  } else if (null === coachId){
+                  console.log("2:" + coachId);
+                    link.setAttribute("href", `/ezdom/frontendcoach/coach-signup.html`);
+                    link.textContent = "註冊教練";
+                  }
+              }
 
 document.addEventListener('DOMContentLoaded', function () {
 

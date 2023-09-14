@@ -224,13 +224,14 @@
                 </a>
                 <div id="collapseTen" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar10">
                     <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/ezdom/latestnews/back-addnews.html">最新消息管理</a>
+                        <a class="collapse-item" href="/ezdom/latestnews/back-news.html">最新消息管理</a>
                     </div>
                 </div>
             </li>
 
 
         </ul>
+
 
 
         <!-- 上面是左側欄位 -->
@@ -267,6 +268,7 @@
                                 </a>
                             </div>
                         </li>
+
 
 
 
@@ -377,7 +379,7 @@
 
 
                             try {
-                                const response = await fetch("http://localhost:8080/ezdom/backend/news/add", {
+                                const response = await fetch("/ezdom/backend/news/add", {
                                     method: "POST",
                                     headers: {
                                         "Content-Type": "application/json"
@@ -474,6 +476,7 @@
             </div>
         </div>
     </div>
+
     <!-- 初始化折疊功能 -->
     <script src="/ezdom/backendshop/js/aside.js"></script>
     <script>
@@ -550,50 +553,7 @@
 
 
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="/js/demo/chart-area-demo.js"></script>
-    <script src="/js/demo/chart-pie-demo.js"></script>
-    <script>
-        // 初始化折疊功能
-        var collapseElements = document.querySelectorAll('[data-toggle="collapse"]');
-        collapseElements.forEach(function (element) {
-            var targetSelector = element.getAttribute('data-target');
-            var targetElement = document.querySelector(targetSelector);
-
-            element.addEventListener('click', function () {
-                if (targetElement.classList.contains('show')) {
-                    targetElement.classList.remove('show');
-                } else {
-                    targetElement.classList.add('show');
-                }
-            });
-        });
-
-    </script>
-    <!-- JAVASCRIPT -->
-    <script src="/assets/libs/jquery/jquery.min.js"></script>
-    <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="/assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="/assets/libs/node-waves/waves.min.js"></script>
-    <script src="/assets/libs/feather-icons/feather.min.js"></script>
-    <!-- pace js -->
-    <script src="/assets/libs/pace-js/pace.min.js"></script>
-
-    <script src="/assets/js/app.js"></script>
 
 </body>
 

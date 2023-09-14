@@ -354,18 +354,17 @@
 
     <script>
       // ====================== 檢舉頁面 ====================== //  
-      const submitButton = document.getElementById('submit-button');
-      submitButton.addEventListener('click', () => {
-
-        //解析URL並獲取文章ID
+        const submitButton = document.getElementById('submit-button');
+        submitButton.addEventListener('click', () => {
         const urlParams = new URLSearchParams(window.location.search);
         const forumPostId = urlParams.get('forumPostId');
+        const returnUrl = urlParams.get('returnUrl'); //獲得返回的URL
+
         const content = document.getElementById('message').value;
         const formData = {
           forumPostId: forumPostId,
           forumReportWhy: content
         };
-
 
         fetch('/ezdom/Frontend/forum/report', {
           method: 'POST',
@@ -389,14 +388,22 @@
                 icon: 'success',
                 title: data.message,
               }).then(() => {
-                window.location.href = 'forum.html';
+                if (returnUrl) {
+                  window.location.href = returnUrl;
+                } else {
+                  window.location.href = 'forum.html';
+                }
               });
             } else {
               Swal.fire({
                 icon: 'info',
                 title: data.message,
               }).then(() => {
-                window.location.href = 'forum.html';
+                if (returnUrl) {
+                  window.location.href = returnUrl;
+                } else {
+                  window.location.href = 'forum.html';
+                }
               });
             }
           })
@@ -409,6 +416,7 @@
             });
           });
       });
+
     </script>
   </main>
 </body>
