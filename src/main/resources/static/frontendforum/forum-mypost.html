@@ -692,9 +692,11 @@
         }
 
         //導向檢舉頁面
-        function reportPost(forumPostId) {
-          window.location.href = `forum-report.html?forumPostId=${forumPostId}`;
-        }
+      function reportPost(forumPostId) {
+        const returnUrl = window.location.href; //獲得當前頁面的URL作為返回的URL
+        window.location.href = `forum-report.html?forumPostId=${forumPostId}&returnUrl=${encodeURIComponent(returnUrl)}`;
+}
+
 
 
         // ====================== 對我的文章進行刪除 ====================== //
