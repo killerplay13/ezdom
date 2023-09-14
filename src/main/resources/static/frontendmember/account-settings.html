@@ -1073,11 +1073,11 @@
                 element.textContent = email;
               });
 
-              document.getElementById('name').value = name;
-              document.getElementById('email').value = email;
-              document.getElementById('memberUid').value = memberUid;
-              document.getElementById('phone').value = phone;
-              document.getElementById('address').value = address;
+              document.getElementById('name').value = name || '';
+              document.getElementById('email').value = email || '';
+              document.getElementById('memberUid').value = memberUid || '';
+              document.getElementById('phone').value = phone || '';
+              document.getElementById('address').value = address || '';
               })
             .catch(error => {
               console.error("Error:", error);
