@@ -537,7 +537,7 @@
                   <h3>${reserveItem}</h3>
                   <div class="display-2 text-primary">$${amounts}</div>
                   <div class="mb-4">每堂課</div>
-                  <div class="scrollable-container" style="min-height: 170px; overflow-y: scroll;">
+                  <div class="scrollable-container" style="min-height: 100px; max-height: 100px; overflow-y: auto;">
                     <p class="mb-4 pb-4">${content}</p>
                   </div>
                   <button class="btn btn-primary w-100" type="button" onclick="deleteItem('${reserveItemId}')">刪除項目</button>
@@ -554,7 +554,9 @@
                     <h3 class="text-light">${reserveItem}</h3>
                     <div class="display-2 text-light">$${amounts}</div>
                     <div class="text-light opacity-70 mb-4">每堂課</div>
-                    <p class="text-light  mb-4 pb-4">${content}</p>
+                    <div class="scrollable-container" style="min-height: 100px; max-height: 100px; overflow-y: auto;">
+                      <p class="text-light  mb-4 pb-4">${content}</p>
+                    </div>
                     <button class="btn btn-light w-100" type="button" onclick="deleteItem('${reserveItemId}')">刪除項目</button>
                     <div class="text-light mb-4" style="margin-top: 20px;">地址:${place}</div>
                   </div>
