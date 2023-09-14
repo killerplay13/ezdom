@@ -572,7 +572,7 @@
 
         },
         startChat() {
-          this.websock = new WebSocket("wss://localhost/ezdom/frontend/GroupWS/" + this.groupId);
+          this.websock = new WebSocket("wss://ezdom/frontend/GroupWS/" + this.groupId);
           this.websock.onopen = this.websocketonopen;
           this.websock.onerror = this.websocketonerror;
           this.websock.onmessage = this.websocketonmessage;
