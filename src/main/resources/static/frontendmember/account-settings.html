@@ -225,8 +225,6 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown"><a class="dropdown-item"
                                                     href="/ezdom/frontendmember/account-overview.html">我的頁面</a></li>
-                            <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-checkout.html">收藏商品</a>
-                            </li>
                             <li class="dropdown"><a class="dropdown-item"
                                                     href="/ezdom/frontendmember/account-settings.html">個人設定</a></li>
                             <li class="dropdown"><a class="dropdown-item"
@@ -255,7 +253,7 @@
                         <div class="offcanvas-body">
                             <!-- 加 class -->
                             <div class="rounded-circle bg-size-cover bg-position-center flex-shrink-0 photoDisplay1"
-                                 style="width: 80px; height: 80px; background-image: url(../frontendshop/assets/img/avatar/user.png);">
+                                 style="width: 80px; height: 80px; background-image: url(/ezdom/frontendshop/image/userPhoto.png);">
                             </div>
                             <br>
                             <div class="nameDisplay1">
@@ -844,7 +842,12 @@
               text: '個資上傳成功！',
               confirmButtonText: '確定',
               focusConfirm: true
-            });
+            }).then((result) => {
+                if (result.isConfirmed) {
+                  // 刷新頁面
+                  location.reload(); // 在成功處理後刷新頁面
+                }
+        });
           } else if (statusCode === 400) {
             // 驗證失敗的處理
             return response.json(); // 將回應轉換為 JSON
@@ -919,12 +922,17 @@
                 text: '照片更新成功！',
                 confirmButtonText: '確定',
                 focusConfirm: true
-              })
-              // 把上傳的圖社為預設
-              prePhoto.style.backgroundImage = `url(data:image/jpeg;base64,${base64Image})`;
+              }).then((result) => {
+                if (result.isConfirmed) {
+                // 把上傳的圖設為預設
+                  prePhoto.style.backgroundImage = `url(data:image/jpeg;base64,${base64Image})`;
 
-              // 刷新頁面
-              location.reload(); // 在成功處理後刷新頁面
+                  // 刷新頁面
+                  location.reload(); // 在成功處理後刷新頁面
+
+                }
+        })
+
             } else if (statusCode === 400) {
               // 驗證失敗的處理
               return response.json(); // 將回應轉換為 JSON
@@ -1117,13 +1125,13 @@
         })
   const s_req = '/ezdom/frontend/session';
   let session;
-  let memberUid = null;
+  let memberId = null;
   let coachId = null;
   async function getSession(){
       let response = await fetch(s_req);
       session = await response.json();
       console.log(session);
-      memberUid = session.memberUid;
+      memberId = session.memberId;
       if(null !== session.coachId){
           coachId = session.coachId;
       }
