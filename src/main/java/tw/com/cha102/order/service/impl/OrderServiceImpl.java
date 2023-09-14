@@ -39,6 +39,7 @@ public class OrderServiceImpl implements OrderService {
         String recipientName = orderVO.getRecipientName();
         Integer memberId = orderVO.getMemberId();
         Member member = dao.selecMembertById(memberId);
+        String memberName = member.getMemberName();
         String memberEmail = member.getMemberEmail();
         SimpleDateFormat sdf= new SimpleDateFormat("yyyy/MM/dd");
         String orderDate=sdf.format(new Date());
@@ -46,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
             orderVO.setOrderStatus((byte) 1);
             String to = memberEmail;
             String subject = "您的訂單已出貨";
-            String messageText = "親愛的客戶" + recipientName +"，\n\n";
+            String messageText = "親愛的客戶" + memberName +"，\n\n";
             messageText += "我們很高興通知您，您的訂單已經出貨。\n";
             messageText += "收件人: " + recipientName + "\n";
             messageText += "出貨日期: " + orderDate + "\n";
