@@ -224,7 +224,7 @@
                 </a>
                 <div id="collapseTen" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar10">
                     <div style="width:90% ;margin-left: 10px;" class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/ezdom/latestnews/back-addnews.html">最新消息管理</a>
+                        <a class="collapse-item" href="/ezdom/latestnews/back-news.html">最新消息管理</a>
                     </div>
                 </div>
             </li>
@@ -398,7 +398,7 @@
                         // 使用 fetch API 發送請求，獲取單筆消息的詳細資訊
                         async function fetchNewsDetail() {
                             try {
-                                const response = await fetch(`http://localhost:8080/ezdom/backend/news/${newsId}`);
+                                const response = await fetch(`/ezdom/backend/news/${newsId}`);
                                 const newsDetail = await response.json();
                     
                                 // 將消息詳細資訊填充到輸入框中
@@ -428,7 +428,7 @@
                             };
                     
                             try {
-                                const response = await fetch(`http://localhost:8080/ezdom/backend/news/${newsId}`, {
+                                const response = await fetch(`/ezdom/backend/news/${newsId}`, {
                                     method: 'PUT',
                                     headers: {
                                         'Content-Type': 'application/json'
@@ -627,23 +627,7 @@
     <!-- Page level custom scripts -->
     <script src="/js/demo/chart-area-demo.js"></script>
     <script src="/js/demo/chart-pie-demo.js"></script>
-    <script>
-        // 初始化折疊功能
-        var collapseElements = document.querySelectorAll('[data-toggle="collapse"]');
-        collapseElements.forEach(function (element) {
-            var targetSelector = element.getAttribute('data-target');
-            var targetElement = document.querySelector(targetSelector);
-
-            element.addEventListener('click', function () {
-                if (targetElement.classList.contains('show')) {
-                    targetElement.classList.remove('show');
-                } else {
-                    targetElement.classList.add('show');
-                }
-            });
-        });
-
-    </script>
+   
     <!-- JAVASCRIPT -->
     <script src="/assets/libs/jquery/jquery.min.js"></script>
     <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
