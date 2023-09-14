@@ -67,21 +67,22 @@ public class OrderDaoImpl implements OrderDao {
 
 
     @Override
-    public List<OrderVO> selectByStatusTo3(Integer value,int orderStatus) {
+    public List<OrderVO> selectByStatusTo3(Integer value,int orderStatus,Integer memberId) {
         int itemsPerPage = 3;
         int skipItems = (value - 1) * itemsPerPage;
-        final String hql = "FROM OrderVO WHERE orderStatus = :orderStatus ORDER BY orderId DESC";
+        final String hql = "FROM OrderVO WHERE orderStatus = :orderStatus and memberId = :memberId ORDER BY orderId DESC";
         return session.createQuery(hql, OrderVO.class)
                 .setParameter("orderStatus", (byte) orderStatus)
+                .setParameter("memberId", memberId)
                 .setFirstResult(skipItems)
                 .setMaxResults(itemsPerPage)
                 .getResultList();
     }
 
     @Override
-    public int selectOrderCountByOrderStatus(int orderStatus) {
-        String hql = "SELECT COUNT(*) FROM OrderVO WHERE orderStatus=:orderStatus";
-        TypedQuery<Long> query = session.createQuery(hql, Long.class).setParameter("orderStatus",(byte)orderStatus);
+    public int selectOrderCountByOrderStatus(int orderStatus,Integer memberId) {
+        String hql = "SELECT COUNT(*) FROM OrderVO WHERE orderStatus=:orderStatus and memberId = :memberId";
+        TypedQuery<Long> query = session.createQuery(hql, Long.class).setParameter("orderStatus",(byte)orderStatus).setParameter("memberId", memberId);
         Long result = query.getSingleResult();
         int count = result.intValue(); // 轉換為 int
         return count;

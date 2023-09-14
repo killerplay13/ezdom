@@ -538,9 +538,11 @@
                   <h3>${reserveItem}</h3>
                   <div class="display-2 text-primary">$${amounts}</div>
                   <div class="mb-4">每堂課</div>
-                  <p class="mb-4 pb-4">${content}</p>
+                  <div class="scrollable-container" style="min-height: 170px; overflow-y: scroll;">
+                    <p class="mb-4 pb-4">${content}</p>
+                  </div>
                   <button class="btn btn-primary w-100" type="button" onclick="deleteItem('${reserveItemId}')">刪除項目</button>
-                  <p class="mb-4 pb-4" style="margin-top: 20px;">地址:${place}</p>
+                  <p class="mb-4 pb-4" style="margin-top: 20px;">課程地點:${place}</p>
                 </div>
               </div>
             </div>
