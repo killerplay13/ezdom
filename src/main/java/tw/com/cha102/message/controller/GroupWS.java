@@ -13,7 +13,7 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.*;
 
-@ServerEndpoint("/frontend/GroupWS/{groupId}")
+@ServerEndpoint("/GroupWS/{groupId}")
 @Component
 public class GroupWS {
     private static final Set<Session> connectedSessions = Collections.synchronizedSet(new HashSet<>());
@@ -33,8 +33,8 @@ public class GroupWS {
         String groupId = groupMessage.getGroupId();
         Integer readNum = groupMessage.getReadNum();
         String time = groupMessage.getChatTime();
-        if ("history".equals(groupMessage.getType())) {
-            Set<Tuple> historyData = JedisHandleMessage.getgroupHistoryMsg(groupId);
+//        if ("history".equals(groupMessage.getType())) {
+//            Set<Tuple> historyData = JedisHandleMessage.getgroupHistoryMsg(groupId);
 //            List<Map<String, Object>> historyMessages = new ArrayList<>();
 //            for (Tuple tuple : historyData) {
 //                Map<String, Object> messageObject = new HashMap<>();
@@ -65,14 +65,14 @@ public class GroupWS {
 //                userSession.getAsyncRemote().sendText(historyMessagesStr);
 //                System.out.println("history=" + historyMessagesStr);
 //            }
-            String historyMsg = gson.toJson(historyData);
-            ChatVO cmHistory = new ChatVO("history", sender, groupId, historyMsg, readNum, time);
-            if (userSession != null && userSession.isOpen()) {
-                userSession.getAsyncRemote().sendText(gson.toJson(cmHistory));
-                System.out.println("history=" + gson.toJson(cmHistory));
-                return;
-            }
-        }
+//            String historyMsg = gson.toJson(historyData);
+//            ChatVO cmHistory = new ChatVO("history", sender, groupId, historyMsg, readNum, time);
+//            if (userSession != null && userSession.isOpen()) {
+//                userSession.getAsyncRemote().sendText(gson.toJson(cmHistory));
+//                System.out.println("history=" + gson.toJson(cmHistory));
+//                return;
+//            }
+//        }
 
         JedisHandleMessage.saveGroupMessage(groupId,sender,message);
         for (Session session : connectedSessions) {
