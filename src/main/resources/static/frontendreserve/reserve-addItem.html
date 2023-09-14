@@ -174,7 +174,7 @@
   <!-- 頁首-->
   <main class="page-wrapper">
     <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
-    <header  class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
+    <header class="navbar navbar-expand-lg fixed-top navbar-ignore-dark-mode ignore-dark-mode" style="background-color: white;">
       <div class="container"><a class="navbar-brand pe-sm-3" href="/ezdom/ezdomindex.html"><span
               class="text-primary flex-shrink-0 me-2">
                     <svg version="1.1" width="35" height="32" viewBox="0 0 36 33" xmlns="http://www.w3.org/2000/svg">
@@ -182,13 +182,9 @@
                               d="M35.6,29c-1.1,3.4-5.4,4.4-7.9,1.9c-2.3-2.2-6.1-3.7-9.4-3.7c-3.1,0-7.5,1.8-10,4.1c-2.2,2-5.8,1.5-7.3-1.1c-1-1.8-1.2-4.1,0-6.2l0.6-1.1l0,0c0.6-0.7,4.4-5.2,12.5-5.7c0.5,1.8,2,3.1,3.9,3.1c2.2,0,4.1-1.9,4.1-4.2s-1.8-4.2-4.1-4.2c-2,0-3.6,1.4-4,3.3H7.7c-0.8,0-1.3-0.9-0.9-1.6l5.6-9.8c2.5-4.5,8.8-4.5,11.3,0L35.1,24C36,25.7,36.1,27.5,35.6,29z">
                         </path>
                     </svg></span>EZ-DOM</a>
-        <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
-          <input class="form-check-input" type="checkbox" id="theme-mode">
-          <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
-          <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
-        </div><a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
-                 href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank"
-                 rel="noopener">登入/註冊</a>
+        <a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+           href="/ezdom/frontendmember/account-overview.html" target="_blank"
+           rel="noopener"><i class="ai-user"></i></a>
         <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
         <nav class="collapse navbar-collapse" id="navbarNav">
@@ -205,6 +201,7 @@
                     <li><a class="dropdown-item" href="/ezdom/groupcreate/groupCreateVerify.html">管理開團</a></li>
                   </ul>
                 </li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/message/messageGroup.html">揪團聊天室</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
@@ -217,9 +214,9 @@
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                              data-bs-auto-close="outside" aria-expanded="false">論壇</a>
               <ul class="dropdown-menu">
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇</a></li>
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇管理</a></li>
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">論壇管理</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendforum/forum.html">論壇</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendforum/forum-mypost.html">我的論壇</a></li>
+                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendforum/forum-post.html">發文</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
@@ -235,7 +232,6 @@
                                              data-bs-auto-close="outside" aria-expanded="false">會員中心</a>
               <ul class="dropdown-menu">
                 <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendmember/account-overview.html">我的頁面</a></li>
-                <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontforum/forum.html">收藏文章</a></li>
                 <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-checkout.html">收藏商品</a></li>
                 <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendmember/account-settings.html">個人設定</a></li>
                 <li class="dropdown"><a class="dropdown-item" href="/ezdom/message/messagePrivate.html">聊天室</a></li>
@@ -248,7 +244,6 @@
         </nav>
       </div>
     </header>
-
     <!-- 頁首結束-->
     <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
       <div class="row pt-sm-2 pt-lg-0">
@@ -476,9 +471,6 @@
               } else if (response.ok) {
                 //登入成功
                 return response.json();
-              } else {
-                alert("錯誤狀態" + response.status);
-                return;
               }
             })
           .then(body => {
@@ -532,9 +524,6 @@
               } else if (response.ok) {
                 //登入成功
                 return response.json();
-              } else {
-                alert("錯誤狀態" + response.status);
-                return;
               }
             })
         .then(body => {
@@ -585,8 +574,6 @@
         } else if (response.ok) {
             // 登入成功
             coachDetails = await response.json();
-        } else {
-            alert("錯誤狀態 " + response.status);
         }
     } catch (error) {
         console.error("出现错误: " + error);

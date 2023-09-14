@@ -56,7 +56,7 @@ window.addEventListener("load", function () {
 // ====================== 側邊欄資訊 ====================== //
 const url = new URLSearchParams(window.location.search);
 const url_coachId = url.get('coachId'); // 取得URL中查詢字串coachId的值。哪個教練的留言板
-const d_req = 'http://localhost:8080/ezdom/frontend/browse/list/' + url_coachId;
+const d_req = '/ezdom/frontend/browse/list/' + url_coachId;
 
 async function getCoachDetails() {
 
@@ -69,8 +69,6 @@ async function getCoachDetails() {
         } else if (response.ok) {
             // 登入成功
             coachDetails = await response.json();
-        } else {
-            alert("錯誤狀態 " + response.status);
         }
     } catch (error) {
         console.error("出现错误: " + error);
@@ -114,7 +112,7 @@ function showCoachDetails() {
 }
 
 // ====================== 留言板資訊 ====================== //
-const req = 'http://localhost:8080/ezdom/frontend/coach/message/' + url_coachId;
+const req = '/ezdom/frontend/coach/message/' + url_coachId;
 
 async function getCoachMessage() {
     try {
@@ -126,8 +124,6 @@ async function getCoachMessage() {
         } else if (response.ok) {
             // 登入成功
             coachMessage = await response.json();
-        } else {
-            alert("錯誤狀態 " + response.status);
         }
     } catch (error) {
         console.error("出现错误: " + error);
@@ -149,8 +145,11 @@ function showCoachMessage() {
         // 判斷留言者是否與該教練留言板同人，是的話就顯示教練圖片和教練暱稱和修改連結為"教練的個人頁面"
         let img = "data:image/jpeg;base64,";
         let name = data.memberName;
-        let a_href = "會員的個人資訊網址" + data.memberId;  // 預設為發表留言人的個人資訊
-        if (data.memberId == coachDetails.memberId) {
+        let a_href = "/ezdom/frontendmember/personalPage.html?memberId=" + data.memberId;  // 預設為發表留言人的個人資訊
+//        let a_href = "";  // 沒有給他人看的會員頁面
+//        console.log(data.memberId);
+//        console.log(coachDetails.memberId);
+        if (data.memberId === coachDetails.memberId) {
             img += data.coachPicture;
             name = data.nickname;
             a_href = "coach-details.html?coachId=" + data.coachId;
@@ -167,28 +166,54 @@ function showCoachMessage() {
         let div = document.createElement("div");
         div.setAttribute("class", "border-bottom pb-4");
         div.setAttribute("id", "message");
-        div.innerHTML = `
-            <div class="d-flex align-items-center pb-1 mb-0">
-            <a href="${a_href}"><img src="${img}" class="rounded-circle" width="48" alt="Comment author"></a>
-            <div class="ps-3">
-                <h4 class="mb-0">${name}</h4>
-            </div>
-            <div class="ps-3" style="display:${btn_display};">
-                <button id="update${data.messageId}" value="${data.messageId}" type="button" class="nav-link fs-sm fw-semibold px-0 py-2 btn_update" style="position: absolute; right: 100px;">
-                <i class="ai-edit fs-xl ms-2"></i>
-                </button>
-                <button value="${data.messageId}" type="button" class="nav-link fs-sm fw-semibold px-0 py-2 btn_delete" style="position: absolute; right: 50px;">
-                <i class="ai-trash fs-xl ms-2"></i>
-                </button>
-            </div>
-            </div>
-            <p class="pb-2 mb-0 para fs-6" style="margin-left:65px;">${data.content}</p>
-            <textarea id="updateText" value='update${data.messageId}' style="margin-left:65px; resize:none; width:300px; height:60px;" type="text" class="task_name_update -none" placeholder="請輸入內容…">${data.content}</textarea>
-            <div style="margin-left:65px;">
-                <span class="fs-sm text-muted">B${count++}, </span>
-                <span class="fs-sm text-muted">${time}</span>
-            </div>
-        `;
+
+        if(a_href === ""){
+                div.innerHTML = `
+                    <div class="d-flex align-items-center pb-1 mb-0">
+                    <a><img src="${img}" class="rounded-circle" width="48" alt="Comment author"></a>
+                    <div class="ps-3">
+                        <h4 class="mb-0">${name}</h4>
+                    </div>
+                    <div class="ps-3" style="display:${btn_display};">
+                        <button id="update${data.messageId}" value="${data.messageId}" type="button" class="nav-link fs-sm fw-semibold px-0 py-2 btn_update" style="position: absolute; right: 100px;">
+                        <i class="ai-edit fs-xl ms-2"></i>
+                        </button>
+                        <button value="${data.messageId}" type="button" class="nav-link fs-sm fw-semibold px-0 py-2 btn_delete" style="position: absolute; right: 50px;">
+                        <i class="ai-trash fs-xl ms-2"></i>
+                        </button>
+                    </div>
+                    </div>
+                    <p class="pb-2 mb-0 para fs-6" style="margin-left:65px;">${data.content}</p>
+                    <textarea id="updateText" value='update${data.messageId}' style="margin-left:65px; resize:none; width:300px; height:60px;" type="text" class="task_name_update -none" placeholder="請輸入內容…">${data.content}</textarea>
+                    <div style="margin-left:65px;">
+                        <span class="fs-sm text-muted">B${count++}, </span>
+                        <span class="fs-sm text-muted">${time}</span>
+                    </div>
+                `;
+        }else {
+            div.innerHTML = `
+                <div class="d-flex align-items-center pb-1 mb-0">
+                <a href="${a_href}"><img src="${img}" class="rounded-circle" width="48" alt="Comment author"></a>
+                <div class="ps-3">
+                    <h4 class="mb-0">${name}</h4>
+                </div>
+                <div class="ps-3" style="display:${btn_display};">
+                    <button id="update${data.messageId}" value="${data.messageId}" type="button" class="nav-link fs-sm fw-semibold px-0 py-2 btn_update" style="position: absolute; right: 100px;">
+                    <i class="ai-edit fs-xl ms-2"></i>
+                    </button>
+                    <button value="${data.messageId}" type="button" class="nav-link fs-sm fw-semibold px-0 py-2 btn_delete" style="position: absolute; right: 50px;">
+                    <i class="ai-trash fs-xl ms-2"></i>
+                    </button>
+                </div>
+                </div>
+                <p class="pb-2 mb-0 para fs-6" style="margin-left:65px;">${data.content}</p>
+                <textarea id="updateText" value='update${data.messageId}' style="margin-left:65px; resize:none; width:300px; height:60px;" type="text" class="task_name_update -none" placeholder="請輸入內容…">${data.content}</textarea>
+                <div style="margin-left:65px;">
+                    <span class="fs-sm text-muted">B${count++}, </span>
+                    <span class="fs-sm text-muted">${time}</span>
+                </div>
+            `;
+        }
         bord.appendChild(div);
     }
 
@@ -244,7 +269,7 @@ $(bord).on("click", "#enter", function () {
 
 function add() {
     const content = $("#text").val().trim();// 取得訊息框內的文字
-    const req = "http://localhost:8080/ezdom/frontend/coach/message/add";
+    const req = "/ezdom/frontend/coach/message/add";
 
     if (content === "") {
         Swal.fire({
@@ -284,9 +309,6 @@ function add() {
                     } else if (response.ok) {
                       //登入成功
                       location.reload();
-                    } else {
-                      alert("錯誤狀態" + response.status);
-                      return;
                     }
                   })
             }
@@ -367,7 +389,7 @@ $(bord).on("click", "button.btn_update", function () {
 })
 
 function update() {
-    const req = "http://localhost:8080/ezdom/frontend/coach/message/update/" + updateMessageId;
+    const req = "/ezdom/frontend/coach/message/update/" + updateMessageId;
     fetch(req, {
         method: 'put',
         body: updateMessage
@@ -378,9 +400,6 @@ function update() {
         } else if (response.ok) {
           //登入成功
           return response.json();
-        } else {
-          alert("錯誤狀態" + response.status);
-          return;
         }
       })
 }
@@ -412,7 +431,7 @@ $(bord).on("click", "button.btn_delete", function () {
 })
 
 function deleteMessage() {
-    const req = "http://localhost:8080/ezdom/frontend/coach/message/delete/" + deleteMessageId;
+    const req = "/ezdom/frontend/coach/message/delete/" + deleteMessageId;
     fetch(req, {
         method: 'delete',
         headers: { 'Content-Type': 'application/json' }

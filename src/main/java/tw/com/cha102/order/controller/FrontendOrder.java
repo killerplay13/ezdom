@@ -47,16 +47,20 @@ public class FrontendOrder {
 
     //依訂單狀態刷新
     @GetMapping("/limit3/{value}/{orderStatus}")
-    public List<OrderVO> getOrderByStatusLimit3(@PathVariable Integer value,@PathVariable int orderStatus){
+    public List<OrderVO> getOrderByStatusLimit3(HttpServletRequest request,@PathVariable Integer value,@PathVariable int orderStatus){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
         List<OrderVO> list = new ArrayList<OrderVO>();
-        list=service.findByStatusTo3(value,orderStatus);
+        list=service.findByStatusTo3(value,orderStatus,memberId);
         return list;
     }
 
     //前台依訂單數量 分頁
     @GetMapping("/sortPage")
-    public int orderTotalCountByOrderStatus(@RequestParam Integer orderStatus){
-        return service.findOrderCountByOrderStatus(orderStatus);
+    public int orderTotalCountByOrderStatus(HttpServletRequest request,@RequestParam Integer orderStatus){
+        HttpSession session = request.getSession();
+        Integer memberId = (Integer)session.getAttribute("memberId");
+        return service.findOrderCountByOrderStatus(orderStatus,memberId);
     }
     //前台完成訂單
     @PutMapping("/confirm/{orderId}")

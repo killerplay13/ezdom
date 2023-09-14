@@ -415,7 +415,9 @@
                   forumPostClickCount,
                   memberName,
                   memberPhoto,
+                  memberId,
                 } = article;
+
                 let imgUrl = "data:image/jpeg;base64," + memberPhoto;
                 const postTime = new Date(forumPostTime);
                 const forumPostDateTime = `${postTime.getMonth() + 1}/${postTime.getDate()}`;
@@ -430,7 +432,9 @@
                     <h3><a href="forum-article.html?postId=${forumPostId}" onclick="addView(${forumPostId}); history(${forumPostId});">『${forumPostTitle}』</a></h3>
                     <p class="d-sm-none d-md-block">${excerpt}</p>
                     <div class="d-flex flex-wrap align-items-center mt-n2">
-                        <img class="rounded-circle" src="${imgUrl}" width="48" alt="Comment author">
+                    <a href="/ezdom/frontendmember/personalPage.html?memberId=${memberId}">
+                    <img class="rounded-circle" src="${imgUrl}" width="48" alt="Comment author">
+                     </a>
                         <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">✍️${memberName}</span>
                         <span class="fs-xs opacity-20 mt-2 mx-3">|</span>
                         <span class="fs-sm text-muted mt-2 badge text-nav fs-xs border mt-2">📅${forumPostDateTime}</span>
@@ -493,9 +497,11 @@
 
     fetchAndDisplay();
     //跳轉檢舉頁面
-    function reportPost(forumPostId) {
-      window.location.href = `forum-report.html?forumPostId=${forumPostId}`;
-    }
+   function reportPost(forumPostId) {
+    const returnUrl = window.location.href; //獲得當前頁面的URL作為返回的URL
+    window.location.href = `forum-report.html?forumPostId=${forumPostId}&returnUrl=${encodeURIComponent(returnUrl)}`;
+}
+
 
 
     // ====================== 對文章進行收藏 ====================== // 

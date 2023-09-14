@@ -110,7 +110,7 @@ public class CoachService {
     // 查詢教練審核列表
     public List<CoachDetails> getVerifyCoachList(Integer status, Integer page){
         Page<CoachDetails> pageResult = coachMemberRepository.getVerifyCoachList(status,
-                PageRequest.of(page, 5, Sort.by("createTime").ascending()));
+                PageRequest.of(page, 2, Sort.by("createTime").ascending()));
 
         return pageResult.getContent();
 
@@ -120,7 +120,7 @@ public class CoachService {
     // 查詢教練審核列表的頁數
     public Integer getListPage(Integer status){
         Page<CoachDetails> pageResult = coachMemberRepository.getVerifyCoachList(status,
-                PageRequest.of(0, 5, Sort.by("createTime").ascending()));
+                PageRequest.of(0, 2, Sort.by("createTime").ascending()));
         System.out.println("Total Elements: " + pageResult.getTotalElements());
         System.out.println("Total Pages: " + pageResult.getTotalPages());
         return pageResult.getTotalPages();
@@ -165,7 +165,7 @@ public class CoachService {
             coachMember.setStatus(status);
             coachMemberRepository.save(coachMember);
 
-            if (status == 2) {
+            if (coachMember.getStatus() == 1 && status == 2) {
                 Member member = memberRepository.findByMemberId(coachMember.getMemberId());
                 String to = member.getMemberEmail();
                 String subject = "您申請的教練身分已成功審核";

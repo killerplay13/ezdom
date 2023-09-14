@@ -263,6 +263,7 @@
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                                      data-bs-auto-close="outside" aria-expanded="false">預約</a>
                         <ul class="dropdown-menu">
+                            <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendreserve/reserve-memberlist.html">預約管理</a></li>
                             <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendcoach/coach-list.html">瀏覽教練</a>
                             </li>
                             <li class="dropdown"><a id="link" class="dropdown-item"
@@ -271,7 +272,7 @@
 
                         </ul>
                     </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                       <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                                      data-bs-auto-close="outside" aria-expanded="false">會員中心</a>
                         <ul class="dropdown-menu">
                             <li class="dropdown"><a class="dropdown-item"
@@ -533,9 +534,6 @@
           } else if (response.ok) {
             //登入成功
             return response.json();
-          } else {
-            alert("錯誤狀態" + response.status);
-            return;
           }
         }).then(body => {
           const { name, email, gender, birth, introduction, point } = body;
@@ -632,7 +630,7 @@
               confirmButtonText: '確定',
               focusConfirm: true
             }).then(() => {
-              location.replace('account-signin.html');
+              location.replace('/ezdom/frontendmember/account-signin.html');
             });
           } else {
             // 登出失敗
