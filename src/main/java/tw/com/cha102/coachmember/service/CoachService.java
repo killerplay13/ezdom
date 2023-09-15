@@ -184,6 +184,9 @@ public class CoachService {
                 MailService mailService = new MailService();
                 mailService.sendMail(to, subject, messageText);
             }else if(status == 3) {
+                coachMember.setStatus(status);
+                coachMemberRepository.save(coachMember);
+
                 Member member = memberRepository.findByMemberId(coachMember.getMemberId());
                 String to = member.getMemberEmail();
                 String subject = "您申請的教練身分未通過審核";
@@ -201,6 +204,8 @@ public class CoachService {
                 mailService.sendMail(to, subject, messageText);
             }
 
+            coachMember.setStatus(status);
+            coachMemberRepository.save(coachMember);
             return coachMember;
         }else {
             CoachMemberVO coachMemberVO = new CoachMemberVO();
