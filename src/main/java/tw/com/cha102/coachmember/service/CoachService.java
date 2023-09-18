@@ -162,10 +162,11 @@ public class CoachService {
 
         if(check.isPresent()){
             CoachMemberVO coachMember = check.get();
-            coachMember.setStatus(status);
-            coachMemberRepository.save(coachMember);
 
             if (coachMember.getStatus() == 1 && status == 2) {
+                coachMember.setStatus(status);
+                coachMemberRepository.save(coachMember);
+
                 Member member = memberRepository.findByMemberId(coachMember.getMemberId());
                 String to = member.getMemberEmail();
                 String subject = "您申請的教練身分已成功審核";
@@ -183,6 +184,9 @@ public class CoachService {
                 MailService mailService = new MailService();
                 mailService.sendMail(to, subject, messageText);
             }else if(status == 3) {
+                coachMember.setStatus(status);
+                coachMemberRepository.save(coachMember);
+
                 Member member = memberRepository.findByMemberId(coachMember.getMemberId());
                 String to = member.getMemberEmail();
                 String subject = "您申請的教練身分未通過審核";
@@ -200,6 +204,8 @@ public class CoachService {
                 mailService.sendMail(to, subject, messageText);
             }
 
+            coachMember.setStatus(status);
+            coachMemberRepository.save(coachMember);
             return coachMember;
         }else {
             CoachMemberVO coachMemberVO = new CoachMemberVO();

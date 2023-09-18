@@ -211,7 +211,9 @@
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                                      data-bs-auto-close="outside" aria-expanded="false">預約</a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendreserve/reserve-memberlist.html">預約管理</a></li>
+                            <li class="dropdown"><a class="dropdown-item"
+                                                    href="/ezdom/frontendreserve/reserve-memberlist.html">預約管理</a>
+                            </li>
                             <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendcoach/coach-list.html">瀏覽教練</a>
                             </li>
                             <li class="dropdown"><a id="link" class="dropdown-item"
@@ -225,8 +227,6 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown"><a class="dropdown-item"
                                                     href="/ezdom/frontendmember/account-overview.html">我的頁面</a></li>
-                            <li class="dropdown"><a class="dropdown-item" href="/ezdom/frontendshop/shop-checkout.html">收藏商品</a>
-                            </li>
                             <li class="dropdown"><a class="dropdown-item"
                                                     href="/ezdom/frontendmember/account-settings.html">個人設定</a></li>
                             <li class="dropdown"><a class="dropdown-item"
@@ -255,7 +255,7 @@
                         <div class="offcanvas-body">
                             <!-- 加 class -->
                             <div class="rounded-circle bg-size-cover bg-position-center flex-shrink-0 photoDisplay1"
-                                 style="width: 80px; height: 80px; background-image: url(../frontendshop/assets/img/avatar/user.png);">
+                                 style="width: 80px; height: 80px; background-image: url(/ezdom/frontendshop/image/userPhoto.png);">
                             </div>
                             <br>
                             <div class="nameDisplay1">
@@ -367,7 +367,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-label" for="memberUid">身分證</label>
-                                <input class="form-control" type="text" id="memberUid" placeholder="請輸入正確身分證格式"
+                                <input class="form-control" type="text" id="memberUid"
+                                       placeholder="請輸入正確身分證格式"
                                        required
                                        oninput="ValidateId()">
                                 <p id="idError" style="color: red;"></p>
@@ -381,7 +382,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-label" for="phone">手機</label>
-                                <input class="form-control" type="tel" id="phone" placeholder="請輸入10碼" required
+                                <input class="form-control " type="text" id="phone" placeholder="請輸入10碼" required
                                        oninput="ValidatePhone()">
                                 <p id="phoneError" style="color: red;"></p>
                             </div>
@@ -389,7 +390,7 @@
                                 <label class="form-label" for="birth">生日</label>
                                 <input class="form-control" type="date" id="birth">
                             </div>
-                            <div class="col-12 d-sm-flex align-items-center pt-sm-2 pt-md-3">
+                            <div class="col-12 d-sm-flex align-items-center pt-sm-2 pt-md-3" id="selectedGender">
                                 <div class="form-label text-muted mb-2 mb-sm-0 me-sm-4">性別:</div>
                                 <div class="form-check form-check-inline mb-0">
                                     <input class="form-check-input" type="radio" name="gender" id="male">
@@ -844,7 +845,12 @@
               text: '個資上傳成功！',
               confirmButtonText: '確定',
               focusConfirm: true
-            });
+            }).then((result) => {
+                if (result.isConfirmed) {
+                  // 刷新頁面
+                  location.reload(); // 在成功處理後刷新頁面
+                }
+        });
           } else if (statusCode === 400) {
             // 驗證失敗的處理
             return response.json(); // 將回應轉換為 JSON
@@ -858,96 +864,101 @@
 
 <!-- 上傳照片處理 -->
 <script>
-        const prePhoto = document.getElementById('prePhoto');
-        const newPhoto = document.getElementById('newPhoto');
-        const uploadButton = document.getElementById('uploadButton');
+    const prePhoto = document.getElementById('prePhoto');
+    const newPhoto = document.getElementById('newPhoto');
+    const uploadButton = document.getElementById('uploadButton');
 
-        // 創建一個 input 元素
-        const fileInput = document.createElement('input');
+    // 創建一個 input 元素
+    const fileInput = document.createElement('input');
 
-        // 設定 input 元素的屬性
-        fileInput.type = 'file';
-        fileInput.accept = 'image/*';
-        fileInput.style.display = 'none';
+    // 設定 input 元素的屬性
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.style.display = 'none';
 
 
-        // 監聽上傳照片的點擊事件，觸發文件選擇對話框
-        uploadButton.addEventListener('click', function () {
-          fileInput.click(); // 觸發文件選擇對話框
-        });
+    // 監聽上傳照片的點擊事件，觸發文件選擇對話框
+    uploadButton.addEventListener('click', function () {
+      fileInput.click(); // 觸發文件選擇對話框
+    });
 
-        // 監聽文件選擇對話框的變化事件
-        fileInput.addEventListener('change', function (e) {
+    // 監聽文件選擇對話框的變化事件
+    fileInput.addEventListener('change', function (e) {
 
-          const selectedPhoto = e.target.files[0];
+      const selectedPhoto = e.target.files[0];
 
-          if (selectedPhoto) {
-            let reader = new FileReader();
-            reader.onload = function (e) {
-              prePhoto.style.backgroundImage = `url(${e.target.result})`;
+      if (selectedPhoto) {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+          prePhoto.style.backgroundImage = `url(${e.target.result})`;
 
-              // 將圖片轉換為Base64字符串
-              const base64Image = e.target.result.split(',')[1]; // 去掉data:image/jpeg;base64,中的前綴部分
+          // 將圖片轉換為Base64字符串
+          const base64Image = e.target.result.split(',')[1]; // 去掉data:image/jpeg;base64,中的前綴部分
 
-              // 將Base64字符串包裝在JSON數據中並上傳到伺服器
-              uploadImageToServer(base64Image);
-            };
-            reader.readAsDataURL(selectedPhoto);
-          }
-        });
+          // 將Base64字符串包裝在JSON數據中並上傳到伺服器
+          uploadImageToServer(base64Image);
+        };
+        reader.readAsDataURL(selectedPhoto);
+      }
+    });
 
-        // 函數：上傳圖片到伺服器
-        function uploadImageToServer(base64Image) {
-          // 將Base64字符串放入一個JSON對象中
-          const data = { memberPhoto: base64Image };
+    // 函數：上傳圖片到伺服器
+    function uploadImageToServer(base64Image) {
+      // 將Base64字符串放入一個JSON對象中
+      const data = { memberPhoto: base64Image };
 
-          // 使用fetch將JSON數據上傳到伺服器
-          fetch('/ezdom/member/uploadPhoto', {
-            method: 'POST',
-            headers: { 'Content-type': 'application/json' },
-            body: JSON.stringify(data),
-          }).then(response => {
-            // 獲取 HTTP 狀態碼
-            const statusCode = response.status;
+      // 使用fetch將JSON數據上傳到伺服器
+      fetch('/ezdom/member/uploadPhoto', {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(data),
+      }).then(response => {
+        // 獲取 HTTP 狀態碼
+        const statusCode = response.status;
 
-            // 判斷狀態碼並進行相應處理
-            if (statusCode === 200) {
-              // 登入成功的處理
-              Swal.fire({
-                icon: 'success',
-                title: '成功',
-                text: '照片更新成功！',
-                confirmButtonText: '確定',
-                focusConfirm: true
-              })
-              // 把上傳的圖社為預設
+        // 判斷狀態碼並進行相應處理
+        if (statusCode === 200) {
+          // 登入成功的處理
+          Swal.fire({
+            icon: 'success',
+            title: '成功',
+            text: '照片更新成功！',
+            confirmButtonText: '確定',
+            focusConfirm: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+            // 把上傳的圖設為預設
               prePhoto.style.backgroundImage = `url(data:image/jpeg;base64,${base64Image})`;
 
               // 刷新頁面
               location.reload(); // 在成功處理後刷新頁面
-            } else if (statusCode === 400) {
-              // 驗證失敗的處理
-              return response.json(); // 將回應轉換為 JSON
-            } else {
-              // 其他狀態碼處理
-              throw new Error("HTTP Error: " + statusCode);
+
             }
-          }).then(data => {
-            // 在這裡處理 JSON 回應的資料
-            // 例如顯示後端返回的錯誤訊息
-            Swal.fire({
-              icon: 'error',
-              title: '失敗',
-              text: data.message, // 假設後端返回的錯誤訊息放在 data.message 中
-              confirmButtonText: '確定',
-              focusConfirm: false
-            });
-          })
-            .catch(error => {
-              // 處理 fetch 發生的錯誤
-              console.error("Fetch Error:", error);
-            });
+    })
+
+        } else if (statusCode === 400) {
+          // 驗證失敗的處理
+          return response.json(); // 將回應轉換為 JSON
+        } else {
+          // 其他狀態碼處理
+          throw new Error("HTTP Error: " + statusCode);
         }
+      }).then(data => {
+        // 在這裡處理 JSON 回應的資料
+        // 例如顯示後端返回的錯誤訊息
+        Swal.fire({
+          icon: 'error',
+          title: '失敗',
+          text: data.message, // 假設後端返回的錯誤訊息放在 data.message 中
+          confirmButtonText: '確定',
+          focusConfirm: false
+        });
+      })
+        .catch(error => {
+          // 處理 fetch 發生的錯誤
+          console.error("Fetch Error:", error);
+        });
+    }
 
 </script>
 
@@ -1052,16 +1063,21 @@
           fetch(`/ezdom/member/getProfile`)
             .then(resp => resp.json())
             .then(body => {
-              const { name, email } = body;
+              const { name, email, phone, memberUid, introduction, address } = body;
 
               // 將會員信息顯示在相應的元素中
               nameDisplay1.forEach(element => {
                 element.textContent = name;
               });
-
               mailDisplay1.forEach(element => {
                 element.textContent = email;
               });
+
+              document.getElementById('name').value = name || '';
+              document.getElementById('email').value = email || '';
+              document.getElementById('memberUid').value = memberUid || '';
+              document.getElementById('phone').value = phone || '';
+              document.getElementById('address').value = address || '';
               })
             .catch(error => {
               console.error("Error:", error);
@@ -1069,8 +1085,6 @@
         }
 
 </script>
-
-
 <!-- 照片 -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -1117,13 +1131,13 @@
         })
   const s_req = '/ezdom/frontend/session';
   let session;
-  let memberUid = null;
+  let memberId = null;
   let coachId = null;
   async function getSession(){
       let response = await fetch(s_req);
       session = await response.json();
       console.log(session);
-      memberUid = session.memberUid;
+      memberId = session.memberId;
       if(null !== session.coachId){
           coachId = session.coachId;
       }

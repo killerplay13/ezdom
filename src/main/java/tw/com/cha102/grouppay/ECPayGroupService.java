@@ -42,8 +42,8 @@ public class ECPayGroupService {
 
         List<Integer> grouIds = groupMemberService.findGroupIdsByMemberIdAndStatus(memberId, (byte) 1);
         if (grouIds.contains(groupId)) {
-
         }
+
         GroupMember groupMember = groupMemberService.findByGroupIdAndMemberIdAndGroupApplyStatus(groupId, memberId, (byte) 1);
         groupMember.setGroupApplyStatus((byte) 4);
 
@@ -67,11 +67,11 @@ public class ECPayGroupService {
         obj.setItemName(group.getGroupName());
         obj.setCustomField1(groupId.toString());
         // 交易結果回傳網址，只接受 https 開頭的網站，可以使用 ngrok
-        obj.setReturnURL("https://ezdom.ddns.net/ezdom/group/grouppaysuccessful.html");
+        obj.setReturnURL("http://localhost:8080/ezdom/group/grouppaysuccessful.html");
         obj.setNeedExtraPaidInfo("N");
         // 商店轉跳網址 (Optional)
 //        obj.setOrderResultURL("http://localhost:8080/ezdom/frontend/group/ecpayReturn");
-        obj.setClientBackURL("https://ezdom.ddns.net/ezdom/group/grouppaysuccessful.html");
+        obj.setClientBackURL("http://localhost:8080/ezdom/group/grouppaysuccessful.html");
         String form = all.aioCheckOut(obj, null);
 
         return form;
