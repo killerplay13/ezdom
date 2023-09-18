@@ -23,7 +23,7 @@ public class ECPayGroupController {
 
     @GetMapping("/ecpayCheckout")
     @ResponseBody
-    public String ecpayCheckout(@RequestParam(value = "groupId") Integer groupId, HttpSession session) {
+    public String ecpayCheckout(@RequestParam Integer groupId, HttpSession session) {
 
         Integer memberId = (Integer) session.getAttribute("memberId");
 

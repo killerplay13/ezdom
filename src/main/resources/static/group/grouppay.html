@@ -316,8 +316,10 @@
 <script>
     //綠界
     let ecpayFormContainer = document.getElementById("ecpay-form");
+    const urlParams = new URLSearchParams(window.location.search);
+const groupId = urlParams.get('groupId');
     function pay() {
-        fetch('/ezdom/frontend/group/ecpayCheckout?groupId=1', {
+        fetch(`/ezdom/frontend/group/ecpayCheckout?groupId=${groupId}`, {
             method: 'GET',
             // headers: { 'Content-Type': 'application/json' },
             // body: JSON.stringify({
