@@ -161,7 +161,18 @@
       /* 調整頭像高度 */
     }
 
+    /* 調整團主名稱的位置 */
+    .group-leader {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
 
+    /* 調整團主名稱的間距 */
+    .group-leader .ps-2 {
+      margin-left: 10px;
+      /* 調整間距大小 */
+    }
   </style>
   <!-- Page loading scripts-->
   <script>
@@ -348,7 +359,6 @@
           <div class="position-md-sticky top-0 ps-md-4 ps-lg-5 ps-xl-0">
             <div class="d-none d-md-block" style="padding-top: 90px;"></div>
 
-
             <h1 id="groupName" class="d-none d-md-inline-block pb-1 mb-2">走啊打球阿</h1>
             <p id="groupContent" class="fs-5 mb-4 mt-3">
               來參加我們的籃球賽吧！無論你是籃球新手還是老手，我們都歡迎你加入。我們將在陽光明媚的公園進行比賽，這將是一個享受運動、交朋友的絕佳機會。一起在球場上挥洒汗水，共同創造難忘的籃球時光吧！
@@ -443,7 +453,8 @@
         }
 
         // 获取其他元素并设置内容
-
+        const groupLeaderImage = document.querySelector(".group-leader img");
+        const groupLeaderName = document.querySelector(".group-leader .ps-2");
         const groupName = document.getElementById("groupName");
         const groupContent = document.getElementById("groupContent");
         const groupDate = document.getElementById("groupDate");
@@ -456,7 +467,8 @@
         const groupNotice = document.getElementById("groupNotice");
 
         // 设置其他元素的内容
-
+        groupLeaderImage.src = groupData.leaderImageUrl || "default-leader.jpg";
+        groupLeaderName.textContent = groupData.leaderName || "團主名稱";
         groupName.textContent = groupData.groupName || "走啊打球阿";
         groupContent.textContent = groupData.groupContent || "";
         groupDate.textContent = formatDateTime(groupData.groupDate) || "";
